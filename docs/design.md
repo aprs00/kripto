@@ -107,3 +107,8 @@ See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits;
 ## Changelog (protocol/gate changes only; each needs a general rationale independent of any strategy's results)
 * 2026-11-08: initial version. Backtest no-trade band set to 0.05 to mirror the $10 min order on a $200 book.
   Shadow books run at $2,000 virtual equity so signal quality isn't distorted by the min order.
+* 2026-11-08: clarified the role of live paper (general statistical reason, not tied to any strategy): over weeks, the
+  SE of a live Sharpe is ±3–4, so incubation→active is judged mainly on **tracking**. Live behaviour (positions, costs,
+  slippage, funding) must match a backtest replay of the same period, with no operational errors, and returns must not be
+  significantly worse than expected. Edge itself is judged on the backtest evidence plus accumulating live months.
+  Ideas rejected on HL evidence alone are re-tested once HL history has grown ≥ 6 months.

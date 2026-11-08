@@ -12,6 +12,13 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
   be executed in the main book. Backtests use band 0.05 to mirror this.
 * **Binance results do NOT transfer automatically to HL** (see carry). Every idea must pass on HL data.
 * BN dataset has mild survivorship bias (hand-picked list of 82 coins); HL dataset includes delisted perps.
+* **Statistical power is low; know the error bars.** SE(annual Sharpe) ≈ √((1 + SR²/2) / years). HL walk-forward OOS ≈
+  1.6 years ⇒ ±0.8; BN ≈ 6 years ⇒ ±0.4; 3 weeks live ⇒ ±4. So: a single HL number is weak evidence either way; demand
+  consistency (per-year signs, grid breadth, BN agreement, an economic mechanism) before concluding. Live paper P&L
+  proves nothing about edge for many months. Its job is checking that live behaves like the backtest
+  (fills, costs, bugs).
+* **DEAD on HL ≠ dead forever.** HL history grows every day. Re-test DEAD ideas that died on HL alone (not on BN
+  too) once HL OOS history has grown by ≥ 6 months, as a pre-registered re-check (see backlog T0b).
 
 ## Hypotheses
 
@@ -26,7 +33,7 @@ Fails HL gate (needs OOS > 0.8). Signal real; cost/size problem. Shadow book liv
 ### xsmom: cross-sectional momentum, beta-hedged (2026-11-08) → ALIVE (candidate)
 BN OOS SR 0.63 (grid median 0.52), HL 0.71 (0.63). Weak but consistent. Shadow book live.
 
-### carry: short high funding / long low funding, dollar+beta neutral (2026-11-08) → DEAD on HL
+### carry: short high funding / long low funding, dollar+beta neutral (2026-11-08) → DEAD on HL (≈1 SE; re-check ~2027-05)
 BN OOS SR 1.35 (funding +15%/yr, price leg SR +1.0, every year >0). **HL OOS SR −0.58**, grid median −0.68 (3/12 >0):
 funding +6.5%/yr but price leg SR −0.66, every year negative. On HL, high-funding names are momentum squeezes
 that keep rising. Concentrated variant on BN also collapses (0.45): carry needs breadth. Follow-up idea: T1d.

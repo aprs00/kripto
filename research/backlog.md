@@ -4,6 +4,11 @@ Also read research/findings.md before picking: it records what is already DEAD a
 
 Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done: `- [x] ... → <one-line result, link to journal>`
 
+- [ ] T0a **Live-vs-backtest replay (tracking check)**: for each shadow book, re-run the backtest over exactly the live period
+  and compare day by day: positions, turnover, costs/slippage (model vs live order book), funding, returns. This is what
+  live paper can actually verify (weeks), whereas edge needs months. Build as scripts/live_vs_backtest.py and run it in
+  every research session once books have ≥ 7 days. Large tracking error = bug or bad cost model ⇒ fix before trusting anything.
+- [ ] T0b Scheduled re-checks: ~2027-05 re-run HL walk-forward for HL-only DEAD ideas (carry) with 6 more months of data.
 - [x] T1 Baseline walk-forward of tier-1 strategies on HL+BN → tsmom/xsmom/carry candidates (shadow), xsrev/lowvol/funding_contra dead; HL carry pending funding data (journal/2026-11-08.md)
 - [x] T1b HL carry walk-forward → FAILS on HL (OOS SR −0.58; price leg −0.66 overwhelms +6.5%/yr funding); retired (41/60 top coins had funding history)
 - [ ] T1d Trend-conditioned carry: earn funding only where it agrees with trend sign (short high-funding names only in downtrends, etc.) — rationale: HL high funding = squeeze momentum; pre-register ≤ 8 configs

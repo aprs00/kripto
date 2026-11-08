@@ -123,3 +123,6 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
 * 2026-11-08 setup: owner noted research shouldn't be one-idea-at-a-time. research_run gained `--grids <batch.json>`
   (parallel multi-hypothesis batches, 3 workers ≈ 2 GB); research sessions now test 2–5 hypotheses each; up to ~10
   shadow books in parallel.
+* 2026-11-08 setup: owner asked whether 1 day is too short to scrap a strategy. Made error bars explicit (findings.md
+  cross-cutting lessons). Live paper's job = tracking vs backtest replay (backlog T0a, top priority). HL-only DEAD verdicts
+  get re-checked after 6 more months of HL data (T0b).
