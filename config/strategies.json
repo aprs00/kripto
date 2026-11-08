@@ -1,9 +1,36 @@
 {
-  "tsmom": {"status": "candidate", "alloc": 0.0,
-            "params": {"lookbacks": [7, 14, 28, 56], "every_days": 1, "top_n": 12, "target_vol": 0.3},
-            "note": "2026-11-08: BN WF OOS SR 1.26 (all years +), HL WF OOS SR 0.55/0.51, HL grid median 0.89 (16/16 >0). Fails HL gate -> shadow only."},
-  "xsmom": {"status": "candidate", "alloc": 0.0, "params": {"lookback": 28, "every_days": 3},
-            "note": "2026-11-08: BN WF OOS SR 0.63, HL 0.71. Shadow only."},
-  "carry": {"status": "candidate", "alloc": 0.0, "params": {"lookback": 7, "every_days": 1},
-            "note": "2026-11-08: BN WF OOS SR 1.35 (funding +15%/yr, all years +); needs breadth (top_n 30). HL test pending full funding history."}
+  "tsmom": {
+    "status": "candidate",
+    "alloc": 0.0,
+    "params": {
+      "lookbacks": [
+        7,
+        14,
+        28,
+        56
+      ],
+      "every_days": 1,
+      "top_n": 12,
+      "target_vol": 0.3
+    },
+    "note": "2026-11-08: BN WF OOS SR 1.26 (all years +), HL WF OOS SR 0.55/0.51, HL grid median 0.89 (16/16 >0). Fails HL gate -> shadow only."
+  },
+  "xsmom": {
+    "status": "candidate",
+    "alloc": 0.0,
+    "params": {
+      "lookback": 28,
+      "every_days": 3
+    },
+    "note": "2026-11-08: BN WF OOS SR 0.63, HL 0.71. Shadow only."
+  },
+  "carry": {
+    "status": "retired",
+    "alloc": 0.0,
+    "params": {
+      "lookback": 7,
+      "every_days": 1
+    },
+    "note": "2026-11-08: BN WF OOS SR 1.35 (funding +15%/yr, all years +); needs breadth (top_n 30). HL test pending full funding history. | 2026-11-08 HL WF OOS SR -0.58, grid median -0.68 (3/12 >0): funding +6.5%/yr but price leg SR -0.66 (high-funding HL names keep squeezing up). Does NOT transfer from Binance -> retired."
+  }
 }

@@ -3,7 +3,8 @@
 Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done: `- [x] ... → <one-line result, link to journal>`
 
 - [x] T1 Baseline walk-forward of tier-1 strategies on HL+BN → tsmom/xsmom/carry candidates (shadow), xsrev/lowvol/funding_contra dead; HL carry pending funding data (journal/2026-11-08.md)
-- [ ] T1b HL carry walk-forward (needs data/hl/funding for top 30–60)
+- [x] T1b HL carry walk-forward → FAILS on HL (OOS SR −0.58; price leg −0.66 overwhelms +6.5%/yr funding); retired (41/60 top coins had funding history)
+- [ ] T1d Trend-conditioned carry: earn funding only where it agrees with trend sign (short high-funding names only in downtrends, etc.) — rationale: HL high funding = squeeze momentum; pre-register ≤ 8 configs
 - [ ] T1c HL cost reduction: liquidity-filtered universe, signal smoothing, fewer/larger positions for $200 (min order $10)
 - [ ] T2 New-listing decay: short HL perps N days after listing, hold M days, vol-scaled — airdrop/unlock supply overhang; data: HL 1d candles incl. delisted
 - [ ] T3 HL-vs-Binance funding spread as crowding signal — HL retail flow distinct; data: HL funding + Binance funding (hourly HL, 8h BN)
