@@ -101,7 +101,7 @@ def refresh_data(hl: HL, store: Store) -> list[str]:
     held = {c for (c,) in store.q("select distinct coin from positions where size!=0")}
     coins = list(dict.fromkeys(coins + sorted(held)))
     data.hl_update_candles(coins, LIVE_INTERVAL, hl, log=lambda m: None)
-    since = (pd.Timestamp.utcnow() - pd.Timedelta(days=HISTORY_DAYS)).strftime("%Y-%m-%d")
+    since = (pd.Timestamp.utcnow() - pd.Timedelta(days=30)).strftime("%Y-%m-%d")  # live needs little; deep backfill is done offline
     data.hl_update_funding(coins, since, hl, log=lambda m: None)
     # context snapshot (funding/OI/premium) -> research dataset for HL-specific hypotheses
     snap = uni.assign(ts=pd.Timestamp.utcnow().floor("min"))

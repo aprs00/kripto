@@ -3,7 +3,7 @@ Description=kripto paper trader (one hourly step)
 [Service]
 Type=oneshot
 WorkingDirectory=%h/kripto
-Environment=KRIPTO_HL_INTERVAL=2.0
+Environment=KRIPTO_HL_INTERVAL=3.0
 ExecStart=%h/kripto/.venv/bin/python -m kripto.paper run
 Nice=10
 MemoryMax=1500M

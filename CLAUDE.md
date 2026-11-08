@@ -9,7 +9,7 @@ haven't. It contains the thesis, the research protocol and the promotion gates.
 1. **Paper only.** Never create, request, store or use exchange API keys, wallets, private keys or
    seed phrases. Never send orders to any exchange. Never call any Hyperliquid endpoint other than
    the public `POST https://api.hyperliquid.xyz/info`. Going live is a human decision only.
-2. **Legal and clean.** Public market data only. Respect rate limits (HL client `min_interval` ≥ 2s on
+2. **Legal and clean.** Public market data only. Respect rate limits (HL client `min_interval` ≥ 3s on
    the server; a separate project shares this IP). Do not design or simulate market manipulation
    (spoofing, layering, wash trading, pump schemes, front-running). Don't scrape sites whose terms forbid it.
 3. **Stay in your sandbox.** Only touch files under `/home/kripto`. The `crypto-scanner` Docker stack,
