@@ -1,0 +1,117 @@
+{
+ "strategy": "tsmom",
+ "dataset": "hl",
+ "n_configs": 1,
+ "grid_median_sharpe": 0.471,
+ "grid_frac_positive": 1.0,
+ "oos": {
+  "start": "2025-04-21",
+  "end": "2026-11-08",
+  "years": 1.55,
+  "cagr": 0.1443,
+  "vol": 0.2832,
+  "sharpe": 0.617,
+  "sortino": 0.904,
+  "max_dd": -0.2737,
+  "calmar": 0.527,
+  "psr0": 0.7793,
+  "dsr": 0.0253,
+  "n_trials": 176,
+  "pos_months": 0.632
+ },
+ "folds": [
+  {
+   "from": "2025-04-21",
+   "params": {
+    "every_days": 3
+   },
+   "is_sharpe": 0.1,
+   "oos_sharpe": -0.73
+  },
+  {
+   "from": "2025-06-20",
+   "params": {
+    "every_days": 3
+   },
+   "is_sharpe": -0.06,
+   "oos_sharpe": -2.39
+  },
+  {
+   "from": "2025-08-19",
+   "params": {
+    "every_days": 3
+   },
+   "is_sharpe": -0.43,
+   "oos_sharpe": -1.28
+  },
+  {
+   "from": "2025-10-18",
+   "params": {
+    "every_days": 3
+   },
+   "is_sharpe": -0.57,
+   "oos_sharpe": 2.62
+  },
+  {
+   "from": "2025-12-17",
+   "params": {
+    "every_days": 3
+   },
+   "is_sharpe": -0.19,
+   "oos_sharpe": 0.65
+  },
+  {
+   "from": "2026-02-15",
+   "params": {
+    "every_days": 3
+   },
+   "is_sharpe": -0.11,
+   "oos_sharpe": 1.5
+  },
+  {
+   "from": "2026-04-16",
+   "params": {
+    "every_days": 3
+   },
+   "is_sharpe": 0.06,
+   "oos_sharpe": 5.3
+  },
+  {
+   "from": "2026-06-15",
+   "params": {
+    "every_days": 3
+   },
+   "is_sharpe": 0.61,
+   "oos_sharpe": -2.72
+  },
+  {
+   "from": "2026-08-14",
+   "params": {
+    "every_days": 3
+   },
+   "is_sharpe": 0.31,
+   "oos_sharpe": 2.89
+  },
+  {
+   "from": "2026-10-13",
+   "params": {
+    "every_days": 3
+   },
+   "is_sharpe": 0.58,
+   "oos_sharpe": -2.8
+  }
+ ],
+ "grid": [
+  {
+   "i": 0,
+   "every_days": 3,
+   "sharpe": 0.471,
+   "cagr": 0.0969,
+   "max_dd": -0.3298,
+   "turnover_yr": 40.5,
+   "cost_yr": 0.0372,
+   "funding_yr": -0.0292
+  }
+ ],
+ "seconds": 1.3
+}

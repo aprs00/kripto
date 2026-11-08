@@ -1,6 +1,7 @@
 """Walk-forward evaluation of registered strategies on HL and/or Binance panels.
 
   nice -n 19 .venv/bin/python -m scripts.research_run --strategies tsmom carry --datasets hl bn
+  nice -n 19 .venv/bin/python -m scripts.research_run --grids research/batches/2026-11-09.json --datasets hl bn
 Grids are PRE-REGISTERED below (or passed as JSON via --grid). Results -> research/results/<ts>_<strategy>_<ds>.json
 """
 import argparse, json, os, time
@@ -54,10 +55,15 @@ if __name__ == "__main__":
     ap.add_argument("--strategies", nargs="+", default=list(GRIDS))
     ap.add_argument("--datasets", nargs="+", default=["hl", "bn"])
     ap.add_argument("--grid", help="JSON grid override (single strategy)")
+    ap.add_argument("--grids", help="JSON file {strategy: grid} to test several hypotheses in one parallel batch")
     ap.add_argument("--since", help="e.g. 2021-01-01")
-    ap.add_argument("--workers", type=int, default=max(1, min(4, (os.cpu_count() or 2) // 2)))
+    ap.add_argument("--workers", type=int, default=3, help="~0.6 GB RAM each; keep <= 3 on the shared server")
     a = ap.parse_args()
-    jobs = [(s, d, json.loads(a.grid) if a.grid else GRIDS[s], a.since) for s in a.strategies for d in a.datasets]
+    if a.grids:
+        spec = json.loads(Path(a.grids).read_text())
+        jobs = [(s, d, g, a.since) for s, g in spec.items() for d in a.datasets]
+    else:
+        jobs = [(s, d, json.loads(a.grid) if a.grid else GRIDS[s], a.since) for s in a.strategies for d in a.datasets]
     with ProcessPoolExecutor(a.workers) as ex:
         for r in ex.map(job, jobs):
             print(brief(r), flush=True)

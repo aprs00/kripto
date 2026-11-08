@@ -88,7 +88,7 @@ state/paper.db        sqlite paper ledger (gitignored) data/  parquet market dat
 ```
 .venv/bin/python -m kripto.paper status                    # books, equity, fees, funding, warnings
 .venv/bin/python -m pytest -q                              # must pass before committing code
-nice -n 19 .venv/bin/python -m scripts.research_run ...    # see scripts/research_run.py --help
+nice -n 19 .venv/bin/python -m scripts.research_run --grids research/batches/<date>.json --datasets hl bn  # parallel batch
 nice -n 19 .venv/bin/python -m scripts.inspect_strategy tsmom hl '{}'
 systemctl --user list-timers ; journalctl --user -u kripto-trader -n 50
 sqlite3 state/paper.db "select * from fills order by ts desc limit 20"
@@ -103,7 +103,8 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
 
 ## Session types
 * **review** (every 4h, short): health, bookkeeping, fix operational problems. See `prompts/review.md`.
-* **research** (daily, long): one backlog item end-to-end, then gates. See `prompts/research.md`.
+* **research** (daily, long): several hypotheses tested in parallel (batch file + `--grids`), then gates.
+  See `prompts/research.md`. Live testing is parallel too: every promising variant can get its own shadow book.
   On **Sundays** the research session is a **weekly retrospective** instead (see prompts/research.md).
 
 ## Writing things down
@@ -119,3 +120,6 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   and rule 6 "run the real trader after code changes".
 * 2026-11-08 setup: owner hands over all decisions. Added "YOU OWN THIS", the memory table,
   `research/findings.md`, weekly retrospective, and the rule for changing gates.
+* 2026-11-08 setup: owner noted research shouldn't be one-idea-at-a-time. research_run gained `--grids <batch.json>`
+  (parallel multi-hypothesis batches, 3 workers ≈ 2 GB); research sessions now test 2–5 hypotheses each; up to ~10
+  shadow books in parallel.
