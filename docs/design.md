@@ -103,3 +103,7 @@ State: SQLite (`state/paper.db`). Code and research history: git → GitHub. Dat
 See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits; no manipulation
 (spoofing, wash trading, etc.), even simulated; never touch anything outside `/home/kripto` (the
 `crypto-scanner` stack on the same server is a separate project and off-limits).
+
+## Changelog (protocol/gate changes only; each needs a general rationale independent of any strategy's results)
+* 2026-11-08: initial version. Backtest no-trade band set to 0.05 to mirror the $10 min order on a $200 book.
+  Shadow books run at $2,000 virtual equity so signal quality isn't distorted by the min order.

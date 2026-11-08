@@ -1,5 +1,7 @@
 # Research backlog (highest priority first)
 
+Also read research/findings.md before picking: it records what is already DEAD and why.
+
 Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done: `- [x] ... → <one-line result, link to journal>`
 
 - [x] T1 Baseline walk-forward of tier-1 strategies on HL+BN → tsmom/xsmom/carry candidates (shadow), xsrev/lowvol/funding_contra dead; HL carry pending funding data (journal/2026-11-08.md)

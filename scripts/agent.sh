@@ -9,7 +9,7 @@ LOG="logs/agent-$(date -u +%F)-$MODE.log"
 exec 9>"$HOME/.kripto-agent.lock"
 flock -n 9 || { echo "$(date -u) another agent session is running; skip" >> "$LOG"; exit 0; }
 git pull -q --rebase || echo "git pull failed" >> "$LOG"
-case "$MODE" in review) TURNS=40; TMO=35m;; research) TURNS=200; TMO=140m;; *) exit 2;; esac
+case "$MODE" in review) TURNS=40; TMO=35m;; research) TURNS=250; TMO=140m;; *) exit 2;; esac
 echo "=== $(date -u +%FT%TZ) start $MODE" >> "$LOG"
 timeout "$TMO" claude -p "$(cat prompts/$MODE.md)" --dangerously-skip-permissions --max-turns "$TURNS" \
   --output-format text >> "$LOG" 2>&1
