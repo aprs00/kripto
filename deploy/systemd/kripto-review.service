@@ -1,0 +1,7 @@
+[Unit]
+Description=kripto autonomous agent (review session)
+[Service]
+Type=oneshot
+WorkingDirectory=%h/kripto
+ExecStart=%h/kripto/scripts/agent.sh review
+TimeoutStartSec=40min

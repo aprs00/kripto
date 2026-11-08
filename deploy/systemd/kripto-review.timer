@@ -1,0 +1,7 @@
+[Unit]
+Description=kripto agent review every 4h (after the 4h bar closes and the trader ran)
+[Timer]
+OnCalendar=*-*-* 00/4:25:00
+Persistent=true
+[Install]
+WantedBy=timers.target

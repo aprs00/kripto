@@ -11,6 +11,7 @@ NOTHING here can place a real order: there are no keys and no exchange endpoint 
 from __future__ import annotations
 
 import json
+import os
 import sqlite3
 import sys
 import time
@@ -29,7 +30,7 @@ DB = ROOT / "state" / "paper.db"
 CFG = ROOT / "config" / "strategies.json"
 RISK = ROOT / "config" / "risk.json"
 LIVE_INTERVAL = "4h"
-LIVE_UNIVERSE = 60         # coins we keep fresh data for (top by volume + anything held)
+LIVE_UNIVERSE = int(os.environ.get("KRIPTO_LIVE_UNIVERSE", "60"))  # top coins by volume kept fresh (+ anything held)
 MIN_NOTIONAL = 10.0        # HL minimum order value
 HISTORY_DAYS = 220
 
@@ -206,7 +207,7 @@ def rebalance(hl: HL, store: Store, book: str, target_w: pd.Series, marks: dict[
 
 def run_once():
     cfg, risk = load_cfg()
-    store, hl = Store(), HL(min_interval=0.5)
+    store, hl = Store(), HL(min_interval=float(os.environ.get("KRIPTO_HL_INTERVAL", "2.0")))
     coins = refresh_data(hl, store)
     ctx = {r["name"]: r for r in hl.meta_and_ctxs()}
     marks = {c: float(r["markPx"]) for c, r in ctx.items() if r.get("markPx")}
@@ -234,8 +235,8 @@ def run_once():
 
     books = {f"shadow:{n}": (n,) for n, sc in cfg.items() if sc.get("status") != "retired"}
     books["main"] = None
-    for b in books:
-        store.ensure_book(b, risk["start_equity"])
+    for b in books:  # shadow books measure signal quality; bigger virtual equity avoids $10-min-order distortion
+        store.ensure_book(b, risk["start_equity"] if b == "main" else risk.get("shadow_equity", risk["start_equity"]))
 
     for book, spec in books.items():
         halted = store.q("select halted from books where name=?", book)[0][0]

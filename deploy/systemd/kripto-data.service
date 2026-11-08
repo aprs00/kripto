@@ -1,0 +1,10 @@
+[Unit]
+Description=kripto nightly full data refresh
+[Service]
+Type=oneshot
+WorkingDirectory=%h/kripto
+Environment=KRIPTO_HL_INTERVAL=2.5
+ExecStart=%h/kripto/.venv/bin/python -m scripts.download all --top 80
+Nice=19
+MemoryMax=1500M
+TimeoutStartSec=6h

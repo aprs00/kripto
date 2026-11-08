@@ -43,7 +43,7 @@ def log_trial(rec: dict):
 
 
 def evaluate(name: str, panel: dict, params: dict, dataset: str, cost_mult: float = 1.0,
-             band: float = 0.02, log: bool = True, start: str | None = None) -> tuple[bt.BTResult, dict]:
+             band: float = 0.05, log: bool = True, start: str | None = None) -> tuple[bt.BTResult, dict]:
     w = REGISTRY[name](panel, **params)
     bpd = bars_per_day(panel["close"].index)
     slip = bt.slippage_model(panel["volume"], bpd)

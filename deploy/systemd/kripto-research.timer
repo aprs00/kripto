@@ -1,0 +1,7 @@
+[Unit]
+Description=kripto agent daily research session
+[Timer]
+OnCalendar=*-*-* 06:40:00
+Persistent=true
+[Install]
+WantedBy=timers.target

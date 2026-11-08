@@ -2,7 +2,9 @@
 
 Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done: `- [x] ... → <one-line result, link to journal>`
 
-- [ ] T1 Baseline walk-forward of tier-1 strategies (tsmom, xsmom, xsrev, carry, lowvol, funding_contra) on HL+BN — establishes what survives costs
+- [x] T1 Baseline walk-forward of tier-1 strategies on HL+BN → tsmom/xsmom/carry candidates (shadow), xsrev/lowvol/funding_contra dead; HL carry pending funding data (journal/2026-11-08.md)
+- [ ] T1b HL carry walk-forward (needs data/hl/funding for top 30–60)
+- [ ] T1c HL cost reduction: liquidity-filtered universe, signal smoothing, fewer/larger positions for $200 (min order $10)
 - [ ] T2 New-listing decay: short HL perps N days after listing, hold M days, vol-scaled — airdrop/unlock supply overhang; data: HL 1d candles incl. delisted
 - [ ] T3 HL-vs-Binance funding spread as crowding signal — HL retail flow distinct; data: HL funding + Binance funding (hourly HL, 8h BN)
 - [ ] T4 Combine survivors: risk-parity blend, check correlation & diversification benefit

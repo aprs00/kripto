@@ -1,0 +1,7 @@
+[Unit]
+Description=kripto autonomous agent (research session)
+[Service]
+Type=oneshot
+WorkingDirectory=%h/kripto
+ExecStart=%h/kripto/scripts/agent.sh research
+TimeoutStartSec=150min
