@@ -147,7 +147,7 @@ def _read_zip_csv(b: bytes) -> pd.DataFrame:
 
 
 def _months(start: str) -> list[str]:
-    end = pd.Timestamp.utcnow().tz_localize(None).to_period("M") - 1
+    end = pd.Timestamp.now("UTC").tz_localize(None).to_period("M") - 1
     return [str(p) for p in pd.period_range(pd.Period(start, "M"), end, freq="M")]
 
 

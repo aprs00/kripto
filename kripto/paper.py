@@ -101,15 +101,15 @@ def refresh_data(hl: HL, store: Store) -> list[str]:
     held = {c for (c,) in store.q("select distinct coin from positions where size!=0")}
     coins = list(dict.fromkeys(coins + sorted(held)))
     data.hl_update_candles(coins, LIVE_INTERVAL, hl, log=lambda m: None)
-    since = (pd.Timestamp.utcnow() - pd.Timedelta(days=30)).strftime("%Y-%m-%d")  # live needs little; deep backfill is done offline
+    since = (pd.Timestamp.now("UTC") - pd.Timedelta(days=30)).strftime("%Y-%m-%d")  # live needs little; deep backfill is done offline
     data.hl_update_funding(coins, since, hl, log=lambda m: None)
     # context snapshot (funding/OI/premium) -> research dataset for HL-specific hypotheses
-    snap = uni.assign(ts=pd.Timestamp.utcnow().floor("min"))
+    snap = uni.assign(ts=pd.Timestamp.now("UTC").floor("min"))
     keep = [c for c in ["ts", "name", "funding", "premium", "openInterest", "oraclePx", "markPx", "midPx",
                         "dayNtlVlm", "maxLeverage"] if c in snap.columns]
     d = data.DATA / "hl" / "ctx"
     d.mkdir(parents=True, exist_ok=True)
-    p = d / f"{pd.Timestamp.utcnow():%Y-%m}.parquet"
+    p = d / f"{pd.Timestamp.now("UTC"):%Y-%m}.parquet"
     snap = snap[keep].astype({k: str for k in keep if k not in ("ts", "dayNtlVlm")})
     (pd.concat([pd.read_parquet(p), snap]) if p.exists() else snap).to_parquet(p)
     return coins
@@ -117,10 +117,10 @@ def refresh_data(hl: HL, store: Store) -> list[str]:
 
 def live_panel(coins: list[str]) -> dict:
     p = data.load_hl_panel(LIVE_INTERVAL, coins)
-    cutoff = pd.Timestamp.utcnow() - pd.Timedelta(days=HISTORY_DAYS)
+    cutoff = pd.Timestamp.now("UTC") - pd.Timedelta(days=HISTORY_DAYS)
     bar = pd.Timedelta(hours=4)
     # drop the still-forming candle: bar t is closed only once t + bar <= now
-    closed = p["close"].index + bar <= pd.Timestamp.utcnow()
+    closed = p["close"].index + bar <= pd.Timestamp.now("UTC")
     return {k: v.loc[closed & (v.index >= cutoff)] for k, v in p.items()}
 
 
