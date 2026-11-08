@@ -60,8 +60,12 @@ def hl_update_funding(coins: list[str], since: str = "2023-05-01", hl: HL | None
     for i, coin in enumerate(coins):
         p = d / f"{coin}.parquet"
         old = pd.read_parquet(p) if p.exists() else None
-        start = int(old["time"].max()) + 1 if old is not None and len(old) else int(pd.Timestamp(since, tz="UTC").timestamp() * 1000)
+        since_ms = int(pd.Timestamp(since, tz="UTC").timestamp() * 1000)
+        start = int(old["time"].max()) + 1 if old is not None and len(old) else since_ms
         rows = hl.funding_history(coin, start)
+        # backfill a missing head (e.g. the live trader only fetched the last 30 days)
+        if old is not None and len(old) and int(old["time"].min()) > since_ms + 2 * 86_400_000:
+            rows = hl.funding_history(coin, since_ms, int(old["time"].min()) - 1) + rows
         if rows:
             df = pd.DataFrame(rows)[["time", "fundingRate", "premium"]]
             df["fundingRate"] = df["fundingRate"].astype(float)
