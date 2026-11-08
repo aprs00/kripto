@@ -109,7 +109,7 @@ def refresh_data(hl: HL, store: Store) -> list[str]:
                         "dayNtlVlm", "maxLeverage"] if c in snap.columns]
     d = data.DATA / "hl" / "ctx"
     d.mkdir(parents=True, exist_ok=True)
-    p = d / f"{pd.Timestamp.now("UTC"):%Y-%m}.parquet"
+    p = d / f"{pd.Timestamp.now('UTC'):%Y-%m}.parquet"
     snap = snap[keep].astype({k: str for k in keep if k not in ("ts", "dayNtlVlm")})
     (pd.concat([pd.read_parquet(p), snap]) if p.exists() else snap).to_parquet(p)
     return coins

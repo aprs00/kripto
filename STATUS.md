@@ -1,6 +1,6 @@
-HEALTH: OK — first hourly trader run succeeded (14:54 UTC); all books flat as expected until the first 00:00 UTC rebalance bar.
+HEALTH: OK — trader crashed at 15:03 and 16:03 UTC (py3.11 f-string SyntaxError from the last commit); fixed at 16:31 and a manual run succeeded. No rebalance was missed.
 
-_Updated 2026-11-08 14:55 UTC (review session)._
+_Updated 2026-11-08 16:32 UTC (review session)._
 
 ## Main book ($200 paper)
 Equity $200.00, return since start +0.00%. Flat: no strategy is in incubation/active (none passed the HL gate).
@@ -10,7 +10,7 @@ Equity $200.00, return since start +0.00%. Flat: no strategy is in incubation/ac
 | main | $200.00 | +0.00% | 0 | 0 | $0.00 | $0.00 |
 | shadow:tsmom | $2000.00 | +0.00% | 0 | 0 | $0.00 | $0.00 |
 | shadow:xsmom | $2000.00 | +0.00% | 0 | 0 | $0.00 | $0.00 |
-| shadow:carry | $2000.00 | +0.00% | 0 | 0 | $0.00 | $0.00 |
+| shadow:carry (retired, frozen) | $2000.00 | +0.00% | 0 | 0 | $0.00 | $0.00 |
 
 Shadow books have no positions yet by design: strategies rebalance on an epoch-anchored grid (tsmom
 daily at the 00:00 UTC bar, xsmom every 3 days). The first targets are expected from the ~04:00 UTC run on 2026-11-09.
