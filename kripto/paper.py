@@ -207,7 +207,7 @@ def rebalance(hl: HL, store: Store, book: str, target_w: pd.Series, marks: dict[
 
 def run_once():
     cfg, risk = load_cfg()
-    store, hl = Store(), HL(min_interval=float(os.environ.get("KRIPTO_HL_INTERVAL", "2.0")))
+    store, hl = Store(), HL(min_interval=float(os.environ.get("KRIPTO_HL_INTERVAL", "3.0")))
     coins = refresh_data(hl, store)
     ctx = {r["name"]: r for r in hl.meta_and_ctxs()}
     marks = {c: float(r["markPx"]) for c, r in ctx.items() if r.get("markPx")}

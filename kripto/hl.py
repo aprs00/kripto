@@ -11,7 +11,7 @@ INTERVAL_MS = {"1h": 3_600_000, "4h": 14_400_000, "1d": 86_400_000}
 
 
 class HL:
-    def __init__(self, min_interval: float = 0.3, timeout: float = 30.0):
+    def __init__(self, min_interval: float = 3.0, timeout: float = 30.0):
         self.s = requests.Session()
         self.min_interval = min_interval
         self.timeout = timeout

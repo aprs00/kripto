@@ -10,7 +10,7 @@ ap.add_argument("--top", type=int, default=0, help="limit HL coins to top-N by v
 a = ap.parse_args()
 log = lambda m: print(m, flush=True)
 if a.what in ("hl", "all"):
-    hl = HL(min_interval=float(os.environ.get("KRIPTO_HL_INTERVAL", "0.3")))
+    hl = HL(min_interval=float(os.environ.get("KRIPTO_HL_INTERVAL", "3.0")))
     uni = data.hl_universe(hl)
     coins = list(uni["name"])                      # all perps incl. delisted -> no survivorship bias
     top = coins[: a.top] if a.top else coins

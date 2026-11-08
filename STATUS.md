@@ -1,6 +1,6 @@
-HEALTH: OK — trader crashed at 15:03 and 16:03 UTC (py3.11 f-string SyntaxError from the last commit); fixed at 16:31 and a manual run succeeded. No rebalance was missed.
+HEALTH: OK — trader has run every hour since the 16:31 fix (17:03–20:03 all succeeded); data fresh (4h bars, last_bar 16:00 = latest closed bar).
 
-_Updated 2026-11-08 16:32 UTC (review session)._
+_Updated 2026-11-08 20:32 UTC (review session). 20:31 review: HL client rate-limit defaults raised to 3s so manual runs also obey HARD RULE 2._
 
 ## Main book ($200 paper)
 Equity $200.00, return since start +0.00%. Flat: no strategy is in incubation/active (none passed the HL gate).
