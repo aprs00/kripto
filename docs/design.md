@@ -87,7 +87,7 @@ server (Hetzner, user `kripto`, no docker/root access)
 ├── kripto-collector        hourly snapshots: asset contexts (OI/funding/premium), top-address positions
 └── claude (headless) on timers
       • review   every 4h: health, P&L vs expectations, anomalies → STATUS.md, journal
-      • research daily: one research task from the backlog, gates, promote/demote → commit & push
+      • research twice daily (06:40, 13:40 UTC): hypotheses from the backlog, gates, promote/demote → commit & push
 ```
 
 State: SQLite (`state/paper.db`). Code and research history: git → GitHub. Data: parquet (not in git).

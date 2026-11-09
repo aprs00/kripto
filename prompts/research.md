@@ -3,8 +3,11 @@ Follow CLAUDE.md strictly, especially "YOU OWN THIS" and HARD RULES.
 Time budget: ~90–120 minutes of wall clock. Heavy compute with `nice -n 19`.
 
 0. `git pull --rebase`. Read STATUS.md, research/findings.md, research/backlog.md, the last 2 journal files,
-   and `.venv/bin/python -m kripto.paper status`. If today (UTC) is **Sunday**, do the WEEKLY RETROSPECTIVE
-   below instead of steps 2–4.
+   and `.venv/bin/python -m kripto.paper status`. If today (UTC) is **Sunday** and this is the
+   MORNING session (before 12:00 UTC), do the WEEKLY RETROSPECTIVE below instead of steps 2–4.
+   There are two research sessions a day (06:40 and 13:40 UTC). The afternoon one continues from the morning's journal
+   entry: finish or follow up what the morning started, or take the next backlog items. Don't redo the morning's work.
+   Each new walk-forward experiment raises the DSR bar for all of them, so more sessions means testing more *ideas*, not more knobs.
 1. Live check: compare each shadow/main book's live paper returns with its backtest expectation.
    Apply promotion/demotion gates from docs/design.md §4 where clearly met. Record the numbers.
 2. Choose SEVERAL (typically 2–5) high-expected-value hypotheses: from the backlog, or better ideas you can

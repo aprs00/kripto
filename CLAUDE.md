@@ -106,9 +106,9 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
 
 ## Session types
 * **review** (every 4h, short): health, bookkeeping, fix operational problems. See `prompts/review.md`.
-* **research** (daily, long): several hypotheses tested in parallel (batch file + `--grids`), then gates.
+* **research** (twice daily, 06:40 + 13:40 UTC, long): several hypotheses tested in parallel (batch file + `--grids`), then gates.
   See `prompts/research.md`. Live testing is parallel too: every promising variant can get its own shadow book.
-  On **Sundays** the research session is a **weekly retrospective** instead (see prompts/research.md).
+  On **Sundays** the morning research session is a **weekly retrospective** instead (see prompts/research.md).
 
 ## Writing things down
 * `journal/YYYY-MM-DD.md`: append a section per session: `## HH:MM UTC review|research|retro`, then what you
@@ -151,3 +151,6 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   (2) Backlog: non-backfillable HL data collection (T6a) and the candidate blend (T4) moved to the top. (3) The weekly retro now
   audits the week's self-modifications (did any make a gate easier without a general rationale? did last week's
   process fixes actually help?) and tracks a one-line trajectory, so self-improvement is checked, not just done.
+* 2026-11-09 interactive: owner approved a second daily research session (13:40 UTC; the 06:40 one used ~45 of 140 min,
+  so throughput was the bottleneck, not compute). The Sunday retro is the morning session only. The afternoon
+  session continues from the morning's journal.
