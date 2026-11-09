@@ -116,8 +116,9 @@ def robustness(name: str, panel: dict, params: dict, dataset: str) -> dict:
         for m in (6, 12):
             seg = r[r.index >= first + pd.DateOffset(months=m)]
             out[f"skip_first_{m}m"] = round(mx.sharpe(seg, ppy), 3) if len(seg) > 60 else None
-        if "BTC" in panel["close"]:
-            btc = panel["close"]["BTC"].pct_change(fill_method=None).reindex(r.index)
+        ref = next((x for x in ("BTC", "BTC@bn") if x in panel["close"]), None)
+        if ref:
+            btc = panel["close"][ref].pct_change(fill_method=None).reindex(r.index)
             out["corr_btc"] = round(float(r.corr(btc)), 3)
     sig = inspect.signature(REGISTRY[name]).parameters
     n = int(params.get("every_days", sig["every_days"].default if "every_days" in sig else 1))

@@ -26,11 +26,7 @@ _PANELS = {}
 
 def panel(ds, since=None, interval="4h"):
     if (ds, interval) not in _PANELS:
-        if ds == "bnall":  # full Binance USDT-perp universe incl. delisted (daily only)
-            assert interval == "1d", "bnall is daily: use --interval 1d"
-            p = data.load_bn_all_panel()
-        else:
-            p = data.load_hl_panel(interval) if ds == "hl" else data.load_bn_panel(interval)
+        p = data.load_panel(ds, interval)   # hl | bn | bnall | hlx | pair (the last three are daily only)
         if since:
             p = {k: v[v.index >= since] for k, v in p.items()}
         _PANELS[(ds, interval)] = p

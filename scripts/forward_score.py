@@ -71,7 +71,8 @@ def main(only: str | None = None) -> list[dict]:
     from kripto.strategies import REGISTRY
     loaders = {"hl": lambda: data.load_hl_panel("4h"), "hl_1d": lambda: data.load_hl_panel("1d"),
                "bn": lambda: data.load_bn_panel("4h"), "bn_1d": lambda: data.load_bn_panel("1d"),
-               "bnall": data.load_bn_all_panel, "bnall_1d": data.load_bn_all_panel}
+               "bnall": data.load_bn_all_panel, "bnall_1d": data.load_bn_all_panel,
+               "hlx_1d": data.load_hl_bnflow_panel, "pair_1d": data.load_pair_panel}
     exps = [e for e in experiments(known=set(REGISTRY)) if e["dataset"] in loaders and (not only or e["dataset"] == only)]
     rows, panels = [], {}
     for e in sorted(exps, key=lambda e: (e["dataset"], e["strategy"])):

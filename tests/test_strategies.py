@@ -162,3 +162,58 @@ def test_strategy_phase_argument_moves_the_rebalance_day(name):
     assert days(st.REGISTRY[name](p, every_days=3, phase=0, **kw)) == {0}
     assert days(st.REGISTRY[name](p, every_days=3, phase=2, **kw)) == {2}
     assert days(st.REGISTRY[name](p, every_days=3, **kw)) == {0, 1, 2}     # default: tranches, some trade every day
+
+
+# --------------------------------------------------------------------------- cross-venue (2026-11-10)
+def _pair_panel(T=120):
+    idx = pd.date_range("2025-01-01", periods=T, freq="1D", tz="UTC")
+    rng = np.random.default_rng(7)
+    cols = ["A@hl", "B@hl", "C@hl", "A@bn", "B@bn", "C@bn"]
+    px = 100 * np.exp(np.cumsum(rng.normal(0, 0.02, (T, 3)), 0))
+    close = pd.DataFrame(np.hstack([px, px * (1 + rng.normal(0, 0.0005, (T, 3)))]), idx, cols)   # same asset, tiny basis
+    fund = pd.DataFrame(0.0, idx, cols)
+    fund["A@hl"] = 0.001                  # HL longs in A pay 0.1%/day more than on Binance = 36.5%/yr
+    fund["B@bn"] = 0.001                  # the mirror case in B
+    return {"close": close, "volume": pd.DataFrame(1e7, idx, cols), "funding": fund}
+
+
+def test_fspread_shorts_the_expensive_venue_and_is_price_neutral_and_causal():
+    from kripto import backtest as bt
+    from kripto.strategies import fspread
+    p = _pair_panel()
+    w = fspread(p, lookback=7, thr=0.10, gross=2.0, max_pair=0.5)
+    last = w.dropna(how="all").iloc[-1]
+    assert last["A@hl"] < 0 and last["A@bn"] == pytest.approx(-last["A@hl"])      # short where longs pay more
+    assert last["B@hl"] > 0 and last["B@bn"] == pytest.approx(-last["B@hl"])
+    assert last["C@hl"] == 0 and last["C@bn"] == 0                                 # no spread, no position
+    assert last.abs().sum() <= 2.0 + 1e-9 and abs(last.sum()) < 1e-12
+    capped = fspread(p, lookback=7, thr=0.10, gross=2.0, max_pair=0.25).dropna(how="all").iloc[-1]
+    assert capped.abs().max() == pytest.approx(0.25)
+    res = bt.run(w, p["close"], p["funding"], fee=0.0)
+    yr = res.funding.iloc[30:].mean() * 365
+    assert yr == pytest.approx(0.365, rel=0.05)          # 1 unit per side earning 36.5%/yr of funding difference
+    assert res.returns.iloc[30:].std() * np.sqrt(365) < 0.05                       # price risk cancels
+    cut = 80
+    trunc = fspread({k: v.iloc[:cut] for k, v in p.items()}, lookback=7, thr=0.10)
+    pd.testing.assert_frame_equal(fspread(p, lookback=7, thr=0.10).iloc[:cut].fillna(0), trunc.fillna(0), atol=1e-12)
+
+
+def test_flow_uses_the_flow_venue_volume_when_given():
+    from kripto.strategies import flow
+    T = 200
+    idx = pd.date_range("2025-01-01", periods=T, freq="1D", tz="UTC")
+    rng = np.random.default_rng(9)
+    names = ["BTC"] + [f"C{i}" for i in range(7)]
+    close = pd.DataFrame(100 * np.exp(np.cumsum(rng.normal(0, 0.02, (T, 8)), 0)), idx, names)
+    hl_vol = pd.DataFrame(1e6, idx, names)                       # traded venue: 10x thinner
+    bn_vol = pd.DataFrame(1e7, idx, names)
+    share = np.linspace(0.35, 0.65, 8)                           # C6 most bought, BTC most sold (on the flow venue)
+    p = {"close": close, "volume": hl_vol, "funding": hl_vol * 0, "taker_buy": bn_vol * share, "flow_volume": bn_vol}
+    last = flow(p, lookback=7, top_n=8, beta_neutral=False).dropna(how="all").iloc[-1]
+    assert last.idxmax() == "C6" and last.idxmin() == "BTC"
+    assert last.abs().max() < 1.0                                # imbalance measured against Binance volume, not HL's
+
+
+def test_hl_to_bn_names():
+    from kripto.data import hl_to_bn
+    assert hl_to_bn("kPEPE") == "1000PEPE" and hl_to_bn("BTC") == "BTC" and hl_to_bn("kBONK") == "1000BONK"

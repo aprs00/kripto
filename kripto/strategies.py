@@ -372,13 +372,15 @@ def flow(panel, lookback=7, sign=1, resid=False, top_n=30, target_vol=0.25, ever
     Valtos/Tradingriot "delta"/absorption). imb = (taker buy - taker sell) / volume over `lookback` days.
     sign=+1: continuation (split metaorders keep coming). sign=-1: reversal (transient impact). resid=True: use only
     the part of imb NOT explained by the same-window return (cross-sectional regression) = "flow without price
-    progress", i.e. absorption. Requires panel['taker_buy'] (quote volume bought by takers); Binance only."""
+    progress", i.e. absorption. Requires panel['taker_buy'] (quote volume bought by takers); Binance only.
+    Cross-venue use (dataset "hlx"): prices/universe from HL, taker_buy + flow_volume from Binance for the same coins."""
     if "taker_buy" not in panel:
         raise ValueError("flow needs panel['taker_buy'] (Binance klines col 10)")
     c, v, tb = panel["close"], panel["volume"], panel["taker_buy"]
     bpd = bars_per_day(c.index)
     n = lookback * bpd
-    imb = (2 * tb - v).rolling(n, min_periods=n).sum() / v.rolling(n, min_periods=n).sum()
+    fv = panel.get("flow_volume", v)   # volume on the venue the taker split comes from (differs from `v` cross-venue)
+    imb = (2 * tb - fv).rolling(n, min_periods=n).sum() / fv.rolling(n, min_periods=n).sum()
     mask = universe(panel, top_n) & imb.notna()
     score = imb.where(mask)
     if resid:
@@ -390,3 +392,39 @@ def flow(panel, lookback=7, sign=1, resid=False, top_n=30, target_vol=0.25, ever
     if beta_neutral:
         w = hedge_beta(w, beta_to(panel))
     return scheduled(w, panel, every_days, target_vol, phase=phase)
+
+
+@register
+def fspread(panel, lookback=7, thr=0.10, top_n=30, gross=2.0, max_pair=0.25, every_days=1, phase=None):
+    """Cross-venue funding capture (backlog X1). Needs the two-venue panel (dataset "pair": columns <COIN>@hl, <COIN>@bn).
+    s = trailing `lookback`-day mean of (HL funding - Binance funding), annualised. Where s > thr, HL longs pay more than
+    Binance longs: short the coin on HL and hold it long on Binance (mirror for s < -thr). Price risk cancels (same asset on
+    both legs); the book earns the funding difference minus two sets of trading costs and basis noise.
+    Weight per pair is proportional to the excess |s| - thr, each leg capped at max_pair of equity; total gross <= `gross`
+    (2.0 = one unit long + one unit short). No vol targeting: its volatility is tiny, the binding limit is leverage.
+    Who pays: leveraged longs on the venue where they are more crowded (HL retail), and nobody arbitrages it away in thin
+    names because it needs margin on two venues and is too small for a fund. NOT modelled: margin sits on two venues with no
+    netting, so a large move needs collateral moved between them (or the losing leg is liquidated)."""
+    c, f = panel["close"], panel["funding"]
+    hlc = [x for x in c.columns if x.endswith("@hl") and x[:-3] + "@bn" in c.columns]
+    if not hlc:
+        return pd.DataFrame(np.nan, c.index, c.columns)
+    bnc = [x[:-3] + "@bn" for x in hlc]
+    bpd = bars_per_day(c.index)
+    n = lookback * bpd
+    on_bn = lambda df: df[bnc].set_axis(hlc, axis=1)
+    s = (f[hlc] - on_bn(f)).rolling(n, min_periods=n).mean() * bpd * 365
+    same = np.log(c[hlc] / on_bn(c)).abs().rolling(30 * bpd, min_periods=10 * bpd).median() < 0.03
+    dv = dollar_volume(panel)
+    dvm = np.minimum(dv[hlc], on_bn(dv))                      # a pair is only as liquid as its thinner leg
+    elig = same & s.notna() & c[hlc].notna() & on_bn(c).notna() & (dvm > 0)
+    liquid = dvm.where(elig).rank(axis=1, ascending=False) <= top_n
+    ex = (s.abs() - thr).clip(lower=0).where(elig & liquid, 0.0)
+    wt = ex.div(ex.sum(axis=1).replace(0, np.nan), axis=0).fillna(0.0) * (gross / 2)
+    leg = -np.sign(s).fillna(0.0) * wt.clip(upper=max_pair)    # s > 0: short HL, long Binance
+    w = pd.DataFrame(0.0, c.index, c.columns)
+    w[hlc], w[bnc] = leg, -leg.to_numpy()
+    w = w.where(elig.any(axis=1), np.nan)
+    if phase is not None or every_days <= 1:
+        return rebalance_rows(w, every_days * bpd, offset=(phase or 0) * bpd)
+    return tranche_mean(rebalance_rows(w, bpd), every_days)

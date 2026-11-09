@@ -353,3 +353,53 @@ def load_bn_all_panel() -> dict[str, pd.DataFrame]:
             "high": pd.DataFrame(highs).reindex(idx), "low": pd.DataFrame(lows).reindex(idx),
             "funding": pd.DataFrame(funds).reindex(index=idx, columns=close.columns),
             **({"taker_buy": pd.DataFrame(tbs).reindex(index=idx, columns=close.columns).where(vol > 0)} if tbs else {})}
+
+
+# --------------------------------------------------------------------------- cross-venue panels (daily)
+def hl_to_bn(coin: str) -> str:
+    """Binance name of a Hyperliquid coin: HL quotes some small-price coins per 1000 with a `k` prefix (kPEPE = 1000PEPE)."""
+    return "1000" + coin[1:] if coin.startswith("k") and coin[1:2].isupper() else coin
+
+
+def _same_asset(a: pd.DataFrame, b: pd.DataFrame, tol: float = 0.05) -> pd.DataFrame:
+    """Point-in-time check that two venues' tickers are the same asset: trailing median |log price ratio| < tol."""
+    return np.log(a / b).abs().rolling(30, min_periods=10).median() < tol
+
+
+def load_hl_bnflow_panel() -> dict[str, pd.DataFrame]:
+    """Dataset "hlx": the Hyperliquid daily panel (prices, volume, funding = what we would trade) plus Binance taker flow
+    for the same coins (`taker_buy`, `flow_volume`). HL candles carry no taker split, and the deepest perp venue leads
+    price discovery (library: alexander-heck-2020), so this is how a flow signal gets tested on HL prices."""
+    hl, bn = load_hl_panel("1d"), load_bn_all_panel()
+    idx, coins = hl["close"].index, list(hl["close"].columns)
+    both = [c for c in coins if hl_to_bn(c) in bn["close"].columns]
+
+    def pick(k):
+        return bn[k][[hl_to_bn(c) for c in both]].set_axis(both, axis=1).reindex(index=idx, columns=coins)
+    ok = _same_asset(hl["close"], pick("close"))
+    hl["taker_buy"], hl["flow_volume"] = pick("taker_buy").where(ok), pick("volume").where(ok)
+    return hl
+
+
+def load_pair_panel() -> dict[str, pd.DataFrame]:
+    """Dataset "pair": one daily panel holding BOTH venues, columns `<COIN>@hl` and `<COIN>@bn`, for coins listed on both
+    with funding history on both. Lets the backtest hold a coin long on one venue and short on the other (each leg with
+    its own price, volume-scaled slippage and funding). The engine charges the HL taker fee on every leg (Binance is 0.5 bp more)."""
+    hl, bn = load_hl_panel("1d"), load_bn_all_panel()
+    idx = hl["close"].index.intersection(bn["close"].index)
+    coins = [c for c in hl["close"].columns if hl_to_bn(c) in bn["close"].columns
+             and hl["funding"][c].notna().any() and bn["funding"][hl_to_bn(c)].notna().any()]
+    out = {}
+    for k in ("close", "volume", "funding"):
+        a = hl[k][coins].reindex(idx).add_suffix("@hl")
+        b = bn[k][[hl_to_bn(c) for c in coins]].reindex(idx).set_axis([c + "@bn" for c in coins], axis=1)
+        out[k] = pd.concat([a, b], axis=1)
+    return out
+
+
+def load_panel(ds: str, interval: str = "4h") -> dict[str, pd.DataFrame]:
+    """Research datasets by name: hl, bn (hand-picked 82, survivor-biased), bnall / hlx / pair (daily only)."""
+    if ds in ("bnall", "hlx", "pair"):
+        assert interval == "1d", f"{ds} is daily: use --interval 1d"
+        return {"bnall": load_bn_all_panel, "hlx": load_hl_bnflow_panel, "pair": load_pair_panel}[ds]()
+    return load_hl_panel(interval) if ds == "hl" else load_bn_panel(interval)
