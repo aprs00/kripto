@@ -60,3 +60,29 @@ def test_hl_loader_masks_pre_listing_zero_volume(tmp_path, monkeypatch):
     monkeypatch.setattr(data, "_hl_funding_panel", lambda idx, bar, coins: pd.DataFrame(index=idx, columns=coins))
     c = data.load_hl_panel("1d")["close"]["X"]
     assert c.iloc[:3].isna().all() and c.iloc[3:].tolist() == [2.0, 3.0, 4.0]  # later zero-vol bar kept
+
+
+def test_xsmom_k_longs_winners_shorts_losers():
+    """Known answer: 8 coins with fixed drifts; k=2 must long the 2 strongest and short the 2 weakest."""
+    from kripto.strategies import xsmom_k
+    T = 6 * 200
+    idx = pd.date_range("2024-01-01", periods=T, freq="4h", tz="UTC")
+    rng = np.random.default_rng(3)
+    drift = np.linspace(-0.002, 0.002, 8)
+    names = ["BTC"] + [f"C{i}" for i in range(7)]
+    close = pd.DataFrame(100 * np.exp(np.cumsum(drift + rng.normal(0, 0.003, (T, 8)), 0)), idx, names)
+    p = {"close": close, "volume": pd.DataFrame(1e7, idx, names), "funding": pd.DataFrame(0.0, idx, names)}
+    w = xsmom_k(p, lookback=28, k=2, every_days=1, beta_neutral=False)
+    last = w.dropna(how="all").iloc[-1]
+    assert set(last[last > 0].index) == {"C5", "C6"}
+    assert set(last[last < 0].index) == {"BTC", "C0"}
+    assert (last != 0).sum() == 4
+
+
+def test_blend_is_mean_of_rescaled_components():
+    from kripto import strategies as st
+    p = _listing_panel()
+    comps = {"listing_short": {"skip_days": 1, "hold_days": 30, "min_dv": 0}}
+    w = st.blend(p, components=comps, target_vol=0.2, unit_vol=0.2)
+    nz = w.dropna(how="all")
+    assert (nz["NEW"] <= 0).all() and (nz["NEW"] < 0).any()

@@ -1,0 +1,4 @@
+{
+ "xsmom_k": {"lookback": [14, 28], "k": [3, 5], "every_days": [3, 7]},
+ "blend": {"target_vol": [0.25]}
+}

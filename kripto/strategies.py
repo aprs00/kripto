@@ -6,6 +6,8 @@ Add new strategies by decorating with @register; the research loop and paper tra
 """
 from __future__ import annotations
 
+import inspect
+
 import numpy as np
 import pandas as pd
 
@@ -272,4 +274,54 @@ def listing_short(panel, skip_days=1, hold_days=60, min_dv=1e6, target_vol=0.20,
     if beta_neutral:
         raw = hedge_beta(raw, beta_to(panel))
     w = rebalance_rows(raw, every_days * bpd)
+    return vol_target(w, panel, target_vol, max_gross=max_gross)
+
+
+@register
+def xsmom_k(panel, lookback=28, skip=1, k=4, top_n=30, target_vol=0.25, every_days=3, beta_neutral=True):
+    """Small-account cross-sectional momentum (T11): long the top-k / short the bottom-k names by
+    vol-normalised trailing return (within the top_n liquid universe), equal weight, BTC-beta hedged.
+    Few, large positions so every leg clears the $10 min order at $200 equity (k <= 5 per side)."""
+    c = panel["close"]
+    bpd = bars_per_day(c.index)
+    mask = universe(panel, top_n)
+    score = (np.log(c.shift(skip * bpd) / c.shift((lookback + skip) * bpd)) / ann_vol(panel)).where(mask)
+    n = score.notna().sum(axis=1)
+    hi = score.rank(axis=1, ascending=False, method="first") <= k
+    lo = score.rank(axis=1, ascending=True, method="first") <= k
+    raw = (hi.astype(float) - lo.astype(float)) / (2.0 * k)
+    raw = raw.where(n >= 2 * k, 0.0)
+    w = raw.where(mask.any(axis=1), np.nan)
+    if beta_neutral:
+        w = hedge_beta(w, beta_to(panel))
+    w = rebalance_rows(w, every_days * bpd)
+    return vol_target(w, panel, target_vol)
+
+
+def _ffill_targets(w: pd.DataFrame) -> pd.DataFrame:
+    """Held target weights between a component's rebalances (rows of all-NaN = 'no rebalance')."""
+    rows = w.notna().any(axis=1)
+    return w[rows].fillna(0.0).reindex(w.index).ffill().fillna(0.0)
+
+
+BLEND_COMPONENTS = {  # fixed before testing (T4, 2026-11-09): the candidates' default/current params
+    "tsmom": {"lookbacks": (7, 14, 28, 56), "every_days": 1, "top_n": 12, "target_vol": 0.3},
+    "xsmom_k": {"lookback": 28, "every_days": 3, "k": 4},
+    "listing_short": {"skip_days": 1, "hold_days": 60, "min_dv": 1e6},
+}
+
+
+@register
+def blend(panel, target_vol=0.25, every_days=1, unit_vol=0.20, max_gross=3.0, components=None):
+    """Equal-risk blend of the candidate strategies (T4). Each component's (held) target weights are
+    rescaled from its own vol target to unit_vol, summed with equal weight 1/n, and the sum is
+    vol-targeted to target_vol on a daily grid. One pre-registered rule; no weight search."""
+    comps = components or BLEND_COMPONENTS
+    bpd = bars_per_day(panel["close"].index)
+    tot = 0.0
+    for name, p in comps.items():
+        tv = p.get("target_vol", inspect.signature(REGISTRY[name]).parameters["target_vol"].default)
+        wi = _ffill_targets(REGISTRY[name](panel, **p)) * (unit_vol / tv)
+        tot = tot + wi.reindex(columns=panel["close"].columns, fill_value=0.0)
+    w = rebalance_rows(tot / len(comps), every_days * bpd)
     return vol_target(w, panel, target_vol, max_gross=max_gross)
