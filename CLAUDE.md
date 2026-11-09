@@ -93,6 +93,7 @@ nice -n 19 .venv/bin/python -m scripts.inspect_strategy tsmom hl '{}'          #
 nice -n 19 .venv/bin/python -m scripts.research_run --grids <batch> --datasets hl bn bnall --interval 1d   # daily-bar batch
 .venv/bin/python -m scripts.show_result --today            # one line per result written today; or: show_result <strategy> <dataset>
 systemctl --user list-timers ; journalctl --user -u kripto-trader -n 50
+scripts/dash.sh                                            # phone-width dashboard the owner reads over SSH; keep it working
 .venv/bin/python -m scripts.sql "select * from fills order by ts desc limit 20"   # no sqlite3 CLI on server
 ```
 
@@ -140,3 +141,6 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   prefer bnall for any test where survivorship matters. HL loader masks pre-listing zero-volume oracle candles.
 * 2026-11-09 review: `paper status` shows `lastreb=<bar>` per book. A book whose last rebalance is older than its schedule is
   a bug until proven otherwise (the 11-08 bug went unnoticed because status showed no rebalance age).
+* 2026-11-09 owner: added `scripts/dash.sh` / `scripts/dash.py`, a read-only, phone-width (≤ 46 cols) dashboard the owner
+  opens over SSH (health line, books, timer results, Claude session rc/duration, commits, disk/RAM). If you add a book type,
+  log format or timer, check the dashboard still shows it correctly.
