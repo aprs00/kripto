@@ -13,7 +13,7 @@
       "top_n": 12,
       "target_vol": 0.3
     },
-    "note": "2026-11-08: BN WF OOS SR 1.26 (all years +), HL WF OOS SR 0.55/0.51, HL grid median 0.89 (16/16 >0). Fails HL gate -> shadow only."
+    "note": "2026-11-08: BN WF OOS SR 1.26 (all years +), HL WF OOS SR 0.55/0.51, HL grid median 0.89 (16/16 >0). Fails HL gate -> shadow only. | 2026-11-09: ALL 2026-11-08 numbers INVALID (rebalance_rows unit bug); re-run pending (backlog T0)."
   },
   "xsmom": {
     "status": "candidate",
@@ -22,7 +22,7 @@
       "lookback": 28,
       "every_days": 3
     },
-    "note": "2026-11-08: BN WF OOS SR 0.63, HL 0.71. Shadow only."
+    "note": "2026-11-08: BN WF OOS SR 0.63, HL 0.71. Shadow only. | 2026-11-09: ALL 2026-11-08 numbers INVALID (rebalance_rows unit bug); re-run pending (backlog T0)."
   },
   "carry": {
     "status": "retired",
@@ -31,6 +31,6 @@
       "lookback": 7,
       "every_days": 1
     },
-    "note": "2026-11-08: BN WF OOS SR 1.35 (funding +15%/yr, all years +); needs breadth (top_n 30). HL test pending full funding history. | 2026-11-08 HL WF OOS SR -0.58, grid median -0.68 (3/12 >0): funding +6.5%/yr but price leg SR -0.66 (high-funding HL names keep squeezing up). Does NOT transfer from Binance -> retired."
+    "note": "2026-11-08: BN WF OOS SR 1.35 (funding +15%/yr, all years +); needs breadth (top_n 30). HL test pending full funding history. | 2026-11-08 HL WF OOS SR -0.58, grid median -0.68 (3/12 >0): funding +6.5%/yr but price leg SR -0.66 (high-funding HL names keep squeezing up). Does NOT transfer from Binance -> retired. | 2026-11-09: ALL 2026-11-08 numbers INVALID (rebalance_rows unit bug); re-run pending (backlog T0)."
   }
 }

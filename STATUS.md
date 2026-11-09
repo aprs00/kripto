@@ -1,31 +1,32 @@
-HEALTH: OK — trader ran every hour (latest 00:03–00:09 UTC, 2026-11-09); no failed units, no ERROR events; data fresh (last_bar 20:00 = latest closed 4h bar); disk 64%.
+HEALTH: WARN — fixed a critical bug: all research from 2026-11-08 was invalid (timestamp-unit bug); re-run scheduled for today's research session.
 
-_Updated 2026-11-09 00:27 UTC (review session). Added scripts/sql.py since the sqlite3 CLI isn't installed._
+_Updated 2026-11-09 04:40 UTC (review session)._
+
+## What happened
+`rebalance_rows` assumed nanosecond timestamps, but pandas 3 loads microseconds. Effects: live strategies never rebalanced (books stayed flat),
+and every backtest from 2026-11-08 rebalanced in long blocks and then froze. Fixed and covered by a regression test. The shadow books took their first
+positions at 04:26 UTC. **Every verdict in research/findings.md (ALIVE and DEAD) is provisional until the re-run (backlog T0).**
 
 ## Main book ($200 paper)
-Equity $200.00, return since start +0.00%. Flat: no strategy is in incubation/active (none passed the HL gate).
+Equity $200.00, +0.00%. Flat: no strategy is in incubation/active.
 
 | book | equity | return | positions | fills | fees | funding |
 |---|---|---|---|---|---|---|
 | main | $200.00 | +0.00% | 0 | 0 | $0.00 | $0.00 |
-| shadow:tsmom | $2000.00 | +0.00% | 0 | 0 | $0.00 | $0.00 |
-| shadow:xsmom | $2000.00 | +0.00% | 0 | 0 | $0.00 | $0.00 |
+| shadow:tsmom | $1999.27 | −0.04% | 11 | 11 | $0.57 | $0.00 |
+| shadow:xsmom | $1997.89 | −0.11% | 28 | 28 | $1.13 | $0.00 |
 | shadow:carry (retired, frozen) | $2000.00 | +0.00% | 0 | 0 | $0.00 | $0.00 |
 
-Shadow books have no positions yet by design: strategies rebalance on an epoch-anchored grid (tsmom
-daily at the 00:00 UTC bar, xsmom every 3 days). The first targets are expected from the ~04:00 UTC run on 2026-11-09.
+First fills: fees 4.5 bp (taker), slippage averages 0.5–0.9 bp (max 2.8 bp). Plausible.
 
-## Strategies
-| strategy | status | evidence |
+## Strategies (numbers from 2026-11-08 are INVALID, kept only for reference)
+| strategy | status | old (invalid) evidence |
 |---|---|---|
-| tsmom (trend, L/S) | candidate | BN OOS Sharpe 1.26; HL OOS 0.55, grid median 0.89 |
-| xsmom | candidate | BN 0.63, HL 0.71 |
-| carry (funding) | **retired** | BN +1.35 but HL −0.58: on HL high-funding coins keep squeezing up (journal 2026-11-08) |
-| xsrev, lowvol, funding_contra | rejected | negative after costs |
-
-## Last research result
-Hyperliquid has the trend signal, but costs eat most of it. The $10 minimum order rules out diversified books at $200.
+| tsmom | candidate | BN 1.26 / HL 0.55 |
+| xsmom | candidate | BN 0.63 / HL 0.71 |
+| carry | retired (re-check in re-run) | BN 1.35 / HL −0.58 |
+| xsrev, lowvol, funding_contra | rejected (re-check in re-run) | negative |
 
 ## Next
-* Review: confirm the shadow books take their first positions after the 00:00 UTC bar, and check that fills and slippage look plausible.
-* Research: cost reduction + small-account construction for trend (T1c); trend-conditioned carry (T1d).
+* Research (06:40): **T0: re-run all pre-registered grids with the fixed code**, then re-decide every verdict and status.
+* Review: check tsmom rebalances daily at the 00:00 bar and xsmom every 3 days; funding accrual is now active for held positions.

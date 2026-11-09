@@ -53,9 +53,12 @@ def xs_demean_rank(score: pd.DataFrame, mask: pd.DataFrame) -> pd.DataFrame:
 def rebalance_rows(w: pd.DataFrame, every: int, offset: int = 0) -> pd.DataFrame:
     """Keep rows on a calendar grid anchored at the epoch (so backtest and live agree on which bars
     rebalance regardless of where the data window starts). `every` is in bars."""
-    bar_ns = int(pd.Series(w.index).diff().median().value)
-    k = (w.index.asi8 // bar_ns - offset) % every == 0
-    return w.where(pd.Series(k, w.index), np.nan)
+    # unit-agnostic: pandas>=3 indexes may be datetime64[us]; asi8 is then NOT nanoseconds (bug fixed 2026-11-09)
+    bar = pd.Series(w.index).diff().median()
+    epoch = pd.Timestamp(0, tz=w.index.tz)
+    n = np.asarray((w.index - epoch) // bar, dtype=np.int64)
+    k = (n - offset) % every == 0
+    return w.where(np.broadcast_to(k[:, None], w.shape), np.nan)
 
 
 def vol_target(w: pd.DataFrame, panel, target: float, lookback_days: int = 60,

@@ -6,6 +6,8 @@ Verdicts: **ALIVE** (candidate/incubation/active) · **DEAD** (rejected; revisit
 Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless noted. SR = annualised Sharpe.
 
 ## Cross-cutting lessons (apply to everything)
+* **Verify the plumbing, not just the result.** A unit bug silently voided a whole day of research (2026-11-09). Any
+  helper touching timestamps/alignment needs a unit test on synthetic data with a known answer.
 * **Costs are the binding constraint on Hyperliquid.** The HL top-20 by volume includes thin memes; slippage +
   fees took ~8%/yr off trend. Any HL strategy must be judged at HL cost levels, not Binance's.
 * **$200 + $10 min order ⇒ any position < 5% of equity can't be opened.** Diversified (20–30 name) books can't
@@ -21,6 +23,11 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
   too) once HL OOS history has grown by ≥ 6 months, as a pre-registered re-check (see backlog T0b).
 
 ## Hypotheses
+
+> **⚠ 2026-11-09: ALL results dated 2026-11-08 are INVALID** (registry lines 1–179, git ≤ c1e3c1f). Bug: `rebalance_rows`
+> mixed ns/us under pandas 3 (`index.asi8` is µs), so backtests rebalanced every bar in one 1000-bar block and then held
+> drifting weights for ~5000 bars; live strategies never rebalanced. Fixed + regression test (tests/test_strategies.py).
+> Every verdict below (ALIVE *and* DEAD, incl. carry's retirement) is provisional until re-run (backlog T0).
 
 ### tsmom: multi-horizon time-series trend, L/S, vol-targeted (2026-11-08) → ALIVE (candidate)
 BN 2020–26: OOS SR 1.26, positive every year, corr BTC 0.01, 2×cost SR 1.03. HL: OOS SR 0.55, grid median 0.69

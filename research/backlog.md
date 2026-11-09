@@ -4,6 +4,10 @@ Also read research/findings.md before picking: it records what is already DEAD a
 
 Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done: `- [x] ... → <one-line result, link to journal>`
 
+- [ ] T0 **RE-RUN EVERYTHING (do first, 2026-11-09 research session)**: all 2026-11-08 backtests are invalid (rebalance-grid unit bug,
+  see findings.md warning). Re-run the same pre-registered grids (tsmom, xsmom, carry, xsrev, lowvol, funding_contra; hl+bn,
+  plus the concentrated tsmom/carry variants) with the fixed code, then re-decide every verdict and lifecycle status (carry
+  retirement included). Don't change grids: same configs, so it's a re-measurement, not a fishing trip.
 - [ ] T0a **Live-vs-backtest replay (tracking check)**: for each shadow book, re-run the backtest over exactly the live period
   and compare day by day: positions, turnover, costs/slippage (model vs live order book), funding, returns. This is what
   live paper can actually verify (weeks), whereas edge needs months. Build as scripts/live_vs_backtest.py and run it in

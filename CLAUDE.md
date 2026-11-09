@@ -128,3 +128,7 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   get re-checked after 6 more months of HL data (T0b).
 * 2026-11-08 review: HL client/download/paper rate-limit defaults raised to 3.0s, so rule 2 holds even outside systemd (previously 0.3s/2.0s defaults).
 * 2026-11-09 review: `sqlite3` CLI is not installed (and rule 3 forbids system packages) → added `scripts/sql.py` (read-only queries on state/paper.db) and fixed the Commands section.
+* 2026-11-09 review: shadow books never traded → found `rebalance_rows` used `index.asi8` assuming ns, but pandas 3 loads µs, so
+  live never rebalanced and ALL 2026-11-08 backtests were wrong (rebalance in 1000-bar blocks, hold ~5000). Fixed (Timedelta
+  arithmetic), added tests/test_strategies.py (all datetime units), marked every finding provisional → backlog T0 re-run. Lesson:
+  timestamp/alignment helpers need known-answer tests; a "flat book" past its expected trade time is a bug until proven otherwise.
