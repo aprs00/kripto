@@ -212,7 +212,7 @@ def bn_download(symbols: list[str], start: str = "2020-01", workers: int = 16, l
 
 def load_bn_panel(interval: str = "4h", symbols: list[str] | None = None) -> dict[str, pd.DataFrame]:
     rule = {"1h": "1h", "4h": "4h", "1d": "1D"}[interval]
-    closes, vols, highs, lows, funds = {}, {}, {}, {}, {}
+    closes, vols, highs, lows, funds, tbs = {}, {}, {}, {}, {}, {}
     for f in sorted((DATA / "bn" / "klines_1h").glob("*.parquet")):
         sym = f.stem
         if symbols and sym not in symbols:
@@ -292,6 +292,8 @@ def bn_download_all_daily(symbols: list[str] | None = None, workers: int = 16, l
         _, keys = _bn_s3_list(f"data/futures/um/monthly/{kind}/{sub}")
         keys = [k for k in keys if k.endswith(".zip")]
         have = pd.read_parquet(path) if path.exists() else None
+        if have is not None and not set(names) <= set(have.columns):
+            have = None  # schema grew (e.g. taker buy volume added 2026-11-09) -> refetch this symbol fully
         if have is not None and len(have):
             last = pd.to_datetime(have[tcol].max(), unit="ms").strftime("%Y-%m")
             keys = [k for k in keys if k[-11:-4] >= last]
@@ -313,7 +315,8 @@ def bn_download_all_daily(symbols: list[str] | None = None, workers: int = 16, l
         return len(parts)
 
     def one(sym):
-        nk = fetch("klines", sym, kd / f"{sym}.parquet", "t", [0, 1, 2, 3, 4, 5, 7], ["t", "o", "h", "l", "c", "v", "qv"])
+        nk = fetch("klines", sym, kd / f"{sym}.parquet", "t", [0, 1, 2, 3, 4, 5, 7, 10],
+                   ["t", "o", "h", "l", "c", "v", "qv", "tbqv"])  # col 10 = taker buy quote volume
         nf = fetch("fundingRate", sym, fd / f"{sym}.parquet", "time", [0, 2], ["time", "fundingRate"])
         return sym, nk, nf
 
@@ -325,7 +328,7 @@ def bn_download_all_daily(symbols: list[str] | None = None, workers: int = 16, l
 
 def load_bn_all_panel() -> dict[str, pd.DataFrame]:
     """Daily panel over the full (survivorship-free) Binance USDT-perp universe."""
-    closes, vols, highs, lows, funds = {}, {}, {}, {}, {}
+    closes, vols, highs, lows, funds, tbs = {}, {}, {}, {}, {}, {}
     for f in sorted((DATA / "bn" / "klines_1d_all").glob("*.parquet")):
         sym = f.stem
         coin = sym.removesuffix("USDT")
@@ -334,6 +337,8 @@ def load_bn_all_panel() -> dict[str, pd.DataFrame]:
         df.index = pd.to_datetime(t, unit="ms", utc=True).dt.floor("1D")
         df = df[~df.index.duplicated()]
         closes[coin], vols[coin], highs[coin], lows[coin] = df["c"], df["qv"], df["h"], df["l"]
+        if "tbqv" in df:
+            tbs[coin] = df["tbqv"]
         fp = DATA / "bn" / "funding_all" / f"{sym}.parquet"
         if fp.exists():
             fr = pd.read_parquet(fp)
@@ -346,4 +351,5 @@ def load_bn_all_panel() -> dict[str, pd.DataFrame]:
     close = close.where(vol > 0)
     return {"close": close, "volume": vol.where(vol > 0),
             "high": pd.DataFrame(highs).reindex(idx), "low": pd.DataFrame(lows).reindex(idx),
-            "funding": pd.DataFrame(funds).reindex(index=idx, columns=close.columns)}
+            "funding": pd.DataFrame(funds).reindex(index=idx, columns=close.columns),
+            **({"taker_buy": pd.DataFrame(tbs).reindex(index=idx, columns=close.columns).where(vol > 0)} if tbs else {})}

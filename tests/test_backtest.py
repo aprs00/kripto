@@ -13,7 +13,8 @@ def _panel(T=24 * 200, N=4, seed=0):
     close = pd.DataFrame(100 * np.exp(np.cumsum(r, 0)), idx, ["BTC", "A", "B", "C"])
     vol = pd.DataFrame(1e7, idx, close.columns)
     fund = pd.DataFrame(1e-5, idx, close.columns)
-    return {"close": close, "volume": vol, "funding": fund, "high": close, "low": close}
+    tb = vol * pd.DataFrame(rng.uniform(0.3, 0.7, (T, N)), idx, close.columns)  # taker-bought share
+    return {"close": close, "volume": vol, "funding": fund, "high": close, "low": close, "taker_buy": tb}
 
 
 def test_constant_long_matches_buy_and_hold_without_costs():

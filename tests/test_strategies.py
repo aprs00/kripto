@@ -86,3 +86,19 @@ def test_blend_is_mean_of_rescaled_components():
     w = st.blend(p, components=comps, target_vol=0.2, unit_vol=0.2)
     nz = w.dropna(how="all")
     assert (nz["NEW"] <= 0).all() and (nz["NEW"] < 0).any()
+
+
+def test_resrev_fades_an_idiosyncratic_spike_and_ignores_btc():
+    from kripto import strategies as st
+    rng = np.random.default_rng(1)
+    T = 24 * 120
+    idx = pd.date_range("2024-01-01", periods=T, freq="4h", tz="UTC")
+    r = rng.normal(0, 0.01, (T, 4))
+    k = int(np.flatnonzero(idx.hour == 0)[-1])  # last daily rebalance bar
+    r[k - 2:k + 1, 1] += 0.08  # coin A jumps on its own in the 3 bars up to that rebalance
+    close = pd.DataFrame(100 * np.exp(np.cumsum(r, 0)), idx, ["BTC", "A", "B", "C"])
+    vol = pd.DataFrame(1e7, idx, close.columns)
+    p = {"close": close, "volume": vol, "funding": vol * 0, "high": close, "low": close}
+    w = st.resrev(p, lookback=1, thr=1.5, every_days=1).dropna(how="all")
+    last = w.iloc[-1]
+    assert last["A"] < 0 and abs(last["A"]) == last.drop("BTC").abs().max()

@@ -325,3 +325,55 @@ def blend(panel, target_vol=0.25, every_days=1, unit_vol=0.20, max_gross=3.0, co
         tot = tot + wi.reindex(columns=panel["close"].columns, fill_value=0.0)
     w = rebalance_rows(tot / len(comps), every_days * bpd)
     return vol_target(w, panel, target_vol, max_gross=max_gross)
+
+
+@register
+def resrev(panel, lookback=7, thr=1.5, top_n=30, target_vol=0.20, every_days=1, beta_days=60):
+    """Residual reversion with an entry threshold (library N5: Pole ch. 3/4/7; Bouchaud et al.: impact is mostly
+    transient). New angle vs the dead `xsrev` (raw returns, every name, every bar → fees): remove BTC beta, z-score
+    each name's L-day cumulative residual by its own residual vol, and trade only the excess beyond `thr`
+    (soft threshold: weight ∝ -(z - sign(z)·thr)), so most names are flat most of the time.
+    Who pays: liquidity demanders whose flow pushed the price away from its factor-implied value."""
+    c = panel["close"]
+    bpd = bars_per_day(c.index)
+    r = returns(panel)
+    beta = beta_to(panel, days=beta_days)
+    e = r.sub(beta.mul(r["BTC"], axis=0))
+    rv = e.ewm(halflife=20 * bpd, min_periods=10 * bpd).std()
+    z = e.rolling(lookback * bpd, min_periods=lookback * bpd).sum() / (rv * np.sqrt(lookback * bpd))
+    mask = universe(panel, top_n) & z.notna()
+    mask["BTC"] = False  # BTC is the factor, not a residual bet
+    ex = (z.abs() - thr).clip(lower=0) * np.sign(z)
+    raw = (-ex).where(mask, 0.0)
+    raw = raw.div(raw.abs().sum(axis=1).replace(0, np.nan), axis=0).fillna(0.0)
+    raw = raw.where(mask.any(axis=1), np.nan)
+    w = hedge_beta(raw, beta)
+    w = rebalance_rows(w, every_days * bpd)
+    return vol_target(w, panel, target_vol)
+
+
+@register
+def flow(panel, lookback=7, sign=1, resid=False, top_n=30, target_vol=0.25, every_days=1, beta_neutral=True):
+    """Taker-flow imbalance, cross-sectional (library N1/N2: Bouchaud-Farmer-Lillo, Toth et al. on metaorder splitting;
+    Valtos/Tradingriot "delta"/absorption). imb = (taker buy - taker sell) / volume over `lookback` days.
+    sign=+1: continuation (split metaorders keep coming). sign=-1: reversal (transient impact). resid=True: use only
+    the part of imb NOT explained by the same-window return (cross-sectional regression) = "flow without price
+    progress", i.e. absorption. Requires panel['taker_buy'] (quote volume bought by takers); Binance only."""
+    if "taker_buy" not in panel:
+        raise ValueError("flow needs panel['taker_buy'] (Binance klines col 10)")
+    c, v, tb = panel["close"], panel["volume"], panel["taker_buy"]
+    bpd = bars_per_day(c.index)
+    n = lookback * bpd
+    imb = (2 * tb - v).rolling(n, min_periods=n).sum() / v.rolling(n, min_periods=n).sum()
+    mask = universe(panel, top_n) & imb.notna()
+    score = imb.where(mask)
+    if resid:
+        ret = np.log(c / c.shift(n)).where(mask)
+        sc, rc = score.sub(score.mean(axis=1), axis=0), ret.sub(ret.mean(axis=1), axis=0)
+        b = (sc * rc).sum(axis=1) / (rc * rc).sum(axis=1).replace(0, np.nan)
+        score = sc.sub(rc.mul(b, axis=0))
+    w = xs_demean_rank(sign * score, mask)
+    if beta_neutral:
+        w = hedge_beta(w, beta_to(panel))
+    w = rebalance_rows(w, every_days * bpd)
+    return vol_target(w, panel, target_vol)
