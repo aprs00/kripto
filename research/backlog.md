@@ -11,6 +11,13 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
   clause is the only failure, and the blend's live shadow book + T0a tracking becomes the main evidence stream.
 - [ ] T12 **$200 executability of the blend**: it holds ~16 names (many ≈ 5%). Design a capped version (≤ 10 names, each
   ≥ 6%) and measure the Sharpe cost vs the full blend at band 0.05. Needed before any main-book allocation.
+- [ ] B1 **Binance paper venue (owner direction 2026-11-09, top priority)**. Spec: `kripto/bn.py` public fapi client
+  (≤ 1 req/s, retries, no keys); live panel = 4h/1d klines (keep taker buy quote volume) + funding (premiumIndex/fundingRate)
+  for the point-in-time liquid universe; fills simulated by walking the live `/fapi/v1/depth` book + 5 bp taker fee; 8h
+  funding accrual; min notional/step size from exchangeInfo. Books get a `venue` field (config/strategies.json `venue`:
+  "hl"|"bn"; default hl); `main_bn` $200 book next to `main`. Tests: known-answer fill/funding/min-notional tests and an
+  offline mocked trader run. Then shadow books on Binance for the strongest Binance-evidenced candidates:
+  xsmom_k (bnall 1.37), flow lb14 (bnall 1.13), blend. Watch the hourly run time (HL already ~7.5 min) and keep total < ~20 min.
 - [ ] T0a **Live-vs-backtest replay (tracking check)**: for each shadow book, re-run the backtest over exactly the live period
   and compare day by day: positions, turnover, costs/slippage (model vs live order book), funding, returns. Build
   scripts/live_vs_backtest.py once books have ≥ 7 days (≈ 2026-11-16). Large tracking error = bug or bad cost model.

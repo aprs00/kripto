@@ -71,7 +71,7 @@ targeting, and switch regimes only if evidence supports it.
 ### Promotion gates
 | Stage | Requirement |
 |---|---|
-| candidate → **incubation** (paper, small weight) | WF out-of-sample Sharpe > 0.8 net on HL; positive on Binance; DSR > 0.9 of the WF OOS record on the longest survivorship-free venue that has the signal (bnall if a Binance analogue exists, else HL); survives 2× costs; grid median Sharpe > 0 |
+| candidate → **incubation** (paper, small weight) | WF out-of-sample Sharpe > 0.8 net on the **venue the strategy trades** (HL, or Binance = bnall); positive on the other venue where the signal is testable there; DSR > 0.9 of the WF OOS record on the longest survivorship-free venue that has the signal (bnall if a Binance analogue exists, else HL); survives 2× costs; grid median Sharpe > 0 |
 | incubation → **active** | ≥ 21 days live paper, live Sharpe not significantly below backtest (live return inside the backtest's 90% band), no operational errors |
 | active → **retired** | live drawdown > 2× backtest max DD, or 60-day live Sharpe < 0 with backtest-inconsistent behaviour |
 
@@ -124,3 +124,10 @@ See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits;
   else. HL keeps its own requirement: OOS > 0.8 net of HL costs plus 2× costs. With 41 experiments, bnall
   (6 y, daily) needs OOS SR ≈ 1.4. Check at the time of the change: **no current strategy passes** (tsmom/xsmom/listing_short
   all fail HL > 0.8, and none reaches bnall SR 1.4). Effective from the 2026-11-10 research session, not before.
+* 2026-11-09 (owner direction, interactive): **Binance USDT-M perps become a second paper venue.** Paper only, public
+  market data only (fapi klines/depth/premiumIndex/exchangeInfo), no keys, no orders, same as HL. General rationale: an
+  edge should be judged where it is traded, with that venue's costs, and the other venue serves as a robustness check.
+  Binance has 6 y of survivorship-free history (vs HL ≈ 1.6–3 y), a $5 min order (vs HL $10; BTC $50, ETH $20), so it allows
+  ~2× the breadth at $200, and taker buy volume in live klines. The gate's "> 0.8 net on HL" therefore becomes "> 0.8 net on the
+  venue it trades". Each venue gets its own $200 main book (realistic: one account per exchange). Effective once the Binance
+  paper venue is built and tested, and never in the session that builds it.

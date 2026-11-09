@@ -99,6 +99,12 @@ scripts/dash.sh                                            # phone-width dashboa
 .venv/bin/python -m scripts.sql "select * from fills order by ts desc limit 20"   # no sqlite3 CLI on server
 ```
 
+## Venues
+Hyperliquid (HL) and, since 2026-11-09, **Binance USDT-M perps** (paper only, public endpoints only: fapi.binance.com
+`/fapi/v1/klines|depth|premiumIndex|exchangeInfo`, data.binance.vision). The server IP is shared: keep Binance usage
+polite, ≤ 1 request/s and far below its 2400 weight/min limit. Each strategy declares the venue it trades. Min order:
+HL $10; Binance $5 (BTC $50, ETH $20). Taker fee: HL 4.5 bp, Binance 5 bp (VIP0).
+
 ## Strategy lifecycle (config/strategies.json)
 `candidate` → `incubation` → `active` → `retired`. Each non-retired strategy automatically runs in its
 own shadow paper book (`shadow:<name>`, `shadow_equity` in config/risk.json, currently $2,000 so the $10 min
@@ -166,3 +172,5 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   pass + days held of ctx/positions/L2) and the review prompt checks it: a silent gap in non-backfillable data is lost forever.
   Lesson from T4: blend components' params were picked after seeing results; when combining candidates, either nest the
   param choice inside the walk-forward or say so explicitly (backlog T4b).
+* 2026-11-09 interactive: owner added Binance as a second paper venue (design.md changelog). The gate is judged on the venue
+  traded; one $200 main book per venue. Build spec = backlog B1 (top priority).
