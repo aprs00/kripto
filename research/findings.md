@@ -10,8 +10,9 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
   helper touching timestamps/alignment needs a unit test on synthetic data with a known answer.
 * **Costs are the binding constraint on Hyperliquid.** The HL top-20 by volume includes thin memes; slippage +
   fees took ~8%/yr off trend. Any HL strategy must be judged at HL cost levels, not Binance's.
-* **$200 + $10 min order ⇒ any position < 5% of equity can't be opened.** Diversified (20–30 name) books can't
-  be executed in the main book. Backtests use band 0.05 to mirror this.
+* **Account size decides what is executable.** At $200 a $10 min order is 5% of equity and 20–30 name books could not be
+  traded (band 0.05). Since 2026-11-10 the main book is $1,000 (the owner's deployable capital): band 0.01, broad books fit.
+  Binance's $5 min order allows twice the breadth again. Always quote which band a number used.
 * **Binance results do NOT transfer automatically to HL** (see carry). Every idea must pass on HL data.
 * BN 4h dataset is survivor-biased (hand-picked 82 coins). **`bnall`** (2026-11-09) = every Binance USDT perp ever listed
   incl. delisted (923), daily bars: use it as the second venue for anything where survivorship matters (listings, shorts, breadth).
@@ -35,9 +36,10 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
 * **Rebalance-phase luck (2026-11-09 review).** Schedules are anchored at the epoch, so a config with `every_days` > 1 is
   tested on one phase only. By phase: bnall xsmom_k lb14 k5 weekly 1.46/0.56/0.26/0.41/0.47/0.96/0.54 (mean 0.66), HL xsmom_k
   3d 0.65/0.04/0.38. Broad xsmom is stable (0.60–0.79). Concentrated + infrequent = phase lottery: judge the PHASE AVERAGE
-  (staggered tranches) and report the spread. Any number from a single phase of a k-name book is unproven (backlog H1).
+  (staggered tranches) and report the spread. FIXED in harness v2: `strategies.scheduled` trades the tranche average in
+  research and live, and `robust.phases` shows every single start day.
 * **Headline numbers are start-date and delay sensitive.** HL blend: 1.82 all history, 1.30 since 2024-09, 0.81 on 4h from
-  2024-07; 1-day execution delay 1.82 → 1.34 (tsmom 1.06 → 0.71). Quote a range, never one number.
+  2024-07; 1-day execution delay 1.82 → 1.34 (tsmom 1.06 → 0.71). Quote `robust.worst` next to any OOS Sharpe.
 * **DEAD on HL ≠ dead forever.** HL history grows every day. Re-test DEAD ideas that died on HL alone (not on BN
   too) once HL OOS history has grown by ≥ 6 months, as a pre-registered re-check (see backlog T0b).
 
@@ -47,10 +49,15 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
 > (git ≤ c1e3c1f) are invalid but stay in the registry (append-only); they only make DSR more conservative.
 > The re-run numbers were close to the invalid ones (so the bug's backtest effect was smaller than feared).
 
-### tsmom: multi-horizon time-series trend, L/S, vol-targeted (2026-11-08, re-run 11-09) → ALIVE (candidate, shadow)
-HL OOS SR 0.43, grid med 0.47 (12/12 >0); BN 1.31 (med 1.02). Concentrated (top 8/12): HL 0.55 / med 0.90 (16/16), BN 1.03
-(mdd −55%). bnall 1d OOS 0.97 (med 0.89, 12/12 >0): survivorship inflated BN-82 by ~0.3 but trend holds. Fails HL
-gate (> 0.8). Signal is real but weak on HL; costs ≈ 4–5%/yr at top_n 12.
+> **2026-11-09 late: harness v2.** Schedules slower than daily now trade as staggered tranches (average over every start day),
+> the band is 0.01 (the main book is $1,000), and every walk-forward stores a robustness block (`worst` = min of base, 2× costs,
+> one bar late, first 6/12 months dropped). Lines marked **v2** are the same pre-registered grids re-measured that way
+> (batches 2026-11-09-h1-recheck-*). Unmarked numbers used band 0.05 and ONE start day: treat them as upper bounds.
+
+### tsmom: multi-horizon time-series trend, L/S, vol-targeted (2026-11-08, re-run 11-09) → ALIVE (weak; blend leg + shadow)
+**v2: HL 1d OOS 0.08 (grid med 0.58, 12/12 >0; mdd −47%), bnall 0.65 (med 0.96; chosen cfg worst 0.97).** The walk-forward keeps
+picking badly among the 12 (long-only variants), so the grid median is the fairer number: ~0.6 HL, ~1.0 Binance.
+Old: HL 4h 0.43–0.55, BN-82 1.31 (survivor-biased), bnall 0.97. One day late costs a third (1.06 → 0.71). Fails the gate alone.
 
 ### tsmom long-only (2026-11-08) → DEAD
 2022 −33%, 2025 −11%: it is BTC beta, not an edge.
@@ -59,9 +66,10 @@ gate (> 0.8). Signal is real but weak on HL; costs ≈ 4–5%/yr at top_n 12.
 Smoothing halves turnover (63→28/yr) but Sharpe falls more (HL 1.11→0.34, BN 1.00→0.99 at best; lag kills the signal).
 $20M/day floor: +0.1–0.5 SR on HL in 3/4 pairs, ≈0 on BN. WF OOS HL 0.57, BN 1.08. Not worth a separate book.
 
-### xsmom: cross-sectional momentum, beta-hedged (2026-11-08, re-run 11-09) → ALIVE (candidate, shadow)
-HL OOS 0.42 (med 0.72, 11/12 >0); BN-82 0.55; **bnall 1d OOS 1.27 / 6.1y (med 0.86, 12/12)**, corr BTC ~0. The band
-halves it (lb28/3d: 1.16 at band 0.005 vs 0.58 at 0.05): needs breadth, so it isn't executable at $200. Fails HL gate.
+### xsmom: cross-sectional momentum, beta-hedged (2026-11-08, re-run 11-09) → DEAD on HL, ALIVE on Binance (shadow xsmom@bn)
+**v2: bnall 1d OOS 1.34 / 6.1y (DSR 0.85, med 1.15, 12/12 >0, worst 1.03, corr BTC 0.04); HL 1d OOS −0.09 (med 0.06).**
+It needs ~30 names: impossible at $200 (band 0.05 halved it), executable at $1,000. Start days agree (0.60–0.79 for lb28/3d), so
+this is not schedule luck. Fails the gate: DSR < 0.9 and negative on HL. Why HL differs is open (thinner alts, costs ×2–3).
 
 ### carry: short high funding / long low funding, dollar+beta neutral (2026-11-08, re-run 11-09) → DEAD on HL (re-check ~2027-05)
 HL OOS −0.89, grid med −0.34 (2/12 >0); BN 1.06 (med 0.72). On HL high-funding names are squeezes that keep rising.
@@ -72,20 +80,19 @@ HL OOS −0.88, grid med −0.52 (0/6 >0); BN 0.65 (med 0.88, 6/6). Conditioning
 Funding +2–3%/yr on HL can't pay ~5–8%/yr costs.
 
 ### listing_short: short new perps 1–14d after listing for 30–90d, BTC-beta hedged (T2, 2026-11-09) → ALIVE (candidate, shadow)
-HL 1d: WF OOS 0.75 / 2.95y, grid med 1.11 (9/9 >0); cfg(1,60) at band 0.005: SR 1.57, corr BTC −0.06, short leg + every year.
-bnall (923 BN perps incl. delisted, 6y): WF OOS 1.08 (9/9 >0) BUT band artifact (corr BTC 0.63); band 0.005 → SR 0.44,
-corr 0.06, short leg ≈ 0 absolute (listings lag BTC beta). BN-82: −0.18 (survivors). Fails gate: HL < 0.8, DSR. Real but
-modest; HL stronger (more airdrop launches?). Funding known for only 28% of HL short exposure.
+**v2: HL 1d OOS 0.89 / 2.95y (med 1.34, 9/9 >0; cfg (1,60) worst 1.33), bnall 0.86 / 6.1y (med 0.42, 9/9; corr BTC 0.00).** At band
+0.01 the old bnall band artifact (corr BTC 0.63) is gone and the short leg shows. Holds one and two days late (1.47 → 1.27 → 1.01).
+Open hole: funding is known for only 28% of HL short exposure, and new-listing shorts can pay heavy funding (T2b a). DSR 0.42.
 ### blend: equal-risk tsmom(top12) + xsmom_k + listing_short, 1 pre-registered rule (T4, 2026-11-09) → ALIVE (candidate, shadow; best so far)
-HL 1d WF OOS **1.57** / 2.95y (full 1.82; 2× cost 1.54; band 0.005 1.64; corr BTC 0.17; years 2.9/2.2/0.4/1.7). Components'
-corr 0.02–0.28 → return-level blend 1.63, so diversification, not a bug. bnall 1.02 / 6.1y but corr BTC 0.51, 2021–22 < 0;
-DSR 0.62 < 0.9 → **fails gate**. Review 11-09: with component SELECTION nested (pool of 10, return level) OOS is 0.62–1.24 by
-rule vs 1.36 hindsight; and its xsmom_k leg is phase luck (see lessons). Honest HL estimate ≈ 0.6–1.2. T4b + H1 before any gate talk.
-### xsmom_k: top/bottom-k x-sec momentum, k = 3–5, beta-hedged (T11, 2026-11-09) → ALIVE (candidate, shadow)
-1d WF OOS HL 0.55 (med 0.44, 8/8 >0), bnall 1.37 (med 0.89, 8/8, DSR 0.87). Executable at $200 (≥ 7% legs).
-HL costs ≈ 10%/yr → 2× cost SR 0.26; band 0.005 legs-only SR 1.37, BTC hedge leg −7%/yr. Fails HL > 0.8 alone.
-**Review 11-09: phase-average full-sample SR is 0.66 on bnall (registered phase 1.46 = best of 7) and 0.36–0.57 on HL.** The
-1.37 / DSR 0.87 is not evidence until re-measured as a phase average (H1).
+**v2: HL 1d OOS 1.61 / 2.95y (worst 1.15 = 2× costs; one day late 1.32), bnall 1.30 / 6.1y (DSR 0.81, worst 0.99, corr BTC 0.07).**
+Fails only DSR > 0.9. Caveats that v2 does NOT remove: components were chosen with hindsight (nested selection at return level:
+0.62–1.24 vs 1.36, rule-dependent → H4), and HL since 2024-09 is 1.3, not 1.8 (2023–mid-2024 carries it). Honest HL range ≈ 0.6–1.2
+until H4 says otherwise. Shadow books on both venues (blend, blend@bn).
+### xsmom_k: top/bottom-k x-sec momentum, k = 3–5, beta-hedged (T11, 2026-11-09) → ALIVE on Binance (weak on HL)
+**v2 (tranched): bnall 1d OOS 1.12 / 6.1y (DSR 0.67, med 1.01, 8/8, worst 0.94); HL 1d OOS 0.73 but grid med 0.20, 2× costs 0.31.**
+The pre-v2 "bnall 1.37, DSR 0.87" was one lucky weekday (start days 0.26–1.46, mean 0.66 for lb14 k5 weekly). On HL the single
+start days still span 0.22–0.90. With $1,000 the broad xsmom is executable and stronger, so xsmom_k has lost its reason to exist
+except as the blend's momentum leg.
 ### xsrev: short-term cross-sectional reversal (2026-11-08, re-run 11-09) → DEAD
 HL OOS −2.66, BN −1.81; 0/6 >0 on both. Turnover makes fees dominate.
 
@@ -100,8 +107,8 @@ New angle vs xsrev (threshold, residuals, low turnover). Still 0/9 >0 on HL 1d (
 HL 4h −0.18 (1/9). Price-only SR −0.72 (BN 4h lb7 thr1.5), negative 5/7 years: extreme residual moves CONTINUE over days
 (that is xsmom's effect), so it isn't the costs. Reversion in crypto residuals, if it exists, is intraday/HFT, out of reach.
 
-### flow: cross-sectional taker-flow imbalance (library N1/N2, 2026-11-09, interactive) → ALIVE (candidate, no live feed yet)
-bnall 1d WF OOS **1.13 / 6.1y** (DSR 0.70); continuation 6/6 cfgs >0 (0.36–1.20), reversal 6/6 <0, so the sign is clear (metaorder
-splitting, Tóth et al.). lb14: SR 1.20, 2× cost 1.10, corr BTC 0.11, band 0.005 1.35, 233 names; yearly +2.7/+2.3/−0.0/+1.7/+0.1/+1.4/−1.7 (2026 YTD).
-corr xsmom 0.43 (partly momentum), but the return-orthogonal variant (resid) is still SR 0.77 with corr xsmom 0.16 → some independent info.
-**Not testable on HL** (HL candles have no taker split). Next: BN flow → HL returns cross-venue test, live BN feed (backlog L2b).
+### flow: cross-sectional taker-flow imbalance (library N1/N2, 2026-11-09, interactive) → ALIVE (candidate, shadow flow@bn)
+**v2: bnall 1d OOS 1.42 / 6.1y (DSR 0.88, the closest to 0.9 so far); chosen lb3: base 1.31, one day late 1.07, 2× costs 0.75 (= worst).**
+Continuation 6/6 >0, reversal 6/6 <0 (so "grid median > 0" fails mechanically: half the grid is the opposite hypothesis).
+Cost-sensitive (lb3 turns over fast): the live shadow book's fills are the real test. corr xsmom 0.43, resid variant 0.77.
+**Not testable on HL** (no taker split in HL candles) → L2b cross-venue test.

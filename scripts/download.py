@@ -1,4 +1,5 @@
-"""Refresh all datasets. Usage: python -m scripts.download [hl|bn|all] [--funding-since 2024-07-01]"""
+"""Refresh datasets. Usage: python -m scripts.download [hl|bn|all|bnall] [--funding-since 2024-07-01]
+`all` = hl + bn (nightly). `bnall` = every Binance USDT perp incl. delisted, daily bars (weekly, incremental)."""
 import argparse, os, sys
 from kripto import data
 from kripto.hl import HL
@@ -21,4 +22,6 @@ if a.what in ("hl", "all"):
     data.hl_update_funding(top, a.funding_since, hl, log)
 if a.what in ("bn", "all"):
     data.bn_download(data.BN_SYMBOLS, log=log)
+if a.what == "bnall":
+    data.bn_download_all_daily(log=log)
 log("DONE")

@@ -1,11 +1,15 @@
 Scheduled REVIEW session (headless, no human present, nobody will answer questions: you decide).
 Follow CLAUDE.md strictly, especially "YOU OWN THIS" and HARD RULES.
-Time budget: ~10–15 minutes. No new strategy research here.
+Time budget: ~10–15 minutes. No new strategy research here. Reviews run once a day (08:25 UTC); an hourly watchdog
+(`scripts/health.py`, no Claude) starts an extra one when it finds a new problem, so if this session was not
+scheduled, something is broken: `cat state/health.json` tells you what.
 
-1. `git pull --rebase`. Read STATUS.md. Run `.venv/bin/python -m kripto.paper status`, check
-   `systemctl --user list-timers`, `systemctl --user --failed`, `journalctl --user -u kripto-trader --since -5h | tail -50`,
+1. `git pull --rebase`. Read STATUS.md. Run `.venv/bin/python -m scripts.health` (the facts), then
+   `.venv/bin/python -m kripto.paper status`, check
+   `systemctl --user list-timers`, `systemctl --user --failed`, `journalctl --user -u kripto-trader --since -25h | grep -iE 'error|warn|traceback|failed' | tail -30`,
    and the latest `logs/agent-*` and `logs/agent-failures.log` if present. Check disk space (`df -h ~`).
-2. Health: did the trader run every hour? Any ERROR/ALERT events? Is data fresh (last_bar within 8h)?
+2. Health: if STATUS.md's first line was written by the watchdog ("not by Claude"), Claude sessions had been failing:
+   find out why from logs/agent-*.log and say so in STATUS.md. Did the trader run every hour? Any ERROR/ALERT events? Is data fresh (last_bar within 8h)?
    Is the `collector:` line of `paper status` from the last hour with errors=0? (positions/L2 data can't be backfilled.)
    Did the nightly data job and the last research session succeed?
    If anything is broken: diagnose, fix, verify (tests + a real trader run), record. Don't just report it.

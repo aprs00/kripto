@@ -30,6 +30,19 @@ answer questions, review code or make research decisions. So:
 * The only channel to the owner is `STATUS.md`. If something needs their attention (e.g. Claude login expired,
   server out of disk), make the top line `HEALTH: ALERT — <what and why>` and keep working around it.
 
+## What the owner wants (2026-11-09, interactive)
+The owner reviewed the project and said plainly that what a $200 account can earn is far too little. They have **$1,000**
+of real money they could deploy and chose the **steady** risk mode (25–30% volatility target, no extra leverage). So:
+* The product of this project is **evidence strong enough to justify putting that $1,000 in** (their decision, never yours),
+  and later more. Main paper books are $1,000. Honest expectation if the edge is real at Sharpe 0.6–1.2: 12–27% a year.
+  Say so in STATUS.md; never dress a number up.
+* Generic momentum/trend on liquid perps is crowded and a small account has no advantage there. Prefer hypotheses where
+  small size IS the advantage: passive (maker) execution on thinner HL names, new-listing events, HL-vs-Binance funding
+  capture, the HL account-positioning data only we are collecting. Costs are the binding constraint on HL: a cost saving
+  is worth as much as a new signal.
+* Evidence that accrues with time (forward ledger, live-vs-backtest tracking, non-backfillable data) beats another
+  backtest on the same history. Fewer, better-motivated experiments.
+
 ## HARD RULES (immutable: you may not edit, weaken or reinterpret this section)
 1. **Paper only.** Never create, request, store or use exchange API keys, wallets, private keys or
    seed phrases. Never send orders to any exchange. Never call any Hyperliquid endpoint other than
@@ -65,6 +78,7 @@ answer questions, review code or make research decisions. So:
 | `journal/YYYY-MM-DD.md` | detailed log per session | append; terse, numbers, decisions + reasons |
 | `research/registry.jsonl` | every backtest config ever run (append-only) | query with scripts, never read whole; its size sets the deflated-Sharpe bar |
 | `research/results/*.json` | full walk-forward outputs | reference |
+| `research/forward.json` | forward ledger: every experiment's frozen choice scored only on bars after it was registered | refresh in the Sunday retro (`scripts.forward_score`); quote it next to any backtest number |
 | `config/strategies.json` | lifecycle status + params + a `note` with the evidence | keep notes current |
 | `library/INDEX.md`, `library/notes.md` | curated books (texts in library/books/, gitignored) + ideas mined from them | grep the .txt, never read whole books; ideas → backlog; tested → findings |
 | this file | how you operate | improve it; log changes in the Process changelog |
@@ -84,6 +98,9 @@ config/risk.json      risk limits, book sizes         scripts/research_run.py  w
 scripts/inspect_strategy.py  yearly/funding/cost decomposition + 2x-cost stress
 scripts/download.py   data refresh (nightly timer)    scripts/agent.sh     how you are launched
 deploy/systemd/       timer/service units (copy to ~/.config/systemd/user, then daemon-reload)
+scripts/health.py     hourly deterministic watchdog (no Claude) -> state/health.json; starts a review on a new problem
+scripts/forward_score.py  forward ledger (frozen configs, post-registration bars only) -> research/forward.json
+scripts/guard.py      agent.sh uses it to put the HARD RULES section back if a headless session edited it
 state/paper.db        sqlite paper ledger (gitignored) data/  parquet market data (gitignored)
 ```
 
@@ -95,6 +112,9 @@ nice -n 19 .venv/bin/python -m scripts.research_run --grids research/batches/<da
 nice -n 19 .venv/bin/python -m scripts.inspect_strategy tsmom hl '{}'          # 4th arg 1d for daily; dataset bnall = full BN universe
 nice -n 19 .venv/bin/python -m scripts.research_run --grids <batch> --datasets hl bn bnall --interval 1d   # daily-bar batch
 .venv/bin/python -m scripts.show_result --today            # one line per result written today; or: show_result <strategy> <dataset>
+.venv/bin/python -m scripts.health                         # HEALTH line from facts (trader, data, collector, disk, agent sessions)
+nice -n 19 .venv/bin/python -m scripts.forward_score       # forward ledger table (weekly; add a dataset name to limit it)
+nice -n 19 .venv/bin/python -m scripts.download bnall      # refresh the full Binance daily universe (before the forward ledger)
 systemctl --user list-timers ; journalctl --user -u kripto-trader -n 50
 scripts/dash.sh                                            # phone-width dashboard the owner reads over SSH; keep it working
 .venv/bin/python -m scripts.sql "select * from fills order by ts desc limit 20"   # no sqlite3 CLI on server
@@ -104,21 +124,26 @@ scripts/dash.sh                                            # phone-width dashboa
 Hyperliquid (HL) and, since 2026-11-09, **Binance USDT-M perps** (paper only, public endpoints only: fapi.binance.com
 `/fapi/v1/klines|depth|premiumIndex|exchangeInfo`, data.binance.vision). The server IP is shared: keep Binance usage
 polite, ≤ 1 request/s and far below its 2400 weight/min limit. A config entry trades HL by default; `"venue": "bn"` + `"strategy": "<registered fn>"` (entry name `<fn>@bn`)
-puts it on Binance. Books: `main_bn` ($200) and `shadow:<entry>@bn`. `KRIPTO_BN=0` disables the venue. Min order:
+puts it on Binance. Books: `main_bn` ($1,000) and `shadow:<entry>@bn`. `KRIPTO_BN=0` disables the venue. Min order:
 HL $10; Binance $5 (BTC $50, ETH $20). Taker fee: HL 4.5 bp, Binance 5 bp (VIP0).
 
 ## Strategy lifecycle (config/strategies.json)
 `candidate` → `incubation` → `active` → `retired`. Each non-retired strategy automatically runs in its
 own shadow paper book (`shadow:<name>`, `shadow_equity` in config/risk.json, currently $2,000 so the $10 min
 order doesn't distort signal measurement). Only `incubation`/`active` strategies with `alloc > 0` trade in the
-`main` book ($200, the realistic account). Keep `sum(alloc)` ≤ 1.0, incubation alloc ≤ 0.25 each. Promotion and
+`main` book ($1,000 = the money the owner could really deploy; `main` and `main_bn` are alternative homes for it). Keep `sum(alloc)` ≤ 1.0, incubation alloc ≤ 0.25 each. Promotion and
 demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers) in the journal and findings.
 
 ## Session types
-* **review** (every 4h, short): health, bookkeeping, fix operational problems. See `prompts/review.md`.
-* **research** (twice daily, 06:40 + 13:40 UTC, long): several hypotheses tested in parallel (batch file + `--grids`), then gates.
+* **watchdog** (hourly, no Claude): `scripts/health.py --act` checks the facts and writes state/health.json. On a NEW
+  problem it starts a review session; if Claude itself is dead it stamps `HEALTH: ALERT` into STATUS.md and pushes.
+* **review** (daily 08:25 UTC, plus when the watchdog calls; short): health, bookkeeping, fix operational problems.
+  See `prompts/review.md`.
+* **research** (Tue + Thu 06:40 UTC, long): 2–3 hypotheses tested in parallel (batch file + `--grids`), then gates.
   See `prompts/research.md`. Live testing is parallel too: every promising variant can get its own shadow book.
-  On **Sundays** the morning research session is a **weekly retrospective** instead (see prompts/research.md).
+* **retro** (Sun 06:40 UTC): the weekly retrospective + forward ledger instead of new experiments (prompts/research.md).
+  Don't add sessions back without evidence that session count, not data, is the bottleneck: each walk-forward
+  experiment raises the DSR bar (N=49 → SR 1.44, N=500 → 1.76 on 6 y) and costs the owner money.
 
 ## Writing things down
 * `journal/YYYY-MM-DD.md`: append a section per session: `## HH:MM UTC review|research|retro`, then what you
@@ -181,3 +206,12 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   8h funding), paper.py split into compute_targets/run_books shared by both venues, with positions/funding separated
   per venue (book_venue). Tests: tests/test_venue_bn.py (fake client). Shadow books xsmom_k@bn, flow@bn, tsmom@bn.
 * 2026-11-09 review: `scripts/sql.py` prints the table schemas on an OperationalError (wrong column names cost a round trip).
+* 2026-11-09 interactive (owner asked for a whole-project review, then "implement whatever would help"): the review found
+  that single-start-day schedules made concentrated books a lottery (bnall xsmom_k 0.26–1.46 by weekday), that the blend's
+  1.57 leaned on hindsight component choice, a thin early window and same-close fills, and that 8 Claude sessions a day
+  cost more than a $200 account could earn. Changed: staggered tranches in research AND live (`strategies.scheduled`);
+  main books $1,000 and band 0.01; a robustness block stored with every walk-forward (gate reads `robust.worst`);
+  `scripts/forward_score.py`; hourly deterministic `scripts/health.py` + daily review + research Tue/Thu + Sunday retro;
+  `scripts/guard.py` restores the HARD RULES section after a headless session. New section "What the owner wants".
+  Lessons: (1) a result that depends on an arbitrary choice (start day, start date, same-close fill) is not a result, so
+  compute those stresses by default instead of remembering to; (2) "noticing" belongs in code, "fixing" in a session.

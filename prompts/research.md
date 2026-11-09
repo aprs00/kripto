@@ -3,14 +3,15 @@ Follow CLAUDE.md strictly, especially "YOU OWN THIS" and HARD RULES.
 Time budget: ~90–120 minutes of wall clock. Heavy compute with `nice -n 19`.
 
 0. `git pull --rebase`. Read STATUS.md, research/findings.md, research/backlog.md, the last 2 journal files,
-   and `.venv/bin/python -m kripto.paper status`. If today (UTC) is **Sunday** and this is the
-   MORNING session (before 12:00 UTC), do the WEEKLY RETROSPECTIVE below instead of steps 2–4.
-   There are two research sessions a day (06:40 and 13:40 UTC). The afternoon one continues from the morning's journal
-   entry: finish or follow up what the morning started, or take the next backlog items. Don't redo the morning's work.
-   Each new walk-forward experiment raises the DSR bar for all of them, so more sessions means testing more *ideas*, not more knobs.
+   and `.venv/bin/python -m kripto.paper status`. If today (UTC) is **Sunday**, do the WEEKLY RETROSPECTIVE
+   below instead of steps 2–4. Research runs on Tue and Thu only: the history is fixed, so every extra walk-forward
+   experiment raises the DSR bar for all of them (N=49 → SR 1.44, N=500 → 1.76) without adding information.
+   Read "What the owner wants" in CLAUDE.md: $1,000 of real capital is waiting on evidence, steady risk, and
+   small-account edges (maker execution, listings, cross-venue funding, positioning data) come before more generic factors.
 1. Live check: compare each shadow/main book's live paper returns with its backtest expectation.
    Apply promotion/demotion gates from docs/design.md §4 where clearly met. Record the numbers.
-2. Choose SEVERAL (typically 2–5) high-expected-value hypotheses: from the backlog, or better ideas you can
+2. Choose 2–3 high-expected-value hypotheses (hard cap: 6 new walk-forward experiments per session, counting each
+   strategy × dataset): from the backlog, or better ideas you can
    justify. They can be independent ideas or variants attacking the same problem from different angles.
    Check findings.md first, and don't repeat a DEAD idea unless you state the new angle.
    Also use the library: `library/INDEX.md` (curated books, extracted text in library/books/*.txt, grep it, never
@@ -22,7 +23,12 @@ Time budget: ~90–120 minutes of wall clock. Heavy compute with `nice -n 19`.
    research/batches/<date>.json = {strategy: pre-registered grid, ...} (each grid ≤ 30 configs, fixed BEFORE
    looking at results; commit it) and run them all at once:
    `nice -n 19 .venv/bin/python -m scripts.research_run --grids research/batches/<date>.json --datasets hl bn`
-   (3 workers ≈ 2 GB RAM; don't exceed 3 on the shared server). Then decompose the interesting ones with
+   (3 workers ≈ 2 GB RAM; don't exceed 3 on the shared server; for daily bars and the survivorship-free universe:
+   `--datasets hl bnall --interval 1d`). Every result now carries a robustness block for the config the walk-forward
+   would trade today (`scripts.show_result <strategy> <dataset>`): 2× costs, one bar of execution delay, first 6/12
+   months dropped, each single start day of the schedule, corr to BTC. Quote `worst` and the start-day spread next to
+   the OOS Sharpe, never the OOS Sharpe alone. Schedules slower than daily trade as staggered tranches automatically.
+   Then decompose the interesting ones with
    scripts/inspect_strategy.py and conclude honestly, one findings.md entry per hypothesis. Remember that every
    extra config raises the deflated-Sharpe bar for everything: test many ideas, not many knobs per idea.
 4. If a strategy passes the incubation gate, set it to `incubation` with a small alloc. Promising but not
@@ -55,6 +61,10 @@ WEEKLY RETROSPECTIVE (Sundays): step back from individual experiments.
   and tools are a cost. Then pick next week's highest-leverage process change based on that evidence.
 * Library ROI: how many library-derived ideas were tested, and did any survive? Demote books that produced nothing
   testable after being mined; promote the sources that did.
+* Forward ledger: `nice -n 19 .venv/bin/python -m scripts.download bnall` (incremental), then
+  `nice -n 19 .venv/bin/python -m scripts.forward_score`. Report, for configs with ≥ 30 forward days: how ALIVE configs did
+  versus DEAD ones (the null), and each candidate's forward return next to its backtest OOS Sharpe. Put the candidates'
+  forward numbers in STATUS.md. Until there are 30 days, say "too early" and nothing more. Commit research/forward.json.
 * Track the trajectory in one line in the retro: experiments run this week, ALIVE/DEAD verdicts, the best candidate's
   distance to each gate clause, and how many days of non-backfillable HL data (ctx, positioning, L2) we hold.
 * Memory hygiene: keep findings.md, backlog.md and STATUS.md concise. Summarize old journal weeks into
@@ -62,4 +72,4 @@ WEEKLY RETROSPECTIVE (Sundays): step back from individual experiments.
 * Write `## HH:MM UTC retro` in the journal with conclusions, then commit and push.
 
 Think like a skeptical quant reviewer of your own work: costs, lookahead, survivorship, multiple testing,
-regime dependence, capacity at $200 (min order $10).
+regime dependence, start-day and start-date luck, and whether it is executable in a $1,000 account (min order $10).

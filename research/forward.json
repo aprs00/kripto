@@ -1,0 +1,107 @@
+{
+ "updated": "2026-11-09T22:30Z",
+ "rows": [
+  {
+   "strategy": "blend",
+   "dataset": "hl_1d",
+   "params": {
+    "target_vol": 0.25
+   },
+   "registered": "2026-11-09 17:28:18+00:00",
+   "backtest_oos_sharpe": 1.566,
+   "file": "20261109-172818_2979611_blend_hl_1d.json",
+   "data_end": "2026-11-09 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "listing_short",
+   "dataset": "hl_1d",
+   "params": {
+    "skip_days": 1,
+    "hold_days": 60,
+    "min_dv": 1000000
+   },
+   "registered": "2026-11-09 06:46:00+00:00",
+   "backtest_oos_sharpe": 0.753,
+   "file": "20261109-0646_listing_short_hl_1d.json",
+   "data_end": "2026-11-09 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "resrev",
+   "dataset": "hl_1d",
+   "params": {
+    "lookback": 7,
+    "thr": 1.5
+   },
+   "registered": "2026-11-09 19:44:33+00:00",
+   "backtest_oos_sharpe": -0.592,
+   "file": "20261109-194433_317825_resrev_hl_1d.json",
+   "data_end": "2026-11-09 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "tsmom",
+   "dataset": "hl_1d",
+   "params": {
+    "lookbacks": [
+     14,
+     28,
+     56
+    ],
+    "every_days": 3,
+    "long_only": false
+   },
+   "registered": "2026-11-09 23:28:32+00:00",
+   "backtest_oos_sharpe": 0.083,
+   "file": "20261109-232832_955171_tsmom_hl_1d.json",
+   "data_end": "2026-11-09 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "xsmom",
+   "dataset": "hl_1d",
+   "params": {
+    "lookback": 56,
+    "every_days": 3
+   },
+   "registered": "2026-11-09 23:28:33+00:00",
+   "backtest_oos_sharpe": -0.086,
+   "file": "20261109-232833_955173_xsmom_hl_1d.json",
+   "data_end": "2026-11-09 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "xsmom_k",
+   "dataset": "hl_1d",
+   "params": {
+    "lookback": 28,
+    "k": 3,
+    "every_days": 7
+   },
+   "registered": "2026-11-09 17:28:20+00:00",
+   "backtest_oos_sharpe": 0.554,
+   "file": "20261109-172820_2979609_xsmom_k_hl_1d.json",
+   "data_end": "2026-11-09 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  }
+ ]
+}

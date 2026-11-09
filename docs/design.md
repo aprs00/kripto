@@ -71,7 +71,7 @@ targeting, and switch regimes only if evidence supports it.
 ### Promotion gates
 | Stage | Requirement |
 |---|---|
-| candidate → **incubation** (paper, small weight) | WF out-of-sample Sharpe > 0.8 net on the **venue the strategy trades** (HL, or Binance = bnall); positive on the other venue where the signal is testable there; DSR > 0.9 of the WF OOS record on the longest survivorship-free venue that has the signal (bnall if a Binance analogue exists, else HL); survives 2× costs; grid median Sharpe > 0 |
+| candidate → **incubation** (paper, small weight) | WF out-of-sample Sharpe > 0.8 net on the **venue the strategy trades** (HL, or Binance = bnall); positive on the other venue where the signal is testable there; DSR > 0.9 of the WF OOS record on the longest survivorship-free venue that has the signal (bnall if a Binance analogue exists, else HL); robustness block of the WF-chosen config (`robust.worst` = the lowest full-sample Sharpe among: base, 2× costs, one bar of execution delay, first 6 and first 12 months dropped) > 0; grid median Sharpe > 0. Schedules slower than daily are run as staggered tranches (the average over every start day), never as one start day |
 | incubation → **active** | ≥ 21 days live paper, live Sharpe not significantly below backtest (live return inside the backtest's 90% band), no operational errors |
 | active → **retired** | live drawdown > 2× backtest max DD, or 60-day live Sharpe < 0 with backtest-inconsistent behaviour |
 
@@ -93,7 +93,7 @@ server (Hetzner, user `kripto`, no docker/root access)
 State: SQLite (`state/paper.db`). Code and research history: git → GitHub. Data: parquet (not in git).
 
 ## 6. Risk policy (main book)
-* Starting equity $200 (virtual). Max gross leverage 3×, max 35% of equity in any single asset.
+* Starting equity $1,000 (virtual; $200 until 2026-11-10, see changelog). Max gross leverage 3×, max 35% of equity in any single asset.
 * Volatility target ~25–30% annualised for the combined book.
 * Kill switch: −25% from peak flattens and halts everything until a review re-enables it.
 * Paper only. No exchange keys exist on the server. Going live is a **human decision**, requiring the
@@ -131,3 +131,25 @@ See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits;
   ~2× the breadth at $200, and taker buy volume in live klines. The gate's "> 0.8 net on HL" therefore becomes "> 0.8 net on the
   venue it trades". Each venue gets its own $200 main book (realistic: one account per exchange). Effective once the Binance
   paper venue is built and tested, and never in the session that builds it.
+* 2026-11-09 (owner direction, interactive; effective from the next research session, and not used to promote anything in
+  the session that made it; nothing passes anyway). The owner reviewed the project, said the earnings a $200 account can produce
+  are not worth having, has **$1,000** of real capital they could deploy, and chose the **steady** risk mode (the existing
+  25–30% volatility target, no extra leverage). Changes, each with a rationale that does not depend on any strategy's result:
+  (1) **Main paper books are $1,000 per venue** (HL and Binance are alternative homes for the same $1,000, not $2,000 together).
+  A paper account must mirror the capital that would really be deployed, otherwise executability is tested at the wrong scale.
+  The backtest no-trade band follows mechanically: min order / equity = $10 / $1,000 = **0.01** (was 0.05). Registry lines now
+  record `band`. Shadow books stay at $2,000.
+  (2) **Staggered tranches.** Every schedule was anchored at the epoch, so a config that rebalances every n days was tested on one
+  of its n possible start days. The start day is arbitrary, yet it moved full-sample Sharpe from 0.26 to 1.46 for one config.
+  A result may not depend on an arbitrary choice, so a schedule of n days is now n tranches rebalanced on consecutive days
+  (research and live use the same function, `strategies.scheduled`). Single start days remain available as a diagnostic (`phase`).
+  (3) **Robustness block in the gate.** "Survives 2× costs" becomes `robust.worst > 0` (2× costs, one bar of execution delay,
+  first 6/12 months dropped), computed automatically for every walk-forward. This only makes the gate stricter.
+  (4) **Forward ledger** (`scripts/forward_score.py`, weekly): every experiment's frozen choice scored only on bars after it was
+  registered. Reported in the weekly retro and STATUS. It is the evidence stream that does not wear out with re-use; it becomes a
+  gate clause only after it has run long enough to know its noise (decide no earlier than 2027-02, with a general rationale).
+  (5) **Cadence.** ~25 walk-forward experiments a day on a fixed history push the DSR bar from 1.44 (N=49) to 1.76 (N=500) within
+  weeks without adding information. Research runs Tue + Thu, the retro on Sun; the 4-hourly Claude review became an hourly
+  deterministic watchdog (`scripts/health.py`) plus one Claude review a day, with an extra review started on any new problem.
+  Consequence for old numbers: every result before this entry used band 0.05 and one start day. The candidates' pre-registered
+  grids were re-measured the same day (batches 2026-11-09-h1-recheck-*); findings.md carries the new numbers.

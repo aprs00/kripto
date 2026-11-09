@@ -44,7 +44,7 @@ def job(args):
     res["seconds"] = round(time.time() - t, 1)
     OUT.mkdir(parents=True, exist_ok=True)
     # seconds + pid: two jobs for the same strategy/dataset in one minute used to overwrite each other (2026-11-09)
-    f = OUT / f"{time.strftime('%Y%m%d-%H%M%S')}_{os.getpid()}_{name}_{res['dataset']}.json"
+    f = OUT / f"{time.strftime('%Y%m%d-%H%M%S', time.gmtime())}_{os.getpid()}_{name}_{res['dataset']}.json"
     f.write_text(json.dumps(res, indent=1, default=str))
     return res
 

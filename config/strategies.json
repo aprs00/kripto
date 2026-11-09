@@ -13,7 +13,7 @@
       "top_n": 12,
       "target_vol": 0.3
     },
-    "note": "2026-11-08: BN WF OOS SR 1.26 (all years +), HL WF OOS SR 0.55/0.51, HL grid median 0.89 (16/16 >0). Fails HL gate -> shadow only. | 2026-11-09 T0 re-run (fixed code): HL OOS 0.43 (grid med 0.47, 12/12>0), BN 1.31; concentrated HL 0.55 (med 0.90, 16/16), BN 1.03. Still fails HL gate. bnall 1d OOS 0.97 (12/12>0)."
+    "note": "2026-11-08: BN WF OOS SR 1.26 (all years +), HL WF OOS SR 0.55/0.51, HL grid median 0.89 (16/16 >0). Fails HL gate -> shadow only. | 2026-11-09 T0 re-run (fixed code): HL OOS 0.43 (grid med 0.47, 12/12>0), BN 1.31; concentrated HL 0.55 (med 0.90, 16/16), BN 1.03. Still fails HL gate. bnall 1d OOS 0.97 (12/12>0). | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): HL 1d OOS 0.08 (grid med 0.58), bnall 0.65 (med 0.96). Weak alone; kept as a blend leg and for tracking."
   },
   "xsmom": {
     "status": "candidate",
@@ -22,7 +22,7 @@
       "lookback": 28,
       "every_days": 3
     },
-    "note": "2026-11-08: BN WF OOS SR 0.63, HL 0.71. Shadow only. | 2026-11-09 T0 re-run: HL OOS 0.42 (med 0.72, 11/12>0), BN 0.55 (med 0.39). Weak; fails gate. bnall 1d OOS 1.27 (12/12>0, corr BTC ~0); band 0.05 halves it (breadth)."
+    "note": "2026-11-08: BN WF OOS SR 0.63, HL 0.71. Shadow only. | 2026-11-09 T0 re-run: HL OOS 0.42 (med 0.72, 11/12>0), BN 0.55 (med 0.39). Weak; fails gate. bnall 1d OOS 1.27 (12/12>0, corr BTC ~0); band 0.05 halves it (breadth). | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): HL 1d OOS -0.09 (med 0.06); bnall 1.34 (DSR 0.85, worst 1.03). Dead on HL, alive on Binance -> see xsmom@bn."
   },
   "carry": {
     "status": "retired",
@@ -41,7 +41,7 @@
       "hold_days": 60,
       "min_dv": 1000000
     },
-    "note": "2026-11-09: T2 new-listing short, BTC-beta hedged. HL 1d WF OOS 0.75 (2.95y), grid med 1.11 (9/9>0); cfg(1,60) band0.005 SR 1.57 corr BTC -0.06. bnall WF 1.08 is a band artifact (corr BTC 0.63); at band 0.005 SR 0.44. Fails gate (HL<0.8, DSR). Shadow only; params = current WF choice."
+    "note": "2026-11-09: T2 new-listing short, BTC-beta hedged. HL 1d WF OOS 0.75 (2.95y), grid med 1.11 (9/9>0); cfg(1,60) band0.005 SR 1.57 corr BTC -0.06. bnall WF 1.08 is a band artifact (corr BTC 0.63); at band 0.005 SR 0.44. Fails gate (HL<0.8, DSR). Shadow only; params = current WF choice. | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): HL 1d OOS 0.89 (med 1.34, 9/9, worst 1.33); bnall 0.86 (corr BTC 0.00 at band 0.01: the old band artifact is gone)."
   },
   "xsmom_k": {
     "status": "candidate",
@@ -51,13 +51,13 @@
       "k": 3,
       "every_days": 7
     },
-    "note": "2026-11-09 T11: top/bottom-k xsmom (executable at $200). 1d WF OOS HL 0.55 (2.95y, grid med 0.44, 8/8>0), bnall 1.37 (6.1y, med 0.89, 8/8, DSR 0.87). HL costs ~10%/yr, 2x cost SR 0.26 (lb28 k4 e3). Fails HL >0.8. Params = HL WF choice."
+    "note": "2026-11-09 T11: top/bottom-k xsmom (executable at $200). 1d WF OOS HL 0.55 (2.95y, grid med 0.44, 8/8>0), bnall 1.37 (6.1y, med 0.89, 8/8, DSR 0.87). HL costs ~10%/yr, 2x cost SR 0.26 (lb28 k4 e3). Fails HL >0.8. Params = HL WF choice. | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): HL 1d OOS 0.73 but grid med 0.20 and single start days 0.22-0.90; 2x cost 0.31. Runs as 7 daily tranches now."
   },
   "blend": {
     "status": "candidate",
     "alloc": 0.0,
     "params": {},
-    "note": "2026-11-09 T4: equal-risk blend tsmom(top12)+xsmom_k(28,k4,3d)+listing_short(1,60), 1 pre-registered config. 1d WF OOS HL 1.57 (2.95y), 2x cost 1.54 full-sample, corr BTC 0.17; bnall 1.02 (6.1y, corr BTC 0.51, 2021-22 negative), DSR 0.62 < 0.9 -> fails gate. Component params were picked after seeing their own results (mild selection bias)."
+    "note": "2026-11-09 T4: equal-risk blend tsmom(top12)+xsmom_k(28,k4,3d)+listing_short(1,60), 1 pre-registered config. 1d WF OOS HL 1.57 (2.95y), 2x cost 1.54 full-sample, corr BTC 0.17; bnall 1.02 (6.1y, corr BTC 0.51, 2021-22 negative), DSR 0.62 < 0.9 -> fails gate. Component params were picked after seeing their own results (mild selection bias). | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): HL 1d OOS 1.61 (worst 1.15: 2x costs), bnall 1.30 (DSR 0.81 < 0.9, worst 0.99). Fails only the DSR clause. Component choice is still hindsight (nested: 0.6-1.2) -> backlog H4."
   },
   "xsmom_k@bn": {
     "strategy": "xsmom_k",
@@ -65,11 +65,11 @@
     "status": "candidate",
     "alloc": 0.0,
     "params": {
-      "lookback": 14,
+      "lookback": 28,
       "k": 5,
-      "every_days": 7
+      "every_days": 3
     },
-    "note": "2026-11-09 interactive: Binance paper venue (B1). Params = latest bnall 1d walk-forward fold choice. bnall WF OOS 1.37 / 6.1y (DSR 0.87; 35/38 folds chose lb14 k5 e7). Shadow only: gate not met."
+    "note": "2026-11-09 interactive: Binance paper venue (B1). Params = latest bnall 1d walk-forward fold choice. bnall WF OOS 1.37 / 6.1y (DSR 0.87; 35/38 folds chose lb14 k5 e7). Shadow only: gate not met. | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): bnall OOS 1.12 (DSR 0.67, worst 0.94; start days 1.07-1.18 for the new choice lb28 k5 e3, vs 0.26-1.46 for the old weekly lb14). Params switched to the new WF choice before the book's first trade."
   },
   "flow@bn": {
     "strategy": "flow",
@@ -77,9 +77,9 @@
     "status": "candidate",
     "alloc": 0.0,
     "params": {
-      "lookback": 14
+      "lookback": 3
     },
-    "note": "2026-11-09 interactive: Binance paper venue (B1). Params = latest bnall 1d walk-forward fold choice. bnall WF OOS 1.13 / 6.1y (DSR 0.70), continuation 6/6 >0; corr xsmom 0.43. Not HL-testable. Shadow only."
+    "note": "2026-11-09 interactive: Binance paper venue (B1). Params = latest bnall 1d walk-forward fold choice. bnall WF OOS 1.13 / 6.1y (DSR 0.70), continuation 6/6 >0; corr xsmom 0.43. Not HL-testable. Shadow only. | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): bnall OOS 1.42 (DSR 0.88, worst 0.75 at 2x costs); WF now picks lb3 (daily turnover is high: watch live costs). Params switched before the first trade."
   },
   "tsmom@bn": {
     "strategy": "tsmom",
@@ -96,6 +96,25 @@
       "top_n": 12,
       "target_vol": 0.3
     },
-    "note": "2026-11-09 interactive: Binance paper venue (B1). Params = latest bnall 1d walk-forward fold choice. bnall WF OOS 0.97 / 6.1y. Shadow only: tracks the same signal as HL tsmom on another venue."
+    "note": "2026-11-09 interactive: Binance paper venue (B1). Params = latest bnall 1d walk-forward fold choice. bnall WF OOS 0.97 / 6.1y. Shadow only: tracks the same signal as HL tsmom on another venue. | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): bnall OOS 0.65 (med 0.96, chosen cfg worst 0.97)."
+  },
+  "xsmom@bn": {
+    "strategy": "xsmom",
+    "venue": "bn",
+    "status": "candidate",
+    "alloc": 0.0,
+    "params": {
+      "lookback": 28,
+      "every_days": 1
+    },
+    "note": "2026-11-09 v2: broad x-sec momentum needs ~30 names, impossible at $200, executable at $1,000 (min order 1% of equity). bnall 1d WF OOS 1.34 / 6.1y (DSR 0.85, grid med 1.15, 12/12 >0; worst 1.03 = one day late). Fails: DSR < 0.9 and HL is negative (-0.09). Shadow only."
+  },
+  "blend@bn": {
+    "strategy": "blend",
+    "venue": "bn",
+    "status": "candidate",
+    "alloc": 0.0,
+    "params": {},
+    "note": "2026-11-09 v2: same pre-registered blend on Binance. bnall 1d WF OOS 1.30 / 6.1y (DSR 0.81, worst 0.99, corr BTC 0.07). Fails the DSR clause only. Shadow only."
   }
 }

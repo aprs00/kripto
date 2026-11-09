@@ -4,27 +4,28 @@ Also read research/findings.md before picking: it records what is already DEAD a
 
 Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done: `- [x] ... → <one-line result, link to journal>`
 
-- [ ] H1 **Harness: remove rebalance-phase luck (review 2026-11-09, do this BEFORE any new strategy test).** Add a `phase`/offset
-  argument to the scheduled strategies (rebalance_rows already has `offset`) and make `walk_forward` score every config as the
-  average over all phases of its schedule (equivalently: `every_days` staggered tranches, each 1/n of the book), reporting
-  min/mean/max by phase. Known-answer test: phase 0 == today's numbers. Then re-measure xsmom_k (HL + bnall), xsmom, blend, flow
-  as re-checks of the same pre-registered grids, and switch the live books to tranches so live == backtest. Until then treat
-  xsmom_k's bnall 1.37 as ≈ 0.66.
-- [ ] H2 **Standard robustness block in every result** (so it is computed, not remembered): 1-bar execution delay, 2× costs,
-  band 0.005, phase spread, Sharpe by start date (drop first 3/6/12 months), corr to BTC. `show_result` prints it; the gate
-  reads the WORST of delay/phase-average, not the best case.
-- [ ] H3 **Forward ledger (the only clean out-of-sample we have).** scripts/forward_score.py: for every registered WF
-  experiment, ALIVE and DEAD, freeze the config chosen at its registry timestamp and score it only on bars after that
-  timestamp, weekly. Dead ideas give the null distribution for free; no multiple-testing inflation; replaces most of the
-  need for new backtests on the same 6 y of data.
-- [ ] H4 **T4b must nest component SELECTION, not just params** (review 11-09: 0.62–1.24 vs 1.36 hindsight at return level).
-  Pre-register ONE selection rule (suggest: top-3 by expanding IS Sharpe among all registered strategies) at weight level.
-- [ ] T4b **Nested blend re-test (removes component-selection bias)**: the T4 blend (HL OOS 1.57) used component params I
+**Priority order after the owner's re-aim (2026-11-09: $1,000 real capital waiting on evidence, steady risk, small-account
+edges first; research is Tue + Thu, ≤ 6 new walk-forward experiments per session):**
+1. H4 (is the blend real once its components are chosen out-of-sample?) → 2. T0a (does live track the backtest? ≈ 11-16) →
+3. T9 (maker execution: costs are the binding constraint on HL) → 4. T2b a (funding on listing shorts: could erase the edge) →
+5. T3 (HL-vs-Binance funding spread; also as a cross-venue capture, see X1) → 6. L2b a (flow → HL) → 7. T5b → the rest.
+Evidence that accrues with time (forward ledger, tracking, T6b data) outranks another backtest on the same history.
+
+- [ ] H4 **Blend with component SELECTION nested, at weight level** (review 11-09: return-level nested 0.62–1.24 vs 1.36 hindsight).
+  Pre-register ONE rule before looking (suggest: top-3 by expanding in-sample Sharpe among ALL registered HL-testable strategies,
+  re-chosen every 60 days, equal risk). This replaces T4b. If HL OOS stays > 0.8 and `worst` > 0, the blend's only failing
+  clause is DSR, and the forward ledger + T0a become its evidence stream. Run on hl 1d + bnall.
+- [ ] X1 **Cross-venue funding capture (small-account edge, new)**: same coin long on the venue with lower funding, short on the
+  other, when the spread is wide and persistent. Price risk hedged; pays the funding difference minus two sets of costs.
+  Needs: HL + Binance funding history joined per coin (both on disk), a two-venue book in the paper engine (today a book
+  lives on one venue), and a persistence test of the spread first (cheap kill test: is the 7-day mean spread > round-trip
+  costs often enough?). Do the kill test before building anything.
+- [ ] ~~T4b~~ (superseded by H4) **Nested blend re-test (removes component-selection bias)**: the T4 blend (HL OOS 1.57) used component params I
   picked after seeing their results. Re-test with each component's params chosen by its OWN walk-forward on past data only,
   same equal-risk rule. Pre-register 1 config, HL 1d + bnall. Also report (descriptive, not a new grid) bnall blend without
   listing_short (band/survivorship artifact there), and the blend on 4h HL (2024-06+). If HL stays > 0.8, the bnall DSR
   clause is the only failure, and the blend's live shadow book + T0a tracking becomes the main evidence stream.
-- [ ] T12 **$200 executability of the blend**: it holds ~16 names (many ≈ 5%). Design a capped version (≤ 10 names, each
+- [x] T12 obsolete since the main book is $1,000 (band 0.01: the ~16-name blend is executable). Was: **$200 executability of the blend**: it holds ~16 names (many ≈ 5%). Design a capped version (≤ 10 names, each
   ≥ 6%) and measure the Sharpe cost vs the full blend at band 0.05. Needed before any main-book allocation.
 - [x] B1 Binance paper venue BUILT 2026-11-09 (interactive): shadow books xsmom_k@bn, flow@bn, tsmom@bn; main_bn $200. Follow-ups:
   (1) after 7 days, add these books to the T0a tracking check; (2) blend@bn; (3) Binance funding in the live panel if a
@@ -84,6 +85,10 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 - [ ] T8 Regime filter: trend/carry vs BTC vol regime or funding level (≤ 2 regime params; beware overfitting).
 
 ## Done
+- [x] H1 Harness: staggered tranches instead of one start day (`strategies.scheduled`, research + live) → DONE 2026-11-09;
+  candidates re-measured (batches 2026-11-09-h1-recheck-*, findings v2).
+- [x] H2 Robustness block stored with every walk-forward (`research.robustness`, gate reads `robust.worst`) → DONE 2026-11-09.
+- [x] H3 Forward ledger (`scripts/forward_score.py` → research/forward.json; Sunday retro runs it) → DONE 2026-11-09.
 - [x] T4 Blend of candidates (1 pre-registered rule) → HL OOS 1.57, bnall 1.02, DSR 0.62: fails only the DSR clause; candidate + shadow (2026-11-09 pm)
 - [x] T11 xsmom_k (top/bottom-k, $200-executable) → HL 0.55, bnall 1.37; candidate + shadow (2026-11-09 pm)
 - [x] T6a Non-backfillable HL collector (kripto/collect.py: top-account positions via recentTrades→clearinghouseState, L2 top-10; ≤ ~56 calls/h) live 2026-11-09 17:40
