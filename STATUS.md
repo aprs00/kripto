@@ -1,6 +1,6 @@
-HEALTH: OK — trader + new HL data collector run hourly without errors; best idea so far (a blend) fails one gate clause, main book stays flat.
+HEALTH: OK — trader (HL + Binance venues) and HL data collector run hourly without errors; no strategy passes the gate yet, both main books flat.
 
-_Updated 2026-11-09 18:00 UTC (research session, afternoon)._
+_Updated 2026-11-09 20:30 UTC (review)._
 
 ## Main book ($200 paper)
 Equity $200.00, +0.00%. Flat: no strategy passes the incubation gate yet.
@@ -8,8 +8,10 @@ Equity $200.00, +0.00%. Flat: no strategy passes the incubation gate yet.
 | book | equity | return | positions | note |
 |---|---|---|---|---|
 | main | $200.00 | +0.00% | 0 | flat by design |
-| shadow:tsmom | $2009.87 | +0.49% | 11 | live since 11-08 |
-| shadow:xsmom | $1987.30 | −0.63% | 28 | live since 11-08 |
+| main_bn (Binance, new) | $200.00 | +0.00% | 0 | flat by design |
+| shadow:tsmom | $2005.03 | +0.25% | 11 | live since 11-08 |
+| shadow:xsmom | $1982.53 | −0.87% | 28 | live since 11-08 |
+| shadow:xsmom_k@bn, flow@bn, tsmom@bn (new) | $2000 each | 0.00% | 0 | first Binance trades on the 11-10 00:00 bar |
 | shadow:listing_short | $2000.00 | 0.00% | 0 | flat until a new HL listing with ≥ $1M/day volume |
 | shadow:blend (new) | $2000.00 | 0.00% | 0 | first trade at the 11-10 00:00 bar |
 | shadow:xsmom_k (new) | $2000.00 | 0.00% | 0 | weekly rebalance; first trade at its next weekly bar |

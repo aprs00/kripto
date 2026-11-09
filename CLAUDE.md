@@ -180,3 +180,4 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   small-limit incremental klines ≈ 61 weight/run), kripto/venue_bn.py (depth-walk fills, 5 bp, step/min-notional,
   8h funding), paper.py split into compute_targets/run_books shared by both venues, with positions/funding separated
   per venue (book_venue). Tests: tests/test_venue_bn.py (fake client). Shadow books xsmom_k@bn, flow@bn, tsmom@bn.
+* 2026-11-09 review: `scripts/sql.py` prints the table schemas on an OperationalError (wrong column names cost a round trip).
