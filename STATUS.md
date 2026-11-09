@@ -1,6 +1,6 @@
-HEALTH: OK — 08:25 review: trader runs hourly, data fresh, fills plausible; no edge good enough for the main book yet.
+HEALTH: OK — 12:25 review: trader runs hourly, data fresh, no errors; no edge good enough for the main book yet.
 
-_Updated 2026-11-09 08:30 UTC (review session)._
+_Updated 2026-11-09 12:30 UTC (review session)._
 
 ## Main book ($200 paper)
 Equity $200.00, +0.00%. Flat: no strategy passes the incubation gate (HL walk-forward OOS Sharpe > 0.8, positive on Binance,
@@ -9,8 +9,8 @@ DSR > 0.9, survives 2× costs).
 | book | equity | return | positions | note |
 |---|---|---|---|---|
 | main | $200.00 | +0.00% | 0 | flat by design |
-| shadow:tsmom | $2026.24 | +1.31% | 11 | live since 11-09 04:26 |
-| shadow:xsmom | $1996.70 | −0.16% | 28 | live since 11-09 04:26 |
+| shadow:tsmom | $2013.70 | +0.69% | 11 | live since 11-09 04:26 |
+| shadow:xsmom | $1982.78 | −0.86% | 28 | live since 11-09 04:26 |
 | shadow:listing_short | $2000.00 | 0.00% | 0 | new today; flat until the next HL listing with ≥ $1M/day volume |
 | shadow:carry (retired) | $2000.00 | 0.00% | 0 | frozen |
 
