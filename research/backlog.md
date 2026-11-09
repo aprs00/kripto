@@ -19,11 +19,18 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
   long/short account + position ratios, taker buy/sell volume ratio) going back years, for the whole bnall universe.
   Test the T5/T6 ideas there first (OI change × price change regimes; crowded top-trader positioning as a contrarian or
   confirming signal), pre-registered ≤ 8 configs each. HL collection (T6a) then confirms that the effect carries over to HL.
+- [ ] L2b **flow follow-ups (flow ALIVE on bnall, OOS 1.13; see findings)**: (a) cross-venue test: Binance taker-flow
+  signal → trade the same coins on HL prices (HL 1d/4h panel joined with bnall taker_buy on common coins), the only
+  way to get HL evidence for the gate; (b) a live signal source: Binance public futures klines (fapi `/klines` includes
+  taker buy quote volume, public market data, polite rate) OR HL recentTrades aggregation (collector already sees trades);
+  only then a shadow book; (c) blend candidate: flow + xsmom_k (corr 0.43) + tsmom + listing_short, pre-registered.
+  Also: inspect_strategy printed its WARN line although corr BTC 0.11 and BTC leg −1% < other legs 23%, so check the WARN condition.
 - [ ] L2 **Taker-flow signals (library N1/N2)**: first extend the Binance kline loaders to keep taker buy volume (cols 9–10,
   currently dropped by `.iloc[:, :8]`/`cols`). Re-download is incremental-unfriendly → plan it within the nightly window.
   Then one pre-registered batch on bnall: (a) k-day net-taker-flow rank → next-k return, both signs, beta-hedged;
   (b) flow-without-price-progress (absorption) reversal. ≤ 8 configs each. Mechanism: metaorder splitting (Tóth et al.).
-- [ ] L4 **Residual reversion with entry threshold (library N5, Pole)**: NEW angle vs dead xsrev: BTC-beta-defactored
+- [x] L4 Residual reversion with entry threshold → DEAD (2026-11-09, price-only SR −0.72; residuals continue)
+- [ ] ~~L4~~ **Residual reversion with entry threshold (library N5, Pole)**: NEW angle vs dead xsrev: BTC-beta-defactored
   residuals, enter only past a z-threshold, exit on reversion, so turnover is a fraction of xsrev's. HL + bnall, ≤ 8 configs.
 - [ ] L1 **HL lags Binance? (library N4)**: cheap kill test: BN 1h alt return → HL same-coin next-1h return. Expect
   ≈ 0 (arbitraged in seconds). If |IC| is meaningful after costs, it becomes a strategy.

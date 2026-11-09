@@ -85,3 +85,14 @@ HL −0.24 (1/6 >0); BN OOS 0.44 but grid med −0.01 (3/6 >0). Not robust.
 
 ### funding_contra: fade funding spikes vs own history (2026-11-08, re-run 11-09) → DEAD
 HL −0.81 (0/8 >0); BN −0.42 (med 0.15). Not robust.
+
+### resrev: BTC-defactored residual reversion with entry threshold (library N5/Pole, 2026-11-09, interactive) → DEAD
+New angle vs xsrev (threshold, residuals, low turnover). Still 0/9 >0 on HL 1d (OOS −0.59), bnall 1d (−0.85), BN 4h (−1.13);
+HL 4h −0.18 (1/9). Price-only SR −0.72 (BN 4h lb7 thr1.5), negative 5/7 years: extreme residual moves CONTINUE over days
+(that is xsmom's effect), so it isn't the costs. Reversion in crypto residuals, if it exists, is intraday/HFT, out of reach.
+
+### flow: cross-sectional taker-flow imbalance (library N1/N2, 2026-11-09, interactive) → ALIVE (candidate, no live feed yet)
+bnall 1d WF OOS **1.13 / 6.1y** (DSR 0.70); continuation 6/6 cfgs >0 (0.36–1.20), reversal 6/6 <0, so the sign is clear (metaorder
+splitting, Tóth et al.). lb14: SR 1.20, 2× cost 1.10, corr BTC 0.11, band 0.005 1.35, 233 names; yearly +2.7/+2.3/−0.0/+1.7/+0.1/+1.4/−1.7 (2026 YTD).
+corr xsmom 0.43 (partly momentum), but the return-orthogonal variant (resid) is still SR 0.77 with corr xsmom 0.16 → some independent info.
+**Not testable on HL** (HL candles have no taker split). Next: BN flow → HL returns cross-venue test, live BN feed (backlog L2b).
