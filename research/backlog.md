@@ -6,16 +6,20 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 
 **Priority order after the owner's re-aim (2026-11-09: $1,000 real capital waiting on evidence, steady risk, small-account
 edges first; research is Tue + Thu, ≤ 6 new walk-forward experiments per session):**
-1. H4 (is the blend real once its components are chosen out-of-sample?) → 2. T0a (does live track the backtest? ≈ 11-16) →
-3. T9 (maker execution: costs are the binding constraint on HL) → 4. T2b a (funding on listing shorts: could erase the edge) →
-5. T3 (HL-vs-Binance funding spread; also as a cross-venue capture, see X1) → 6. L2b a (flow → HL) → 7. T5b → the rest.
+1. **T9 maker execution** (three HL signals are now positive before costs and dead after them: the lever is cost, not signal;
+library: gueant-2016 part on limit-order placement, maxdama §7) → 2. H4 (is the blend real once its components are chosen
+out-of-sample? one experiment) → 3. T0a (does live track the backtest? ≈ 11-16) → 4. T2b a (funding on listing shorts; the nightly
+job now backfills 8 more coins a night) → 5. X1b (funding capture with hold-until-flip, only after T9) → 6. T5b → the rest.
 Evidence that accrues with time (forward ledger, tracking, T6b data) outranks another backtest on the same history.
 
 - [ ] H4 **Blend with component SELECTION nested, at weight level** (review 11-09: return-level nested 0.62–1.24 vs 1.36 hindsight).
   Pre-register ONE rule before looking (suggest: top-3 by expanding in-sample Sharpe among ALL registered HL-testable strategies,
   re-chosen every 60 days, equal risk). This replaces T4b. If HL OOS stays > 0.8 and `worst` > 0, the blend's only failing
   clause is DSR, and the forward ledger + T0a become its evidence stream. Run on hl 1d + bnall.
-- [ ] X1 **Cross-venue funding capture (small-account edge, new)**: same coin long on the venue with lower funding, short on the
+- [ ] X1b **Funding capture, second angle (only after T9)**: X1 showed the funding difference is real (+6–13%/yr at gross ≤ 2) and
+  that spread-following weights churn it away (70–410× turnover). Pre-register ONE rule: enter when the 14-day spread > 20%/yr,
+  hold until it changes sign, top-20 liquid pairs, passive fills where T9 allows. Then a two-venue paper book if it passes.
+- [x] X1 → DEAD at taker costs, funding leg real (2026-11-09, findings). Was: **Cross-venue funding capture (small-account edge, new)**: same coin long on the venue with lower funding, short on the
   other, when the spread is wide and persistent. Price risk hedged; pays the funding difference minus two sets of costs.
   Needs: HL + Binance funding history joined per coin (both on disk), a two-venue book in the paper engine (today a book
   lives on one venue), and a persistence test of the spread first (cheap kill test: is the 7-day mean spread > round-trip
@@ -44,7 +48,7 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
   long/short account + position ratios, taker buy/sell volume ratio) going back years, for the whole bnall universe.
   Test the T5/T6 ideas there first (OI change × price change regimes; crowded top-trader positioning as a contrarian or
   confirming signal), pre-registered ≤ 8 configs each. HL collection (T6a) then confirms that the effect carries over to HL.
-- [ ] L2b **flow follow-ups (flow ALIVE on bnall, OOS 1.13; see findings)**: (a) cross-venue test: Binance taker-flow
+- [ ] L2b **flow follow-ups** ((a) DONE 2026-11-09: sign transfers to HL prices, dead at HL taker costs; (b) live Binance feed exists: flow@bn; (c) open). Was: (a) cross-venue test: Binance taker-flow
   signal → trade the same coins on HL prices (HL 1d/4h panel joined with bnall taker_buy on common coins), the only
   way to get HL evidence for the gate; (b) a live signal source: Binance public futures klines (fapi `/klines` includes
   taker buy quote volume, public market data, polite rate) OR HL recentTrades aggregation (collector already sees trades);

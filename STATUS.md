@@ -1,6 +1,6 @@
 HEALTH: OK — trader (HL + Binance), collector and timers healthy; harness rebuilt and candidates re-measured; nothing passes the gate yet, main books flat.
 
-_Updated 2026-11-09 22:40 UTC (interactive session with the owner)._
+_Updated 2026-11-09 23:15 UTC (interactive session with the owner)._
 
 ## What changed today (owner: "$200-level earnings won't cut it"; $1,000 available; steady risk)
 * **Main paper books are now $1,000** (one on HL, one on Binance: alternative homes for the same $1,000). The $10 minimum
@@ -31,12 +31,19 @@ _Updated 2026-11-09 22:40 UTC (interactive session with the owner)._
 | listing shorts | 0.89 | 0.86 | 1.33 / 0.85 | multiple-testing check; funding data incomplete |
 | trend | 0.08 | 0.65 | 0.49 / 0.97 | weak alone |
 
+**Two more strategies tested tonight, both fail on costs.** (1) Trading Binance's taker-flow signal on Hyperliquid prices: the
+signal carries over (about +19%/yr before costs) but HL trading costs take 17%+; net ≈ 0. (2) Holding the same coin long on one
+venue and short on the other to collect the funding difference: the difference is real (+6–13%/yr, almost no price risk) but
+following it costs 6–36%/yr in trading. Three signals now work before costs and die after them on HL, so the next effort goes
+into cheaper (passive) execution, not into a fourth signal.
+
 **Honest reading.** Three candidates are close to the gate and none passes. The blend's 1.61 still has a known flaw: its
 three components were picked with hindsight; choosing them out-of-sample gave 0.6–1.2 in a first check. If the edge is real
 at Sharpe 0.6–1.2, a $1,000 account at this risk level grows about 12–27% a year ($10–22 a month), with 20–30% drawdowns.
 No real money should go in before the paper books have tracked their backtests for 2–3 months. That decision is the owner's.
 
 ## Next
-* Tue 11-10 research: the blend with components chosen out-of-sample (H4). This decides whether 1.61 is real.
-* ≈ 11-16: first live-vs-backtest tracking check. Then: cheaper (passive) execution on HL, funding on listing shorts,
-  HL-vs-Binance funding capture. First forward-ledger reading ≈ 12-09.
+* Tue 11-10 research: start passive (maker) execution, the one change that could revive three HL signals; and the blend with
+  components chosen out-of-sample (H4), which decides whether 1.61 is real.
+* ≈ 11-16: first live-vs-backtest tracking check. First forward-ledger reading ≈ 12-09. Funding history for listing shorts
+  fills in over the next ~2 weeks (8 more coins a night).

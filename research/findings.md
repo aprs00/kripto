@@ -9,7 +9,10 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
 * **Verify the plumbing, not just the result.** A unit bug silently voided a whole day of research (2026-11-09). Any
   helper touching timestamps/alignment needs a unit test on synthetic data with a known answer.
 * **Costs are the binding constraint on Hyperliquid.** The HL top-20 by volume includes thin memes; slippage +
-  fees took ~8%/yr off trend. Any HL strategy must be judged at HL cost levels, not Binance's.
+  fees took ~8%/yr off trend. Any HL strategy must be judged at HL cost levels, not Binance's. By 2026-11-09 three signals
+  are real before costs and dead after them on HL (xsmom_k: 2× costs 0.31; flow-on-HL: +19% gross, 17% costs; funding
+  capture: +6–13% funding, 6–36% costs). The next unit of effort belongs to execution (T9), not to another signal.
+  Always report gross, costs and turnover separately: "dead" and "dead at taker costs" are different verdicts.
 * **Account size decides what is executable.** At $200 a $10 min order is 5% of equity and 20–30 name books could not be
   traded (band 0.05). Since 2026-11-10 the main book is $1,000 (the owner's deployable capital): band 0.01, broad books fit.
   Binance's $5 min order allows twice the breadth again. Always quote which band a number used.
@@ -112,3 +115,14 @@ HL 4h −0.18 (1/9). Price-only SR −0.72 (BN 4h lb7 thr1.5), negative 5/7 year
 Continuation 6/6 >0, reversal 6/6 <0 (so "grid median > 0" fails mechanically: half the grid is the opposite hypothesis).
 Cost-sensitive (lb3 turns over fast): the live shadow book's fills are the real test. corr xsmom 0.43, resid variant 0.77.
 **Not testable on HL** (no taker split in HL candles) → L2b cross-venue test.
+
+### flow on HL prices: Binance taker flow → trade the same coins on HL (L2b a, dataset hlx, 2026-11-09) → DEAD at taker costs (signal transfers)
+HL 1d WF OOS 0.03 / 2.97y, grid med −1.54, 2/12 >0. The SIGN carries over: continuation lb14 earns ≈ +19%/yr before costs, reversal
+loses in all 6 configs (−1.5 to −2.2). But HL costs are 17–50%/yr at this turnover (118–366×): net SR 0.23 at best, −0.40 at 2× costs.
+So flow is real on both venues and only tradable where costs are low (Binance). Revisit on HL only with cheaper execution (T9).
+
+### fspread: HL-vs-Binance funding capture, same coin long on one venue and short on the other (X1, dataset pair, 2026-11-09) → DEAD at taker costs (funding leg real)
+pair 1d WF OOS −1.42 / 1.67y, 0/9 >0. The funding difference IS there: +6% to +13%/yr of equity at gross ≤ 2, price risk cancels
+(vol ≈ 2–4%). But weights that follow the spread turn over 70–410×/yr and cost 6–36%/yr: more than the funding in every config.
+Best (lb14, thr 20%): funding +6.3%, costs −6.0%. New angle if revisited (not tested): enter on a wide spread and HOLD until it
+flips (hysteresis), liquid pairs only, passive execution. Needs T9 first. Only 84 coins have HL funding history (2024-07+).

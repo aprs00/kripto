@@ -4,7 +4,7 @@ One entry per idea: source (slug + section), the claim in our own words, the mec
 the data it needs, and the backlog id. ≤ 5 lines each. When tested, the verdict goes to research/findings.md and the
 entry gets `→ <verdict>`. Ideas in a book count as hypotheses, not evidence.
 
-### N1 Order-flow persistence → flow continuation (bouchaud-…-digest; toth-…-persistence) → backlog L2
+### N1 Order-flow persistence → flow continuation (bouchaud-…-digest; toth-…-persistence) → backlog L2 → ALIVE on Binance (bnall OOS 1.42); on HL prices the sign transfers but taker costs kill it (2026-11-09)
 Large orders are split over hours to days, so the sign of net taker flow is long-memory. Price impact is mostly
 transient, though, so the simple prediction "flow → price continues" is weak in liquid names. Test both signs, pre-registered:
 cross-sectional rank of k-day net taker flow / volume → next-k-day return, beta-hedged. Needs Binance kline cols 9–10
@@ -19,7 +19,7 @@ practitioners use it intraday with discretion. We can only test a daily/4h versi
 Impact ≈ Y·σ_daily·√(Q/V_daily), Y ~ 0.5–1. Use it to sanity-check our liquidity-scaled slippage (1.5–25 bp) at the
 $2,000 shadow and $200 main sizes. Live fills (T0a) are the ground truth.
 
-### N4 Perp leadership in price discovery (alexander-heck-2020) → backlog L1
+### N4 Perp leadership in price discovery (alexander-heck-2020) → backlog L1 (daily version tested 2026-11-09 as flow-on-HL: Binance flow does lead HL prices gross; the 1h kill test is still open)
 The deepest perps lead. Today that's Binance/Bybit, not HL. If HL alts lag Binance by more than our ~1h decision latency, the
 Binance 1h return predicts the HL next-hour return. Most likely arbitraged within seconds, so run it as a cheap kill test first.
 

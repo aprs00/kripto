@@ -111,6 +111,8 @@ state/paper.db        sqlite paper ledger (gitignored) data/  parquet market dat
 nice -n 19 .venv/bin/python -m scripts.research_run --grids research/batches/<date>.json --datasets hl bn  # parallel batch
 nice -n 19 .venv/bin/python -m scripts.inspect_strategy tsmom hl '{}'          # 4th arg 1d for daily; dataset bnall = full BN universe
 nice -n 19 .venv/bin/python -m scripts.research_run --grids <batch> --datasets hl bn bnall --interval 1d   # daily-bar batch
+#   cross-venue daily datasets: hlx = HL prices + Binance taker flow for the same coins; pair = both venues in one panel
+#   (columns <COIN>@hl / <COIN>@bn, for books long on one venue and short on the other). data.load_panel(name, interval) loads any.
 .venv/bin/python -m scripts.show_result --today            # one line per result written today; or: show_result <strategy> <dataset>
 .venv/bin/python -m scripts.health                         # HEALTH line from facts (trader, data, collector, disk, agent sessions)
 nice -n 19 .venv/bin/python -m scripts.forward_score       # forward ledger table (weekly; add a dataset name to limit it)
@@ -215,3 +217,8 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   `scripts/guard.py` restores the HARD RULES section after a headless session. New section "What the owner wants".
   Lessons: (1) a result that depends on an arbitrary choice (start day, start date, same-close fill) is not a result, so
   compute those stresses by default instead of remembering to; (2) "noticing" belongs in code, "fixing" in a session.
+* 2026-11-09 interactive (owner asked for one or two more strategies, from the library where possible): added cross-venue
+  datasets `hlx` and `pair` (data.load_panel) and tested flow-on-HL (library N1/N4) and `fspread` funding capture. Both are
+  positive before costs and dead after them, like xsmom_k on HL. Lesson: report gross, costs and turnover separately and
+  distinguish "dead" from "dead at taker costs"; the latter list is the to-do list for execution work (T9), which is now
+  backlog priority 1. The nightly data job also starts HL funding history for 8 more coins a night (`--funding-extra`).
