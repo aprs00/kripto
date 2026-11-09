@@ -1,0 +1,7 @@
+[Unit]
+Description=kripto deterministic health watchdog (hourly, after the trader step)
+[Timer]
+OnCalendar=*-*-* *:35:00
+Persistent=false
+[Install]
+WantedBy=timers.target

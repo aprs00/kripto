@@ -1,8 +1,7 @@
 [Unit]
-Description=kripto agent research sessions (twice daily; 13:40 fits between the 12:25 and 16:25 reviews even at the 140 min timeout)
+Description=kripto agent research: Tue + Thu, and the weekly retrospective on Sun (06:40 UTC)
 [Timer]
-OnCalendar=*-*-* 06:40:00
-OnCalendar=*-*-* 13:40:00
+OnCalendar=Tue,Thu,Sun *-*-* 06:40:00
 Persistent=true
 [Install]
 WantedBy=timers.target

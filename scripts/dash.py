@@ -18,7 +18,7 @@ from pathlib import Path
 
 ROOT = Path(os.environ.get("KRIPTO_ROOT") or Path(__file__).resolve().parent.parent)
 DB = ROOT / "state" / "paper.db"
-UNITS = ["trader", "review", "research", "data"]
+UNITS = ["trader", "health", "review", "research", "data"]
 
 TTY = sys.stdout.isatty()
 
@@ -74,6 +74,17 @@ def health() -> None:
     upd = next((l for l in lines[1:5] if l.startswith("_Updated")), "")
     if upd:
         print(dim(upd.strip("_")))
+    hp = ROOT / "state" / "health.json"      # hourly deterministic watchdog (scripts/health.py), independent of Claude
+    if hp.exists():
+        try:
+            h = json.loads(hp.read_text())
+            lvl = h.get("level", "?")
+            hc = green if lvl == "OK" else yellow if lvl == "WARN" else red
+            print(hc(f"watchdog {lvl}") + dim(f" {ago(parse_ts(h.get('ts')))}"))
+            for r in (h.get("reasons") or [])[:3]:
+                print(hc(("  " + r)[:46]))
+        except Exception:
+            print(yellow("watchdog file unreadable"))
 
 
 def books() -> None:

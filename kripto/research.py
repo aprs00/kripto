@@ -9,6 +9,7 @@ Every configuration ever backtested is appended to research/registry.jsonl (appe
 """
 from __future__ import annotations
 
+import inspect
 import itertools
 import json
 import subprocess
@@ -24,6 +25,18 @@ from .strategies import REGISTRY, bars_per_day
 
 ROOT = Path(__file__).resolve().parent.parent
 REG = ROOT / "research" / "registry.jsonl"
+RISK = ROOT / "config" / "risk.json"
+MIN_ORDER = 10.0   # Hyperliquid minimum order ($); Binance is $5 for most symbols
+
+
+def default_band() -> float:
+    """No-trade band that mirrors the main paper book: a trade smaller than min order / equity cannot be sent.
+    $10 / $1,000 = 0.01 since 2026-11-10 (it was 0.05 while the book was $200; registry lines now record `band`)."""
+    try:
+        eq = float(json.loads(RISK.read_text())["start_equity"])
+    except Exception:
+        eq = 1000.0
+    return MIN_ORDER / eq
 
 
 def n_trials(kind: str = "config") -> int:
@@ -53,8 +66,14 @@ def log_trial(rec: dict):
 
 
 def evaluate(name: str, panel: dict, params: dict, dataset: str, cost_mult: float = 1.0,
-             band: float = 0.05, log: bool = True, start: str | None = None) -> tuple[bt.BTResult, dict]:
+             band: float | None = None, log: bool = True, start: str | None = None, lag: int = 0,
+             tag: str | None = None) -> tuple[bt.BTResult, dict]:
+    """One config, full sample. lag = bars of execution delay (weights decided at close t are traded at close t+lag).
+    tag marks the purpose of a logged line ("robust", "forward", ...)."""
+    band = default_band() if band is None else band
     w = REGISTRY[name](panel, **params)
+    if lag:
+        w = w.shift(lag)
     bpd = bars_per_day(panel["close"].index)
     slip = bt.slippage_model(panel["volume"], bpd)
     res = bt.run(w, panel["close"], panel.get("funding"), slip, band=band, cost_mult=cost_mult)
@@ -68,13 +87,48 @@ def evaluate(name: str, panel: dict, params: dict, dataset: str, cost_mult: floa
     s = mx.summary(r, res.gross.reindex(r.index), res.turnover.reindex(r.index), res.costs.reindex(r.index),
                    res.funding.reindex(r.index), n_trials=n_trials() + 1)
     if log:
-        log_trial({"strategy": name, "params": params, "dataset": dataset, "cost_mult": cost_mult, **s})
+        log_trial({"strategy": name, "params": params, "dataset": dataset, "cost_mult": cost_mult, "band": band,
+                   **({"lag": lag} if lag else {}), **({"tag": tag} if tag else {}), **s})
     return res, s
 
 
 def grid(spec: dict) -> list[dict]:
     keys = list(spec)
     return [dict(zip(keys, vals)) for vals in itertools.product(*(spec[k] for k in keys))]
+
+
+def robustness(name: str, panel: dict, params: dict, dataset: str) -> dict:
+    """Standard stress block for ONE config (full-sample Sharpes), computed for every walk-forward so it is never
+    skipped: 2x costs, one bar of execution delay, a tiny band (the signal without the min-order constraint), the
+    first 6/12 months dropped (start-date luck), correlation to BTC and, for schedules slower than daily, the Sharpe
+    of every single start day of the schedule (the default already trades their average as tranches).
+    `worst` = min(base, 2x costs, delay, start-date cuts): the gate reads this, not the best case.
+    Lines are logged as config kind with tag "robust", so they do not raise the walk-forward DSR bar."""
+    def ev(p=params, **kw):
+        return evaluate(name, panel, p, dataset, tag="robust", **kw)
+    res, s = ev()
+    out = {"params": params, "base": s.get("sharpe"), "cost_x2": ev(cost_mult=2.0)[1].get("sharpe"),
+           "delay_1bar": ev(lag=1)[1].get("sharpe"), "band_tiny": ev(band=0.001)[1].get("sharpe")}
+    first = res.gross[res.gross > 0].index.min()
+    if not pd.isna(first):
+        r = res.returns[res.returns.index >= first]
+        ppy = mx.periods_per_year(r.index)
+        for m in (6, 12):
+            seg = r[r.index >= first + pd.DateOffset(months=m)]
+            out[f"skip_first_{m}m"] = round(mx.sharpe(seg, ppy), 3) if len(seg) > 60 else None
+        if "BTC" in panel["close"]:
+            btc = panel["close"]["BTC"].pct_change(fill_method=None).reindex(r.index)
+            out["corr_btc"] = round(float(r.corr(btc)), 3)
+    sig = inspect.signature(REGISTRY[name]).parameters
+    n = int(params.get("every_days", sig["every_days"].default if "every_days" in sig else 1))
+    if 1 < n <= 14 and "phase" in sig:
+        ph = [ev({**params, "phase": k})[1].get("sharpe") for k in range(n)]
+        out["phases"] = ph
+        out["phase_min"], out["phase_mean"], out["phase_max"] = min(ph), round(float(np.mean(ph)), 3), max(ph)
+    vals = [out.get(k) for k in ("base", "cost_x2", "delay_1bar", "skip_first_6m", "skip_first_12m")]
+    vals = [v for v in vals if v is not None]
+    out["worst"] = min(vals) if vals else None
+    return out
 
 
 def walk_forward(name: str, panel: dict, spec: dict, dataset: str, train_days: int = 240,
@@ -113,6 +167,8 @@ def walk_forward(name: str, panel: dict, spec: dict, dataset: str, train_days: i
         "oos": mx.summary(oos_r, n_trials=n_trials("walk_forward") + 1) if len(oos_r) > 30 else {},
         "folds": chosen,
         "grid": grid_df.sort_values("sharpe", ascending=False).head(10).to_dict("records"),
+        # stress block for the config the walk-forward would trade today (latest fold's choice)
+        "robust": robustness(name, panel, chosen[-1]["params"], dataset) if chosen else {},
     }
     log_trial({"kind": "walk_forward", **{k: v for k, v in out.items() if k not in ("grid", "folds")}})
     return out

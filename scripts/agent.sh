@@ -10,11 +10,22 @@ exec 9>"$HOME/.kripto-agent.lock"
 flock -n 9 || { echo "$(date -u) another agent session is running; skip" >> "$LOG"; exit 0; }
 git pull -q --rebase || echo "git pull failed" >> "$LOG"
 case "$MODE" in review) TURNS=40; TMO=35m;; research) TURNS=250; TMO=140m;; *) exit 2;; esac
+# HARD RULES are immutable for headless sessions: remember the section now, put it back afterwards if it changed
+SNAP="$(mktemp)"; .venv/bin/python -m scripts.guard save "$SNAP" 2>> "$LOG" || SNAP=""
 echo "=== $(date -u +%FT%TZ) start $MODE" >> "$LOG"
 timeout "$TMO" claude -p "$(cat prompts/$MODE.md)" --dangerously-skip-permissions --max-turns "$TURNS" \
   --output-format text >> "$LOG" 2>&1
 RC=$?
 echo "=== $(date -u +%FT%TZ) end $MODE rc=$RC" >> "$LOG"
+if [ -n "$SNAP" ]; then
+  .venv/bin/python -m scripts.guard check "$SNAP" >> "$LOG" 2>&1
+  if [ $? -eq 3 ]; then
+    echo "$(date -u +%FT%TZ) $MODE edited HARD RULES; restored" >> logs/agent-failures.log
+    git add CLAUDE.md && git commit -qm "guard: restore HARD RULES section edited by a headless $MODE session" \
+      && git pull -q --rebase && git push -q
+  fi
+  rm -f "$SNAP"
+fi
 # safety net: never lose the session's notes if the agent forgot to commit
 if [ -n "$(git status --porcelain -- journal STATUS.md research config)" ]; then
   git add journal STATUS.md research config 2>/dev/null

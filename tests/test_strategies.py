@@ -102,3 +102,63 @@ def test_resrev_fades_an_idiosyncratic_spike_and_ignores_btc():
     w = st.resrev(p, lookback=1, thr=1.5, every_days=1).dropna(how="all")
     last = w.iloc[-1]
     assert last["A"] < 0 and abs(last["A"]) == last.drop("BTC").abs().max()
+
+
+# --------------------------------------------------------------------------- staggered tranches (2026-11-09 review, H1)
+def _daily_targets(days=12, bpd=6):
+    idx = pd.date_range("2024-01-01", periods=days * bpd, freq="4h", tz="UTC")
+    w = pd.DataFrame(np.nan, idx, ["A", "B"])
+    daily = idx[idx.hour == 0]
+    w.loc[daily, "A"] = np.arange(1.0, days + 1)      # day d (1-based) targets A = d
+    w.loc[daily, "B"] = -1.0
+    return w, daily
+
+
+def test_tranche_mean_known_answer():
+    from kripto.strategies import tranche_mean
+    w, daily = _daily_targets()
+    out = tranche_mean(w, 3)
+    assert out.loc[~out.index.isin(daily)].isna().all().all()           # still only trades on rebalance rows
+    a = out.loc[daily, "A"].tolist()
+    assert a[:4] == pytest.approx([1 / 3, (1 + 2) / 3, 2.0, 3.0])       # ramps in, then mean of the last 3 days
+    assert out.loc[daily, "B"].tolist()[2:] == pytest.approx([-1.0] * (len(daily) - 2))
+
+
+def test_tranches_equal_the_average_of_all_schedule_phases():
+    """The tranche book must hold, on every day, the mean of what the n single-phase schedules hold."""
+    from kripto.strategies import rebalance_rows, tranche_mean
+    w, daily = _daily_targets(days=20)
+    n, bpd = 4, 6
+    phases = [rebalance_rows(w, n * bpd, offset=k * bpd).loc[daily].ffill().fillna(0.0) for k in range(n)]
+    want = sum(phases) / n
+    got = tranche_mean(rebalance_rows(w, bpd), n).loc[daily]
+    pd.testing.assert_frame_equal(got, want, check_exact=False, atol=1e-12)
+
+
+def test_scheduled_phase0_is_the_legacy_single_schedule_and_default_is_tranched():
+    from kripto import strategies as st
+    p = _listing_panel()
+    raw = pd.DataFrame(0.0, p["close"].index, p["close"].columns)
+    raw["BTC"], raw["OLD"] = 0.5, -0.5
+    legacy = st.vol_target(st.rebalance_rows(raw, 3 * 6), p, 0.2)
+    pd.testing.assert_frame_equal(st.scheduled(raw, p, 3, 0.2, phase=0), legacy)
+    tr = st.scheduled(raw, p, 3, 0.2)
+    assert tr.notna().any(axis=1).sum() == pytest.approx(3 * legacy.notna().any(axis=1).sum(), abs=3)  # trades daily
+    one = st.scheduled(raw, p, 1, 0.2)                 # every_days=1: nothing to stagger
+    pd.testing.assert_frame_equal(one, st.vol_target(st.rebalance_rows(raw, 6), p, 0.2))
+
+
+@pytest.mark.parametrize("name", ["xsmom", "xsmom_k", "lowvol", "tsmom"])
+def test_strategy_phase_argument_moves_the_rebalance_day(name):
+    from kripto import strategies as st
+    T = 6 * 150
+    idx = pd.date_range("2024-01-01", periods=T, freq="4h", tz="UTC")
+    rng = np.random.default_rng(5)
+    names = ["BTC"] + [f"C{i}" for i in range(9)]
+    close = pd.DataFrame(100 * np.exp(np.cumsum(rng.normal(0, 0.01, (T, 10)), 0)), idx, names)
+    p = {"close": close, "volume": pd.DataFrame(1e7, idx, names), "funding": pd.DataFrame(0.0, idx, names)}
+    kw = {"k": 2} if name == "xsmom_k" else {}
+    days = lambda w: set((w.dropna(how="all").index - pd.Timestamp(0, tz="UTC")).days % 3)
+    assert days(st.REGISTRY[name](p, every_days=3, phase=0, **kw)) == {0}
+    assert days(st.REGISTRY[name](p, every_days=3, phase=2, **kw)) == {2}
+    assert days(st.REGISTRY[name](p, every_days=3, **kw)) == {0, 1, 2}     # default: tranches, some trade every day

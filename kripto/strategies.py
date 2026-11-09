@@ -92,6 +92,31 @@ def vol_target(w: pd.DataFrame, panel, target: float, lookback_days: int = 60,
     return out
 
 
+def tranche_mean(w: pd.DataFrame, n: int) -> pd.DataFrame:
+    """Staggered tranches. `w` has target rows on the rebalance bars (all-NaN rows elsewhere). On each rebalance row the
+    result is the mean of the last `n` rebalance rows' targets = a book split into n equal tranches, each rebalanced
+    every n-th row on a different row. A tranche that has not traded yet is flat (so the book ramps in over n rows)."""
+    rows = w.notna().any(axis=1)
+    d = w[rows].fillna(0.0)
+    return (d.rolling(n, min_periods=1).sum() / n).reindex(w.index)
+
+
+def scheduled(raw: pd.DataFrame, panel, every_days: int, target_vol: float, max_gross: float = 3.0,
+              phase: int | None = None) -> pd.DataFrame:
+    """Turn fresh per-bar target weights into the traded schedule, then vol-target.
+    phase=None (default, what research and live use): a schedule of `every_days` > 1 is run as `every_days` staggered
+    tranches rebalanced daily, i.e. the average over every possible start day of the schedule. A single start day is
+    a lottery for concentrated books (2026-11-09 review: bnall xsmom_k weekly SR 0.26-1.46 depending on the weekday).
+    phase=k: the single schedule that rebalances on days == k (mod every_days); k=0 is the pre-2026-11-10 behaviour.
+    Diagnostics only (phase spread in research.robustness)."""
+    bpd = bars_per_day(panel["close"].index)
+    if phase is not None or every_days <= 1:
+        w = rebalance_rows(raw, every_days * bpd, offset=(phase or 0) * bpd)
+    else:
+        w = tranche_mean(rebalance_rows(raw, bpd), every_days)
+    return vol_target(w, panel, target_vol, max_gross=max_gross)
+
+
 def beta_to(panel, ref: str = "BTC", days: int = 60) -> pd.DataFrame:
     r = returns(panel)
     bpd = bars_per_day(r.index)
@@ -132,7 +157,7 @@ def dollar_volume(panel, days: int = 7) -> pd.DataFrame:
 
 @register
 def tsmom(panel, lookbacks=(7, 14, 28, 56), top_n=20, target_vol=0.30, every_days=1,
-          long_only=False, max_gross=2.0, smooth_days=0.0, min_dv=0.0):
+          long_only=False, max_gross=2.0, smooth_days=0.0, min_dv=0.0, phase=None):
     """Time-series trend: per-asset blended vol-normalised trailing return, risk-weighted.
     smooth_days: EMA half-life on the signal (turnover reduction); min_dv: min trailing $ daily volume."""
     c = panel["close"]
@@ -148,12 +173,11 @@ def tsmom(panel, lookbacks=(7, 14, 28, 56), top_n=20, target_vol=0.30, every_day
         sig = sig.clip(lower=0)
     raw = (sig / vol).where(mask)
     raw = raw.div(raw.abs().sum(axis=1).replace(0, np.nan), axis=0)
-    w = rebalance_rows(raw.fillna(0).where(mask.any(axis=1), np.nan), every_days * bpd)
-    return vol_target(w, panel, target_vol, max_gross=max_gross)
+    return scheduled(raw.fillna(0).where(mask.any(axis=1), np.nan), panel, every_days, target_vol, max_gross, phase)
 
 
 @register
-def xsmom(panel, lookback=28, skip=1, top_n=30, target_vol=0.25, every_days=3, beta_neutral=True):
+def xsmom(panel, lookback=28, skip=1, top_n=30, target_vol=0.25, every_days=3, beta_neutral=True, phase=None):
     """Cross-sectional momentum (dollar & beta neutral)."""
     c = panel["close"]
     bpd = bars_per_day(c.index)
@@ -161,12 +185,11 @@ def xsmom(panel, lookback=28, skip=1, top_n=30, target_vol=0.25, every_days=3, b
     w = xs_demean_rank(score, universe(panel, top_n))
     if beta_neutral:
         w = hedge_beta(w, beta_to(panel))
-    w = rebalance_rows(w, every_days * bpd)
-    return vol_target(w, panel, target_vol)
+    return scheduled(w, panel, every_days, target_vol, phase=phase)
 
 
 @register
-def xsrev(panel, lookback=3, top_n=30, target_vol=0.25, every_days=1, beta_neutral=True):
+def xsrev(panel, lookback=3, top_n=30, target_vol=0.25, every_days=1, beta_neutral=True, phase=None):
     """Cross-sectional short-term reversal."""
     c = panel["close"]
     bpd = bars_per_day(c.index)
@@ -174,12 +197,11 @@ def xsrev(panel, lookback=3, top_n=30, target_vol=0.25, every_days=1, beta_neutr
     w = xs_demean_rank(score, universe(panel, top_n))
     if beta_neutral:
         w = hedge_beta(w, beta_to(panel))
-    w = rebalance_rows(w, every_days * bpd)
-    return vol_target(w, panel, target_vol)
+    return scheduled(w, panel, every_days, target_vol, phase=phase)
 
 
 @register
-def carry(panel, lookback=7, top_n=30, target_vol=0.20, every_days=1, beta_neutral=True):
+def carry(panel, lookback=7, top_n=30, target_vol=0.20, every_days=1, beta_neutral=True, phase=None):
     """Funding carry: short the assets whose longs pay the most funding, long those that receive.
     Dollar (and optionally beta) neutral so the PnL is funding spread + residual returns."""
     c = panel["close"]
@@ -189,24 +211,22 @@ def carry(panel, lookback=7, top_n=30, target_vol=0.20, every_days=1, beta_neutr
     w = xs_demean_rank(-f, mask)
     if beta_neutral:
         w = hedge_beta(w, beta_to(panel))
-    w = rebalance_rows(w, every_days * bpd)
-    return vol_target(w, panel, target_vol)
+    return scheduled(w, panel, every_days, target_vol, phase=phase)
 
 
 @register
-def lowvol(panel, top_n=30, target_vol=0.20, every_days=7, vol_days=30):
+def lowvol(panel, top_n=30, target_vol=0.20, every_days=7, vol_days=30, phase=None):
     """Betting-against-volatility: long low-vol, short high-vol, beta hedged to BTC."""
     c = panel["close"]
     bpd = bars_per_day(c.index)
     v = returns(panel).rolling(vol_days * bpd, min_periods=bpd * 10).std()
     w = xs_demean_rank(-v, universe(panel, top_n))
     w = hedge_beta(w, beta_to(panel))
-    w = rebalance_rows(w, every_days * bpd)
-    return vol_target(w, panel, target_vol)
+    return scheduled(w, panel, every_days, target_vol, phase=phase)
 
 
 @register
-def funding_contra(panel, fast=1, slow=14, top_n=20, target_vol=0.20, every_days=1, beta_neutral=True):
+def funding_contra(panel, fast=1, slow=14, top_n=20, target_vol=0.20, every_days=1, beta_neutral=True, phase=None):
     """Crowding reversal: assets whose funding just spiked vs their own history (crowded longs)
     are shorted, those whose funding collapsed are bought. Cross-sectional, dollar neutral."""
     c = panel["close"]
@@ -218,13 +238,12 @@ def funding_contra(panel, fast=1, slow=14, top_n=20, target_vol=0.20, every_days
     w = xs_demean_rank(-fz, mask)
     if beta_neutral:
         w = hedge_beta(w, beta_to(panel))
-    w = rebalance_rows(w, every_days * bpd)
-    return vol_target(w, panel, target_vol)
+    return scheduled(w, panel, every_days, target_vol, phase=phase)
 
 
 @register
 def carry_trend(panel, lookback=7, top_n=30, target_vol=0.20, every_days=1, lookbacks=(14, 28, 56),
-                beta_neutral=True):
+                beta_neutral=True, phase=None):
     """Trend-conditioned carry (T1d): earn funding only where price trend agrees. Short names with
     above-median funding AND a negative trend; long names with below-median funding AND a positive trend.
     Rationale: on HL the highest-funding names are momentum squeezes; only fade crowding once trend turns."""
@@ -242,13 +261,12 @@ def carry_trend(panel, lookback=7, top_n=30, target_vol=0.20, every_days=1, look
     w = raw.fillna(0.0).where(mask.any(axis=1), np.nan)  # no agreeing names -> flat
     if beta_neutral:
         w = hedge_beta(w, beta_to(panel))
-    w = rebalance_rows(w, every_days * bpd)
-    return vol_target(w, panel, target_vol)
+    return scheduled(w, panel, every_days, target_vol, phase=phase)
 
 
 @register
 def listing_short(panel, skip_days=1, hold_days=60, min_dv=1e6, target_vol=0.20, every_days=1,
-                  max_gross=1.5, beta_neutral=True):
+                  max_gross=1.5, beta_neutral=True, phase=None):
     """New-listing decay (T2): short perps from skip_days to skip_days+hold_days after their first traded
     bar (volume > 0), equal weight, BTC-beta hedged. Coins already trading in the first 30 days of the
     panel are not listing events (data start != listing). Rationale: post-listing supply overhang
@@ -273,12 +291,11 @@ def listing_short(panel, skip_days=1, hold_days=60, min_dv=1e6, target_vol=0.20,
     raw = raw.div(n, axis=0).fillna(0.0)
     if beta_neutral:
         raw = hedge_beta(raw, beta_to(panel))
-    w = rebalance_rows(raw, every_days * bpd)
-    return vol_target(w, panel, target_vol, max_gross=max_gross)
+    return scheduled(raw, panel, every_days, target_vol, max_gross, phase)
 
 
 @register
-def xsmom_k(panel, lookback=28, skip=1, k=4, top_n=30, target_vol=0.25, every_days=3, beta_neutral=True):
+def xsmom_k(panel, lookback=28, skip=1, k=4, top_n=30, target_vol=0.25, every_days=3, beta_neutral=True, phase=None):
     """Small-account cross-sectional momentum (T11): long the top-k / short the bottom-k names by
     vol-normalised trailing return (within the top_n liquid universe), equal weight, BTC-beta hedged.
     Few, large positions so every leg clears the $10 min order at $200 equity (k <= 5 per side)."""
@@ -294,8 +311,7 @@ def xsmom_k(panel, lookback=28, skip=1, k=4, top_n=30, target_vol=0.25, every_da
     w = raw.where(mask.any(axis=1), np.nan)
     if beta_neutral:
         w = hedge_beta(w, beta_to(panel))
-    w = rebalance_rows(w, every_days * bpd)
-    return vol_target(w, panel, target_vol)
+    return scheduled(w, panel, every_days, target_vol, phase=phase)
 
 
 def _ffill_targets(w: pd.DataFrame) -> pd.DataFrame:
@@ -312,7 +328,7 @@ BLEND_COMPONENTS = {  # fixed before testing (T4, 2026-11-09): the candidates' d
 
 
 @register
-def blend(panel, target_vol=0.25, every_days=1, unit_vol=0.20, max_gross=3.0, components=None):
+def blend(panel, target_vol=0.25, every_days=1, unit_vol=0.20, max_gross=3.0, components=None, phase=None):
     """Equal-risk blend of the candidate strategies (T4). Each component's (held) target weights are
     rescaled from its own vol target to unit_vol, summed with equal weight 1/n, and the sum is
     vol-targeted to target_vol on a daily grid. One pre-registered rule; no weight search."""
@@ -323,12 +339,11 @@ def blend(panel, target_vol=0.25, every_days=1, unit_vol=0.20, max_gross=3.0, co
         tv = p.get("target_vol", inspect.signature(REGISTRY[name]).parameters["target_vol"].default)
         wi = _ffill_targets(REGISTRY[name](panel, **p)) * (unit_vol / tv)
         tot = tot + wi.reindex(columns=panel["close"].columns, fill_value=0.0)
-    w = rebalance_rows(tot / len(comps), every_days * bpd)
-    return vol_target(w, panel, target_vol, max_gross=max_gross)
+    return scheduled(tot / len(comps), panel, every_days, target_vol, max_gross, phase)
 
 
 @register
-def resrev(panel, lookback=7, thr=1.5, top_n=30, target_vol=0.20, every_days=1, beta_days=60):
+def resrev(panel, lookback=7, thr=1.5, top_n=30, target_vol=0.20, every_days=1, beta_days=60, phase=None):
     """Residual reversion with an entry threshold (library N5: Pole ch. 3/4/7; Bouchaud et al.: impact is mostly
     transient). New angle vs the dead `xsrev` (raw returns, every name, every bar → fees): remove BTC beta, z-score
     each name's L-day cumulative residual by its own residual vol, and trade only the excess beyond `thr`
@@ -348,12 +363,11 @@ def resrev(panel, lookback=7, thr=1.5, top_n=30, target_vol=0.20, every_days=1, 
     raw = raw.div(raw.abs().sum(axis=1).replace(0, np.nan), axis=0).fillna(0.0)
     raw = raw.where(mask.any(axis=1), np.nan)
     w = hedge_beta(raw, beta)
-    w = rebalance_rows(w, every_days * bpd)
-    return vol_target(w, panel, target_vol)
+    return scheduled(w, panel, every_days, target_vol, phase=phase)
 
 
 @register
-def flow(panel, lookback=7, sign=1, resid=False, top_n=30, target_vol=0.25, every_days=1, beta_neutral=True):
+def flow(panel, lookback=7, sign=1, resid=False, top_n=30, target_vol=0.25, every_days=1, beta_neutral=True, phase=None):
     """Taker-flow imbalance, cross-sectional (library N1/N2: Bouchaud-Farmer-Lillo, Toth et al. on metaorder splitting;
     Valtos/Tradingriot "delta"/absorption). imb = (taker buy - taker sell) / volume over `lookback` days.
     sign=+1: continuation (split metaorders keep coming). sign=-1: reversal (transient impact). resid=True: use only
@@ -375,5 +389,4 @@ def flow(panel, lookback=7, sign=1, resid=False, top_n=30, target_vol=0.25, ever
     w = xs_demean_rank(sign * score, mask)
     if beta_neutral:
         w = hedge_beta(w, beta_to(panel))
-    w = rebalance_rows(w, every_days * bpd)
-    return vol_target(w, panel, target_vol)
+    return scheduled(w, panel, every_days, target_vol, phase=phase)

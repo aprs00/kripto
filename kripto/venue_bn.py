@@ -3,7 +3,7 @@
 Same accounting as the HL engine in paper.py. Differences: data and marks come from Binance PUBLIC endpoints
 (kripto/bn.py, no keys, cannot trade), fills walk the live Binance depth (top 20 levels) + 5 bp taker fee,
 sizes are rounded to the symbol's step size, and the min order is the symbol's MIN_NOTIONAL (mostly $5).
-Books: `main_bn` ($200) and `shadow:<entry>@bn` for config entries with "venue": "bn".
+Books: `main_bn` (config/risk.json start_equity) and `shadow:<entry>@bn` for config entries with "venue": "bn".
 Live panel = 4h klines (closed bars only) incl. taker buy quote volume (`taker_buy`), so `flow` can run live.
 Funding is accrued from /fapi/v1/fundingRate (usually 8-hourly). The panel's `funding` is NaN (no strategy that
 trades on Binance uses it yet), so a funding-based strategy needs that added first.

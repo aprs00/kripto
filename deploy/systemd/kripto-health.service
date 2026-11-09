@@ -1,0 +1,10 @@
+[Unit]
+Description=kripto health watchdog (no Claude; starts a review session only when something is wrong)
+[Service]
+Type=oneshot
+WorkingDirectory=%h/kripto
+ExecStart=%h/kripto/.venv/bin/python -m scripts.health --act
+# exit 1 = WARN, 2 = ALERT: reported in state/health.json and the dashboard, not a unit failure
+SuccessExitStatus=1 2
+Nice=10
+TimeoutStartSec=5min

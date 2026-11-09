@@ -1,7 +1,7 @@
 [Unit]
-Description=kripto agent review every 4h (after the 4h bar closes and the trader ran)
+Description=kripto agent review once a day (the hourly kripto-health watchdog starts an extra one when something breaks)
 [Timer]
-OnCalendar=*-*-* 00/4:25:00
+OnCalendar=*-*-* 08:25:00
 Persistent=true
 [Install]
 WantedBy=timers.target

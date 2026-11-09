@@ -1,5 +1,5 @@
 {
-  "start_equity": 200.0,
+  "start_equity": 1000.0,
   "shadow_equity": 2000.0,
   "max_gross": 3.0,
   "max_asset_weight": 0.35,

@@ -11,7 +11,8 @@ OUT = Path(__file__).resolve().parent.parent / "research" / "results"
 def line(d):
     o = d.get("oos", {})
     return (f"{d['strategy']:15s} {d['dataset']:7s} OOS SR={o.get('sharpe')} cagr={o.get('cagr')} mdd={o.get('max_dd')} "
-            f"yrs={o.get('years')} dsr={o.get('dsr')} | grid med={d['grid_median_sharpe']} >0={d['grid_frac_positive']} n={d['n_configs']}")
+            f"yrs={o.get('years')} dsr={o.get('dsr')} | grid med={d['grid_median_sharpe']} >0={d['grid_frac_positive']} n={d['n_configs']}"
+            f" | worst={(d.get('robust') or {}).get('worst')}")
 
 
 if __name__ == "__main__":
@@ -30,6 +31,13 @@ if __name__ == "__main__":
         p = {k: v for k, v in g.items() if k not in ("i", "sharpe", "cagr", "max_dd", "turnover_yr", "cost_yr", "funding_yr")}
         print(f"  SR={g['sharpe']:6.2f} cagr={g['cagr']:7.3f} mdd={g['max_dd']:6.2f} turn={g['turnover_yr']} "
               f"cost={g['cost_yr']} fund={g['funding_yr']}  {p}")
+    rb = d.get("robust") or {}
+    if rb:
+        print(f"robustness of the latest choice {rb.get('params')} (full-sample SR; the gate reads `worst`):")
+        print("  " + "  ".join(f"{k}={rb.get(k)}" for k in ("base", "cost_x2", "delay_1bar", "skip_first_6m",
+                                                              "skip_first_12m", "band_tiny", "corr_btc", "worst")))
+        if rb.get("phases"):
+            print(f"  single start days of the schedule: {rb['phases']} (min {rb['phase_min']}, mean {rb['phase_mean']})")
     print("folds (from, oos SR, chosen params):")
     for x in d["folds"]:
         print(f"  {x['from']} {x.get('oos_sharpe')!s:>6} {x['params']}")

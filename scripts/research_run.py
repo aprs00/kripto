@@ -53,7 +53,8 @@ def brief(r):
     o = r.get("oos", {})
     return (f"{r['strategy']:15s} {r['dataset']:3s} OOS sharpe={o.get('sharpe')} cagr={o.get('cagr')} "
             f"mdd={o.get('max_dd')} yrs={o.get('years')} dsr={o.get('dsr')} | grid med sharpe="
-            f"{r['grid_median_sharpe']} frac>0={r['grid_frac_positive']} n={r['n_configs']} ({r['seconds']}s)")
+            f"{r['grid_median_sharpe']} frac>0={r['grid_frac_positive']} n={r['n_configs']} "
+            f"worst={(r.get('robust') or {}).get('worst')} ({r['seconds']}s)")
 
 
 if __name__ == "__main__":

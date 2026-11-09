@@ -83,6 +83,18 @@ class Store:
             self.x("insert into books values(?,?,?,?,0,?)", name, cash, cash, cash, now_iso())
             self.event("INFO", f"created book {name} with ${cash:.2f}")
 
+    def resize_untouched(self, name, cash):
+        """A book that has never traded takes the configured starting equity (the main books moved from $200 to
+        $1,000 on 2026-11-10). A book with any fill or position keeps its history and size."""
+        row = self.q("select cash, start_equity from books where name=?", name)
+        if not row or abs(row[0][1] - cash) < 1e-9 or abs(row[0][0] - row[0][1]) > 1e-9:
+            return
+        if self.q("select 1 from fills where book=? limit 1", name) or self.positions(name):
+            return
+        self.x("update books set cash=?, start_equity=?, peak=? where name=?", cash, cash, cash, name)
+        self.x("delete from equity where book=?", name)  # flat rows at the old size would read as a fake jump
+        self.event("INFO", f"resized untouched book {name} to ${cash:.2f}")
+
     def positions(self, book) -> dict[str, float]:
         return {c: s for c, s in self.q("select coin,size from positions where book=? and size!=0", book)}
 
@@ -260,7 +272,9 @@ def run_books(store: Store, entries: dict, risk: dict, marks: dict[str, float], 
     books = {f"shadow:{n}": (n,) for n, sc in entries.items() if sc.get("status") != "retired"}
     books[main] = None
     for b in books:  # shadow books measure signal quality; bigger virtual equity avoids min-order distortion
-        store.ensure_book(b, risk["start_equity"] if b == main else risk.get("shadow_equity", risk["start_equity"]))
+        size = risk["start_equity"] if b == main else risk.get("shadow_equity", risk["start_equity"])
+        store.ensure_book(b, size)
+        store.resize_untouched(b, size)
     sig_key = "main_alloc_sig" if main == "main" else f"{main}_alloc_sig"
 
     for book, spec in books.items():
