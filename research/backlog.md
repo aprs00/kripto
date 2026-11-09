@@ -14,6 +14,11 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
   the trader already fetches for fills (store top-N levels per coin, nearly free). Budget: stay well inside the
   shared 3 s rate limit (trader already uses ~7.5 min/h, so ≤ ~60 extra calls/h). /info only (HARD RULE 1).
   Build it as a small module with tests and append to the hourly run. T5/T6/T7 depend on it.
+- [ ] T5b **Positioning hypotheses NOW on Binance history** (added 2026-11-09, owner wants results fast; don't wait months
+  for HL collection). data.binance.vision publishes per-symbol daily `metrics` files (5-min open interest, top-trader
+  long/short account + position ratios, taker buy/sell volume ratio) going back years, for the whole bnall universe.
+  Test the T5/T6 ideas there first (OI change × price change regimes; crowded top-trader positioning as a contrarian or
+  confirming signal), pre-registered ≤ 8 configs each. HL collection (T6a) then confirms that the effect carries over to HL.
 - [ ] T4 **Blend of the candidates (tsmom + xsmom-small + listing_short)**, moved up 2026-11-09. Each one alone fails the
   HL gate, but their correlation should be low (trend vs x-section vs short-alt), so a risk-parity blend is the most
   plausible path to the first incubation. Pre-register ONE blend rule (e.g. equal risk, monthly) and run it as a
@@ -28,7 +33,8 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
   (incremental, ~20 min first run, a few min after; the monthly archive only updates once a month).
 - [ ] T11 **Small-account construction for xsmom** (bnall 1.27 but needs breadth; band 0.05 halves it): test top/bottom-k only
   (k = 3–5 each side, ≥ 5% weights) on HL + bnall; pre-register ≤ 8 configs. The $200 main book can only hold ~10 positions.
-- [ ] T0b Scheduled re-checks: ~2027-05 re-run HL walk-forward for HL-only DEAD ideas (carry, carry_trend) with 6 more months.
+- [ ] T0b Scheduled re-checks of HL-only DEAD ideas (carry, carry_trend) once HL has ≥ 6 more months (~2027-05). Low priority:
+  this is a re-check of dead ideas, not the main path. New ideas get evidence now from bnall/BN history.
 - [ ] T9 Execution: maker-style rebalancing (post-only at mid ± tick, fall back to taker): fee 1.5bp vs 4.5bp. tsmom pays
   ~4–5%/yr in costs on HL, about half its gross edge. Paper sim must model non-fills conservatively.
 - [ ] T3 HL-vs-Binance funding spread as a crowding signal (HL retail flow is distinct; HL hourly vs BN 8h funding).
