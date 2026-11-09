@@ -24,22 +24,22 @@ OUT = Path(__file__).resolve().parent.parent / "research" / "results"
 _PANELS = {}
 
 
-def panel(ds, since=None):
-    if ds not in _PANELS:
-        p = data.load_hl_panel("4h") if ds == "hl" else data.load_bn_panel("4h")
+def panel(ds, since=None, interval="4h"):
+    if (ds, interval) not in _PANELS:
+        p = data.load_hl_panel(interval) if ds == "hl" else data.load_bn_panel(interval)
         if since:
             p = {k: v[v.index >= since] for k, v in p.items()}
-        _PANELS[ds] = p
-    return _PANELS[ds]
+        _PANELS[(ds, interval)] = p
+    return _PANELS[(ds, interval)]
 
 
 def job(args):
-    name, ds, grid, since = args
+    name, ds, grid, since, interval = args
     t = time.time()
-    res = walk_forward(name, panel(ds, since), grid, dataset=ds)
+    res = walk_forward(name, panel(ds, since, interval), grid, dataset=ds if interval == "4h" else f"{ds}_{interval}")
     res["seconds"] = round(time.time() - t, 1)
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / f"{time.strftime('%Y%m%d-%H%M')}_{name}_{ds}.json").write_text(json.dumps(res, indent=1, default=str))
+    (OUT / f"{time.strftime('%Y%m%d-%H%M')}_{name}_{res['dataset']}.json").write_text(json.dumps(res, indent=1, default=str))
     return res
 
 
@@ -57,13 +57,15 @@ if __name__ == "__main__":
     ap.add_argument("--grid", help="JSON grid override (single strategy)")
     ap.add_argument("--grids", help="JSON file {strategy: grid} to test several hypotheses in one parallel batch")
     ap.add_argument("--since", help="e.g. 2021-01-01")
+    ap.add_argument("--interval", default="4h", choices=["4h", "1d"], help="bar size (dataset is logged as e.g. hl_1d)")
     ap.add_argument("--workers", type=int, default=3, help="~0.6 GB RAM each; keep <= 3 on the shared server")
     a = ap.parse_args()
     if a.grids:
         spec = json.loads(Path(a.grids).read_text())
-        jobs = [(s, d, g, a.since) for s, g in spec.items() for d in a.datasets]
+        jobs = [(s, d, g, a.since, a.interval) for s, g in spec.items() for d in a.datasets]
     else:
-        jobs = [(s, d, json.loads(a.grid) if a.grid else GRIDS[s], a.since) for s in a.strategies for d in a.datasets]
+        jobs = [(s, d, json.loads(a.grid) if a.grid else GRIDS[s], a.since, a.interval)
+                for s in a.strategies for d in a.datasets]
     with ProcessPoolExecutor(a.workers) as ex:
         for r in ex.map(job, jobs):
             print(brief(r), flush=True)

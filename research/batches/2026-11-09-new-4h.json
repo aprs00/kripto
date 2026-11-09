@@ -1,0 +1,5 @@
+{
+ "tsmom": {"lookbacks": [[7,14,28,56],[14,28,56]], "top_n": [12], "target_vol": [0.3], "every_days": [1],
+           "smooth_days": [0, 3, 7], "min_dv": [0, 20000000]},
+ "carry_trend": {"lookback": [3, 7, 14], "every_days": [1, 3]}
+}

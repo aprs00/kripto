@@ -109,19 +109,39 @@ def hedge_beta(w: pd.DataFrame, beta: pd.DataFrame, ref: str = "BTC") -> pd.Data
 
 # --------------------------------------------------------------------------- strategies
 @register
-def tsmom(panel, lookbacks=(7, 14, 28, 56), top_n=20, target_vol=0.30, every_days=1,
-          long_only=False, max_gross=2.0):
-    """Time-series trend: per-asset blended vol-normalised trailing return, risk-weighted."""
+def trend_signal(panel, lookbacks=(7, 14, 28, 56)) -> pd.DataFrame:
+    """Blended tanh of vol-normalised trailing log returns, in [-1, 1]."""
     c = panel["close"]
     bpd = bars_per_day(c.index)
     vol = ann_vol(panel)
-    mask = universe(panel, top_n)
     sig = 0
     for L in lookbacks:
         lr = np.log(c / c.shift(L * bpd))
         z = lr / (vol * np.sqrt(L / 365))
         sig = sig + np.tanh(z)
-    sig = sig / len(lookbacks)
+    return sig / len(lookbacks)
+
+
+def dollar_volume(panel, days: int = 7) -> pd.DataFrame:
+    """Trailing mean daily USD volume."""
+    bpd = bars_per_day(panel["close"].index)
+    return panel["volume"].rolling(days * bpd, min_periods=bpd).mean() * bpd
+
+
+@register
+def tsmom(panel, lookbacks=(7, 14, 28, 56), top_n=20, target_vol=0.30, every_days=1,
+          long_only=False, max_gross=2.0, smooth_days=0.0, min_dv=0.0):
+    """Time-series trend: per-asset blended vol-normalised trailing return, risk-weighted.
+    smooth_days: EMA half-life on the signal (turnover reduction); min_dv: min trailing $ daily volume."""
+    c = panel["close"]
+    bpd = bars_per_day(c.index)
+    vol = ann_vol(panel)
+    mask = universe(panel, top_n)
+    if min_dv > 0:
+        mask = mask & (dollar_volume(panel) >= min_dv)
+    sig = trend_signal(panel, lookbacks)
+    if smooth_days > 0:
+        sig = sig.ewm(halflife=smooth_days * bpd, min_periods=1).mean().where(c.notna())
     if long_only:
         sig = sig.clip(lower=0)
     raw = (sig / vol).where(mask)
@@ -198,3 +218,58 @@ def funding_contra(panel, fast=1, slow=14, top_n=20, target_vol=0.20, every_days
         w = hedge_beta(w, beta_to(panel))
     w = rebalance_rows(w, every_days * bpd)
     return vol_target(w, panel, target_vol)
+
+
+@register
+def carry_trend(panel, lookback=7, top_n=30, target_vol=0.20, every_days=1, lookbacks=(14, 28, 56),
+                beta_neutral=True):
+    """Trend-conditioned carry (T1d): earn funding only where price trend agrees. Short names with
+    above-median funding AND a negative trend; long names with below-median funding AND a positive trend.
+    Rationale: on HL the highest-funding names are momentum squeezes; only fade crowding once trend turns."""
+    c = panel["close"]
+    bpd = bars_per_day(c.index)
+    f = panel["funding"].rolling(lookback * bpd, min_periods=bpd).mean()
+    mask = universe(panel, top_n) & f.notna()
+    fr = f.where(mask).rank(axis=1, pct=True)
+    tr = trend_signal(panel, lookbacks)
+    short = (fr > 0.5) & (tr < 0)
+    long_ = (fr <= 0.5) & (tr > 0)
+    raw = (long_.astype(float) - short.astype(float)) * (0.5 + (fr - 0.5).abs())  # stronger carry -> bigger
+    raw = raw.where(mask, 0.0)
+    raw = raw.div(raw.abs().sum(axis=1).replace(0, np.nan), axis=0)
+    w = raw.fillna(0.0).where(mask.any(axis=1), np.nan)  # no agreeing names -> flat
+    if beta_neutral:
+        w = hedge_beta(w, beta_to(panel))
+    w = rebalance_rows(w, every_days * bpd)
+    return vol_target(w, panel, target_vol)
+
+
+@register
+def listing_short(panel, skip_days=1, hold_days=60, min_dv=1e6, target_vol=0.20, every_days=1,
+                  max_gross=1.5, beta_neutral=True):
+    """New-listing decay (T2): short perps from skip_days to skip_days+hold_days after their first traded
+    bar (volume > 0), equal weight, BTC-beta hedged. Coins already trading in the first 30 days of the
+    panel are not listing events (data start != listing). Rationale: post-listing supply overhang
+    (airdrops, unlocks, early holders selling to late retail longs)."""
+    c, v = panel["close"], panel["volume"]
+    bpd = bars_per_day(c.index)
+    traded = (v.fillna(0) > 0) & c.notna()
+    started = traded.cummax()
+    age = started.cumsum()  # 1 on the first traded bar
+    any_t = traded.any(axis=1)
+    if not any_t.any():
+        return pd.DataFrame(np.nan, c.index, c.columns)
+    t_cut = any_t.idxmax() + pd.Timedelta(days=30)
+    pre = started.loc[started.index < t_cut].any()
+    elig = (age > skip_days * bpd) & (age <= (skip_days + hold_days) * bpd) & c.notna()
+    elig = elig & (dollar_volume(panel) >= min_dv)
+    elig = elig.loc[:, ~pre]
+    elig = elig.reindex(columns=c.columns, fill_value=False)
+    elig = elig & pd.DataFrame(np.broadcast_to((c.index >= t_cut)[:, None], c.shape), c.index, c.columns)
+    raw = -elig.astype(float)
+    n = elig.sum(axis=1).replace(0, np.nan)
+    raw = raw.div(n, axis=0).fillna(0.0)
+    if beta_neutral:
+        raw = hedge_beta(raw, beta_to(panel))
+    w = rebalance_rows(raw, every_days * bpd)
+    return vol_target(w, panel, target_vol, max_gross=max_gross)

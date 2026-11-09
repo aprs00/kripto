@@ -1,5 +1,5 @@
 """Decompose a config: yearly returns, funding vs price vs cost, 2x cost stress, correlation to BTC.
-  python -m scripts.inspect_strategy tsmom bn '{"every_days":3}'"""
+  python -m scripts.inspect_strategy tsmom bn '{"every_days":3}' [4h|1d]"""
 import json, sys
 import numpy as np, pandas as pd
 from kripto import data, metrics as mx
@@ -7,7 +7,8 @@ from kripto.research import evaluate
 
 name, ds = sys.argv[1], sys.argv[2]
 params = json.loads(sys.argv[3]) if len(sys.argv) > 3 else {}
-p = data.load_hl_panel("4h") if ds == "hl" else data.load_bn_panel("4h")
+iv = sys.argv[4] if len(sys.argv) > 4 else "4h"   # optional 4th arg: bar interval (4h|1d)
+p = data.load_hl_panel(iv) if ds == "hl" else data.load_bn_panel(iv)
 res, s = evaluate(name, p, params, ds)
 res2, s2 = evaluate(name, p, params, ds, cost_mult=2.0)
 r = res.returns[res.gross.cumsum() > 0]

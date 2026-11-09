@@ -103,8 +103,12 @@ def load_hl_panel(interval: str = "4h", coins: list[str] | None = None) -> dict[
     bar = pd.Timedelta(milliseconds=INTERVAL_MS[interval])
     full = pd.date_range(close.index.min(), close.index.max(), freq=bar)
     close = close.reindex(full)
+    vol = pd.DataFrame(vols).reindex(full)
+    # HL candles before a coin's listing are zero-volume oracle prices (e.g. BTC 1d from 2020-08 while HL
+    # trading began 2023-02). Not tradable -> mask everything before the first bar with volume > 0.
+    close = close.where((vol.fillna(0) > 0).cummax())
     panel = {"close": close,
-             "volume": pd.DataFrame(vols).reindex(full),
+             "volume": vol,
              "high": pd.DataFrame(highs).reindex(full),
              "low": pd.DataFrame(lows).reindex(full)}
     panel["funding"] = _hl_funding_panel(full, bar, list(close.columns))
