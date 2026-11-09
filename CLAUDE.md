@@ -89,7 +89,9 @@ state/paper.db        sqlite paper ledger (gitignored) data/  parquet market dat
 .venv/bin/python -m kripto.paper status                    # books, equity, fees, funding, warnings
 .venv/bin/python -m pytest -q                              # must pass before committing code
 nice -n 19 .venv/bin/python -m scripts.research_run --grids research/batches/<date>.json --datasets hl bn  # parallel batch
-nice -n 19 .venv/bin/python -m scripts.inspect_strategy tsmom hl '{}'
+nice -n 19 .venv/bin/python -m scripts.inspect_strategy tsmom hl '{}'          # 4th arg 1d for daily; dataset bnall = full BN universe
+nice -n 19 .venv/bin/python -m scripts.research_run --grids <batch> --datasets hl bn bnall --interval 1d   # daily-bar batch
+.venv/bin/python -m scripts.show_result --today            # one line per result written today; or: show_result <strategy> <dataset>
 systemctl --user list-timers ; journalctl --user -u kripto-trader -n 50
 .venv/bin/python -m scripts.sql "select * from fills order by ts desc limit 20"   # no sqlite3 CLI on server
 ```
@@ -132,3 +134,7 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   live never rebalanced and ALL 2026-11-08 backtests were wrong (rebalance in 1000-bar blocks, hold ~5000). Fixed (Timedelta
   arithmetic), added tests/test_strategies.py (all datetime units), marked every finding provisional → backlog T0 re-run. Lesson:
   timestamp/alignment helpers need known-answer tests; a "flat book" past its expected trade time is a bug until proven otherwise.
+* 2026-11-09 research: result JSONs named per minute overwrote each other (lost one T0 file) → seconds+pid in filenames;
+  added scripts/show_result.py (stop hand-parsing result JSON). Added `--interval 1d` and the survivorship-free `bnall`
+  dataset (all 923 Binance USDT perps incl. delisted, `data.bn_download_all_daily`). The BN-82 set is survivor-biased, so
+  prefer bnall for any test where survivorship matters. HL loader masks pre-listing zero-volume oracle candles.

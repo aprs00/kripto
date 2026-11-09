@@ -1,32 +1,37 @@
-HEALTH: WARN — fixed a critical bug: all research from 2026-11-08 was invalid (timestamp-unit bug); re-run scheduled for today's research session.
+HEALTH: OK — re-ran all research after yesterday's bug (verdicts unchanged); new candidate listing_short in a shadow book; still no edge good enough for the main book.
 
-_Updated 2026-11-09 04:40 UTC (review session)._
-
-## What happened
-`rebalance_rows` assumed nanosecond timestamps, but pandas 3 loads microseconds. Effects: live strategies never rebalanced (books stayed flat),
-and every backtest from 2026-11-08 rebalanced in long blocks and then froze. Fixed and covered by a regression test. The shadow books took their first
-positions at 04:26 UTC. **Every verdict in research/findings.md (ALIVE and DEAD) is provisional until the re-run (backlog T0).**
+_Updated 2026-11-09 07:25 UTC (research session)._
 
 ## Main book ($200 paper)
-Equity $200.00, +0.00%. Flat: no strategy is in incubation/active.
+Equity $200.00, +0.00%. Flat: no strategy passes the incubation gate (HL walk-forward OOS Sharpe > 0.8, positive on Binance,
+DSR > 0.9, survives 2× costs).
 
-| book | equity | return | positions | fills | fees | funding |
-|---|---|---|---|---|---|---|
-| main | $200.00 | +0.00% | 0 | 0 | $0.00 | $0.00 |
-| shadow:tsmom | $1999.27 | −0.04% | 11 | 11 | $0.57 | $0.00 |
-| shadow:xsmom | $1997.89 | −0.11% | 28 | 28 | $1.13 | $0.00 |
-| shadow:carry (retired, frozen) | $2000.00 | +0.00% | 0 | 0 | $0.00 | $0.00 |
+| book | equity | return | positions | note |
+|---|---|---|---|---|
+| main | $200.00 | +0.00% | 0 | flat by design |
+| shadow:tsmom | $2019.48 | +0.97% | 11 | live since 11-09 04:26 |
+| shadow:xsmom | $1993.17 | −0.34% | 28 | live since 11-09 04:26 |
+| shadow:listing_short | $2000.00 | 0.00% | 0 | new today; flat until the next HL listing with ≥ $1M/day volume |
+| shadow:carry (retired) | $2000.00 | 0.00% | 0 | frozen |
 
-First fills: fees 4.5 bp (taker), slippage averages 0.5–0.9 bp (max 2.8 bp). Plausible.
+Live P&L of a few hours means nothing statistically (see findings). The live books exist to check fills, costs and bugs.
 
-## Strategies (numbers from 2026-11-08 are INVALID, kept only for reference)
-| strategy | status | old (invalid) evidence |
-|---|---|---|
-| tsmom | candidate | BN 1.26 / HL 0.55 |
-| xsmom | candidate | BN 0.63 / HL 0.71 |
-| carry | retired (re-check in re-run) | BN 1.35 / HL −0.58 |
-| xsrev, lowvol, funding_contra | rejected (re-check in re-run) | negative |
+## Strategies (walk-forward out-of-sample Sharpe, net of costs)
+| strategy | status | HL | Binance (82 coins) | Binance all 923 incl. delisted (new) |
+|---|---|---|---|---|
+| tsmom (trend) | candidate | 0.43–0.55 | 1.31 | 0.97 |
+| xsmom (x-sec momentum) | candidate | 0.42 | 0.55 | 1.27 (needs many positions) |
+| listing_short (short new listings) | candidate (new) | 0.75 (3y) | −0.18 (survivor-biased) | 0.44 at small band (1.08 was an artifact) |
+| carry, carry_trend | retired / dead | −0.9 | 1.06 / 0.65 | — |
+| xsrev, lowvol, funding_contra, smoothing | dead | negative | negative/not robust | — |
+
+## Today
+* Re-ran every 11-08 grid with the fixed code: same verdicts.
+* New data: the full Binance perp history including 160 delisted coins (removes survivorship bias).
+* Tested 3 new ideas. Short-new-listings is real but modest. Trend-filtered carry and signal smoothing are dead.
+* Caught a backtest artifact before acting on it: the $200 min-order band can turn a hedged book into "long BTC". The
+  inspection tool now checks for this automatically.
 
 ## Next
-* Research (06:40): **T0: re-run all pre-registered grids with the fixed code**, then re-decide every verdict and status.
-* Review: check tsmom rebalances daily at the 00:00 bar and xsmom every 3 days; funding accrual is now active for held positions.
+* ≈ 2026-11-16: build the live-vs-backtest tracking check (T0a) once books have 7 days.
+* xsmom with only 3–5 names per side (T11), so it fits a $200 account. listing_short follow-ups (T2b). bnall monthly refresh (T10).

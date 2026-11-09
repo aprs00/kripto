@@ -13,7 +13,7 @@
       "top_n": 12,
       "target_vol": 0.3
     },
-    "note": "2026-11-08: BN WF OOS SR 1.26 (all years +), HL WF OOS SR 0.55/0.51, HL grid median 0.89 (16/16 >0). Fails HL gate -> shadow only. | 2026-11-09: ALL 2026-11-08 numbers INVALID (rebalance_rows unit bug); re-run pending (backlog T0)."
+    "note": "2026-11-08: BN WF OOS SR 1.26 (all years +), HL WF OOS SR 0.55/0.51, HL grid median 0.89 (16/16 >0). Fails HL gate -> shadow only. | 2026-11-09 T0 re-run (fixed code): HL OOS 0.43 (grid med 0.47, 12/12>0), BN 1.31; concentrated HL 0.55 (med 0.90, 16/16), BN 1.03. Still fails HL gate. bnall 1d OOS 0.97 (12/12>0)."
   },
   "xsmom": {
     "status": "candidate",
@@ -22,7 +22,7 @@
       "lookback": 28,
       "every_days": 3
     },
-    "note": "2026-11-08: BN WF OOS SR 0.63, HL 0.71. Shadow only. | 2026-11-09: ALL 2026-11-08 numbers INVALID (rebalance_rows unit bug); re-run pending (backlog T0)."
+    "note": "2026-11-08: BN WF OOS SR 0.63, HL 0.71. Shadow only. | 2026-11-09 T0 re-run: HL OOS 0.42 (med 0.72, 11/12>0), BN 0.55 (med 0.39). Weak; fails gate. bnall 1d OOS 1.27 (12/12>0, corr BTC ~0); band 0.05 halves it (breadth)."
   },
   "carry": {
     "status": "retired",
@@ -31,6 +31,16 @@
       "lookback": 7,
       "every_days": 1
     },
-    "note": "2026-11-08: BN WF OOS SR 1.35 (funding +15%/yr, all years +); needs breadth (top_n 30). HL test pending full funding history. | 2026-11-08 HL WF OOS SR -0.58, grid median -0.68 (3/12 >0): funding +6.5%/yr but price leg SR -0.66 (high-funding HL names keep squeezing up). Does NOT transfer from Binance -> retired. | 2026-11-09: ALL 2026-11-08 numbers INVALID (rebalance_rows unit bug); re-run pending (backlog T0)."
+    "note": "2026-11-08: BN WF OOS SR 1.35 (funding +15%/yr, all years +); needs breadth (top_n 30). HL test pending full funding history. | 2026-11-08 HL WF OOS SR -0.58, grid median -0.68 (3/12 >0): funding +6.5%/yr but price leg SR -0.66 (high-funding HL names keep squeezing up). Does NOT transfer from Binance -> retired. | 2026-11-09 T0 re-run confirms: HL OOS -0.89 (med -0.34, 2/12>0), BN 1.06. Stays retired."
+  },
+  "listing_short": {
+    "status": "candidate",
+    "alloc": 0.0,
+    "params": {
+      "skip_days": 1,
+      "hold_days": 60,
+      "min_dv": 1000000
+    },
+    "note": "2026-11-09: T2 new-listing short, BTC-beta hedged. HL 1d WF OOS 0.75 (2.95y), grid med 1.11 (9/9>0); cfg(1,60) band0.005 SR 1.57 corr BTC -0.06. bnall WF 1.08 is a band artifact (corr BTC 0.63); at band 0.005 SR 0.44. Fails gate (HL<0.8, DSR). Shadow only; params = current WF choice."
   }
 }

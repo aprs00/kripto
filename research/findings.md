@@ -13,7 +13,14 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
 * **$200 + $10 min order ⇒ any position < 5% of equity can't be opened.** Diversified (20–30 name) books can't
   be executed in the main book. Backtests use band 0.05 to mirror this.
 * **Binance results do NOT transfer automatically to HL** (see carry). Every idea must pass on HL data.
-* BN dataset has mild survivorship bias (hand-picked list of 82 coins); HL dataset includes delisted perps.
+* BN 4h dataset is survivor-biased (hand-picked 82 coins). **`bnall`** (2026-11-09) = every Binance USDT perp ever listed
+  incl. delisted (923), daily bars: use it as the second venue for anything where survivorship matters (listings, shorts, breadth).
+* **Band/hedge artifacts.** The 5% no-trade band (the $200 executability rule) silently drops small positions. A broad
+  hedged book then becomes "long the hedge": listing_short on bnall showed OOS 1.08 with corr BTC 0.63, mostly BTC-leg P&L.
+  Always check corr to BTC + leg decomposition + band 0.005 (inspect_strategy prints these since 2026-11-09). Judge the
+  *signal* at a small band; judge *executability at $200* separately.
+* HL 1d candles before a coin's HL listing are zero-volume oracle prices; the loader masks them since 2026-11-09.
+* **Don't derive epoch ms/ns via `asi8`/`astype(int64)`** (pandas 3 = µs). Bit me twice on 2026-11-09 (live bug + a test).
 * **Statistical power is low; know the error bars.** SE(annual Sharpe) ≈ √((1 + SR²/2) / years). HL walk-forward OOS ≈
   1.6 years ⇒ ±0.8; BN ≈ 6 years ⇒ ±0.4; 3 weeks live ⇒ ±4. So: a single HL number is weak evidence either way; demand
   consistency (per-year signs, grid breadth, BN agreement, an economic mechanism) before concluding. Live paper P&L
@@ -24,32 +31,44 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
 
 ## Hypotheses
 
-> **⚠ 2026-11-09: ALL results dated 2026-11-08 are INVALID** (registry lines 1–179, git ≤ c1e3c1f). Bug: `rebalance_rows`
-> mixed ns/us under pandas 3 (`index.asi8` is µs), so backtests rebalanced every bar in one 1000-bar block and then held
-> drifting weights for ~5000 bars; live strategies never rebalanced. Fixed + regression test (tests/test_strategies.py).
-> Every verdict below (ALIVE *and* DEAD, incl. carry's retirement) is provisional until re-run (backlog T0).
+> 2026-11-09: everything before this date was re-run with the fixed rebalance code (T0, same grids). Registry lines 1–179
+> (git ≤ c1e3c1f) are invalid but stay in the registry (append-only); they only make DSR more conservative.
+> The re-run numbers were close to the invalid ones (so the bug's backtest effect was smaller than feared).
 
-### tsmom: multi-horizon time-series trend, L/S, vol-targeted (2026-11-08) → ALIVE (candidate)
-BN 2020–26: OOS SR 1.26, positive every year, corr BTC 0.01, 2×cost SR 1.03. HL: OOS SR 0.55, grid median 0.69
-(12/12 >0); price-only SR 1.22 but costs 8.3%/yr. Concentrated (top 8/12): HL OOS 0.51, grid median 0.89 (16/16 >0).
-Fails HL gate (needs OOS > 0.8). Signal real; cost/size problem. Shadow book live from 2026-11-09.
+### tsmom: multi-horizon time-series trend, L/S, vol-targeted (2026-11-08, re-run 11-09) → ALIVE (candidate, shadow)
+HL OOS SR 0.43, grid med 0.47 (12/12 >0); BN 1.31 (med 1.02). Concentrated (top 8/12): HL 0.55 / med 0.90 (16/16), BN 1.03
+(mdd −55%). bnall 1d OOS 0.97 (med 0.89, 12/12 >0): survivorship inflated BN-82 by ~0.3 but trend holds. Fails HL
+gate (> 0.8). Signal is real but weak on HL; costs ≈ 4–5%/yr at top_n 12.
 
 ### tsmom long-only (2026-11-08) → DEAD
 2022 −33%, 2025 −11%: it is BTC beta, not an edge.
 
-### xsmom: cross-sectional momentum, beta-hedged (2026-11-08) → ALIVE (candidate)
-BN OOS SR 0.63 (grid median 0.52), HL 0.71 (0.63). Weak but consistent. Shadow book live.
+### tsmom signal smoothing (EMA 3/7d) and $20M liquidity floor (T1c, 2026-11-09) → DEAD (smoothing) / weak (floor)
+Smoothing halves turnover (63→28/yr) but Sharpe falls more (HL 1.11→0.34, BN 1.00→0.99 at best; lag kills the signal).
+$20M/day floor: +0.1–0.5 SR on HL in 3/4 pairs, ≈0 on BN. WF OOS HL 0.57, BN 1.08. Not worth a separate book.
 
-### carry: short high funding / long low funding, dollar+beta neutral (2026-11-08) → DEAD on HL (≈1 SE; re-check ~2027-05)
-BN OOS SR 1.35 (funding +15%/yr, price leg SR +1.0, every year >0). **HL OOS SR −0.58**, grid median −0.68 (3/12 >0):
-funding +6.5%/yr but price leg SR −0.66, every year negative. On HL, high-funding names are momentum squeezes
-that keep rising. Concentrated variant on BN also collapses (0.45): carry needs breadth. Follow-up idea: T1d.
+### xsmom: cross-sectional momentum, beta-hedged (2026-11-08, re-run 11-09) → ALIVE (candidate, shadow)
+HL OOS 0.42 (med 0.72, 11/12 >0); BN-82 0.55; **bnall 1d OOS 1.27 / 6.1y (med 0.86, 12/12)**, corr BTC ~0. The band
+halves it (lb28/3d: 1.16 at band 0.005 vs 0.58 at 0.05): needs breadth, so it isn't executable at $200. Fails HL gate.
 
-### xsrev: short-term cross-sectional reversal (2026-11-08) → DEAD
-BN OOS SR −1.57, grid median −1.79 (0/6 >0). Turnover makes fees dominate.
+### carry: short high funding / long low funding, dollar+beta neutral (2026-11-08, re-run 11-09) → DEAD on HL (re-check ~2027-05)
+HL OOS −0.89, grid med −0.34 (2/12 >0); BN 1.06 (med 0.72). On HL high-funding names are squeezes that keep rising.
+Concentrated: HL −1.05, BN 0.50. Carry needs breadth and doesn't transfer to HL.
 
-### lowvol: betting against volatility, beta-hedged (2026-11-08) → DEAD
-BN OOS SR −0.02, grid median −0.30 (1/6 >0).
+### carry_trend: carry only where trend agrees (T1d, 2026-11-09) → DEAD on HL
+HL OOS −0.88, grid med −0.52 (0/6 >0); BN 0.65 (med 0.88, 6/6). Conditioning on trend doesn't rescue HL carry.
+Funding +2–3%/yr on HL can't pay ~5–8%/yr costs.
 
-### funding_contra: fade funding spikes vs own history (2026-11-08) → DEAD
-BN OOS SR −0.38, grid median 0.09. Not robust.
+### listing_short: short new perps 1–14d after listing for 30–90d, BTC-beta hedged (T2, 2026-11-09) → ALIVE (candidate, shadow)
+HL 1d: WF OOS 0.75 / 2.95y, grid med 1.11 (9/9 >0); cfg(1,60) at band 0.005: SR 1.57, corr BTC −0.06, short leg + every year.
+bnall (923 BN perps incl. delisted, 6y): WF OOS 1.08 (9/9 >0) BUT band artifact (corr BTC 0.63); band 0.005 → SR 0.44,
+corr 0.06, short leg ≈ 0 absolute (listings lag BTC beta). BN-82: −0.18 (survivors). Fails gate: HL < 0.8, DSR. Real but
+modest; HL stronger (more airdrop launches?). Funding known for only 28% of HL short exposure.
+### xsrev: short-term cross-sectional reversal (2026-11-08, re-run 11-09) → DEAD
+HL OOS −2.66, BN −1.81; 0/6 >0 on both. Turnover makes fees dominate.
+
+### lowvol: betting against volatility, beta-hedged (2026-11-08, re-run 11-09) → DEAD
+HL −0.24 (1/6 >0); BN OOS 0.44 but grid med −0.01 (3/6 >0). Not robust.
+
+### funding_contra: fade funding spikes vs own history (2026-11-08, re-run 11-09) → DEAD
+HL −0.81 (0/8 >0); BN −0.42 (med 0.15). Not robust.

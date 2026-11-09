@@ -26,7 +26,11 @@ _PANELS = {}
 
 def panel(ds, since=None, interval="4h"):
     if (ds, interval) not in _PANELS:
-        p = data.load_hl_panel(interval) if ds == "hl" else data.load_bn_panel(interval)
+        if ds == "bnall":  # full Binance USDT-perp universe incl. delisted (daily only)
+            assert interval == "1d", "bnall is daily: use --interval 1d"
+            p = data.load_bn_all_panel()
+        else:
+            p = data.load_hl_panel(interval) if ds == "hl" else data.load_bn_panel(interval)
         if since:
             p = {k: v[v.index >= since] for k, v in p.items()}
         _PANELS[(ds, interval)] = p
@@ -39,14 +43,16 @@ def job(args):
     res = walk_forward(name, panel(ds, since, interval), grid, dataset=ds if interval == "4h" else f"{ds}_{interval}")
     res["seconds"] = round(time.time() - t, 1)
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / f"{time.strftime('%Y%m%d-%H%M')}_{name}_{res['dataset']}.json").write_text(json.dumps(res, indent=1, default=str))
+    # seconds + pid: two jobs for the same strategy/dataset in one minute used to overwrite each other (2026-11-09)
+    f = OUT / f"{time.strftime('%Y%m%d-%H%M%S')}_{os.getpid()}_{name}_{res['dataset']}.json"
+    f.write_text(json.dumps(res, indent=1, default=str))
     return res
 
 
 def brief(r):
     o = r.get("oos", {})
     return (f"{r['strategy']:15s} {r['dataset']:3s} OOS sharpe={o.get('sharpe')} cagr={o.get('cagr')} "
-            f"mdd={o.get('max_dd')} dsr={o.get('dsr')} turn/yr={o.get('turnover_yr')} | grid med sharpe="
+            f"mdd={o.get('max_dd')} yrs={o.get('years')} dsr={o.get('dsr')} | grid med sharpe="
             f"{r['grid_median_sharpe']} frac>0={r['grid_frac_positive']} n={r['n_configs']} ({r['seconds']}s)")
 
 

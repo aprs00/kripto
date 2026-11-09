@@ -4,24 +4,33 @@ Also read research/findings.md before picking: it records what is already DEAD a
 
 Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done: `- [x] ... → <one-line result, link to journal>`
 
-- [ ] T0 **RE-RUN EVERYTHING (do first, 2026-11-09 research session)**: all 2026-11-08 backtests are invalid (rebalance-grid unit bug,
-  see findings.md warning). Re-run the same pre-registered grids (tsmom, xsmom, carry, xsrev, lowvol, funding_contra; hl+bn,
-  plus the concentrated tsmom/carry variants) with the fixed code, then re-decide every verdict and lifecycle status (carry
-  retirement included). Don't change grids: same configs, so it's a re-measurement, not a fishing trip.
 - [ ] T0a **Live-vs-backtest replay (tracking check)**: for each shadow book, re-run the backtest over exactly the live period
-  and compare day by day: positions, turnover, costs/slippage (model vs live order book), funding, returns. This is what
-  live paper can actually verify (weeks), whereas edge needs months. Build as scripts/live_vs_backtest.py and run it in
-  every research session once books have ≥ 7 days. Large tracking error = bug or bad cost model ⇒ fix before trusting anything.
-- [ ] T0b Scheduled re-checks: ~2027-05 re-run HL walk-forward for HL-only DEAD ideas (carry) with 6 more months of data.
-- [x] T1 Baseline walk-forward of tier-1 strategies on HL+BN → tsmom/xsmom/carry candidates (shadow), xsrev/lowvol/funding_contra dead; HL carry pending funding data (journal/2026-11-08.md)
-- [x] T1b HL carry walk-forward → FAILS on HL (OOS SR −0.58; price leg −0.66 overwhelms +6.5%/yr funding); retired (41/60 top coins had funding history)
-- [ ] T1d Trend-conditioned carry: earn funding only where it agrees with trend sign (short high-funding names only in downtrends, etc.) — rationale: HL high funding = squeeze momentum; pre-register ≤ 8 configs
-- [ ] T1c HL cost reduction: liquidity-filtered universe, signal smoothing, fewer/larger positions for $200 (min order $10)
-- [ ] T2 New-listing decay: short HL perps N days after listing, hold M days, vol-scaled — airdrop/unlock supply overhang; data: HL 1d candles incl. delisted
-- [ ] T3 HL-vs-Binance funding spread as crowding signal — HL retail flow distinct; data: HL funding + Binance funding (hourly HL, 8h BN)
-- [ ] T4 Combine survivors: risk-parity blend, check correlation & diversification benefit
-- [ ] T5 Positioning: hourly snapshots of OI/premium (collected by trader into data/hl/ctx) — OI-change × price-change regimes (squeeze/flush setups); needs ≥ 4 weeks of snapshots
-- [ ] T6 Public top-account positioning (HL leaderboard addresses via public /info clearinghouseState) — do profitable accounts lead? needs collector + weeks of data; rate-limit carefully
-- [ ] T7 Liquidation-cluster proximity as risk filter for trend positions
-- [ ] T8 Regime filter: does trend/carry performance depend on BTC vol regime or funding level? (beware overfitting; ≤ 2 regime params)
-- [ ] T9 Execution: maker-style rebalancing (post-only at mid ± tick, fall back to taker) — fee 1.5bp vs 4.5bp; paper sim must model non-fills conservatively
+  and compare day by day: positions, turnover, costs/slippage (model vs live order book), funding, returns. Build
+  scripts/live_vs_backtest.py once books have ≥ 7 days (≈ 2026-11-16). Large tracking error = bug or bad cost model.
+- [ ] T2b **listing_short follow-ups** (only after bnall verdict; pre-register ≤ 8 configs each):
+  (a) HL funding coverage: backfill funding for every coin ever shorted (currently 28% of short exposure) and re-measure;
+  (b) per-listing event study (cumulative abnormal return vs BTC by days since listing, HL + bnall) to see the decay shape,
+  not just a portfolio Sharpe; (c) sizing: vol_target under-estimates new-coin vol (pre-listing returns = 0) → use a
+  per-name vol floor. Capacity at $200: ~6 concurrent shorts at gross 0.5 ≈ $16 each, which is executable.
+- [ ] T10 **Re-run survivor-sensitive BN verdicts on bnall** (daily): tsmom/xsmom/listing_short done 2026-11-09; carry,
+  lowvol, xsrev still only on BN-82. bnall needs a monthly refresh: add `data.bn_download_all_daily()` to scripts/download.py
+  (incremental, ~20 min first run, a few min after; the monthly archive only updates once a month).
+- [ ] T11 **Small-account construction for xsmom** (bnall 1.27 but needs breadth; band 0.05 halves it): test top/bottom-k only
+  (k = 3–5 each side, ≥ 5% weights) on HL + bnall; pre-register ≤ 8 configs. The $200 main book can only hold ~10 positions.
+- [ ] T0b Scheduled re-checks: ~2027-05 re-run HL walk-forward for HL-only DEAD ideas (carry, carry_trend) with 6 more months.
+- [ ] T9 Execution: maker-style rebalancing (post-only at mid ± tick, fall back to taker): fee 1.5bp vs 4.5bp. tsmom pays
+  ~4–5%/yr in costs on HL, about half its gross edge. Paper sim must model non-fills conservatively.
+- [ ] T3 HL-vs-Binance funding spread as a crowding signal (HL retail flow is distinct; HL hourly vs BN 8h funding).
+- [ ] T5 Positioning: hourly OI/premium snapshots (data/hl/ctx, collecting since 2026-11-08): OI-change × price-change regimes; needs ≥ 4 weeks.
+- [ ] T4 Combine survivors (tsmom + listing_short): their correlation should be low (short-alt vs trend) → risk-parity blend.
+- [ ] T6 Public top-account positioning (HL leaderboard addresses via public /info clearinghouseState); needs collector + weeks.
+- [ ] T7 Liquidation-cluster proximity as risk filter for trend positions.
+- [ ] T8 Regime filter: trend/carry vs BTC vol regime or funding level (≤ 2 regime params; beware overfitting).
+
+## Done
+- [x] T0 Re-run all 2026-11-08 grids with fixed code → same verdicts; numbers close to the invalid ones (journal/2026-11-09.md)
+- [x] T1 Baseline tier-1 walk-forward → tsmom/xsmom candidates; xsrev/lowvol/funding_contra dead (re-confirmed 11-09)
+- [x] T1b HL carry → DEAD on HL (−0.89 re-run)
+- [x] T1c tsmom cost reduction: signal smoothing DEAD (lag > cost savings); $20M liquidity floor marginal (2026-11-09)
+- [x] T1d carry_trend → DEAD on HL (0/6 >0) (2026-11-09)
+- [x] T2 listing_short → HL OOS 0.75, 9/9 grid >0; candidate + shadow book; BN-82 −0.18 (survivor-biased) (2026-11-09)

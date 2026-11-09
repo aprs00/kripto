@@ -247,3 +247,103 @@ MATIC ARB OP APT SUI INJ SAND MANA AXS FTM EOS XTZ ALGO THETA ICP CRV SNX COMP M
 GALA CHZ ENJ 1INCH SUSHI YFI ZEC XMR KAVA ZIL EGLD HBAR VET GRT FLOW NEO WAVES DASH IOTA ONE KSM
 CELO RSR BAL ALPHA LRC STORJ SKL OCEAN ANKR BAND HYPE TIA SEI WLD PEPE WIF ENA JUP TAO ORDI""".split()
 BN_SYMBOLS = [s + "USDT" for s in BN_SYMBOLS]
+
+
+# --------------------------------------------------------------------------- Binance FULL universe (incl. delisted)
+# The hand-picked 82-coin BN set is survivor-biased (2026-11-09). This is the unbiased alternative: every USDT
+# perp that ever existed in the public archive, daily bars. Dataset name in research: "bnall" (1d only).
+BN_S3 = "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision"
+
+
+def _bn_s3_list(prefix: str) -> tuple[list[str], list[str]]:
+    """(common prefixes, keys) under prefix, following pagination."""
+    import re
+    prefixes, keys, marker = [], [], ""
+    while True:
+        b = _bn_get(f"{BN_S3}?delimiter=/&prefix={prefix}&marker={marker}")
+        if b is None:
+            break
+        x = b.decode()
+        prefixes += re.findall(r"<CommonPrefixes><Prefix>([^<]+)</Prefix>", x)
+        keys += re.findall(r"<Key>([^<]+)</Key>", x)
+        if "<IsTruncated>true</IsTruncated>" not in x:
+            break
+        nm = re.search(r"<NextMarker>([^<]+)</NextMarker>", x)
+        marker = nm.group(1) if nm else (keys[-1] if keys else prefixes[-1])
+    return prefixes, keys
+
+
+def bn_all_symbols() -> list[str]:
+    pre, _ = _bn_s3_list("data/futures/um/monthly/klines/")
+    syms = [p.rstrip("/").split("/")[-1] for p in pre]
+    return sorted(s for s in syms if s.endswith("USDT") and "_" not in s)
+
+
+def bn_download_all_daily(symbols: list[str] | None = None, workers: int = 16, log=print):
+    """Daily klines + funding for every USDT perp (incl. delisted). Incremental: skips months already stored."""
+    kd, fd = DATA / "bn" / "klines_1d_all", DATA / "bn" / "funding_all"
+    kd.mkdir(parents=True, exist_ok=True)
+    fd.mkdir(parents=True, exist_ok=True)
+    symbols = symbols or bn_all_symbols()
+    log(f"[bn all] {len(symbols)} symbols")
+
+    def fetch(kind: str, sym: str, path: Path, tcol: str, cols: list[int], names: list[str]):
+        sub = f"{sym}/1d/" if kind == "klines" else f"{sym}/"
+        _, keys = _bn_s3_list(f"data/futures/um/monthly/{kind}/{sub}")
+        keys = [k for k in keys if k.endswith(".zip")]
+        have = pd.read_parquet(path) if path.exists() else None
+        if have is not None and len(have):
+            last = pd.to_datetime(have[tcol].max(), unit="ms").strftime("%Y-%m")
+            keys = [k for k in keys if k[-11:-4] >= last]
+        parts = []
+        for k in keys:
+            b = _bn_get(f"https://data.binance.vision/{k}")
+            if b:
+                df = _read_zip_csv(b).iloc[:, cols]
+                df.columns = names
+                parts.append(df)
+        if parts:
+            d = pd.concat(([have] if have is not None else []) + parts)
+            d = d.apply(pd.to_numeric, errors="coerce").dropna(subset=[tcol])
+            d[tcol] = d[tcol].astype("int64")
+            d = d.drop_duplicates(tcol, keep="last").sort_values(tcol).reset_index(drop=True)
+            tmp = path.with_suffix(".tmp")
+            d.to_parquet(tmp)
+            tmp.replace(path)  # atomic: an interrupted run never leaves a corrupt file
+        return len(parts)
+
+    def one(sym):
+        nk = fetch("klines", sym, kd / f"{sym}.parquet", "t", [0, 1, 2, 3, 4, 5, 7], ["t", "o", "h", "l", "c", "v", "qv"])
+        nf = fetch("fundingRate", sym, fd / f"{sym}.parquet", "time", [0, 2], ["time", "fundingRate"])
+        return sym, nk, nf
+
+    with ThreadPoolExecutor(workers) as ex:
+        for i, (s, nk, nf) in enumerate(ex.map(one, symbols)):
+            if i % 50 == 0:
+                log(f"[bn all] {i+1}/{len(symbols)} {s} klines+{nk} funding+{nf}")
+
+
+def load_bn_all_panel() -> dict[str, pd.DataFrame]:
+    """Daily panel over the full (survivorship-free) Binance USDT-perp universe."""
+    closes, vols, highs, lows, funds = {}, {}, {}, {}, {}
+    for f in sorted((DATA / "bn" / "klines_1d_all").glob("*.parquet")):
+        sym = f.stem
+        coin = sym.removesuffix("USDT")
+        df = pd.read_parquet(f)
+        t = df["t"].where(df["t"] < 1e14, df["t"] // 1000)
+        df.index = pd.to_datetime(t, unit="ms", utc=True).dt.floor("1D")
+        df = df[~df.index.duplicated()]
+        closes[coin], vols[coin], highs[coin], lows[coin] = df["c"], df["qv"], df["h"], df["l"]
+        fp = DATA / "bn" / "funding_all" / f"{sym}.parquet"
+        if fp.exists():
+            fr = pd.read_parquet(fp)
+            ts = pd.to_datetime(fr["time"] - 1, unit="ms", utc=True).dt.floor("1D")
+            funds[coin] = fr.groupby(ts)["fundingRate"].sum()
+    close = pd.DataFrame(closes).sort_index()
+    idx = pd.date_range(close.index.min(), close.index.max(), freq="1D")
+    close = close.reindex(idx)
+    vol = pd.DataFrame(vols).reindex(idx)
+    close = close.where(vol > 0)
+    return {"close": close, "volume": vol.where(vol > 0),
+            "high": pd.DataFrame(highs).reindex(idx), "low": pd.DataFrame(lows).reindex(idx),
+            "funding": pd.DataFrame(funds).reindex(index=idx, columns=close.columns)}
