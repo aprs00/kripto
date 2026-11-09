@@ -1,6 +1,6 @@
-HEALTH: OK — trader has run every hour since the 16:31 fix (17:03–20:03 all succeeded); data fresh (4h bars, last_bar 16:00 = latest closed bar).
+HEALTH: OK — trader ran every hour (latest 00:03–00:09 UTC, 2026-11-09); no failed units, no ERROR events; data fresh (last_bar 20:00 = latest closed 4h bar); disk 64%.
 
-_Updated 2026-11-08 20:32 UTC (review session). 20:31 review: HL client rate-limit defaults raised to 3s so manual runs also obey HARD RULE 2._
+_Updated 2026-11-09 00:27 UTC (review session). Added scripts/sql.py since the sqlite3 CLI isn't installed._
 
 ## Main book ($200 paper)
 Equity $200.00, return since start +0.00%. Flat: no strategy is in incubation/active (none passed the HL gate).

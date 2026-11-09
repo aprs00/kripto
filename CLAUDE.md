@@ -91,7 +91,7 @@ state/paper.db        sqlite paper ledger (gitignored) data/  parquet market dat
 nice -n 19 .venv/bin/python -m scripts.research_run --grids research/batches/<date>.json --datasets hl bn  # parallel batch
 nice -n 19 .venv/bin/python -m scripts.inspect_strategy tsmom hl '{}'
 systemctl --user list-timers ; journalctl --user -u kripto-trader -n 50
-sqlite3 state/paper.db "select * from fills order by ts desc limit 20"
+.venv/bin/python -m scripts.sql "select * from fills order by ts desc limit 20"   # no sqlite3 CLI on server
 ```
 
 ## Strategy lifecycle (config/strategies.json)
@@ -127,3 +127,4 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   cross-cutting lessons). Live paper's job = tracking vs backtest replay (backlog T0a, top priority). HL-only DEAD verdicts
   get re-checked after 6 more months of HL data (T0b).
 * 2026-11-08 review: HL client/download/paper rate-limit defaults raised to 3.0s, so rule 2 holds even outside systemd (previously 0.3s/2.0s defaults).
+* 2026-11-09 review: `sqlite3` CLI is not installed (and rule 3 forbids system packages) → added `scripts/sql.py` (read-only queries on state/paper.db) and fixed the Commands section.
