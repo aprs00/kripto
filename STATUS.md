@@ -1,6 +1,6 @@
 HEALTH: OK — trader (HL + Binance), collector and timers healthy; harness rebuilt and candidates re-measured; nothing passes the gate yet, main books flat.
 
-_Updated 2026-11-09 23:30 UTC (interactive session with the owner)._
+_Updated 2026-11-09 22:40 UTC (interactive session with the owner)._
 
 ## What changed today (owner: "$200-level earnings won't cut it"; $1,000 available; steady risk)
 * **Main paper books are now $1,000** (one on HL, one on Binance: alternative homes for the same $1,000). The $10 minimum
