@@ -20,7 +20,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from . import data
+from . import collect, data
 from .backtest import TAKER_FEE
 from .hl import HL
 from .strategies import REGISTRY
@@ -128,6 +128,10 @@ def live_panel(coins: list[str]) -> dict:
 def simulate_fill(hl: HL, coin: str, size: float) -> tuple[float, float, float]:
     """Walk the live book. Returns (avg_px, mid, slippage_bps). size>0 buy."""
     book = hl.l2_book(coin)
+    try:  # keep the book we already paid a request for (non-backfillable L2 data, T6a)
+        collect.store_l2(book, coin)
+    except Exception:
+        pass
     bids, asks = book["levels"][0], book["levels"][1]
     mid = (float(bids[0]["px"]) + float(asks[0]["px"])) / 2
     levels = asks if size > 0 else bids
@@ -277,6 +281,29 @@ def run_once():
         store.x("insert into equity values(?,?,?,?,?)", now_iso(), b, eq, gross, len(store.positions(b)))
     store.set_meta("last_run", now_iso())
     store.set_meta("last_bar", last_bar)
+    if os.environ.get("KRIPTO_COLLECT", "1") == "1":  # T6a: non-backfillable HL data; never breaks trading
+        try:
+            n = collect.collect(hl, coins)
+            store.set_meta("collect_last", json.dumps({"ts": now_iso(), **n}))
+            if n.get("errors"):
+                store.event("WARN", f"collector: {n}")
+        except Exception as e:
+            store.event("WARN", f"collector failed: {e!r}")
+
+
+def collect_status(store: Store) -> str:
+    """Non-backfillable data health (T6a): last collector pass + days held per dataset. A gap here is data lost forever."""
+    last = store.get_meta("collect_last") or "never"
+    hl = data.DATA / "hl"
+    ctx_days = 0
+    for f in sorted((hl / "ctx").glob("*.parquet")):
+        try:
+            ctx_days += pd.read_parquet(f, columns=["ts"])["ts"].astype(str).str[:10].nunique()
+        except Exception:
+            pass
+    pos_days = len(list((hl / "positions").glob("*.jsonl")))
+    l2_days = len(list((hl / "l2").glob("*.jsonl")))
+    return f"collector: last={last} | days held: ctx={ctx_days} positions={pos_days} l2={l2_days}"
 
 
 def status() -> str:
@@ -294,6 +321,7 @@ def status() -> str:
         lines.append(f"{name:28s} eq=${eq:8.2f} ret={eq/start-1:+7.2%} gross={gross/eq if eq else 0:4.2f}x "
                      f"pos={n:2d} fees=${fees[0]:.2f} ({fees[1]} fills) funding=${fund:+.2f} "
                      f"lastreb={reb[:16] if reb else 'never'} {'HALTED ' if halted else ''}since {first[:10]}")
+    lines.append(collect_status(store))
     ev = store.q("select ts,level,msg from events where level!='INFO' order by ts desc limit 10")
     if ev:
         lines.append("recent warnings/errors:")

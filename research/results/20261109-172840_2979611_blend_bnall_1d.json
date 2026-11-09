@@ -1,0 +1,341 @@
+{
+ "strategy": "blend",
+ "dataset": "bnall_1d",
+ "n_configs": 1,
+ "grid_median_sharpe": 0.973,
+ "grid_frac_positive": 1.0,
+ "oos": {
+  "start": "2020-09-28",
+  "end": "2026-10-31",
+  "years": 6.1,
+  "cagr": 0.2438,
+  "vol": 0.2425,
+  "sharpe": 1.021,
+  "sortino": 1.524,
+  "max_dd": -0.4347,
+  "calmar": 0.561,
+  "psr0": 0.9944,
+  "dsr": 0.6196,
+  "n_trials": 43,
+  "pos_months": 0.533
+ },
+ "folds": [
+  {
+   "from": "2020-09-28",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.56,
+   "oos_sharpe": 4.59
+  },
+  {
+   "from": "2020-11-27",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 1.49,
+   "oos_sharpe": 5.87
+  },
+  {
+   "from": "2021-01-26",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 2.39,
+   "oos_sharpe": 1.73
+  },
+  {
+   "from": "2021-03-27",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 2.3,
+   "oos_sharpe": -1.17
+  },
+  {
+   "from": "2021-05-26",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 1.64,
+   "oos_sharpe": -2.42
+  },
+  {
+   "from": "2021-07-25",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 1.2,
+   "oos_sharpe": -0.15
+  },
+  {
+   "from": "2021-09-23",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 1.09,
+   "oos_sharpe": 2.05
+  },
+  {
+   "from": "2021-11-22",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 1.13,
+   "oos_sharpe": 0.36
+  },
+  {
+   "from": "2022-01-21",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 1.08,
+   "oos_sharpe": 0.37
+  },
+  {
+   "from": "2022-03-22",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 1.03,
+   "oos_sharpe": 0.04
+  },
+  {
+   "from": "2022-05-21",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.97,
+   "oos_sharpe": -0.81
+  },
+  {
+   "from": "2022-07-20",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.9,
+   "oos_sharpe": -3.15
+  },
+  {
+   "from": "2022-09-18",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.66,
+   "oos_sharpe": 1.15
+  },
+  {
+   "from": "2022-11-17",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.68,
+   "oos_sharpe": 0.75
+  },
+  {
+   "from": "2023-01-16",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.68,
+   "oos_sharpe": -1.96
+  },
+  {
+   "from": "2023-03-17",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.53,
+   "oos_sharpe": -1.73
+  },
+  {
+   "from": "2023-05-16",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.43,
+   "oos_sharpe": -0.98
+  },
+  {
+   "from": "2023-07-15",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.38,
+   "oos_sharpe": 3.16
+  },
+  {
+   "from": "2023-09-13",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.49,
+   "oos_sharpe": 6.5
+  },
+  {
+   "from": "2023-11-12",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.79,
+   "oos_sharpe": 1.84
+  },
+  {
+   "from": "2024-01-11",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.84,
+   "oos_sharpe": 4.58
+  },
+  {
+   "from": "2024-03-11",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.99,
+   "oos_sharpe": -1.37
+  },
+  {
+   "from": "2024-05-10",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.92,
+   "oos_sharpe": 0.31
+  },
+  {
+   "from": "2024-07-09",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.9,
+   "oos_sharpe": -1.8
+  },
+  {
+   "from": "2024-09-07",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.83,
+   "oos_sharpe": 4.98
+  },
+  {
+   "from": "2024-11-06",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.95,
+   "oos_sharpe": 5.06
+  },
+  {
+   "from": "2025-01-05",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 1.13,
+   "oos_sharpe": -0.85
+  },
+  {
+   "from": "2025-03-06",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 1.08,
+   "oos_sharpe": 0.69
+  },
+  {
+   "from": "2025-05-05",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 1.07,
+   "oos_sharpe": 0.16
+  },
+  {
+   "from": "2025-07-04",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 1.05,
+   "oos_sharpe": 2.23
+  },
+  {
+   "from": "2025-09-02",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 1.08,
+   "oos_sharpe": -1.76
+  },
+  {
+   "from": "2025-11-01",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 1.01,
+   "oos_sharpe": -0.42
+  },
+  {
+   "from": "2025-12-31",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.99,
+   "oos_sharpe": -0.64
+  },
+  {
+   "from": "2026-03-01",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.96,
+   "oos_sharpe": -0.95
+  },
+  {
+   "from": "2026-04-30",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.93,
+   "oos_sharpe": 2.26
+  },
+  {
+   "from": "2026-06-29",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.95,
+   "oos_sharpe": 2.64
+  },
+  {
+   "from": "2026-08-28",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.98,
+   "oos_sharpe": 0.4
+  },
+  {
+   "from": "2026-10-27",
+   "params": {
+    "target_vol": 0.25
+   },
+   "is_sharpe": 0.97,
+   "oos_sharpe": null
+  }
+ ],
+ "grid": [
+  {
+   "i": 0,
+   "target_vol": 0.25,
+   "sharpe": 0.973,
+   "cagr": 0.2312,
+   "max_dd": -0.4347,
+   "turnover_yr": 39.4,
+   "cost_yr": 0.0265,
+   "funding_yr": 0.006
+  }
+ ],
+ "seconds": 21.7
+}

@@ -1,37 +1,43 @@
-HEALTH: OK — 16:25 review: trader runs hourly, data fresh, no errors; no edge good enough for the main book yet.
+HEALTH: OK — trader + new HL data collector run hourly without errors; best idea so far (a blend) fails one gate clause, main book stays flat.
 
-_Updated 2026-11-09 16:30 UTC (review session)._
+_Updated 2026-11-09 18:00 UTC (research session, afternoon)._
 
 ## Main book ($200 paper)
-Equity $200.00, +0.00%. Flat: no strategy passes the incubation gate (HL walk-forward OOS Sharpe > 0.8, positive on Binance,
-DSR > 0.9, survives 2× costs).
+Equity $200.00, +0.00%. Flat: no strategy passes the incubation gate yet.
 
 | book | equity | return | positions | note |
 |---|---|---|---|---|
 | main | $200.00 | +0.00% | 0 | flat by design |
-| shadow:tsmom | $2000.22 | +0.01% | 11 | live since 11-09 04:26 |
-| shadow:xsmom | $1983.80 | −0.81% | 28 | live since 11-09 04:26 |
-| shadow:listing_short | $2000.00 | 0.00% | 0 | new today; flat until the next HL listing with ≥ $1M/day volume |
+| shadow:tsmom | $2009.87 | +0.49% | 11 | live since 11-08 |
+| shadow:xsmom | $1987.30 | −0.63% | 28 | live since 11-08 |
+| shadow:listing_short | $2000.00 | 0.00% | 0 | flat until a new HL listing with ≥ $1M/day volume |
+| shadow:blend (new) | $2000.00 | 0.00% | 0 | first trade at the 11-10 00:00 bar |
+| shadow:xsmom_k (new) | $2000.00 | 0.00% | 0 | weekly rebalance; first trade at its next weekly bar |
 | shadow:carry (retired) | $2000.00 | 0.00% | 0 | frozen |
 
-Live P&L of a few hours means nothing statistically (see findings). The live books exist to check fills, costs and bugs.
+A few hours of live P&L means nothing statistically. The live books exist to check fills, costs and bugs.
 
 ## Strategies (walk-forward out-of-sample Sharpe, net of costs)
-| strategy | status | HL | Binance (82 coins) | Binance all 923 incl. delisted (new) |
-|---|---|---|---|---|
-| tsmom (trend) | candidate | 0.43–0.55 | 1.31 | 0.97 |
-| xsmom (x-sec momentum) | candidate | 0.42 | 0.55 | 1.27 (needs many positions) |
-| listing_short (short new listings) | candidate (new) | 0.75 (3y) | −0.18 (survivor-biased) | 0.44 at small band (1.08 was an artifact) |
-| carry, carry_trend | retired / dead | −0.9 | 1.06 / 0.65 | — |
-| xsrev, lowvol, funding_contra, smoothing | dead | negative | negative/not robust | — |
+| strategy | status | HL | Binance all 923 incl. delisted |
+|---|---|---|---|
+| **blend** (trend + small x-sec momentum + listing shorts, equal risk) | candidate (new) | **1.57** (3 y) | 1.02 (6 y) |
+| xsmom_k (x-sec momentum, 3–5 names per side, fits $200) | candidate (new) | 0.55 | 1.37 |
+| tsmom (trend) | candidate | 0.43–0.55 | 0.97 |
+| xsmom (x-sec momentum, broad) | candidate | 0.42 | 1.27 |
+| listing_short (short new listings) | candidate | 0.75 | 0.44 |
+| carry, carry_trend, xsrev, lowvol, funding_contra, smoothing | dead | — | — |
 
-## Today
-* Re-ran every 11-08 grid with the fixed code: same verdicts.
-* New data: the full Binance perp history including 160 delisted coins (removes survivorship bias).
-* Tested 3 new ideas. Short-new-listings is real but modest. Trend-filtered carry and signal smoothing are dead.
-* Caught a backtest artifact before acting on it: the $200 min-order band can turn a hedged book into "long BTC". The
-  inspection tool now checks for this automatically.
+## This afternoon
+* **Blend.** Mixing the three weak candidates with equal risk gives HL 1.57 and survives double costs (1.54). They are
+  nearly uncorrelated (0.02–0.28), so the mix is far better than any one of them. It passes 4 of the 5 incubation gate
+  clauses but fails the multiple-testing check on the long Binance history (0.62, needs 0.9). It's also partly BTC-beta there.
+  Caveat: I chose the components' settings after seeing their results, so the next test re-does this without that bias.
+  → candidate + live shadow book.
+* **Small x-sec momentum** (3–5 names per side, executable at $200): works on Binance (1.37), weak on HL after costs (0.55).
+  → candidate + shadow book.
+* **New data collection (can't be backfilled):** every hour we now snapshot the positions of the largest public HL
+  accounts and the top-10 order books (public read-only data, ~56 extra requests/hour within the shared rate limit).
 
 ## Next
-* ≈ 2026-11-16: build the live-vs-backtest tracking check (T0a) once books have 7 days.
-* xsmom with only 3–5 names per side (T11), so it fits a $200 account. listing_short follow-ups (T2b). bnall monthly refresh (T10).
+* Re-test the blend with each component's settings chosen out-of-sample (T4b), plus a ≤ 10-name version that fits $200 (T12).
+* ≈ 2026-11-16: live-vs-backtest tracking check (T0a). ≈ 2026-12-07: first analysis of the positioning data (T6b).

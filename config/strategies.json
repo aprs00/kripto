@@ -42,5 +42,21 @@
       "min_dv": 1000000
     },
     "note": "2026-11-09: T2 new-listing short, BTC-beta hedged. HL 1d WF OOS 0.75 (2.95y), grid med 1.11 (9/9>0); cfg(1,60) band0.005 SR 1.57 corr BTC -0.06. bnall WF 1.08 is a band artifact (corr BTC 0.63); at band 0.005 SR 0.44. Fails gate (HL<0.8, DSR). Shadow only; params = current WF choice."
+  },
+  "xsmom_k": {
+    "status": "candidate",
+    "alloc": 0.0,
+    "params": {
+      "lookback": 28,
+      "k": 3,
+      "every_days": 7
+    },
+    "note": "2026-11-09 T11: top/bottom-k xsmom (executable at $200). 1d WF OOS HL 0.55 (2.95y, grid med 0.44, 8/8>0), bnall 1.37 (6.1y, med 0.89, 8/8, DSR 0.87). HL costs ~10%/yr, 2x cost SR 0.26 (lb28 k4 e3). Fails HL >0.8. Params = HL WF choice."
+  },
+  "blend": {
+    "status": "candidate",
+    "alloc": 0.0,
+    "params": {},
+    "note": "2026-11-09 T4: equal-risk blend tsmom(top12)+xsmom_k(28,k4,3d)+listing_short(1,60), 1 pre-registered config. 1d WF OOS HL 1.57 (2.95y), 2x cost 1.54 full-sample, corr BTC 0.17; bnall 1.02 (6.1y, corr BTC 0.51, 2021-22 negative), DSR 0.62 < 0.9 -> fails gate. Component params were picked after seeing their own results (mild selection bias)."
   }
 }

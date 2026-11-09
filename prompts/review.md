@@ -6,6 +6,7 @@ Time budget: ~10–15 minutes. No new strategy research here.
    `systemctl --user list-timers`, `systemctl --user --failed`, `journalctl --user -u kripto-trader --since -5h | tail -50`,
    and the latest `logs/agent-*` and `logs/agent-failures.log` if present. Check disk space (`df -h ~`).
 2. Health: did the trader run every hour? Any ERROR/ALERT events? Is data fresh (last_bar within 8h)?
+   Is the `collector:` line of `paper status` from the last hour with errors=0? (positions/L2 data can't be backfilled.)
    Did the nightly data job and the last research session succeed?
    If anything is broken: diagnose, fix, verify (tests + a real trader run), record. Don't just report it.
 3. Sanity: are fills/slippage/fees/funding plausible? Is any book behaving very differently from its backtest

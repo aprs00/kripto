@@ -78,6 +78,7 @@ kripto/hl.py          public HL /info client          kripto/data.py       downl
 kripto/backtest.py    cost-aware portfolio backtest   kripto/metrics.py    Sharpe/PSR/DSR etc.
 kripto/strategies.py  strategy registry (@register)   kripto/research.py   evaluate / walk_forward / registry
 kripto/paper.py       paper engine (hourly timer)     config/strategies.json  status/params/alloc per strategy
+kripto/collect.py     hourly non-backfillable HL data (top-account positions, L2) -> data/hl/positions, data/hl/l2
 config/risk.json      risk limits, book sizes         scripts/research_run.py  walk-forward CLI (pre-registered grids)
 scripts/inspect_strategy.py  yearly/funding/cost decomposition + 2x-cost stress
 scripts/download.py   data refresh (nightly timer)    scripts/agent.sh     how you are launched
@@ -160,3 +161,8 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   execution, Tsay, a HAR vol paper, plus Valtos/Dalton/Tradingriot as concept sources) in `library/books/` (gitignored,
   copyrighted). Rejections and reasons are in library/INDEX.md. Seeded library/notes.md N1–N7 → backlog L1–L6. Research
   sessions now read one library section when time allows (step 4b); the retro checks library ROI.
+* 2026-11-09 research (pm): T6a collector (kripto/collect.py) runs at the end of every trader step on the same 3 s client
+  (≤ ~56 extra /info calls/h, 5-min deadline, failures only WARN). `paper status` now ends with a `collector:` line (last
+  pass + days held of ctx/positions/L2) and the review prompt checks it: a silent gap in non-backfillable data is lost forever.
+  Lesson from T4: blend components' params were picked after seeing results; when combining candidates, either nest the
+  param choice inside the walk-forward or say so explicitly (backlog T4b).
