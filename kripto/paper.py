@@ -290,9 +290,10 @@ def status() -> str:
         first = store.q("select ts from equity where book=? order by ts limit 1", name)[0][0]
         fund = store.q("select coalesce(sum(amount),0) from funding where book=?", name)[0][0]
         fees = store.q("select coalesce(sum(fee),0), count(*) from fills where book=?", name)[0]
+        reb = store.q("select max(bar) from rebalances where book=?", name)[0][0]
         lines.append(f"{name:28s} eq=${eq:8.2f} ret={eq/start-1:+7.2%} gross={gross/eq if eq else 0:4.2f}x "
                      f"pos={n:2d} fees=${fees[0]:.2f} ({fees[1]} fills) funding=${fund:+.2f} "
-                     f"{'HALTED ' if halted else ''}since {first[:10]}")
+                     f"lastreb={reb[:16] if reb else 'never'} {'HALTED ' if halted else ''}since {first[:10]}")
     ev = store.q("select ts,level,msg from events where level!='INFO' order by ts desc limit 10")
     if ev:
         lines.append("recent warnings/errors:")

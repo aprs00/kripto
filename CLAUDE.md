@@ -138,3 +138,5 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   added scripts/show_result.py (stop hand-parsing result JSON). Added `--interval 1d` and the survivorship-free `bnall`
   dataset (all 923 Binance USDT perps incl. delisted, `data.bn_download_all_daily`). The BN-82 set is survivor-biased, so
   prefer bnall for any test where survivorship matters. HL loader masks pre-listing zero-volume oracle candles.
+* 2026-11-09 review: `paper status` shows `lastreb=<bar>` per book. A book whose last rebalance is older than its schedule is
+  a bug until proven otherwise (the 11-08 bug went unnoticed because status showed no rebalance age).
