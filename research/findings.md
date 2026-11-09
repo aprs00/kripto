@@ -32,6 +32,12 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
   stresses and re-checks no longer raise the bar, so run them freely; new *experiments* do raise it.
 * **Diversify before polishing.** Three ~0.6–1.0 SR candidates with corr ≈ 0.1 blend to ~1.6 on HL (T4). Combining
   low-correlated weak signals beats tuning any one of them; judge new ideas also by their correlation to the blend.
+* **Rebalance-phase luck (2026-11-09 review).** Schedules are anchored at the epoch, so a config with `every_days` > 1 is
+  tested on one phase only. By phase: bnall xsmom_k lb14 k5 weekly 1.46/0.56/0.26/0.41/0.47/0.96/0.54 (mean 0.66), HL xsmom_k
+  3d 0.65/0.04/0.38. Broad xsmom is stable (0.60–0.79). Concentrated + infrequent = phase lottery: judge the PHASE AVERAGE
+  (staggered tranches) and report the spread. Any number from a single phase of a k-name book is unproven (backlog H1).
+* **Headline numbers are start-date and delay sensitive.** HL blend: 1.82 all history, 1.30 since 2024-09, 0.81 on 4h from
+  2024-07; 1-day execution delay 1.82 → 1.34 (tsmom 1.06 → 0.71). Quote a range, never one number.
 * **DEAD on HL ≠ dead forever.** HL history grows every day. Re-test DEAD ideas that died on HL alone (not on BN
   too) once HL OOS history has grown by ≥ 6 months, as a pre-registered re-check (see backlog T0b).
 
@@ -73,10 +79,13 @@ modest; HL stronger (more airdrop launches?). Funding known for only 28% of HL s
 ### blend: equal-risk tsmom(top12) + xsmom_k + listing_short, 1 pre-registered rule (T4, 2026-11-09) → ALIVE (candidate, shadow; best so far)
 HL 1d WF OOS **1.57** / 2.95y (full 1.82; 2× cost 1.54; band 0.005 1.64; corr BTC 0.17; years 2.9/2.2/0.4/1.7). Components'
 corr 0.02–0.28 → return-level blend 1.63, so diversification, not a bug. bnall 1.02 / 6.1y but corr BTC 0.51, 2021–22 < 0;
-DSR 0.62 < 0.9 → **fails gate** (only clause failed). Caveat: component params chosen after seeing their results → T4b nested re-test.
+DSR 0.62 < 0.9 → **fails gate**. Review 11-09: with component SELECTION nested (pool of 10, return level) OOS is 0.62–1.24 by
+rule vs 1.36 hindsight; and its xsmom_k leg is phase luck (see lessons). Honest HL estimate ≈ 0.6–1.2. T4b + H1 before any gate talk.
 ### xsmom_k: top/bottom-k x-sec momentum, k = 3–5, beta-hedged (T11, 2026-11-09) → ALIVE (candidate, shadow)
 1d WF OOS HL 0.55 (med 0.44, 8/8 >0), bnall 1.37 (med 0.89, 8/8, DSR 0.87). Executable at $200 (≥ 7% legs).
 HL costs ≈ 10%/yr → 2× cost SR 0.26; band 0.005 legs-only SR 1.37, BTC hedge leg −7%/yr. Fails HL > 0.8 alone.
+**Review 11-09: phase-average full-sample SR is 0.66 on bnall (registered phase 1.46 = best of 7) and 0.36–0.57 on HL.** The
+1.37 / DSR 0.87 is not evidence until re-measured as a phase average (H1).
 ### xsrev: short-term cross-sectional reversal (2026-11-08, re-run 11-09) → DEAD
 HL OOS −2.66, BN −1.81; 0/6 >0 on both. Turnover makes fees dominate.
 

@@ -1,6 +1,13 @@
 HEALTH: OK — trader (HL + Binance venues) and HL data collector run hourly without errors; no strategy passes the gate yet, both main books flat.
 
-_Updated 2026-11-09 20:30 UTC (review)._
+_Updated 2026-11-09 22:20 UTC (interactive review with the owner)._
+
+## Review 22:20: the numbers below are optimistic (details: journal 11-09 22:20, findings "lessons")
+* **Schedule luck.** Each strategy was tested on one start day of its rebalance schedule. Averaged over all start days,
+  small x-sec momentum is 0.66 on Binance (not 1.37) and 0.36–0.57 on HL. Broad momentum is unaffected.
+* **Blend.** 1.57 used components picked with hindsight; choosing them out-of-sample gives 0.6–1.2. Since 2024-09 it is 1.3
+  in-sample; trading a day late it drops from 1.82 to 1.34. Honest estimate on HL: roughly 0.6–1.2.
+* Nothing is broken operationally and nothing was promoted. Fixes are queued at the top of the backlog (H1–H4).
 
 ## Main book ($200 paper)
 Equity $200.00, +0.00%. Flat: no strategy passes the incubation gate yet.
@@ -41,5 +48,6 @@ A few hours of live P&L means nothing statistically. The live books exist to che
   accounts and the top-10 order books (public read-only data, ~56 extra requests/hour within the shared rate limit).
 
 ## Next
+* First: H1 (score every strategy as the average over its schedule's start days), then re-measure the candidates.
 * Re-test the blend with each component's settings chosen out-of-sample (T4b), plus a ≤ 10-name version that fits $200 (T12).
 * ≈ 2026-11-16: live-vs-backtest tracking check (T0a). ≈ 2026-12-07: first analysis of the positioning data (T6b).
