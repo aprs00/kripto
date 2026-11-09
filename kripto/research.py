@@ -1,7 +1,11 @@
 """Research harness: grid evaluation, walk-forward OOS, cost stress, and an append-only trial registry.
 
-Every configuration ever backtested is appended to research/registry.jsonl. The total count is the
-`n_trials` used to deflate Sharpe ratios -- this is our main defence against data-mining.
+Every configuration ever backtested is appended to research/registry.jsonl (append-only). Its counts set
+`n_trials` for the deflated Sharpe ratio -- our main defence against data-mining:
+* a single-config (in-sample) backtest is deflated by the number of single-config trials ever run;
+* a walk-forward OOS record is deflated by the number of walk-forward experiments ever run. Parameter
+  selection inside a walk-forward is already out-of-sample (chosen on past data only), so the remaining
+  selection bias is picking which experiment to believe among all experiments (design.md changelog 2026-11-09).
 """
 from __future__ import annotations
 
@@ -22,10 +26,16 @@ ROOT = Path(__file__).resolve().parent.parent
 REG = ROOT / "research" / "registry.jsonl"
 
 
-def n_trials() -> int:
+def n_trials(kind: str = "config") -> int:
+    """Count registry lines of one kind: "walk_forward" experiments or single-"config" backtests."""
     if not REG.exists():
         return 1
-    return max(1, sum(1 for _ in REG.open()))
+    n = 0
+    with REG.open() as f:
+        for line in f:
+            is_wf = '"kind": "walk_forward"' in line
+            n += is_wf if kind == "walk_forward" else not is_wf
+    return max(1, n)
 
 
 def _git() -> str:
@@ -100,7 +110,7 @@ def walk_forward(name: str, panel: dict, spec: dict, dataset: str, train_days: i
         "strategy": name, "dataset": dataset, "n_configs": len(configs),
         "grid_median_sharpe": round(float(grid_df["sharpe"].median()), 3),
         "grid_frac_positive": round(float((grid_df["sharpe"] > 0).mean()), 3),
-        "oos": mx.summary(oos_r, n_trials=n_trials()) if len(oos_r) > 30 else {},
+        "oos": mx.summary(oos_r, n_trials=n_trials("walk_forward") + 1) if len(oos_r) > 30 else {},
         "folds": chosen,
         "grid": grid_df.sort_values("sharpe", ascending=False).head(10).to_dict("records"),
     }

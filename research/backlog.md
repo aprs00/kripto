@@ -7,6 +7,17 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 - [ ] T0a **Live-vs-backtest replay (tracking check)**: for each shadow book, re-run the backtest over exactly the live period
   and compare day by day: positions, turnover, costs/slippage (model vs live order book), funding, returns. Build
   scripts/live_vs_backtest.py once books have ≥ 7 days (≈ 2026-11-16). Large tracking error = bug or bad cost model.
+- [ ] T6a **Start collecting non-backfillable HL data now** (time-critical; every day not collected is lost forever, and
+  Tier 2 in design.md is our most distinctive edge source). Already collected: hourly asset ctx (OI/funding/premium).
+  Missing: (1) public account positioning: discover active addresses from `/info` `recentTrades` (`users` field) and
+  snapshot `clearinghouseState` for a rotating set of the largest ~50 accounts per hour; (2) L2 depth snapshots that
+  the trader already fetches for fills (store top-N levels per coin, nearly free). Budget: stay well inside the
+  shared 3 s rate limit (trader already uses ~7.5 min/h, so ≤ ~60 extra calls/h). /info only (HARD RULE 1).
+  Build it as a small module with tests and append to the hourly run. T5/T6/T7 depend on it.
+- [ ] T4 **Blend of the candidates (tsmom + xsmom-small + listing_short)**, moved up 2026-11-09. Each one alone fails the
+  HL gate, but their correlation should be low (trend vs x-section vs short-alt), so a risk-parity blend is the most
+  plausible path to the first incubation. Pre-register ONE blend rule (e.g. equal risk, monthly) and run it as a
+  single walk-forward experiment on HL + bnall; don't search over blend weights.
 - [ ] T2b **listing_short follow-ups** (only after bnall verdict; pre-register ≤ 8 configs each):
   (a) HL funding coverage: backfill funding for every coin ever shorted (currently 28% of short exposure) and re-measure;
   (b) per-listing event study (cumulative abnormal return vs BTC by days since listing, HL + bnall) to see the decay shape,
@@ -22,7 +33,6 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
   ~4–5%/yr in costs on HL, about half its gross edge. Paper sim must model non-fills conservatively.
 - [ ] T3 HL-vs-Binance funding spread as a crowding signal (HL retail flow is distinct; HL hourly vs BN 8h funding).
 - [ ] T5 Positioning: hourly OI/premium snapshots (data/hl/ctx, collecting since 2026-11-08): OI-change × price-change regimes; needs ≥ 4 weeks.
-- [ ] T4 Combine survivors (tsmom + listing_short): their correlation should be low (short-alt vs trend) → risk-parity blend.
 - [ ] T6 Public top-account positioning (HL leaderboard addresses via public /info clearinghouseState); needs collector + weeks.
 - [ ] T7 Liquidation-cluster proximity as risk filter for trend positions.
 - [ ] T8 Regime filter: trend/carry vs BTC vol regime or funding level (≤ 2 regime params; beware overfitting).

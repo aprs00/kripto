@@ -26,6 +26,10 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
   consistency (per-year signs, grid breadth, BN agreement, an economic mechanism) before concluding. Live paper P&L
   proves nothing about edge for many months. Its job is checking that live behaves like the backtest
   (fills, costs, bugs).
+* **DSR counts experiments, not registry lines** (since 2026-11-09). A WF OOS record is deflated by the number of
+  walk-forward experiments ever run (40 at the change) and judged on the longest survivorship-free venue (bnall ≈ 6 y,
+  needs OOS SR ≈ 1.4). HL can't show significance in 1.6 y; on HL the gate asks for OOS > 0.8 net of HL costs. Cost
+  stresses and re-checks no longer raise the bar, so run them freely; new *experiments* do raise it.
 * **DEAD on HL ≠ dead forever.** HL history grows every day. Re-test DEAD ideas that died on HL alone (not on BN
   too) once HL OOS history has grown by ≥ 6 months, as a pre-registered re-check (see backlog T0b).
 

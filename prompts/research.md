@@ -37,6 +37,14 @@ WEEKLY RETROSPECTIVE (Sundays): step back from individual experiments.
   Rewrite the backlog priorities accordingly.
 * Process: review the past week's journals for repeated problems, wasted effort and missing tooling. Make the
   highest-leverage process fix and log it in the CLAUDE.md Process changelog.
+* Audit your own self-modifications (the recursive part): `git log -p --since='8 days ago' -- CLAUDE.md prompts docs
+  config/risk.json kripto/metrics.py kripto/research.py kripto/backtest.py`. For each change ask: (a) did it make a
+  gate, cost or check easier to pass? If so, is there a general rationale in the design.md changelog that would have
+  been written without knowing any strategy's result? If not, revert it. (b) Did each process fix from last week
+  actually get used and help (check the journals)? Keep what worked; remove or simplify what didn't. Unused rules
+  and tools are a cost. Then pick next week's highest-leverage process change based on that evidence.
+* Track the trajectory in one line in the retro: experiments run this week, ALIVE/DEAD verdicts, the best candidate's
+  distance to each gate clause, and how many days of non-backfillable HL data (ctx, positioning, L2) we hold.
 * Memory hygiene: keep findings.md, backlog.md and STATUS.md concise. Summarize old journal weeks into
   journal/summary-YYYY-MM.md if they are getting long.
 * Write `## HH:MM UTC retro` in the journal with conclusions, then commit and push.

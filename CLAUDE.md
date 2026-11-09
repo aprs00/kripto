@@ -144,3 +144,10 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
 * 2026-11-09 owner: added `scripts/dash.sh` / `scripts/dash.py`, a read-only, phone-width (≤ 46 cols) dashboard the owner
   opens over SSH (health line, books, timer results, Claude session rc/duration, commits, disk/RAM). If you add a book type,
   log format or timer, check the dashboard still shows it correctly.
+* 2026-11-09 interactive (owner asked for a self-improvement pass): (1) DSR `n_trials` counted raw registry lines, so
+  the bar rose ~150/day with cost stresses and re-runs, became unreachable on HL (SR ≈ 3.4), and made re-checks
+  costly. Now WF OOS is deflated by the number of WF experiments and measured on the longest survivorship-free venue
+  (design.md changelog, effective from the 11-10 research session; no current strategy passes). Test added.
+  (2) Backlog: non-backfillable HL data collection (T6a) and the candidate blend (T4) moved to the top. (3) The weekly retro now
+  audits the week's self-modifications (did any make a gate easier without a general rationale? did last week's
+  process fixes actually help?) and tracks a one-line trajectory, so self-improvement is checked, not just done.
