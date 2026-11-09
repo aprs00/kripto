@@ -23,6 +23,18 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
   HL gate, but their correlation should be low (trend vs x-section vs short-alt), so a risk-parity blend is the most
   plausible path to the first incubation. Pre-register ONE blend rule (e.g. equal risk, monthly) and run it as a
   single walk-forward experiment on HL + bnall; don't search over blend weights.
+- [ ] L2 **Taker-flow signals (library N1/N2)**: first extend the Binance kline loaders to keep taker buy volume (cols 9–10,
+  currently dropped by `.iloc[:, :8]`/`cols`). Re-download is incremental-unfriendly → plan it within the nightly window.
+  Then one pre-registered batch on bnall: (a) k-day net-taker-flow rank → next-k return, both signs, beta-hedged;
+  (b) flow-without-price-progress (absorption) reversal. ≤ 8 configs each. Mechanism: metaorder splitting (Tóth et al.).
+- [ ] L4 **Residual reversion with entry threshold (library N5, Pole)**: NEW angle vs dead xsrev: BTC-beta-defactored
+  residuals, enter only past a z-threshold, exit on reversion, so turnover is a fraction of xsrev's. HL + bnall, ≤ 8 configs.
+- [ ] L1 **HL lags Binance? (library N4)**: cheap kill test: BN 1h alt return → HL same-coin next-1h return. Expect
+  ≈ 0 (arbitraged in seconds). If |IC| is meaningful after costs, it becomes a strategy.
+- [ ] L6 **Better vol forecasts for sizing (library N6)**: vol estimator ∈ {close-to-close, Parkinson, HAR-range} inside
+  tsmom/xsmom vol targeting. Risk improvement, not alpha. One experiment per strategy.
+- [ ] L3 **Square-root impact sanity check of the slippage model (library N3)**: do this with T0a once there are live fills.
+- [ ] L5 Value-area rejection (library N7, Dalton/AMT): low prior, after the above.
 - [ ] T2b **listing_short follow-ups** (only after bnall verdict; pre-register ≤ 8 configs each):
   (a) HL funding coverage: backfill funding for every coin ever shorted (currently 28% of short exposure) and re-measure;
   (b) per-listing event study (cumulative abnormal return vs BTC by days since listing, HL + bnall) to see the decay shape,

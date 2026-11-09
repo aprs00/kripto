@@ -5,3 +5,4 @@ data/
 state/
 logs/
 .pytest_cache/
+library/books/

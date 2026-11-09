@@ -66,6 +66,7 @@ answer questions, review code or make research decisions. So:
 | `research/registry.jsonl` | every backtest config ever run (append-only) | query with scripts, never read whole; its size sets the deflated-Sharpe bar |
 | `research/results/*.json` | full walk-forward outputs | reference |
 | `config/strategies.json` | lifecycle status + params + a `note` with the evidence | keep notes current |
+| `library/INDEX.md`, `library/notes.md` | curated books (texts in library/books/, gitignored) + ideas mined from them | grep the .txt, never read whole books; ideas → backlog; tested → findings |
 | this file | how you operate | improve it; log changes in the Process changelog |
 
 Keep the memory lean so sessions stay within context: `findings.md` entries ≤ 5 lines each, STATUS.md one
@@ -154,3 +155,8 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
 * 2026-11-09 interactive: owner approved a second daily research session (13:40 UTC; the 06:40 one used ~45 of 140 min,
   so throughput was the bottleneck, not compute). The Sunday retro is the morning session only. The afternoon
   session continues from the morning's journal.
+* 2026-11-09 interactive: owner supplied a 174 GB folder of trading books/courses. I read and triaged it and kept 11 texts
+  (order-flow microstructure (Bouchaud/Farmer/Lillo, Tóth et al.), BTC price discovery, Max Dama, Pole stat arb, Guéant
+  execution, Tsay, a HAR vol paper, plus Valtos/Dalton/Tradingriot as concept sources) in `library/books/` (gitignored,
+  copyrighted). Rejections and reasons are in library/INDEX.md. Seeded library/notes.md N1–N7 → backlog L1–L6. Research
+  sessions now read one library section when time allows (step 4b); the retro checks library ROI.

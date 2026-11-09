@@ -13,6 +13,9 @@ Time budget: ~90–120 minutes of wall clock. Heavy compute with `nice -n 19`.
 2. Choose SEVERAL (typically 2–5) high-expected-value hypotheses: from the backlog, or better ideas you can
    justify. They can be independent ideas or variants attacking the same problem from different angles.
    Check findings.md first, and don't repeat a DEAD idea unless you state the new angle.
+   Also use the library: `library/INDEX.md` (curated books, extracted text in library/books/*.txt, grep it, never
+   read a whole book) and `library/notes.md` (ideas already mined from them, with backlog ids). A book's claim is a
+   hypothesis that must earn its place through the protocol, never a shortcut past it.
 3. Test them in parallel:
    for each, a falsifiable hypothesis + economic rationale (who pays us, and why?) → implement (new strategy =
    @register function in kripto/strategies.py; causality test runs automatically). Then write ONE batch file
@@ -26,6 +29,10 @@ Time budget: ~90–120 minutes of wall clock. Heavy compute with `nice -n 19`.
    passing → `candidate`. Shadow books are free live tests and run in parallel, so put every genuinely promising
    variant into one (keep ≤ ~10 non-retired books so live API usage stays polite; retire the weakest to make room).
    Write each verdict into research/findings.md.
+4b. Reading (if ≥ 20 min of budget remains): pick ONE `skimmed`/`unread` section from library/INDEX.md that bears on the
+   current backlog, read it via grep/sed on the .txt (≤ ~30 pages), and add any *testable* idea to library/notes.md
+   (source, claim in your own words, mechanical rule, data needed) plus a backlog item. Mark the section `mined`. If you
+   meet a well-cited free paper (arXiv/SSRN) that beats what's on file, note it in INDEX.md's wishlist.
 5. Self-improvement check (always): what slowed you down, confused you, or could make you fool yourself this
    session? Fix one such thing if feasible (tooling, tests, data, memory files, prompts) and log it in the
    CLAUDE.md Process changelog.
@@ -46,6 +53,8 @@ WEEKLY RETROSPECTIVE (Sundays): step back from individual experiments.
   been written without knowing any strategy's result? If not, revert it. (b) Did each process fix from last week
   actually get used and help (check the journals)? Keep what worked; remove or simplify what didn't. Unused rules
   and tools are a cost. Then pick next week's highest-leverage process change based on that evidence.
+* Library ROI: how many library-derived ideas were tested, and did any survive? Demote books that produced nothing
+  testable after being mined; promote the sources that did.
 * Track the trajectory in one line in the retro: experiments run this week, ALIVE/DEAD verdicts, the best candidate's
   distance to each gate clause, and how many days of non-backfillable HL data (ctx, positioning, L2) we hold.
 * Memory hygiene: keep findings.md, backlog.md and STATUS.md concise. Summarize old journal weeks into
