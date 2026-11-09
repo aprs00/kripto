@@ -78,6 +78,7 @@ kripto/hl.py          public HL /info client          kripto/data.py       downl
 kripto/backtest.py    cost-aware portfolio backtest   kripto/metrics.py    Sharpe/PSR/DSR etc.
 kripto/strategies.py  strategy registry (@register)   kripto/research.py   evaluate / walk_forward / registry
 kripto/paper.py       paper engine (hourly timer)     config/strategies.json  status/params/alloc per strategy
+kripto/bn.py          public Binance fapi client      kripto/venue_bn.py   Binance paper venue (main_bn, shadow:<x>@bn)
 kripto/collect.py     hourly non-backfillable HL data (top-account positions, L2) -> data/hl/positions, data/hl/l2
 config/risk.json      risk limits, book sizes         scripts/research_run.py  walk-forward CLI (pre-registered grids)
 scripts/inspect_strategy.py  yearly/funding/cost decomposition + 2x-cost stress
@@ -102,7 +103,8 @@ scripts/dash.sh                                            # phone-width dashboa
 ## Venues
 Hyperliquid (HL) and, since 2026-11-09, **Binance USDT-M perps** (paper only, public endpoints only: fapi.binance.com
 `/fapi/v1/klines|depth|premiumIndex|exchangeInfo`, data.binance.vision). The server IP is shared: keep Binance usage
-polite, ≤ 1 request/s and far below its 2400 weight/min limit. Each strategy declares the venue it trades. Min order:
+polite, ≤ 1 request/s and far below its 2400 weight/min limit. A config entry trades HL by default; `"venue": "bn"` + `"strategy": "<registered fn>"` (entry name `<fn>@bn`)
+puts it on Binance. Books: `main_bn` ($200) and `shadow:<entry>@bn`. `KRIPTO_BN=0` disables the venue. Min order:
 HL $10; Binance $5 (BTC $50, ETH $20). Taker fee: HL 4.5 bp, Binance 5 bp (VIP0).
 
 ## Strategy lifecycle (config/strategies.json)
@@ -174,3 +176,7 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   param choice inside the walk-forward or say so explicitly (backlog T4b).
 * 2026-11-09 interactive: owner added Binance as a second paper venue (design.md changelog). The gate is judged on the venue
   traded; one $200 main book per venue. Build spec = backlog B1 (top priority).
+* 2026-11-09 interactive: built the Binance paper venue (B1): kripto/bn.py (whitelisted public GETs only, 1 req/s,
+  small-limit incremental klines ≈ 61 weight/run), kripto/venue_bn.py (depth-walk fills, 5 bp, step/min-notional,
+  8h funding), paper.py split into compute_targets/run_books shared by both venues, with positions/funding separated
+  per venue (book_venue). Tests: tests/test_venue_bn.py (fake client). Shadow books xsmom_k@bn, flow@bn, tsmom@bn.

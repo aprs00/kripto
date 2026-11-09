@@ -7,6 +7,7 @@ Accounting: each book holds USD cash and signed coin sizes. Buying size q at pri
 Equity = cash + sum(q * mark). (Equivalent to perp PnL accounting.) Funding: cash -= q * mark * rate.
 Fills: simulated taker orders that walk the LIVE L2 book (top 20 levels) + taker fee.
 NOTHING here can place a real order: there are no keys and no exchange endpoint other than public /info.
+Venues: HL here; Binance USDT-M perps in venue_bn.py (books named `main_bn` / `shadow:<entry>@bn`).
 """
 from __future__ import annotations
 
@@ -93,12 +94,30 @@ def load_cfg():
     return json.loads(CFG.read_text()), json.loads(RISK.read_text())
 
 
+def venue_of(sc: dict) -> str:
+    """Venue a config entry trades: "hl" (default) or "bn". Binance entries are named `<strategy>@bn`."""
+    return sc.get("venue", "hl")
+
+
+def book_venue(book: str) -> str:
+    return "bn" if book == "main_bn" or book.endswith("@bn") else "hl"
+
+
+def strategy_fn(name: str, sc: dict):
+    """Config entry -> registered strategy function (`strategy` field lets one strategy run on several venues)."""
+    return REGISTRY.get(sc.get("strategy", name))
+
+
+def held_coins(store: Store, venue: str) -> set[str]:
+    return {c for b, c in store.q("select book, coin from positions where size!=0") if book_venue(b) == venue}
+
+
 # --------------------------------------------------------------------------- market data
 def refresh_data(hl: HL, store: Store) -> list[str]:
     uni = data.hl_universe(hl)
     uni = uni[~uni["isDelisted"]]
     coins = list(uni["name"][:LIVE_UNIVERSE])
-    held = {c for (c,) in store.q("select distinct coin from positions where size!=0")}
+    held = held_coins(store, "hl")
     coins = list(dict.fromkeys(coins + sorted(held)))
     data.hl_update_candles(coins, LIVE_INTERVAL, hl, log=lambda m: None)
     since = (pd.Timestamp.now("UTC") - pd.Timedelta(days=30)).strftime("%Y-%m-%d")  # live needs little; deep backfill is done offline
@@ -154,7 +173,7 @@ def simulate_fill(hl: HL, coin: str, size: float) -> tuple[float, float, float]:
 def accrue_funding(hl: HL, store: Store, marks: dict[str, float]):
     last = int(store.get_meta("funding_accrued_ms", int(time.time() * 1000)))
     nowms = int(time.time() * 1000)
-    held = store.q("select book, coin, size from positions where size!=0")
+    held = [r for r in store.q("select book, coin, size from positions where size!=0") if book_venue(r[0]) == "hl"]
     coins = sorted({c for _, c, _ in held})
     rates = {}
     for c in coins:
@@ -185,7 +204,13 @@ def apply_risk(w: pd.Series, risk: dict) -> pd.Series:
 
 
 def rebalance(hl: HL, store: Store, book: str, target_w: pd.Series, marks: dict[str, float],
-              meta_sz: dict[str, int], reason: str):
+              meta_sz: dict[str, int], reason: str, *, round_size=None, fill=None,
+              min_notional=None, fee_rate: float = TAKER_FEE):
+    """Trade `book` to target weights. HL defaults; another venue passes round_size(coin, d), fill(coin, d) and
+    min_notional(coin)."""
+    round_size = round_size or (lambda c, d: float(np.round(d, meta_sz.get(c, 4))))
+    fill = fill or (lambda c, d: simulate_fill(hl, c, d))
+    min_notional = min_notional or (lambda c: MIN_NOTIONAL)
     eq, _ = book_equity(store, book, marks)
     pos = store.positions(book)
     coins = sorted(set(pos) | set(target_w[target_w != 0].index))
@@ -194,19 +219,84 @@ def rebalance(hl: HL, store: Store, book: str, target_w: pd.Series, marks: dict[
             continue
         tgt_sz = float(target_w.get(c, 0.0)) * eq / marks[c]
         d = tgt_sz - pos.get(c, 0.0)
-        dec = meta_sz.get(c, 4)
-        d = float(np.round(d, dec))
+        d = round_size(c, d)
         closing = abs(tgt_sz) < 1e-12 and abs(pos.get(c, 0.0)) > 0
         if closing:
             d = -pos.get(c, 0.0)
-        if d == 0 or (abs(d) * marks[c] < MIN_NOTIONAL and not closing):
+        if d == 0 or (abs(d) * marks[c] < min_notional(c) and not closing):
             continue
-        px, mid, slip = simulate_fill(hl, c, d)
-        fee = abs(d) * px * TAKER_FEE
+        px, mid, slip = fill(c, d)
+        fee = abs(d) * px * fee_rate
         store.x("update books set cash=cash-?-? where name=?", d * px, fee, book)
         store.x("insert into positions values(?,?,?) on conflict(book,coin) do update set size=size+excluded.size",
                 book, c, d)
         store.x("insert into fills values(?,?,?,?,?,?,?,?,?)", now_iso(), book, c, d, px, mid, fee, slip, reason)
+
+
+def compute_targets(store: Store, entries: dict, panel: dict, last_bar: str) -> dict[str, pd.Series]:
+    """Latest target weights per non-retired config entry (saved in `targets` for the main-book blend)."""
+    strat_w: dict[str, pd.Series] = {}
+    for name, sc in entries.items():
+        fn = strategy_fn(name, sc)
+        if sc.get("status") == "retired" or fn is None:
+            continue
+        try:
+            w = fn(panel, **sc.get("params", {}))
+            row = w.iloc[-1]
+            if row.notna().any():
+                row = row.fillna(0.0)
+                strat_w[name] = row
+                store.x("insert or replace into targets values(?,?,?)", name, last_bar,
+                        json.dumps({k: float(v) for k, v in row.items() if v != 0}))
+        except Exception as e:  # a broken strategy must not take the engine down
+            store.event("ERROR", f"strategy {name} failed: {e!r}")
+    return strat_w
+
+
+def run_books(store: Store, entries: dict, risk: dict, marks: dict[str, float], strat_w: dict[str, pd.Series],
+              last_bar: str, main: str, reb) -> list[str]:
+    """Kill switch, then rebalance each due book of one venue. `reb(book, target_weights, reason)` trades.
+    main = allocation-weighted blend of that venue's incubation/active entries' latest targets."""
+    books = {f"shadow:{n}": (n,) for n, sc in entries.items() if sc.get("status") != "retired"}
+    books[main] = None
+    for b in books:  # shadow books measure signal quality; bigger virtual equity avoids min-order distortion
+        store.ensure_book(b, risk["start_equity"] if b == main else risk.get("shadow_equity", risk["start_equity"]))
+    sig_key = "main_alloc_sig" if main == "main" else f"{main}_alloc_sig"
+
+    for book, spec in books.items():
+        halted = store.q("select halted from books where name=?", book)[0][0]
+        eq, _ = book_equity(store, book, marks)
+        peak = max(store.q("select peak from books where name=?", book)[0][0], eq)
+        store.x("update books set peak=? where name=?", peak, book)
+        if not halted and eq < peak * (1 - risk["kill_drawdown"]):
+            store.event("ALERT", f"{book}: drawdown kill-switch at equity {eq:.2f} (peak {peak:.2f}); flattening")
+            reb(book, pd.Series(dtype=float), "kill_switch")
+            store.x("update books set halted=1 where name=?", book)
+            continue
+        if halted:
+            continue
+        if store.q("select 1 from rebalances where book=? and bar=?", book, last_bar):
+            continue
+        if spec is None:
+            live = {n: sc for n, sc in entries.items()
+                    if sc.get("status") in ("incubation", "active") and sc.get("alloc", 0) > 0}
+            saved = {n: pd.Series(json.loads(w)) for n, _, w in store.q("select * from targets")}
+            parts = [(sc["alloc"], saved[n]) for n, sc in live.items() if n in saved]
+            tgt = pd.concat([a * w for a, w in parts], axis=1).fillna(0.0).sum(axis=1) if parts else pd.Series(dtype=float)
+            alloc_sig = json.dumps({n: sc["alloc"] for n, sc in live.items()}, sort_keys=True)
+            changed = alloc_sig != store.get_meta(sig_key)
+            fresh = any(n in strat_w for n in live)
+            due = fresh or changed or (not parts and bool(store.positions(book)))
+            store.set_meta(sig_key, alloc_sig)
+        else:
+            n = spec[0]
+            if n not in strat_w:
+                continue
+            tgt, due = strat_w[n], True
+        if due:
+            reb(book, apply_risk(tgt, risk), f"bar {last_bar}")
+            store.x("insert or ignore into rebalances values(?,?)", book, last_bar)
+    return list(books)
 
 
 def run_once():
@@ -222,65 +312,21 @@ def run_once():
 
     panel = live_panel(coins)
     last_bar = str(panel["close"].index[-1])
-    strat_w: dict[str, pd.Series] = {}
-    for name, sc in cfg.items():
-        if sc.get("status") == "retired" or name not in REGISTRY:
-            continue
-        try:
-            w = REGISTRY[name](panel, **sc.get("params", {}))
-            row = w.iloc[-1]
-            if row.notna().any():
-                row = row.fillna(0.0)
-                strat_w[name] = row
-                store.x("insert or replace into targets values(?,?,?)", name, last_bar,
-                        json.dumps({k: float(v) for k, v in row.items() if v != 0}))
-        except Exception as e:  # a broken strategy must not take the engine down
-            store.event("ERROR", f"strategy {name} failed: {e!r}")
-
-    books = {f"shadow:{n}": (n,) for n, sc in cfg.items() if sc.get("status") != "retired"}
-    books["main"] = None
-    for b in books:  # shadow books measure signal quality; bigger virtual equity avoids $10-min-order distortion
-        store.ensure_book(b, risk["start_equity"] if b == "main" else risk.get("shadow_equity", risk["start_equity"]))
-
-    for book, spec in books.items():
-        halted = store.q("select halted from books where name=?", book)[0][0]
-        eq, _ = book_equity(store, book, marks)
-        peak = max(store.q("select peak from books where name=?", book)[0][0], eq)
-        store.x("update books set peak=? where name=?", peak, book)
-        if not halted and eq < peak * (1 - risk["kill_drawdown"]):
-            store.event("ALERT", f"{book}: drawdown kill-switch at equity {eq:.2f} (peak {peak:.2f}); flattening")
-            rebalance(hl, store, book, pd.Series(dtype=float), marks, sz_dec, "kill_switch")
-            store.x("update books set halted=1 where name=?", book)
-            continue
-        if halted:
-            continue
-        if store.q("select 1 from rebalances where book=? and bar=?", book, last_bar):
-            continue
-        if spec is None:   # main = allocation-weighted blend of incubation/active strategies' LATEST targets
-            live = {n: sc for n, sc in cfg.items()
-                    if sc.get("status") in ("incubation", "active") and sc.get("alloc", 0) > 0}
-            saved = {n: pd.Series(json.loads(w)) for n, _, w in store.q("select * from targets")}
-            parts = [(sc["alloc"], saved[n]) for n, sc in live.items() if n in saved]
-            tgt = pd.concat([a * w for a, w in parts], axis=1).fillna(0.0).sum(axis=1) if parts else pd.Series(dtype=float)
-            alloc_sig = json.dumps({n: sc["alloc"] for n, sc in live.items()}, sort_keys=True)
-            changed = alloc_sig != store.get_meta("main_alloc_sig")
-            fresh = any(n in strat_w for n in live)
-            due = fresh or changed or (not parts and bool(store.positions(book)))
-            store.set_meta("main_alloc_sig", alloc_sig)
-        else:
-            n = spec[0]
-            if n not in strat_w:
-                continue
-            tgt, due = strat_w[n], True
-        if due:
-            rebalance(hl, store, book, apply_risk(tgt, risk), marks, sz_dec, f"bar {last_bar}")
-            store.x("insert or ignore into rebalances values(?,?)", book, last_bar)
-
+    entries = {n: sc for n, sc in cfg.items() if venue_of(sc) == "hl"}
+    strat_w = compute_targets(store, entries, panel, last_bar)
+    reb = lambda book, tgt, reason: rebalance(hl, store, book, tgt, marks, sz_dec, reason)
+    books = run_books(store, entries, risk, marks, strat_w, last_bar, "main", reb)
     for b in books:
         eq, gross = book_equity(store, b, marks)
         store.x("insert into equity values(?,?,?,?,?)", now_iso(), b, eq, gross, len(store.positions(b)))
     store.set_meta("last_run", now_iso())
     store.set_meta("last_bar", last_bar)
+    if os.environ.get("KRIPTO_BN", "1") == "1" and any(venue_of(sc) == "bn" for sc in cfg.values()):
+        try:  # Binance paper venue; a failure here must never break HL trading
+            from . import venue_bn
+            venue_bn.run(store, cfg, risk)
+        except Exception as e:
+            store.event("ERROR", f"binance venue failed: {e!r}")
     if os.environ.get("KRIPTO_COLLECT", "1") == "1":  # T6a: non-backfillable HL data; never breaks trading
         try:
             n = collect.collect(hl, coins)
@@ -308,7 +354,8 @@ def collect_status(store: Store) -> str:
 
 def status() -> str:
     store = Store()
-    lines = [f"last_run={store.get_meta('last_run')} last_bar={store.get_meta('last_bar')}"]
+    lines = [f"last_run={store.get_meta('last_run')} last_bar={store.get_meta('last_bar')} "
+             f"bn_last_bar={store.get_meta('bn_last_bar')}"]
     for name, start, halted in store.q("select name,start_equity,halted from books order by name"):
         r = store.q("select ts,equity,gross,n_pos from equity where book=? order by ts desc limit 1", name)
         if not r:

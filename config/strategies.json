@@ -58,5 +58,44 @@
     "alloc": 0.0,
     "params": {},
     "note": "2026-11-09 T4: equal-risk blend tsmom(top12)+xsmom_k(28,k4,3d)+listing_short(1,60), 1 pre-registered config. 1d WF OOS HL 1.57 (2.95y), 2x cost 1.54 full-sample, corr BTC 0.17; bnall 1.02 (6.1y, corr BTC 0.51, 2021-22 negative), DSR 0.62 < 0.9 -> fails gate. Component params were picked after seeing their own results (mild selection bias)."
+  },
+  "xsmom_k@bn": {
+    "strategy": "xsmom_k",
+    "venue": "bn",
+    "status": "candidate",
+    "alloc": 0.0,
+    "params": {
+      "lookback": 14,
+      "k": 5,
+      "every_days": 7
+    },
+    "note": "2026-11-09 interactive: Binance paper venue (B1). Params = latest bnall 1d walk-forward fold choice. bnall WF OOS 1.37 / 6.1y (DSR 0.87; 35/38 folds chose lb14 k5 e7). Shadow only: gate not met."
+  },
+  "flow@bn": {
+    "strategy": "flow",
+    "venue": "bn",
+    "status": "candidate",
+    "alloc": 0.0,
+    "params": {
+      "lookback": 14
+    },
+    "note": "2026-11-09 interactive: Binance paper venue (B1). Params = latest bnall 1d walk-forward fold choice. bnall WF OOS 1.13 / 6.1y (DSR 0.70), continuation 6/6 >0; corr xsmom 0.43. Not HL-testable. Shadow only."
+  },
+  "tsmom@bn": {
+    "strategy": "tsmom",
+    "venue": "bn",
+    "status": "candidate",
+    "alloc": 0.0,
+    "params": {
+      "lookbacks": [
+        14,
+        28,
+        56
+      ],
+      "every_days": 1,
+      "top_n": 12,
+      "target_vol": 0.3
+    },
+    "note": "2026-11-09 interactive: Binance paper venue (B1). Params = latest bnall 1d walk-forward fold choice. bnall WF OOS 0.97 / 6.1y. Shadow only: tracks the same signal as HL tsmom on another venue."
   }
 }
