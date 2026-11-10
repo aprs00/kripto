@@ -1,0 +1,8 @@
+{
+ "_note": "T9 execution study, pre-registered 2026-11-10 before any run. NOT walk-forward experiments: same signals, two execution models, config-level lines tagged exec. Policy: post a limit at the decision close, filled only on a trade-through of `through` within `horizon_h` hours, else cross as taker at hour H (drift + taker fee + slippage). Primary policy chosen in advance: H=4, through=5bp. Others are sensitivity. Window = bars that have hourly data (HL ~208 days, 131 coins; BN-82 2020+). Decision rule: maker is worth building live if, on BN-82's long history, cost/yr falls by >= 30% for the primary policy with Sharpe not lower, and HL's short window agrees in sign.",
+ "_policies": [[4, 0.0005], [1, 0.0005], [12, 0.0005], [4, 0.0020]],
+ "hl": {"tsmom": {"top_n": 12}, "xsmom_k": {"lookback": 28, "k": 4, "every_days": 3}, "listing_short": {"skip_days": 1, "hold_days": 60},
+        "blend": {}, "lowvol": {}, "xsmom": {"lookback": 28, "every_days": 3}},
+ "hlx": {"flow": {"lookback": 14, "sign": 1}},
+ "bn": {"tsmom": {"top_n": 12}, "xsmom": {"lookback": 28, "every_days": 3}, "xsmom_k": {"lookback": 28, "k": 5, "every_days": 3}, "lowvol": {}}
+}

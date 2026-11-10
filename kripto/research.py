@@ -67,16 +67,17 @@ def log_trial(rec: dict):
 
 def evaluate(name: str, panel: dict, params: dict, dataset: str, cost_mult: float = 1.0,
              band: float | None = None, log: bool = True, start: str | None = None, lag: int = 0,
-             tag: str | None = None) -> tuple[bt.BTResult, dict]:
+             tag: str | None = None, maker: dict | None = None, exec_desc: str | None = None) -> tuple[bt.BTResult, dict]:
     """One config, full sample. lag = bars of execution delay (weights decided at close t are traded at close t+lag).
-    tag marks the purpose of a logged line ("robust", "forward", ...)."""
+    tag marks the purpose of a logged line ("robust", "forward", ...). maker = execution.maker_fills(...) + {"fee"}
+    (passive execution with taker fallback, T9); exec_desc names that policy in the registry line."""
     band = default_band() if band is None else band
     w = REGISTRY[name](panel, **params)
     if lag:
         w = w.shift(lag)
     bpd = bars_per_day(panel["close"].index)
     slip = bt.slippage_model(panel["volume"], bpd)
-    res = bt.run(w, panel["close"], panel.get("funding"), slip, band=band, cost_mult=cost_mult)
+    res = bt.run(w, panel["close"], panel.get("funding"), slip, band=band, cost_mult=cost_mult, maker=maker)
     r = res.returns
     if start:
         r = r[r.index >= start]
@@ -88,7 +89,8 @@ def evaluate(name: str, panel: dict, params: dict, dataset: str, cost_mult: floa
                    res.funding.reindex(r.index), n_trials=n_trials() + 1)
     if log:
         log_trial({"strategy": name, "params": params, "dataset": dataset, "cost_mult": cost_mult, "band": band,
-                   **({"lag": lag} if lag else {}), **({"tag": tag} if tag else {}), **s})
+                   **({"lag": lag} if lag else {}), **({"tag": tag} if tag else {}),
+                   **({"exec": exec_desc or "maker"} if maker is not None else {}), **s})
     return res, s
 
 

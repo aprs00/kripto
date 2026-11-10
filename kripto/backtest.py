@@ -39,7 +39,10 @@ class BTResult:
 
 def run(weights: pd.DataFrame, close: pd.DataFrame, funding: pd.DataFrame | None = None,
         cost: pd.DataFrame | float | None = None, band: float = 0.0, fee: float = TAKER_FEE,
-        cost_mult: float = 1.0, rebalance_every: int = 1) -> BTResult:
+        cost_mult: float = 1.0, rebalance_every: int = 1, maker: dict | None = None) -> BTResult:
+    """maker = execution.maker_fills(...) output + {"fee": maker fee}: trades on (t, asset) cells with hourly data use the
+    passive policy (filled at the decision price for the maker fee, else drift since the decision + taker cost);
+    other cells pay the taker cost. cost_mult scales fees/slippage, not the drift (a price fact, not an estimate)."""
     idx, cols = close.index, close.columns
     W = weights.reindex(index=idx, columns=cols).to_numpy(dtype=float)
     px = close.to_numpy(dtype=float)
@@ -57,6 +60,14 @@ def run(weights: pd.DataFrame, close: pd.DataFrame, funding: pd.DataFrame | None
         c = np.where(np.isfinite(c), c, fee + 25e-4)
     c = c * cost_mult
     tradable = np.isfinite(px)
+    if maker is not None:
+        M = {k: maker[k].reindex(index=idx, columns=cols).to_numpy(dtype=float) for k in ("fill_buy", "fill_sell", "drift")}
+        mf = maker["fee"] * cost_mult
+        have = np.isfinite(M["fill_buy"]) & np.isfinite(M["drift"])
+        cb = np.where(have, np.where(M["fill_buy"] == 1, mf, M["drift"] + c), c)
+        cs = np.where(have, np.where(M["fill_sell"] == 1, mf, -M["drift"] + c), c)
+    else:
+        cb = cs = c
 
     T, N = px.shape
     w = np.zeros(N)
@@ -88,7 +99,8 @@ def run(weights: pd.DataFrame, close: pd.DataFrame, funding: pd.DataFrame | None
             if band > 0:
                 small = (np.abs(dw) < band) & (tgt != 0)
                 dw = np.where(small, 0.0, dw)
-            cost_t = float(np.abs(dw) @ np.where(np.isfinite(c[t]), c[t], 0.0))
+            cost_t = float(np.clip(dw, 0, None) @ np.where(np.isfinite(cb[t]), cb[t], 0.0)
+                           + np.clip(-dw, 0, None) @ np.where(np.isfinite(cs[t]), cs[t], 0.0))
             w = w + dw
             out_to[t] = np.abs(dw).sum()
             w = w / (1.0 - cost_t) if cost_t < 1 else w
