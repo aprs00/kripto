@@ -43,3 +43,10 @@ choose the waiting time that minimises the sum. For us: a daily signal whose alp
 waiting hours for a maker fill, while a fast signal (flow lb3) may. Mechanical test: for each strategy, the average signed return
 of its trades from the decision close to +1h, +4h, +12h, +24h (hourly data). It also gives the right post-only horizon per strategy.
 Adverse selection (limit buys fill as price falls) is the other half; T9's trade-through fill model includes it.
+
+### N9 Intraday rules as written do not clear costs on minute bars (2026-11-10 event study; valtos, tradingriot, maxdama §4, alexander-heck)
+Flow continuation, absorption / CVD divergence, sweep-and-fail, BTC leader-lag, breadth extremes (cumulative TICK), activity spikes:
+all ≤ 7 bp and unstable across two 3-month halves on the 20 most liquid perps, against a 12 bp round trip. The practitioner books
+trade these with discretion and context; the mechanical cores carry no edge at 1-min resolution with taker fees. Still open from
+the library: weighted mid / microprice (maxdama §4.7; needs live L2), and traffic analysis on message counts (maxdama §4.2; the
+owner's Telegram idea).

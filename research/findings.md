@@ -165,3 +165,10 @@ this hour −0.038 (t −8.7), HL's own −0.039 (t −8.8), "HL lagged Binance 
 fifth, next hour: −3 / −3 / +5.4 / −2 bp. Statistically real, economically 5–10× smaller than the ~25–40 bp a taker long-short
 switch costs; part is bid-ask bounce and stale last-trade closes. Harvesting it means near-free passive fills = market making
 (T9: adverse selection; paper cannot validate queue position). Slow horizons stay the right place for this system.
+
+### Minute-bar ideas from the library: flow, absorption, sweeps, BTC leader-lag, breadth, activity spikes, extreme-move fades (event study, 2026-11-10) → DEAD at taker costs
+20 liquid Binance perps, 1-min bars, 2026-05 → 10 (263,520 min), rules fixed before download, two halves must agree with |t| > 3 and
+clear 15 bp (round trip ≈ 12 bp). Nothing does. Largest signed forward returns: fade a 4-sigma 5-min move +6.7 bp @15 min in half 1,
+−0.5 in half 2; volume-spike reversal −9.3 / +0.4; close beyond the 4h high reverses −1 to −6 bp (t −8) in half 1, ≈ 0 in half 2;
+flow continuation and BTC → alts ≤ 2 bp. Only one sign is stable: breakouts of the 4h range give a little back within minutes (< 2 bp).
+Not tested: order-book imbalance (needs the L2 stream, W1) and thin coins (bigger moves, bigger costs). research/minute_study.json.
