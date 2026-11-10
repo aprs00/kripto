@@ -18,7 +18,7 @@ from pathlib import Path
 
 ROOT = Path(os.environ.get("KRIPTO_ROOT") or Path(__file__).resolve().parent.parent)
 DB = ROOT / "state" / "paper.db"
-UNITS = ["trader", "health", "review", "research", "data"]
+UNITS = ["trader", "health", "review", "research", "data"]   # timers; kripto-live is a service (see books section)
 
 TTY = sys.stdout.isatty()
 
@@ -98,6 +98,14 @@ def books() -> None:
     lr = parse_ts(meta.get("last_run"))
     stale = lr is None or (now() - lr).total_seconds() > 75 * 60
     print(f"trader ran {(red if stale else green)(ago(lr))}, bar {str(meta.get('last_bar', '?'))[5:16]}")
+    try:      # always-on watcher heartbeat (kripto-live.service, every ~20 s)
+        lv = json.loads(meta["live_tick"])
+        lt = parse_ts(lv.get("ts"))
+        dead = lt is None or (now() - lt).total_seconds() > 180
+        print(f"live watch {(red if dead else green)(ago(lt))}, {lv.get('open_books', 0)} open, "
+              f"worst dd {lv.get('worst_dd', 0):+.1%}"[:60])
+    except Exception:
+        print(yellow("live watch: no heartbeat yet"))
     try:
         cfg = json.loads((ROOT / "config" / "strategies.json").read_text())
     except Exception:

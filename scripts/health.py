@@ -43,6 +43,10 @@ def gather(root: Path = ROOT, db: Path = DB) -> dict:
         meta = dict(con.execute("select k,v from meta").fetchall())
         f["last_run"], f["last_bar"], f["bn_last_run"] = meta.get("last_run"), meta.get("last_bar"), meta.get("bn_last_run")
         try:
+            f["live"] = json.loads(meta["live_tick"]) if meta.get("live_tick") else None
+        except Exception:
+            f["live"] = None
+        try:
             f["collect"] = json.loads(meta["collect_last"]) if meta.get("collect_last") else None
         except Exception:
             f["collect"] = None
@@ -78,6 +82,13 @@ def assess(f: dict, now: datetime) -> tuple[str, list[str]]:
         warn.append(f"market data stale: last bar {b:.0f}h old")
     if f.get("bn_last_run") and (age(parse_ts(f["bn_last_run"])) or 0) > 2.2:
         warn.append(f"Binance venue has not run for {age(parse_ts(f['bn_last_run'])):.1f}h")
+    lv = f.get("live")
+    if lv:      # the always-on watcher (kripto-live.service) writes a heartbeat every ~20 s
+        lh = age(parse_ts(lv.get("ts")))
+        if lh is not None and lh > 5 / 60:
+            alert.append(f"live watcher silent for {lh * 60:.0f} min (systemctl --user restart kripto-live)")
+        elif lv.get("errors"):
+            warn.append(f"live watcher cannot reach a venue: {str(lv['errors'])[:60]}")
     for ts, level, msg in f.get("events", []):
         (alert if level == "ALERT" else warn).append(f"{level} event: {str(msg)[:60]}")
     if f.get("halted"):

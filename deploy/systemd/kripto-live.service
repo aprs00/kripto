@@ -1,0 +1,13 @@
+[Unit]
+Description=kripto always-on watcher (all marks every 20 s, kill switch, live equity; public data only)
+[Service]
+Type=simple
+WorkingDirectory=%h/kripto
+Environment=KRIPTO_HL_INTERVAL=3.0
+ExecStart=%h/kripto/.venv/bin/python -m kripto.live
+Restart=always
+RestartSec=30
+Nice=10
+MemoryMax=400M
+[Install]
+WantedBy=default.target

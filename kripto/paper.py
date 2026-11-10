@@ -11,6 +11,8 @@ Venues: HL here; Binance USDT-M perps in venue_bn.py (books named `main_bn` / `s
 """
 from __future__ import annotations
 
+import contextlib
+import fcntl
 import json
 import os
 import sqlite3
@@ -100,6 +102,18 @@ class Store:
 
     def cash(self, book) -> float:
         return self.q("select cash from books where name=?", book)[0][0]
+
+
+@contextlib.contextmanager
+def trade_lock():
+    """Held by whatever is trading books (the hourly step, the live watcher's kill switch): one at a time across processes."""
+    DB.parent.mkdir(parents=True, exist_ok=True)
+    with open(DB.parent / "trade.lock", "w") as f:
+        fcntl.flock(f, fcntl.LOCK_EX)
+        try:
+            yield
+        finally:
+            fcntl.flock(f, fcntl.LOCK_UN)
 
 
 def load_cfg():
@@ -251,10 +265,12 @@ def rebalance(hl: HL, store: Store, book: str, target_w: pd.Series, marks: dict[
             continue
         px, mid, slip = fill(c, d)
         fee = abs(d) * px * fee_rate
-        store.x("update books set cash=cash-?-? where name=?", d * px, fee, book)
-        store.x("insert into positions values(?,?,?) on conflict(book,coin) do update set size=size+excluded.size",
-                book, c, d)
-        store.x("insert into fills values(?,?,?,?,?,?,?,?,?)", now_iso(), book, c, d, px, mid, fee, slip, reason)
+        with store.c:   # ONE transaction per fill: the live watcher must never see cash moved without the position
+            store.c.execute("update books set cash=cash-?-? where name=?", (d * px, fee, book))
+            store.c.execute("insert into positions values(?,?,?) on conflict(book,coin) do update set "
+                            "size=size+excluded.size", (book, c, d))
+            store.c.execute("insert into fills values(?,?,?,?,?,?,?,?,?)",
+                            (now_iso(), book, c, d, px, mid, fee, slip, reason))
 
 
 def compute_targets(store: Store, entries: dict, panel: dict, last_bar: str) -> dict[str, pd.Series]:
@@ -315,9 +331,11 @@ def run_books(store: Store, entries: dict, risk: dict, marks: dict[str, float], 
         sig_key = f"{book}_alloc_sig"   # "main_alloc_sig" / "main_bn_alloc_sig" as before; one per allocation book
         halted = store.q("select halted from books where name=?", book)[0][0]
         eq, _ = book_equity(store, book, marks)
-        peak = max(store.q("select peak from books where name=?", book)[0][0], eq)
+        priced = all(marks.get(c, 0.0) > 0 for c in store.positions(book))   # a held coin without a mark would be valued at 0
+        peak = max(store.q("select peak from books where name=?", book)[0][0], eq) if priced else \
+            store.q("select peak from books where name=?", book)[0][0]
         store.x("update books set peak=? where name=?", peak, book)
-        if not halted and eq < peak * (1 - risk["kill_drawdown"]):
+        if not halted and priced and eq < peak * (1 - risk["kill_drawdown"]):
             store.event("ALERT", f"{book}: drawdown kill-switch at equity {eq:.2f} (peak {peak:.2f}); flattening")
             reb(book, pd.Series(dtype=float), "kill_switch")
             store.x("update books set halted=1 where name=?", book)
@@ -366,7 +384,8 @@ def run_once():
     l2 = {}   # order books fetched in this run, shared by all books trading the same coin (see simulate_fill)
     reb = lambda book, tgt, reason: rebalance(hl, store, book, tgt, marks, sz_dec, reason,
                                               fill=lambda c, d: simulate_fill(hl, c, d, l2))
-    books = run_books(store, entries, risk, marks, strat_w, last_bar, "main", reb)
+    with trade_lock():
+        books = run_books(store, entries, risk, marks, strat_w, last_bar, "main", reb)
     for b in books:
         eq, gross = book_equity(store, b, marks)
         store.x("insert into equity values(?,?,?,?,?)", now_iso(), b, eq, gross, len(store.positions(b)))
@@ -406,7 +425,8 @@ def collect_status(store: Store) -> str:
 def status() -> str:
     store = Store()
     lines = [f"last_run={store.get_meta('last_run')} last_bar={store.get_meta('last_bar')} "
-             f"bn_last_bar={store.get_meta('bn_last_bar')}"]
+             f"bn_last_bar={store.get_meta('bn_last_bar')}",
+             f"live watcher: {store.get_meta('live_tick') or 'never ran'}"]
     for name, start, halted in store.q("select name,start_equity,halted from books order by name"):
         r = store.q("select ts,equity,gross,n_pos from equity where book=? order by ts desc limit 1", name)
         if not r:

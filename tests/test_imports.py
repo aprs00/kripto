@@ -3,7 +3,7 @@ import importlib
 import pytest
 
 MODULES = ["kripto.hl", "kripto.data", "kripto.backtest", "kripto.metrics",
-           "kripto.strategies", "kripto.research", "kripto.paper", "kripto.venue_bn", "kripto.collect",
+           "kripto.strategies", "kripto.research", "kripto.paper", "kripto.venue_bn", "kripto.collect", "kripto.live",
            "scripts.health", "scripts.guard", "scripts.forward_score", "scripts.dash"]
 
 

@@ -189,7 +189,8 @@ def run(store: P.Store, cfg: dict, risk: dict, bn: BN | None = None):
                     min_notional=lambda c: filters.get(c, {}).get("min_notional", 5.0),
                     fee_rate=TAKER_FEE_BN)
 
-    books = P.run_books(store, entries, risk, marks, strat_w, last_bar, "main_bn", reb)
+    with P.trade_lock():
+        books = P.run_books(store, entries, risk, marks, strat_w, last_bar, "main_bn", reb)
     for b in books:
         eq, gross = P.book_equity(store, b, marks)
         store.x("insert into equity values(?,?,?,?,?)", P.now_iso(), b, eq, gross, len(store.positions(b)))

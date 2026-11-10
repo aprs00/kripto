@@ -249,3 +249,15 @@ def test_fspread_hold_opens_on_a_wide_spread_holds_through_a_narrow_one_and_exit
     cut = 90
     trunc = fspread_hold({k: v.iloc[:cut] for k, v in p.items()}, lookback=7)
     pd.testing.assert_frame_equal(fspread_hold(p, lookback=7).iloc[:cut].fillna(0), trunc.fillna(0), atol=1e-12)
+
+
+def test_fractional_every_days_decides_intraday_never_finer_than_a_bar():
+    from kripto import strategies as st
+    p = _listing_panel()                         # 4h bars
+    raw = pd.DataFrame(0.0, p["close"].index, p["close"].columns)
+    raw["BTC"], raw["OLD"] = 0.5, -0.5
+    rows = lambda w: int(w.notna().any(axis=1).sum())
+    daily, four_h, hourly = (st.scheduled(raw, p, e, 0.2) for e in (1, 1 / 6, 1 / 24))
+    assert rows(four_h) == len(raw) and rows(hourly) == len(raw)      # every bar; 1h on 4h bars cannot go below a bar
+    assert rows(daily) == pytest.approx(len(raw) / 6, abs=1)
+    pd.testing.assert_frame_equal(st.scheduled(raw, p, 1, 0.2), st.vol_target(st.rebalance_rows(raw, 6), p, 0.2))

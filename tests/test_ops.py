@@ -96,3 +96,13 @@ def test_forward_ledger_uses_only_bars_after_registration(tmp_path):
     (tmp_path / "20261110-0800_b_hl.json").write_text('{"strategy":"b","dataset":"hl","folds":[]}')
     ex = fs.experiments(tmp_path, known={"a", "b"})
     assert len(ex) == 1 and ex[0]["registered"].day == 9 and ex[0]["backtest_oos_sharpe"] == 1.0   # earliest wins
+
+
+def test_silent_live_watcher_is_an_alert():
+    f = _ok(); f["live"] = {"ts": iso(seconds=30), "errors": []}
+    assert health.assess(f, NOW) == ("OK", [])
+    f["live"] = {"ts": iso(minutes=12), "errors": []}
+    level, why = health.assess(f, NOW)
+    assert level == "ALERT" and "live watcher silent" in why[0]
+    f["live"] = {"ts": iso(seconds=30), "errors": ["hl: timeout"]}
+    assert health.assess(f, NOW)[0] == "WARN"

@@ -111,9 +111,10 @@ def scheduled(raw: pd.DataFrame, panel, every_days: int, target_vol: float, max_
     Diagnostics only (phase spread in research.robustness)."""
     bpd = bars_per_day(panel["close"].index)
     if phase is not None or every_days <= 1:
-        w = rebalance_rows(raw, every_days * bpd, offset=(phase or 0) * bpd)
+        # every_days may be a fraction on intraday bars: 1/6 = every 4 hours, 1/24 = every hour (never finer than one bar)
+        w = rebalance_rows(raw, max(1, int(round(every_days * bpd))), offset=int(round((phase or 0) * bpd)))
     else:
-        w = tranche_mean(rebalance_rows(raw, bpd), every_days)
+        w = tranche_mean(rebalance_rows(raw, bpd), int(round(every_days)))
     return vol_target(w, panel, target_vol, max_gross=max_gross)
 
 
