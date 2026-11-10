@@ -228,3 +228,5 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   WARNs when a chore is overdue (first use: blend_nested's 60-day refit, `scripts/nested_choice.py`), so dated chores live in code,
   not in memory. (4) Library .txt files need `grep -a` (plain grep silently found nothing in maxdama). Lesson from T9: a cost
   saving in fees can be eaten by alpha loss; measure execution changes on the longest history with the return effect, not cost/yr.
+* 2026-11-10 research: retiring an entry left its shadow book holding stale positions (HL xsmom kept 30 open positions and kept
+  accruing funding). `run_books` now closes a retired entry's book once (test added). Lesson: a lifecycle change needs its exit path.

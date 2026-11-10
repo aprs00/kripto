@@ -18,3 +18,26 @@ def test_untouched_book_is_resized_but_a_traded_book_is_not(tmp_path):
 
     s.resize_untouched("main", 1000.0)       # same size: no-op, no extra event
     assert s.q("select count(*) from events where msg like 'resized%'") == [(1,)]
+
+
+def test_retired_entry_book_is_flattened_once_and_live_books_still_trade(tmp_path):
+    import pandas as pd
+    from kripto.paper import run_books
+    s = Store(tmp_path / "p.db")
+    s.ensure_book("shadow:old", 2000.0)
+    s.x("insert into positions values('shadow:old','BTC',0.01)")
+    calls = []
+
+    def reb(book, tgt, reason):
+        calls.append((book, len(tgt), reason))
+        if reason == "retired":
+            s.x("update positions set size=0 where book=?", book)
+    entries = {"old": {"status": "retired"}, "new": {"status": "candidate"}}
+    risk = {"start_equity": 1000.0, "shadow_equity": 2000.0, "kill_drawdown": 0.5, "max_asset_weight": 1.0, "max_gross": 3.0}
+    w = {"new": pd.Series({"BTC": 0.5})}
+    books = run_books(s, entries, risk, {"BTC": 100.0}, w, "bar1", "main", reb)
+    assert ("shadow:old", 0, "retired") in calls and "shadow:old" not in books
+    assert any(b == "shadow:new" for b, _, _ in calls)
+    calls.clear()
+    run_books(s, entries, risk, {"BTC": 100.0}, w, "bar2", "main", reb)
+    assert not any(b == "shadow:old" for b, _, _ in calls)        # already flat: not touched again

@@ -147,4 +147,4 @@ for non-directional books (fspread) or once HL 1h history (kept nightly; HL serv
 New angle vs X1: fixed 10% legs, open at |14d mean HL−BN spread| > enter, HOLD until it flips. **pair 1d WF OOS 1.26 / 1.66y (cagr 8.4%,
 mdd −1.7%), grid med 2.22, 6/6 >0, worst 1.43 (2× costs), corr BTC −0.03.** Turnover 10–50× (X1: 70–410×): funding +3–10%/yr vs costs
 1–4%/yr. 40–52 pairs, top coin ≈ 20% of P&L, every year +; short the HL leg 95% of pair-days (HL longs pay). ~⅓ of P&L is premium
-convergence (price legs), not funding. Fails DSR (0.006: 1.66 y, fat tails). Not modelled: margin split across two venues (≈2× per venue).
+convergence (price legs), not funding. Fails DSR (0.006: 1.66 y, fat tails). Not modelled: margin split across two venues (≈2× per venue). Daily basis risk small (worst pair-day −0.41%, max basis 95 bp).
