@@ -1,0 +1,56 @@
+{
+ "_note": "T9 round 2, defined 2026-11-10 AFTER seeing round 1's HL rows (unfilled orders chase ~150 bp of drift, so taker fallback roughly cancels the fee saving for momentum books). Policy: post-only, an unfilled order is dropped and retried at the next rebalance (the position stays). Primary [4h, 5bp, skip]; stress [4h, 20bp, skip]. Same configs as round 1. Decision rule as round 1: worth building live if BN-82 cost/yr falls >= 30% with Sharpe not lower and HL agrees in sign. Execution-policy choice, not a signal: 2 variants, judged mainly by live tracking later.",
+ "_policies": [
+  [
+   4,
+   0.0005,
+   "skip"
+  ],
+  [
+   4,
+   0.002,
+   "skip"
+  ]
+ ],
+ "hl": {
+  "tsmom": {
+   "top_n": 12
+  },
+  "xsmom_k": {
+   "lookback": 28,
+   "k": 4,
+   "every_days": 3
+  },
+  "listing_short": {
+   "skip_days": 1,
+   "hold_days": 60
+  },
+  "blend": {},
+  "lowvol": {},
+  "xsmom": {
+   "lookback": 28,
+   "every_days": 3
+  }
+ },
+ "hlx": {
+  "flow": {
+   "lookback": 14,
+   "sign": 1
+  }
+ },
+ "bn": {
+  "tsmom": {
+   "top_n": 12
+  },
+  "xsmom": {
+   "lookback": 28,
+   "every_days": 3
+  },
+  "xsmom_k": {
+   "lookback": 28,
+   "k": 5,
+   "every_days": 3
+  },
+  "lowvol": {}
+ }
+}

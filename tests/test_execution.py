@@ -41,3 +41,14 @@ def test_backtest_charges_maker_fee_when_filled_and_drift_plus_taker_when_not():
     assert r.costs.iloc[2] == pytest.approx(2 * (0.01 + 0.00045), rel=1e-3)  # unfilled sell after a 1% drop: sells 1% lower + taker
     r0 = bt.run(w, close, cost=0.0, fee=0.00045)
     assert r0.costs.iloc[0] == pytest.approx(0.00045)                      # default: taker everywhere
+
+
+def test_post_only_skips_unfilled_trades_and_keeps_the_old_position():
+    idx = pd.date_range("2025-01-01", periods=4, freq="1D", tz="UTC")
+    close = pd.DataFrame({"A": [100.0, 100, 100, 100]}, idx)
+    w = pd.DataFrame({"A": [1.0, np.nan, -1.0, np.nan]}, idx)
+    fb = pd.DataFrame({"A": [1.0, 1, 1, 1]}, idx)
+    mk = {"fill_buy": fb, "fill_sell": fb * 0, "drift": fb * 0, "fee": 0.00015, "skip_unfilled": True}
+    r = bt.run(w, close, cost=0.0, fee=0.00045, maker=mk)
+    assert r.costs.iloc[2] == 0.0 and r.turnover.iloc[2] == 0.0      # the sell never filled: no trade, no cost
+    assert r.weights["A"].iloc[3] == pytest.approx(1.0, rel=1e-3)     # still long

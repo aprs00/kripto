@@ -16,13 +16,13 @@
     "note": "2026-11-08: BN WF OOS SR 1.26 (all years +), HL WF OOS SR 0.55/0.51, HL grid median 0.89 (16/16 >0). Fails HL gate -> shadow only. | 2026-11-09 T0 re-run (fixed code): HL OOS 0.43 (grid med 0.47, 12/12>0), BN 1.31; concentrated HL 0.55 (med 0.90, 16/16), BN 1.03. Still fails HL gate. bnall 1d OOS 0.97 (12/12>0). | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): HL 1d OOS 0.08 (grid med 0.58), bnall 0.65 (med 0.96). Weak alone; kept as a blend leg and for tracking."
   },
   "xsmom": {
-    "status": "candidate",
+    "status": "retired",
     "alloc": 0.0,
     "params": {
       "lookback": 28,
       "every_days": 3
     },
-    "note": "2026-11-08: BN WF OOS SR 0.63, HL 0.71. Shadow only. | 2026-11-09 T0 re-run: HL OOS 0.42 (med 0.72, 11/12>0), BN 0.55 (med 0.39). Weak; fails gate. bnall 1d OOS 1.27 (12/12>0, corr BTC ~0); band 0.05 halves it (breadth). | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): HL 1d OOS -0.09 (med 0.06); bnall 1.34 (DSR 0.85, worst 1.03). Dead on HL, alive on Binance -> see xsmom@bn."
+    "note": "2026-11-08: BN WF OOS SR 0.63, HL 0.71. Shadow only. | 2026-11-09 T0 re-run: HL OOS 0.42 (med 0.72, 11/12>0), BN 0.55 (med 0.39). Weak; fails gate. bnall 1d OOS 1.27 (12/12>0, corr BTC ~0); band 0.05 halves it (breadth). | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): HL 1d OOS -0.09 (med 0.06); bnall 1.34 (DSR 0.85, worst 1.03). Dead on HL, alive on Binance -> see xsmom@bn. | 2026-11-10: shadow retired to make room (dead on HL: v2 OOS -0.09; Binance version lives on as xsmom@bn)."
   },
   "carry": {
     "status": "retired",
@@ -116,5 +116,18 @@
     "alloc": 0.0,
     "params": {},
     "note": "2026-11-09 v2: same pre-registered blend on Binance. bnall 1d WF OOS 1.30 / 6.1y (DSR 0.81, worst 0.99, corr BTC 0.07). Fails the DSR clause only. Shadow only."
+  },
+  "blend_nested": {
+    "strategy": "blend",
+    "status": "candidate",
+    "alloc": 0.0,
+    "params": {
+      "components": {
+        "listing_short": {},
+        "lowvol": {},
+        "tsmom": {}
+      }
+    },
+    "note": "2026-11-10 H4: blend_nested = blend whose components are re-chosen every 60 days out-of-sample (top-3 expanding Sharpe of 10 pool strategies at default params). HL 1d WF OOS 1.87 / 2.16y (worst 1.29 = 1 day late; 2x costs 1.34), bnall 1.16 / 5.4y (DSR 0.63, worst 0.98). Fails only DSR. Live = `blend` with the rule's CURRENT HL choice (listing_short, lowvol, tsmom at defaults; the live panel holds 220 days, too short to rerun the selection). Next HL refit on the 60-day epoch grid: 2027-01-02 -> run `python -m scripts.nested_choice hl` and update components."
   }
 }

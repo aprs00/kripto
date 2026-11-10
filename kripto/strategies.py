@@ -455,32 +455,29 @@ def _component_returns(panel, name: str):
     return held, r
 
 
-@register
-def blend_nested(panel, top=3, refit_days=60, min_days=240, target_vol=0.25, unit_vol=0.20, max_gross=3.0,
-                 every_days=1, pool=NESTED_POOL, phase=None):
-    """Blend whose components are chosen out-of-sample (H4, pre-registered 2026-11-10). Every `refit_days` days (grid
-    anchored at the epoch) rank every pool strategy by its expanding net Sharpe on all data up to that bar (needs
-    >= min_days of invested history) and hold the equal-risk blend (same rescaling as `blend`) of the `top` best with
-    Sharpe > 0 until the next refit. Removes the hindsight in choosing `blend`'s three components."""
+def nested_selection(panel, top=3, refit_days=60, min_days=240, unit_vol=0.20, pool=NESTED_POOL):
+    """H4 selection rule. Returns (comps, sel, log): comps = {name: rescaled held weights}, sel = per-bar equal weights of the
+    chosen components (rows on refit bars, forward-filled), log = [(refit date, {name: expanding Sharpe})] of the choices."""
     c = panel["close"]
     bpd = bars_per_day(c.index)
-    comps = {}
+    comps, rets = {}, {}
     for name in pool:
         try:
             held, r = _component_returns(panel, name)
         except KeyError:            # panel lacks a column this component needs
             continue
         tv = inspect.signature(REGISTRY[name]).parameters["target_vol"].default
-        comps[name] = (held.reindex(columns=c.columns, fill_value=0.0) * (unit_vol / tv), r)
+        comps[name] = held.reindex(columns=c.columns, fill_value=0.0) * (unit_vol / tv)
+        rets[name] = r
     epoch = pd.Timestamp(0, tz=c.index.tz)
     day = np.asarray((c.index - epoch) // pd.Timedelta(days=1), dtype=np.int64)
     refit = np.r_[True, np.diff(day // refit_days) != 0]
-    sel = pd.DataFrame(0.0, c.index, list(comps))
-    cur = {}
+    sel = pd.DataFrame(np.nan, c.index, list(comps))
     ann = np.sqrt(365 * bpd)
+    log = []
     for i in np.flatnonzero(refit):
         cur = {}
-        for name, (_, r) in comps.items():
+        for name, r in rets.items():
             ri = r.iloc[: i + 1]
             inv = ri.ne(0).to_numpy()
             if not inv.any():
@@ -493,9 +490,22 @@ def blend_nested(panel, top=3, refit_days=60, min_days=240, target_vol=0.25, uni
         sel.iloc[i] = 0.0
         if best:
             sel.iloc[i, [sel.columns.get_loc(n) for n in best]] = 1.0 / len(best)
-    sel = sel.where(pd.Series(refit, c.index), np.nan).ffill().fillna(0.0)
+        log.append((c.index[i], {n: round(cur[n], 2) for n in best}))
+    return comps, sel.ffill().fillna(0.0), log
+
+
+@register
+def blend_nested(panel, top=3, refit_days=60, min_days=240, target_vol=0.25, unit_vol=0.20, max_gross=3.0,
+                 every_days=1, pool=NESTED_POOL, phase=None):
+    """Blend whose components are chosen out-of-sample (H4, pre-registered 2026-11-10). Every `refit_days` days (grid
+    anchored at the epoch) rank every pool strategy by its expanding net Sharpe on all data up to that bar (needs
+    >= min_days of invested history) and hold the equal-risk blend (same rescaling as `blend`) of the `top` best with
+    Sharpe > 0 until the next refit. Removes the hindsight in choosing `blend`'s three components.
+    Live trades `blend` with the latest choice (`python -m scripts.nested_choice hl`): the live panel is too short."""
+    c = panel["close"]
+    comps, sel, _ = nested_selection(panel, top, refit_days, min_days, unit_vol, pool)
     tot = pd.DataFrame(0.0, c.index, c.columns)
-    for name, (w, _) in comps.items():
+    for name, w in comps.items():
         tot = tot + w.mul(sel[name], axis=0)
     tot = tot.where(sel.sum(axis=1) > 0, 0.0)
     return scheduled(tot, panel, every_days, target_vol, max_gross, phase)

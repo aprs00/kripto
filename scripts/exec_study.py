@@ -27,9 +27,9 @@ def hourly(ds: str) -> dict:
     return {k: p[k] for k in ("close", "high", "low")}
 
 
-def fill_stats(res, mk) -> dict:
+def fill_stats(res, mk, start: str) -> dict:
     """Turnover-weighted fill rate and mean drift cost of unfilled trades, on cells that have hourly data."""
-    w = res.weights
+    w = res.weights[res.weights.index >= start]   # the hourly-covered window only (bug in the first 11-10 run: full history)
     dw = (w.shift(-1) - w).fillna(0.0)      # trade at close t moves held weights from bar t to t+1 (approx: ignores drift)
     fb, fs, dr = (mk[k].reindex(index=w.index, columns=w.columns) for k in ("fill_buy", "fill_sell", "drift"))
     have = fb.notna() & dr.notna()
@@ -53,16 +53,18 @@ def main(path: str):
         hp = hourly(ds)
         start = str(hp["close"].index.min() + pd.Timedelta(days=30))   # leave the strategies a month of hourly-era warm-up
         fee = MAKER_FEE["hl" if ds in ("hl", "hlx") else "bn"]
-        mks = {tuple(p): {**maker_fills(hp, panel["close"].index, p[0], p[1]), "fee": fee} for p in pols}
+        # a policy is [horizon_h, through] (taker fallback) or [horizon_h, through, "skip"] (post-only, unfilled = no trade)
+        mks = {tuple(p): {**maker_fills(hp, panel["close"].index, p[0], p[1]), "fee": fee,
+                          "skip_unfilled": len(p) > 2 and p[2] == "skip"} for p in pols}
         for name, params in strats.items():
             _, s0 = research.evaluate(name, panel, params, f"{ds}_1d", start=start, tag="exec")
             row = {"ds": ds, "strategy": name, "params": params, "start": start[:10],
                    "taker": {k: s0.get(k) for k in ("sharpe", "turnover_yr", "cost_yr", "cagr")}}
             for p, mk in mks.items():
                 res, s = research.evaluate(name, panel, params, f"{ds}_1d", start=start, tag="exec", maker=mk,
-                                           exec_desc=f"maker_h{p[0]}_x{p[1]*1e4:.0f}bp")
-                row[f"h{p[0]}_x{p[1]*1e4:.0f}"] = {**{k: s.get(k) for k in ("sharpe", "turnover_yr", "cost_yr", "cagr")},
-                                                   **fill_stats(res, mk)}
+                                           exec_desc=f"maker_h{p[0]}_x{p[1]*1e4:.0f}bp" + ("_skip" if mk["skip_unfilled"] else ""))
+                row[f"h{p[0]}_x{p[1]*1e4:.0f}" + ("_skip" if mk["skip_unfilled"] else "")] = {**{k: s.get(k) for k in ("sharpe", "turnover_yr", "cost_yr", "cagr")},
+                                                   **fill_stats(res, mk, start)}
             out.append(row)
             t = row["taker"]
             print(f"{ds:4} {name:14} taker SR={t['sharpe']} cost/yr={t['cost_yr']} turn={t['turnover_yr']}", flush=True)

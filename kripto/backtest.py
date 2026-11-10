@@ -42,7 +42,8 @@ def run(weights: pd.DataFrame, close: pd.DataFrame, funding: pd.DataFrame | None
         cost_mult: float = 1.0, rebalance_every: int = 1, maker: dict | None = None) -> BTResult:
     """maker = execution.maker_fills(...) output + {"fee": maker fee}: trades on (t, asset) cells with hourly data use the
     passive policy (filled at the decision price for the maker fee, else drift since the decision + taker cost);
-    other cells pay the taker cost. cost_mult scales fees/slippage, not the drift (a price fact, not an estimate)."""
+    other cells pay the taker cost. maker["skip_unfilled"]=True: post-only, an unfilled trade is not done (no drift paid,
+    the position stays where it was until the next rebalance). cost_mult scales fees/slippage, not the drift (a price fact, not an estimate)."""
     idx, cols = close.index, close.columns
     W = weights.reindex(index=idx, columns=cols).to_numpy(dtype=float)
     px = close.to_numpy(dtype=float)
@@ -66,6 +67,9 @@ def run(weights: pd.DataFrame, close: pd.DataFrame, funding: pd.DataFrame | None
         have = np.isfinite(M["fill_buy"]) & np.isfinite(M["drift"])
         cb = np.where(have, np.where(M["fill_buy"] == 1, mf, M["drift"] + c), c)
         cs = np.where(have, np.where(M["fill_sell"] == 1, mf, -M["drift"] + c), c)
+        skip = bool(maker.get("skip_unfilled", False))   # post-only: an unfilled order is dropped, retried next rebalance
+        nobuy = have & (M["fill_buy"] != 1)
+        nosell = have & (M["fill_sell"] != 1)
     else:
         cb = cs = c
 
@@ -99,6 +103,8 @@ def run(weights: pd.DataFrame, close: pd.DataFrame, funding: pd.DataFrame | None
             if band > 0:
                 small = (np.abs(dw) < band) & (tgt != 0)
                 dw = np.where(small, 0.0, dw)
+            if maker is not None and skip:
+                dw = np.where(((dw > 0) & nobuy[t]) | ((dw < 0) & nosell[t]), 0.0, dw)
             cost_t = float(np.clip(dw, 0, None) @ np.where(np.isfinite(cb[t]), cb[t], 0.0)
                            + np.clip(-dw, 0, None) @ np.where(np.isfinite(cs[t]), cs[t], 0.0))
             w = w + dw
