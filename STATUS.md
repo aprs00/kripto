@@ -2,6 +2,11 @@ HEALTH: OK — trader (HL + Binance), collector and timers healthy; one new cand
 
 _Updated 2026-11-10 17:40 UTC (interactive session with the owner). Research results below are from the 06:40 session._
 
+**Owner 18:40 UTC: "if you can run everything immediately on server, then run it."** A research session was started by hand
+tonight to do now what was planned for Thursday: main books trading the best estimate, the two-venue book for funding capture,
+and the Hyperliquid order-flow collector. Three things only time can produce are not hurried: the cost-model re-fit (two weeks of
+fills), the live-vs-backtest check (a week of live books) and the forward ledger (30 days).
+
 ## Mandate (owner, 2026-11-10): "the only rule is that it should create a profitable trading bot, rest is up to you"
 Taken literally. Decided under it: (1) from Thursday the main paper books stop sitting flat and trade my best current estimate
 (Hyperliquid: the rule-picked blend; Binance: flow + broad momentum + blend), at $1,000 and $200, so "the bot" has a real track

@@ -5,7 +5,20 @@ Also read research/findings.md before picking: it records what is already DEAD a
 Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done: `- [x] ... → <one-line result, link to journal>`
 
 **Priority order (rewritten 2026-11-10 after H4/T9/X1b; research Tue + Thu, ≤ 6 new walk-forward experiments per session):**
-**Thu 11-12, first thing — M1 main books trade the best estimate** (design.md 2026-11-10, owner mandate): apply the fixed rule
+## OWNER INSTRUCTION 2026-11-10 evening: "if you can run everything immediately on server, then run it"
+This session was started by hand on Tuesday evening for exactly that. Do these now, in this order, and do not postpone any of
+them to Thursday. It is a build session: no new walk-forward experiments unless a build needs one.
+1. **M1** (below): set the main books to the best estimate today. This IS "the next research session" that design.md refers to.
+2. **X2** two-venue paper book so fspread_hold trades on paper (design below). Include it in the live watcher (`kripto/live.py`
+   values books per venue: a pair book needs marks from both) and give it `small:` twins like every other book.
+3. **W1** Hyperliquid trade-flow collector over the public websocket (spec below; allowed by HARD RULE 1 since today). It is its own
+   always-on service like kripto-live: never let it touch the trader path. Add a heartbeat the watchdog checks.
+4. If time remains: `nice -n 19 .venv/bin/python -m scripts.forward_score` once, as the forward ledger's day-0 baseline; commit it.
+What cannot be hurried, so do not fake it: C1 (cost model) needs two weeks of fills, the tracking check needs a week of live books,
+the forward ledger needs 30 days. Say so in STATUS.md in one line.
+After each build: tests, a real trader run, `scripts.health`, then commit and push. Overwrite STATUS.md at the end as usual.
+
+**M1 main books trade the best estimate** (was planned for Thu 11-12; brought forward by the instruction above) (design.md 2026-11-10, owner mandate): apply the fixed rule
 (equal-risk mix of the venue's candidates with WF OOS > 0.8 on that venue and `robust.worst` > 0) to set `incubation` + alloc for
 `main` (HL) and `main_bn`; expected today: HL = blend_nested (it already is the rule-based mix; do not double-count blend), Binance =
 flow@bn + xsmom@bn + blend@bn. Their `small:` twins follow automatically. State in STATUS.md that this is the paper best estimate,
