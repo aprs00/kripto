@@ -230,3 +230,22 @@ def test_blend_nested_is_causal_and_trades_once_history_allows():
     trunc = st.blend_nested({k: v.iloc[:cut] for k, v in p.items()}, **kw)
     assert full.iloc[:cut].abs().sum(axis=1).max() > 0
     pd.testing.assert_frame_equal(full.iloc[:cut].fillna(0), trunc.fillna(0), check_exact=False, atol=1e-10)
+
+
+def test_fspread_hold_opens_on_a_wide_spread_holds_through_a_narrow_one_and_exits_on_the_flip():
+    from kripto.strategies import fspread_hold
+    p = _pair_panel(T=160)
+    f = p["funding"]
+    f.loc[f.index[60]:, "A@hl"] = 0.0002          # spread narrows to 7.3%/yr: below `enter`, still positive -> hold
+    f.loc[f.index[100]:, "A@hl"] = -0.0005        # spread flips sign -> exit (and re-open the other way once wide)
+    w = fspread_hold(p, lookback=7, enter=0.20, max_pair=0.1, gross=2.0).ffill()
+    a = w["A@hl"]
+    assert a.iloc[30] == pytest.approx(-0.1) and w["A@bn"].iloc[30] == pytest.approx(0.1)   # short HL, long Binance
+    assert w["B@hl"].iloc[30] == pytest.approx(0.1)                                         # mirror pair
+    assert w["C@hl"].iloc[30] == 0
+    assert (a.iloc[30:100] == -0.1).all()                                                   # hysteresis: held while 7%/yr > 0
+    assert a.iloc[110] == 0                                                                 # the 7-day mean flipped sign: closed
+    assert a.iloc[-1] == 0                                                                  # -18%/yr never exceeds enter=20%
+    cut = 90
+    trunc = fspread_hold({k: v.iloc[:cut] for k, v in p.items()}, lookback=7)
+    pd.testing.assert_frame_equal(fspread_hold(p, lookback=7).iloc[:cut].fillna(0), trunc.fillna(0), atol=1e-12)

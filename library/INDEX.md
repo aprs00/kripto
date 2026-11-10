@@ -15,7 +15,7 @@ Status: `unread` → `skimmed` → `mined` (testable ideas extracted into librar
 | bouchaud-farmer-lillo-2008-how-markets-slowly-digest | CFM/Santa Fe review (109 p) | order flow has long memory (metaorders split over days); impact ∝ √(Q/V)·σ; impact is mostly transient | L2 flow signal, L3 cost model | skimmed |
 | toth-palit-lillo-farmer-2015-order-flow-persistence | paper (37 p) | the persistence comes from order splitting, not herding, so flow imbalance predicts future flow, while price stays ~efficient | L2 | skimmed |
 | alexander-heck-2020-price-discovery-bitcoin | paper (34 p) | big offshore perps lead BTC price discovery (minute data); the leaders absorb information faster | L1 HL–BN lead-lag | skimmed |
-| maxdama-2011-automated-trading | practitioner notes (57 p) | §5 backtesting pitfalls, §6 Kelly/multi-strategy allocation, §7 execution, impact, capacity | T4 blend sizing, T9, process | skimmed |
+| maxdama-2011-automated-trading | practitioner notes (57 p) | §5 backtesting pitfalls, §6 Kelly/multi-strategy allocation, §7 execution, impact, capacity | T4 blend sizing, T9, process | §7 mined 2026-11-10 (N8); rest skimmed |
 | pole-2007-statistical-arbitrage | book (257 p) | ch. 3 defactored returns, ch. 4 "75% rule" of reversion, ch. 7 quantifying reversion opportunities, ch. 6 interstock vol | L4 residual reversion | skimmed |
 | gueant-2016-market-liquidity-execution | book (302 p, math heavy) | Almgren–Chriss execution; part on market making / limit-order placement | T9 maker execution | skimmed (TOC) |
 | tsay-analysis-of-financial-time-series | textbook (457 p) | reference only: volatility models, unit roots/cointegration, high-frequency data chapter | vol models, tests | reference |

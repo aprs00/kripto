@@ -35,3 +35,11 @@ forecasts best. Better vol forecasts → better vol targeting for tsmom/xsmom (r
 ### N7 Value-area rejection (dalton; tradingriot AMT) → backlog L5 (low prior)
 Price that trades outside the prior session's value area (70% of volume) but fails to gain acceptance reverts to
 the POC. Crypto has no sessions, so use the UTC day built from 1h volume. Low prior: discretionary context matters to them.
+
+### N8 Alpha loss vs execution cost (maxdama §7.3–7.6) → backlog T9b (mined 2026-11-10)
+Execution shortfall = liquidity impact + alpha loss. Waiting (passive orders, slicing) saves impact and fees but loses the part of
+the signal's alpha that arrives while you wait. Measure the alpha-decay curve from signals you did NOT trade (the baseline), then
+choose the waiting time that minimises the sum. For us: a daily signal whose alpha arrives over days loses almost nothing by
+waiting hours for a maker fill, while a fast signal (flow lb3) may. Mechanical test: for each strategy, the average signed return
+of its trades from the decision close to +1h, +4h, +12h, +24h (hourly data). It also gives the right post-only horizon per strategy.
+Adverse selection (limit buys fill as price falls) is the other half; T9's trade-through fill model includes it.

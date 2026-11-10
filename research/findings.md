@@ -8,6 +8,9 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
 ## Cross-cutting lessons (apply to everything)
 * **Verify the plumbing, not just the result.** A unit bug silently voided a whole day of research (2026-11-09). Any
   helper touching timestamps/alignment needs a unit test on synthetic data with a known answer.
+* **Passive execution is not a free cost cut for daily signals (T9, 2026-11-10).** Post-only maker orders cut fees ~70%, but the
+  orders that don't fill are the ones that run away (alpha loss), and fills come as the price moves against you. On 6 years of
+  BN-82 that took back as much return as the fees saved. Lowering turnover is the cost lever, not swapping taker for maker.
 * **Costs are the binding constraint on Hyperliquid.** The HL top-20 by volume includes thin memes; slippage +
   fees took ~8%/yr off trend. Any HL strategy must be judged at HL cost levels, not Binance's. By 2026-11-09 three signals
   are real before costs and dead after them on HL (xsmom_k: 2× costs 0.31; flow-on-HL: +19% gross, 17% costs; funding
@@ -126,3 +129,15 @@ pair 1d WF OOS −1.42 / 1.67y, 0/9 >0. The funding difference IS there: +6% to 
 (vol ≈ 2–4%). But weights that follow the spread turn over 70–410×/yr and cost 6–36%/yr: more than the funding in every config.
 Best (lb14, thr 20%): funding +6.3%, costs −6.0%. New angle if revisited (not tested): enter on a wide spread and HOLD until it
 flips (hysteresis), liquid pairs only, passive execution. Needs T9 first. Only 84 coins have HL funding history (2024-07+).
+
+### blend_nested: blend with component SELECTION out-of-sample (H4, 2026-11-10) → ALIVE (candidate, shadow blend_nested)
+Every 60 days, top-3 by expanding net Sharpe among 10 pool strategies at default params, equal risk. **HL 1d OOS 1.87 / 2.16y
+(worst 1.29 = 1 day late; 2× costs 1.34; corr BTC −0.03), bnall 1.16 / 5.4y (DSR 0.63, worst 0.98).** The pre-registered test passed
+(HL > 0.8, worst > 0), so the blend's HL number is NOT mainly hindsight. The rule picks listing_short+tsmom+lowvol on HL and carry+carry_trend+xsmom
+on bnall. Fails DSR only. Caveat: listing_short leads; its HL funding is known for 35% of short exposure overall (92% in 2026).
+### T9 passive (maker) execution for the daily books (2026-11-10, exec_study r1+r2, config-level) → DEAD as a general fix
+Model: limit at the decision close, filled on a 5 bp trade-through within 4 h (hourly OHLC). (r1) taker fallback: BN-82 costs UP ~20%
+(unfilled orders chase ~150 bp of drift). (r2) post-only, skip unfilled: costs −65–80% on both venues, but BN-82 6y Sharpe falls
+(tsmom 0.88→0.83, xsmom 0.65→0.58, xsmom_k 0.51→0.46; 20 bp trade-through 0.44/−0.01). By year, post-only gained only in 2025–26,
+which is why HL's 7-month window looks good (tsmom 1.76→1.93, flow-on-HL 1.59→1.72). Fails the pre-registered rule. Revisit only
+for non-directional books (fspread) or once HL 1h history (kept nightly; HL serves only 5000 bars) covers ≥ 18 months.

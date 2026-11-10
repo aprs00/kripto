@@ -509,3 +509,46 @@ def blend_nested(panel, top=3, refit_days=60, min_days=240, target_vol=0.25, uni
         tot = tot + w.mul(sel[name], axis=0)
     tot = tot.where(sel.sum(axis=1) > 0, 0.0)
     return scheduled(tot, panel, every_days, target_vol, max_gross, phase)
+
+
+@register
+def fspread_hold(panel, lookback=14, enter=0.20, top_n=20, max_pair=0.10, gross=2.0, phase=None):
+    """Funding capture, second angle (X1b, 2026-11-10). X1 `fspread` re-weighted every day in proportion to the spread and
+    churned the funding away (turnover 70-410x/yr). Here each pair is a fixed-size position with hysteresis: OPEN when the
+    trailing `lookback`-day mean of (HL - Binance funding), annualised, exceeds `enter` in absolute value (short the venue
+    whose longs pay more, long the other, each leg `max_pair` of equity); HOLD until that mean changes sign or the pair stops
+    being eligible (not the same asset, no price, out of the top_n by thinner-leg volume x 2). At most gross/(2*max_pair)
+    pairs open; free slots go to the widest spreads. Same economics as fspread: paid by crowded leveraged longs on one venue."""
+    c, f = panel["close"], panel["funding"]
+    hlc = [x for x in c.columns if x.endswith("@hl") and x[:-3] + "@bn" in c.columns]
+    if not hlc:
+        return pd.DataFrame(np.nan, c.index, c.columns)
+    bnc = [x[:-3] + "@bn" for x in hlc]
+    bpd = bars_per_day(c.index)
+    n = lookback * bpd
+    on_bn = lambda df: df[bnc].set_axis(hlc, axis=1)
+    s = (f[hlc] - on_bn(f)).rolling(n, min_periods=n).mean() * bpd * 365
+    same = np.log(c[hlc] / on_bn(c)).abs().rolling(30 * bpd, min_periods=10 * bpd).median() < 0.03
+    dv = dollar_volume(panel)
+    dvm = np.minimum(dv[hlc], on_bn(dv))
+    elig = same & s.notna() & c[hlc].notna() & on_bn(c).notna() & (dvm > 0)
+    liquid = dvm.where(elig).rank(axis=1, ascending=False) <= 2 * top_n     # hold through small rank changes
+    can_open = elig & (dvm.where(elig).rank(axis=1, ascending=False) <= top_n)
+    S, E, L, O = s.to_numpy(), (elig & liquid).to_numpy(), can_open.to_numpy(), np.zeros(len(hlc))
+    slots = int(round(gross / (2 * max_pair)))
+    out = np.zeros((len(c), len(hlc)))
+    for t in range(len(c)):
+        st_ = S[t]
+        # exits: spread changed sign (or vanished) or pair no longer eligible
+        keep = (O != 0) & E[t] & np.isfinite(st_) & (np.sign(np.nan_to_num(st_)) == O)
+        O = np.where(keep, O, 0.0)
+        free = slots - int((O != 0).sum())
+        if free > 0:
+            cand = np.flatnonzero((O == 0) & L[t] & np.isfinite(st_) & (np.abs(np.nan_to_num(st_)) > enter))
+            cand = cand[np.argsort(-np.abs(st_[cand]))][:free]
+            O[cand] = np.sign(st_[cand])
+        out[t] = O
+    leg = pd.DataFrame(-out * max_pair, c.index, hlc)        # O = +1 (HL longs pay more): short HL, long Binance
+    w = pd.DataFrame(0.0, c.index, c.columns)
+    w[hlc], w[bnc] = leg, -leg.to_numpy()
+    return rebalance_rows(w.where(elig.any(axis=1), np.nan), bpd)

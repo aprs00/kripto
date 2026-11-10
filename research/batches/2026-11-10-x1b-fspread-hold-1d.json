@@ -1,0 +1,4 @@
+{
+ "_note": "X1b 2026-11-10, pre-registered before any run: funding capture with hysteresis (open on a wide 7/14-day mean HL-BN funding spread, hold until it flips sign), fixed 10% legs, <=10 pairs, taker costs. 6 configs, dataset pair 1d (one WF experiment). Falsified if WF OOS <= 0 or the funding earned does not exceed costs in most configs. Context: X1 (spread-following weights) died on 70-410x turnover; T9 found passive fills don't fix cost, so this attacks turnover.",
+ "fspread_hold": {"lookback": [7, 14], "enter": [0.10, 0.20, 0.40]}
+}
