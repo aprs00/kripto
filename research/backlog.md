@@ -4,19 +4,30 @@ Also read research/findings.md before picking: it records what is already DEAD a
 
 Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done: `- [x] ... → <one-line result, link to journal>`
 
-**Priority order after the owner's re-aim (2026-11-09: $1,000 real capital waiting on evidence, steady risk, small-account
-edges first; research is Tue + Thu, ≤ 6 new walk-forward experiments per session):**
-1. **T9 maker execution** (three HL signals are now positive before costs and dead after them: the lever is cost, not signal;
-library: gueant-2016 part on limit-order placement, maxdama §7) → 2. H4 (is the blend real once its components are chosen
-out-of-sample? one experiment) → 3. T0a (does live track the backtest? ≈ 11-16) → 4. T2b a (funding on listing shorts; the nightly
-job now backfills 8 more coins a night) → 5. X1b (funding capture with hold-until-flip, only after T9) → 6. T5b → the rest.
+**Priority order (rewritten 2026-11-10 after H4/T9/X1b; research Tue + Thu, ≤ 6 new walk-forward experiments per session):**
+1. **X2 two-venue paper book for fspread_hold** (the cleanest candidate: market-neutral, small-account edge, +7–10%/yr funding at
+mdd < 2%; live evidence starts only once it trades) → 2. T0a live-vs-backtest tracking (≈ 11-16) → 3. T2b a/b listing_short
+(lead leg of both blends; funding coverage) → 4. X1c fspread_hold robustness (BN-funding-interval, basis blowups, more coins as HL
+funding backfill grows) → 5. T5b → the rest. T9 (maker) is closed: turnover, not fee type, is the cost lever (findings).
 Evidence that accrues with time (forward ledger, tracking, T6b data) outranks another backtest on the same history.
 
-- [ ] H4 **Blend with component SELECTION nested, at weight level** (review 11-09: return-level nested 0.62–1.24 vs 1.36 hindsight).
+- [ ] X2 **Two-venue paper book (`venue: "pair"`) for fspread_hold@pair.** Design (2026-11-10): new module kripto/venue_pair.py,
+  called from paper.run_once after Binance inside try/except (a failure never touches HL/BN books). Book `shadow:fspread_hold@pair`,
+  positions keyed `<COIN>@hl` / `<COIN>@bn`; `book_venue` → "pair" so the HL/BN funding/marks code skips it. Signal needs a fresh
+  14-day funding history on BOTH venues for ~100 coins: HL from data/hl/funding (nightly; check freshness) + BN via one
+  `premiumIndex` call (all symbols, weight 10) stored hourly as a small collector (lastFundingRate at each funding time), with
+  data/bn/funding_all as the backfill. Fills: HL legs via paper.simulate_fill, BN legs via venue_bn's depth walk. Funding accrual:
+  HL fundingHistory per held coin (≤ 10 coins, 3 s each), BN from the stored premiumIndex prints. Rebalance once a day.
+  Tests: fake clients, known-answer funding accrual on a held pair, and HL/BN books unaffected. Report margin per venue (≈ 2×).
+- [ ] X1c fspread_hold robustness (descriptive, no new WF unless a new rule): per-pair basis excursions (worst daily |basis|),
+  funding-interval mix on BN (1h/4h/8h coins), and a re-run when HL funding backfill reaches all coins (pair has 84 → more).
+- [ ] blend@bn → nested choice? H4 on bnall picks carry+carry_trend+xsmom (1.16), not the hindsight trio (1.30). Needs Binance
+  funding in the live BN panel (carry). Do with X2's BN funding collector.
+- [x] H4 → blend_nested HL OOS 1.87, bnall 1.16 (DSR 0.63): blend is not hindsight; candidate + shadow (2026-11-10). Was: **Blend with component SELECTION nested, at weight level** (review 11-09: return-level nested 0.62–1.24 vs 1.36 hindsight).
   Pre-register ONE rule before looking (suggest: top-3 by expanding in-sample Sharpe among ALL registered HL-testable strategies,
   re-chosen every 60 days, equal risk). This replaces T4b. If HL OOS stays > 0.8 and `worst` > 0, the blend's only failing
   clause is DSR, and the forward ledger + T0a become its evidence stream. Run on hl 1d + bnall.
-- [ ] X1b **Funding capture, second angle (only after T9)**: X1 showed the funding difference is real (+6–13%/yr at gross ≤ 2) and
+- [x] X1b → fspread_hold pair OOS 1.26, grid med 2.22, worst 1.43; candidate, needs X2 (2026-11-10). Was: **Funding capture, second angle (only after T9)**: X1 showed the funding difference is real (+6–13%/yr at gross ≤ 2) and
   that spread-following weights churn it away (70–410× turnover). Pre-register ONE rule: enter when the 14-day spread > 20%/yr,
   hold until it changes sign, top-20 liquid pairs, passive fills where T9 allows. Then a two-venue paper book if it passes.
 - [x] X1 → DEAD at taker costs, funding leg real (2026-11-09, findings). Was: **Cross-venue funding capture (small-account edge, new)**: same coin long on the venue with lower funding, short on the
@@ -24,7 +35,7 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
   Needs: HL + Binance funding history joined per coin (both on disk), a two-venue book in the paper engine (today a book
   lives on one venue), and a persistence test of the spread first (cheap kill test: is the 7-day mean spread > round-trip
   costs often enough?). Do the kill test before building anything.
-- [ ] ~~T4b~~ (superseded by H4) **Nested blend re-test (removes component-selection bias)**: the T4 blend (HL OOS 1.57) used component params I
+- [x] ~~T4b~~ (superseded by H4, done 2026-11-10) **Nested blend re-test (removes component-selection bias)**: the T4 blend (HL OOS 1.57) used component params I
   picked after seeing their results. Re-test with each component's params chosen by its OWN walk-forward on past data only,
   same equal-risk rule. Pre-register 1 config, HL 1d + bnall. Also report (descriptive, not a new grid) bnall blend without
   listing_short (band/survivorship artifact there), and the blend on 4h HL (2024-06+). If HL stays > 0.8, the bnall DSR
@@ -61,6 +72,8 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
 - [x] L4 Residual reversion with entry threshold → DEAD (2026-11-09, price-only SR −0.72; residuals continue)
 - [ ] ~~L4~~ **Residual reversion with entry threshold (library N5, Pole)**: NEW angle vs dead xsrev: BTC-beta-defactored
   residuals, enter only past a z-threshold, exit on reversion, so turnover is a fraction of xsrev's. HL + bnall, ≤ 8 configs.
+- [ ] T9b Alpha-decay curve per strategy (library N8, maxdama §7): signed return of each strategy's trades from decision to +1/4/12/24 h.
+  Explains T9 and sizes the cost of a late run (one bar late costs tsmom a third). Descriptive, hourly data.
 - [ ] L1 **HL lags Binance? (library N4)**: cheap kill test: BN 1h alt return → HL same-coin next-1h return. Expect
   ≈ 0 (arbitraged in seconds). If |IC| is meaningful after costs, it becomes a strategy.
 - [ ] L6 **Better vol forecasts for sizing (library N6)**: vol estimator ∈ {close-to-close, Parkinson, HAR-range} inside
@@ -82,7 +95,7 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
   Watch the `collector:` line of `paper status` at every review (a gap = data lost forever).
 - [ ] T0b Scheduled re-checks of HL-only DEAD ideas (carry, carry_trend) once HL has ≥ 6 more months (~2027-05). Low priority:
   this is a re-check of dead ideas, not the main path. New ideas get evidence now from bnall/BN history.
-- [ ] T9 Execution: maker-style rebalancing (post-only at mid ± tick, fall back to taker): fee 1.5bp vs 4.5bp. xsmom_k pays
+- [x] T9 → DEAD as a general fix (2026-11-10): post-only cuts fees ~70% but alpha loss/adverse selection give it back on BN 6y; taker fallback is worse. Was: Execution: maker-style rebalancing (post-only at mid ± tick, fall back to taker): fee 1.5bp vs 4.5bp. xsmom_k pays
   ~10%/yr and tsmom ~4–5%/yr in HL costs. Paper sim must model non-fills conservatively.
 - [ ] T3 HL-vs-Binance funding spread as a crowding signal (HL retail flow is distinct; HL hourly vs BN 8h funding).
 - [ ] T7 Liquidation-cluster proximity as risk filter for trend positions (positions data now collected, T6b).

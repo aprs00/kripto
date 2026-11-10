@@ -49,6 +49,12 @@ def gather(root: Path = ROOT, db: Path = DB) -> dict:
         since = (datetime.now(timezone.utc) - timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ")
         f["events"] = con.execute("select ts,level,msg from events where level!='INFO' and ts>? order by ts", (since,)).fetchall()
         f["halted"] = [r[0] for r in con.execute("select name from books where halted=1")]
+    try:  # scheduled chores written into config entries: {"due": "YYYY-MM-DD", "due_what": "..."} (e.g. a nested-blend refit)
+        cfg = json.loads((root / "config" / "strategies.json").read_text())
+        f["due"] = [(n, sc["due"], sc.get("due_what", "")) for n, sc in cfg.items()
+                    if sc.get("due") and sc.get("status") != "retired"]
+    except Exception:
+        f["due"] = []
     for p in sorted((root / "logs").glob("agent-*-*.log"))[-12:]:
         for line in p.read_text(errors="replace").splitlines():
             m = re.match(r"=== (\S+) end (\w+) rc=(\d+)", line)
@@ -83,6 +89,10 @@ def assess(f: dict, now: datetime) -> tuple[str, list[str]]:
             warn.append(f"collector silent for {ch:.1f}h (this data cannot be backfilled)")
         elif c.get("errors"):
             warn.append(f"collector errors={c['errors']}")
+    for n, due, what in f.get("due", []):
+        dt = parse_ts(f"{due} 00:00" if len(str(due)) == 10 else due)
+        if dt is not None and dt <= now:
+            warn.append(f"due {due}: {n} {what}"[:80])
     d = f.get("disk_free_gb")
     if d is not None and d < 5:
         alert.append(f"disk {d:.1f}G free")

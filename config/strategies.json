@@ -128,6 +128,19 @@
         "tsmom": {}
       }
     },
-    "note": "2026-11-10 H4: blend_nested = blend whose components are re-chosen every 60 days out-of-sample (top-3 expanding Sharpe of 10 pool strategies at default params). HL 1d WF OOS 1.87 / 2.16y (worst 1.29 = 1 day late; 2x costs 1.34), bnall 1.16 / 5.4y (DSR 0.63, worst 0.98). Fails only DSR. Live = `blend` with the rule's CURRENT HL choice (listing_short, lowvol, tsmom at defaults; the live panel holds 220 days, too short to rerun the selection). Next HL refit on the 60-day epoch grid: 2027-01-02 -> run `python -m scripts.nested_choice hl` and update components."
+    "note": "2026-11-10 H4: blend_nested = blend whose components are re-chosen every 60 days out-of-sample (top-3 expanding Sharpe of 10 pool strategies at default params). HL 1d WF OOS 1.87 / 2.16y (worst 1.29 = 1 day late; 2x costs 1.34), bnall 1.16 / 5.4y (DSR 0.63, worst 0.98). Fails only DSR. Live = `blend` with the rule's CURRENT HL choice (listing_short, lowvol, tsmom at defaults; the live panel holds 220 days, too short to rerun the selection). Next HL refit on the 60-day epoch grid: 2027-01-02 -> run `python -m scripts.nested_choice hl` and update components.",
+    "due": "2027-01-02",
+    "due_what": "refit: run `python -m scripts.nested_choice hl`, update components + due"
+  },
+  "fspread_hold@pair": {
+    "strategy": "fspread_hold",
+    "venue": "pair",
+    "status": "candidate",
+    "alloc": 0.0,
+    "params": {
+      "lookback": 14,
+      "enter": 0.1
+    },
+    "note": "2026-11-10 X1b: HL-vs-Binance funding capture with hysteresis (open at |14d mean spread| > enter, hold until it flips; 10% legs, <=10 pairs). pair 1d WF OOS 1.26 / 1.66y (cagr 8.4%, mdd -1.7%), grid med 2.22, 6/6 >0, worst 1.43 (2x costs); funding +7-10%/yr vs costs 2-3%/yr, turnover 22-33x (X1 was 70-410x). 40-52 pairs, every year +, HL leg short 95% of pair-days. Fails DSR (0.006: 1.66y, fat tails). venue 'pair' is NOT traded by the engine yet (needs a two-venue book, backlog X2); the forward ledger scores it meanwhile. Params = latest WF choice."
   }
 }

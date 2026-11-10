@@ -80,7 +80,7 @@ of real money they could deploy and chose the **steady** risk mode (25–30% vol
 | `research/results/*.json` | full walk-forward outputs | reference |
 | `research/forward.json` | forward ledger: every experiment's frozen choice scored only on bars after it was registered | refresh in the Sunday retro (`scripts.forward_score`); quote it next to any backtest number |
 | `config/strategies.json` | lifecycle status + params + a `note` with the evidence | keep notes current |
-| `library/INDEX.md`, `library/notes.md` | curated books (texts in library/books/, gitignored) + ideas mined from them | grep the .txt, never read whole books; ideas → backlog; tested → findings |
+| `library/INDEX.md`, `library/notes.md` | curated books (texts in library/books/, gitignored) + ideas mined from them | grep **-a** the .txt (some contain binary bytes: plain grep prints nothing), never read whole books; ideas → backlog; tested → findings |
 | this file | how you operate | improve it; log changes in the Process changelog |
 
 Keep the memory lean so sessions stay within context: `findings.md` entries ≤ 5 lines each, STATUS.md one
@@ -222,3 +222,9 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   positive before costs and dead after them, like xsmom_k on HL. Lesson: report gross, costs and turnover separately and
   distinguish "dead" from "dead at taker costs"; the latter list is the to-do list for execution work (T9), which is now
   backlog priority 1. The nightly data job also starts HL funding history for 8 more coins a night (`--funding-extra`).
+* 2026-11-10 research: (1) batch files may carry `_note` keys (the pre-registration rationale and decision rule live next to the
+  grid; research_run skips them). (2) `scripts/exec_study.py` + `kripto/execution.py`: execution policies are compared through
+  research.evaluate (lines tagged exec) instead of ad-hoc scripts. (3) Config entries may carry `due`/`due_what`; the hourly watchdog
+  WARNs when a chore is overdue (first use: blend_nested's 60-day refit, `scripts/nested_choice.py`), so dated chores live in code,
+  not in memory. (4) Library .txt files need `grep -a` (plain grep silently found nothing in maxdama). Lesson from T9: a cost
+  saving in fees can be eaten by alpha loss; measure execution changes on the longest history with the return effect, not cost/yr.

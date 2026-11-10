@@ -34,6 +34,11 @@ def test_health_ok_and_each_failure_is_noticed():
     assert health.assess(f, NOW)[0] == "ALERT"
     f = _ok(); f["last_bar"] = "2026-11-09 20:00:00+00:00"
     assert health.assess(f, NOW)[0] == "WARN"
+    f = _ok(); f["due"] = [("blend_nested", "2099-01-01", "refit")]
+    assert health.assess(f, NOW) == ("OK", [])                      # a chore in the future is not a problem
+    f = _ok(); f["due"] = [("blend_nested", "2020-01-02", "refit")]
+    level, why = health.assess(f, NOW)
+    assert level == "WARN" and "blend_nested" in why[0]             # an overdue chore wakes a review
 
 
 def test_dead_agent_is_an_alert_that_does_not_ask_the_agent_to_fix_itself():

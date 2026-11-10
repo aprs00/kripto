@@ -10,7 +10,8 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
   helper touching timestamps/alignment needs a unit test on synthetic data with a known answer.
 * **Passive execution is not a free cost cut for daily signals (T9, 2026-11-10).** Post-only maker orders cut fees ~70%, but the
   orders that don't fill are the ones that run away (alpha loss), and fills come as the price moves against you. On 6 years of
-  BN-82 that took back as much return as the fees saved. Lowering turnover is the cost lever, not swapping taker for maker.
+  BN-82 that took back as much return as the fees saved. Lowering turnover is the cost lever, not swapping taker for maker: X1b's hysteresis cut fspread
+  turnover from 70–410× to 10–50× and turned a dead idea into the cleanest candidate so far.
 * **Costs are the binding constraint on Hyperliquid.** The HL top-20 by volume includes thin memes; slippage +
   fees took ~8%/yr off trend. Any HL strategy must be judged at HL cost levels, not Binance's. By 2026-11-09 three signals
   are real before costs and dead after them on HL (xsmom_k: 2× costs 0.31; flow-on-HL: +19% gross, 17% costs; funding
@@ -103,7 +104,8 @@ except as the blend's momentum leg.
 HL OOS −2.66, BN −1.81; 0/6 >0 on both. Turnover makes fees dominate.
 
 ### lowvol: betting against volatility, beta-hedged (2026-11-08, re-run 11-09) → DEAD
-HL −0.24 (1/6 >0); BN OOS 0.44 but grid med −0.01 (3/6 >0). Not robust.
+HL −0.24 (1/6 >0); BN OOS 0.44 but grid med −0.01 (3/6 >0). Not robust. Note 2026-11-10: under harness v2 (tranches, band 0.01) the
+DEFAULT config is HL full-sample 0.90 (bnall 0.22) and H4's selection rule picks it as an HL blend leg; no new WF run, verdict unchanged.
 
 ### funding_contra: fade funding spikes vs own history (2026-11-08, re-run 11-09) → DEAD
 HL −0.81 (0/8 >0); BN −0.42 (med 0.15). Not robust.
@@ -141,3 +143,8 @@ Model: limit at the decision close, filled on a 5 bp trade-through within 4 h (h
 (tsmom 0.88→0.83, xsmom 0.65→0.58, xsmom_k 0.51→0.46; 20 bp trade-through 0.44/−0.01). By year, post-only gained only in 2025–26,
 which is why HL's 7-month window looks good (tsmom 1.76→1.93, flow-on-HL 1.59→1.72). Fails the pre-registered rule. Revisit only
 for non-directional books (fspread) or once HL 1h history (kept nightly; HL serves only 5000 bars) covers ≥ 18 months.
+### fspread_hold: funding capture with hysteresis (X1b, 2026-11-10) → ALIVE (candidate; needs a two-venue book, X2)
+New angle vs X1: fixed 10% legs, open at |14d mean HL−BN spread| > enter, HOLD until it flips. **pair 1d WF OOS 1.26 / 1.66y (cagr 8.4%,
+mdd −1.7%), grid med 2.22, 6/6 >0, worst 1.43 (2× costs), corr BTC −0.03.** Turnover 10–50× (X1: 70–410×): funding +3–10%/yr vs costs
+1–4%/yr. 40–52 pairs, top coin ≈ 20% of P&L, every year +; short the HL leg 95% of pair-days (HL longs pay). ~⅓ of P&L is premium
+convergence (price legs), not funding. Fails DSR (0.006: 1.66 y, fat tails). Not modelled: margin split across two venues (≈2× per venue).
