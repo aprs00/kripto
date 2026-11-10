@@ -65,7 +65,8 @@ if __name__ == "__main__":
     a = ap.parse_args()
     if a.grids:
         spec = json.loads(Path(a.grids).read_text())
-        jobs = [(s, d, g, a.since, a.interval) for s, g in spec.items() for d in a.datasets]
+        # keys starting with "_" are notes (pre-registration rationale), not strategies
+        jobs = [(s, d, g, a.since, a.interval) for s, g in spec.items() if not s.startswith("_") for d in a.datasets]
     else:
         jobs = [(s, d, json.loads(a.grid) if a.grid else GRIDS[s], a.since, a.interval)
                 for s in a.strategies for d in a.datasets]

@@ -1,0 +1,4 @@
+{
+ "_note": "H4 2026-11-10, pre-registered before any run: ONE config. Blend whose components are re-chosen every 60 days as the top-3 by expanding net Sharpe (>0, >=240 days history) among 10 pool strategies at default params. Run hl + bnall, 1d. Pass condition for the conclusion: HL OOS > 0.8 and robust.worst > 0 => blend's 1.61 is not hindsight; otherwise honest blend estimate = this number.",
+ "blend_nested": {"top": [3]}
+}

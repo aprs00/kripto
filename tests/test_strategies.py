@@ -217,3 +217,16 @@ def test_flow_uses_the_flow_venue_volume_when_given():
 def test_hl_to_bn_names():
     from kripto.data import hl_to_bn
     assert hl_to_bn("kPEPE") == "1000PEPE" and hl_to_bn("BTC") == "BTC" and hl_to_bn("kBONK") == "1000BONK"
+
+
+def test_blend_nested_is_causal_and_trades_once_history_allows():
+    """H4: component selection uses only returns up to the refit bar (short min_days so selection actually happens)."""
+    from kripto import strategies as st
+    from tests.test_backtest import _panel
+    p = _panel(T=6 * 150)
+    cut = 6 * 120
+    kw = dict(min_days=30, refit_days=10)
+    full = st.blend_nested(p, **kw)
+    trunc = st.blend_nested({k: v.iloc[:cut] for k, v in p.items()}, **kw)
+    assert full.iloc[:cut].abs().sum(axis=1).max() > 0
+    pd.testing.assert_frame_equal(full.iloc[:cut].fillna(0), trunc.fillna(0), check_exact=False, atol=1e-10)

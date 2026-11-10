@@ -428,3 +428,74 @@ def fspread(panel, lookback=7, thr=0.10, top_n=30, gross=2.0, max_pair=0.25, eve
     if phase is not None or every_days <= 1:
         return rebalance_rows(w, every_days * bpd, offset=(phase or 0) * bpd)
     return tranche_mean(rebalance_rows(w, bpd), every_days)
+
+
+# H4 (2026-11-10): component SELECTION nested inside the blend. Pool fixed before testing = every registered strategy that
+# runs on plain price/volume/funding panels (flow/fspread need extra columns), each at its function DEFAULT params.
+NESTED_POOL = ("tsmom", "xsmom", "xsrev", "carry", "lowvol", "funding_contra", "carry_trend", "listing_short",
+               "xsmom_k", "resrev")
+_COMP_CACHE: dict = {}
+
+
+def _component_returns(panel, name: str):
+    """(held target weights, net backtest returns) of one pool component at default params. Cached per panel object
+    (the cache keeps a reference to panel['close'] so an id is never reused while cached)."""
+    from . import backtest as bt
+    key = (id(panel["close"]), name)
+    hit = _COMP_CACHE.get(key)
+    if hit is not None and hit[0] is panel["close"]:
+        return hit[1], hit[2]
+    w = REGISTRY[name](panel)
+    slip = bt.slippage_model(panel["volume"], bars_per_day(panel["close"].index))
+    r = bt.run(w, panel["close"], panel.get("funding"), slip, band=0.01).returns
+    held = _ffill_targets(w)
+    if len(_COMP_CACHE) > 64:
+        _COMP_CACHE.clear()
+    _COMP_CACHE[key] = (panel["close"], held, r)
+    return held, r
+
+
+@register
+def blend_nested(panel, top=3, refit_days=60, min_days=240, target_vol=0.25, unit_vol=0.20, max_gross=3.0,
+                 every_days=1, pool=NESTED_POOL, phase=None):
+    """Blend whose components are chosen out-of-sample (H4, pre-registered 2026-11-10). Every `refit_days` days (grid
+    anchored at the epoch) rank every pool strategy by its expanding net Sharpe on all data up to that bar (needs
+    >= min_days of invested history) and hold the equal-risk blend (same rescaling as `blend`) of the `top` best with
+    Sharpe > 0 until the next refit. Removes the hindsight in choosing `blend`'s three components."""
+    c = panel["close"]
+    bpd = bars_per_day(c.index)
+    comps = {}
+    for name in pool:
+        try:
+            held, r = _component_returns(panel, name)
+        except KeyError:            # panel lacks a column this component needs
+            continue
+        tv = inspect.signature(REGISTRY[name]).parameters["target_vol"].default
+        comps[name] = (held.reindex(columns=c.columns, fill_value=0.0) * (unit_vol / tv), r)
+    epoch = pd.Timestamp(0, tz=c.index.tz)
+    day = np.asarray((c.index - epoch) // pd.Timedelta(days=1), dtype=np.int64)
+    refit = np.r_[True, np.diff(day // refit_days) != 0]
+    sel = pd.DataFrame(0.0, c.index, list(comps))
+    cur = {}
+    ann = np.sqrt(365 * bpd)
+    for i in np.flatnonzero(refit):
+        cur = {}
+        for name, (_, r) in comps.items():
+            ri = r.iloc[: i + 1]
+            inv = ri.ne(0).to_numpy()
+            if not inv.any():
+                continue
+            ri = ri.iloc[int(inv.argmax()):]
+            if len(ri) < min_days * bpd or ri.std() == 0:
+                continue
+            cur[name] = float(ri.mean() / ri.std() * ann)
+        best = [n for n, s in sorted(cur.items(), key=lambda x: -x[1]) if s > 0][:top]
+        sel.iloc[i] = 0.0
+        if best:
+            sel.iloc[i, [sel.columns.get_loc(n) for n in best]] = 1.0 / len(best)
+    sel = sel.where(pd.Series(refit, c.index), np.nan).ffill().fillna(0.0)
+    tot = pd.DataFrame(0.0, c.index, c.columns)
+    for name, (w, _) in comps.items():
+        tot = tot + w.mul(sel[name], axis=0)
+    tot = tot.where(sel.sum(axis=1) > 0, 0.0)
+    return scheduled(tot, panel, every_days, target_vol, max_gross, phase)
