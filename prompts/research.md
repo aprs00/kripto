@@ -54,6 +54,11 @@ WEEKLY RETROSPECTIVE (Sundays): step back from individual experiments.
   Rewrite the backlog priorities accordingly.
 * Process: review the past week's journals for repeated problems, wasted effort and missing tooling. Make the
   highest-leverage process fix and log it in the CLAUDE.md Process changelog.
+* **Assumption audit (docs/assumptions.md).** Auditing your changes is not enough: the worst flaws so far were things that never
+  changed (hourly-only monitoring, daily-only data, an uncalibrated cost model), and the owner found them, not you. Take the two
+  rows with the weakest or oldest evidence, test or challenge each with data (descriptive studies are free; walk-forwards count
+  against the budget), and update the row. Add any assumption you catch yourself relying on. Ask of the whole system: if I were
+  building this today from scratch, what would I do differently, and what evidence says the current way is right?
 * Audit your own self-modifications (the recursive part): `git log -p --since='8 days ago' -- CLAUDE.md prompts docs
   config/risk.json kripto/metrics.py kripto/research.py kripto/backtest.py`. For each change ask: (a) did it make a
   gate, cost or check easier to pass? If so, is there a general rationale in the design.md changelog that would have

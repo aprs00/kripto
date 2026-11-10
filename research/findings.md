@@ -17,6 +17,13 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
   are real before costs and dead after them on HL (xsmom_k: 2× costs 0.31; flow-on-HL: +19% gross, 17% costs; funding
   capture: +6–13% funding, 6–36% costs). The next unit of effort belongs to execution (T9), not to another signal.
   Always report gross, costs and turnover separately: "dead" and "dead at taker costs" are different verdicts.
+* **The HL cost model looks ≈ 1.8× too pessimistic for our order sizes (2026-11-10, 2 calm days, 234 fills, median $49).** Live
+  slippage 0.9 bp on both venues vs 5.1 bp modelled on HL (thinnest bucket: 1.5 live vs 9.9 modelled). At live-calibrated costs
+  (×0.56): flow-on-HL 0.23 → 0.54, xsmom HL 0.00 → 0.31, fspread −0.25 → 0.89, tsmom 1.03 → 1.15, blend 1.56 → 1.73. Not a gate
+  number until C1 re-fits the model on ≥ 14 days incl. a volatile one. Every HL "dead at taker costs" verdict is provisional.
+* **Deciding more often earns more before costs and less after them (2026-11-10, BN-82 5.7 y + HL 2.2 y).** tsmom: daily → 4h →
+  1h decisions: before costs +25% → +31% → +31%/yr, turnover 79× → 169× → 281×, net SR 0.92 → 0.78 → 0.58; xsmom 0.45 → 0.22 →
+  −0.20. Finer bars with daily decisions: tsmom +0.06–0.16, xsmom ±0.05. Re-test after C1: cheaper costs shift the optimum.
 * **Account size decides what is executable.** At $200 a $10 min order is 5% of equity and 20–30 name books could not be
   traded (band 0.05). Since 2026-11-10 the main book is $1,000 (the owner's deployable capital): band 0.01, broad books fit.
   Binance's $5 min order allows twice the breadth again. Always quote which band a number used. $200 vs $1,000 for the chosen

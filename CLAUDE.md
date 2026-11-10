@@ -85,6 +85,7 @@ of real money they could deploy and chose the **steady** risk mode (25–30% vol
 | `research/forward.json` | forward ledger: every experiment's frozen choice scored only on bars after it was registered | refresh in the Sunday retro (`scripts.forward_score`); quote it next to any backtest number |
 | `config/strategies.json` | lifecycle status + params + a `note` with the evidence | keep notes current |
 | `library/INDEX.md`, `library/notes.md` | curated books (texts in library/books/, gitignored) + ideas mined from them | grep **-a** the .txt (some contain binary bytes: plain grep prints nothing), never read whole books; ideas → backlog; tested → findings |
+| `docs/assumptions.md` | every standing design assumption, its evidence and when it was last tested | Sunday retro: test the two weakest rows; add assumptions as you notice them. Fixing foundations is part of self-improvement |
 | this file | how you operate | improve it; log changes in the Process changelog |
 
 Keep the memory lean so sessions stay within context: `findings.md` entries ≤ 5 lines each, STATUS.md one
@@ -97,6 +98,7 @@ kripto/backtest.py    cost-aware portfolio backtest   kripto/metrics.py    Sharp
 kripto/strategies.py  strategy registry (@register)   kripto/research.py   evaluate / walk_forward / registry
 kripto/paper.py       paper engine (hourly timer)     config/strategies.json  status/params/alloc per strategy
 kripto/bn.py          public Binance fapi client      kripto/venue_bn.py   Binance paper venue (main_bn, shadow:<x>@bn)
+kripto/live.py        always-on watcher: marks every 20 s, kill switch, live equity, heartbeat (kripto-live.service)
 kripto/collect.py     hourly non-backfillable HL data (top-account positions, L2) -> data/hl/positions, data/hl/l2
 config/risk.json      risk limits, book sizes         scripts/research_run.py  walk-forward CLI (pre-registered grids)
 scripts/inspect_strategy.py  yearly/funding/cost decomposition + 2x-cost stress
@@ -143,6 +145,10 @@ retired and closed together with its big sibling. Keep `sum(alloc)` ≤ 1.0, inc
 demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers) in the journal and findings.
 
 ## Session types
+* **live watcher** (always on, no Claude): `kripto-live.service` runs `python -m kripto.live`: every 20 s one request per venue
+  for all marks, every open book re-valued, true peak tracked, kill switch enforced after 2 breaching ticks, heartbeat in
+  `meta.live_tick` (the watchdog ALERTs if it is silent for 5 min). It never decides trades: targets come from closed bars in
+  the hourly step. Anything that trades books holds `paper.trade_lock`; fills are single transactions.
 * **watchdog** (hourly, no Claude): `scripts/health.py --act` checks the facts and writes state/health.json. On a NEW
   problem it starts a review session; if Claude itself is dead it stamps `HEALTH: ALERT` into STATUS.md and pushes.
 * **review** (daily 08:25 UTC, plus when the watchdog calls; short): health, bookkeeping, fix operational problems.
@@ -244,3 +250,11 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   180 s) so twins cost no API calls, dashboard section for the small accounts. First comparison (full-sample, chosen configs):
   many-name books lose most of their edge at $200 (flow 1.31 → 0.72, broad momentum 1.49 → 0.97), concentrated ones don't
   (listing shorts, trend, funding capture, the hand-picked blend). Lesson: "which strategy" depends on "which account".
+* 2026-11-10 interactive (owner, angry, and right: "why isn't it always live", "why only daily data", "this does not seem
+  RSI at all"): three day-1 choices had never been tested. (1) Monitoring was hourly only because the trader was a timer →
+  `kripto/live.py` + kripto-live.service (20 s). (2) Decisions/bars: decision-frequency study says faster decisions earn more
+  before costs and less after them at modelled costs. (3) The cost model had never been compared with live fills: live slippage
+  is 0.9 bp vs 5.1 bp modelled on HL, so every HL "dead at taker costs" verdict was judged at ≈ 1.8× real cost (backlog C1).
+  Process fix: `docs/assumptions.md` + an assumption audit in the Sunday retro. Lesson: self-improvement that only reviews its
+  own recent changes never finds the flaws it was born with; audit what has NOT changed, and calibrate every model
+  against reality as soon as reality produces data.

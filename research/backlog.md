@@ -5,6 +5,11 @@ Also read research/findings.md before picking: it records what is already DEAD a
 Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done: `- [x] ... → <one-line result, link to journal>`
 
 **Priority order (rewritten 2026-11-10 after H4/T9/X1b; research Tue + Thu, ≤ 6 new walk-forward experiments per session):**
+0. **C1 cost-model calibration** (assumptions.md row 1): live fills cost 5.4 bp on HL vs 9.6 bp modelled (2 days). From 2026-11-24
+(≥ 14 days of fills, must include a volatile day): fit slippage vs order size / volume from the fills table (and the stored L2
+snapshots), write scripts/cost_calibration.py, change `backtest.slippage_model` with a design.md entry in a session that promotes
+nothing, then re-measure every "dead at taker costs" verdict and the decision-frequency study. Until then quote the ×0.56
+sensitivity only as a labelled side number.
 1. **X2 two-venue paper book for fspread_hold** (the cleanest candidate: market-neutral, small-account edge, +7–10%/yr funding at
 mdd < 2%; live evidence starts only once it trades) → 2. T0a live-vs-backtest tracking (≈ 11-16) → 3. T2b a/b listing_short
 (lead leg of both blends; funding coverage) → 4. X1c fspread_hold robustness (BN-funding-interval, basis blowups, more coins as HL

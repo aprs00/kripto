@@ -162,3 +162,13 @@ See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits;
   (3) **The gate is unchanged**: it is still judged at the main size ($1,000); `small_acct` is reported next to it and is not part
   of `robust.worst`. If the owner funds $200, the `small_acct` column and the `small:` books are the relevant evidence.
   (4) Books that trade the same coin in one run share one order-book snapshot (≤ 180 s old), so the twins add no API calls.
+* 2026-11-10 (owner direction, interactive): **always-on watcher.** The owner expected the system to be live at all times; it
+  was a timer that looked once an hour. General rationale: risk limits are only as good as how often they are checked, and one
+  request returns every mark on a venue, so continuous monitoring costs almost nothing. `kripto-live.service` (systemd,
+  Restart=always; a managed service like the timers, not a stray session process) re-values every open book every 20 s and
+  enforces the kill switch after 2 consecutive breaching ticks, only with a mark for every held coin. Still paper only, public
+  data only, HL client ≥ 3 s. Trade DECISIONS stay at bar closes (decision-frequency study the same day: faster decisions lose
+  net of modelled costs). Strategies accept fractional `every_days` (1/6 = every 4 h) so that question can be re-tested.
+  **Cost model: not changed today.** Live fills say HL slippage is ≈ 0.9 bp vs 5.1 bp modelled, but on 2 calm days; the model
+  will be re-fitted from ≥ 14 days of fills including a volatile one (backlog C1), with its own changelog entry, in a session
+  that promotes nothing. Until then results may quote a "live-calibrated costs" sensitivity next to the gate number, clearly labelled.

@@ -2,6 +2,19 @@ HEALTH: OK — trader (HL + Binance), collector and timers healthy; one new cand
 
 _Updated 2026-11-10 17:40 UTC (interactive session with the owner). Research results below are from the 06:40 session._
 
+## Evening session (owner: "why isn't it always live?", "why only daily data?", "this is not self-improving")
+* **It is always on now.** A permanent process checks every position on both exchanges every 20 seconds and applies the safety
+  stop within about 40 seconds instead of up to an hour. Trade decisions still happen when a bar closes, because:
+* **Deciding more often was tested and loses.** Over 5.7 years, deciding every 4 hours or every hour earns 3–6% a year more
+  before costs but trades 2–6 times as much; after costs the result is worse (trend: Sharpe 0.92 → 0.78 → 0.58).
+* **The most important finding: our backtests have been charging too much for trading on Hyperliquid.** 234 real paper fills
+  cost 5.4 bp each; the backtest assumed 9.6 bp. With realistic costs every HL number improves (blend 1.56 → 1.73) and the three
+  ideas that "died on costs" become weakly positive (0.3–0.9). Two calm days are not enough to rewrite the model: it is re-fitted
+  from two weeks of fills (from 11-24), and nothing is promoted on the strength of it before then.
+* **Why the system did not find these itself:** it reviewed its own recent changes every week, never the choices it was born
+  with. There is now a list of every such assumption with its evidence (docs/assumptions.md); the weekly retrospective must
+  test the two weakest each week.
+
 ## $200 next to $1,000 (owner 17:10: "test also with 200 dollars")
 Every book now has a $200 twin that receives the same targets (`small:` books; first trades at the 11-11 00:00 bar), and every
 future result reports the $200 account next to the $1,000 one. First comparison, backtest of each candidate's chosen settings
