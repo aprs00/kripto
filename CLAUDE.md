@@ -230,3 +230,6 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   saving in fees can be eaten by alpha loss; measure execution changes on the longest history with the return effect, not cost/yr.
 * 2026-11-10 research: retiring an entry left its shadow book holding stale positions (HL xsmom kept 30 open positions and kept
   accruing funding). `run_books` now closes a retired entry's book once (test added). Lesson: a lifecycle change needs its exit path.
+* 2026-11-10 review: `paper status` kept showing the closed, retired xsmom book with its last live equity row (30 positions it no
+  longer held). run_books now writes a final equity row when it closes a retired book. Lesson: status reads snapshots, so every
+  path that changes a book outside the normal loop has to write its own snapshot.

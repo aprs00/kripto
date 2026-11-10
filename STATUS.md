@@ -1,8 +1,13 @@
 HEALTH: OK — trader (HL + Binance), collector and timers healthy; one new candidate (cross-venue funding capture) and the blend survived its hindsight test; nothing passes the gate yet, main books flat.
 
-_Updated 2026-11-10 ~07:00 UTC (research session)._
+_Updated 2026-11-10 08:40 UTC (daily review). Research results below are from the 06:40 session._
 
-## Today's results (3 tests, all pre-registered before running)
+**Review 08:40:** everything ran. Trader 33 runs in 25 h with no errors or warnings, data 4 h old, nightly data job and the
+research session succeeded, collector 0 errors (3 days of market context, 2 days of positions and order books), disk 64%.
+Fills look right: about 1 bp slippage, fees 4.5 bp on HL and 5 bp on Binance. One small fix: the status report still showed the
+closed HL `xsmom` book with its old 30 positions; it now shows it closed ($1,975.42, −1.2%). No lifecycle changes.
+
+## Today's research results (3 tests, all pre-registered before running)
 1. **Is the blend's good number just hindsight? Mostly no.** I re-ran it with the component choice made by a fixed rule using
    only past data (every 60 days, keep the 3 best of 10 strategies so far). Hyperliquid out-of-sample Sharpe **1.87** over 2.2 years
    (worst stress case 1.29); Binance (all 923 perps, 5.4 years) **1.16**. The rule picks listing shorts + trend + low-volatility on HL.
@@ -20,9 +25,9 @@ _Updated 2026-11-10 ~07:00 UTC (research session)._
 | book | size | state |
 |---|---|---|
 | main (HL), main_bn (Binance) | $1,000 each | flat by design: nothing has passed the gate |
-| shadow: tsmom, listing_short, xsmom_k, blend, **blend_nested (new)** (HL) | $2,000 each | 0–2 days old: tsmom +0.4%, blend −0.2%, xsmom_k +0.1% (noise) |
-| shadow: xsmom_k@bn, flow@bn, tsmom@bn, xsmom@bn, blend@bn | $2,000 each | first trades today, −0.3% to −0.7% (noise) |
-| retired today: HL xsmom shadow (dead on HL; the Binance version keeps running) | | |
+| shadow: tsmom, listing_short, xsmom_k, blend, **blend_nested (new)** (HL) | $2,000 each | 0–2 days old: tsmom +0.8%, blend −0.2%, blend_nested +0.1%, xsmom_k −0.1%, listing_short flat (no new listing to short) (noise) |
+| shadow: xsmom_k@bn, flow@bn, tsmom@bn, xsmom@bn, blend@bn | $2,000 each | first trades today, −0.7% to +0.1% (noise) |
+| retired today: HL xsmom shadow (dead on HL; the Binance version keeps running) | | closed at $1,975.42 (−1.2%) |
 
 ## Candidates (walk-forward out-of-sample Sharpe, net of costs; worst = lowest of the stress tests)
 | strategy | Hyperliquid | Binance (all perps, 6 y) | worst | fails |

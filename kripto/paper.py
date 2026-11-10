@@ -270,9 +270,17 @@ def run_books(store: Store, entries: dict, risk: dict, marks: dict[str, float], 
     """Kill switch, then rebalance each due book of one venue. `reb(book, target_weights, reason)` trades.
     main = allocation-weighted blend of that venue's incubation/active entries' latest targets."""
     for n, sc in entries.items():   # a retired entry's shadow book is closed out once, not left holding stale positions
-        if sc.get("status") == "retired" and store.positions(f"shadow:{n}"):
-            reb(f"shadow:{n}", pd.Series(dtype=float), "retired")
-            store.event("INFO", f"shadow:{n}: entry retired, positions closed")
+        if sc.get("status") != "retired":
+            continue
+        book = f"shadow:{n}"
+        if store.positions(book):
+            reb(book, pd.Series(dtype=float), "retired")
+            store.event("INFO", f"{book}: entry retired, positions closed")
+        last = store.q("select n_pos from equity where book=? order by ts desc limit 1", book)
+        npos = len(store.positions(book))
+        if last and last[0][0] != npos:   # final equity row, so `status` shows the closed book and not its last live one
+            eq, gross = book_equity(store, book, marks)
+            store.x("insert into equity values(?,?,?,?,?)", now_iso(), book, eq, gross, npos)
     books = {f"shadow:{n}": (n,) for n, sc in entries.items() if sc.get("status") != "retired"}
     books[main] = None
     for b in books:  # shadow books measure signal quality; bigger virtual equity avoids min-order distortion

@@ -26,6 +26,7 @@ def test_retired_entry_book_is_flattened_once_and_live_books_still_trade(tmp_pat
     s = Store(tmp_path / "p.db")
     s.ensure_book("shadow:old", 2000.0)
     s.x("insert into positions values('shadow:old','BTC',0.01)")
+    s.x("insert into equity values('2026-01-01T00:00:00Z','shadow:old',2000.0,1.0,1)")
     calls = []
 
     def reb(book, tgt, reason):
@@ -38,6 +39,7 @@ def test_retired_entry_book_is_flattened_once_and_live_books_still_trade(tmp_pat
     books = run_books(s, entries, risk, {"BTC": 100.0}, w, "bar1", "main", reb)
     assert ("shadow:old", 0, "retired") in calls and "shadow:old" not in books
     assert any(b == "shadow:new" for b, _, _ in calls)
+    assert s.q("select n_pos, gross from equity where book='shadow:old' order by ts desc limit 1") == [(0, 0.0)]
     calls.clear()
     run_books(s, entries, risk, {"BTC": 100.0}, w, "bar2", "main", reb)
     assert not any(b == "shadow:old" for b, _, _ in calls)        # already flat: not touched again
