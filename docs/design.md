@@ -172,3 +172,15 @@ See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits;
   **Cost model: not changed today.** Live fills say HL slippage is ≈ 0.9 bp vs 5.1 bp modelled, but on 2 calm days; the model
   will be re-fitted from ≥ 14 days of fills including a volatile one (backlog C1), with its own changelog entry, in a session
   that promotes nothing. Until then results may quote a "live-calibrated costs" sensitivity next to the gate number, clearly labelled.
+* 2026-11-10 (owner mandate, interactive: "the only rule is that it should create a profitable trading bot, rest of the stuff is up
+  to you"). Two protocol changes, each with a rationale independent of any strategy's result:
+  (1) **What the main paper books are for.** Until now a main book stayed flat until a strategy passed the incubation gate, so
+  "the bot" had no track record at all and could not be profitable or unprofitable. Paper trading an unproven portfolio costs
+  nothing, while a flat book teaches nothing. From the next research session (2026-11-12; not in the session that made this
+  change, HARD RULE 5) each venue's main book and its $200 twin trade the **best current estimate**: the equal-risk mix of that
+  venue's candidates with walk-forward OOS > 0.8 on the venue and `robust.worst` > 0, chosen by this fixed rule, re-chosen only
+  when a walk-forward result changes the list. Status `incubation` now means exactly that. **The full gate (incl. DSR > 0.9, the
+  forward ledger and ≥ 60 days of main-book tracking) is unchanged and now governs one thing: telling the owner the evidence
+  justifies real money.** STATUS.md must say on which side of that line every number is.
+  (2) **Public websocket market data is allowed** (HARD RULE 1 amended by the owner's delegation): read-only, unauthenticated,
+  one connection per venue. Rationale: order-flow data on Hyperliquid exists only as a live stream and cannot be backfilled.

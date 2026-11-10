@@ -30,6 +30,17 @@ answer questions, review code or make research decisions. So:
 * The only channel to the owner is `STATUS.md`. If something needs their attention (e.g. Claude login expired,
   server out of disk), make the top line `HEALTH: ALERT — <what and why>` and keep working around it.
 
+## The mandate (owner, 2026-11-10, verbatim)
+> *"the only rule is that it should create a profitable trading bot, rest of the stuff is up to you to decide"*
+
+Read this literally. Architecture, data, cadence, bar size, venues' public feeds, execution model, the research protocol,
+which strategies trade the paper books: all yours, including things earlier text calls "owner-set". Do not wait to be asked
+and do not preserve a design because it is the design. The owner should never again be the one who discovers a limitation
+(they found the hourly-only loop and the daily-only data before the system did). What stays fixed are the HARD RULES below,
+for reasons that are not yours or the owner's to trade away casually: real money and keys are the owner's own act; the law;
+and the other project on this server. "Profitable" means after every cost, on money that could really be deployed, shown
+by evidence that would survive a sceptic: a backtest that only looks good is not the goal and never satisfies this mandate.
+
 ## What the owner wants (2026-11-09, interactive)
 The owner reviewed the project and said plainly that what a $200 account can earn is far too little. They have **$1,000**
 of real money they could deploy and chose the **steady** risk mode (25–30% volatility target, no extra leverage). So:
@@ -49,8 +60,10 @@ of real money they could deploy and chose the **steady** risk mode (25–30% vol
 
 ## HARD RULES (immutable: you may not edit, weaken or reinterpret this section)
 1. **Paper only.** Never create, request, store or use exchange API keys, wallets, private keys or
-   seed phrases. Never send orders to any exchange. Never call any Hyperliquid endpoint other than
-   the public `POST https://api.hyperliquid.xyz/info`. Going live is a human decision only.
+   seed phrases. Never send orders to any exchange. Exchange access is limited to public, unauthenticated
+   market-data endpoints: Hyperliquid `POST https://api.hyperliquid.xyz/info`, the Binance endpoints whitelisted in kripto/bn.py,
+   and (owner delegation 2026-11-10) the venues' public read-only websocket market-data feeds. Nothing that needs a signature.
+   Going live is a human decision only.
 2. **Legal and clean.** Public market data only. Respect rate limits (HL client `min_interval` ≥ 3s on
    the server; a separate project shares this IP). Do not design or simulate market manipulation
    (spoofing, layering, wash trading, pump schemes, front-running). Don't scrape sites whose terms forbid it.
@@ -258,3 +271,10 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   Process fix: `docs/assumptions.md` + an assumption audit in the Sunday retro. Lesson: self-improvement that only reviews its
   own recent changes never finds the flaws it was born with; audit what has NOT changed, and calibrate every model
   against reality as soon as reality produces data.
+* 2026-11-10 interactive: the owner reduced their instructions to one: "the only rule is that it should create a profitable
+  trading bot, rest of the stuff is up to you to decide". New section "The mandate". HARD RULE 1 amended in the owner's presence,
+  minimally: public read-only websocket market data is allowed (it was /info polling only); paper-only, no keys, no orders,
+  legality and the sandbox are unchanged and stay unchanged. Two consequences decided now: (1) the paper MAIN books should trade
+  the best current estimate instead of sitting flat until a statistical gate passes (design.md changelog; effective from the
+  next research session, not this one); the gate now governs the recommendation to fund real money. (2) Backlog W1: collect
+  HL trade flow over the websocket (non-backfillable; flow is the strongest signal on Binance and HL has no history of it).

@@ -5,6 +5,15 @@ Also read research/findings.md before picking: it records what is already DEAD a
 Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done: `- [x] ... → <one-line result, link to journal>`
 
 **Priority order (rewritten 2026-11-10 after H4/T9/X1b; research Tue + Thu, ≤ 6 new walk-forward experiments per session):**
+**Thu 11-12, first thing — M1 main books trade the best estimate** (design.md 2026-11-10, owner mandate): apply the fixed rule
+(equal-risk mix of the venue's candidates with WF OOS > 0.8 on that venue and `robust.worst` > 0) to set `incubation` + alloc for
+`main` (HL) and `main_bn`; expected today: HL = blend_nested (it already is the rule-based mix; do not double-count blend), Binance =
+flow@bn + xsmom@bn + blend@bn. Their `small:` twins follow automatically. State in STATUS.md that this is the paper best estimate,
+not a funding recommendation. Then X2.
+**W1 Hyperliquid trade-flow collector over the public websocket** (allowed since 2026-11-10): one connection, `trades` for the top
+~60 coins, aggregated per coin per minute (taker buy / sell notional, trade count) into data/hl/flow/YYYY-MM-DD.parquet; verify
+the taker-side field empirically against the book before trusting it; watchdog check for gaps. Non-backfillable, so build it this
+week. Purpose: flow natively on HL (today only Binance flow exists; it transfers to HL prices before costs).
 0. **C1 cost-model calibration** (assumptions.md row 1): live fills cost 5.4 bp on HL vs 9.6 bp modelled (2 days). From 2026-11-24
 (≥ 14 days of fills, must include a volatile day): fit slippage vs order size / volume from the fills table (and the stored L2
 snapshots), write scripts/cost_calibration.py, change `backtest.slippage_model` with a design.md entry in a session that promotes

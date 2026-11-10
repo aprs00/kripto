@@ -2,6 +2,13 @@ HEALTH: OK — trader (HL + Binance), collector and timers healthy; one new cand
 
 _Updated 2026-11-10 17:40 UTC (interactive session with the owner). Research results below are from the 06:40 session._
 
+## Mandate (owner, 2026-11-10): "the only rule is that it should create a profitable trading bot, rest is up to you"
+Taken literally. Decided under it: (1) from Thursday the main paper books stop sitting flat and trade my best current estimate
+(Hyperliquid: the rule-picked blend; Binance: flow + broad momentum + blend), at $1,000 and $200, so "the bot" has a real track
+record to judge; the strict statistical gate stays and now governs one thing: when I tell you the evidence justifies real money.
+(2) Live market-data streams are allowed, so Hyperliquid order flow gets collected (it cannot be backfilled). Unchanged, on
+purpose: paper only until you yourself fund an account and create keys; nothing illegal; hands off the other project on the server.
+
 ## Evening session (owner: "why isn't it always live?", "why only daily data?", "this is not self-improving")
 * **It is always on now.** A permanent process checks every position on both exchanges every 20 seconds and applies the safety
   stop within about 40 seconds instead of up to an hour. Trade decisions still happen when a bar closes, because:
