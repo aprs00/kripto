@@ -26,7 +26,8 @@ Time budget: ~90–120 minutes of wall clock. Heavy compute with `nice -n 19`.
    (3 workers ≈ 2 GB RAM; don't exceed 3 on the shared server; for daily bars and the survivorship-free universe:
    `--datasets hl bnall --interval 1d`). Every result now carries a robustness block for the config the walk-forward
    would trade today (`scripts.show_result <strategy> <dataset>`): 2× costs, one bar of execution delay, first 6/12
-   months dropped, each single start day of the schedule, corr to BTC. Quote `worst` and the start-day spread next to
+   months dropped, each single start day of the schedule, corr to BTC, and `small_acct` (the same config in the $200
+   account; the owner may fund $200 or $1,000, so STATUS.md shows both). Quote `worst` and the start-day spread next to
    the OOS Sharpe, never the OOS Sharpe alone. Schedules slower than daily trade as staggered tranches automatically.
    Then decompose the interesting ones with
    scripts/inspect_strategy.py and conclude honestly, one findings.md entry per hypothesis. Remember that every

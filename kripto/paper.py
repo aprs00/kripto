@@ -112,7 +112,8 @@ def venue_of(sc: dict) -> str:
 
 
 def book_venue(book: str) -> str:
-    return "bn" if book == "main_bn" or book.endswith("@bn") else "hl"
+    """hl or bn. Binance books: main_bn, shadow:<entry>@bn and their small-account twins small:main_bn, small:<entry>@bn."""
+    return "bn" if book.endswith("_bn") or book.endswith("@bn") else "hl"
 
 
 def strategy_fn(name: str, sc: dict):
@@ -156,13 +157,24 @@ def live_panel(coins: list[str]) -> dict:
 
 
 # --------------------------------------------------------------------------- execution sim
-def simulate_fill(hl: HL, coin: str, size: float) -> tuple[float, float, float]:
-    """Walk the live book. Returns (avg_px, mid, slippage_bps). size>0 buy."""
-    book = hl.l2_book(coin)
-    try:  # keep the book we already paid a request for (non-backfillable L2 data, T6a)
-        collect.store_l2(book, coin)
-    except Exception:
-        pass
+L2_TTL = 180.0   # seconds a fetched order book may be reused by the other books trading the same coin in this run
+
+
+def simulate_fill(hl: HL, coin: str, size: float, cache: dict | None = None) -> tuple[float, float, float]:
+    """Walk the live book. Returns (avg_px, mid, slippage_bps). size>0 buy.
+    `cache` ({coin: (time, book)}, one per run): books that trade the same coin within L2_TTL share one snapshot, so
+    adding books (e.g. the $200 twins) does not add API calls."""
+    hit = cache.get(coin) if cache is not None else None
+    if hit and time.time() - hit[0] < L2_TTL:
+        book = hit[1]
+    else:
+        book = hl.l2_book(coin)
+        if cache is not None:
+            cache[coin] = (time.time(), book)
+        try:  # keep the book we already paid a request for (non-backfillable L2 data, T6a)
+            collect.store_l2(book, coin)
+        except Exception:
+            pass
     bids, asks = book["levels"][0], book["levels"][1]
     mid = (float(bids[0]["px"]) + float(asks[0]["px"])) / 2
     levels = asks if size > 0 else bids
@@ -268,28 +280,39 @@ def compute_targets(store: Store, entries: dict, panel: dict, last_bar: str) -> 
 def run_books(store: Store, entries: dict, risk: dict, marks: dict[str, float], strat_w: dict[str, pd.Series],
               last_bar: str, main: str, reb) -> list[str]:
     """Kill switch, then rebalance each due book of one venue. `reb(book, target_weights, reason)` trades.
-    main = allocation-weighted blend of that venue's incubation/active entries' latest targets."""
-    for n, sc in entries.items():   # a retired entry's shadow book is closed out once, not left holding stale positions
+    main = allocation-weighted blend of that venue's incubation/active entries' latest targets.
+    Three sizes of the same targets: `shadow:<entry>` (shadow_equity: measures the signal, min order barely binds),
+    `main` (start_equity: the account the owner could fund) and, when risk.json has `small_equity`, the twins
+    `small:<entry>` and `small:<main>`: the same thing in a small account, where the min order decides what can be held."""
+    small = risk.get("small_equity")
+    kinds = [("shadow:", risk.get("shadow_equity", risk["start_equity"]))] + ([("small:", small)] if small else [])
+    for n, sc in entries.items():   # a retired entry's books are closed out once, not left holding stale positions
         if sc.get("status") != "retired":
             continue
-        book = f"shadow:{n}"
-        if store.positions(book):
-            reb(book, pd.Series(dtype=float), "retired")
-            store.event("INFO", f"{book}: entry retired, positions closed")
-        last = store.q("select n_pos from equity where book=? order by ts desc limit 1", book)
-        npos = len(store.positions(book))
-        if last and last[0][0] != npos:   # final equity row, so `status` shows the closed book and not its last live one
-            eq, gross = book_equity(store, book, marks)
-            store.x("insert into equity values(?,?,?,?,?)", now_iso(), book, eq, gross, npos)
-    books = {f"shadow:{n}": (n,) for n, sc in entries.items() if sc.get("status") != "retired"}
-    books[main] = None
-    for b in books:  # shadow books measure signal quality; bigger virtual equity avoids min-order distortion
-        size = risk["start_equity"] if b == main else risk.get("shadow_equity", risk["start_equity"])
-        store.ensure_book(b, size)
-        store.resize_untouched(b, size)
-    sig_key = "main_alloc_sig" if main == "main" else f"{main}_alloc_sig"
+        for prefix, _ in kinds:
+            book = f"{prefix}{n}"
+            if store.positions(book):
+                reb(book, pd.Series(dtype=float), "retired")
+                store.event("INFO", f"{book}: entry retired, positions closed")
+            last = store.q("select n_pos from equity where book=? order by ts desc limit 1", book)
+            npos = len(store.positions(book))
+            if last and last[0][0] != npos:   # final equity row, so `status` shows the closed book and not its last live one
+                eq, gross = book_equity(store, book, marks)
+                store.x("insert into equity values(?,?,?,?,?)", now_iso(), book, eq, gross, npos)
+    books, sizes = {}, {}
+    for n, sc in entries.items():
+        if sc.get("status") != "retired":
+            for prefix, size in kinds:
+                books[f"{prefix}{n}"], sizes[f"{prefix}{n}"] = (n,), size
+    books[main], sizes[main] = None, risk["start_equity"]
+    if small:
+        books[f"small:{main}"], sizes[f"small:{main}"] = None, small
+    for b in books:
+        store.ensure_book(b, sizes[b])
+        store.resize_untouched(b, sizes[b])
 
     for book, spec in books.items():
+        sig_key = f"{book}_alloc_sig"   # "main_alloc_sig" / "main_bn_alloc_sig" as before; one per allocation book
         halted = store.q("select halted from books where name=?", book)[0][0]
         eq, _ = book_equity(store, book, marks)
         peak = max(store.q("select peak from books where name=?", book)[0][0], eq)
@@ -340,7 +363,9 @@ def run_once():
     last_bar = str(panel["close"].index[-1])
     entries = {n: sc for n, sc in cfg.items() if venue_of(sc) == "hl"}
     strat_w = compute_targets(store, entries, panel, last_bar)
-    reb = lambda book, tgt, reason: rebalance(hl, store, book, tgt, marks, sz_dec, reason)
+    l2 = {}   # order books fetched in this run, shared by all books trading the same coin (see simulate_fill)
+    reb = lambda book, tgt, reason: rebalance(hl, store, book, tgt, marks, sz_dec, reason,
+                                              fill=lambda c, d: simulate_fill(hl, c, d, l2))
     books = run_books(store, entries, risk, marks, strat_w, last_bar, "main", reb)
     for b in books:
         eq, gross = book_equity(store, b, marks)

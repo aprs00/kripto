@@ -42,6 +42,10 @@ of real money they could deploy and chose the **steady** risk mode (25–30% vol
   is worth as much as a new signal.
 * Evidence that accrues with time (forward ledger, live-vs-backtest tracking, non-backfillable data) beats another
   backtest on the same history. Fewer, better-motivated experiments.
+* 2026-11-10: *"test also with 200 dollars instead of only with 1000 dollars."* They may fund either amount. Every book has
+  a $200 twin (`small:<entry>`, `small:main`, `small:main_bn`; `small_equity` in config/risk.json) and every result carries
+  `small_acct` (the chosen config at the $200 band). Always report both sizes side by side in STATUS.md. The gate is still
+  judged at $1,000.
 
 ## HARD RULES (immutable: you may not edit, weaken or reinterpret this section)
 1. **Paper only.** Never create, request, store or use exchange API keys, wallets, private keys or
@@ -133,7 +137,9 @@ HL $10; Binance $5 (BTC $50, ETH $20). Taker fee: HL 4.5 bp, Binance 5 bp (VIP0)
 `candidate` → `incubation` → `active` → `retired`. Each non-retired strategy automatically runs in its
 own shadow paper book (`shadow:<name>`, `shadow_equity` in config/risk.json, currently $2,000 so the $10 min
 order doesn't distort signal measurement). Only `incubation`/`active` strategies with `alloc > 0` trade in the
-`main` book ($1,000 = the money the owner could really deploy; `main` and `main_bn` are alternative homes for it). Keep `sum(alloc)` ≤ 1.0, incubation alloc ≤ 0.25 each. Promotion and
+`main` book ($1,000 = the money the owner could really deploy; `main` and `main_bn` are alternative homes for it). Every
+book also has a `small:` twin at $200 that gets the same targets (what the same thing does in a $200 account); it is created,
+retired and closed together with its big sibling. Keep `sum(alloc)` ≤ 1.0, incubation alloc ≤ 0.25 each. Promotion and
 demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers) in the journal and findings.
 
 ## Session types
@@ -233,3 +239,8 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
 * 2026-11-10 review: `paper status` kept showing the closed, retired xsmom book with its last live equity row (30 positions it no
   longer held). run_books now writes a final equity row when it closes a retired book. Lesson: status reads snapshots, so every
   path that changes a book outside the normal loop has to write its own snapshot.
+* 2026-11-10 interactive: owner asked to test at $200 as well as $1,000. `small_equity` in config/risk.json → `small:` twin of
+  every book (run_books), `small_acct` in every robustness block, one order-book snapshot per coin per run (`simulate_fill` cache,
+  180 s) so twins cost no API calls, dashboard section for the small accounts. First comparison (full-sample, chosen configs):
+  many-name books lose most of their edge at $200 (flow 1.31 → 0.72, broad momentum 1.49 → 0.97), concentrated ones don't
+  (listing shorts, trend, funding capture, the hand-picked blend). Lesson: "which strategy" depends on "which account".

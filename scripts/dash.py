@@ -103,13 +103,19 @@ def books() -> None:
     except Exception:
         cfg = {}
     print(dim(f"{'book':13s}{'equity':>9s}{'ret':>8s}{'pos':>4s} {'rebal':>9s}"))
-    for name, start, halted in q("select name,start_equity,halted from books order by name"):
+    rows = q("select name,start_equity,halted from books order by name")
+    rows = [r for r in rows if not r[0].startswith("small:")] + [None] + [r for r in rows if r[0].startswith("small:")]
+    for row in rows:
+        if row is None:     # the same strategies in a $200 account (min order decides what can be held)
+            print(dim("small accounts (same targets, small size)"))
+            continue
+        name, start, halted = row
         r = q("select equity,n_pos from equity where book=? order by ts desc limit 1", name)
         if not r:
             continue
         eq, n = r[0]
-        short = name.removeprefix("shadow:")
-        st = cfg.get(short, {}).get("status", "") if name.startswith("shadow:") else ""
+        short = name.split(":", 1)[1] if ":" in name else name
+        st = cfg.get(short, {}).get("status", "") if ":" in name else ""
         if st == "retired":
             continue
         ret = eq / start - 1

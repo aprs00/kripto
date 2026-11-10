@@ -65,6 +65,15 @@ def log_trial(rec: dict):
         f.write(json.dumps(rec, default=str) + "\n")
 
 
+def small_band() -> float | None:
+    """Band of the small-account twin (risk.json `small_equity`, $200 → 0.05), or None if there is no twin."""
+    try:
+        eq = json.loads(RISK.read_text()).get("small_equity")
+    except Exception:
+        return None
+    return MIN_ORDER / float(eq) if eq else None
+
+
 def evaluate(name: str, panel: dict, params: dict, dataset: str, cost_mult: float = 1.0,
              band: float | None = None, log: bool = True, start: str | None = None, lag: int = 0,
              tag: str | None = None, maker: dict | None = None, exec_desc: str | None = None) -> tuple[bt.BTResult, dict]:
@@ -105,12 +114,17 @@ def robustness(name: str, panel: dict, params: dict, dataset: str) -> dict:
     first 6/12 months dropped (start-date luck), correlation to BTC and, for schedules slower than daily, the Sharpe
     of every single start day of the schedule (the default already trades their average as tranches).
     `worst` = min(base, 2x costs, delay, start-date cuts): the gate reads this, not the best case.
+    `small_acct` = the same config in the small account (band = min order / small_equity): reported next to `base`
+    because the owner may fund $200 rather than $1,000; it is not part of `worst` (the gate is judged at the main size).
     Lines are logged as config kind with tag "robust", so they do not raise the walk-forward DSR bar."""
     def ev(p=params, **kw):
         return evaluate(name, panel, p, dataset, tag="robust", **kw)
     res, s = ev()
     out = {"params": params, "base": s.get("sharpe"), "cost_x2": ev(cost_mult=2.0)[1].get("sharpe"),
            "delay_1bar": ev(lag=1)[1].get("sharpe"), "band_tiny": ev(band=0.001)[1].get("sharpe")}
+    sb = small_band()
+    if sb:
+        out["small_acct"] = ev(band=sb)[1].get("sharpe")
     first = res.gross[res.gross > 0].index.min()
     if not pd.isna(first):
         r = res.returns[res.returns.index >= first]

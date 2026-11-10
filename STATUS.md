@@ -1,6 +1,26 @@
 HEALTH: OK — trader (HL + Binance), collector and timers healthy; one new candidate (cross-venue funding capture) and the blend survived its hindsight test; nothing passes the gate yet, main books flat.
 
-_Updated 2026-11-10 08:40 UTC (daily review). Research results below are from the 06:40 session._
+_Updated 2026-11-10 17:40 UTC (interactive session with the owner). Research results below are from the 06:40 session._
+
+## $200 next to $1,000 (owner 17:10: "test also with 200 dollars")
+Every book now has a $200 twin that receives the same targets (`small:` books; first trades at the 11-11 00:00 bar), and every
+future result reports the $200 account next to the $1,000 one. First comparison, backtest of each candidate's chosen settings
+over its full history (in-sample Sharpe, so higher than the out-of-sample numbers below; read the difference between the columns):
+
+| strategy | $1,000 account | $200 account | names held ($1,000 → $200) |
+|---|---|---|---|
+| funding capture (both venues) | 1.89 | 2.21 | 19 → 19 |
+| listing shorts (HL) | 1.56 | 1.47 | 8 → 4 |
+| blend, hand-picked (HL) | 1.56 | 1.81 | 25 → 15 |
+| trend (HL / Binance) | 0.87 / 1.16 | 0.93 / 1.23 | 19 → 15 |
+| blend, rule-picked (HL / Binance) | 1.41 / 1.62 | 0.99 / 1.41 | 35 → 19 |
+| broad momentum (Binance) | 1.49 | 0.97 | 32 → 20 |
+| flow (Binance) | 1.31 | 0.72 | 32 → 26 |
+
+**Reading.** At $200 the $10 minimum order is 5% of the account, so books that need 30 names lose a third to a half of their
+edge (flow, broad momentum, the rule-picked blend). Books with few, larger positions are unaffected: funding capture, listing
+shorts, trend, the hand-picked blend. Where $200 looks *better* that is noise (fewer trades), not an advantage. In money terms
+$200 earns a fifth of what $1,000 does at the same percentage: at 12–27% a year that is $24–54 a year.
 
 **Review 08:40:** everything ran. Trader 33 runs in 25 h with no errors or warnings, data 4 h old, nightly data job and the
 research session succeeded, collector 0 errors (3 days of market context, 2 days of positions and order books), disk 64%.

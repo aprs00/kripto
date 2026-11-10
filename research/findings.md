@@ -19,7 +19,10 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
   Always report gross, costs and turnover separately: "dead" and "dead at taker costs" are different verdicts.
 * **Account size decides what is executable.** At $200 a $10 min order is 5% of equity and 20–30 name books could not be
   traded (band 0.05). Since 2026-11-10 the main book is $1,000 (the owner's deployable capital): band 0.01, broad books fit.
-  Binance's $5 min order allows twice the breadth again. Always quote which band a number used.
+  Binance's $5 min order allows twice the breadth again. Always quote which band a number used. $200 vs $1,000 for the chosen
+  configs (2026-11-10, full-sample SR): many-name books need the bigger account (flow 1.31 → 0.72, xsmom bnall 1.49 → 0.97,
+  blend_nested HL 1.41 → 0.99); concentrated ones don't (listing_short 1.56 → 1.47, tsmom 0.87 → 0.93, blend HL 1.56 → 1.81,
+  fspread_hold 1.89 → 2.21; rises are band-as-turnover-filter noise, not a gain). Live `small:` twins are the real test.
 * **Binance results do NOT transfer automatically to HL** (see carry). Every idea must pass on HL data.
 * BN 4h dataset is survivor-biased (hand-picked 82 coins). **`bnall`** (2026-11-09) = every Binance USDT perp ever listed
   incl. delisted (923), daily bars: use it as the second venue for anything where survivorship matters (listings, shorts, breadth).

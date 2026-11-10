@@ -120,9 +120,16 @@ def live_panel(coins: list[str], now: pd.Timestamp | None = None) -> dict:
     return {k: v.loc[closed & (v.index >= cutoff)] for k, v in p.items()}
 
 
-def simulate_fill(bn: BN, coin: str, size: float) -> tuple[float, float, float]:
-    """Walk the live Binance book (top 20). Returns (avg_px, mid, slippage_bps). size>0 buy."""
-    book = bn.depth(sym(coin), 20)
+def simulate_fill(bn: BN, coin: str, size: float, cache: dict | None = None) -> tuple[float, float, float]:
+    """Walk the live Binance book (top 20). Returns (avg_px, mid, slippage_bps). size>0 buy.
+    `cache`: one dict per run; books trading the same coin within P.L2_TTL share one depth snapshot."""
+    hit = cache.get(coin) if cache is not None else None
+    if hit and time.time() - hit[0] < P.L2_TTL:
+        book = hit[1]
+    else:
+        book = bn.depth(sym(coin), 20)
+        if cache is not None:
+            cache[coin] = (time.time(), book)
     bids = [(float(p), float(q)) for p, q in book["bids"]]
     asks = [(float(p), float(q)) for p, q in book["asks"]]
     mid = (bids[0][0] + asks[0][0]) / 2
@@ -173,10 +180,12 @@ def run(store: P.Store, cfg: dict, risk: dict, bn: BN | None = None):
     last_bar = str(panel["close"].index[-1])
     strat_w = P.compute_targets(store, entries, panel, last_bar)
 
+    depth = {}   # depth snapshots of this run, shared by all books trading the same coin
+
     def reb(book, tgt, reason):
         P.rebalance(None, store, book, tgt, marks, {}, reason,
                     round_size=lambda c, d: round_step(d, filters.get(c, {}).get("step", 0.0)),
-                    fill=lambda c, d: simulate_fill(bn, c, d),
+                    fill=lambda c, d: simulate_fill(bn, c, d, depth),
                     min_notional=lambda c: filters.get(c, {}).get("min_notional", 5.0),
                     fee_rate=TAKER_FEE_BN)
 

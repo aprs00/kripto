@@ -153,3 +153,12 @@ See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits;
   deterministic watchdog (`scripts/health.py`) plus one Claude review a day, with an extra review started on any new problem.
   Consequence for old numbers: every result before this entry used band 0.05 and one start day. The candidates' pre-registered
   grids were re-measured the same day (batches 2026-11-09-h1-recheck-*); findings.md carries the new numbers.
+* 2026-11-10 (owner direction, interactive): **"test also with $200, not only with $1,000."** The owner may fund either amount, and
+  what a strategy can hold depends on the account: at $200 the $10 minimum order is 5% of equity. General rationale, independent
+  of any result: executability must be measured at every size that might really be funded. So (1) `config/risk.json` gets
+  `small_equity` (200) and the paper engine runs a twin of every book at that size: `small:<entry>` next to `shadow:<entry>`, and
+  `small:main` / `small:main_bn` next to the main books (same targets, same engine, the min order now decides what opens).
+  (2) Every walk-forward's robustness block gains `small_acct` = the chosen config at band min order / small_equity (0.05).
+  (3) **The gate is unchanged**: it is still judged at the main size ($1,000); `small_acct` is reported next to it and is not part
+  of `robust.worst`. If the owner funds $200, the `small_acct` column and the `small:` books are the relevant evidence.
+  (4) Books that trade the same coin in one run share one order-book snapshot (≤ 180 s old), so the twins add no API calls.

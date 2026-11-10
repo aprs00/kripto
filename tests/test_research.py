@@ -67,3 +67,18 @@ def test_robustness_block_has_the_stresses_and_every_phase(tmp_path, monkeypatch
     assert rb["worst"] <= rb["base"] and rb["cost_x2"] <= rb["base"]
     wf = [json.loads(x) for x in (tmp_path / "registry.jsonl").read_text().splitlines()]
     assert all(x.get("tag") == "robust" and "kind" not in x for x in wf)   # never raises the walk-forward DSR bar
+
+
+def test_robustness_reports_the_small_account_when_configured(tmp_path, monkeypatch):
+    monkeypatch.setattr(research, "REG", tmp_path / "registry.jsonl")
+    risk = tmp_path / "risk.json"
+    risk.write_text(json.dumps({"start_equity": 1000.0, "small_equity": 200.0}))
+    monkeypatch.setattr(research, "RISK", risk)
+    assert research.small_band() == pytest.approx(0.05)
+    rb = research.robustness("xsmom", _panel(), {"lookback": 14, "every_days": 1, "top_n": 6}, "t")
+    assert "small_acct" in rb
+    bands = [json.loads(x)["band"] for x in (tmp_path / "registry.jsonl").read_text().splitlines()]
+    assert 0.05 in bands and 0.01 in bands
+    risk.write_text(json.dumps({"start_equity": 1000.0}))
+    assert research.small_band() is None
+    assert "small_acct" not in research.robustness("xsmom", _panel(), {"lookback": 14, "every_days": 1, "top_n": 6}, "t")

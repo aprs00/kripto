@@ -35,7 +35,7 @@ if __name__ == "__main__":
     if rb:
         print(f"robustness of the latest choice {rb.get('params')} (full-sample SR; the gate reads `worst`):")
         print("  " + "  ".join(f"{k}={rb.get(k)}" for k in ("base", "cost_x2", "delay_1bar", "skip_first_6m",
-                                                              "skip_first_12m", "band_tiny", "corr_btc", "worst")))
+                                                              "skip_first_12m", "band_tiny", "small_acct", "corr_btc", "worst")))
         if rb.get("phases"):
             print(f"  single start days of the schedule: {rb['phases']} (min {rb['phase_min']}, mean {rb['phase_mean']})")
     print("folds (from, oos SR, chosen params):")
