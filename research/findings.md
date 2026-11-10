@@ -151,3 +151,10 @@ New angle vs X1: fixed 10% legs, open at |14d mean HL−BN spread| > enter, HOLD
 mdd −1.7%), grid med 2.22, 6/6 >0, worst 1.43 (2× costs), corr BTC −0.03.** Turnover 10–50× (X1: 70–410×): funding +3–10%/yr vs costs
 1–4%/yr. 40–52 pairs, top coin ≈ 20% of P&L, every year +; short the HL leg 95% of pair-days (HL longs pay). ~⅓ of P&L is premium
 convergence (price legs), not funding. Fails DSR (0.006: 1.66 y, fat tails). Not modelled: margin split across two venues (≈2× per venue). Daily basis risk small (worst pair-day −0.41%, max basis 95 bp).
+
+### L1 hourly horizon: Binance → HL lead-lag and 1h reversal (library N4; descriptive kill test, no backtest, 2026-11-10) → DEAD at taker costs
+45 coins on both venues, 4,821 hours (2026-04-14 → 10-31), HL names > $5M/day. Rank IC with HL's next-hour return: Binance return
+this hour −0.038 (t −8.7), HL's own −0.039 (t −8.8), "HL lagged Binance this hour" +0.031 (t +7.9), HL last 4h −0.043. Top-minus-bottom
+fifth, next hour: −3 / −3 / +5.4 / −2 bp. Statistically real, economically 5–10× smaller than the ~25–40 bp a taker long-short
+switch costs; part is bid-ask bounce and stale last-trade closes. Harvesting it means near-free passive fills = market making
+(T9: adverse selection; paper cannot validate queue position). Slow horizons stay the right place for this system.

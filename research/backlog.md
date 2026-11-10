@@ -45,7 +45,7 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
   residuals, enter only past a z-threshold, exit on reversion, so turnover is a fraction of xsrev's. HL + bnall, ≤ 8 configs.
 - [ ] T9b Alpha-decay curve per strategy (library N8, maxdama §7): signed return of each strategy's trades from decision to +1/4/12/24 h.
   Explains T9 and sizes the cost of a late run (one bar late costs tsmom a third). Descriptive, hourly data.
-- [ ] L1 **HL lags Binance? (library N4)**: cheap kill test: BN 1h alt return → HL same-coin next-1h return. Expect
+- [x] L1 → DEAD at taker costs: hourly effects are real (t ≈ 8) but 2–5 bp vs 25–40 bp costs (2026-11-10, findings). Was: **HL lags Binance? (library N4)**: cheap kill test: BN 1h alt return → HL same-coin next-1h return. Expect
   ≈ 0 (arbitraged in seconds). If |IC| is meaningful after costs, it becomes a strategy.
 - [ ] L6 **Better vol forecasts for sizing (library N6)**: vol estimator ∈ {close-to-close, Parkinson, HAR-range} inside
   tsmom/xsmom vol targeting. Risk improvement, not alpha. One experiment per strategy.
