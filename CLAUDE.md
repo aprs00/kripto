@@ -278,3 +278,6 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   the best current estimate instead of sitting flat until a statistical gate passes (design.md changelog; effective from the
   next research session, not this one); the gate now governs the recommendation to fund real money. (2) Backlog W1: collect
   HL trade flow over the websocket (non-backfillable; flow is the strongest signal on Binance and HL has no history of it).
+* 2026-11-10 interactive: the server's sessions had silently switched model. The owner changed the default on their laptop and the
+  account-wide setting reached the server (the 08:25 review ran on it). `scripts/agent.sh` now passes `--model` explicitly
+  (`KRIPTO_MODEL`, default claude-opus-5-5, the owner's choice). Lesson: pin anything the owner decided; inherited defaults drift.

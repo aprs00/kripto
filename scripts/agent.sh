@@ -13,7 +13,10 @@ case "$MODE" in review) TURNS=40; TMO=35m;; research) TURNS=250; TMO=140m;; *) e
 # HARD RULES are immutable for headless sessions: remember the section now, put it back afterwards if it changed
 SNAP="$(mktemp)"; .venv/bin/python -m scripts.guard save "$SNAP" 2>> "$LOG" || SNAP=""
 echo "=== $(date -u +%FT%TZ) start $MODE" >> "$LOG"
-timeout "$TMO" claude -p "$(cat prompts/$MODE.md)" --dangerously-skip-permissions --max-turns "$TURNS" \
+# The model is pinned on purpose (owner 2026-11-10: "stick with opus" on the server). Without it the account-wide default
+# applies, and a /model change on the owner's laptop silently moved the server to another model for a day.
+MODEL="${KRIPTO_MODEL:-claude-opus-5-5}"
+timeout "$TMO" claude -p "$(cat prompts/$MODE.md)" --model "$MODEL" --dangerously-skip-permissions --max-turns "$TURNS" \
   --output-format text >> "$LOG" 2>&1
 RC=$?
 echo "=== $(date -u +%FT%TZ) end $MODE rc=$RC" >> "$LOG"
