@@ -106,3 +106,10 @@ def test_silent_live_watcher_is_an_alert():
     assert level == "ALERT" and "live watcher silent" in why[0]
     f["live"] = {"ts": iso(seconds=30), "errors": ["hl: timeout"]}
     assert health.assess(f, NOW)[0] == "WARN"
+
+
+def test_failed_session_reason_is_shown():
+    f = _ok(); f["sessions"] = [(iso(hours=30), "review", 0), (iso(hours=6), "research", 1)]
+    f["session_why"] = {f["sessions"][-1][0]: "You've hit your 5-hour limit"}
+    level, reasons = health.assess(f, NOW)
+    assert any("5-hour limit" in r for r in reasons)

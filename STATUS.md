@@ -1,11 +1,18 @@
-HEALTH: OK — trader (HL + Binance), collector and timers healthy; one new candidate (cross-venue funding capture) and the blend survived its hindsight test; nothing passes the gate yet, main books flat.
+HEALTH: WARN — last night's extra research session never ran (Claude 5-hour usage limit, after a model mix-up that is now fixed); trading, data and collector are healthy. The work moves to Thursday's 06:40 session.
 
-_Updated 2026-11-10 17:40 UTC (interactive session with the owner). Research results below are from the 06:40 session._
+_Updated 2026-11-11 08:40 UTC (daily review). Research results below are from the 11-10 06:40 session._
 
-**Owner 18:40 UTC: "if you can run everything immediately on server, then run it."** A research session was started by hand
-tonight to do now what was planned for Thursday: main books trading the best estimate, the two-venue book for funding capture,
-and the Hyperliquid order-flow collector. Three things only time can produce are not hurried: the cost-model re-fit (two weeks of
-fills), the live-vs-backtest check (a week of live books) and the forward ledger (30 days).
+**Review 11-11 08:25: the "run everything now" session did not happen.** It was started at 17:40 UTC, first failed because
+the server asked for a model that does not exist (the drift that the same evening's commit pinned to Opus 5.5), then hit the
+Claude 5-hour usage limit (the evening's interactive work had used it up). So the main books are still flat, and the two-venue
+book and the Hyperliquid order-flow collector are not built yet. These are now the first items for Thursday's research session
+(11-12 06:40). I did not do them in this review: it has a 15-minute budget and is not allowed to make lifecycle changes, and
+rushing the main-book switch would be worse than waiting a day. Everything else is healthy: the trader ran every hour, the always-on
+watcher reports 18 open books and no kill-switch hits (worst drawdown −1.2%), data is 4 h old, the nightly data job succeeded,
+and the collector has 0 errors. 339 fills since 11-10 cost what the live data says they should: 0.8 bp slippage on HL, 1.0 bp on
+Binance, plus fees of 4.5 bp and 5 bp. Fix: the watchdog now says *why* a session failed (e.g. "5-hour limit"), not only "rc=1".
+Still only time can produce these: the cost-model re-fit (two weeks of fills, from 11-24), the live-vs-backtest check (a week of
+live books), the forward ledger (30 days).
 
 ## Mandate (owner, 2026-11-10): "the only rule is that it should create a profitable trading bot, rest is up to you"
 Taken literally. Decided under it: (1) from Thursday the main paper books stop sitting flat and trade my best current estimate
@@ -70,8 +77,9 @@ closed HL `xsmom` book with its old 30 positions; it now shows it closed ($1,975
 | book | size | state |
 |---|---|---|
 | main (HL), main_bn (Binance) | $1,000 each | flat by design: nothing has passed the gate |
-| shadow: tsmom, listing_short, xsmom_k, blend, **blend_nested (new)** (HL) | $2,000 each | 0–2 days old: tsmom +0.8%, blend −0.2%, blend_nested +0.1%, xsmom_k −0.1%, listing_short flat (no new listing to short) (noise) |
-| shadow: xsmom_k@bn, flow@bn, tsmom@bn, xsmom@bn, blend@bn | $2,000 each | first trades today, −0.7% to +0.1% (noise) |
+| shadow: tsmom, listing_short, xsmom_k, blend, blend_nested (HL) | $2,000 each | 2–3 days old: tsmom +1.9%, xsmom_k +0.4%, blend_nested +0.1%, blend −0.1%, listing_short flat (no new listing) (noise) |
+| shadow: xsmom_k@bn, flow@bn, tsmom@bn, xsmom@bn, blend@bn | $2,000 each | 2 days old: tsmom@bn +1.4%, blend@bn +0.9%, others −0.7% to −0.1% (noise) |
+| small: twins of every book | $200 each | first day: −0.8% to +0.2% (noise) |
 | retired today: HL xsmom shadow (dead on HL; the Binance version keeps running) | | closed at $1,975.42 (−1.2%) |
 
 ## Candidates (walk-forward out-of-sample Sharpe, net of costs; worst = lowest of the stress tests)

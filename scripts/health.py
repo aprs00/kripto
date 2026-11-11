@@ -60,10 +60,15 @@ def gather(root: Path = ROOT, db: Path = DB) -> dict:
     except Exception:
         f["due"] = []
     for p in sorted((root / "logs").glob("agent-*-*.log"))[-12:]:
+        prev = ""
         for line in p.read_text(errors="replace").splitlines():
             m = re.match(r"=== (\S+) end (\w+) rc=(\d+)", line)
             if m:
                 f["sessions"].append((m.group(1), m.group(2), int(m.group(3))))
+                if m.group(3) != "0" and prev:   # the last output line usually says why (usage limit, unknown model, ...)
+                    f.setdefault("session_why", {})[m.group(1)] = prev[:60]
+            elif line.strip() and not line.startswith("=== "):
+                prev = line.strip()
     f["sessions"].sort()
     return f
 
@@ -117,7 +122,8 @@ def assess(f: dict, now: datetime) -> tuple[str, list[str]]:
             alert.append("agent: no successful Claude session " + ("on record" if last_ok is None else f"for {last_ok:.0f}h")
                          + " (login expired? `sudo -u kripto -i`, `claude`, `/login`)")
         elif s[-1][2] != 0:
-            warn.append(f"agent: last {s[-1][1]} session ended rc={s[-1][2]}")
+            why = (f.get("session_why") or {}).get(s[-1][0])
+            warn.append(f"agent: last {s[-1][1]} session ended rc={s[-1][2]}" + (f" ({why})" if why else ""))
     # de-duplicate, keep order
     alert, warn = list(dict.fromkeys(alert)), list(dict.fromkeys(warn))
     return ("ALERT" if alert else "WARN" if warn else "OK"), alert + warn

@@ -6,8 +6,8 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 
 **Priority order (rewritten 2026-11-10 after H4/T9/X1b; research Tue + Thu, ≤ 6 new walk-forward experiments per session):**
 ## OWNER INSTRUCTION 2026-11-10 evening: "if you can run everything immediately on server, then run it"
-This session was started by hand on Tuesday evening for exactly that. Do these now, in this order, and do not postpone any of
-them to Thursday. It is a build session: no new walk-forward experiments unless a build needs one.
+**That evening session never ran** (17:40 UTC: unknown-model error, then the 5-hour Claude usage limit; journal 2026-11-11). The next research session (Thu 11-12 06:40) does this block first, before anything else. Do these in this order, and do not postpone any of
+them further. It is a build session: no new walk-forward experiments unless a build needs one.
 1. **M1** (below): set the main books to the best estimate today. This IS "the next research session" that design.md refers to.
 2. **X2** two-venue paper book so fspread_hold trades on paper (design below). Include it in the live watcher (`kripto/live.py`
    values books per venue: a pair book needs marks from both) and give it `small:` twins like every other book.

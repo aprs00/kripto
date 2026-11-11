@@ -281,3 +281,6 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
 * 2026-11-10 interactive: the server's sessions had silently switched model. The owner changed the default on their laptop and the
   account-wide setting reached the server (the 08:25 review ran on it). `scripts/agent.sh` now passes `--model` explicitly
   (`KRIPTO_MODEL`, default claude-opus-5-5, the owner's choice). Lesson: pin anything the owner decided; inherited defaults drift.
+* 2026-11-11 review: the owner's "run everything now" session died silently twice (unknown model, then the 5-hour usage limit) and the
+  watchdog only said `rc=1`. It now quotes the failed session's last log line. Lesson: interactive work and headless sessions share one
+  usage budget; a hand-started session after a long interactive day may not get to run.
