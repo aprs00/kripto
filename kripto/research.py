@@ -21,6 +21,7 @@ import pandas as pd
 
 from . import backtest as bt
 from . import metrics as mx
+from .events import EVENTS
 from .strategies import REGISTRY, bars_per_day
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -81,12 +82,16 @@ def evaluate(name: str, panel: dict, params: dict, dataset: str, cost_mult: floa
     tag marks the purpose of a logged line ("robust", "forward", ...). maker = execution.maker_fills(...) + {"fee"}
     (passive execution with taker fallback, T9); exec_desc names that policy in the registry line."""
     band = default_band() if band is None else band
-    w = REGISTRY[name](panel, **params)
-    if lag:
-        w = w.shift(lag)
-    bpd = bars_per_day(panel["close"].index)
-    slip = bt.slippage_model(panel["volume"], bpd)
-    res = bt.run(w, panel["close"], panel.get("funding"), slip, band=band, cost_mult=cost_mult, maker=maker)
+    if name in EVENTS:
+        # intraday order strategies (kripto/events.py) simulate their own fills and return a daily BTResult
+        res = EVENTS[name](panel, cost_mult=cost_mult, lag=lag, band=band, **params)
+    else:
+        w = REGISTRY[name](panel, **params)
+        if lag:
+            w = w.shift(lag)
+        bpd = bars_per_day(panel["close"].index)
+        slip = bt.slippage_model(panel["volume"], bpd)
+        res = bt.run(w, panel["close"], panel.get("funding"), slip, band=band, cost_mult=cost_mult, maker=maker)
     r = res.returns
     if start:
         r = r[r.index >= start]
@@ -134,9 +139,12 @@ def robustness(name: str, panel: dict, params: dict, dataset: str) -> dict:
             out[f"skip_first_{m}m"] = round(mx.sharpe(seg, ppy), 3) if len(seg) > 60 else None
         ref = next((x for x in ("BTC", "BTC@bn") if x in panel["close"]), None)
         if ref:
-            btc = panel["close"][ref].pct_change(fill_method=None).reindex(r.index)
+            px = panel["close"][ref]
+            if name in EVENTS:                       # event results are daily whatever the panel's bar size
+                px = px.resample("1D").last()
+            btc = px.pct_change(fill_method=None).reindex(r.index)
             out["corr_btc"] = round(float(r.corr(btc)), 3)
-    sig = inspect.signature(REGISTRY[name]).parameters
+    sig = inspect.signature(EVENTS.get(name) or REGISTRY[name]).parameters
     n = int(params.get("every_days", sig["every_days"].default if "every_days" in sig else 1))
     if 1 < n <= 14 and "phase" in sig:
         ph = [ev({**params, "phase": k})[1].get("sharpe") for k in range(n)]

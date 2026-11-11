@@ -26,7 +26,7 @@ _PANELS = {}
 
 def panel(ds, since=None, interval="4h"):
     if (ds, interval) not in _PANELS:
-        p = data.load_panel(ds, interval)   # hl | bn | bnall | hlx | pair (the last three are daily only)
+        p = data.load_panel(ds, interval)   # hl | bn | bnall | hlx | pair (daily only) | bnts (1d, 5m) | bnm (1m)
         if since:
             p = {k: v[v.index >= since] for k, v in p.items()}
         _PANELS[(ds, interval)] = p
@@ -60,7 +60,8 @@ if __name__ == "__main__":
     ap.add_argument("--grid", help="JSON grid override (single strategy)")
     ap.add_argument("--grids", help="JSON file {strategy: grid} to test several hypotheses in one parallel batch")
     ap.add_argument("--since", help="e.g. 2021-01-01")
-    ap.add_argument("--interval", default="4h", choices=["4h", "1d"], help="bar size (dataset is logged as e.g. hl_1d)")
+    ap.add_argument("--interval", default="4h", choices=["4h", "1d", "1h", "5m", "1m"],
+                    help="bar size (dataset is logged as e.g. hl_1d); 1h: bn; 5m: bnts; 1m: bnm")
     ap.add_argument("--workers", type=int, default=3, help="~0.6 GB RAM each; keep <= 3 on the shared server")
     a = ap.parse_args()
     if a.grids:

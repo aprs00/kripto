@@ -326,11 +326,13 @@ def bn_download_all_daily(symbols: list[str] | None = None, workers: int = 16, l
                 log(f"[bn all] {i+1}/{len(symbols)} {s} klines+{nk} funding+{nf}")
 
 
-def load_bn_all_panel() -> dict[str, pd.DataFrame]:
-    """Daily panel over the full (survivorship-free) Binance USDT-perp universe."""
+def load_bn_all_panel(symbols: list[str] | None = None) -> dict[str, pd.DataFrame]:
+    """Daily panel over the full (survivorship-free) Binance USDT-perp universe (or only `symbols`)."""
     closes, vols, highs, lows, funds, tbs = {}, {}, {}, {}, {}, {}
     for f in sorted((DATA / "bn" / "klines_1d_all").glob("*.parquet")):
         sym = f.stem
+        if symbols and sym not in symbols:
+            continue
         coin = sym.removesuffix("USDT")
         df = pd.read_parquet(f)
         t = df["t"].where(df["t"] < 1e14, df["t"] // 1000)
@@ -397,8 +399,83 @@ def load_pair_panel() -> dict[str, pd.DataFrame]:
     return out
 
 
+# --------------------------------------------------------------------------- intraday + trade-size panels (2026-11-11)
+MINUTE_COINS = "BTC ETH SOL XRP DOGE BNB ADA AVAX LINK LTC".split()
+TSIZE_COINS = "BTC ETH SOL".split()
+
+
+def load_bn_minute_panel(coins: list[str] | None = None, start: str = "2021-01-01", rule: str | None = None) -> dict[str, pd.DataFrame]:
+    """Dataset "bnm": Binance 1-minute bars (data/bn/klines_1m, scripts/minute_study.download) as float32 frames
+    close/high/low/volume on a gap-free index. rule="5min" resamples. A missing minute repeats the last close (no trade).
+    Filled column by column into preallocated arrays: 10 coins x 5.8 years is 0.5 GB, and pandas copies would triple it."""
+    files = [(c, DATA / "bn" / "klines_1m" / f"{c}USDT.parquet") for c in coins or MINUTE_COINS]
+    files = [(c, f) for c, f in files if f.exists()]
+    step = pd.Timedelta(rule or "1min")
+    t0 = pd.Timestamp(start, tz="UTC")
+    frames, t1 = {}, t0
+    for coin, f in files:
+        df = pd.read_parquet(f, columns=["t", "h", "l", "c", "qv"])
+        t = df["t"].where(df["t"] < 1e14, df["t"] // 1000)
+        df.index = pd.to_datetime(t, unit="ms", utc=True)
+        df = df[~df.index.duplicated()].sort_index()
+        df = df[df.index >= t0]
+        if rule:
+            r = df.resample(rule)
+            df = pd.DataFrame({"h": r["h"].max(), "l": r["l"].min(), "c": r["c"].last(), "qv": r["qv"].sum()}).dropna(subset=["c"])
+        frames[coin] = df[["c", "h", "l", "qv"]].astype("float32")
+        t1 = max(t1, df.index[-1])
+        del df
+    idx = pd.date_range(t0, t1, freq=step)
+    arr = {k: np.full((len(idx), len(frames)), np.nan, dtype=np.float32) for k in ("c", "h", "l", "qv")}
+    for j, coin in enumerate(list(frames)):
+        df = frames.pop(coin)
+        pos = np.asarray((df.index - t0) // step, dtype=np.int64)
+        for k in arr:
+            arr[k][pos, j] = df[k].to_numpy()
+    cols = [c for c, _ in files]
+    close = pd.DataFrame(arr["c"], idx, cols, copy=False).ffill()
+    gap = np.isnan(arr["h"])
+    arr["h"][gap], arr["l"][gap], arr["qv"][gap] = close.to_numpy()[gap], close.to_numpy()[gap], 0.0
+    return {"close": close, "high": pd.DataFrame(arr["h"], idx, cols, copy=False),
+            "low": pd.DataFrame(arr["l"], idx, cols, copy=False), "volume": pd.DataFrame(arr["qv"], idx, cols, copy=False)}
+
+
+def load_bn_tsize_panel(interval: str = "1d", coins: list[str] | None = None) -> dict[str, pd.DataFrame]:
+    """Dataset "bnts": coins with trade-size buckets from aggTrades (kripto/tsize.py; scripts/aggtrades.py builds them).
+    1d: the daily Binance panel plus `ts_delta` / `ts_vol` = taker delta / volume per size bin, columns (coin, bin 0..11).
+    5m: 5-minute bars plus `d_small` (trades < 30k USD) and `d_large` (>= 60k USD) taker delta per bar."""
+    from . import tsize
+    coins = [c for c in (coins or TSIZE_COINS) if (tsize.DIR / f"{c}USDT.npz").exists()]
+    if interval == "1d":
+        p = load_bn_all_panel([c + "USDT" for c in coins])
+        d, v = {}, {}
+        for c in coins:
+            dd, vv = tsize.frames(c + "USDT", "fine12", "1D")
+            for b in dd.columns:
+                d[(c, b)], v[(c, b)] = dd[b], vv[b]
+        p["ts_delta"] = pd.DataFrame(d).reindex(p["close"].index)
+        p["ts_vol"] = pd.DataFrame(v).reindex(p["close"].index)
+        first = p["ts_vol"].dropna(how="all").index[0]
+        return {k: x[x.index >= first] for k, x in p.items()}
+    assert interval == "5m", "bnts is 1d or 5m"
+    p = load_bn_minute_panel(coins, rule="5min")
+    ds, dl = {}, {}
+    for c in coins:
+        dd, _ = tsize.frames(c + "USDT", "small_large", "5min")
+        ds[c], dl[c] = dd[0], dd[1]
+    p["d_small"] = pd.DataFrame(ds).reindex(p["close"].index).astype("float32")
+    p["d_large"] = pd.DataFrame(dl).reindex(p["close"].index).astype("float32")
+    return p
+
+
 def load_panel(ds: str, interval: str = "4h") -> dict[str, pd.DataFrame]:
-    """Research datasets by name: hl, bn (hand-picked 82, survivor-biased), bnall / hlx / pair (daily only)."""
+    """Research datasets by name: hl, bn (hand-picked 82, survivor-biased), bnall / hlx / pair (daily only),
+    bnts (trade-size buckets, 1d or 5m), bnm (1-minute bars, 10 coins)."""
+    if ds == "bnts":
+        return load_bn_tsize_panel(interval)
+    if ds == "bnm":
+        assert interval == "1m", "bnm is 1-minute data: use --interval 1m"
+        return load_bn_minute_panel()
     if ds in ("bnall", "hlx", "pair"):
         assert interval == "1d", f"{ds} is daily: use --interval 1d"
         return {"bnall": load_bn_all_panel, "hlx": load_hl_bnflow_panel, "pair": load_pair_panel}[ds]()

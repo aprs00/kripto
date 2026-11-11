@@ -553,3 +553,64 @@ def fspread_hold(panel, lookback=14, enter=0.20, top_n=20, max_pair=0.10, gross=
     w = pd.DataFrame(0.0, c.index, c.columns)
     w[hlc], w[bnc] = leg, -leg.to_numpy()
     return rebalance_rows(w.where(elig.any(axis=1), np.nan), bpd)
+
+
+# --------------------------------------------------------------------------- InSilico rules (research/insilico_rules.md)
+@register
+def tsize_capit(panel, scheme="author7", hold_days=3, min_share=0.01, side="long", weight=None):
+    """Daily trade-size capitulation (R1): a closed day on which EVERY trade-size bucket of taker flow is net negative
+    -> long that coin for `hold_days` (a new signal restarts the clock). side="short": the mirror the author says does
+    not work (all buckets positive -> short), kept as a control. Needs panel["ts_delta"], panel["ts_vol"] with columns
+    (coin, bin) (dataset bnts). Fixed weight 1/n_coins per position: no leverage, no vol targeting."""
+    from . import tsize
+    c = panel["close"]
+    if "ts_delta" not in panel:
+        return pd.DataFrame(np.nan, c.index, c.columns)
+    bpd = bars_per_day(c.index)
+    coins = [x for x in c.columns if x in panel["ts_delta"].columns.get_level_values(0)]
+    w = pd.DataFrame(0.0, c.index, c.columns)
+    unit = weight or 1.0 / max(1, len(coins))
+    want = -1 if side == "long" else 1
+    for coin in coins:
+        d = tsize.group(panel["ts_delta"][coin].to_numpy(dtype=float), scheme)
+        v = tsize.group(panel["ts_vol"][coin].to_numpy(dtype=float), scheme)
+        sig = pd.Series(tsize.one_voiced(d, v, min_share) == want, c.index) & c[coin].notna()
+        act = sig.astype(float).rolling(int(hold_days * bpd), min_periods=1).max() > 0
+        w[coin] = np.where(act, -want * unit, 0.0)
+    return w
+
+
+@register
+def weekend_revert(panel, thr=0.01, exit="fill", coins=("BTC", "ETH"), weight=0.5):
+    """Weekend -> Monday reversion to Friday's price (R21). F = close of the hour ending Friday 17:00 New York (CME
+    close). At the close of the hour ending Sunday 18:00 New York (CME reopen): if |P/F - 1| >= thr, hold -sign(gap).
+    exit="fill": out at the first hourly close after the hour's range crossed F; always out by Monday 17:00 New York.
+    Hourly bars indexed by open time; on other bar sizes the session hours never match and the book stays flat."""
+    c = panel["close"]
+    w = pd.DataFrame(0.0, c.index, c.columns)
+    ny = (c.index + (c.index[1] - c.index[0])).tz_convert("America/New_York")     # bar CLOSE time in New York
+    wd, hr, mi = np.asarray(ny.weekday), np.asarray(ny.hour), np.asarray(ny.minute)
+    fri = np.flatnonzero((wd == 4) & (hr == 17) & (mi == 0))
+    sun = np.flatnonzero((wd == 6) & (hr == 18) & (mi == 0))
+    mon = np.flatnonzero((wd == 0) & (hr == 17) & (mi == 0))
+    for coin in [x for x in coins if x in c.columns]:
+        px = c[coin].to_numpy(dtype=float)
+        hi = panel["high"][coin].to_numpy(dtype=float) if "high" in panel else px
+        lo = panel["low"][coin].to_numpy(dtype=float) if "low" in panel else px
+        col = np.zeros(len(px))
+        for f in fri:
+            s = sun[np.searchsorted(sun, f)] if np.searchsorted(sun, f) < len(sun) else None
+            m = mon[np.searchsorted(mon, f)] if np.searchsorted(mon, f) < len(mon) else None
+            if s is None or m is None or not (f < s < m) or (m - f) > 100 or not np.isfinite(px[f]) or not np.isfinite(px[s]):
+                continue
+            g = px[s] / px[f] - 1.0
+            if abs(g) < thr:
+                continue
+            x = m
+            if exit == "fill":
+                hit = np.flatnonzero((lo[s + 1:m + 1] <= px[f]) & (hi[s + 1:m + 1] >= px[f]))
+                if len(hit):
+                    x = s + 1 + int(hit[0])
+            col[s:x] = -np.sign(g) * weight
+        w[coin] = col
+    return w

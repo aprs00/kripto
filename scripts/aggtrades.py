@@ -48,20 +48,30 @@ def one(args) -> tuple[str, str, int]:
     with z.open(z.namelist()[0]) as f:
         head = f.read(1)
     has_header = head.isalpha()
-    with z.open(z.namelist()[0]) as f:
-        t = pacsv.read_csv(f, read_options=pacsv.ReadOptions(column_names=COLS, skip_rows=1 if has_header else 0),
-                           convert_options=pacsv.ConvertOptions(include_columns=["price", "quantity", "transact_time", "is_buyer_maker"]))
-    ts = t["transact_time"].to_numpy()
-    if len(ts) and ts[0] > 1e14:          # microseconds in some archive months
-        ts = ts // 1000
     d0 = int(pd.Timestamp(day, tz="UTC").timestamp() * 1000)
-    buy, sell, n = tsize.bucket_trades(t["price"].to_numpy(), t["quantity"].to_numpy(), ts,
-                                       t["is_buyer_maker"].to_numpy(zero_copy_only=False), d0)
+    buy = sell = n = None
+    rows = 0
+    with z.open(z.namelist()[0]) as f:
+        # streamed in 8 MB blocks: a whole busy day as one table costs ~0.6 GB per worker (measured 2026-11-11)
+        rd = pacsv.open_csv(f, read_options=pacsv.ReadOptions(column_names=COLS, skip_rows=1 if has_header else 0, block_size=8 << 20),
+                            convert_options=pacsv.ConvertOptions(include_columns=["price", "quantity", "transact_time", "is_buyer_maker"]))
+        for t in rd:
+            ts = t["transact_time"].to_numpy()
+            if not len(ts):
+                continue
+            if ts[0] > 1e14:              # microseconds in some archive months
+                ts = ts // 1000
+            b, s, k = tsize.bucket_trades(t["price"].to_numpy(), t["quantity"].to_numpy(), ts,
+                                          t["is_buyer_maker"].to_numpy(zero_copy_only=False), d0)
+            buy, sell, n = (b, s, k) if buy is None else (buy + b, sell + s, n + k)
+            rows += len(ts)
+    if buy is None:
+        return sym, day, -3
     out.parent.mkdir(parents=True, exist_ok=True)
     tmp = out.with_suffix(".tmp.npz")
     np.savez_compressed(tmp, buy=buy, sell=sell, n=n)
     tmp.rename(out)
-    return sym, day, len(ts)
+    return sym, day, rows
 
 
 def consolidate(sym: str) -> int:
