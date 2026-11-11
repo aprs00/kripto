@@ -412,26 +412,26 @@ def load_bn_minute_panel(coins: list[str] | None = None, start: str = "2021-01-0
     files = [(c, f) for c, f in files if f.exists()]
     step = pd.Timedelta(rule or "1min")
     t0 = pd.Timestamp(start, tz="UTC")
-    frames, t1 = {}, t0
-    for coin, f in files:
-        df = pd.read_parquet(f, columns=["t", "h", "l", "c", "qv"])
+
+    def read(f, columns):
+        df = pd.read_parquet(f, columns=columns)
         t = df["t"].where(df["t"] < 1e14, df["t"] // 1000)
         df.index = pd.to_datetime(t, unit="ms", utc=True)
+        return df
+    t1 = max(read(f, ["t"]).index.max() for _, f in files)      # pass 1: only the time column, to size the arrays
+    idx = pd.date_range(t0, t1.floor(step), freq=step)
+    arr = {k: np.full((len(idx), len(files)), np.nan, dtype=np.float32) for k in ("c", "h", "l", "qv")}
+    for j, (coin, f) in enumerate(files):                        # pass 2: one coin in memory at a time
+        df = read(f, ["t", "h", "l", "c", "qv"])
         df = df[~df.index.duplicated()].sort_index()
         df = df[df.index >= t0]
         if rule:
             r = df.resample(rule)
             df = pd.DataFrame({"h": r["h"].max(), "l": r["l"].min(), "c": r["c"].last(), "qv": r["qv"].sum()}).dropna(subset=["c"])
-        frames[coin] = df[["c", "h", "l", "qv"]].astype("float32")
-        t1 = max(t1, df.index[-1])
-        del df
-    idx = pd.date_range(t0, t1, freq=step)
-    arr = {k: np.full((len(idx), len(frames)), np.nan, dtype=np.float32) for k in ("c", "h", "l", "qv")}
-    for j, coin in enumerate(list(frames)):
-        df = frames.pop(coin)
         pos = np.asarray((df.index - t0) // step, dtype=np.int64)
         for k in arr:
-            arr[k][pos, j] = df[k].to_numpy()
+            arr[k][pos, j] = df[k].to_numpy(dtype=np.float32)
+        del df
     cols = [c for c, _ in files]
     close = pd.DataFrame(arr["c"], idx, cols, copy=False).ffill()
     gap = np.isnan(arr["h"])

@@ -14,5 +14,7 @@
  "range_retest": {"n": [15, 30], "tight": [0.75, 1.0], "s": [1, 2]},
 
  "_mousetrap": "R4. Dataset bnts 5m = BTC, ETH, SOL 5-min bars 2021-01..2026-10 with small (< 30k USD per trade) and large (>= 60k USD) taker delta. Support S = lowest low of bars t-n..t-1. Trap bar t: low < S, close > S, volume >= vol_mult * mean 5-min volume of the previous 288 bars, small delta < 0 and large delta > 0. Buy at the close of bar t (taker); stop 1 bp under the trap bar's low; out at market after `hold` bars. No target (the author gives none).",
- "mousetrap": {"n": [24, 48, 96], "hold": [6, 24], "vol_mult": [1, 2]}
+ "mousetrap": {"n": [24, 48, 96], "hold": [6, 24], "vol_mult": [1, 2]},
+
+ "_lshock_replication": "Added 2026-11-11 after the lshock walk-forward (OOS 0.64, 4/8 configs positive: it FAILS the rule above and is not a candidate) and BEFORE downloading any of the data below. The literal reading of the rule (z=6, m=5, e=1.0: full engulf) made +70 bp net per trade over 302 trades on the 10 test coins (t 2.5), which one would expect to find by chance among 8 configs. Frozen-config replication on coins that were not in the test: the next 20 names after LTC in data.BN_SYMBOLS (DOT BCH TRX ATOM ETC XLM FIL NEAR UNI AAVE MATIC ARB OP APT SUI INJ SAND MANA AXS FTM), 1-min bars 2021-01..2026-10, same engine, same costs, long side, taker entry, no parameter changed. One single-config evaluation per 10-coin half (logged as config lines tagged 'replication'; no walk-forward, nothing selected). REPLICATED iff the pooled mean net return per trade is > 0 with t > 2 AND it is positive in both eras (to 2022, 2023+). Otherwise lshock is recorded as not replicated. Even if replicated it stays a candidate idea, not a book: ~50 trades a year on 10 coins."
 }
