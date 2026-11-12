@@ -6,6 +6,7 @@ WhatsApp image (file time), `tpl` decoded Exocharts templates. Two records flagg
 the three `describes_manipulation_*` records are used only as descriptions (R11, R39).
 
 Score = testability on our data (0–3) × fit for a $1,000/$200 account (0–3) × author's emphasis (0–3).
+**Tested 2026-11-11/12: R1, R4, R19, R21 dead; R5 open (tail events); R22–R24 nothing tradable. Verdicts and numbers: research/findings.md.**
 Status: **PRE-REG** = in research/batches/2026-11-11-insilico.json · **DESC** = descriptive table only (no walk-forward) ·
 **BACKLOG** · **NO DATA** · **NOTE** (context, not a rule). Verdicts go to research/findings.md, not here.
 

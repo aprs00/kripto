@@ -216,3 +216,16 @@ It is a bet on catching 2–4 market-wide liquidation days a year, exactly when 
 Friday after the US close (R22): +7–19 bp/4h, t ≤ 1.5, no different from Mon–Thu. CME break hour 17–18 New York (R23): no extra
 volatility, but a drift of +5–9 bp/h, t 2.3–3.6 in BOTH eras on both coins; below a taker round trip (≈ 13 bp). Use: timing of buys
 the books make anyway (backlog E2), not a book. September / Santa / lunar claims: ≤ 6 observations each, untestable.
+
+### tsize_capit: daily trade-size capitulation, all size buckets net negative → long (InSilico R1, bnts 1d BTC/ETH/SOL, 2026-11-12) → DEAD (worked in 2021 only)
+WF OOS 0.18 / 6.2y (grid med 0.58, 12/12 >0, worst 0.47), but the grid is long-only crypto: holding the three coins is 0.96. Chosen config
+(12 bins, hold 1d): to 2022 +1.25, **2023+ +0.24**; 2021 alone made +138%. Forward returns after all-negative days never beat all days with
+t > 2 in both eras; with the author's 7 buckets "all negative" is 17–30% of days on Binance and BTC did WORSE after them (−84 bp/3d to 2022).
+The claimed asymmetry is real the other way: all-POSITIVE days are followed by gains (BTC +68 bp/3d excess; shorting them −0.94) = flow
+continuation, already traded as `flow`. Binance USDT-M ≠ BitMEX (author: "exchange sensitive"); HL version waits for `tsz` data (TSZ-HL).
+
+### mousetrap: failed break of the range low, small trades sold / large bought (InSilico R4, bnts 5m BTC/ETH/SOL, 2026-11-12) → DEAD before costs
+WF OOS −2.92 / 5.2y, 0/12 >0. Chosen (8h low, 2× volume): 916 trades, 22% winners, gross −3.5 bp, cost 13 bp, net −16.5 bp (t −4.4), same
+in both eras. Without the size condition (control): 12,240 trades, gross −1.2 bp: the small/large split adds nothing. Shorts mirror: −2.4 bp.
+Agrees with the 11-10 minute study (sweeps of the 4h range: ≈ 0). Not tested: range bars and resting-order absorption (need ticks / L2).
+

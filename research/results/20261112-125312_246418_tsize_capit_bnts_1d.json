@@ -1,0 +1,543 @@
+{
+ "strategy": "tsize_capit",
+ "dataset": "bnts_1d",
+ "n_configs": 12,
+ "grid_median_sharpe": 0.581,
+ "grid_frac_positive": 1.0,
+ "oos": {
+  "start": "2020-08-29",
+  "end": "2026-10-31",
+  "years": 6.18,
+  "cagr": 0.0046,
+  "vol": 0.3375,
+  "sharpe": 0.184,
+  "sortino": 0.152,
+  "max_dd": -0.5458,
+  "calmar": 0.008,
+  "psr0": 0.676,
+  "dsr": 0.0264,
+  "n_trials": 70,
+  "pos_months": 0.395
+ },
+ "folds": [
+  {
+   "from": "2020-08-29",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 3,
+    "min_share": 0.05
+   },
+   "is_sharpe": 2.07,
+   "oos_sharpe": -3.56
+  },
+  {
+   "from": "2020-10-28",
+   "params": {
+    "scheme": "author7",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 0.77,
+   "oos_sharpe": 0.07
+  },
+  {
+   "from": "2020-12-27",
+   "params": {
+    "scheme": "author7",
+    "hold_days": 5,
+    "min_share": 0.05
+   },
+   "is_sharpe": 1.03,
+   "oos_sharpe": 4.37
+  },
+  {
+   "from": "2021-02-25",
+   "params": {
+    "scheme": "author7",
+    "hold_days": 3,
+    "min_share": 0.01
+   },
+   "is_sharpe": 2.46,
+   "oos_sharpe": 2.71
+  },
+  {
+   "from": "2021-04-26",
+   "params": {
+    "scheme": "author7",
+    "hold_days": 3,
+    "min_share": 0.01
+   },
+   "is_sharpe": 2.49,
+   "oos_sharpe": -1.58
+  },
+  {
+   "from": "2021-06-25",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 3,
+    "min_share": 0.05
+   },
+   "is_sharpe": 1.61,
+   "oos_sharpe": 4.55
+  },
+  {
+   "from": "2021-08-24",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 3,
+    "min_share": 0.05
+   },
+   "is_sharpe": 1.87,
+   "oos_sharpe": 3.62
+  },
+  {
+   "from": "2021-10-23",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 3,
+    "min_share": 0.05
+   },
+   "is_sharpe": 2.04,
+   "oos_sharpe": 0.16
+  },
+  {
+   "from": "2021-12-22",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 3,
+    "min_share": 0.05
+   },
+   "is_sharpe": 1.88,
+   "oos_sharpe": -4.66
+  },
+  {
+   "from": "2022-02-20",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.55,
+   "oos_sharpe": -0.27
+  },
+  {
+   "from": "2022-04-21",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.49,
+   "oos_sharpe": -2.65
+  },
+  {
+   "from": "2022-06-20",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.35,
+   "oos_sharpe": 0.0
+  },
+  {
+   "from": "2022-08-19",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.31,
+   "oos_sharpe": 1.82
+  },
+  {
+   "from": "2022-10-18",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.28,
+   "oos_sharpe": 0.0
+  },
+  {
+   "from": "2022-12-17",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.24,
+   "oos_sharpe": 1.26
+  },
+  {
+   "from": "2023-02-15",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.23,
+   "oos_sharpe": 0.88
+  },
+  {
+   "from": "2023-04-16",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 3,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.22,
+   "oos_sharpe": -2.25
+  },
+  {
+   "from": "2023-06-15",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.2,
+   "oos_sharpe": -1.63
+  },
+  {
+   "from": "2023-08-14",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.16,
+   "oos_sharpe": 0.51
+  },
+  {
+   "from": "2023-10-13",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.14,
+   "oos_sharpe": 4.53
+  },
+  {
+   "from": "2023-12-12",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.18,
+   "oos_sharpe": 0.22
+  },
+  {
+   "from": "2024-02-10",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.15,
+   "oos_sharpe": -0.21
+  },
+  {
+   "from": "2024-04-10",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.11,
+   "oos_sharpe": 0.77
+  },
+  {
+   "from": "2024-06-09",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.1,
+   "oos_sharpe": 1.84
+  },
+  {
+   "from": "2024-08-08",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.12,
+   "oos_sharpe": -0.41
+  },
+  {
+   "from": "2024-10-07",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.1,
+   "oos_sharpe": -1.41
+  },
+  {
+   "from": "2024-12-06",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 3,
+    "min_share": 0.05
+   },
+   "is_sharpe": 1.11,
+   "oos_sharpe": -1.3
+  },
+  {
+   "from": "2025-02-04",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.05,
+   "oos_sharpe": -2.09
+  },
+  {
+   "from": "2025-04-05",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 1.01,
+   "oos_sharpe": -5.11
+  },
+  {
+   "from": "2025-06-04",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 3,
+    "min_share": 0.05
+   },
+   "is_sharpe": 0.98,
+   "oos_sharpe": 0.04
+  },
+  {
+   "from": "2025-08-03",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 3,
+    "min_share": 0.05
+   },
+   "is_sharpe": 0.96,
+   "oos_sharpe": 0.99
+  },
+  {
+   "from": "2025-10-02",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 3,
+    "min_share": 0.05
+   },
+   "is_sharpe": 0.96,
+   "oos_sharpe": -3.48
+  },
+  {
+   "from": "2025-12-01",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 0.9,
+   "oos_sharpe": -2.83
+  },
+  {
+   "from": "2026-01-30",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 0.87,
+   "oos_sharpe": 1.84
+  },
+  {
+   "from": "2026-03-31",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 0.88,
+   "oos_sharpe": -2.68
+  },
+  {
+   "from": "2026-05-30",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 0.87,
+   "oos_sharpe": -3.06
+  },
+  {
+   "from": "2026-07-29",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 0.85,
+   "oos_sharpe": 0.51
+  },
+  {
+   "from": "2026-09-27",
+   "params": {
+    "scheme": "fine12",
+    "hold_days": 1,
+    "min_share": 0.01
+   },
+   "is_sharpe": 0.84,
+   "oos_sharpe": 1.31
+  }
+ ],
+ "grid": [
+  {
+   "i": 6,
+   "scheme": "fine12",
+   "hold_days": 1,
+   "min_share": 0.01,
+   "sharpe": 0.843,
+   "cagr": 0.1757,
+   "max_dd": -0.2566,
+   "turnover_yr": 40.5,
+   "cost_yr": 0.0255,
+   "funding_yr": -0.0247
+  },
+  {
+   "i": 8,
+   "scheme": "fine12",
+   "hold_days": 3,
+   "min_share": 0.01,
+   "sharpe": 0.775,
+   "cagr": 0.2177,
+   "max_dd": -0.3961,
+   "turnover_yr": 27.3,
+   "cost_yr": 0.0167,
+   "funding_yr": -0.0435
+  },
+  {
+   "i": 9,
+   "scheme": "fine12",
+   "hold_days": 3,
+   "min_share": 0.05,
+   "sharpe": 0.763,
+   "cagr": 0.2537,
+   "max_dd": -0.579,
+   "turnover_yr": 49.2,
+   "cost_yr": 0.0297,
+   "funding_yr": -0.0597
+  },
+  {
+   "i": 10,
+   "scheme": "fine12",
+   "hold_days": 5,
+   "min_share": 0.01,
+   "sharpe": 0.706,
+   "cagr": 0.2128,
+   "max_dd": -0.5079,
+   "turnover_yr": 21.1,
+   "cost_yr": 0.0129,
+   "funding_yr": -0.0526
+  },
+  {
+   "i": 7,
+   "scheme": "fine12",
+   "hold_days": 1,
+   "min_share": 0.05,
+   "sharpe": 0.675,
+   "cagr": 0.1632,
+   "max_dd": -0.3849,
+   "turnover_yr": 78.1,
+   "cost_yr": 0.0477,
+   "funding_yr": -0.0366
+  },
+  {
+   "i": 11,
+   "scheme": "fine12",
+   "hold_days": 5,
+   "min_share": 0.05,
+   "sharpe": 0.611,
+   "cagr": 0.1938,
+   "max_dd": -0.6431,
+   "turnover_yr": 35.2,
+   "cost_yr": 0.0212,
+   "funding_yr": -0.0703
+  },
+  {
+   "i": 4,
+   "scheme": "author7",
+   "hold_days": 5,
+   "min_share": 0.01,
+   "sharpe": 0.55,
+   "cagr": 0.1614,
+   "max_dd": -0.7801,
+   "turnover_yr": 38.4,
+   "cost_yr": 0.0231,
+   "funding_yr": -0.0815
+  },
+  {
+   "i": 2,
+   "scheme": "author7",
+   "hold_days": 3,
+   "min_share": 0.01,
+   "sharpe": 0.482,
+   "cagr": 0.1223,
+   "max_dd": -0.756,
+   "turnover_yr": 57.8,
+   "cost_yr": 0.0349,
+   "funding_yr": -0.0679
+  },
+  {
+   "i": 0,
+   "scheme": "author7",
+   "hold_days": 1,
+   "min_share": 0.01,
+   "sharpe": 0.439,
+   "cagr": 0.0931,
+   "max_dd": -0.6412,
+   "turnover_yr": 103.5,
+   "cost_yr": 0.0624,
+   "funding_yr": -0.0376
+  },
+  {
+   "i": 3,
+   "scheme": "author7",
+   "hold_days": 3,
+   "min_share": 0.05,
+   "sharpe": 0.325,
+   "cagr": 0.0417,
+   "max_dd": -0.7448,
+   "turnover_yr": 52.5,
+   "cost_yr": 0.0315,
+   "funding_yr": -0.0548
+  }
+ ],
+ "robust": {
+  "params": {
+   "scheme": "fine12",
+   "hold_days": 1,
+   "min_share": 0.01
+  },
+  "base": 0.843,
+  "cost_x2": 0.728,
+  "delay_1bar": 0.466,
+  "band_tiny": 0.841,
+  "small_acct": 0.851,
+  "skip_first_6m": 0.852,
+  "skip_first_12m": 1.047,
+  "corr_btc": 0.323,
+  "worst": 0.466
+ },
+ "seconds": 2.4
+}

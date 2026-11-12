@@ -42,6 +42,23 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
 - [ ] W2 **Visible metaorders on HL (library N10, Tóth et al.)**: from ≈ 11-26 (2 weeks of W1 `big` data): persistent same-side net
   taking by one address → next 4h/24h return, per coin, volume-scaled; descriptive IC first (kill: |IC| < 0.02 or below costs), then a
   pre-registered ≤ 6-config walk-forward only if it survives. Also plain HL taker-flow imbalance (flow@bn's rule) on HL prices.
+- [ ] E1 **lshock (liquidation fade) follow-ups** (findings: OPEN, tail-event; the only InSilico rule not dead). In this order:
+  (a) LIVE evidence: a 1-minute event shadow book (Binance 30 coins; later HL from kripto/flow.py minute bars) run by the always-on
+  watcher, frozen config z=6, m=5, e=1.0, long, $500 per trade, ≤ 2 open. Fills and venue behaviour on cascade days are the open question
+  and only live paper can show them (≈ 130 trades/yr, 2–4 cascade days/yr: slow evidence, so start early). (b) ONE pre-registered test of
+  "cascade days only" (≥ 5 of the 30 coins trigger within 30 min) on the NEXT 50 unseen Binance coins; it was seen in the data, so only
+  unseen coins count. (c) Pessimistic fills: taker slippage 30–50 bp and no fills in the first minute of a cascade. No book before (a)+(c).
+- [ ] E2 **Execution-time tilt** (calendar finding 11-11: BTC/ETH drift +5–9 bp in the hour CME is shut, 17–18 New York, both eras, t 2.3–3.6).
+  Not a book (below costs). Descriptive check first: would moving the daily books' BUYS before 17:00 NY and SELLS after 18:00 NY have saved
+  cost over the live fills so far and over 6 y of hourly bars? research/studies/. A cost saving is worth as much as a signal.
+- [ ] TSZ-HL Trade-size buckets on Hyperliquid (kripto/flow.py `tsz`, per taker address, since 2026-11-12; non-backfillable). After ≥ 8
+  weeks (≈ 2027-01-07): R1/R2 event study natively on HL, where one address = one order. Low prior after the Binance result; the data is
+  also the input for W2 (large takers). Check at every review that `tsz` is non-empty.
+- [ ] R28 Unit-price factor (insilico_rules.md R28): cross-sectional, long the lowest-unit-price coins, bnall 1d, ≤ 6 configs. Cheap, low prior.
+- [ ] LQ1 Binance liquidation prints: public websocket `!forceOrder@arr` (read-only, HARD RULE 1 allows it) → data/bn/liq, same pattern as
+  kripto/flow.py. Needed to tell a liquidation cascade from an ordinary dump (E1b, T7, insilico R12). Non-backfillable.
+- [ ] R3/R7 Range ("rotation") bars with trade count and size-bucket delta: second aggTrades pass (scripts/aggtrades.py keeps 5-min bars
+  only). Low prior now that R1 and R4 are dead on time bars; do only together with LQ1 or if TSZ-HL shows something.
 - [ ] X1c fspread_hold robustness (descriptive, no new WF unless a new rule): per-pair basis excursions (worst daily |basis|),
   funding-interval mix on BN (1h/4h/8h coins), and a re-run when HL funding backfill reaches all coins (pair has 84 → more).
 - [ ] blend@bn → nested choice? H4 on bnall picks carry+carry_trend+xsmom (1.16), not the hindsight trio (1.30). Needs Binance
@@ -95,6 +112,8 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
 - [ ] T8 Regime filter: trend/carry vs BTC vol regime or funding level (≤ 2 regime params; beware overfitting).
 
 ## Done
+- [x] InSilico batch (2026-11-11/12, research/insilico_rules.md): weekend_revert DEAD, range_retest DEAD before costs, mousetrap DEAD before
+  costs, tsize_capit DEAD (2021 only), lshock OPEN (replicated per trade on 20 unseen coins, 3 crash days = 72% of P&L) → E1.
 - [x] H4 → blend_nested HL OOS 1.87, bnall 1.16 (DSR 0.63): blend is not hindsight; candidate + shadow (2026-11-10).
 - [x] X1b → fspread_hold pair OOS 1.26, grid med 2.22, worst 1.43; candidate, needs X2 (2026-11-10).
 - [x] X1 → DEAD at taker costs, funding leg real (2026-11-09, findings).

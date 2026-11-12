@@ -115,6 +115,9 @@ kripto/live.py        always-on watcher: marks every 20 s, kill switch, live equ
 kripto/collect.py     hourly non-backfillable HL data (top-account positions, L2) -> data/hl/positions, data/hl/l2
 kripto/venue_pair.py  two-venue books (`<entry>@pair`, legs <COIN>@hl/<COIN>@bn; fspread_hold@pair), daily, inside the hourly step
 kripto/flow.py        always-on HL trade-flow websocket collector (kripto-flow.service) -> data/hl/flow (per coin per minute)
+kripto/events.py      intraday ORDER strategies (limits, targets, stops; conservative fills) -> daily BTResult; research.evaluate dispatches on EVENTS
+kripto/tsize.py       trade-size buckets of taker flow (Binance aggTrades via scripts/aggtrades.py -> data/bn/tsize; HL: `tsz` in kripto/flow.py)
+scripts/insilico_study.py  tables for the InSilico rules (calendar, tsize, decomp <strategy>, replicate); research/insilico_rules.md = the catalogue
 research/studies/     descriptive studies (no backtest, not registered): one script per question, cited from findings.md
 config/risk.json      risk limits, book sizes         scripts/research_run.py  walk-forward CLI (pre-registered grids)
 scripts/inspect_strategy.py  yearly/funding/cost decomposition + 2x-cost stress
@@ -135,6 +138,8 @@ nice -n 19 .venv/bin/python -m scripts.inspect_strategy tsmom hl '{}'          #
 nice -n 19 .venv/bin/python -m scripts.research_run --grids <batch> --datasets hl bn bnall --interval 1d   # daily-bar batch
 #   cross-venue daily datasets: hlx = HL prices + Binance taker flow for the same coins; pair = both venues in one panel
 #   (columns <COIN>@hl / <COIN>@bn, for books long on one venue and short on the other). data.load_panel(name, interval) loads any.
+#   intraday datasets (2026-11-11): bnm + --interval 1m (10 coins, 1-min bars; --workers 1, 1.6 GB), bnts + --interval 1d|5m (BTC/ETH/SOL
+#   with trade-size buckets), bn + --interval 1h. Build the data first: scripts.aggtrades (≈ 2 h) and scripts.minute_study.download.
 .venv/bin/python -m scripts.show_result --today            # one line per result written today; or: show_result <strategy> <dataset>
 .venv/bin/python -m scripts.health                         # HEALTH line from facts (trader, data, collector, disk, agent sessions)
 nice -n 19 .venv/bin/python -m scripts.forward_score       # forward ledger table (weekly; add a dataset name to limit it)
@@ -296,4 +301,11 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   (assumptions.md row 14). (2) Verify a data field against an independent source before trusting it: HL `side` looked 7% wrong until
   the check used the quote from before the trade's block. (3) The forward ledger had never run end-to-end (crashed on exec_study
   result lists): a weekly tool must be run once when it is built, not first on the Sunday it is needed.
+* 2026-11-12 interactive (owner supplied a trader's chat archive; "turn it into tested hypotheses"): 32 rules catalogued, 5 pre-registered,
+  4 dead, 1 open (findings). Built `kripto/events.py` (order-level fills for intraday rules; the weight engine could not express a resting
+  bid), `kripto/tsize.py` + `scripts/aggtrades.py`, datasets bnm / bnts. Lessons: (1) **The owner had to ask why the server lacked the test
+  data.** Research data pulled in an interactive session stayed on the laptop. Rule: before a session ends, every dataset a recorded
+  result depends on is on the server or rebuildable there by one command written in the journal. (2) A failed-then-promising result gets a
+  frozen-config replication on unseen instruments, pre-registered before their data is downloaded; then check clustering (t on daily sums,
+  top-3-day share) before believing it. (3) Measure the RAM of one unit of work before parallelising (first run: 6 GB against a 2 GB limit).
 
