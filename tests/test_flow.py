@@ -13,7 +13,7 @@ def _t(tid, ms, side, px=100.0, sz=1.0, coin="BTC"):
 
 def test_minute_rows_sum_taker_sides_and_ignore_replays():
     a = F.Agg()
-    a.set_bbo("BTC", 99.0, 101.0, T0)
+    a.set_bbo("BTC", 99.0, 101.0, T0 + 500)
     a.add(_t(1, T0 + 1000, "B", px=101.0, sz=2.0), now=T0 / 1000)    # at the ask, buyer: consistent
     a.add(_t(2, T0 + 2000, "A", px=99.0, sz=1.0), now=T0 / 1000)     # at the bid, seller: consistent
     a.add(_t(3, T0 + 1500, "A", px=101.0, sz=1.0), now=T0 / 1000)    # at the ask but "seller": inconsistent
@@ -56,3 +56,12 @@ def test_side_check_ignores_quotes_from_after_the_trade():
     a.add(_t(1, T0 + 1000, "A", px=101.0), now=T0 / 1000)
     r = a.pop_done(now=(T0 + 60000) / 1000 + F.GRACE_S + 1)[0]
     assert (r["chk_ok"], r["chk_bad"]) == (0, 0)
+
+
+def test_side_check_uses_the_quote_from_before_the_trades_block():
+    a = F.Agg()
+    a.set_bbo("BTC", 99.0, 100.0, T0)              # before: bid 99, ask 100
+    a.set_bbo("BTC", 98.0, 99.0, T0 + 1000)        # same block as the sell below: the 99 bid was taken, 99 is the new ask
+    a.add(_t(1, T0 + 1000, "A", px=99.0), now=T0 / 1000)
+    r = a.pop_done(now=(T0 + 60000) / 1000 + F.GRACE_S + 1)[0]
+    assert (r["chk_ok"], r["chk_bad"]) == (1, 0)

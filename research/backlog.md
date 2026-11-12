@@ -5,25 +5,16 @@ Also read research/findings.md before picking: it records what is already DEAD a
 Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done: `- [x] ... → <one-line result, link to journal>`
 
 **Priority order (rewritten 2026-11-10 after H4/T9/X1b; research Tue + Thu, ≤ 6 new walk-forward experiments per session):**
-## OWNER INSTRUCTION 2026-11-10 evening: "if you can run everything immediately on server, then run it"
-**That evening session never ran** (17:40 UTC: unknown-model error, then the 5-hour Claude usage limit; journal 2026-11-11). The next research session (Thu 11-12 06:40) does this block first, before anything else. Do these in this order, and do not postpone any of
-them further. It is a build session: no new walk-forward experiments unless a build needs one.
-1. **M1** (below): set the main books to the best estimate today. This IS "the next research session" that design.md refers to.
-2. **X2** two-venue paper book so fspread_hold trades on paper (design below). Include it in the live watcher (`kripto/live.py`
-   values books per venue: a pair book needs marks from both) and give it `small:` twins like every other book.
-3. **W1** Hyperliquid trade-flow collector over the public websocket (spec below; allowed by HARD RULE 1 since today). It is its own
-   always-on service like kripto-live: never let it touch the trader path. Add a heartbeat the watchdog checks.
-4. If time remains: `nice -n 19 .venv/bin/python -m scripts.forward_score` once, as the forward ledger's day-0 baseline; commit it.
-What cannot be hurried, so do not fake it: C1 (cost model) needs two weeks of fills, the tracking check needs a week of live books,
-the forward ledger needs 30 days. Say so in STATUS.md in one line.
-After each build: tests, a real trader run, `scripts.health`, then commit and push. Overwrite STATUS.md at the end as usual.
-
-**M1 main books trade the best estimate** (was planned for Thu 11-12; brought forward by the instruction above) (design.md 2026-11-10, owner mandate): apply the fixed rule
+## Owner instruction 2026-11-10 ("run everything now"): DONE 2026-11-12 06:40 research (M1, X2, W1 live; forward baseline). Journal 2026-11-12.
+**Next priorities (2026-11-12):** 1. T0a tracking (≈ 11-16, all books incl. main + pair) → 2. X1d per-venue liquidation sim for
+fspread (decides the deployable size) → 3. C1 cost calibration (from 11-24) → 4. W1 data analysis once ≥ 2 weeks (HL taker flow
+vs next-day returns, same rule as flow@bn, ≈ 11-26) → 5. T2b (a)/(c) + longer hold (b showed decay continues to day 120) → 6. T5b.
+- [x] M1 DONE 2026-11-12: HL main = blend_nested 1.0; main_bn = flow@bn/xsmom@bn/blend@bn 1/3 each. Was: **M1 main books trade the best estimate** (was planned for Thu 11-12; brought forward by the instruction above) (design.md 2026-11-10, owner mandate): apply the fixed rule
 (equal-risk mix of the venue's candidates with WF OOS > 0.8 on that venue and `robust.worst` > 0) to set `incubation` + alloc for
 `main` (HL) and `main_bn`; expected today: HL = blend_nested (it already is the rule-based mix; do not double-count blend), Binance =
 flow@bn + xsmom@bn + blend@bn. Their `small:` twins follow automatically. State in STATUS.md that this is the paper best estimate,
 not a funding recommendation. Then X2.
-**W1 Hyperliquid trade-flow collector over the public websocket** (allowed since 2026-11-10): one connection, `trades` for the top
+- [x] W1 DONE 2026-11-12: kripto-flow.service, data/hl/flow, side verified vs bbo, gaps.jsonl, watchdog heartbeat. Was: **W1 Hyperliquid trade-flow collector over the public websocket** (allowed since 2026-11-10): one connection, `trades` for the top
 ~60 coins, aggregated per coin per minute (taker buy / sell notional, trade count) into data/hl/flow/YYYY-MM-DD.parquet; verify
 the taker-side field empirically against the book before trusting it; watchdog check for gaps. Non-backfillable, so build it this
 week. Purpose: flow natively on HL (today only Binance flow exists; it transfers to HL prices before costs).
@@ -38,7 +29,7 @@ mdd < 2%; live evidence starts only once it trades) → 2. T0a live-vs-backtest 
 funding backfill grows) → 5. T5b → the rest. T9 (maker) is closed: turnover, not fee type, is the cost lever (findings).
 Evidence that accrues with time (forward ledger, tracking, T6b data) outranks another backtest on the same history.
 
-- [ ] X2 **Two-venue paper book (`venue: "pair"`) for fspread_hold@pair.** Design (2026-11-10): new module kripto/venue_pair.py,
+- [x] X2 DONE 2026-11-12 (kripto/venue_pair.py; 8 pairs opened). Was: **Two-venue paper book (`venue: "pair"`) for fspread_hold@pair.** Design (2026-11-10): new module kripto/venue_pair.py,
   called from paper.run_once after Binance inside try/except (a failure never touches HL/BN books). Book `shadow:fspread_hold@pair`,
   positions keyed `<COIN>@hl` / `<COIN>@bn`; `book_venue` → "pair" so the HL/BN funding/marks code skips it. Signal needs a fresh
   14-day funding history on BOTH venues for ~100 coins: HL from data/hl/funding (nightly; check freshness) + BN via one
@@ -46,6 +37,9 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
   data/bn/funding_all as the backfill. Fills: HL legs via paper.simulate_fill, BN legs via venue_bn's depth walk. Funding accrual:
   HL fundingHistory per held coin (≤ 10 coins, 3 s each), BN from the stored premiumIndex prints. Rebalance once a day.
   Tests: fake clients, known-answer funding accrual on a held pair, and HL/BN books unaffected. Report margin per venue (≈ 2×).
+- [ ] X1d **Per-venue account simulation for fspread_hold** (from X1c: one-account mdd −1.7% hides −37%/day per venue account at
+  gross 2): simulate two accounts with daily collateral re-split, HL/BN maintenance margin and intraday highs (HL 1d high/low),
+  gross ∈ {0.5, 1.0, 2.0} pre-registered; output P(liquidation) and return per gross. Descriptive; decides the deployable size.
 - [ ] X1c fspread_hold robustness (descriptive, no new WF unless a new rule): per-pair basis excursions (worst daily |basis|),
   funding-interval mix on BN (1h/4h/8h coins), and a re-run when HL funding backfill reaches all coins (pair has 84 → more).
 - [ ] blend@bn → nested choice? H4 on bnall picks carry+carry_trend+xsmom (1.16), not the hindsight trio (1.30). Needs Binance
@@ -78,7 +72,8 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
   tsmom/xsmom vol targeting. Risk improvement, not alpha. One experiment per strategy.
 - [ ] L3 **Square-root impact sanity check of the slippage model (library N3)**: do this with T0a once there are live fills.
 - [ ] L5 Value-area rejection (library N7, Dalton/AMT): low prior, after the above.
-- [ ] T2b **listing_short follow-ups** (pre-register ≤ 8 configs each):
+- [ ] T2b **listing_short follow-ups** (pre-register ≤ 8 configs each). (b) DONE 2026-11-12 (event study: linear decay to d120 on both
+  venues → new (d): hold 90/120 d pre-registered, judged on bnall where 800 events exist):
   (a) HL funding coverage: backfill funding for every coin ever shorted (currently 28% of short exposure) and re-measure;
   (b) per-listing event study (cumulative abnormal return vs BTC by days since listing, HL + bnall) to see the decay shape,
   not just a portfolio Sharpe; (c) sizing: vol_target under-estimates new-coin vol (pre-listing returns = 0) → use a

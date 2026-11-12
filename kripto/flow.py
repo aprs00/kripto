@@ -40,7 +40,7 @@ class Agg:
         self.rows: dict[tuple[str, int], dict] = {}
         self.seen: dict[int, float] = {}
         self.seen_q: collections.deque = collections.deque()
-        self.bbo: dict[str, tuple[float, float, int]] = {}
+        self.bbo: dict[str, list[tuple[float, float, int]]] = {}   # coin -> [previous, latest] quotes
         self.flushed_to = 0          # minutes (epoch min) < this were written
         self.late = 0
         self.replay = 0
@@ -77,8 +77,10 @@ class Agg:
             r["sell_ntl"] += ntl
             r["n_sell"] += 1
         r["h"], r["l"], r["c"] = max(r["h"], px), min(r["l"], px), px
-        q = self.bbo.get(coin)
-        if q and 0 <= int(t["time"]) - q[2] <= 2000:   # only a quote from just BEFORE the trade (messages can race)
+        # the quote must come from a block BEFORE the trade: a same-block bbo already shows the book after the trade
+        # (a sell into a 100 bid can leave 100 as the new ask), which made 5-8% of prints look mislabelled
+        q = next((x for x in reversed(self.bbo.get(coin, [])) if 0 < int(t["time"]) - x[2] <= 2000), None)
+        if q:
             bid, ask, _ = q
             if px >= ask or px <= bid:      # unambiguous prints only
                 ok = (px >= ask) == (side == "B")
@@ -86,7 +88,12 @@ class Agg:
         self.n += 1
 
     def set_bbo(self, coin: str, bid: float, ask: float, t_ms: int = 0):
-        self.bbo[coin] = (bid, ask, t_ms)
+        h = self.bbo.setdefault(coin, [])
+        if h and h[-1][2] == t_ms:
+            h[-1] = (bid, ask, t_ms)          # same block: keep the latest state of that block
+        else:
+            h.append((bid, ask, t_ms))
+            del h[:-2]
 
     def pop_done(self, now: float | None = None) -> list[dict]:
         now = time.time() if now is None else now

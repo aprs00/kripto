@@ -100,6 +100,11 @@ Funding +2–3%/yr on HL can't pay ~5–8%/yr costs.
 **v2: HL 1d OOS 0.89 / 2.95y (med 1.34, 9/9 >0; cfg (1,60) worst 1.33), bnall 0.86 / 6.1y (med 0.42, 9/9; corr BTC 0.00).** At band
 0.01 the old bnall band artifact (corr BTC 0.63) is gone and the short leg shows. Holds one and two days late (1.47 → 1.27 → 1.01).
 Open hole: funding is known for only 28% of HL short exposure, and new-listing shorts can pay heavy funding (T2b a). DSR 0.42.
+**T2b(b) event study (2026-11-12, descriptive, research/studies/t2b_listing_event.py):** log abnormal return vs BTC from the day-1
+close, median: HL (129 events) −17% d14, −49% d60, −82% d120; bnall (794) −12% / −34% / −51%; 76–84% of events negative at d60,
+every cohort year negative on both venues (weakest bnall 2021 −7% mean). The decay is ~linear to day 120, not front-loaded, so the
+60-day hold is not a tuned peak (longer holds untested). Funding to a short over 60 d: median +1.3–1.8%, mean −1–2%, worst −162%:
+small on average, fat-tailed (squeezes). Mechanism holds; the risk is a few squeezes, not the average.
 ### blend: equal-risk tsmom(top12) + xsmom_k + listing_short, 1 pre-registered rule (T4, 2026-11-09) → ALIVE (candidate, shadow; best so far)
 **v2: HL 1d OOS 1.61 / 2.95y (worst 1.15 = 2× costs; one day late 1.32), bnall 1.30 / 6.1y (DSR 0.81, worst 0.99, corr BTC 0.07).**
 Fails only DSR > 0.9. Caveats that v2 does NOT remove: components were chosen with hindsight (nested selection at return level:
@@ -158,6 +163,11 @@ New angle vs X1: fixed 10% legs, open at |14d mean HL−BN spread| > enter, HOLD
 mdd −1.7%), grid med 2.22, 6/6 >0, worst 1.43 (2× costs), corr BTC −0.03.** Turnover 10–50× (X1: 70–410×): funding +3–10%/yr vs costs
 1–4%/yr. 40–52 pairs, top coin ≈ 20% of P&L, every year +; short the HL leg 95% of pair-days (HL longs pay). ~⅓ of P&L is premium
 convergence (price legs), not funding. Fails DSR (0.006: 1.66 y, fat tails). Not modelled: margin split across two venues (≈2× per venue). Daily basis risk small (worst pair-day −0.41%, max basis 95 bp).
+**X1c margin (2026-11-12, descriptive, research/studies/x1c_pair_margin.py): the −1.7% mdd assumes ONE margin account; real money
+sits in two.** At gross 2.0 each venue account is 2× one-directional (HL ≈ all short alts): worst account P&L without transfers
+HL −37% (1 d) / −68% (3 d) / −86% (7 d), BN −50% / −68% / −73%; worst single held HL leg +384% in 7 d (TNSR). Basis itself is calm
+(worst daily change 351 bp, p99 29 bp). Verdict for deployment: total gross ≤ 1.0 (≈1× per venue) + daily collateral re-split, ≈ 4%/yr.
+Paper book stays at 2.0 (signal measurement). Live since 2026-11-12 (8 pairs, all short HL / long BN).
 
 ### L1 hourly horizon: Binance → HL lead-lag and 1h reversal (library N4; descriptive kill test, no backtest, 2026-11-10) → DEAD at taker costs
 45 coins on both venues, 4,821 hours (2026-04-14 → 10-31), HL names > $5M/day. Rank IC with HL's next-hour return: Binance return

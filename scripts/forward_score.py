@@ -44,6 +44,8 @@ def experiments(out: Path = OUT, known: set[str] | None = None) -> list[dict]:
             d = json.loads(f.read_text())
         except Exception:
             continue
+        if not isinstance(d, dict):     # other result kinds (exec_study lists) are not walk-forwards
+            continue
         if ts is None or not d.get("folds") or (known is not None and d.get("strategy") not in known):
             continue
         params = d["folds"][-1]["params"]

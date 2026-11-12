@@ -438,7 +438,9 @@ def collect_status(store: Store) -> str:
             pass
     pos_days = len(list((hl / "positions").glob("*.jsonl")))
     l2_days = len(list((hl / "l2").glob("*.jsonl")))
-    return f"collector: last={last} | days held: ctx={ctx_days} positions={pos_days} l2={l2_days}"
+    flow_days = len(list((hl / "flow").glob("*.parquet"))) + len(list((hl / "flow").glob("*.jsonl")))
+    return (f"collector: last={last} | days held: ctx={ctx_days} positions={pos_days} l2={l2_days} flow={flow_days}\n"
+            f"flow (websocket): {store.get_meta('flow_tick') or 'never'}")
 
 
 def status() -> str:

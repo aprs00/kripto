@@ -100,6 +100,7 @@ def test_forward_ledger_uses_only_bars_after_registration(tmp_path):
     (tmp_path / "20261109-0700_a_hl.json").write_text('{"strategy":"a","dataset":"hl","folds":[{"params":{"x":1}}],"oos":{"sharpe":1.0}}')
     (tmp_path / "20261110-0700_a_hl.json").write_text('{"strategy":"a","dataset":"hl","folds":[{"params":{"x":1}}],"oos":{"sharpe":2.0}}')
     (tmp_path / "20261110-0800_b_hl.json").write_text('{"strategy":"b","dataset":"hl","folds":[]}')
+    (tmp_path / "20261110-0900_exec_study.json").write_text('[{"ds":"hl","strategy":"a"}]')   # not a walk-forward: skipped
     ex = fs.experiments(tmp_path, known={"a", "b"})
     assert len(ex) == 1 and ex[0]["registered"].day == 9 and ex[0]["backtest_oos_sharpe"] == 1.0   # earliest wins
 

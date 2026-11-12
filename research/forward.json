@@ -1,6 +1,729 @@
 {
- "updated": "2026-11-09T22:30Z",
+ "updated": "2026-11-12T07:03Z",
  "rows": [
+  {
+   "strategy": "carry",
+   "dataset": "bn",
+   "params": {
+    "lookback": 3,
+    "every_days": 1
+   },
+   "registered": "2026-11-08 15:40:00+00:00",
+   "backtest_oos_sharpe": 1.349,
+   "file": "20261108-1540_carry_bn.json",
+   "data_end": "2026-10-31 20:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "carry",
+   "dataset": "bn",
+   "params": {
+    "lookback": 3,
+    "every_days": 3,
+    "top_n": 12,
+    "target_vol": 0.2
+   },
+   "registered": "2026-11-08 15:43:00+00:00",
+   "backtest_oos_sharpe": 0.453,
+   "file": "20261108-1543_carry_bn.json",
+   "data_end": "2026-10-31 20:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "carry_trend",
+   "dataset": "bn",
+   "params": {
+    "lookback": 7,
+    "every_days": 1
+   },
+   "registered": "2026-11-09 06:46:00+00:00",
+   "backtest_oos_sharpe": 0.65,
+   "file": "20261109-0646_carry_trend_bn.json",
+   "data_end": "2026-10-31 20:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "funding_contra",
+   "dataset": "bn",
+   "params": {
+    "fast": 1,
+    "slow": 30,
+    "every_days": 3
+   },
+   "registered": "2026-11-08 15:40:00+00:00",
+   "backtest_oos_sharpe": -0.384,
+   "file": "20261108-1540_funding_contra_bn.json",
+   "data_end": "2026-10-31 20:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "funding_contra",
+   "dataset": "bn",
+   "params": {
+    "fast": 3,
+    "slow": 14,
+    "every_days": 1
+   },
+   "registered": "2026-11-09 06:41:00+00:00",
+   "backtest_oos_sharpe": -0.416,
+   "file": "20261109-0641_funding_contra_bn.json",
+   "data_end": "2026-10-31 20:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "lowvol",
+   "dataset": "bn",
+   "params": {
+    "vol_days": 60,
+    "every_days": 7
+   },
+   "registered": "2026-11-08 15:40:00+00:00",
+   "backtest_oos_sharpe": -0.023,
+   "file": "20261108-1540_lowvol_bn.json",
+   "data_end": "2026-10-31 20:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "resrev",
+   "dataset": "bn",
+   "params": {
+    "lookback": 14,
+    "thr": 2.0
+   },
+   "registered": "2026-11-09 19:05:17+00:00",
+   "backtest_oos_sharpe": -1.133,
+   "file": "20261109-190517_199817_resrev_bn.json",
+   "data_end": "2026-10-31 20:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "tsmom",
+   "dataset": "bn",
+   "params": {
+    "lookbacks": [
+     14,
+     28,
+     56
+    ],
+    "every_days": 3,
+    "long_only": false
+   },
+   "registered": "2026-11-08 15:40:00+00:00",
+   "backtest_oos_sharpe": 1.261,
+   "file": "20261108-1540_tsmom_bn.json",
+   "data_end": "2026-10-31 20:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "tsmom",
+   "dataset": "bn",
+   "params": {
+    "lookbacks": [
+     14,
+     28,
+     56
+    ],
+    "every_days": 3,
+    "top_n": 12,
+    "target_vol": 0.3
+   },
+   "registered": "2026-11-08 15:43:00+00:00",
+   "backtest_oos_sharpe": 1.032,
+   "file": "20261108-1543_tsmom_bn.json",
+   "data_end": "2026-10-31 20:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "tsmom",
+   "dataset": "bn",
+   "params": {
+    "lookbacks": [
+     7,
+     14,
+     28,
+     56
+    ],
+    "every_days": 3,
+    "long_only": false
+   },
+   "registered": "2026-11-08 17:45:00+00:00",
+   "backtest_oos_sharpe": 1.311,
+   "file": "20261108-1745_tsmom_bn.json",
+   "data_end": "2026-10-31 20:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "tsmom",
+   "dataset": "bn",
+   "params": {
+    "lookbacks": [
+     14,
+     28,
+     56
+    ],
+    "top_n": 12,
+    "target_vol": 0.3,
+    "every_days": 1,
+    "smooth_days": 0,
+    "min_dv": 20000000
+   },
+   "registered": "2026-11-09 06:46:00+00:00",
+   "backtest_oos_sharpe": 1.077,
+   "file": "20261109-0646_tsmom_bn.json",
+   "data_end": "2026-10-31 20:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "xsmom",
+   "dataset": "bn",
+   "params": {
+    "lookback": 14,
+    "every_days": 3
+   },
+   "registered": "2026-11-08 15:40:00+00:00",
+   "backtest_oos_sharpe": 0.631,
+   "file": "20261108-1540_xsmom_bn.json",
+   "data_end": "2026-10-31 20:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "xsmom",
+   "dataset": "bn",
+   "params": {
+    "lookback": 14,
+    "every_days": 1
+   },
+   "registered": "2026-11-09 06:41:00+00:00",
+   "backtest_oos_sharpe": 0.548,
+   "file": "20261109-0641_xsmom_bn.json",
+   "data_end": "2026-10-31 20:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "xsrev",
+   "dataset": "bn",
+   "params": {
+    "lookback": 7,
+    "every_days": 3
+   },
+   "registered": "2026-11-08 15:40:00+00:00",
+   "backtest_oos_sharpe": -1.571,
+   "file": "20261108-1540_xsrev_bn.json",
+   "data_end": "2026-10-31 20:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "xsrev",
+   "dataset": "bn",
+   "params": {
+    "lookback": 7,
+    "every_days": 1
+   },
+   "registered": "2026-11-09 06:40:00+00:00",
+   "backtest_oos_sharpe": -1.811,
+   "file": "20261109-0640_xsrev_bn.json",
+   "data_end": "2026-10-31 20:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "listing_short",
+   "dataset": "bn_1d",
+   "params": {
+    "skip_days": 14,
+    "hold_days": 60,
+    "min_dv": 1000000
+   },
+   "registered": "2026-11-09 06:46:00+00:00",
+   "backtest_oos_sharpe": -0.183,
+   "file": "20261109-0646_listing_short_bn_1d.json",
+   "data_end": "2026-10-31 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "blend",
+   "dataset": "bnall_1d",
+   "params": {
+    "target_vol": 0.25
+   },
+   "registered": "2026-11-09 17:28:40+00:00",
+   "backtest_oos_sharpe": 1.021,
+   "file": "20261109-172840_2979611_blend_bnall_1d.json",
+   "data_end": "2026-10-31 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "blend_nested",
+   "dataset": "bnall_1d",
+   "params": {
+    "top": 3
+   },
+   "registered": "2026-11-10 06:43:18+00:00",
+   "backtest_oos_sharpe": 1.161,
+   "file": "20261110-064318_3366398_blend_nested_bnall_1d.json",
+   "data_end": "2026-10-31 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "flow",
+   "dataset": "bnall_1d",
+   "params": {
+    "lookback": 14,
+    "sign": 1,
+    "resid": false
+   },
+   "registered": "2026-11-09 19:44:29+00:00",
+   "backtest_oos_sharpe": 1.127,
+   "file": "20261109-194429_316700_flow_bnall_1d.json",
+   "data_end": "2026-10-31 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "flow",
+   "dataset": "bnall_1d",
+   "params": {
+    "lookback": 3,
+    "sign": 1,
+    "resid": false
+   },
+   "registered": "2026-11-09 23:29:29+00:00",
+   "backtest_oos_sharpe": 1.416,
+   "file": "20261109-232929_957832_flow_bnall_1d.json",
+   "data_end": "2026-10-31 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "listing_short",
+   "dataset": "bnall_1d",
+   "params": {
+    "skip_days": 1,
+    "hold_days": 30,
+    "min_dv": 1000000
+   },
+   "registered": "2026-11-09 07:12:50+00:00",
+   "backtest_oos_sharpe": 1.076,
+   "file": "20261109-071250_2677722_listing_short_bnall_1d.json",
+   "data_end": "2026-10-31 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "resrev",
+   "dataset": "bnall_1d",
+   "params": {
+    "lookback": 14,
+    "thr": 2.0
+   },
+   "registered": "2026-11-09 19:44:25+00:00",
+   "backtest_oos_sharpe": -0.845,
+   "file": "20261109-194425_316701_resrev_bnall_1d.json",
+   "data_end": "2026-10-31 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "tsmom",
+   "dataset": "bnall_1d",
+   "params": {
+    "lookbacks": [
+     14,
+     28,
+     56
+    ],
+    "every_days": 1,
+    "long_only": false
+   },
+   "registered": "2026-11-09 07:12:51+00:00",
+   "backtest_oos_sharpe": 0.968,
+   "file": "20261109-071251_2677723_tsmom_bnall_1d.json",
+   "data_end": "2026-10-31 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "xsmom",
+   "dataset": "bnall_1d",
+   "params": {
+    "lookback": 14,
+    "every_days": 1
+   },
+   "registered": "2026-11-09 07:12:54+00:00",
+   "backtest_oos_sharpe": 1.27,
+   "file": "20261109-071254_2677724_xsmom_bnall_1d.json",
+   "data_end": "2026-10-31 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "xsmom",
+   "dataset": "bnall_1d",
+   "params": {
+    "lookback": 28,
+    "every_days": 1
+   },
+   "registered": "2026-11-09 23:28:54+00:00",
+   "backtest_oos_sharpe": 1.343,
+   "file": "20261109-232854_955171_xsmom_bnall_1d.json",
+   "data_end": "2026-10-31 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "xsmom_k",
+   "dataset": "bnall_1d",
+   "params": {
+    "lookback": 14,
+    "k": 5,
+    "every_days": 7
+   },
+   "registered": "2026-11-09 17:28:45+00:00",
+   "backtest_oos_sharpe": 1.365,
+   "file": "20261109-172845_2979610_xsmom_k_bnall_1d.json",
+   "data_end": "2026-10-31 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "xsmom_k",
+   "dataset": "bnall_1d",
+   "params": {
+    "lookback": 28,
+    "k": 5,
+    "every_days": 3
+   },
+   "registered": "2026-11-09 23:29:01+00:00",
+   "backtest_oos_sharpe": 1.124,
+   "file": "20261109-232901_955173_xsmom_k_bnall_1d.json",
+   "data_end": "2026-10-31 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "carry",
+   "dataset": "hl",
+   "params": {
+    "lookback": 14,
+    "every_days": 7
+   },
+   "registered": "2026-11-08 15:55:00+00:00",
+   "backtest_oos_sharpe": -0.579,
+   "file": "20261108-1555_carry_hl.json",
+   "data_end": "2026-11-12 04:00:00+00:00",
+   "bars": 22,
+   "days": 3.7,
+   "ret": 0.0152,
+   "sharpe": null
+  },
+  {
+   "strategy": "carry",
+   "dataset": "hl",
+   "params": {
+    "lookback": 3,
+    "every_days": 1,
+    "top_n": 12,
+    "target_vol": 0.35
+   },
+   "registered": "2026-11-09 06:41:00+00:00",
+   "backtest_oos_sharpe": -1.046,
+   "file": "20261109-0641_carry_hl.json",
+   "data_end": "2026-11-12 04:00:00+00:00",
+   "bars": 18,
+   "days": 3.0,
+   "ret": 0.0354,
+   "sharpe": null
+  },
+  {
+   "strategy": "carry_trend",
+   "dataset": "hl",
+   "params": {
+    "lookback": 14,
+    "every_days": 3
+   },
+   "registered": "2026-11-09 06:46:00+00:00",
+   "backtest_oos_sharpe": -0.876,
+   "file": "20261109-0646_carry_trend_hl.json",
+   "data_end": "2026-11-12 04:00:00+00:00",
+   "bars": 18,
+   "days": 3.0,
+   "ret": -0.0022,
+   "sharpe": null
+  },
+  {
+   "strategy": "funding_contra",
+   "dataset": "hl",
+   "params": {
+    "fast": 1,
+    "slow": 14,
+    "every_days": 3
+   },
+   "registered": "2026-11-09 06:41:00+00:00",
+   "backtest_oos_sharpe": -0.808,
+   "file": "20261109-0641_funding_contra_hl.json",
+   "data_end": "2026-11-12 04:00:00+00:00",
+   "bars": 18,
+   "days": 3.0,
+   "ret": 0.0089,
+   "sharpe": null
+  },
+  {
+   "strategy": "lowvol",
+   "dataset": "hl",
+   "params": {
+    "vol_days": 14,
+    "every_days": 3
+   },
+   "registered": "2026-11-09 06:41:00+00:00",
+   "backtest_oos_sharpe": -0.243,
+   "file": "20261109-0641_lowvol_hl.json",
+   "data_end": "2026-11-12 04:00:00+00:00",
+   "bars": 18,
+   "days": 3.0,
+   "ret": -0.003,
+   "sharpe": null
+  },
+  {
+   "strategy": "resrev",
+   "dataset": "hl",
+   "params": {
+    "lookback": 7,
+    "thr": 2.0
+   },
+   "registered": "2026-11-09 19:05:17+00:00",
+   "backtest_oos_sharpe": -0.182,
+   "file": "20261109-190517_199816_resrev_hl.json",
+   "data_end": "2026-11-12 04:00:00+00:00",
+   "bars": 15,
+   "days": 2.5,
+   "ret": -0.0079,
+   "sharpe": null
+  },
+  {
+   "strategy": "tsmom",
+   "dataset": "hl",
+   "params": {
+    "lookbacks": [
+     14,
+     28,
+     56
+    ],
+    "every_days": 1,
+    "long_only": false
+   },
+   "registered": "2026-11-08 15:41:00+00:00",
+   "backtest_oos_sharpe": 0.546,
+   "file": "20261108-1541_tsmom_hl.json",
+   "data_end": "2026-11-12 04:00:00+00:00",
+   "bars": 22,
+   "days": 3.7,
+   "ret": 0.032,
+   "sharpe": null
+  },
+  {
+   "strategy": "tsmom",
+   "dataset": "hl",
+   "params": {
+    "lookbacks": [
+     7,
+     14,
+     28,
+     56
+    ],
+    "every_days": 1,
+    "top_n": 12,
+    "target_vol": 0.3
+   },
+   "registered": "2026-11-08 15:43:00+00:00",
+   "backtest_oos_sharpe": 0.509,
+   "file": "20261108-1543_tsmom_hl.json",
+   "data_end": "2026-11-12 04:00:00+00:00",
+   "bars": 22,
+   "days": 3.7,
+   "ret": 0.0381,
+   "sharpe": null
+  },
+  {
+   "strategy": "tsmom",
+   "dataset": "hl",
+   "params": {
+    "every_days": 3
+   },
+   "registered": "2026-11-08 17:45:00+00:00",
+   "backtest_oos_sharpe": 0.617,
+   "file": "20261108-1745_tsmom_hl.json",
+   "data_end": "2026-11-12 04:00:00+00:00",
+   "bars": 21,
+   "days": 3.5,
+   "ret": 0.0291,
+   "sharpe": null
+  },
+  {
+   "strategy": "tsmom",
+   "dataset": "hl",
+   "params": {
+    "lookbacks": [
+     7,
+     14,
+     28,
+     56
+    ],
+    "every_days": 1,
+    "long_only": false
+   },
+   "registered": "2026-11-09 06:40:00+00:00",
+   "backtest_oos_sharpe": 0.426,
+   "file": "20261109-0640_tsmom_hl.json",
+   "data_end": "2026-11-12 04:00:00+00:00",
+   "bars": 18,
+   "days": 3.0,
+   "ret": 0.0068,
+   "sharpe": null
+  },
+  {
+   "strategy": "tsmom",
+   "dataset": "hl",
+   "params": {
+    "lookbacks": [
+     7,
+     14,
+     28,
+     56
+    ],
+    "top_n": 12,
+    "target_vol": 0.3,
+    "every_days": 1,
+    "smooth_days": 0,
+    "min_dv": 20000000
+   },
+   "registered": "2026-11-09 06:46:00+00:00",
+   "backtest_oos_sharpe": 0.571,
+   "file": "20261109-0646_tsmom_hl.json",
+   "data_end": "2026-11-12 04:00:00+00:00",
+   "bars": 18,
+   "days": 3.0,
+   "ret": 0.0093,
+   "sharpe": null
+  },
+  {
+   "strategy": "xsmom",
+   "dataset": "hl",
+   "params": {
+    "lookback": 7,
+    "every_days": 7
+   },
+   "registered": "2026-11-08 15:41:00+00:00",
+   "backtest_oos_sharpe": 0.708,
+   "file": "20261108-1541_xsmom_hl.json",
+   "data_end": "2026-11-12 04:00:00+00:00",
+   "bars": 22,
+   "days": 3.7,
+   "ret": -0.02,
+   "sharpe": null
+  },
+  {
+   "strategy": "xsmom",
+   "dataset": "hl",
+   "params": {
+    "lookback": 14,
+    "every_days": 3
+   },
+   "registered": "2026-11-08 17:45:00+00:00",
+   "backtest_oos_sharpe": 1.373,
+   "file": "20261108-1745_xsmom_hl.json",
+   "data_end": "2026-11-12 04:00:00+00:00",
+   "bars": 21,
+   "days": 3.5,
+   "ret": -0.03,
+   "sharpe": null
+  },
+  {
+   "strategy": "xsrev",
+   "dataset": "hl",
+   "params": {
+    "lookback": 3,
+    "every_days": 3
+   },
+   "registered": "2026-11-09 06:40:00+00:00",
+   "backtest_oos_sharpe": -2.661,
+   "file": "20261109-0640_xsrev_hl.json",
+   "data_end": "2026-11-12 04:00:00+00:00",
+   "bars": 18,
+   "days": 3.0,
+   "ret": 0.026,
+   "sharpe": null
+  },
   {
    "strategy": "blend",
    "dataset": "hl_1d",
@@ -10,10 +733,25 @@
    "registered": "2026-11-09 17:28:18+00:00",
    "backtest_oos_sharpe": 1.566,
    "file": "20261109-172818_2979611_blend_hl_1d.json",
-   "data_end": "2026-11-09 00:00:00+00:00",
-   "bars": 0,
-   "days": 0.0,
-   "ret": 0.0,
+   "data_end": "2026-11-12 00:00:00+00:00",
+   "bars": 3,
+   "days": 3.0,
+   "ret": -0.0057,
+   "sharpe": null
+  },
+  {
+   "strategy": "blend_nested",
+   "dataset": "hl_1d",
+   "params": {
+    "top": 3
+   },
+   "registered": "2026-11-10 06:42:40+00:00",
+   "backtest_oos_sharpe": 1.874,
+   "file": "20261110-064240_3366397_blend_nested_hl_1d.json",
+   "data_end": "2026-11-12 00:00:00+00:00",
+   "bars": 2,
+   "days": 2.0,
+   "ret": 0.002,
    "sharpe": null
   },
   {
@@ -27,9 +765,9 @@
    "registered": "2026-11-09 06:46:00+00:00",
    "backtest_oos_sharpe": 0.753,
    "file": "20261109-0646_listing_short_hl_1d.json",
-   "data_end": "2026-11-09 00:00:00+00:00",
-   "bars": 0,
-   "days": 0.0,
+   "data_end": "2026-11-12 00:00:00+00:00",
+   "bars": 3,
+   "days": 3.0,
    "ret": 0.0,
    "sharpe": null
   },
@@ -43,10 +781,10 @@
    "registered": "2026-11-09 19:44:33+00:00",
    "backtest_oos_sharpe": -0.592,
    "file": "20261109-194433_317825_resrev_hl_1d.json",
-   "data_end": "2026-11-09 00:00:00+00:00",
-   "bars": 0,
-   "days": 0.0,
-   "ret": 0.0,
+   "data_end": "2026-11-12 00:00:00+00:00",
+   "bars": 3,
+   "days": 3.0,
+   "ret": 0.0147,
    "sharpe": null
   },
   {
@@ -64,10 +802,10 @@
    "registered": "2026-11-09 23:28:32+00:00",
    "backtest_oos_sharpe": 0.083,
    "file": "20261109-232832_955171_tsmom_hl_1d.json",
-   "data_end": "2026-11-09 00:00:00+00:00",
-   "bars": 0,
-   "days": 0.0,
-   "ret": 0.0,
+   "data_end": "2026-11-12 00:00:00+00:00",
+   "bars": 3,
+   "days": 3.0,
+   "ret": 0.0131,
    "sharpe": null
   },
   {
@@ -80,10 +818,10 @@
    "registered": "2026-11-09 23:28:33+00:00",
    "backtest_oos_sharpe": -0.086,
    "file": "20261109-232833_955173_xsmom_hl_1d.json",
-   "data_end": "2026-11-09 00:00:00+00:00",
-   "bars": 0,
-   "days": 0.0,
-   "ret": 0.0,
+   "data_end": "2026-11-12 00:00:00+00:00",
+   "bars": 3,
+   "days": 3.0,
+   "ret": -0.0104,
    "sharpe": null
   },
   {
@@ -97,7 +835,56 @@
    "registered": "2026-11-09 17:28:20+00:00",
    "backtest_oos_sharpe": 0.554,
    "file": "20261109-172820_2979609_xsmom_k_hl_1d.json",
-   "data_end": "2026-11-09 00:00:00+00:00",
+   "data_end": "2026-11-12 00:00:00+00:00",
+   "bars": 3,
+   "days": 3.0,
+   "ret": -0.0093,
+   "sharpe": null
+  },
+  {
+   "strategy": "flow",
+   "dataset": "hlx_1d",
+   "params": {
+    "lookback": 14,
+    "sign": 1,
+    "resid": false
+   },
+   "registered": "2026-11-09 23:06:48+00:00",
+   "backtest_oos_sharpe": 0.029,
+   "file": "20261109-230648_1058070_flow_hlx_1d.json",
+   "data_end": "2026-11-12 00:00:00+00:00",
+   "bars": 3,
+   "days": 3.0,
+   "ret": -0.0088,
+   "sharpe": null
+  },
+  {
+   "strategy": "fspread",
+   "dataset": "pair_1d",
+   "params": {
+    "lookback": 14,
+    "thr": 0.2
+   },
+   "registered": "2026-11-09 23:06:55+00:00",
+   "backtest_oos_sharpe": -1.42,
+   "file": "20261109-230655_1058504_fspread_pair_1d.json",
+   "data_end": "2026-10-31 00:00:00+00:00",
+   "bars": 0,
+   "days": 0.0,
+   "ret": 0.0,
+   "sharpe": null
+  },
+  {
+   "strategy": "fspread_hold",
+   "dataset": "pair_1d",
+   "params": {
+    "lookback": 14,
+    "enter": 0.1
+   },
+   "registered": "2026-11-10 06:52:06+00:00",
+   "backtest_oos_sharpe": 1.262,
+   "file": "20261110-065206_3371528_fspread_hold_pair_1d.json",
+   "data_end": "2026-10-31 00:00:00+00:00",
    "bars": 0,
    "days": 0.0,
    "ret": 0.0,
