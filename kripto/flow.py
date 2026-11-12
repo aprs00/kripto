@@ -14,12 +14,17 @@ Large takers (library N9, Tóth et al. 2015: flow persistence is one investor sp
 few venues that publishes who traded): `n_takers` = distinct taker addresses in the minute, `big` = up to 5 [address, signed net
 taker $] with |net| >= BIG_NTL. Taker = users[0] (buyer) when side is "B", else users[1] (verified 2026-11-12 with userFills: the
 side-"B" buyer had crossed=True).
+Trade-size buckets (research/insilico_rules.md R1-R4, added 2026-11-12; HL has no history of this either): `tsz` = JSON
+[[bin, delta, volume], ...] per coin-minute, where each TAKER ADDRESS's net $ in the minute is one "order" (HL prints one
+line per resting order hit, so a print is smaller than the order; the address is the real unit) and bin = kripto.tsize.EDGES
+(12 bins, 1k .. 1M USD). delta = signed sum of those nets, volume = sum of their absolute values.
 Heartbeat: meta `flow_tick` in state/paper.db every minute (scripts/health.py alerts if it is silent for 5 min).
 Never touches the trader or any book.
 """
 from __future__ import annotations
 
 import asyncio
+import bisect
 import collections
 import json
 import os
@@ -34,6 +39,7 @@ FLOW_DIR = data.DATA / "hl" / "flow"
 TOP_N = int(os.environ.get("KRIPTO_FLOW_COINS", "60"))
 BBO_COINS = ("BTC", "ETH", "SOL")
 RERANK_S = 6 * 3600
+TS_EDGES = [1e3, 3e3, 1e4, 2e4, 3e4, 6e4, 1.1e5, 1.5e5, 2.5e5, 5e5, 1e6]   # = kripto.tsize.EDGES (test checks they agree)
 BIG_NTL = float(os.environ.get("KRIPTO_FLOW_BIG", "20000"))   # a taker's net $ per coin-minute worth recording by address
 BIG_KEEP = 5
 GRACE_S = 10            # a minute is written once it ended this many seconds ago (late trades are counted, not lost silently)
@@ -115,6 +121,12 @@ class Agg:
             r["n_takers"] = len(tk)
             big = sorted(((a, v) for a, v in tk.items() if abs(v) >= BIG_NTL), key=lambda x: -abs(x[1]))[:BIG_KEEP]
             r["big"] = json.dumps([[a, round(v, 2)] for a, v in big], separators=(",", ":")) if big else ""
+            bins: dict[int, list] = {}
+            for v in tk.values():
+                b = bins.setdefault(bisect.bisect_right(TS_EDGES, abs(v)), [0.0, 0.0])
+                b[0] += v
+                b[1] += abs(v)
+            r["tsz"] = json.dumps([[k, round(b[0], 2), round(b[1], 2)] for k, b in sorted(bins.items())], separators=(",", ":")) if bins else ""
         self.flushed_to = max(self.flushed_to, upto)
         return out
 

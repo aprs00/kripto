@@ -77,3 +77,19 @@ def test_large_takers_are_recorded_by_address():
     r = a.pop_done(now=(T0 + 60000) / 1000 + F.GRACE_S + 1)[0]
     assert r["n_takers"] == 2 and "_tk" not in r
     assert json.loads(r["big"]) == [["0xbuyer", 30000.0]]          # the $1,000 seller is below BIG_NTL
+
+
+def test_trade_size_buckets_use_each_takers_net_per_minute():
+    from kripto import tsize
+    assert F.TS_EDGES == list(tsize.EDGES)
+    a = F.Agg()
+    u = lambda tid, ms, side, sz, buyer, seller: {**_t(tid, ms, side, px=100.0, sz=sz), "users": [buyer, seller]}
+    a.add(u(1, T0 + 1000, "B", 300.0, "0xbig", "0xm1"), now=T0 / 1000)      # 0xbig buys 30k ...
+    a.add(u(2, T0 + 1100, "B", 300.0, "0xbig", "0xm2"), now=T0 / 1000)      # ... and 30k more from another maker: ONE 60k order
+    a.add(u(3, T0 + 2000, "A", 5.0, "0xm3", "0xsmall"), now=T0 / 1000)      # 0xsmall sells 500
+    a.add(u(4, T0 + 3000, "A", 8.0, "0xm3", "0xsmall2"), now=T0 / 1000)     # 0xsmall2 sells 800
+    (r,) = a.pop_done(now=(T0 + 60000) / 1000 + F.GRACE_S + 1)
+    assert json.loads(r["tsz"]) == [[0, -1300.0, 1300.0], [6, 60000.0, 60000.0]]   # bin 6 = [60k, 110k)
+    b = F.Agg()
+    b.add(_t(9, T0 + 1000, "B"), now=T0 / 1000)                             # a print without addresses: no buckets, no crash
+    assert b.pop_done(now=(T0 + 60000) / 1000 + F.GRACE_S + 1)[0]["tsz"] == ""

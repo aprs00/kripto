@@ -57,6 +57,10 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
   research and live, and `robust.phases` shows every single start day.
 * **Headline numbers are start-date and delay sensitive.** HL blend: 1.82 all history, 1.30 since 2024-09, 0.81 on 4h from
   2024-07; 1-day execution delay 1.82 → 1.34 (tsmom 1.06 → 0.71). Quote `robust.worst` next to any OOS Sharpe.
+* **A per-trade t-stat lies when trades cluster (2026-11-12, lshock).** 730 trades gave t 3.3 per trade but t 1.6 on daily sums: three
+  crash days were 72% of the P&L. For any event strategy quote the day-clustered t, the share of the top 3 days and the result without them.
+* **A conservative fill model decides passive strategies (2026-11-11, range_retest).** A resting bid that needs a 1 bp trade-through is
+  filled exactly when price keeps going: 57.5% winners and still −1.9 bp per trade before fees. "Bounces most of the time" ≠ profitable.
 * **DEAD on HL ≠ dead forever.** HL history grows every day. Re-test DEAD ideas that died on HL alone (not on BN
   too) once HL OOS history has grown by ≥ 6 months, as a pre-registered re-check (see backlog T0b).
 
@@ -186,3 +190,29 @@ clear 15 bp (round trip ≈ 12 bp). Nothing does. Largest signed forward returns
 −0.5 in half 2; volume-spike reversal −9.3 / +0.4; close beyond the 4h high reverses −1 to −6 bp (t −8) in half 1, ≈ 0 in half 2;
 flow continuation and BTC → alts ≤ 2 bp. Only one sign is stable: breakouts of the 4h range give a little back within minutes (< 2 bp).
 Not tested: order-book imbalance (needs the L2 stream, W1) and thin coins (bigger moves, bigger costs). research/minute_study.json.
+
+> **InSilico rules (2026-11-11/12).** One discretionary trader's public posts (BitMEX/Bybit era) mined into 32 falsifiable rules:
+> research/insilico_rules.md (definitions, sources, data map). Five were pre-registered (batch 2026-11-11-insilico.json) and tested on
+> Binance with Binance VIP0 costs (taker 5 bp + slippage, maker 2 bp); intraday ones in the order engine kripto/events.py.
+
+### weekend_revert: fade the weekend move back to Friday's CME close (InSilico R21, bn 1h BTC+ETH, 2026-11-11) → DEAD
+WF OOS −0.46 / 6.2y, grid med −0.43, 0/6 >0, worst −0.42. Negative BEFORE costs in both eras (to 2022 −0.31, 2023+ −0.41); only 2021,
+the year the author wrote it, was positive (+20–56%). Price touches Friday's level by Monday's close in just 42% of ≥1% gaps. Since 2023
+BTC weekend moves CONTINUE into Monday (fade −88 bp/trade, t −3.4, n=128; ETH −10, n.s.): seen after the fact on one coin, not a strategy.
+
+### range_retest: bid the old range high after a breakout, target one average candle (InSilico R19, bnm 1m, 10 coins, 2026-11-11) → DEAD before costs
+WF OOS −34, 0/8 >0. 91,782 trades: 57.5% winners, gross −1.9 bp, cost 5.9 bp, net −7.8 bp per trade, the same in both eras and all coins.
+84% of breakouts do come back to the level, but the candle after the touch closes ±1 bp from it and reaches +1 ATR only 23–26% of the
+time. With trade-through fills the bid is hit when price is going through. A touch-fill version would be unverifiable on paper.
+
+### lshock: liquidation fade on 1-minute bars (InSilico R5, bnm 1m, 2026-11-11/12) → OPEN (tail-event effect; not a candidate)
+WF OOS 0.64 / 5.2y (grid med −0.005, 4/8 >0, worst 0.56): FAILS the pre-registered rule. The literal rule (6σ dump on ≥5× volume, then a
+full engulfing up-bar on less volume) made +70 bp net/trade on the 10 test coins (n=302) and, frozen, **+84 bp on 20 unseen coins** (n=428,
+t 2.35, both eras +: pre-registered replication passed). Short side ≈ 0, maker entry no better, costs irrelevant (11 of 90 bp gross).
+BUT 3 crash days = 72% of P&L; day-clustered t 1.6; days with one trade lose (−4 bp), cascade days (≥5 coins) make +155–413 bp.
+It is a bet on catching 2–4 market-wide liquidation days a year, exactly when real fills and venue uptime are worst (2025-10-10).
+
+### Calendar claims (InSilico R22–R24, descriptive, BTC+ETH 1h 2020–26, 2026-11-11) → nothing tradable at taker costs
+Friday after the US close (R22): +7–19 bp/4h, t ≤ 1.5, no different from Mon–Thu. CME break hour 17–18 New York (R23): no extra
+volatility, but a drift of +5–9 bp/h, t 2.3–3.6 in BOTH eras on both coins; below a taker round trip (≈ 13 bp). Use: timing of buys
+the books make anyway (backlog E2), not a book. September / Santa / lunar claims: ≤ 6 observations each, untestable.

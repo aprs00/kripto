@@ -131,8 +131,38 @@ def decomp(name: str, ds: str, interval: str, base: dict, variants: list[dict]):
             print("   by coin:", pc.T.to_dict())
 
 
+# --------------------------------------------------------------------------- frozen-config replication on unseen coins
+REP = "DOT BCH TRX ATOM ETC XLM FIL NEAR UNI AAVE MATIC ARB OP APT SUI INJ SAND MANA AXS FTM".split()
+
+
+def replicate():
+    """lshock with the config frozen on 2026-11-11 (z=6, m=5, e=1.0), on 20 coins that were not in the test (batch file
+    `_lshock_replication`). Two 10-coin halves (RAM); each is one logged config line tagged "replication"."""
+    parts = []
+    for half in (REP[:10], REP[10:]):
+        p = data.load_bn_minute_panel(half)
+        res, s = evaluate("lshock", p, {"z": 6, "m": 5, "e": 1.0}, "bnm_rep_1m", tag="replication")
+        print("half", list(p["close"].columns), {k: s.get(k) for k in ("sharpe", "cagr", "max_dd", "turnover_yr", "cost_yr")})
+        if len(res.trades):
+            parts.append(res.trades.assign(coin=[p["close"].columns[i] for i in res.trades.coin]))
+        del p
+    t = pd.concat(parts)
+    net = t.gross - t.cost
+    rows = {"all": net, "to 2022": net[t.time < ERA], "2023+": net[t.time >= ERA]}
+    for k, x in rows.items():
+        print(f"   {k:8s} n={len(x):5d} win={float((x > 0).mean()):5.1%} gross={t.gross[x.index].mean() * 1e4:+7.1f} bp "
+              f"net={x.mean() * 1e4:+7.1f} bp t={tstat(x):+.2f}")
+    print("   by coin (n, net bp):", {c: (len(g), round(float((g.gross - g.cost).mean() * 1e4), 1)) for c, g in t.groupby("coin")})
+    print("   by year (n, net bp):", {int(y): (len(g), round(float((g.gross - g.cost).mean() * 1e4), 1)) for y, g in t.groupby(t.time.dt.year)})
+    ok = net.mean() > 0 and tstat(net) > 2 and all(len(rows[k]) and rows[k].mean() > 0 for k in ("to 2022", "2023+"))
+    print("verdict by the pre-registered rule:", "REPLICATED" if ok else "NOT REPLICATED")
+
+
 if __name__ == "__main__":
     cmd = sys.argv[1]
+    if cmd == "replicate":
+        replicate()
+        sys.exit()
     if cmd == "calendar":
         calendar()
     elif cmd == "tsize":
