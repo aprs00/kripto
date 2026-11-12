@@ -168,6 +168,10 @@ sits in two.** At gross 2.0 each venue account is 2× one-directional (HL ≈ al
 HL −37% (1 d) / −68% (3 d) / −86% (7 d), BN −50% / −68% / −73%; worst single held HL leg +384% in 7 d (TNSR). Basis itself is calm
 (worst daily change 351 bp, p99 29 bp). Verdict for deployment: total gross ≤ 1.0 (≈1× per venue) + daily collateral re-split, ≈ 4%/yr.
 Paper book stays at 2.0 (signal measurement). Live since 2026-11-12 (8 pairs, all short HL / long BN).
+**X1d two-account sim (2026-11-12, pre-registered rule, descriptive, research/studies/x1d_pair_accounts.py):** both legs at their
+adverse intraday extreme, maintenance 5/10%. Gross 2.0 is liquidated 1–2× (2025-10-10 cascade: BN long legs −45…−81% intraday,
+account −133%); gross 1.0 and 0.5: 0 liquidations, min buffer 5.6× / 14× (weekly re-split, 10% mm), but a −67…−72% intraday account
+day. **Deployable size = gross 1.0 ≈ +4.8%/yr before costs (~$40/yr on $1,000).** Not modelled: ADL closing the winning leg mid-crash.
 
 ### L1 hourly horizon: Binance → HL lead-lag and 1h reversal (library N4; descriptive kill test, no backtest, 2026-11-10) → DEAD at taker costs
 45 coins on both venues, 4,821 hours (2026-04-14 → 10-31), HL names > $5M/day. Rank IC with HL's next-hour return: Binance return

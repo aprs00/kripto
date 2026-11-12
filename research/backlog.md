@@ -6,8 +6,7 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 
 **Priority order (rewritten 2026-11-10 after H4/T9/X1b; research Tue + Thu, ≤ 6 new walk-forward experiments per session):**
 ## Owner instruction 2026-11-10 ("run everything now"): DONE 2026-11-12 06:40 research (M1, X2, W1 live; forward baseline). Journal 2026-11-12.
-**Next priorities (2026-11-12):** 1. T0a tracking (≈ 11-16, all books incl. main + pair) → 2. X1d per-venue liquidation sim for
-fspread (decides the deployable size) → 3. C1 cost calibration (from 11-24) → 4. W1 data analysis once ≥ 2 weeks (HL taker flow
+**Next priorities (2026-11-12):** 1. T0a tracking (≈ 11-16, all books incl. main + pair) → 2. (X1d done: fspread deployable at gross 1.0) → 3. C1 cost calibration (from 11-24) → 4. W1 data analysis once ≥ 2 weeks (HL taker flow
 vs next-day returns, same rule as flow@bn, ≈ 11-26) → 5. T2b (a)/(c) + longer hold (b showed decay continues to day 120) → 6. T5b.
 - [x] M1 DONE 2026-11-12: HL main = blend_nested 1.0; main_bn = flow@bn/xsmom@bn/blend@bn 1/3 each. Was: **M1 main books trade the best estimate** (was planned for Thu 11-12; brought forward by the instruction above) (design.md 2026-11-10, owner mandate): apply the fixed rule
 (equal-risk mix of the venue's candidates with WF OOS > 0.8 on that venue and `robust.worst` > 0) to set `incubation` + alloc for
@@ -37,7 +36,7 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
   data/bn/funding_all as the backfill. Fills: HL legs via paper.simulate_fill, BN legs via venue_bn's depth walk. Funding accrual:
   HL fundingHistory per held coin (≤ 10 coins, 3 s each), BN from the stored premiumIndex prints. Rebalance once a day.
   Tests: fake clients, known-answer funding accrual on a held pair, and HL/BN books unaffected. Report margin per venue (≈ 2×).
-- [ ] X1d **Per-venue account simulation for fspread_hold** (from X1c: one-account mdd −1.7% hides −37%/day per venue account at
+- [x] X1d DONE 2026-11-12 → deployable gross 1.0 (2.0 liquidated on 2025-10-10); findings. Was: **Per-venue account simulation for fspread_hold** (from X1c: one-account mdd −1.7% hides −37%/day per venue account at
   gross 2): simulate two accounts with daily collateral re-split, HL/BN maintenance margin and intraday highs (HL 1d high/low),
   gross ∈ {0.5, 1.0, 2.0} pre-registered; output P(liquidation) and return per gross. Descriptive; decides the deployable size.
 - [ ] X1c fspread_hold robustness (descriptive, no new WF unless a new rule): per-pair basis excursions (worst daily |basis|),

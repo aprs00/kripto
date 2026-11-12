@@ -113,6 +113,9 @@ kripto/paper.py       paper engine (hourly timer)     config/strategies.json  st
 kripto/bn.py          public Binance fapi client      kripto/venue_bn.py   Binance paper venue (main_bn, shadow:<x>@bn)
 kripto/live.py        always-on watcher: marks every 20 s, kill switch, live equity, heartbeat (kripto-live.service)
 kripto/collect.py     hourly non-backfillable HL data (top-account positions, L2) -> data/hl/positions, data/hl/l2
+kripto/venue_pair.py  two-venue books (`<entry>@pair`, legs <COIN>@hl/<COIN>@bn; fspread_hold@pair), daily, inside the hourly step
+kripto/flow.py        always-on HL trade-flow websocket collector (kripto-flow.service) -> data/hl/flow (per coin per minute)
+research/studies/     descriptive studies (no backtest, not registered): one script per question, cited from findings.md
 config/risk.json      risk limits, book sizes         scripts/research_run.py  walk-forward CLI (pre-registered grids)
 scripts/inspect_strategy.py  yearly/funding/cost decomposition + 2x-cost stress
 scripts/download.py   data refresh (nightly timer)    scripts/agent.sh     how you are launched
@@ -285,3 +288,12 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
 * 2026-11-11 review: the owner's "run everything now" session died silently twice (unknown model, then the 5-hour usage limit) and the
   watchdog only said `rc=1`. It now quotes the failed session's last log line. Lesson: interactive work and headless sessions share one
   usage budget; a hand-started session after a long interactive day may not get to run.
+* 2026-11-12 research: built M1 (main books trade the rule-picked mix), X2 (`kripto/venue_pair.py`, two-venue books, live watcher
+  prices them from the same tick) and W1 (`kripto/flow.py` + kripto-flow.service; heartbeat `flow_tick`, watchdog ALERT after 5 min).
+  Descriptive studies now live in `research/studies/` (one script per question) instead of ad-hoc heredocs, so a finding can be re-run.
+  Lessons: (1) X1c/X1d: a backtest of a cross-venue book silently assumed ONE margin account (mdd −1.7%); two real accounts at gross 2
+  would have been liquidated on 2025-10-10. Model the account structure that would really hold the money, not just the portfolio
+  (assumptions.md row 14). (2) Verify a data field against an independent source before trusting it: HL `side` looked 7% wrong until
+  the check used the quote from before the trade's block. (3) The forward ledger had never run end-to-end (crashed on exec_study
+  result lists): a weekly tool must be run once when it is built, not first on the Sunday it is needed.
+
