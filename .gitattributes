@@ -1,1 +1,2 @@
-* text=auto eol=lf
+research/registry.jsonl merge=union
+journal/*.md merge=union
