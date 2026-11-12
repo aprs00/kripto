@@ -14,6 +14,9 @@ _Updated 2026-11-12 07:20 UTC (Thursday research session)._
 3. **Hyperliquid order flow is now recorded.** One public live stream records who bought and who sold in the top 60 coins, every
    minute. This data can't be downloaded later, so recording starts now. I checked the buy/sell label against the order book
    (163 of 163 agree). The watchdog raises an alert if the stream goes silent for 5 minutes.
+   It also records, by address, every trader who buys or sells more than $20k of a coin in a minute. Hyperliquid is one of the
+   few exchanges that publishes this, and research says big orders are split over hours, so an order in progress may be visible
+   (first test once there are 2 weeks of data, about 11-26).
 
 ## Important finding: the funding trade is smaller than it looked
 The backtest showed +8.4%/yr with a worst drawdown of −1.7%. That assumed both legs sit in **one** account. With real money they

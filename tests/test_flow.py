@@ -1,4 +1,6 @@
 """W1 trade-flow collector: aggregation, dedup on reconnect replay, side check, day compaction (no network)."""
+import json
+
 import pandas as pd
 import pytest
 
@@ -65,3 +67,13 @@ def test_side_check_uses_the_quote_from_before_the_trades_block():
     a.add(_t(1, T0 + 1000, "A", px=99.0), now=T0 / 1000)
     r = a.pop_done(now=(T0 + 60000) / 1000 + F.GRACE_S + 1)[0]
     assert (r["chk_ok"], r["chk_bad"]) == (1, 0)
+
+
+def test_large_takers_are_recorded_by_address():
+    a = F.Agg()
+    t1 = _t(1, T0 + 1000, "B", px=100.0, sz=300.0); t1["users"] = ["0xbuyer", "0xmaker"]
+    t2 = _t(2, T0 + 2000, "A", px=100.0, sz=10.0); t2["users"] = ["0xmaker2", "0xsmall"]
+    a.add(t1, now=T0 / 1000); a.add(t2, now=T0 / 1000)
+    r = a.pop_done(now=(T0 + 60000) / 1000 + F.GRACE_S + 1)[0]
+    assert r["n_takers"] == 2 and "_tk" not in r
+    assert json.loads(r["big"]) == [["0xbuyer", 30000.0]]          # the $1,000 seller is below BIG_NTL

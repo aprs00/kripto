@@ -50,3 +50,12 @@ all ≤ 7 bp and unstable across two 3-month halves on the 20 most liquid perps,
 trade these with discretion and context; the mechanical cores carry no edge at 1-min resolution with taker fees. Still open from
 the library: weighted mid / microprice (maxdama §4.7; needs live L2), and traffic analysis on message counts (maxdama §4.2; the
 owner's Telegram idea).
+
+### N10 Visible metaorders on Hyperliquid (toth-palit-lillo-farmer-2015, mined 2026-11-12)
+Claim: order-flow sign persistence (long memory over days) comes almost entirely from the SAME investor splitting a large order
+(splitting ≫ herding), while returns stay nearly uncorrelated because liquidity adjusts. On most venues splitting is invisible. On HL
+every trade carries both addresses, so a metaorder in progress is visible: an address that has been the net taker on one side of a
+coin for the last N hours will likely keep going. Mechanical rule (to pre-register once ≥ 2 weeks of W1 data exist): per coin, the
+net taker $ of addresses whose same-side net taking spans ≥ k of the last 12 hours, scaled by volume → next 4h/24h return (continuation
+if impact is partly permanent). Kill condition: |IC| < 0.02 or < round-trip cost at the implied turnover. Data: data/hl/flow `big`,
+`n_takers` (recording since 2026-11-12 07:17). Backlog W2.

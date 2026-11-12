@@ -10,6 +10,10 @@ plus `bbo` for a few liquid coins to VERIFY the taker-side field: a trade printe
 Output (gitignored): per coin per minute, taker buy/sell notional, trade counts, first/last/high/low price,
   data/hl/flow/YYYY-MM-DD.jsonl while the day is open → compacted to YYYY-MM-DD.parquet after the day ends.
 Verification counters (side vs bbo) go into every minute row of the bbo coins (`chk_ok`, `chk_bad`).
+Large takers (library N9, Tóth et al. 2015: flow persistence is one investor splitting a big order, not herding; HL is one of the
+few venues that publishes who traded): `n_takers` = distinct taker addresses in the minute, `big` = up to 5 [address, signed net
+taker $] with |net| >= BIG_NTL. Taker = users[0] (buyer) when side is "B", else users[1] (verified 2026-11-12 with userFills: the
+side-"B" buyer had crossed=True).
 Heartbeat: meta `flow_tick` in state/paper.db every minute (scripts/health.py alerts if it is silent for 5 min).
 Never touches the trader or any book.
 """
@@ -30,6 +34,8 @@ FLOW_DIR = data.DATA / "hl" / "flow"
 TOP_N = int(os.environ.get("KRIPTO_FLOW_COINS", "60"))
 BBO_COINS = ("BTC", "ETH", "SOL")
 RERANK_S = 6 * 3600
+BIG_NTL = float(os.environ.get("KRIPTO_FLOW_BIG", "20000"))   # a taker's net $ per coin-minute worth recording by address
+BIG_KEEP = 5
 GRACE_S = 10            # a minute is written once it ended this many seconds ago (late trades are counted, not lost silently)
 
 
@@ -68,8 +74,12 @@ class Agg:
         r = self.rows.get((coin, m))
         if r is None:
             r = self.rows[(coin, m)] = {"coin": coin, "minute": m, "buy_ntl": 0.0, "sell_ntl": 0.0, "n_buy": 0, "n_sell": 0,
-                                        "o": px, "h": px, "l": px, "c": px, "chk_ok": 0, "chk_bad": 0}
+                                        "o": px, "h": px, "l": px, "c": px, "chk_ok": 0, "chk_bad": 0, "_tk": {}}
         ntl = px * sz
+        users = t.get("users") or []
+        if len(users) == 2:
+            tk = users[0] if side == "B" else users[1]
+            r["_tk"][tk] = r["_tk"].get(tk, 0.0) + (ntl if side == "B" else -ntl)
         if side == "B":                     # HL: side of the aggressor (verified against bbo below)
             r["buy_ntl"] += ntl
             r["n_buy"] += 1
@@ -100,6 +110,11 @@ class Agg:
         upto = int(now - GRACE_S) // 60          # minutes < upto are complete
         done = [k for k in self.rows if k[1] < upto]
         out = [self.rows.pop(k) for k in sorted(done, key=lambda k: (k[1], k[0]))]
+        for r in out:
+            tk = r.pop("_tk", {})
+            r["n_takers"] = len(tk)
+            big = sorted(((a, v) for a, v in tk.items() if abs(v) >= BIG_NTL), key=lambda x: -abs(x[1]))[:BIG_KEEP]
+            r["big"] = json.dumps([[a, round(v, 2)] for a, v in big], separators=(",", ":")) if big else ""
         self.flushed_to = max(self.flushed_to, upto)
         return out
 
