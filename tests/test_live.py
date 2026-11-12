@@ -91,3 +91,19 @@ def test_fill_is_one_transaction_and_hourly_kill_ignores_unpriced_books(tmp_path
     risk = {"start_equity": 1000.0, "shadow_equity": 2000.0, "kill_drawdown": 0.25, "max_asset_weight": 1.0, "max_gross": 3.0}
     P.run_books(s, entries, risk, {}, {}, "bar1", "main", lambda b, t, r: calls.append((b, r)))   # no mark for X at all
     assert ("shadow:a", "kill_switch") not in calls and s.q("select halted from books where name='shadow:a'") == [(0,)]
+
+
+def test_pair_venue_prices_both_legs_from_this_ticks_marks(tmp_path, monkeypatch):
+    s = P.Store(tmp_path / "p.db")
+    monkeypatch.setattr(P, "DB", tmp_path / "p.db")
+    s.ensure_book("shadow:f@pair", 2000.0)
+    s.x("insert into positions values('shadow:f@pair','kPEPE@hl',-1000.0)")
+    s.x("insert into positions values('shadow:f@pair','kPEPE@bn',1000.0)")
+    log = []
+    pv = live.pair_venue(None, None)
+    v = [_venue("hl", {"kPEPE": 0.01}, log), _venue("bn", {"1000PEPE": 0.011}, log), pv]
+    out = live.tick(s, RISK, v, {}, now=0.0)
+    assert out["open_books"] == 1 and out["nomark"] == 0 and out["errors"] == []
+    assert P.book_venue("shadow:f@pair") == "pair"
+    with pytest.raises(RuntimeError):     # one venue missing -> no partial marks
+        pv.marks({"hl": {"kPEPE": 0.01}})

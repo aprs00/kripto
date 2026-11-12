@@ -30,10 +30,11 @@ CONFIRM = 2
 
 
 class Venue:
-    """name ("hl" | "bn"), marks() -> {coin: mark}, flatten(store, book, marks) closes every position of a book."""
+    """name ("hl" | "bn" | "pair"), marks() -> {coin: mark}, flatten(store, book, marks) closes every position of a book.
+    derived=True: marks(got) builds its marks from the marks the other venues fetched this tick (no request of its own)."""
 
-    def __init__(self, name, marks, flatten):
-        self.name, self.marks, self.flatten = name, marks, flatten
+    def __init__(self, name, marks, flatten, derived=False):
+        self.name, self.marks, self.flatten, self.derived = name, marks, flatten, derived
 
 
 def hl_venue(hl: HL) -> Venue:
@@ -63,15 +64,43 @@ def bn_venue(bn) -> Venue:
     return Venue("bn", marks, flatten)
 
 
+def pair_venue(hl: HL, bn) -> Venue:
+    """Two-venue books (venue_pair.py): legs `<COIN>@hl` / `<COIN>@bn` priced from the HL and Binance marks of this tick."""
+    from . import venue_bn as V
+    from .backtest import TAKER_FEE
+    cache_hl: dict = {}
+    cache_bn: dict = {}
+
+    def marks(got):
+        if "hl" not in got or "bn" not in got:     # one venue unreachable: no complete marks, skip this tick
+            raise RuntimeError("pair needs both venues' marks")
+        out = {f"{c}@hl": m for c, m in got["hl"].items()}
+        for b, m in got["bn"].items():
+            out[f"{b}@bn"] = m
+            if b.startswith("1000"):                # HL quotes these per 1000 as k<COIN> (data.hl_to_bn)
+                out[f"k{b[4:]}@bn"] = m
+        return out
+
+    def flatten(store, book, m):
+        from . import data
+        P.rebalance(None, store, book, pd.Series(dtype=float), m, {}, "kill_switch",
+                    fill=lambda c, d: P.simulate_fill(hl, c[:-3], d, cache_hl) if c.endswith("@hl")
+                    else V.simulate_fill(bn, data.hl_to_bn(c[:-3]), d, cache_bn),
+                    fee_rate=lambda c: TAKER_FEE if c.endswith("@hl") else V.TAKER_FEE_BN)
+    return Venue("pair", marks, flatten, derived=True)
+
+
 def tick(store: P.Store, risk: dict, venues: list[Venue], state: dict, now: float | None = None) -> dict:
     """One pass over every open book. `state` carries breach counts and the last equity-row time between ticks."""
     now = time.time() if now is None else now
     out = {"ts": P.now_iso(), "open_books": 0, "worst_dd": 0.0, "nomark": 0, "killed": [], "errors": []}
     breach = state.setdefault("breach", {})
     write_eq = now - state.get("eq_ts", 0.0) >= EQUITY_EVERY
+    got: dict = {}
     for v in venues:
         try:
-            marks = v.marks()
+            marks = v.marks(got) if v.derived else v.marks()
+            got[v.name] = marks
         except Exception as e:   # a venue that cannot be reached is skipped this tick, never guessed
             out["errors"].append(f"{v.name}: {e!r}"[:100])
             continue
@@ -118,7 +147,8 @@ def main():
     venues = [hl_venue(hl)]
     if os.environ.get("KRIPTO_BN", "1") == "1":
         from .bn import BN
-        venues.append(bn_venue(BN(min_interval=1.0)))
+        bn = BN(min_interval=1.0)
+        venues += [bn_venue(bn), pair_venue(hl, bn)]   # pair last: it reuses the marks the other two fetched
     state: dict = {}
     print(f"live watcher started: tick {TICK:.0f}s, venues {[v.name for v in venues]}", flush=True)
     last_note = ""

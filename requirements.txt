@@ -4,3 +4,4 @@ pyarrow>=15
 scipy>=1.11
 requests>=2.31
 pytest>=8
+websockets>=13

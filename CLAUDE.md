@@ -154,7 +154,8 @@ own shadow paper book (`shadow:<name>`, `shadow_equity` in config/risk.json, cur
 order doesn't distort signal measurement). Only `incubation`/`active` strategies with `alloc > 0` trade in the
 `main` book ($1,000 = the money the owner could really deploy; `main` and `main_bn` are alternative homes for it). Every
 book also has a `small:` twin at $200 that gets the same targets (what the same thing does in a $200 account); it is created,
-retired and closed together with its big sibling. Keep `sum(alloc)` ≤ 1.0, incubation alloc ≤ 0.25 each. Promotion and
+retired and closed together with its big sibling. Keep `sum(alloc)` ≤ 1.0 per venue (main and main_bn are separate allocations). Since M1 (2026-11-12) `incubation` = the
+main book's best estimate (design.md 2026-11-10 rule), so allocs are the equal-risk mix, not a 0.25 toe-in. Promotion and
 demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers) in the journal and findings.
 
 ## Session types

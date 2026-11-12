@@ -126,7 +126,10 @@ def venue_of(sc: dict) -> str:
 
 
 def book_venue(book: str) -> str:
-    """hl or bn. Binance books: main_bn, shadow:<entry>@bn and their small-account twins small:main_bn, small:<entry>@bn."""
+    """hl, bn or pair. Binance books: main_bn, shadow:<entry>@bn and their small-account twins small:main_bn, small:<entry>@bn.
+    Two-venue books (venue_pair.py): shadow:<entry>@pair / small:<entry>@pair, positions keyed `<COIN>@hl` / `<COIN>@bn`."""
+    if book.endswith("@pair"):
+        return "pair"
     return "bn" if book.endswith("_bn") or book.endswith("@bn") else "hl"
 
 
@@ -136,7 +139,15 @@ def strategy_fn(name: str, sc: dict):
 
 
 def held_coins(store: Store, venue: str) -> set[str]:
-    return {c for b, c in store.q("select book, coin from positions where size!=0") if book_venue(b) == venue}
+    """Coins (venue names) held by any book on `venue`, including the `venue` legs of two-venue (pair) books, so each
+    venue's data refresh keeps every held coin fresh."""
+    out = set()
+    for b, c in store.q("select book, coin from positions where size!=0"):
+        if book_venue(b) == venue:
+            out.add(c)
+        elif book_venue(b) == "pair" and c.endswith("@" + venue):
+            out.add(data.hl_to_bn(c[:-3]) if venue == "bn" else c[:-3])
+    return out
 
 
 # --------------------------------------------------------------------------- market data
@@ -243,9 +254,9 @@ def apply_risk(w: pd.Series, risk: dict) -> pd.Series:
 
 def rebalance(hl: HL, store: Store, book: str, target_w: pd.Series, marks: dict[str, float],
               meta_sz: dict[str, int], reason: str, *, round_size=None, fill=None,
-              min_notional=None, fee_rate: float = TAKER_FEE):
+              min_notional=None, fee_rate=TAKER_FEE):
     """Trade `book` to target weights. HL defaults; another venue passes round_size(coin, d), fill(coin, d) and
-    min_notional(coin)."""
+    min_notional(coin). `fee_rate` is a number or fee_rate(coin) (two-venue books pay each leg its venue's fee)."""
     round_size = round_size or (lambda c, d: float(np.round(d, meta_sz.get(c, 4))))
     fill = fill or (lambda c, d: simulate_fill(hl, c, d))
     min_notional = min_notional or (lambda c: MIN_NOTIONAL)
@@ -264,7 +275,7 @@ def rebalance(hl: HL, store: Store, book: str, target_w: pd.Series, marks: dict[
         if d == 0 or (abs(d) * marks[c] < min_notional(c) and not closing):
             continue
         px, mid, slip = fill(c, d)
-        fee = abs(d) * px * fee_rate
+        fee = abs(d) * px * (fee_rate(c) if callable(fee_rate) else fee_rate)
         with store.c:   # ONE transaction per fill: the live watcher must never see cash moved without the position
             store.c.execute("update books set cash=cash-?-? where name=?", (d * px, fee, book))
             store.c.execute("insert into positions values(?,?,?) on conflict(book,coin) do update set "
@@ -320,8 +331,9 @@ def run_books(store: Store, entries: dict, risk: dict, marks: dict[str, float], 
         if sc.get("status") != "retired":
             for prefix, size in kinds:
                 books[f"{prefix}{n}"], sizes[f"{prefix}{n}"] = (n,), size
-    books[main], sizes[main] = None, risk["start_equity"]
-    if small:
+    if main:   # two-venue books have no main book (main=None)
+        books[main], sizes[main] = None, risk["start_equity"]
+    if main and small:
         books[f"small:{main}"], sizes[f"small:{main}"] = None, small
     for b in books:
         store.ensure_book(b, sizes[b])
@@ -394,9 +406,16 @@ def run_once():
     if os.environ.get("KRIPTO_BN", "1") == "1" and any(venue_of(sc) == "bn" for sc in cfg.values()):
         try:  # Binance paper venue; a failure here must never break HL trading
             from . import venue_bn
-            venue_bn.run(store, cfg, risk)
+            bn_run = venue_bn.run(store, cfg, risk)
         except Exception as e:
+            bn_run = None
             store.event("ERROR", f"binance venue failed: {e!r}")
+        if bn_run and any(venue_of(sc) == "pair" for sc in cfg.values()):
+            try:  # two-venue books (X2); needs both venues' marks, never breaks either venue's own books
+                from . import venue_pair
+                venue_pair.run(store, cfg, risk, hl, bn_run, marks, sz_dec, coins)
+            except Exception as e:
+                store.event("ERROR", f"pair venue failed: {e!r}")
     if os.environ.get("KRIPTO_COLLECT", "1") == "1":  # T6a: non-backfillable HL data; never breaks trading
         try:
             n = collect.collect(hl, coins)

@@ -164,8 +164,9 @@ def accrue_funding(bn: BN, store: P.Store, marks: dict[str, float]):
     store.set_meta(key, nowms)
 
 
-def run(store: P.Store, cfg: dict, risk: dict, bn: BN | None = None):
-    """One hourly step for every Binance config entry (venue "bn") plus the `main_bn` book."""
+def run(store: P.Store, cfg: dict, risk: dict, bn: BN | None = None) -> dict:
+    """One hourly step for every Binance config entry (venue "bn") plus the `main_bn` book. Returns the run's client,
+    coins, marks and symbol filters (the two-venue pair books reuse them instead of asking again)."""
     bn = bn or BN(min_interval=float(os.environ.get("KRIPTO_BN_INTERVAL", "1.0")))
     entries = {n: sc for n, sc in cfg.items() if P.venue_of(sc) == "bn"}
     filters = symbol_filters(bn)
@@ -196,3 +197,4 @@ def run(store: P.Store, cfg: dict, risk: dict, bn: BN | None = None):
         store.x("insert into equity values(?,?,?,?,?)", P.now_iso(), b, eq, gross, len(store.positions(b)))
     store.set_meta("bn_last_run", P.now_iso())
     store.set_meta("bn_last_bar", last_bar)
+    return {"bn": bn, "coins": coins, "marks": marks, "filters": filters}

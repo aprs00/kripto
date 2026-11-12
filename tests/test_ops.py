@@ -14,7 +14,7 @@ iso = lambda **kw: (NOW - timedelta(**kw)).strftime("%Y-%m-%dT%H:%M:%SZ")
 def _ok():
     return {"last_run": iso(minutes=20), "last_bar": "2026-11-10 04:00:00+00:00", "bn_last_run": iso(minutes=18),
             "collect": {"ts": iso(minutes=15), "errors": 0}, "events": [], "halted": [], "disk_free_gb": 50.0,
-            "sessions": [(iso(hours=4), "review", 0)]}
+            "sessions": [(iso(hours=4), "review", 0)], "flow": {"ts": iso(minutes=1), "side_ok": 50, "side_bad": 0}}
 
 
 def test_health_ok_and_each_failure_is_noticed():
@@ -26,6 +26,12 @@ def test_health_ok_and_each_failure_is_noticed():
     f = _ok(); f["collect"] = {"ts": iso(hours=5), "errors": 0}
     level, why = health.assess(f, NOW)
     assert level == "WARN" and "collector" in why[0]
+    f = _ok(); f["flow"] = {"ts": iso(minutes=9), "side_ok": 50, "side_bad": 0}
+    assert health.assess(f, NOW)[0] == "ALERT"                 # non-backfillable trade flow is being lost
+    f = _ok(); f["flow"] = None
+    assert health.assess(f, NOW)[0] == "ALERT"                 # collector never started
+    f = _ok(); f["flow"] = {"ts": iso(minutes=1), "side_ok": 50, "side_bad": 20}
+    assert health.assess(f, NOW)[0] == "WARN"                  # taker-side field no longer means what we think
     f = _ok(); f["halted"] = ["main"]
     assert health.assess(f, NOW)[0] == "ALERT"
     f = _ok(); f["events"] = [(iso(minutes=30), "ERROR", "strategy x failed")]

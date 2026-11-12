@@ -1,0 +1,13 @@
+[Unit]
+Description=kripto HL trade-flow collector (one public read-only websocket; non-backfillable data, backlog W1)
+[Service]
+Type=simple
+WorkingDirectory=%h/kripto
+Environment=KRIPTO_HL_INTERVAL=3.0
+ExecStart=%h/kripto/.venv/bin/python -m kripto.flow
+Restart=always
+RestartSec=30
+Nice=10
+MemoryMax=300M
+[Install]
+WantedBy=default.target

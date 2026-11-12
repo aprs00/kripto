@@ -184,3 +184,9 @@ See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits;
   justifies real money.** STATUS.md must say on which side of that line every number is.
   (2) **Public websocket market data is allowed** (HARD RULE 1 amended by the owner's delegation): read-only, unauthenticated,
   one connection per venue. Rationale: order-flow data on Hyperliquid exists only as a live stream and cannot be backfilled.
+* 2026-11-12 (M1 applied, as scheduled by the 2026-11-10 entry; a sizing rule for paper books, not a gate). The old "incubation alloc
+  ≤ 0.25" cap belonged to incubation-as-toe-in; since incubation now means "the main book's best estimate", a 0.25 cap would run
+  the paper main book at a quarter of the steady risk mode and measure nothing useful. `sum(alloc) ≤ 1` holds **per venue** (main and
+  main_bn are alternative homes for the same $1,000). Interpretation fixed with the rule: a candidate that is a component of an
+  included blend is not added again (it would double its weight), and of two blends of the same components the one chosen
+  without hindsight (nested) is used. Real-money recommendation still needs the full gate in §4.

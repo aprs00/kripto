@@ -42,6 +42,7 @@ def gather(root: Path = ROOT, db: Path = DB) -> dict:
         con = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
         meta = dict(con.execute("select k,v from meta").fetchall())
         f["last_run"], f["last_bar"], f["bn_last_run"] = meta.get("last_run"), meta.get("last_bar"), meta.get("bn_last_run")
+        f["pair_last_run"] = meta.get("pair_last_run")
         try:
             f["live"] = json.loads(meta["live_tick"]) if meta.get("live_tick") else None
         except Exception:
@@ -50,6 +51,10 @@ def gather(root: Path = ROOT, db: Path = DB) -> dict:
             f["collect"] = json.loads(meta["collect_last"]) if meta.get("collect_last") else None
         except Exception:
             f["collect"] = None
+        try:
+            f["flow"] = json.loads(meta["flow_tick"]) if meta.get("flow_tick") else None
+        except Exception:
+            f["flow"] = None
         since = (datetime.now(timezone.utc) - timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ")
         f["events"] = con.execute("select ts,level,msg from events where level!='INFO' and ts>? order by ts", (since,)).fetchall()
         f["halted"] = [r[0] for r in con.execute("select name from books where halted=1")]
@@ -87,6 +92,8 @@ def assess(f: dict, now: datetime) -> tuple[str, list[str]]:
         warn.append(f"market data stale: last bar {b:.0f}h old")
     if f.get("bn_last_run") and (age(parse_ts(f["bn_last_run"])) or 0) > 2.2:
         warn.append(f"Binance venue has not run for {age(parse_ts(f['bn_last_run'])):.1f}h")
+    if f.get("pair_last_run") and (age(parse_ts(f["pair_last_run"])) or 0) > 2.2:
+        warn.append(f"pair venue has not run for {age(parse_ts(f['pair_last_run'])):.1f}h")
     lv = f.get("live")
     if lv:      # the always-on watcher (kripto-live.service) writes a heartbeat every ~20 s
         lh = age(parse_ts(lv.get("ts")))
@@ -98,6 +105,16 @@ def assess(f: dict, now: datetime) -> tuple[str, list[str]]:
         (alert if level == "ALERT" else warn).append(f"{level} event: {str(msg)[:60]}")
     if f.get("halted"):
         alert.append("halted books: " + ", ".join(f["halted"]))
+    fl = f.get("flow")
+    if fl is None and "flow" in f:
+        alert.append("flow collector has never written a heartbeat (systemctl --user enable --now kripto-flow)")
+    if fl:      # W1 trade-flow websocket collector (kripto-flow.service) writes a heartbeat every minute
+        fh = age(parse_ts(fl.get("ts")))
+        if fh is not None and fh > 5 / 60:
+            alert.append(f"flow collector silent for {fh * 60:.0f} min: HL trade flow is being lost "
+                         "(systemctl --user restart kripto-flow)")
+        elif fl.get("side_bad", 0) > max(5, 0.05 * fl.get("side_ok", 0)):
+            warn.append(f"flow collector: taker side disagrees with bbo ({fl['side_bad']} vs {fl['side_ok']})")
     c = f.get("collect")
     if c:
         ch = age(parse_ts(c.get("ts")))

@@ -74,12 +74,12 @@
   "flow@bn": {
     "strategy": "flow",
     "venue": "bn",
-    "status": "candidate",
-    "alloc": 0.0,
+    "status": "incubation",
+    "alloc": 0.3333,
     "params": {
       "lookback": 3
     },
-    "note": "2026-11-09 interactive: Binance paper venue (B1). Params = latest bnall 1d walk-forward fold choice. bnall WF OOS 1.13 / 6.1y (DSR 0.70), continuation 6/6 >0; corr xsmom 0.43. Not HL-testable. Shadow only. | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): bnall OOS 1.42 (DSR 0.88, worst 0.75 at 2x costs); WF now picks lb3 (daily turnover is high: watch live costs). Params switched before the first trade."
+    "note": "2026-11-09 interactive: Binance paper venue (B1). Params = latest bnall 1d walk-forward fold choice. bnall WF OOS 1.13 / 6.1y (DSR 0.70), continuation 6/6 >0; corr xsmom 0.43. Not HL-testable. Shadow only. | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): bnall OOS 1.42 (DSR 0.88, worst 0.75 at 2x costs); WF now picks lb3 (daily turnover is high: watch live costs). Params switched before the first trade. | M1 2026-11-12: incubation = main-book best estimate (design.md 2026-11-10 rule: venue OOS > 0.8 and robust.worst > 0; components of an included blend are not added again). Not a funding recommendation. main_bn = flow@bn + xsmom@bn + blend@bn, 1/3 each; xsmom_k@bn subsumed by blend@bn."
   },
   "tsmom@bn": {
     "strategy": "tsmom",
@@ -101,26 +101,26 @@
   "xsmom@bn": {
     "strategy": "xsmom",
     "venue": "bn",
-    "status": "candidate",
-    "alloc": 0.0,
+    "status": "incubation",
+    "alloc": 0.3333,
     "params": {
       "lookback": 28,
       "every_days": 1
     },
-    "note": "2026-11-09 v2: broad x-sec momentum needs ~30 names, impossible at $200, executable at $1,000 (min order 1% of equity). bnall 1d WF OOS 1.34 / 6.1y (DSR 0.85, grid med 1.15, 12/12 >0; worst 1.03 = one day late). Fails: DSR < 0.9 and HL is negative (-0.09). Shadow only."
+    "note": "2026-11-09 v2: broad x-sec momentum needs ~30 names, impossible at $200, executable at $1,000 (min order 1% of equity). bnall 1d WF OOS 1.34 / 6.1y (DSR 0.85, grid med 1.15, 12/12 >0; worst 1.03 = one day late). Fails: DSR < 0.9 and HL is negative (-0.09). Shadow only. | M1 2026-11-12: incubation = main-book best estimate (design.md 2026-11-10 rule: venue OOS > 0.8 and robust.worst > 0; components of an included blend are not added again). Not a funding recommendation. main_bn = flow@bn + xsmom@bn + blend@bn, 1/3 each; xsmom_k@bn subsumed by blend@bn."
   },
   "blend@bn": {
     "strategy": "blend",
     "venue": "bn",
-    "status": "candidate",
-    "alloc": 0.0,
+    "status": "incubation",
+    "alloc": 0.3333,
     "params": {},
-    "note": "2026-11-09 v2: same pre-registered blend on Binance. bnall 1d WF OOS 1.30 / 6.1y (DSR 0.81, worst 0.99, corr BTC 0.07). Fails the DSR clause only. Shadow only."
+    "note": "2026-11-09 v2: same pre-registered blend on Binance. bnall 1d WF OOS 1.30 / 6.1y (DSR 0.81, worst 0.99, corr BTC 0.07). Fails the DSR clause only. Shadow only. | M1 2026-11-12: incubation = main-book best estimate (design.md 2026-11-10 rule: venue OOS > 0.8 and robust.worst > 0; components of an included blend are not added again). Not a funding recommendation. main_bn = flow@bn + xsmom@bn + blend@bn, 1/3 each; xsmom_k@bn subsumed by blend@bn."
   },
   "blend_nested": {
     "strategy": "blend",
-    "status": "candidate",
-    "alloc": 0.0,
+    "status": "incubation",
+    "alloc": 1.0,
     "params": {
       "components": {
         "listing_short": {},
@@ -128,7 +128,7 @@
         "tsmom": {}
       }
     },
-    "note": "2026-11-10 H4: blend_nested = blend whose components are re-chosen every 60 days out-of-sample (top-3 expanding Sharpe of 10 pool strategies at default params). HL 1d WF OOS 1.87 / 2.16y (worst 1.29 = 1 day late; 2x costs 1.34), bnall 1.16 / 5.4y (DSR 0.63, worst 0.98). Fails only DSR. Live = `blend` with the rule's CURRENT HL choice (listing_short, lowvol, tsmom at defaults; the live panel holds 220 days, too short to rerun the selection). Next HL refit on the 60-day epoch grid: 2027-01-02 -> run `python -m scripts.nested_choice hl` and update components.",
+    "note": "2026-11-10 H4: blend_nested = blend whose components are re-chosen every 60 days out-of-sample (top-3 expanding Sharpe of 10 pool strategies at default params). HL 1d WF OOS 1.87 / 2.16y (worst 1.29 = 1 day late; 2x costs 1.34), bnall 1.16 / 5.4y (DSR 0.63, worst 0.98). Fails only DSR. Live = `blend` with the rule's CURRENT HL choice (listing_short, lowvol, tsmom at defaults; the live panel holds 220 days, too short to rerun the selection). Next HL refit on the 60-day epoch grid: 2027-01-02 -> run `python -m scripts.nested_choice hl` and update components. | M1 2026-11-12: incubation = main-book best estimate (design.md 2026-11-10 rule: venue OOS > 0.8 and robust.worst > 0; components of an included blend are not added again). Not a funding recommendation. HL main = this alone (1.87/worst 1.29); blend (hindsight) and listing_short are subsumed.",
     "due": "2027-01-02",
     "due_what": "refit: run `python -m scripts.nested_choice hl`, update components + due"
   },
