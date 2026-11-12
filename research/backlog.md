@@ -42,6 +42,13 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
 - [ ] W2 **Visible metaorders on HL (library N10, Tóth et al.)**: from ≈ 11-26 (2 weeks of W1 `big` data): persistent same-side net
   taking by one address → next 4h/24h return, per coin, volume-scaled; descriptive IC first (kill: |IC| < 0.02 or below costs), then a
   pre-registered ≤ 6-config walk-forward only if it survives. Also plain HL taker-flow imbalance (flow@bn's rule) on HL prices.
+- [ ] P2 **InSilico second pass** (owner 2026-11-12: the first pass tested one literal form per rule). Interactive, on the laptop (the
+  chat archive is only there): `prompts/insilico_pass2.md`. Think-through per rule, ≥ 3 formulations, explore on 2021–23 / 10 coins,
+  confirm on 2024–26 / unseen coins; profile rules R14–R17 (the author's main topic) were never tested. Server sessions may take the
+  parts that need no archive (R23 timing tilt = E2, R28, signals as filters for the existing books).
+- [ ] A1 **Dead-list audit** (design.md §4 2026-11-12): Sunday retro, two DEAD entries a week, oldest first: xsrev, lowvol,
+  funding_contra, tsmom long-only, carry (HL), carry_trend, resrev, T9 maker execution, L1 hourly lead-lag, minute-bar event study.
+  Relabel to OPEN (one form failed) where fewer than three formulations were tested or no reason is diagnosed; list untried forms here.
 - [ ] E1 **lshock (liquidation fade) follow-ups** (findings: OPEN, tail-event; the only InSilico rule not dead). In this order:
   (a) LIVE evidence: a 1-minute event shadow book (Binance 30 coins; later HL from kripto/flow.py minute bars) run by the always-on
   watcher, frozen config z=6, m=5, e=1.0, long, $500 per trade, ≤ 2 open. Fills and venue behaviour on cascade days are the open question

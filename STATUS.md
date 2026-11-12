@@ -2,17 +2,17 @@ HEALTH: OK — 08:25 review: trader hourly, both venues, watcher, both collector
 
 _Updated 2026-11-12 08:30 UTC (daily review; content below from the 07:20 research session, books refreshed)._
 
-## Interactive session 11-11/12: one trader's public rules, tested (nothing passed)
+## Interactive session 11-11/12: one trader's public rules, tested once each (nothing passed; a second, wider pass is planned)
 You gave me a chat archive of a discretionary order-flow trader (BitMEX/Bybit, 2020–22). I turned it into 32 testable rules
 (research/insilico_rules.md), fixed five tests in writing before looking at any result, and ran them on Binance data with real costs.
-Books and candidates are unchanged: **none of this is traded**.
+Books and candidates are unchanged: **none of this is traded**. Each rule was tested in ONE literal form; that is not enough to call an idea dead (new rule, design.md §4), so a second pass with several formulations per idea follows (prompts/insilico_pass2.md).
 
 | rule | result (out-of-sample Sharpe, after costs) | verdict |
 |---|---|---|
-| Buy after a day when every trade-size group sold | 0.18 (just holding the coins: 0.96). Worked in 2021, +0.24 since 2023 | dead |
-| Fade the weekend move back to Friday's price | −0.46, 0 of 6 settings positive, loses before costs | dead |
-| Bid the old range high after a breakout (maker) | −34; 57% winners but −1.9 bp per trade before fees | dead |
-| Mousetrap: failed break, small sold / large bought | −2.9; loses before costs, the size condition adds nothing | dead |
+| Buy after a day when every trade-size group sold | 0.18 (just holding the coins: 0.96). Worked in 2021, +0.24 since 2023 | failed as tested |
+| Fade the weekend move back to Friday's price | −0.46, 0 of 6 settings positive, loses before costs | failed as tested |
+| Bid the old range high after a breakout (maker) | −34; 57% winners but −1.9 bp per trade before fees | failed as tested |
+| Mousetrap: failed break, small sold / large bought | −2.9; loses before costs, the size condition adds nothing | failed as tested |
 | Liquidation fade on 1-minute bars | 0.64; +78 bp per trade on 30 coins incl. 20 never used for fitting | open, not a candidate |
 
 The liquidation fade is the only one left standing, and it is fragile: three market-wide crash days produced 72% of its profit, and

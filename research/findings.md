@@ -1,8 +1,10 @@
 # Findings ledger
 
 One entry per hypothesis ever tested. Read this before choosing research. Keep each entry ≤ 5 lines.
-Verdicts: **ALIVE** (candidate/incubation/active) · **DEAD** (rejected; revisit only with a new angle stated) ·
-**OPEN** (inconclusive or blocked on data).
+Verdicts: **ALIVE** (candidate/incubation/active) · **OPEN** (inconclusive, blocked on data, or **one form failed**: a single
+formulation was tested and failed; the untried forms are in the backlog) · **DEAD** (at least three materially different formulations
+failed AND the reason is diagnosed; revisit only with a new angle stated). Standard since 2026-11-12 (design.md §4): entries above
+that date used DEAD after as little as one formulation and are re-audited two per week in the Sunday retro (`audited <date>` when done).
 Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless noted. SR = annualised Sharpe.
 
 ## Cross-cutting lessons (apply to everything)
@@ -195,12 +197,12 @@ Not tested: order-book imbalance (needs the L2 stream, W1) and thin coins (bigge
 > research/insilico_rules.md (definitions, sources, data map). Five were pre-registered (batch 2026-11-11-insilico.json) and tested on
 > Binance with Binance VIP0 costs (taker 5 bp + slippage, maker 2 bp); intraday ones in the order engine kripto/events.py.
 
-### weekend_revert: fade the weekend move back to Friday's CME close (InSilico R21, bn 1h BTC+ETH, 2026-11-11) → DEAD
+### weekend_revert: fade the weekend move back to Friday's CME close (InSilico R21, bn 1h BTC+ETH, 2026-11-11) → OPEN (one form failed; second pass: prompts/insilico_pass2.md)
 WF OOS −0.46 / 6.2y, grid med −0.43, 0/6 >0, worst −0.42. Negative BEFORE costs in both eras (to 2022 −0.31, 2023+ −0.41); only 2021,
 the year the author wrote it, was positive (+20–56%). Price touches Friday's level by Monday's close in just 42% of ≥1% gaps. Since 2023
 BTC weekend moves CONTINUE into Monday (fade −88 bp/trade, t −3.4, n=128; ETH −10, n.s.): seen after the fact on one coin, not a strategy.
 
-### range_retest: bid the old range high after a breakout, target one average candle (InSilico R19, bnm 1m, 10 coins, 2026-11-11) → DEAD before costs
+### range_retest: bid the old range high after a breakout, target one average candle (InSilico R19, bnm 1m, 10 coins, 2026-11-11) → OPEN (one form failed, before costs; second pass)
 WF OOS −34, 0/8 >0. 91,782 trades: 57.5% winners, gross −1.9 bp, cost 5.9 bp, net −7.8 bp per trade, the same in both eras and all coins.
 84% of breakouts do come back to the level, but the candle after the touch closes ±1 bp from it and reaches +1 ATR only 23–26% of the
 time. With trade-through fills the bid is hit when price is going through. A touch-fill version would be unverifiable on paper.
@@ -217,14 +219,14 @@ Friday after the US close (R22): +7–19 bp/4h, t ≤ 1.5, no different from Mon
 volatility, but a drift of +5–9 bp/h, t 2.3–3.6 in BOTH eras on both coins; below a taker round trip (≈ 13 bp). Use: timing of buys
 the books make anyway (backlog E2), not a book. September / Santa / lunar claims: ≤ 6 observations each, untestable.
 
-### tsize_capit: daily trade-size capitulation, all size buckets net negative → long (InSilico R1, bnts 1d BTC/ETH/SOL, 2026-11-12) → DEAD (worked in 2021 only)
+### tsize_capit: daily trade-size capitulation, all size buckets net negative → long (InSilico R1, bnts 1d BTC/ETH/SOL, 2026-11-12) → OPEN (one form failed: worked in 2021 only; second pass)
 WF OOS 0.18 / 6.2y (grid med 0.58, 12/12 >0, worst 0.47), but the grid is long-only crypto: holding the three coins is 0.96. Chosen config
 (12 bins, hold 1d): to 2022 +1.25, **2023+ +0.24**; 2021 alone made +138%. Forward returns after all-negative days never beat all days with
 t > 2 in both eras; with the author's 7 buckets "all negative" is 17–30% of days on Binance and BTC did WORSE after them (−84 bp/3d to 2022).
 The claimed asymmetry is real the other way: all-POSITIVE days are followed by gains (BTC +68 bp/3d excess; shorting them −0.94) = flow
 continuation, already traded as `flow`. Binance USDT-M ≠ BitMEX (author: "exchange sensitive"); HL version waits for `tsz` data (TSZ-HL).
 
-### mousetrap: failed break of the range low, small trades sold / large bought (InSilico R4, bnts 5m BTC/ETH/SOL, 2026-11-12) → DEAD before costs
+### mousetrap: failed break of the range low, small trades sold / large bought (InSilico R4, bnts 5m BTC/ETH/SOL, 2026-11-12) → OPEN (one form failed, before costs; second pass)
 WF OOS −2.92 / 5.2y, 0/12 >0. Chosen (8h low, 2× volume): 916 trades, 22% winners, gross −3.5 bp, cost 13 bp, net −16.5 bp (t −4.4), same
 in both eras. Without the size condition (control): 12,240 trades, gross −1.2 bp: the small/large split adds nothing. Shorts mirror: −2.4 bp.
 Agrees with the 11-10 minute study (sweeps of the 4h range: ≈ 0). Not tested: range bars and resting-order absorption (need ticks / L2).

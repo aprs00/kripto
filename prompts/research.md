@@ -14,6 +14,17 @@ Time budget: ~90–120 minutes of wall clock. Heavy compute with `nice -n 19`.
    strategy × dataset): from the backlog, or better ideas you can
    justify. They can be independent ideas or variants attacking the same problem from different angles.
    Check findings.md first, and don't repeat a DEAD idea unless you state the new angle.
+2b. THINK BEFORE YOU TEST (owner, 2026-11-12: "you are giving up on things too suddenly"; design.md §4 "No verdict on one
+   formulation"). For each hypothesis write a short think-through in the journal BEFORE the batch file: (a) the mechanism: who
+   pays us and why; (b) if it comes from a source (library, chat archive, paper), re-read the source and say what it actually
+   does: context, level, timeframe, venue; (c) at least THREE materially different formulations (signal definition, bar type or
+   horizon, universe or venue, stand-alone book vs filter/timing input for a book that already works, alone vs in combination)
+   and which one is closest to the idea; (d) how each could fail for reasons that are not the idea (definition, venue, fill
+   model, costs, too few events); (e) what result would change your mind either way. Then EXPLORE with descriptive event
+   studies (research/studies/, free of the walk-forward count) on an exploration sample only, after writing down the
+   confirmation sample you will not touch (a later period and/or instruments not used in exploration). Pre-register and
+   walk-forward only the best one or two formulations, on the confirmation sample. Exploring is how you find the right form
+   of an idea; the held-out sample is what stops it from being curve fitting. Never tune on the confirmation sample.
    Also use the library: `library/INDEX.md` (curated books, extracted text in library/books/*.txt, grep it, never
    read a whole book) and `library/notes.md` (ideas already mined from them, with backlog ids). A book's claim is a
    hypothesis that must earn its place through the protocol, never a shortcut past it.
@@ -29,8 +40,13 @@ Time budget: ~90–120 minutes of wall clock. Heavy compute with `nice -n 19`.
    months dropped, each single start day of the schedule, corr to BTC, and `small_acct` (the same config in the $200
    account; the owner may fund $200 or $1,000, so STATUS.md shows both). Quote `worst` and the start-day spread next to
    the OOS Sharpe, never the OOS Sharpe alone. Schedules slower than daily trade as staggered tranches automatically.
-   Then decompose the interesting ones with
-   scripts/inspect_strategy.py and conclude honestly, one findings.md entry per hypothesis. Remember that every
+   Then decompose EVERY result, the failures above all, with
+   scripts/inspect_strategy.py (order strategies: `scripts.insilico_study decomp`) and say WHY it came out as it did:
+   negative before costs, killed by costs, killed by the fill model, too few events, wrong venue, one regime only, or carried
+   by a handful of days (quote the day-clustered t and the top-3-day share for event strategies). Conclude honestly, one
+   findings.md entry per hypothesis, in the ledger's vocabulary: one failed formulation is **OPEN (one form failed)** with the
+   untried forms listed in the backlog; **DEAD** needs at least three materially different formulations that failed AND a
+   diagnosed reason. Before writing DEAD ask: would a sceptical colleague say I tested the idea, or only my first translation of it? Remember that every
    extra config raises the deflated-Sharpe bar for everything: test many ideas, not many knobs per idea.
 4. If a strategy passes the incubation gate, set it to `incubation` with a small alloc. Promising but not
    passing → `candidate`. Shadow books are free live tests and run in parallel, so put every genuinely promising
@@ -59,6 +75,11 @@ WEEKLY RETROSPECTIVE (Sundays): step back from individual experiments.
   rows with the weakest or oldest evidence, test or challenge each with data (descriptive studies are free; walk-forwards count
   against the budget), and update the row. Add any assumption you catch yourself relying on. Ask of the whole system: if I were
   building this today from scratch, what would I do differently, and what evidence says the current way is right?
+* **Dead-list audit.** Take the two oldest DEAD entries in findings.md not yet audited. For each: how many materially
+  different formulations were really tested, and is the reason for the failure diagnosed? If fewer than three or no diagnosed
+  reason, relabel it OPEN (one form failed), list the untried forms (other definition, bar type, venue, as a filter for an
+  existing book, in combination) in the backlog with an honest prior, and mark the entry `audited <date>`. Do not re-test in
+  the retro; this only stops ideas from being buried by one test.
 * Audit your own self-modifications (the recursive part): `git log -p --since='8 days ago' -- CLAUDE.md prompts docs
   config/risk.json kripto/metrics.py kripto/research.py kripto/backtest.py`. For each change ask: (a) did it make a
   gate, cost or check easier to pass? If so, is there a general rationale in the design.md changelog that would have

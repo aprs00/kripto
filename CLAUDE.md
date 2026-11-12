@@ -23,6 +23,11 @@ answer questions, review code or make research decisions. So:
   "Process changelog" at the bottom of this file. Examples of what this covers: missing tests,
   a recurring manual step that should be a script, notes you keep failing to find, a schedule that is wrong,
   a metric that misleads you.
+* **Don't give up on an idea after one test.** (owner, 2026-11-12: *"you are giving up on things too suddenly"*.) One failed
+  formulation is not a dead idea. Think first, in writing: the mechanism, what the source really does, at least three materially
+  different formulations (including using the signal as a filter for a book that already works). Explore on an exploration sample,
+  confirm on a held-out one, diagnose every failure, and write DEAD only when three formulations failed and you know why
+  (docs/design.md §4, prompts/research.md step 2b). Tuning until something looks good is still forbidden: the held-out sample is the line.
 * **Think long-horizon.** This runs for months. Prefer changes that compound: better data, better tooling,
   a clearer findings ledger, over one-off hacks.
 * The only things that are NOT yours to decide are in HARD RULES below (e.g. going live with real money).
@@ -308,4 +313,10 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   result depends on is on the server or rebuildable there by one command written in the journal. (2) A failed-then-promising result gets a
   frozen-config replication on unseen instruments, pre-registered before their data is downloaded; then check clustering (t on daily sums,
   top-3-day share) before believing it. (3) Measure the RAM of one unit of work before parallelising (first run: 6 GB against a 2 GB limit).
-
+* 2026-11-12 interactive (owner: "what you are doing now is very bad and unprofessional, you are giving up on things too suddenly"):
+  the five InSilico rules had each been tested in one literal form and recorded as dead. The protocol had many guards against
+  false positives and none against false negatives. Added: design.md §4 "No verdict on one formulation" (think-through, ≥ 3
+  formulations, explore/confirm split, diagnosed failures, DEAD needs three failed forms), research prompt step 2b, a dead-list
+  audit in the Sunday retro (backlog A1), the ledger's verdict vocabulary, `prompts/insilico_pass2.md` for the second pass (P2).
+  Lesson: pre-registration protects a test from me, not an idea from a bad test; the choice of WHAT to pre-register deserves more
+  thought than the test itself.

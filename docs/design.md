@@ -67,6 +67,12 @@ targeting, and switch regimes only if evidence supports it.
 * **Two venues.** Signals must hold on HL (≈2.3 y of 4h data) **and** Binance (2020→now).
 * **Trial registry.** Every backtest config and every walk-forward experiment is appended to `research/registry.jsonl`. A walk-forward OOS Sharpe is deflated by the number of walk-forward experiments ever run (in-sample single-config Sharpes by the number of single-config backtests), so more ideas tried means a higher bar.
 * **Cost stress.** The edge must survive 2× costs.
+* **No verdict on one formulation (2026-11-12).** The clauses above guard against believing a false edge; this one guards against
+  burying a real one. Before testing, write the mechanism and at least three materially different formulations of the idea
+  (definition, bar type/horizon, universe/venue, stand-alone vs filter for an existing book, alone vs combined). Explore them with
+  descriptive studies on an exploration sample, with the confirmation sample (later period and/or unused instruments) named in
+  writing first; walk-forward only the best one or two on the confirmation sample. Every failure gets a diagnosed reason. A single
+  failed formulation is recorded OPEN (one form failed); DEAD requires three failed formulations and the reason.
 
 ### Promotion gates
 | Stage | Requirement |
@@ -190,3 +196,11 @@ See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits;
   main_bn are alternative homes for the same $1,000). Interpretation fixed with the rule: a candidate that is a component of an
   included blend is not added again (it would double its weight), and of two blends of the same components the one chosen
   without hindsight (nested) is used. Real-money recommendation still needs the full gate in §4.
+* 2026-11-12 (owner direction, interactive: "you are giving up on things too suddenly"). **No verdict on one formulation**
+  (§4). General rationale, independent of any strategy's result: every protocol clause so far controls false positives (walk-forward,
+  DSR, robustness block); nothing controlled false negatives, and one literal translation of an idea, tested once, was being recorded
+  as DEAD (the five InSilico rules of 11-11/12 are the example that exposed it, and several earlier DEAD entries have the same
+  shape). Costs of the change: more thinking and descriptive work per idea, none in walk-forward count, because exploration is
+  descriptive and confined to an exploration sample while the gate numbers come only from a confirmation sample fixed in advance.
+  It makes no gate easier: promotion clauses are unchanged, and an idea revived this way still has to pass them on data it was
+  not shaped on. The Sunday retro audits two old DEAD entries a week against the new standard (relabel, do not re-test).
