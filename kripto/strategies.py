@@ -589,7 +589,7 @@ def weekend_revert(panel, thr=0.01, exit="fill", coins=("BTC", "ETH"), weight=0.
     c = panel["close"]
     w = pd.DataFrame(0.0, c.index, c.columns)
     ny = (c.index + (c.index[1] - c.index[0])).tz_convert("America/New_York")     # bar CLOSE time in New York
-    wd, hr, mi = np.asarray(ny.weekday), np.asarray(ny.hour), np.asarray(ny.minute)
+    wd, hr, mi = np.asarray(ny.day_of_week), np.asarray(ny.hour), np.asarray(ny.minute)
     fri = np.flatnonzero((wd == 4) & (hr == 17) & (mi == 0))
     sun = np.flatnonzero((wd == 6) & (hr == 18) & (mi == 0))
     mon = np.flatnonzero((wd == 0) & (hr == 17) & (mi == 0))

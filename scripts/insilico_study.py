@@ -38,7 +38,7 @@ def calendar():
     p = data.load_bn_panel("1h", ["BTCUSDT", "ETHUSDT"])
     c, h, l = p["close"], p["high"], p["low"]
     ny = (c.index + pd.Timedelta(hours=1)).tz_convert("America/New_York")
-    wd, hr = np.asarray(ny.weekday), np.asarray(ny.hour)
+    wd, hr = np.asarray(ny.day_of_week), np.asarray(ny.hour)
     print(f"hourly bars {c.index[0]} .. {c.index[-1]}; times are New York (CME) time; returns in bp, gross of costs\n")
     print("R21 weekend gap = Sunday 18:00 price / Friday 17:00 price - 1. 'fade' = -sign(gap) held to Monday 17:00.")
     fri, sun, mon = (np.flatnonzero((wd == a) & (hr == b)) for a, b in ((4, 17), (6, 18), (0, 17)))
