@@ -1,6 +1,6 @@
-HEALTH: OK — 08:25 review: trader hourly, both venues, watcher, both collectors (errors 0) and the nightly data job all fine; disk 65%.
+HEALTH: OK — 08:25 review 11-13: trader hourly (24/24), both venues, watcher, both collectors (errors 0), nightly data job and Thursday's research all fine; disk 67%.
 
-_Updated 2026-11-12 08:30 UTC (daily review; content below from the 07:20 research session, books refreshed)._
+_Updated 2026-11-13 08:35 UTC (daily review; books refreshed; content below from the 11-12 research session)._
 
 ## Interactive session 11-11/12: one trader's public rules, tested once each (nothing passed; a second, wider pass is planned)
 You gave me a chat archive of a discretionary order-flow trader (BitMEX/Bybit, 2020–22). I turned it into 32 testable rules
@@ -55,16 +55,19 @@ New perps lose against BTC steadily for about 4 months, on both exchanges and in
 * The decline is steady, not concentrated in the first days, so the 60-day holding period is not a lucky pick.
 * The risk sits in a few short squeezes: the worst listing cost a short 162% in funding.
 
-## Books (2–4 days old: all of this is noise, live Sharpe error bars are about ±4)
+## Books (3–5 days old: all of this is noise, live Sharpe error bars are about ±4)
 | book | $1,000 / $2,000 size | $200 twin |
 |---|---|---|
-| main (HL, blend_nested) | $998.87 (−0.1%, started today) | $199.99: only 1 position fits |
-| main_bn (flow + momentum + blend) | $998.85 (−0.1%, started today) | $200.00: **nothing fits** (20 names, each under the $5 minimum) |
-| funding pair book (shadow, $2,000) | $1,998.46 (−0.1%, opened today; funding +$0.07 so far) | $199.84 |
-| shadow tsmom / tsmom@bn | +2.2% / +1.7% | |
-| shadow blend_nested / blend / blend@bn | +0.7% / −0.8% / −0.2% | |
-| shadow flow@bn / xsmom@bn / xsmom_k / xsmom_k@bn | −2.0% / −2.8% / −1.6% / −2.1% | |
-| shadow listing_short | flat: the only listing in the last 60 days (XTEN, 10-27) trades < $1M/day, below the filter (checked 11-12) | |
+| main (HL, blend_nested) | $985.23 (−1.5%) | $197.39 (−1.3%): only 1 position fits |
+| main_bn (flow + momentum + blend) | $982.95 (−1.7%) | $200.00: **nothing fits** (each name under the $5 minimum) |
+| funding pair book (shadow, $2,000) | $2,001.38 (+0.07%; funding +$3.36, fees $1.70) | $200.24 (+0.1%) |
+| shadow tsmom / tsmom@bn | +4.2% / +4.2% | +2.5% / +1.4% |
+| shadow blend_nested / blend / blend@bn | −0.7% / −0.2% / −1.2% | −1.4% / −0.6% / +0.3% |
+| shadow flow@bn / xsmom@bn / xsmom_k / xsmom_k@bn | −3.4% / −6.4% / −2.9% / −5.3% | −2.3% / −3.0% / −4.4% / −2.7% |
+| shadow listing_short | flat: no listing in the last 60 days passes the $1M/day volume filter | flat |
+
+Worst drawdown of any open book: −6.5% (xsmom@bn); the kill switch is at −25%. Live slippage over the last day: 0.4–2.1 bp per fill
+(funding pair 3.3 bp), in line with the cost check of 11-10.
 
 **$200 vs $1,000:** at $200 the main books can barely hold the mix, so a $200 account would need its own concentrated choice
 (listing shorts, trend or the funding pair, which keep their edge at $200). I'll decide that at Sunday's review, with a week of
