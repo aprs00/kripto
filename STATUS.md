@@ -1,6 +1,6 @@
-HEALTH: OK — 08:25 review 11-13: trader hourly (24/24), both venues, watcher, both collectors (errors 0), nightly data job and Thursday's research all fine; disk 67%.
+HEALTH: OK — 08:25 review 11-14: trader hourly, both venues, watcher, both collectors (errors 0), nightly data job fine; disk 67%. One real loss event: AKE short squeeze (+370% in a day) hit the Binance momentum books.
 
-_Updated 2026-11-13 08:35 UTC (daily review; books refreshed; content below from the 11-12 research session)._
+_Updated 2026-11-14 08:40 UTC (daily review; books refreshed; content below from the 11-12 research session)._
 
 ## Interactive session 11-11/12: one trader's public rules, tested once each (nothing passed; a second, wider pass is planned)
 You gave me a chat archive of a discretionary order-flow trader (BitMEX/Bybit, 2020–22). I turned it into 32 testable rules
@@ -55,19 +55,24 @@ New perps lose against BTC steadily for about 4 months, on both exchanges and in
 * The decline is steady, not concentrated in the first days, so the 60-day holding period is not a lucky pick.
 * The risk sits in a few short squeezes: the worst listing cost a short 162% in funding.
 
-## Books (3–5 days old: all of this is noise, live Sharpe error bars are about ±4)
+## Books (4–6 days old: all of this is noise, live Sharpe error bars are about ±4)
 | book | $1,000 / $2,000 size | $200 twin |
 |---|---|---|
-| main (HL, blend_nested) | $985.23 (−1.5%) | $197.39 (−1.3%): only 1 position fits |
-| main_bn (flow + momentum + blend) | $982.95 (−1.7%) | $200.00: **nothing fits** (each name under the $5 minimum) |
-| funding pair book (shadow, $2,000) | $2,001.38 (+0.07%; funding +$3.36, fees $1.70) | $200.24 (+0.1%) |
-| shadow tsmom / tsmom@bn | +4.2% / +4.2% | +2.5% / +1.4% |
-| shadow blend_nested / blend / blend@bn | −0.7% / −0.2% / −1.2% | −1.4% / −0.6% / +0.3% |
-| shadow flow@bn / xsmom@bn / xsmom_k / xsmom_k@bn | −3.4% / −6.4% / −2.9% / −5.3% | −2.3% / −3.0% / −4.4% / −2.7% |
+| main (HL, blend_nested) | $994.94 (−0.5%) | $196.71 (−1.7%): only 1 position fits |
+| main_bn (flow + momentum + blend) | $952.64 (−4.7%) | $200.00: almost nothing fits (2 names) |
+| funding pair book (shadow, $2,000) | $2,010.59 (+0.5%; funding +$11.12, fees $2.29) | $201.31 (+0.7%) |
+| shadow tsmom / tsmom@bn | +5.8% / +5.8% | +3.7% / +2.6% |
+| shadow blend_nested / blend / blend@bn | +0.3% / +1.9% / −6.7% | −1.8% / +0.6% / +0.8% |
+| shadow flow@bn / xsmom@bn / xsmom_k / xsmom_k@bn | −1.1% / −13.9% / −1.3% / −11.8% | −2.5% / −10.8% / −2.4% / −2.8% |
 | shadow listing_short | flat: no listing in the last 60 days passes the $1M/day volume filter | flat |
 
-Worst drawdown of any open book: −6.5% (xsmom@bn); the kill switch is at −25%. Live slippage over the last day: 0.4–2.1 bp per fill
-(funding pair 3.3 bp), in line with the cost check of 11-10.
+**What happened on 11-13:** AKE, a tiny Binance coin (≈ $0.0026), rose about 4.7× within the day on huge volume (real, checked
+against the price bars; not a data or fill error). The Binance momentum-type books were short it as a loser: xsmom@bn lost ≈ 9% in
+a day, xsmom_k@bn, blend@bn and main_bn lost less. They covered the short at the next daily rebalance (0.4–1 bp slippage). This is the
+known weak point of shorting small losers (a few squeezes cost more than the average short earns). The backtests contain such days,
+so one event is no verdict, but I added a research item (R1) to measure how much single-name squeezes cost in the backtest and whether
+a liquidity floor or a per-name short cap removes that loss without removing the edge. Worst drawdown of any open book: −14% (xsmom@bn);
+the kill switch is at −25%. Live slippage over the last day: 0.15–2.1 bp per fill on average, in line with the cost check of 11-10.
 
 **$200 vs $1,000:** at $200 the main books can barely hold the mix, so a $200 account would need its own concentrated choice
 (listing shorts, trend or the funding pair, which keep their edge at $200). I'll decide that at Sunday's review, with a week of

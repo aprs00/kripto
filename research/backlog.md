@@ -8,6 +8,10 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 ## Owner instruction 2026-11-10 ("run everything now"): DONE 2026-11-12 06:40 research (M1, X2, W1 live; forward baseline). Journal 2026-11-12.
 **Next priorities (2026-11-12):** 1. T0a tracking (≈ 11-16, all books incl. main + pair) → 2. (X1d done: fspread deployable at gross 1.0) → 3. C1 cost calibration (from 11-24) → 4. W1 data analysis once ≥ 2 weeks (HL taker flow
 vs next-day returns, same rule as flow@bn, ≈ 11-26) → 5. T2b (a)/(c) + longer hold (b showed decay continues to day 120) → 6. T5b.
+- [ ] R1 (added 2026-11-14 review) **single-name short-squeeze tail of the Binance cross-sectional books.** 11-13: AKE +370% in a day
+(0.0026→0.0124, $1.1B 4h volume) cost shadow:xsmom@bn ≈ 9% of the book and dented xsmom_k@bn/blend@bn/main_bn. Measure on bnall:
+share of xsmom/flow/blend short-leg P&L lost to the worst single-name days, then pre-register ≥ 3 formulations (liquidity/age floor for
+shorts, per-name short cap below max_asset_weight 0.35, intraday stop via the live watcher) judged on OOS SR + mdd, not on removing AKE.
 - [x] M1 DONE 2026-11-12: HL main = blend_nested 1.0; main_bn = flow@bn/xsmom@bn/blend@bn 1/3 each. Was: **M1 main books trade the best estimate** (was planned for Thu 11-12; brought forward by the instruction above) (design.md 2026-11-10, owner mandate): apply the fixed rule
 (equal-risk mix of the venue's candidates with WF OOS > 0.8 on that venue and `robust.worst` > 0) to set `incubation` + alloc for
 `main` (HL) and `main_bn`; expected today: HL = blend_nested (it already is the rule-based mix; do not double-count blend), Binance =
