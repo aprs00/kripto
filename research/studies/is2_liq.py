@@ -2,6 +2,8 @@
 
   nice -n 19 .venv/bin/python -m research.studies.is2_liq download [explore|rep]   # 5-min open interest -> data/bn/metrics/
   nice -n 19 .venv/bin/python -m research.studies.is2_liq explore
+  nice -n 19 .venv/bin/python -m research.studies.is2_liq klines new52            # rebuild 1-min bars (orig10 | rep20 | new52)
+  nice -n 19 .venv/bin/python -m research.studies.is2_liq confirmA new52          # frozen z=8 / z=6 on a coin set
 
 The author's reason for the bounce is FORCED selling: liquidations sweep the book and destroy open interest; a news dump is
 sold by people opening shorts, which creates it. The first-pass trigger could not tell the two apart. Here every first-pass
@@ -185,8 +187,21 @@ def confirm_a(which: str):
         print(f"    coins with positive mean: {int((t.groupby('coin').net.mean() > 0).sum())}/{t.coin.nunique()}; stopped out {float((t.gross < -1e-9).mean()):.0%}")
 
 
+def klines(which: str):
+    """1-minute bars 2021-01..2026-10 for one of the coin sets (orig10 | rep20 | new52) -> data/bn/klines_1m. Resumable;
+    two coins in memory at a time (~0.6 GB). This is the one-command rebuild of the second pass's minute data."""
+    from scripts import minute_study as ms
+    coins = {"orig10": data.MINUTE_COINS, "rep20": REP, "new52": NEW52}[which]
+    months = [str(p) for p in pd.period_range("2021-01", "2026-10", freq="M")]
+    for i in range(0, len(coins), 2):
+        ms.download(coins[i:i + 2], months, log=lambda x: print(x, flush=True))
+
+
 if __name__ == "__main__":
     cmd = sys.argv[1]
+    if cmd == "klines":
+        klines(sys.argv[2])
+        sys.exit()
     if cmd == "confirmA":
         confirm_a(sys.argv[2])
         sys.exit()
