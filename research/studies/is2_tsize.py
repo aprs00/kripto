@@ -130,8 +130,55 @@ def intraday(sample="explore"):
     return F
 
 
+def trap(sample="explore"):
+    """Mousetrap at REAL levels (R4, second formulation): the first 5-minute bar of the day that trades below yesterday's low
+    and closes back above it (mirror: above yesterday's high, closes back below). With and without the size split (small
+    trades sold, large bought), and against placebo levels (yesterday's close moved by the low/close ratio of 8 days earlier).
+    Forward simple returns in the direction of the trap (long after a failed break of the low), bp, t on daily means."""
+    start, end = SAMPLES[sample]
+    P = data.load_bn_tsize_panel("5m")
+    rows = []
+    for coin in P["close"].columns:
+        c, h, l, v = (P[k][coin].astype("float64") for k in ("close", "high", "low", "volume"))
+        ds, dl = P["d_small"][coin].astype("float64"), P["d_large"][coin].astype("float64")
+        day = c.index.floor("D")
+        dlo, dhi, dcl = l.groupby(day).min(), h.groupby(day).max(), c.groupby(day).last()
+        heavy = v >= 2 * v.rolling(288, min_periods=144).mean().shift(1)
+        for kind, lo_lvl, hi_lvl in (("real", dlo.shift(1), dhi.shift(1)),
+                                     ("placebo", dcl.shift(1) * (dlo.shift(9) / dcl.shift(9)), dcl.shift(1) * (dhi.shift(9) / dcl.shift(9)))):
+            for side, lvl in ((1, lo_lvl), (-1, hi_lvl)):
+                L = lvl.reindex(day).to_numpy()
+                t = ((l.to_numpy() < L) & (c.to_numpy() > L)) if side > 0 else ((h.to_numpy() > L) & (c.to_numpy() < L))
+                ev = pd.Series(t, c.index)
+                ev &= ev.groupby(day).cumsum() == 1                      # first trap of the day at that level
+                f = pd.DataFrame({"coin": coin, "kind": kind, "side": side, "heavy": heavy, "split": (side * ds < 0) & (side * dl > 0)})[ev]
+                for hh, nm in ((12, "f1h"), (48, "f4h"), (288, "f24h")):
+                    f[nm] = side * (c.shift(-hh) / c - 1)[ev]
+                rows.append(f[(f.index >= start) & (f.index < end)])
+    F = pd.concat(rows)
+    print(f"R4 mousetrap at yesterday's low/high, 5-min bars, sample {sample}: {start}..{end}, coins {sorted(set(F.coin))}")
+
+    def row(name, a):
+        out = [f"  {name:58s} n={len(a):5d}"]
+        for k in ("f1h", "f4h", "f24h"):
+            d = a[k].groupby(a.index.floor("D")).mean()
+            out.append(f"{k[1:]} {a[k].mean() * 1e4:+6.1f} (t {tstat(d):+.1f})")
+        print(" | ".join(out))
+    for kind in ("real", "placebo"):
+        a = F[F.kind == kind]
+        row(f"{kind}: all failed breaks", a)
+        row(f"{kind}: on heavy volume", a[a.heavy])
+        row(f"{kind}: heavy volume + small sold / large bought", a[a.heavy & a.split])
+        row(f"{kind}: failed break of the LOW (long)", a[a.side == 1])
+        row(f"{kind}: failed break of the HIGH (short)", a[a.side == -1])
+    return F
+
+
 if __name__ == "__main__":
     a = sys.argv[1] if len(sys.argv) > 1 else "explore"
+    if a == "trap":
+        trap(sys.argv[2] if len(sys.argv) > 2 else "explore")
+        sys.exit()
     if a == "intraday":
         intraday(sys.argv[2] if len(sys.argv) > 2 else "explore")
     else:

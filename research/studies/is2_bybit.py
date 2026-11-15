@@ -77,8 +77,8 @@ def welch(a, b) -> float:
     return float((a.mean() - b.mean()) / np.sqrt(a.var() / len(a) + b.var() / len(b))) if len(a) > 2 and len(b) > 2 else float("nan")
 
 
-def study():
-    files = sorted(p for p in DIR.glob("*.npz") if ".tmp" not in p.name)
+def study(start="2019-10-01", end="2022-12-31"):
+    files = sorted(p for p in DIR.glob("*.npz") if ".tmp" not in p.name and start <= p.stem <= end)
     days = pd.DatetimeIndex([p.stem for p in files]).tz_localize("UTC")
     buy = np.stack([np.load(p)["buy"] for p in files]).astype(float)
     sell = np.stack([np.load(p)["sell"] for p in files]).astype(float)
@@ -117,4 +117,4 @@ def study():
 
 
 if __name__ == "__main__":
-    download() if sys.argv[1] == "download" else study()
+    download() if sys.argv[1] == "download" else study(*sys.argv[2:4])

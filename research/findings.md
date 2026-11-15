@@ -67,6 +67,16 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
   grid average beat the walk-forward pick in 6/9 strategy×venue pairs (mean OOS SR 0.95 vs 0.78; tsmom HL 0.53 vs 0.18, xsmom HL 0.47 vs −0.02).
   So a low pick-best OOS with a healthy grid median (tsmom, xsmom HL) is weak evidence against the IDEA, and a pick that beats its grid average
   (flow bnall 1.43 vs 1.25) is partly luck. Every result now carries `oos_grid_avg`: quote it next to the OOS Sharpe (backlog WF1).
+* **Event studies in log returns flatter shorts (2026-11-15, spike_high_short).** Coins at a volume-spike high lagged the market by 170–374 bp
+  over 10 days in LOG terms (t −3 to −7, both samples) and the short book still lost (WF −0.44): in SIMPLE returns the mean was −80 / −4 bp
+  (median −4 to −5%; 3–5% of shorts lose > 50%), and shorts of pumped coins PAID funding (−34%/yr). For any short or skewed event report
+  simple-return mean AND median, the tail, and the funding sign before building anything.
+* **A "level" claim needs placebo levels (2026-11-15, profile rules).** Yesterday's POC bounced +8 bp over 2 h; a fake POC taken from 8 days
+  earlier bounced +7. Every level a move reaches looks reactive. Same for failed breaks of yesterday's low (+11 real vs +8 placebo).
+* **Check a translated rule's base rate on the venue first (2026-11-15).** "Every size bucket net negative" fires on 3–6% of days on Bybit
+  inverse and on 17–30% on Binance USDT-M (hedging venue: structural sell bias). The first pass tested a different event without noticing.
+* **Tranche an arbitrary clock time (2026-11-15, friday_follow).** Shifting the decision by a few hours moved it between +28 and +103 bp per
+  event. As with start days: trade the average over the reasonable choices and judge that (Sharpe 1.21 → 1.06, worst 1.02 → 0.78).
 * **DEAD on HL ≠ dead forever.** HL history grows every day. Re-test DEAD ideas that died on HL alone (not on BN
   too) once HL OOS history has grown by ≥ 6 months, as a pre-registered re-check (see backlog T0b).
 
@@ -205,7 +215,7 @@ Not tested: order-book imbalance (needs the L2 stream, W1) and thin coins (bigge
 > research/insilico_rules.md (definitions, sources, data map). Five were pre-registered (batch 2026-11-11-insilico.json) and tested on
 > Binance with Binance VIP0 costs (taker 5 bp + slippage, maker 2 bp); intraday ones in the order engine kripto/events.py.
 
-### weekend_revert: fade the weekend move back to Friday's CME close (InSilico R21, bn 1h BTC+ETH, 2026-11-11) → OPEN (one form failed; second pass: prompts/insilico_pass2.md)
+### weekend_revert: fade the weekend move back to Friday's CME close (InSilico R21, bn 1h BTC+ETH, 2026-11-11) → DEAD (see second pass: three fade formulations)
 WF OOS −0.46 / 6.2y, grid med −0.43, 0/6 >0, worst −0.42. Negative BEFORE costs in both eras (to 2022 −0.31, 2023+ −0.41); only 2021,
 the year the author wrote it, was positive (+20–56%). Price touches Friday's level by Monday's close in just 42% of ≥1% gaps. Since 2023
 BTC weekend moves CONTINUE into Monday (fade −88 bp/trade, t −3.4, n=128; ETH −10, n.s.): seen after the fact on one coin, not a strategy.
@@ -227,15 +237,75 @@ Friday after the US close (R22): +7–19 bp/4h, t ≤ 1.5, no different from Mon
 volatility, but a drift of +5–9 bp/h, t 2.3–3.6 in BOTH eras on both coins; below a taker round trip (≈ 13 bp). Use: timing of buys
 the books make anyway (backlog E2), not a book. September / Santa / lunar claims: ≤ 6 observations each, untestable.
 
-### tsize_capit: daily trade-size capitulation, all size buckets net negative → long (InSilico R1, bnts 1d BTC/ETH/SOL, 2026-11-12) → OPEN (one form failed: worked in 2021 only; second pass)
+### tsize_capit: daily trade-size capitulation, all size buckets net negative → long (InSilico R1, bnts 1d BTC/ETH/SOL, 2026-11-12) → DEAD on Binance (see second pass)
 WF OOS 0.18 / 6.2y (grid med 0.58, 12/12 >0, worst 0.47), but the grid is long-only crypto: holding the three coins is 0.96. Chosen config
 (12 bins, hold 1d): to 2022 +1.25, **2023+ +0.24**; 2021 alone made +138%. Forward returns after all-negative days never beat all days with
 t > 2 in both eras; with the author's 7 buckets "all negative" is 17–30% of days on Binance and BTC did WORSE after them (−84 bp/3d to 2022).
 The claimed asymmetry is real the other way: all-POSITIVE days are followed by gains (BTC +68 bp/3d excess; shorting them −0.94) = flow
 continuation, already traded as `flow`. Binance USDT-M ≠ BitMEX (author: "exchange sensitive"); HL version waits for `tsz` data (TSZ-HL).
 
-### mousetrap: failed break of the range low, small trades sold / large bought (InSilico R4, bnts 5m BTC/ETH/SOL, 2026-11-12) → OPEN (one form failed, before costs; second pass)
+### mousetrap: failed break of the range low, small trades sold / large bought (InSilico R4, bnts 5m BTC/ETH/SOL, 2026-11-12) → DEAD (see second pass: three formulations)
 WF OOS −2.92 / 5.2y, 0/12 >0. Chosen (8h low, 2× volume): 916 trades, 22% winners, gross −3.5 bp, cost 13 bp, net −16.5 bp (t −4.4), same
 in both eras. Without the size condition (control): 12,240 trades, gross −1.2 bp: the small/large split adds nothing. Shorts mirror: −2.4 bp.
 Agrees with the 11-10 minute study (sweeps of the 4h range: ≈ 0). Not tested: range bars and resting-order absorption (need ticks / L2).
+
+> **InSilico second pass (2026-11-15, research/insilico_pass2.md).** Think-through per family, ≥ 3 formulations each, explored on
+> 2021–23 / 10 coins (studies research/studies/is2_*.py), confirmed on 2024–26 and on unseen coins (batch 2026-11-15-insilico-pass2.json).
+> The entries below supersede the first-pass verdicts above where they overlap.
+
+### Profile / auction levels: prior POC, value area, single prints, 80% rule (InSilico R14–R17, 2026-11-15) → DEAD as mechanical level rules
+Three formulations, each failing on the exploration sample AND three held-out samples (10 coins 2024–26, 20 unseen coins 2021–26):
+(1) single-print bands fill 48–49% vs 51–52% for placebo bands; (2) first touch of yesterday's POC / VAH / VAL reacts like a fake level;
+(3) 80% rule: far edge reached 26–30% vs 37% for a random walk with the same geometry (t −8 to −11). Reason: any level a move reaches
+reacts the same. Real but useless: +4–5 bp more bounce in the 30 min after a real band is filled (was +10 bp in 2021–23, +2 since 2024).
+
+### Trade-size buckets as capitulation / exhaustion (InSilico R1–R3, 2026-11-15) → DEAD on Binance; OPEN (weak) on the author's venue type
+Binance, five formulations beyond the first-pass sign rule, all with the OPPOSITE sign: abnormal one-voiced selling on big down days (next
+3 d −235 bp vs +26), total-delta extreme, the same in an uptrend, large-sell/small-buy, intraday "top signal" at a 1-day high (price rose).
+Reason: one-voiced flow continues (what `flow` trades). Bybit inverse BTCUSD, his literal rule: fires on 4.5% of days (Binance 17–30%);
+next 3 d +130 bp vs +54 (excess +77 bp, t 1.6, n=92, 2019-10..2025-08), positive in his era and after it, never significant. Watch: HL `tsz`.
+
+### One-voiced buying at a 1-day high continues (opposite of R3; BTC/ETH/SOL 5-min, 2026-11-15) → real, below costs (a feature, not a book)
+Held-out 2024–26: +6.4 bp over 1 h vs −0.9 for other bars at the high (t 4.7), +15 vs +3 bp over 24 h; exploration +9 / +29 bp (1 h / 4 h).
+Use, if any: confirmation for entries the slow books already make. Not worth a book at 13 bp per round trip.
+
+### Mousetrap at real levels (InSilico R4, second and third formulation, 2026-11-15) → DEAD
+Failed break of yesterday's low → long: +10.8 bp / 1 h, +34 bp / 24 h (2021–23), but placebo levels give +7.8 / +23: not the level. Heavy
+volume and the small-sold/large-bought split (n=93) add nothing; failed breaks of the high: nothing. With the first pass (rolling n-bar
+low, with and without the size split) that is three formulations; reason: reclaiming ANY broken low is followed by the generic dip bounce.
+
+### lshock, second pass (InSilico R5, 2026-11-15) → OPEN (tail-event; unchanged verdict, better understood)
+Dose-response on 2021–23 is monotonic (z=4 +6 bp, 5 +28, 6 +70, 8 +150, 10 +194 net per trade; short side negative; half engulf ≈ 0): what
+forced selling predicts. But held-out, z=8: original coins 2024–26 +219 bp of which −3 bp without the three best days; 20 unseen coins +188 bp,
++30 without them, days with 1–2 triggers −6 bp. Open-interest split fails (5-min OI too coarse, missing in the wildest minutes). The pattern
+exists only on 1-minute bars (5-min: 21 trades, negative). Since 2024 only market-wide cascades pay. See the line on 52 unseen coins below.
+
+### spike_high_short: short a new 20-day high made on a volume spike (InSilico R8, bnall + hl 1d, 2026-11-15) → DEAD as a trade (median effect real)
+Event study: such coins lag the top-100 by 170 bp (2020–23, t −3.1) and 374 bp (2024–26, t −7.0) over 10 days in log terms; low-volume highs
+did not hold (+140 → −8). Strategy: bnall WF OOS −0.44 (0/8 >0, mdd −99%), HL −0.26 (0/8). Reasons: simple-return mean excess only −80 / −4 bp
+(right tail), shorts pay funding (−34%/yr, −90%/yr in 2025–26), costs 7%/yr. Hourly, 15-min and 5-min bars: same shape (median −17 to −54 bp,
+mean ≈ 0). High-volume new LOWS also keep falling (−143 / −297 bp over 10 d): no capitulation bounce in the cross-section (R6 not supported).
+
+### friday_follow: Friday's move continues into Saturday (opposite of InSilico R21; bn 1h, 2026-11-15) → OPEN (passes the walk-forward; survivorship check before candidate)
+Follow each liquid coin's ≥ 2–4% move of the 24 h before Friday 17:00 New York for 24 h. Event study +88 bp (2020–23, t 2.8) and +104 bp
+(2024–26, t 2.7); no other weekday does this (Saturday's move reverses). WF bn_1h OOS 1.21 (8/8 >0, worst 1.02); with the clock time traded
+as four tranches (12/15/17/20 h) **OOS 1.06, grid med 0.98, 4/4 >0, worst 0.78, $200 0.84, corr BTC −0.03, cagr 20%, mdd −30%; 2021 negative.**
+Weak points: the 82 coins are hand-picked survivors; on the full top-100 at the UTC-day cut it is +46 / +47 bp (t 1.0 / 1.5), top-30: nothing. → FF1.
+
+### Weekend fades, second pass (InSilico R21, 82 coins 1h, 2026-11-15) → gap fade DEAD; Sunday-move fade OPEN
+Fading the Friday→Sunday gap: −8 / +33 bp (n.s.), with the first pass's six walk-forward configs that form is dead; fading Friday's own move
+loses (−88 / −104 bp: it continues, see friday_follow). Fading the Sunday 12:00→18:00 New York move for 24 h: +20 bp (t 1.1) / +105 bp (t 2.6),
+positive in both samples but not pre-registered: one confirmation on new coins before it counts.
+
+### Unit-price bias (InSilico R28, bnall top-100, 2026-11-15) → DEAD (an alt-season effect)
+Cheapest fifth by price per unit vs the universe: +52 bp/week in 2020–23 (t 2.1), −52 bp/week in 2024–26 (t −1.3); vs the dearest fifth
++59 → −200 bp/week (t −3.4); alt-season-only +71 → −47. Three formulations, reversed out of sample: it was the 2021 alt season.
+
+### US-session momentum (InSilico R24, 30 coins 1-min, 2026-11-15) → DEAD (a bull-phase effect)
+After a US-session (13:30–19:15 UTC) up-move ≥ 1.5%: +102 bp excess over 72 h in 2021–23 (t 2.1), then −6 bp on the same coins in 2024–26 and
++26 / +71 bp on unseen coins, with 2025 −105 to −178 and 2026 −57 to −106. Three variants (plain, with a single-print band, ≥ 3%) fail held-out.
+
+### Empty moves get refilled (InSilico R9, 10 coins 1-min, 2026-11-15) → OPEN (two forms failed, low prior)
+Fading a 4-sigma 5-minute move made on < 1.5× usual volume: +66 bp at 15 min in 2021–23 (n=342, t 1.4), +3.6 bp in 2024–26 (n=444).
+With the 11-10 minute study (fade any 4-sigma move: unstable) two formulations; not tested: thin-book measure from L2 instead of volume.
 
