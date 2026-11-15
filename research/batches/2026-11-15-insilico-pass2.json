@@ -41,5 +41,27 @@
    30,
    80
   ]
+ },
+ "_friday_follow_cuts": "Added 2026-11-15 after the decomposition of friday_follow (17:00 New York cut: +89 / +103 bp per event; noon cut +87 / +43; 20:00 cut +28 / +90; UTC-midnight cut +37 / +88; full top-100 universe at the UTC cut +46 / +47, top-30 of all coins +16 / +13). The clock time is arbitrary, so the test that counts is the cut-AVERAGED book: four equal tranches decided at 12:00, 15:00, 17:00 and 20:00 New York on Friday, 24 h each. Fixed before running. Candidate-eligible only if WF OOS > 0.8 and robust.worst > 0 for this version; otherwise friday_follow is recorded OPEN (fragile: depends on the cut and on the hand-picked 82 coins).",
+ "friday_follow#cuts": {
+  "thr": [
+   0.02,
+   0.04
+  ],
+  "top_n": [
+   30,
+   80
+  ],
+  "hold_h": [
+   24
+  ],
+  "cuts": [
+   [
+    12,
+    15,
+    17,
+    20
+   ]
+  ]
  }
 }

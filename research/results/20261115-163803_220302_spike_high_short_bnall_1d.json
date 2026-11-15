@@ -1,0 +1,500 @@
+{
+ "strategy": "spike_high_short",
+ "dataset": "bnall_1d",
+ "n_configs": 8,
+ "grid_median_sharpe": -0.752,
+ "grid_frac_positive": 0.0,
+ "oos": {
+  "start": "2020-12-10",
+  "end": "2026-10-31",
+  "years": 5.9,
+  "cagr": -0.4402,
+  "vol": 0.7037,
+  "sharpe": -0.437,
+  "sortino": -0.452,
+  "max_dd": -0.9879,
+  "calmar": -0.446,
+  "psr0": 0.1373,
+  "dsr": 0.0002,
+  "n_trials": 73,
+  "pos_months": 0.5
+ },
+ "oos_grid_avg": -0.859,
+ "folds": [
+  {
+   "from": "2020-12-10",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 10,
+    "top_n": 50
+   },
+   "is_sharpe": 0.4,
+   "oos_sharpe": -4.17
+  },
+  {
+   "from": "2021-02-08",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 10,
+    "top_n": 50
+   },
+   "is_sharpe": -1.2,
+   "oos_sharpe": -2.3
+  },
+  {
+   "from": "2021-04-09",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 10,
+    "top_n": 50
+   },
+   "is_sharpe": -1.45,
+   "oos_sharpe": -3.21
+  },
+  {
+   "from": "2021-06-08",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 10,
+    "top_n": 50
+   },
+   "is_sharpe": -1.75,
+   "oos_sharpe": -3.23
+  },
+  {
+   "from": "2021-08-07",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 10,
+    "top_n": 50
+   },
+   "is_sharpe": -1.86,
+   "oos_sharpe": -3.0
+  },
+  {
+   "from": "2021-10-06",
+   "params": {
+    "zthr": 2.0,
+    "hold_days": 10,
+    "top_n": 50
+   },
+   "is_sharpe": -1.96,
+   "oos_sharpe": -1.35
+  },
+  {
+   "from": "2021-12-05",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -1.81,
+   "oos_sharpe": 3.72
+  },
+  {
+   "from": "2022-02-03",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -1.48,
+   "oos_sharpe": -2.43
+  },
+  {
+   "from": "2022-04-04",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -1.52,
+   "oos_sharpe": 3.87
+  },
+  {
+   "from": "2022-06-03",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -1.27,
+   "oos_sharpe": -3.49
+  },
+  {
+   "from": "2022-08-02",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 5,
+    "top_n": 100
+   },
+   "is_sharpe": -1.52,
+   "oos_sharpe": -0.58
+  },
+  {
+   "from": "2022-10-01",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -1.47,
+   "oos_sharpe": -0.97
+  },
+  {
+   "from": "2022-11-30",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -1.44,
+   "oos_sharpe": 1.28
+  },
+  {
+   "from": "2023-01-29",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -1.33,
+   "oos_sharpe": 3.18
+  },
+  {
+   "from": "2023-03-30",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -1.14,
+   "oos_sharpe": 1.72
+  },
+  {
+   "from": "2023-05-29",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -1.04,
+   "oos_sharpe": 2.26
+  },
+  {
+   "from": "2023-07-28",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.92,
+   "oos_sharpe": -2.07
+  },
+  {
+   "from": "2023-09-26",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.97,
+   "oos_sharpe": -0.12
+  },
+  {
+   "from": "2023-11-25",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.94,
+   "oos_sharpe": 0.26
+  },
+  {
+   "from": "2024-01-24",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 5,
+    "top_n": 100
+   },
+   "is_sharpe": -0.86,
+   "oos_sharpe": -2.09
+  },
+  {
+   "from": "2024-03-24",
+   "params": {
+    "zthr": 3.0,
+    "hold_days": 5,
+    "top_n": 100
+   },
+   "is_sharpe": -0.92,
+   "oos_sharpe": 0.01
+  },
+  {
+   "from": "2024-05-23",
+   "params": {
+    "zthr": 2.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.88,
+   "oos_sharpe": 5.14
+  },
+  {
+   "from": "2024-07-22",
+   "params": {
+    "zthr": 2.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.73,
+   "oos_sharpe": 3.82
+  },
+  {
+   "from": "2024-09-20",
+   "params": {
+    "zthr": 2.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.6,
+   "oos_sharpe": 3.27
+  },
+  {
+   "from": "2024-11-19",
+   "params": {
+    "zthr": 2.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.45,
+   "oos_sharpe": -1.32
+  },
+  {
+   "from": "2025-01-18",
+   "params": {
+    "zthr": 2.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.48,
+   "oos_sharpe": 1.34
+  },
+  {
+   "from": "2025-03-19",
+   "params": {
+    "zthr": 2.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.42,
+   "oos_sharpe": -1.19
+  },
+  {
+   "from": "2025-05-18",
+   "params": {
+    "zthr": 2.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.47,
+   "oos_sharpe": -1.36
+  },
+  {
+   "from": "2025-07-17",
+   "params": {
+    "zthr": 2.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.49,
+   "oos_sharpe": -2.03
+  },
+  {
+   "from": "2025-09-15",
+   "params": {
+    "zthr": 2.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.57,
+   "oos_sharpe": 0.42
+  },
+  {
+   "from": "2025-11-14",
+   "params": {
+    "zthr": 2.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.52,
+   "oos_sharpe": -1.9
+  },
+  {
+   "from": "2026-01-13",
+   "params": {
+    "zthr": 2.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.58,
+   "oos_sharpe": 1.9
+  },
+  {
+   "from": "2026-03-14",
+   "params": {
+    "zthr": 2.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.5,
+   "oos_sharpe": -4.79
+  },
+  {
+   "from": "2026-05-13",
+   "params": {
+    "zthr": 2.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.67,
+   "oos_sharpe": 1.98
+  },
+  {
+   "from": "2026-07-12",
+   "params": {
+    "zthr": 2.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.56,
+   "oos_sharpe": 2.05
+  },
+  {
+   "from": "2026-09-10",
+   "params": {
+    "zthr": 2.0,
+    "hold_days": 10,
+    "top_n": 100
+   },
+   "is_sharpe": -0.46,
+   "oos_sharpe": 0.86
+  }
+ ],
+ "grid": [
+  {
+   "i": 3,
+   "zthr": 2.0,
+   "hold_days": 10,
+   "top_n": 100,
+   "sharpe": -0.416,
+   "cagr": -0.423,
+   "max_dd": -0.992,
+   "turnover_yr": 107.7,
+   "cost_yr": 0.0712,
+   "funding_yr": -0.3368
+  },
+  {
+   "i": 2,
+   "zthr": 2.0,
+   "hold_days": 10,
+   "top_n": 50,
+   "sharpe": -0.583,
+   "cagr": -0.3945,
+   "max_dd": -0.9821,
+   "turnover_yr": 82.1,
+   "cost_yr": 0.0516,
+   "funding_yr": -0.1917
+  },
+  {
+   "i": 7,
+   "zthr": 3.0,
+   "hold_days": 10,
+   "top_n": 100,
+   "sharpe": -0.645,
+   "cagr": -0.4931,
+   "max_dd": -0.9938,
+   "turnover_yr": 89.4,
+   "cost_yr": 0.0579,
+   "funding_yr": -0.254
+  },
+  {
+   "i": 1,
+   "zthr": 2.0,
+   "hold_days": 5,
+   "top_n": 100,
+   "sharpe": -0.72,
+   "cagr": -0.5463,
+   "max_dd": -0.9972,
+   "turnover_yr": 137.6,
+   "cost_yr": 0.0884,
+   "funding_yr": -0.2795
+  },
+  {
+   "i": 5,
+   "zthr": 3.0,
+   "hold_days": 5,
+   "top_n": 100,
+   "sharpe": -0.785,
+   "cagr": -0.4733,
+   "max_dd": -0.9916,
+   "turnover_yr": 96.7,
+   "cost_yr": 0.0612,
+   "funding_yr": -0.1887
+  },
+  {
+   "i": 6,
+   "zthr": 3.0,
+   "hold_days": 10,
+   "top_n": 50,
+   "sharpe": -0.86,
+   "cagr": -0.4031,
+   "max_dd": -0.9754,
+   "turnover_yr": 51.2,
+   "cost_yr": 0.0317,
+   "funding_yr": -0.0884
+  },
+  {
+   "i": 0,
+   "zthr": 2.0,
+   "hold_days": 5,
+   "top_n": 50,
+   "sharpe": -0.956,
+   "cagr": -0.4736,
+   "max_dd": -0.9901,
+   "turnover_yr": 92.2,
+   "cost_yr": 0.0573,
+   "funding_yr": -0.1396
+  },
+  {
+   "i": 4,
+   "zthr": 3.0,
+   "hold_days": 5,
+   "top_n": 50,
+   "sharpe": -1.028,
+   "cagr": -0.3739,
+   "max_dd": -0.9603,
+   "turnover_yr": 49.0,
+   "cost_yr": 0.0302,
+   "funding_yr": -0.0709
+  }
+ ],
+ "robust": {
+  "params": {
+   "zthr": 2.0,
+   "hold_days": 10,
+   "top_n": 100
+  },
+  "base": -0.416,
+  "cost_x2": -0.516,
+  "delay_1bar": -0.573,
+  "band_tiny": -0.418,
+  "small_acct": -0.428,
+  "skip_first_6m": -0.427,
+  "skip_first_12m": -0.106,
+  "corr_btc": 0.002,
+  "worst": -0.573
+ },
+ "seconds": 16.0
+}

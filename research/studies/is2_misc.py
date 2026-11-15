@@ -143,7 +143,42 @@ def empty_moves(sample):
         line(f"+{h:3d} min, {nm}", x)
 
 
+REP = "DOT BCH TRX ATOM ETC XLM FIL NEAR UNI AAVE MATIC ARB OP APT SUI INJ SAND MANA AXS FTM".split()
+
+
+def volume_extremes_intraday(sample, rule):
+    """The volume-at-extremes test (V) on shorter bars (owner 2026-11-15: "test shorter timeframes also, hours, minutes").
+    rule = 1h (Binance hourly, 82 coins) or 15min / 5min (30 coins with 1-minute data). New 20-bar closing high / low;
+    volume z-score of log volume against the previous week of bars. Forward SIMPLE returns (what a position earns; log
+    returns flattered the daily short) minus the cross-sectional mean of all coins, mean and median, t clustered by day."""
+    if rule == "1h":
+        p = data.load_bn_panel("1h")
+        c, v = p["close"], p["volume"]
+    else:
+        p = data.load_bn_minute_panel(data.MINUTE_COINS + REP, rule=rule)
+        c, v = p["close"].astype("float64"), p["volume"].astype("float64")
+    bpd = int(round(pd.Timedelta(days=1) / (c.index[1] - c.index[0])))
+    wk = 7 * bpd
+    lv = np.log(v.where(v > 0))
+    vz = (lv - lv.rolling(wk, min_periods=wk // 2).mean().shift(1)) / lv.rolling(wk, min_periods=wk // 2).std().shift(1)
+    hi, lo = c >= c.rolling(20).max(), c <= c.rolling(20).min()
+    print(f"V intraday, {rule} bars, {c.shape[1]} coins, sample {sample}: new 20-bar extreme, forward SIMPLE return minus the cross-sectional mean")
+    for h in (1, 4, 12, 48):
+        f = c.shift(-h) / c - 1
+        ex = sel(f.sub(f.mean(axis=1), axis=0), sample)
+        print(f"  +{h} bars")
+        for name, mask in (("new high, volume spike (z >= 2)", hi & (vz >= 2)), ("new high, low volume (z <= 0)", hi & (vz <= 0)),
+                           ("new low, volume spike (z >= 2)", lo & (vz >= 2)), ("new low, low volume (z <= 0)", lo & (vz <= 0))):
+            x = ex.where(sel(mask, sample)).stack()
+            x.index = x.index.get_level_values(0).floor("D")
+            print(f"   {name:36s} n={len(x):7d} mean={x.mean() * 1e4:+7.1f} bp median={x.median() * 1e4:+6.1f} (t {tday(x):+.1f})")
+
+
 if __name__ == "__main__":
+    if len(sys.argv) > 2 and sys.argv[2] == "VI":
+        for rule in sys.argv[3:] or ["1h", "15min", "5min"]:
+            volume_extremes_intraday(sys.argv[1], rule)
+        sys.exit()
     s = sys.argv[1] if len(sys.argv) > 1 else "explore"
     which = sys.argv[2:] or ["V", "U", "W", "E"]
     for k, fn in (("V", volume_extremes), ("U", unit_price), ("W", weekend), ("E", empty_moves)):

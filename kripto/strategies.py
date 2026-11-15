@@ -639,26 +639,27 @@ def spike_high_short(panel, lookback=20, zthr=2.0, hold_days=10, top_n=100, max_
 
 
 @register
-def friday_follow(panel, thr=0.02, hold_h=24, top_n=30, max_names=10):
+def friday_follow(panel, thr=0.02, hold_h=24, top_n=30, max_names=10, cuts=(17,)):
     """Friday's move continues into the weekend (found as the opposite of insilico R21; is2_misc W2). At the close of the hour
     ending Friday 17:00 New York, every coin of the liquid universe that moved at least `thr` over the previous 24 h is held in
-    the direction of that move for `hold_h` hours, weight 1/max(n, max_names) (gross <= 1). Hourly bars indexed by open time."""
+    the direction of that move for `hold_h` hours, weight 1/max(n, max_names) (gross <= 1). Hourly bars indexed by open time.
+    cuts = New York hours of the decision; several cuts are traded as equal tranches (the 17:00 result moved between +28 and
+    +103 bp per event when the cut was shifted by a few hours, and a result may not hang on an arbitrary clock time)."""
     c = panel["close"]
     w = pd.DataFrame(0.0, c.index, c.columns)
     step = c.index[1] - c.index[0]
     if step != pd.Timedelta(hours=1):
         return w                                     # defined on hourly bars only
     ny = (c.index + step).tz_convert("America/New_York")
-    fri = np.flatnonzero((np.asarray(ny.day_of_week) == 4) & (np.asarray(ny.hour) == 17))
     uni = universe(panel, top_n=top_n, min_days=30).to_numpy()
     C = c.to_numpy(dtype=float)
-    W = w.to_numpy()
-    for f in fri:
-        if f < 24:
-            continue
-        mv = np.log(C[f] / C[f - 24])
-        ok = uni[f] & np.isfinite(mv) & (np.abs(mv) >= thr)
-        if not ok.any():
-            continue
-        W[f:f + hold_h, ok] = (np.sign(mv[ok]) / max(int(ok.sum()), max_names))
+    W = np.zeros(C.shape)
+    for cut in cuts:
+        for f in np.flatnonzero((np.asarray(ny.day_of_week) == 4) & (np.asarray(ny.hour) == cut)):
+            if f < 24:
+                continue
+            mv = np.log(C[f] / C[f - 24])
+            ok = uni[f] & np.isfinite(mv) & (np.abs(mv) >= thr)
+            if ok.any():
+                W[f:f + hold_h, ok] += np.sign(mv[ok]) / max(int(ok.sum()), max_names) / len(cuts)
     return pd.DataFrame(W, c.index, c.columns)
