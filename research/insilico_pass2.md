@@ -202,3 +202,26 @@ stated. "t" is day-clustered. These numbers were looked at freely and are NOT ev
   At a 1-day high with every bucket abnormally POSITIVE (n=249): +28.8 bp over 4 h vs +9.6 (t 3.6).
 * Reading: five formulations, same answer. On Binance, one-voiced flow across all trade sizes is continuation (the metaorder
   persistence the `flow` book already trades), at the daily and the 5-minute scale. Remaining honest gap: his venue (T5, Bybit).
+
+---
+
+# Confirmation results so far (2026-11-15; held-out: original coins 2024-01..2026-10, and 20 unseen coins 2021-2026)
+
+Session stopped here by the usage limit. Done: B, C, D. NOT done: A (liquidation fade z=8 on 52 unseen coins; their 1-minute
+bars were still downloading) and E (Bybit; download was at ~400 of 1,188 days). Both downloads resume if restarted; then run
+`python -m research.studies.is2_bybit study` and the frozen lshock configs through `research.evaluate` (tag "confirm").
+
+* **B US-session momentum: NOT confirmed.** Excess 72 h return after a US-session up-move >= 1.5%: original coins 2024-26 −5.7 bp
+  (t 0.2); unseen coins +26 bp (t 1.0) and +71 bp (t 2.5). By year on the unseen coins: 2021 +115/+552, 2022 −6/−46, 2023 +169/+225,
+  2024 +36/+44, 2025 −105/−178, 2026 −57/−106. A bull-phase effect that reversed in 2025-26, not a stable one.
+* **C single-print bounce: NOT confirmed at the pre-set size.** Real minus placebo, 30 min after the fill: +4.4 bp (t 2.5), +5.1 (t 0.7),
+  +3.8 (t 1.2). Present everywhere, but 4-5 bp, and the bounce itself fell from +10 bp (2021-23) to +2 bp (2024-26).
+* **D one-voiced buying at a 1-day high: statistically confirmed, economically nil.** 2024-26, BTC/ETH/SOL: +6.4 bp over 1 h vs −0.9 for
+  other bars at the high (t 4.7), +15 vs +3 bp over 24 h (t 3.9); the 4 h difference the test named is +1 bp (t 4.7 on daily means).
+  Below costs: a confirmation feature for entries the slow books already make, not a book. The author's "top signal" (every bucket
+  abnormally SELLING at the high) was followed by further gains in both samples (+34 bp / 24 h held-out, +116 exploration).
+* Held-out checks of the exploration failures: 80% rule hit rate 25.7-30.5% vs 36.5-37.7% for a random walk (t −9.9 to −10.7) on all
+  three held-out samples; yesterday's POC no better than a fake level; single-print bands fill 47.7-49.0% vs 50.7-51.9% placebo.
+  The profile LEVELS fail in every sample. Verdicts to write next session: R14-R17 as mechanical level rules = three formulations
+  failed (magnet, first-touch reaction, 80% rule), reason diagnosed (any level a move reaches reacts the same); R3/R1 on Binance =
+  five formulations, one-voiced flow continues.

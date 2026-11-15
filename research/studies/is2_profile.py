@@ -28,7 +28,33 @@ from kripto import data
 
 BIN = np.log(1.001)
 SESS = [(0, 420, "asia"), (420, 810, "london"), (810, 1155, "cme"), (1155, 1440, "preclose")]
-SAMPLES = {"explore": ("2021-01-01", "2024-01-01", data.MINUTE_COINS)}
+REP = "DOT BCH TRX ATOM ETC XLM FIL NEAR UNI AAVE MATIC ARB OP APT SUI INJ SAND MANA AXS FTM".split()
+SAMPLES = {"explore": ("2021-01-01", "2024-01-01", data.MINUTE_COINS),
+           "confirm10": ("2024-01-01", "2026-11-01", data.MINUTE_COINS),      # the original coins, later period
+           "rep_a": ("2021-01-01", "2026-11-01", REP[:10]), "rep_b": ("2021-01-01", "2026-11-01", REP[10:])}   # unseen coins
+
+
+def confirm(c: pd.DataFrame, m: pd.DataFrame):
+    """The pre-registered measures B and C (research/batches/2026-11-15-insilico-pass2.json)."""
+    def tt(x):
+        d = x.groupby(level=0).mean()
+        return float(d.mean() / d.std() * np.sqrt(len(d))) if len(d) > 5 and d.std() > 0 else float("nan")
+    q = m[m.sess == "cme"].copy()
+    for k in ("n24h", "n72h"):
+        q["x" + k] = q[k] - q.groupby("coin")[k].transform("mean")          # excess over the coin's own unconditional mean
+    print("B US-session momentum (excess over the coin's unconditional mean from 19:15 UTC, bp, day-clustered t)")
+    for name, sel in (("up-move >= 1.5%", q.r_s >= 0.015), ("up-move >= 1.5% and closed above a single-print band", (q.r_s >= 0.015) & (q.band == 1)),
+                      ("down-move <= -1.5%", q.r_s <= -0.015), ("up-move >= 3%", q.r_s >= 0.03)):
+        e = q[sel]
+        yrs = {int(y): round(float(g.xn72h.mean() * 1e4)) for y, g in e.groupby(e.index.year)}
+        print(f"   {name:52s} n={len(e):5d} 24h {e.xn24h.mean() * 1e4:+7.1f} (t {tt(e.xn24h):+.1f}) | 72h {e.xn72h.mean() * 1e4:+7.1f} (t {tt(e.xn72h):+.1f}) "
+              f"| coins>0: {int((e.groupby('coin').xn72h.mean() > 0).sum())}/{e.coin.nunique()} | 72h by year {yrs}")
+    r, pl = c[(c.kind == "real")].b30.dropna(), c[(c.kind == "placebo")].b30.dropna()
+    dr, dp = r.groupby(level=0).mean(), pl.groupby(level=0).mean()
+    w = (dr.mean() - dp.mean()) / np.sqrt(dr.var() / len(dr) + dp.var() / len(dp))
+    print(f"C bounce in the 30 min after a single-print band is filled: real {r.mean() * 1e4:+.1f} bp (n={len(r)}) vs placebo {pl.mean() * 1e4:+.1f} bp (n={len(pl)}), "
+          f"difference {(r.mean() - pl.mean()) * 1e4:+.1f} bp, t {w:+.1f}")
+
 
 
 def profile(h, l, v, per=30):
@@ -103,16 +129,23 @@ def run(sample="explore"):
     p3, p2, p1, sm = [], [], [], []
     for coin in P["close"].columns:
         H, L, C, V = (P[k][coin].to_numpy(dtype=np.float64)[:nd * 1440] for k in ("high", "low", "close", "volume"))
-        if np.isnan(C).any():
+        if np.isnan(C).any():                       # listed after the sample starts: use the part where it trades
+            first = int(np.flatnonzero(~np.isnan(C))[0])
+            first = (first // 1440 + 1) * 1440
+            H, L, C, V = H[first:], L[first:], C[first:], V[first:]
+            cdays, cnd = days[first // 1440:], nd - first // 1440
+        else:
+            cdays, cnd = days, nd
+        if cnd < 60:
             continue
         prof = []                                   # per day: poc, val, vah, close
-        for d in range(nd):
+        for d in range(cnd):
             a = d * 1440
             b0, vol, _ = profile(H[a:a + 1440], L[a:a + 1440], V[a:a + 1440] + 1e-9)
             poc, lo, hi = value_area(vol)
             prof.append((np.exp((b0 + poc + 0.5) * BIN), np.exp((b0 + lo) * BIN), np.exp((b0 + hi + 1) * BIN), C[a + 1439]))
         prof = np.array(prof)
-        for d in range(9, nd - 1):
+        for d in range(9, cnd - 1):
             a = d * 1440
             poc, val, vah, pc = prof[d - 1]
             w = np.log(vah / val)
@@ -134,7 +167,7 @@ def run(sample="explore"):
                     stopped = (res == 1) if side < 0 else (res == -1)
                     px = tgt if hit else stp if stopped else C[t1]
                     p_rw = abs(np.log(stp / e)) / abs(np.log(stp / tgt))
-                    p3.append((days[d], coin, side * np.log(px / e), float(hit), p_rw, float(hit) - p_rw))
+                    p3.append((cdays[d], coin, side * np.log(px / e), float(hit), p_rw, float(hit) - p_rw))
             # ---------------- P2: first touch of yesterday's levels (real vs the profile of 8 days earlier)
             x = 0.25 * w
             for kind, src in (("real", d - 1), ("placebo", d - 8)):
@@ -153,7 +186,7 @@ def run(sample="explore"):
                     up, dn = Lv * np.exp(x), Lv * np.exp(-x)
                     res, _ = first_passage(H, L, C, t0, up, dn, 1440)
                     win = np.nan if res == 0 else float(res == side)
-                    p2.append((days[d], coin, kind, name, r30, r120, win, side * res * x if res else np.nan))
+                    p2.append((cdays[d], coin, kind, name, r30, r120, win, side * res * x if res else np.nan))
             # ---------------- P1: single prints of each session of day d (real vs geometry of day d-8)
             for s0, s1, sname in SESS:
                 geo = {}
@@ -185,7 +218,7 @@ def run(sample="explore"):
                 if "real" in geo and not (geo["real"][0] * pc_s <= pc_s <= geo["real"][1] * pc_s):
                     band = 1 if pc_s > geo["real"][1] * pc_s else -1      # +1: closed above its single-print band (up impulse)
                 nxt = lambda m: np.log(C[min(t0 + m, len(C) - 1)] / pc_s)
-                sm.append((days[d], coin, sname, r_s, band, nxt(240), nxt(1440), nxt(4320)))
+                sm.append((cdays[d], coin, sname, r_s, band, nxt(240), nxt(1440), nxt(4320)))
                 for kind, (lo_r, hi_r) in geo.items():
                     lo_e, hi_e = lo_r * pc_s, hi_r * pc_s
                     if lo_e <= pc_s <= hi_e:
@@ -203,7 +236,7 @@ def run(sample="explore"):
                         bounce = -side * np.log(C[min(t1 + 120, len(C) - 1)] / far)
                     b30 = -side * np.log(C[min(t1 + 30, len(C) - 1)] / far) if res == side else np.nan
                     b480 = -side * np.log(C[min(t1 + 480, len(C) - 1)] / far) if res == side else np.nan
-                    p1.append((days[d], coin, kind, sname, D, fill, ret, bounce, side, b30, b480))
+                    p1.append((cdays[d], coin, kind, sname, D, fill, ret, bounce, side, b30, b480))
     print(f"sample {sample}: {start}..{end}, {P['close'].shape[1]} coins, {nd} days")
     a = pd.DataFrame(p3, columns=["day", "coin", "ret", "p_hit", "p_rw", "edge"]).set_index("day")
     print("P3 80% rule (ret = per trade, before costs; edge = hit rate minus the random-walk rate for the same geometry)")
@@ -243,6 +276,7 @@ def run(sample="explore"):
         show(f"cme |move|>=1.5% {y}", q[q.index.year == y], ["fn4h", "fn24h", "fn72h"])
     show("cme |move|>=1.5% up moves", q[q.r_s > 0], ["fn4h", "fn24h", "fn72h"])
     show("cme |move|>=1.5% down moves", q[q.r_s < 0], ["fn4h", "fn24h", "fn72h"])
+    confirm(c, m)
     return a, b, c, m
 
 
