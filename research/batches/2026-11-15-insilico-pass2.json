@@ -10,5 +10,36 @@
  "_F_volume_at_highs": "R8 ('pumps happen on low volume; a volume spike into highs means price ran into sellers'). bnall daily, point-in-time top-100. Exploration (2020-23): new 20-day closing high with log-volume z >= 2: -108 bp over 5 d, -170 bp over 10 d in excess of the universe (t -3.0, -3.1); with z <= 0: +83 bp, +140 bp (t 3.2, 4.5). CONFIRMED on 2024-01..2026-10 only if BOTH hold at the 10-day horizon: spike highs < 0 with day-clustered t < -2 AND low-volume highs > 0 with t > 2. If confirmed, the next step is a walk-forward of a long low-volume-highs / short spike-highs book (a new experiment, in a later session).",
  "_G_unit_price": "R28. Cheapest fifth by price per unit minus the universe mean, 7-day forward, weekly non-overlapping. Exploration: +52 bp/week (t 2.1). CONFIRMED only if > 0 with t > 2 on 2024-01..2026-10.",
  "_H_friday_continuation": "The opposite of R21, found while testing weekend variants. Exploration (82 coins): fading Friday's own move (Thu 17:00 -> Fri 17:00 New York, >= 2%) until Saturday 17:00 lost 88 bp per event (t -2.8), i.e. Friday's move continued. CONFIRMED only if FOLLOWING it is > 0 with day-clustered t > 2 on 2024-01..2026-10 (all coins).",
- "_I_empty_move_fade": "R9 ('a move on no volume through a thin book is repricing and gets refilled'). Fade a 4-sigma 5-minute move made on < 1.5x usual volume, 15-minute horizon, 10 original coins. Exploration: +66 bp (n=342, t 1.4). CONFIRMED only if > 0 with day-clustered t > 2 on 2024-01..2026-10. Weak prior: the exploration t is low."
+ "_I_empty_move_fade": "R9 ('a move on no volume through a thin book is repricing and gets refilled'). Fade a 4-sigma 5-minute move made on < 1.5x usual volume, 15-minute horizon, 10 original coins. Exploration: +66 bp (n=342, t 1.4). CONFIRMED only if > 0 with day-clustered t > 2 on 2024-01..2026-10. Weak prior: the exploration t is low.",
+ "_note3": "Walk-forwards of the two effects that held on 2024-26, fixed before any strategy backtest was run (2026-11-15). These turn a confirmed event-study effect into a costed, hedged, executable book; they are NOT fresh evidence for the effect itself (the whole history was used to find and confirm it), so the forward ledger and a shadow book are what will count. Usual decision rule: candidate only if WF OOS > 0.8 on the venue traded, robust.worst > 0, grid mostly positive; nothing is promoted in this session.",
+ "_spike_high_short": "R8. Short for hold_days after a new 20-day closing high on log-volume z >= zthr (vs own last 30 days), 1/max(n,10) per name, BTC-beta hedged, no vol targeting. bnall 1d (Binance, survivorship-free) and hl 1d.",
+ "spike_high_short": {
+  "zthr": [
+   2.0,
+   3.0
+  ],
+  "hold_days": [
+   5,
+   10
+  ],
+  "top_n": [
+   50,
+   100
+  ]
+ },
+ "_friday_follow": "Opposite of R21. At Friday 17:00 New York hold every liquid coin that moved >= thr over the previous 24 h in the direction of the move for hold_h hours, 1/max(n,10) per name. bn 1h (82 hand-picked coins: survivor-biased, said so in the verdict).",
+ "friday_follow": {
+  "thr": [
+   0.02,
+   0.04
+  ],
+  "hold_h": [
+   24,
+   48
+  ],
+  "top_n": [
+   30,
+   80
+  ]
+ }
 }

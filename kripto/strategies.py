@@ -614,3 +614,51 @@ def weekend_revert(panel, thr=0.01, exit="fill", coins=("BTC", "ETH"), weight=0.
             col[s:x] = -np.sign(g) * weight
         w[coin] = col
     return w
+
+
+# --------------------------------------------------------------------------- InSilico second pass (research/insilico_pass2.md)
+@register
+def spike_high_short(panel, lookback=20, zthr=2.0, hold_days=10, top_n=100, max_names=10, beta_neutral=True):
+    """Volume spike into a new high (insilico R8: "price ran into sellers"): short a coin for `hold_days` after it closes at a
+    new `lookback`-day high on volume more than `zthr` sd above its own last 30 days (log volume). Fixed weight 1/max(n, max_names)
+    per name so gross <= 1 and one squeezing coin is at most 1/max_names of the book; BTC-beta hedged. No vol targeting on purpose:
+    with one or two names active it would lever a single short. Found on 2020-23, held on 2024-26 (is2_misc V)."""
+    c, v = panel["close"], panel["volume"]
+    bpd = bars_per_day(c.index)
+    uni = universe(panel, top_n=top_n, min_days=60)
+    lv = np.log(v.where(v > 0))
+    w30 = 30 * bpd
+    vz = (lv - lv.rolling(w30, min_periods=w30 // 2).mean().shift(1)) / lv.rolling(w30, min_periods=w30 // 2).std().shift(1)
+    ev = (c >= c.rolling(lookback * bpd).max()) & uni & (vz >= zthr)
+    act = (ev.astype(float).rolling(int(hold_days * bpd), min_periods=1).max() > 0) & c.notna()
+    n = act.sum(axis=1)
+    raw = -act.astype(float).div(np.maximum(n, max_names), axis=0)
+    if beta_neutral and "BTC" in c.columns:
+        raw = hedge_beta(raw, beta_to(panel))
+    return raw
+
+
+@register
+def friday_follow(panel, thr=0.02, hold_h=24, top_n=30, max_names=10):
+    """Friday's move continues into the weekend (found as the opposite of insilico R21; is2_misc W2). At the close of the hour
+    ending Friday 17:00 New York, every coin of the liquid universe that moved at least `thr` over the previous 24 h is held in
+    the direction of that move for `hold_h` hours, weight 1/max(n, max_names) (gross <= 1). Hourly bars indexed by open time."""
+    c = panel["close"]
+    w = pd.DataFrame(0.0, c.index, c.columns)
+    step = c.index[1] - c.index[0]
+    if step != pd.Timedelta(hours=1):
+        return w                                     # defined on hourly bars only
+    ny = (c.index + step).tz_convert("America/New_York")
+    fri = np.flatnonzero((np.asarray(ny.day_of_week) == 4) & (np.asarray(ny.hour) == 17))
+    uni = universe(panel, top_n=top_n, min_days=30).to_numpy()
+    C = c.to_numpy(dtype=float)
+    W = w.to_numpy()
+    for f in fri:
+        if f < 24:
+            continue
+        mv = np.log(C[f] / C[f - 24])
+        ok = uni[f] & np.isfinite(mv) & (np.abs(mv) >= thr)
+        if not ok.any():
+            continue
+        W[f:f + hold_h, ok] = (np.sign(mv[ok]) / max(int(ok.sum()), max_names))
+    return pd.DataFrame(W, c.index, c.columns)

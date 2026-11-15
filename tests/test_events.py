@@ -252,3 +252,40 @@ def test_tsize_frames_index_and_panel_columns(tmp_path, monkeypatch):
     d5, _ = tsize.frames("XUSDT", "small_large", "5min")
     assert len(d5) == 576 and d5.index[287] == pd.Timestamp("2024-01-01 23:55", tz="UTC")
     assert d5.iloc[0, 0] == 100 and d5.iloc[287, 1] == -40 and d5.index[288 + 5] == pd.Timestamp("2024-01-02 00:25", tz="UTC") and d5.iloc[288 + 5, 1] == 7
+
+
+# --------------------------------------------------------------------------- second-pass strategies
+def test_spike_high_short_shorts_only_after_a_new_high_on_a_volume_spike():
+    idx = pd.date_range("2024-01-01", periods=140, freq="1D", tz="UTC")
+    rng = np.random.default_rng(3)
+    coins = ["BTC", "AAA", "BBB"]
+    close = pd.DataFrame(100.0 + rng.normal(0, 0.05, (140, 3)).cumsum(0) * 0, idx, coins) + np.arange(140)[:, None] * 0.0
+    close["AAA"] = 100 - np.arange(140) * 0.1                      # drifts down: never at a 20-day high ...
+    close.loc[idx[100], "AAA"] = 150.0                             # ... except one spike day
+    close["BBB"] = 100 + np.arange(140) * 0.1                      # at a new high every day, on ordinary volume
+    vol = pd.DataFrame(1e7, idx, coins)
+    vol["AAA"] = 1e7 * np.exp(rng.normal(0, 0.1, 140))             # only AAA's volume varies (a z-score needs variance)
+    vol.loc[idx[100], "AAA"] = 1e9                                 # the spike day has 100x volume
+    p = {"close": close, "volume": vol}
+    w = st.spike_high_short(p, zthr=2.0, hold_days=5, top_n=3, beta_neutral=False)
+    assert (w["AAA"].iloc[100:105] == -0.1).all() and w["AAA"].drop(idx[100:105]).abs().sum() == 0
+    assert w["BBB"].abs().sum() == 0 and w["BTC"].abs().sum() == 0
+    cut = {k: v.iloc[:103] for k, v in p.items()}
+    pd.testing.assert_frame_equal(st.spike_high_short(cut, zthr=2.0, hold_days=5, top_n=3, beta_neutral=False), w.iloc[:103])
+
+
+@pytest.mark.parametrize("friday,utc_hour", [("2024-01-12", 22), ("2024-07-12", 21)])
+def test_friday_follow_holds_fridays_movers_for_a_day(friday, utc_hour):
+    idx = pd.date_range(pd.Timestamp(friday, tz="UTC") - pd.Timedelta(days=40), periods=24 * 45, freq="1h")
+    fri_bar = pd.Timestamp(friday, tz="UTC") + pd.Timedelta(hours=utc_hour - 1)      # closes Friday 17:00 New York
+    up = pd.Series(100.0, idx)
+    up[idx > fri_bar - pd.Timedelta(hours=10)] = 105.0                               # +5% inside the 24 h before the close
+    down = pd.Series(100.0, idx)
+    down[idx > fri_bar - pd.Timedelta(hours=10)] = 96.0
+    close = pd.DataFrame({"UP": up, "DOWN": down, "FLAT": 50.0})
+    p = {"close": close, "volume": close * 0 + 1e6}
+    w = st.friday_follow(p, thr=0.02, hold_h=24, top_n=3)
+    held = w[(w != 0).any(axis=1)]
+    assert held.index[0] == fri_bar and len(held) == 24
+    assert (held["UP"] == 0.1).all() and (held["DOWN"] == -0.1).all() and (held["FLAT"] == 0).all()
+    assert st.friday_follow(p, thr=0.10).abs().sum().sum() == 0
