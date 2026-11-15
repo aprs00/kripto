@@ -164,3 +164,41 @@ possible execution, and it stays a watch item, not a strategy.
 2. Liquidation fade L1/L2: one small download (open interest, premium), a direct test of the mechanism on the one survivor.
 3. Trade-size T1–T3 on the existing data, then T5 (Bybit) only if T1–T3 leave the question open.
 Remaining families (mousetrap at real levels, weekend with the "collar" reference, R6/R8/R9, R28) get their think-through after these.
+
+---
+
+# Exploration results (2026-11-15; sample 2021-01..2023-12, the 10 original coins; BTC/ETH/SOL for trade sizes)
+
+Scripts: `research/studies/is2_profile.py`, `is2_liq.py`, `is2_tsize.py`, `is2_bybit.py`. Returns in bp before costs unless
+stated. "t" is day-clustered. These numbers were looked at freely and are NOT evidence; the confirmation tests below are.
+
+## Profile rules: the levels are not special, two side-effects are
+| formulation | result | reading |
+|---|---|---|
+| P3 80% rule (2,764 trades) | far edge reached 30.3% vs 37.2% for a random walk with the same geometry (t −7.9); −1.0 bp per trade | fails: price that re-enters yesterday's value turns back out more often than chance |
+| P2 first touch of yesterday's POC | +8.4 bp over 2 h (t 4.0); fake POC from 8 days earlier: +6.8 bp (t 3.8) | fails: any level a dip reaches bounces the same; the POC adds ≈ 2 bp |
+| P2 value-area low / high | low: +9.9 real vs +14.7 placebo; high: −0.4 vs −1.1 | fails; shows an asymmetry instead: dips bounce, rallies do not fade |
+| P1 single-print band filled before the same distance the other way | 48.1% real vs 51.2% placebo (random walk 50%) | fails as a magnet |
+| P1 after a US-session (13:30–19:15 UTC) impulse | band filled only 42.4%; fading it −42 bp per trade, 0/10 coins positive | the OPPOSITE holds: US-session impulses continue (2021 −71, 2022 −43, 2023 −1; up-impulses −75, down-impulses −10) |
+| P1 bounce in the 30 min after a band IS filled | +10.4 bp (t 5.7) real vs +1.2 bp placebo | real and specific to real bands, but below a taker round trip (≈ 13 bp) |
+| Session momentum, US session up-move ≥ 1.5% | next 72 h +136 bp (t 3.0), 9/10 coins; down-moves −12 bp | lead: this is R24 (kill zones: "trends coming out of New York persist"), long side only |
+
+## Liquidation fade: the size of the dump is what matters; open interest does not
+* L1 open-interest split (z=4 triggers, n=599): fell > 2% −7.9 bp, fell 0.5–2% −2.0, flat −3.8, rose −4.6. No separation, also with
+  z=6. 35% of triggers have no open-interest row within 6 minutes: the archive has gaps exactly in the wildest minutes (those
+  unlabelled triggers are the best ones, +133 bp at z=6). **Fails**, reason: 5-minute OI is too coarse and missing when it matters.
+* Dose-response (m=5, full engulf, long, net of costs): z=4 +5.8 bp (n=599) · z=5 +28.3 (275) · z=6 +70.2 (154) · z=8 +150.4 (73) ·
+  z=10 +193.8 (44). Win rate 54% → 64%. At z ≥ 8 the days with only 1–2 triggers are strongly positive too (+112 / +205 bp), the
+  top-3 days are 53–60% of the P&L and the rest still makes +81–95 bp. Short side at z=8: −43.6 bp. Half engulf: +2 bp.
+  Reading: a monotonic dose-response is what the forced-selling explanation predicts, and the first pass's z=6 was a middle setting.
+* Exits: 15-minute hold +47 bp, 60-minute (base) +70, 4-hour +65: the edge is made in the first minutes, as he says ("do a round quickly").
+
+## Trade-size buckets: one-sided flow continues; it does not exhaust
+* T1 big down day with every bucket abnormally negative (n=14): next 3 days −235 bp vs +26 for other big down days. T1b total delta
+  z < −2 (n=26): −77 vs +20. T2 the same in an uptrend (n=8): nothing. T3 large sell / small buy on a down day (n=13): −716 vs +58.
+  None significant (3 coins), all with the sign OPPOSITE to "capitulation = bottom".
+* T4 intraday, 5-minute bars: "top signal" (at a 1-day high, every bucket abnormally negative, n=76): price went UP 7 bp over the next
+  hour (baseline +2). Capitulation at a 1-day low (n=192): worse than other bars at the low (4 h +9 vs +19 bp, t −3.7).
+  At a 1-day high with every bucket abnormally POSITIVE (n=249): +28.8 bp over 4 h vs +9.6 (t 3.6).
+* Reading: five formulations, same answer. On Binance, one-voiced flow across all trade sizes is continuation (the metaorder
+  persistence the `flow` book already trades), at the daily and the 5-minute scale. Remaining honest gap: his venue (T5, Bybit).
