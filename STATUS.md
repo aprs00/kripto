@@ -1,6 +1,6 @@
-HEALTH: OK — 11-15 retro: trader hourly on both venues, live watcher, both collectors (errors 0), data fresh; disk 67%. Fixed today: the forward ledger could not see Binance (data stopped at 10-31).
+HEALTH: OK — 11-15 08:25 review: trader hourly on both venues, live watcher, both collectors (errors 0), nightly data and the retro succeeded; disk 66%.
 
-_Updated 2026-11-15 ~07:45 UTC (Sunday retrospective)._
+_Updated 2026-11-15 ~08:30 UTC (daily review; the rest is from the 07:45 Sunday retrospective)._
 
 ## This week in one paragraph
 I built the machinery: two exchanges, a two-exchange funding book, live recording of Hyperliquid order flow, an intraday order engine,
@@ -10,15 +10,15 @@ the cost model is about 1.8× too expensive, the funding trade assumed one accou
 multiple-testing check (it needs 0.9; best so far 0.88). What can move that now is time: live tracking, the forward ledger and the new
 Hyperliquid data. Running more backtests on the same history can't.
 
-## Books after 6 days (all noise: a live Sharpe after a week has an error bar of about ±4)
+## Books after 6 days (all noise: a live Sharpe after a week has an error bar of about ±4), 08:25 UTC
 | book | $1,000 / $2,000 size | $200 twin |
 |---|---|---|
-| main (HL, blend_nested) | $1,001 (+0.1%) | $195 (−2.4%): only 1 position fits |
-| main_bn (flow + momentum + blend) | $956 (−4.4%) | $201 (+0.3%): 2 positions fit |
-| funding pair book ($2,000) | $2,008 (+0.4%; funding +$12.1, fees $2.6) | $201.8 (+0.9%) |
-| tsmom / tsmom@bn | +8.8% / +8.8% (different coins, both short the majors) | +5.5% / +4.6% |
-| blend / blend_nested / blend@bn | +2.9% / +1.0% / −5.5% | +0.7% / −2.5% / +1.6% |
-| flow@bn / xsmom@bn / xsmom_k / xsmom_k@bn | −1.9% / −14.3% / −2.3% / −12.1% | −2.7% / −11.3% / −3.1% / −3.2% |
+| main (HL, blend_nested) | $1,005 (+0.5%) | $195 (−2.4%): only 1 position fits |
+| main_bn (flow + momentum + blend) | $960 (−4.0%) | $201 (+0.3%): 2 positions fit |
+| funding pair book ($2,000) | $2,010 (+0.5%; funding +$13.1, fees $2.6) | $201.7 (+0.8%) |
+| tsmom / tsmom@bn | +9.2% / +9.1% (different coins, both short the majors) | +5.6% / +4.8% |
+| blend / blend_nested / blend@bn | +3.1% / +1.3% / −5.3% | +0.8% / −2.6% / +1.6% |
+| flow@bn / xsmom@bn / xsmom_k / xsmom_k@bn | −1.4% / −13.9% / −2.3% / −11.9% | −2.7% / −11.3% / −3.1% / −3.2% |
 | listing_short | flat (no recent listing passes the volume filter) | flat |
 
 The Binance momentum books' losses are mostly one event: the AKE short squeeze on 11-13 (+370% in a day, verified as real). Worst book
