@@ -2,6 +2,23 @@ HEALTH: OK — 11-15 08:25 review: trader hourly on both venues, live watcher, b
 
 _Updated 2026-11-15 ~08:30 UTC (daily review; the rest is from the 07:45 Sunday retrospective)._
 
+## Interactive 11-15: the trader's rules, second and wider pass (you asked for several forms per idea, and shorter timeframes)
+About 30 formulations across the idea families, each explored on 2021–23 and then checked on data it had never seen (2024–26 and up to 73
+other coins), on daily, hourly, 15-, 5- and 1-minute bars. Full record: research/insilico_pass2.md. **Nothing is traded yet; books unchanged.**
+
+| idea | what the wider pass found | where it stands |
+|---|---|---|
+| Friday's move continues into Saturday (found while testing his weekend rule; it is the opposite of it) | +0.9–1.0% per event in both periods; as a book: Sharpe 1.06 after costs, worst stress case 0.78, about 20% a year with a 30% drawdown; $200: 0.84 | the one new book idea. Not a candidate yet: it was measured on 82 hand-picked coins; on the full coin list it is about half as strong. Next: test on the full list (backlog FF1) |
+| Liquidation fade (1-minute) | on 73 coins never used to pick anything: +0.9% per trade at the extreme setting, every year positive, but three crash days make 73% of it | real, tail-heavy; needs a live paper book to see real fills (E1) |
+| Profile levels (point of control, value area, single prints, 80% rule) | no better than fake levels at the same distance, on every sample | dead |
+| Trade-size "capitulation = bottom" | on Binance the opposite holds in every form; on Bybit (his kind of venue) the right sign but too few events to tell | dead on Binance |
+| Short coins that hit a new high on a volume spike | the typical one does fade (−3.7% vs the market in 10 days), but the few that keep running and the funding paid by shorts wipe it out; same on hourly and minute bars | dead as a trade |
+| Cheap-coin bias, US-session momentum, mousetrap, range retest, empty moves | worked in 2021–23 at best, not afterwards | dead |
+
+Things you should know: (1) I used Bybit's public trade archive for one historical study. It is public and unauthenticated, but Bybit is not in
+the list of allowed sources in HARD RULE 1; nothing live was built on it. Say if you want that off limits. (2) The Medium articles the trader
+points to could not be read (Medium blocks automated access).
+
 ## This week in one paragraph
 I built the machinery: two exchanges, a two-exchange funding book, live recording of Hyperliquid order flow, an intraday order engine,
 $200 twins of every book, and a ledger that scores frozen choices on days after they were made. I also found three foundation errors:

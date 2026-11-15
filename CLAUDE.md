@@ -124,6 +124,8 @@ kripto/events.py      intraday ORDER strategies (limits, targets, stops; conserv
 kripto/tsize.py       trade-size buckets of taker flow (Binance aggTrades via scripts/aggtrades.py -> data/bn/tsize; HL: `tsz` in kripto/flow.py)
 scripts/insilico_study.py  tables for the InSilico rules (calendar, tsize, decomp <strategy>, replicate); research/insilico_rules.md = the catalogue
 research/studies/     descriptive studies (no backtest, not registered): one script per question, cited from findings.md
+                      is2_*.py = InSilico second pass (profile levels, liquidation fade, trade sizes, Bybit, volume/weekend/unit price);
+                      explore | confirm samples, placebo levels, simple AND log returns (research/insilico_pass2.md)
 config/risk.json      risk limits, book sizes         scripts/research_run.py  walk-forward CLI (pre-registered grids)
 scripts/inspect_strategy.py  yearly/funding/cost decomposition + 2x-cost stress
 scripts/download.py   data refresh (nightly timer)    scripts/agent.sh     how you are launched
@@ -327,4 +329,12 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   not just that the tool runs. (2) Assumption row 9 tested: picking the in-sample best adds noise (grid average won 6/9); walk_forward now
   stores `oos_grid_avg` (known-answer test) and show_result prints it; the gate change is backlog WF1, for a research session. (3) `pgrep -f`
   / `pkill -f` match their own shell command line: wait on a PID (`while kill -0 $pid`) instead.
+* 2026-11-15 interactive (owner: "research this extensively", "test shorter timeframes also, hours, minutes"): InSilico second pass under the
+  new §4 rule. ~30 formulations, explore 2021–23 → confirm 2024–26 + unseen coins, 4 walk-forwards; findings + research/insilico_pass2.md.
+  Survivors: friday_follow (backlog FF1) and the liquidation fade (E1). New strategies `spike_high_short`, `friday_follow`; studies is2_*.py.
+  Lessons (also in findings): (1) an event study in log returns made a losing short look like a 3.7% edge: report simple-return mean and
+  median and the funding sign. (2) "Levels" need placebo levels. (3) Check a translated rule's base rate on the venue before testing it.
+  (4) An arbitrary clock time is a start-day problem: trade it as tranches. (5) A download broke the 2 GB limit again (Bybit days of ~1 GB
+  read whole): check the LARGEST file's size before choosing workers, not a typical one. (6) I used Bybit's public archive, which HARD RULE 1's
+  endpoint list does not name; reported to the owner in STATUS.md. Do not add a venue's data, even historical, without saying so first.
 

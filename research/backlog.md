@@ -56,14 +56,17 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
 - [ ] W2 **Visible metaorders on HL (library N10, Tóth et al.)**: from ≈ 11-26 (2 weeks of W1 `big` data): persistent same-side net
   taking by one address → next 4h/24h return, per coin, volume-scaled; descriptive IC first (kill: |IC| < 0.02 or below costs), then a
   pre-registered ≤ 6-config walk-forward only if it survives. Also plain HL taker-flow imbalance (flow@bn's rule) on HL prices.
-- [ ] P2 **InSilico second pass** (owner 2026-11-12: the first pass tested one literal form per rule). Interactive, on the laptop (the
-  chat archive is only there): `prompts/insilico_pass2.md`. Think-through per rule, ≥ 3 formulations, explore on 2021–23 / 10 coins,
-  confirm on 2024–26 / unseen coins; profile rules R14–R17 (the author's main topic) were never tested. Server sessions may take the
-  parts that need no archive (R23 timing tilt = E2, R28, signals as filters for the existing books).
+- [ ] FF1 **friday_follow → candidate?** (findings 2026-11-15: WF bn_1h 1.06 cut-averaged, worst 0.78, corr BTC −0.03; the only second-pass
+  survivor with a book). Before any lifecycle change: (a) hourly Binance klines for the survivorship-free top-100 (data.bn_all_symbols; ≈ 3 GB,
+  nightly-job style) and the same pre-registered grid (`"cuts": [12, 15, 17, 20]`) on it; on the hand-picked 82 it may be survivor luck: at the
+  UTC-day cut the full top-100 shows +46 bp per event (t 1.0–1.5) against +37 / +88 on the 82. (b) The paper engine decides on daily/4h bars:
+  this book needs hourly decisions on Friday 16:00–21:00 UTC (check paper.compute_targets). (c) If (a) holds at OOS > 0.8 and worst > 0:
+  candidate `friday_follow@bn` + shadow book; one trade a week, so live evidence is slow (≈ 50 events a year).
 - [ ] A1 (11-15: xsrev audited, DEAD holds (4 forms, diagnosed); lowvol → OPEN, see LV1. Next: funding_contra, tsmom long-only) **Dead-list audit** (design.md §4 2026-11-12): Sunday retro, two DEAD entries a week, oldest first: xsrev, lowvol,
   funding_contra, tsmom long-only, carry (HL), carry_trend, resrev, T9 maker execution, L1 hourly lead-lag, minute-bar event study.
   Relabel to OPEN (one form failed) where fewer than three formulations were tested or no reason is diagnosed; list untried forms here.
-- [ ] E1 **lshock (liquidation fade) follow-ups** (findings: OPEN, tail-event; the only InSilico rule not dead). In this order:
+- [ ] E1 **lshock (liquidation fade) follow-ups** (findings: OPEN, tail-event). 2026-11-15: use z=8, not 6 (73 unseen coins: +91 bp, every year
+  positive; the open-interest split and coarser bars are dead ends; (b) is done and failed the day-level bar). In this order:
   (a) LIVE evidence: a 1-minute event shadow book (Binance 30 coins; later HL from kripto/flow.py minute bars) run by the always-on
   watcher, frozen config z=6, m=5, e=1.0, long, $500 per trade, ≤ 2 open. Fills and venue behaviour on cascade days are the open question
   and only live paper can show them (≈ 130 trades/yr, 2–4 cascade days/yr: slow evidence, so start early). (b) ONE pre-registered test of
@@ -75,7 +78,9 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
 - [ ] TSZ-HL Trade-size buckets on Hyperliquid (kripto/flow.py `tsz`, per taker address, since 2026-11-12; non-backfillable). After ≥ 8
   weeks (≈ 2027-01-07): R1/R2 event study natively on HL, where one address = one order. Low prior after the Binance result; the data is
   also the input for W2 (large takers). Check at every review that `tsz` is non-empty.
-- [ ] R28 Unit-price factor (insilico_rules.md R28): cross-sectional, long the lowest-unit-price coins, bnall 1d, ≤ 6 configs. Cheap, low prior.
+- [ ] W3 Sunday-move fade (findings 2026-11-15): fading the Sunday 12:00→18:00 New York move for 24 h made +20 bp (2020–23) and +105 bp
+  (2024–26, t 2.6) across 82 coins; not pre-registered. One pre-registered confirmation on coins outside the 82 (needs FF1's hourly data).
+- [ ] D1 One-voiced buying at a 1-day high (+6 bp / 1 h held-out) as an entry-timing feature for `flow` / breakouts: low value, only with TSZ-HL.
 - [ ] LQ1 Binance liquidation prints: public websocket `!forceOrder@arr` (read-only, HARD RULE 1 allows it) → data/bn/liq, same pattern as
   kripto/flow.py. Needed to tell a liquidation cascade from an ordinary dump (E1b, T7, insilico R12). Non-backfillable.
 - [ ] R3/R7 Range ("rotation") bars with trade count and size-bucket delta: second aggTrades pass (scripts/aggtrades.py keeps 5-min bars
@@ -133,6 +138,9 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
 - [ ] T8 Regime filter: trend/carry vs BTC vol regime or funding level (≤ 2 regime params; beware overfitting).
 
 ## Done
+- [x] P2 InSilico second pass (2026-11-15, research/insilico_pass2.md): ~30 formulations, 9 confirmation tests, 4 walk-forwards. Profile levels,
+  trade-size capitulation (Binance), mousetrap, range retest, unit price, US-session momentum, spike-high short: DEAD with reasons.
+  friday_follow OPEN → FF1; lshock OPEN → E1; R28 removed from the backlog (dead).
 - [x] InSilico batch (2026-11-11/12, research/insilico_rules.md): weekend_revert DEAD, range_retest DEAD before costs, mousetrap DEAD before
   costs, tsize_capit DEAD (2021 only), lshock OPEN (replicated per trade on 20 unseen coins, 3 crash days = 72% of P&L) → E1.
 - [x] H4 → blend_nested HL OOS 1.87, bnall 1.16 (DSR 0.63): blend is not hindsight; candidate + shadow (2026-11-10).
