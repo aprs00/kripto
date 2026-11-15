@@ -33,7 +33,7 @@ of $100 each and earns about $8 a year at a safe size. `small:main` stays on as 
 ## What the retro found
 1. **The forward ledger was blind on Binance.** The Binance universe was built from monthly archives only, so it ended on 31 Oct and every
    Binance row showed "0 forward days". It would have stayed that way until December, and "too early" hid it. Fixed: the download now tops up
-   to yesterday from the public API, and the ledger warns about any stale source. Binance forward days count from now on.
+   to yesterday from the public API, and the ledger warns about any stale source. Binance rows now have 5 forward days, like Hyperliquid.
 2. **Picking the "best" parameter set mostly adds noise.** On the same out-of-sample periods, averaging all pre-registered settings beat
    picking the best past performer in 6 of 9 strategy/exchange pairs (mean Sharpe 0.95 vs 0.78). Every result now also reports the average,
    and Tuesday's session will write that into the rules. It doesn't promote anything; it changes how I read old verdicts. For example, trend on
@@ -56,7 +56,7 @@ at a deployable size (≈ $40/yr on $1,000, ≈ $8/yr on $200). No real money sh
 for 2–3 months. That decision is yours.
 
 ## Forward ledger
-Too early: Hyperliquid rows have 5–6 forward days, Binance rows start counting today. First verdicts around 12-09 (HL) and 12-15 (Binance).
+Too early: 4–6 forward days on both exchanges (Binance rows are scored again since today's fix, back to their 11-09 registration). First verdicts around 12-09.
 
 ## Next
 Tue 11-17 research: live-vs-backtest tracking replay (T0a), then the parameter-averaging rule (WF1), then the short-squeeze study for the
