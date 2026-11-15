@@ -220,7 +220,7 @@ WF OOS −0.46 / 6.2y, grid med −0.43, 0/6 >0, worst −0.42. Negative BEFORE 
 the year the author wrote it, was positive (+20–56%). Price touches Friday's level by Monday's close in just 42% of ≥1% gaps. Since 2023
 BTC weekend moves CONTINUE into Monday (fade −88 bp/trade, t −3.4, n=128; ETH −10, n.s.): seen after the fact on one coin, not a strategy.
 
-### range_retest: bid the old range high after a breakout, target one average candle (InSilico R19, bnm 1m, 10 coins, 2026-11-11) → OPEN (one form failed, before costs; second pass)
+### range_retest: bid the old range high after a breakout, target one average candle (InSilico R19, bnm 1m, 10 coins, 2026-11-11) → DEAD (three forms: trade-through fills below; the touch itself is followed by ±1 bp; at profile levels real = placebo, second pass)
 WF OOS −34, 0/8 >0. 91,782 trades: 57.5% winners, gross −1.9 bp, cost 5.9 bp, net −7.8 bp per trade, the same in both eras and all coins.
 84% of breakouts do come back to the level, but the candle after the touch closes ±1 bp from it and reaches +1 ATR only 23–26% of the
 time. With trade-through fills the bid is hit when price is going through. A touch-fill version would be unverifiable on paper.
@@ -278,7 +278,9 @@ low, with and without the size split) that is three formulations; reason: reclai
 Dose-response on 2021–23 is monotonic (z=4 +6 bp, 5 +28, 6 +70, 8 +150, 10 +194 net per trade; short side negative; half engulf ≈ 0): what
 forced selling predicts. But held-out, z=8: original coins 2024–26 +219 bp of which −3 bp without the three best days; 20 unseen coins +188 bp,
 +30 without them, days with 1–2 triggers −6 bp. Open-interest split fails (5-min OI too coarse, missing in the wildest minutes). The pattern
-exists only on 1-minute bars (5-min: 21 trades, negative). Since 2024 only market-wide cascades pay. See the line on 52 unseen coins below.
+exists only on 1-minute bars (5-min: 21 trades, negative). **Pre-registered test on 53 unseen coins, z=8: +44.8 bp net (n=387), both periods
+and 1–2-trigger days positive, but t on daily sums 1.57 → NOT confirmed.** All 73 never-selected coins, z=8: +91 bp (n=571, 181 days), every year
+positive, 64% of trade-days profitable, t 1.9 on daily sums / 2.4 with one vote per day; three days = 73% of P&L, the rest +27 bp. → E1 (live book, z=8).
 
 ### spike_high_short: short a new 20-day high made on a volume spike (InSilico R8, bnall + hl 1d, 2026-11-15) → DEAD as a trade (median effect real)
 Event study: such coins lag the top-100 by 170 bp (2020–23, t −3.1) and 374 bp (2024–26, t −7.0) over 10 days in log terms; low-volume highs

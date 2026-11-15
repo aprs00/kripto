@@ -225,3 +225,30 @@ bars were still downloading) and E (Bybit; download was at ~400 of 1,188 days). 
   The profile LEVELS fail in every sample. Verdicts to write next session: R14-R17 as mechanical level rules = three formulations
   failed (magnet, first-touch reaction, 80% rule), reason diagnosed (any level a move reaches reacts the same); R3/R1 on Binance =
   five formulations, one-voiced flow continues.
+
+---
+
+# Final results of the second pass (2026-11-15, all nine confirmation tests and four walk-forwards done)
+
+| test (batch 2026-11-15-insilico-pass2.json) | result on held-out data | outcome |
+|---|---|---|
+| A liquidation fade, z=8, 53 unseen coins | +44.8 bp net per trade (n=387), both periods and single-trigger days positive; t on daily sums 1.57 | not confirmed (needs > 2). All 73 never-selected coins: +91 bp, every year positive, one-vote-per-day t 2.4; 3 days = 73% of P&L |
+| B US-session momentum | −6 bp (original coins 2024–26), +26 / +71 bp (unseen); 2025–26 negative everywhere | not confirmed |
+| C bounce after a single-print fill | real minus placebo +4.4 / +5.1 / +3.8 bp | not confirmed at the pre-set size; below costs |
+| D one-voiced buying at a 1-day high | +6.4 bp over 1 h vs −0.9 (t 4.7) | real, below costs |
+| E trade-size capitulation on Bybit inverse 2019–22 | fires 3% of days; +96 bp vs +23 over 3 d (t 0.7); nothing before the author's posts | no significant excess |
+| E2 the same, 2023-01..2025-08 (out of era) | +134 bp vs +62 over 3 d (diff t 1.6); 1 d and 5 d excess also positive | not confirmed (needs t > 2); pooled 2019–2025: excess +77 bp, t 1.6, n=92 |
+| F volume spike at a new high / low-volume high | spike: −374 bp over 10 d (t −7.0); low volume: −8 bp | spike half confirmed, low-volume half not |
+| G cheap-coin bias | −52 bp/week (t −1.3); dearest fifth +149 | not confirmed, reversed |
+| H Friday's move continues to Saturday | +104 bp per event (t 2.7) | confirmed |
+| I fade low-volume 4-sigma moves | +3.6 bp (t 0.1) | not confirmed |
+
+Walk-forwards (through kripto.research): `spike_high_short` bnall −0.44 (0/8), hl −0.26 (0/8): the event-study effect is a median effect in log
+returns; simple-return mean ≈ 0 and shorts pay funding. `friday_follow` bn_1h 1.21 (8/8, worst 1.02); with the clock time as four tranches
+1.06 (4/4, worst 0.78). Shorter bars (owner's request): volume-at-extremes on 1 h / 15 min / 5 min has the same shape as daily (median fades,
+mean ≈ 0); the liquidation fade does not exist on 5-minute or coarser bars; the Friday effect is strongest at the 24 h horizon.
+
+What stands after two passes: (1) `friday_follow` (found as the opposite of the weekend rule), pending a survivorship-free hourly universe;
+(2) the liquidation fade as a real, tail-heavy 1-minute effect, to be settled by a live paper book; (3) nothing else. Verdicts: research/findings.md.
+Not covered: range bars (R3/R7), order-book rules (R11), profile rules on thin Hyperliquid coins (no minute history yet).
+
