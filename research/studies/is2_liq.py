@@ -144,8 +144,52 @@ def table(t: pd.DataFrame, title: str):
         print("  by year (n, net bp):", {int(y): (len(g), round(float(g.net.mean() * 1e4), 1)) for y, g in f.groupby(f.time.dt.year)})
 
 
+NEW52 = ("EOS XTZ ALGO THETA ICP CRV SNX COMP MKR LDO RUNE DYDX GALA CHZ ENJ 1INCH SUSHI YFI ZEC XMR KAVA ZIL EGLD HBAR VET GRT FLOW NEO "
+         "WAVES DASH IOTA ONE KSM CELO RSR BAL ALPHA LRC STORJ SKL OCEAN ANKR BAND HYPE TIA SEI WLD 1000PEPE WIF ENA JUP TAO ORDI").split()
+CONF = {"new52": (NEW52, "2021-01-01", "2026-10-31"), "rep20": (REP, "2021-01-01", "2026-10-31"),
+        "orig10_late": (data.MINUTE_COINS, "2024-01-01", "2026-10-31")}
+
+
+def confirm_a(which: str):
+    """Pre-registered test A (research/batches/2026-11-15-insilico-pass2.json): frozen lshock configs through
+    research.evaluate (config lines tagged "confirm"), blocks of 10 coins, pooled trade statistics."""
+    from kripto.research import evaluate
+    coins, start, end = CONF[which]
+    coins = [c for c in coins if (data.DATA / "bn" / "klines_1m" / f"{c}USDT.parquet").exists()]
+    print(f"== A {which}: {len(coins)} coins {start}..{end}")
+    for z in (8.0, 6.0):
+        parts = []
+        for i in range(0, len(coins), 10):
+            P = data.load_bn_minute_panel(coins[i:i + 10], start=start)
+            P = {k: v[v.index <= end + " 23:59"] for k, v in P.items()}
+            res, _ = evaluate("lshock", P, {"z": z, "m": 5, "e": 1.0}, f"bnm_{which}_1m", tag="confirm")
+            if len(res.trades):
+                parts.append(res.trades.assign(coin=[P["close"].columns[j] for j in res.trades.coin]))
+            del P
+        t = pd.concat(parts)
+        t = t.assign(net=t.gross - t.cost, day=t.time.dt.floor("D"))
+        t["nd"] = t.groupby("day").net.transform("size")
+        d = t.groupby("day").net.sum()
+        top = d.sort_values(ascending=False).head(3)
+        rest = t[~t.day.isin(top.index)]
+        print(f" z={z:g}: n={len(t)} on {t.coin.nunique()} coins, {t.day.nunique()} days | win {float((t.net > 0).mean()):.1%} | net {t.net.mean() * 1e4:+.1f} bp "
+              f"(median {t.net.median() * 1e4:+.1f}) | t/trade {tstat(t.net):+.2f} | t on daily sums {tstat(d):+.2f}")
+        for nm, g in (("2021-23", t[t.time < "2024-01-01"]), ("2024-26", t[t.time >= "2024-01-01"])):
+            if len(g):
+                print(f"    {nm}: n={len(g)} net {g.net.mean() * 1e4:+.1f} bp, t on daily sums {tday(g.net, g.day):+.2f}")
+        print(f"    without the 3 best days ({[str(x.date()) for x in top.index]} = {top.sum() / d.sum():.0%} of P&L): net {rest.net.mean() * 1e4:+.1f} bp, "
+              f"t on daily sums {tday(rest.net, rest.day):+.2f}")
+        g = t[t.nd <= 2]
+        print(f"    days with 1-2 triggers: n={len(g)} net {g.net.mean() * 1e4:+.1f} bp (t/day {tday(g.net, g.day):+.2f}) | days with 5+: n={int((t.nd >= 5).sum())} net {t[t.nd >= 5].net.mean() * 1e4:+.1f} bp")
+        print("    by year (n, net bp):", {int(y): (len(g), round(float(g.net.mean() * 1e4))) for y, g in t.groupby(t.time.dt.year)})
+        print(f"    coins with positive mean: {int((t.groupby('coin').net.mean() > 0).sum())}/{t.coin.nunique()}; stopped out {float((t.gross < -1e-9).mean()):.0%}")
+
+
 if __name__ == "__main__":
     cmd = sys.argv[1]
+    if cmd == "confirmA":
+        confirm_a(sys.argv[2])
+        sys.exit()
     if cmd == "download":
         download(sys.argv[2] if len(sys.argv) > 2 else "explore")
     else:
