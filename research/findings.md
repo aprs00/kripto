@@ -63,6 +63,10 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
   crash days were 72% of the P&L. For any event strategy quote the day-clustered t, the share of the top 3 days and the result without them.
 * **A conservative fill model decides passive strategies (2026-11-11, range_retest).** A resting bid that needs a 1 bp trade-through is
   filled exactly when price keeps going: 57.5% winners and still −1.9 bp per trade before fees. "Bounces most of the time" ≠ profitable.
+* **Picking the in-sample best config mostly adds noise (2026-11-15, research/studies/wf_selection.py).** On the same folds the equal-weight
+  grid average beat the walk-forward pick in 6/9 strategy×venue pairs (mean OOS SR 0.95 vs 0.78; tsmom HL 0.53 vs 0.18, xsmom HL 0.47 vs −0.02).
+  So a low pick-best OOS with a healthy grid median (tsmom, xsmom HL) is weak evidence against the IDEA, and a pick that beats its grid average
+  (flow bnall 1.43 vs 1.25) is partly luck. Every result now carries `oos_grid_avg`: quote it next to the OOS Sharpe (backlog WF1).
 * **DEAD on HL ≠ dead forever.** HL history grows every day. Re-test DEAD ideas that died on HL alone (not on BN
   too) once HL OOS history has grown by ≥ 6 months, as a pre-registered re-check (see backlog T0b).
 
@@ -121,12 +125,16 @@ until H4 says otherwise. Shadow books on both venues (blend, blend@bn).
 The pre-v2 "bnall 1.37, DSR 0.87" was one lucky weekday (start days 0.26–1.46, mean 0.66 for lb14 k5 weekly). On HL the single
 start days still span 0.22–0.90. With $1,000 the broad xsmom is executable and stronger, so xsmom_k has lost its reason to exist
 except as the blend's momentum leg.
-### xsrev: short-term cross-sectional reversal (2026-11-08, re-run 11-09) → DEAD
-HL OOS −2.66, BN −1.81; 0/6 >0 on both. Turnover makes fees dominate.
+### xsrev: short-term cross-sectional reversal (2026-11-08, re-run 11-09) → DEAD (audited 2026-11-15: holds)
+HL OOS −2.66, BN −1.81; 0/6 >0 on both. Turnover makes fees dominate. Audit: four materially different forms failed (rank reversal 1–7 d;
+thresholded BTC-residual reversion = resrev; hourly x-sec reversal = L1; minute extreme-move fades) and the reason is diagnosed: daily residual
+moves CONTINUE (price-only SR −0.72), intraday reversal is real (t ≈ 8) but 2–5 bp vs ≥ 12 bp round trip. Untried, low prior: bnall (T10).
 
-### lowvol: betting against volatility, beta-hedged (2026-11-08, re-run 11-09) → DEAD
+### lowvol: betting against volatility, beta-hedged (2026-11-08, re-run 11-09) → OPEN (one form failed; audited 2026-11-15, was DEAD)
 HL −0.24 (1/6 >0); BN OOS 0.44 but grid med −0.01 (3/6 >0). Not robust. Note 2026-11-10: under harness v2 (tranches, band 0.01) the
 DEFAULT config is HL full-sample 0.90 (bnall 0.22) and H4's selection rule picks it as an HL blend leg; no new WF run, verdict unchanged.
+Audit 2026-11-15: ONE form (total-vol rank, beta-hedged, HL + survivor-biased BN-82 4h) and no diagnosis of why it failed; H4 keeps
+picking it on HL. Untried forms → backlog LV1 (bnall, idiosyncratic vol, high-vol exclusion as a filter for the x-sec books' shorts = R1).
 
 ### funding_contra: fade funding spikes vs own history (2026-11-08, re-run 11-09) → DEAD
 HL −0.81 (0/8 >0); BN −0.42 (med 0.15). Not robust.

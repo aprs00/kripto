@@ -1,102 +1,64 @@
-HEALTH: OK — 08:25 review 11-14: trader hourly, both venues, watcher, both collectors (errors 0), nightly data job fine; disk 67%. One real loss event: AKE short squeeze (+370% in a day) hit the Binance momentum books.
+HEALTH: OK — 11-15 retro: trader hourly on both venues, live watcher, both collectors (errors 0), data fresh; disk 67%. Fixed today: the forward ledger could not see Binance (data stopped at 10-31).
 
-_Updated 2026-11-14 08:40 UTC (daily review; books refreshed; content below from the 11-12 research session)._
+_Updated 2026-11-15 ~07:45 UTC (Sunday retrospective)._
 
-## Interactive session 11-11/12: one trader's public rules, tested once each (nothing passed; a second, wider pass is planned)
-You gave me a chat archive of a discretionary order-flow trader (BitMEX/Bybit, 2020–22). I turned it into 32 testable rules
-(research/insilico_rules.md), fixed five tests in writing before looking at any result, and ran them on Binance data with real costs.
-Books and candidates are unchanged: **none of this is traded**. Each rule was tested in ONE literal form; that is not enough to call an idea dead (new rule, design.md §4), so a second pass with several formulations per idea follows (prompts/insilico_pass2.md).
+## This week in one paragraph
+I built the machinery: two exchanges, a two-exchange funding book, live recording of Hyperliquid order flow, an intraday order engine,
+$200 twins of every book, and a ledger that scores frozen choices on days after they were made. I also found three foundation errors:
+the cost model is about 1.8× too expensive, the funding trade assumed one account, and results depended on the start weekday.
+**Edge evidence did not move.** Every candidate passes the out-of-sample and stress tests on Hyperliquid and fails only the
+multiple-testing check (it needs 0.9; best so far 0.88). What can move that now is time: live tracking, the forward ledger and the new
+Hyperliquid data. Running more backtests on the same history can't.
 
-| rule | result (out-of-sample Sharpe, after costs) | verdict |
-|---|---|---|
-| Buy after a day when every trade-size group sold | 0.18 (just holding the coins: 0.96). Worked in 2021, +0.24 since 2023 | failed as tested |
-| Fade the weekend move back to Friday's price | −0.46, 0 of 6 settings positive, loses before costs | failed as tested |
-| Bid the old range high after a breakout (maker) | −34; 57% winners but −1.9 bp per trade before fees | failed as tested |
-| Mousetrap: failed break, small sold / large bought | −2.9; loses before costs, the size condition adds nothing | failed as tested |
-| Liquidation fade on 1-minute bars | 0.64; +78 bp per trade on 30 coins incl. 20 never used for fitting | open, not a candidate |
-
-The liquidation fade is the only one left standing, and it is fragile: three market-wide crash days produced 72% of its profit, and
-those are the minutes when real fills are worst. Next step is a live 1-minute paper book for it (backlog E1), not a backtest.
-At $200 the intraday tests are identical in % (one $100 trade at a time is above every minimum); none is worth trading at either size.
-New data that cannot be backfilled: Hyperliquid trade sizes per taker are recorded from today (kripto/flow.py).
-
-## What changed today (the "run everything now" list from 11-10 is done)
-1. **The main books now trade.** Until today `main` and `main_bn` sat flat because nothing had passed the statistical gate.
-   Since 06:45 each trades my best current estimate, chosen by the fixed rule written on 11-10:
-   * **Hyperliquid main ($1,000):** the rule-picked blend (`blend_nested`: listing shorts + trend + low volatility).
-   * **Binance main ($1,000):** one third each of order flow, broad momentum and the blend.
-
-   This is a **paper best estimate, not a recommendation to fund**. The full gate (and ≥ 60 days of tracking) still decides that.
-2. **The funding trade trades on paper.** A new book holds each coin short on Hyperliquid and long on Binance (or the reverse)
-   to collect the funding difference. It opened 8 pairs this morning, all short Hyperliquid.
-3. **Hyperliquid order flow is now recorded.** One public live stream records who bought and who sold in the top 60 coins, every
-   minute. This data can't be downloaded later, so recording starts now. I checked the buy/sell label against the order book
-   (163 of 163 agree). The watchdog raises an alert if the stream goes silent for 5 minutes.
-   It also records, by address, every trader who buys or sells more than $20k of a coin in a minute. Hyperliquid is one of the
-   few exchanges that publishes this, and research says big orders are split over hours, so an order in progress may be visible
-   (first test once there are 2 weeks of data, about 11-26).
-
-## Important finding: the funding trade is smaller than it looked
-The backtest showed +8.4%/yr with a worst drawdown of −1.7%. That assumed both legs sit in **one** account. With real money they
-sit in two (one per exchange), and each account carries only one side of the trade. I simulated two separate accounts over
-2024–2026 at their worst intraday prices:
-* **At the backtest size, one account would have been wiped out on 10 Oct 2025** (the market-wide liquidation cascade:
-  Binance long legs fell 45–81% within the day).
-* **At half that size nothing is liquidated**, even with money moved between exchanges only weekly. One day still showed
-  −70% inside one account. The other account gained the same.
-
-So the deployable version earns **about 4–5% a year before costs, roughly $40 a year on $1,000**. The paper book keeps the larger
-size so the signal stays measurable. Not modelled: an exchange force-closing the winning leg in a crash (auto-deleveraging).
-
-## New-listing study (why the listing-shorts leg works)
-New perps lose against BTC steadily for about 4 months, on both exchanges and in every year since 2020.
-* Median loss against BTC after 60 days: −49% on Hyperliquid (129 listings), −34% on Binance (794 listings).
-* 76–84% of listings are down after 60 days.
-* The decline is steady, not concentrated in the first days, so the 60-day holding period is not a lucky pick.
-* The risk sits in a few short squeezes: the worst listing cost a short 162% in funding.
-
-## Books (4–6 days old: all of this is noise, live Sharpe error bars are about ±4)
+## Books after 6 days (all noise: a live Sharpe after a week has an error bar of about ±4)
 | book | $1,000 / $2,000 size | $200 twin |
 |---|---|---|
-| main (HL, blend_nested) | $994.94 (−0.5%) | $196.71 (−1.7%): only 1 position fits |
-| main_bn (flow + momentum + blend) | $952.64 (−4.7%) | $200.00: almost nothing fits (2 names) |
-| funding pair book (shadow, $2,000) | $2,010.59 (+0.5%; funding +$11.12, fees $2.29) | $201.31 (+0.7%) |
-| shadow tsmom / tsmom@bn | +5.8% / +5.8% | +3.7% / +2.6% |
-| shadow blend_nested / blend / blend@bn | +0.3% / +1.9% / −6.7% | −1.8% / +0.6% / +0.8% |
-| shadow flow@bn / xsmom@bn / xsmom_k / xsmom_k@bn | −1.1% / −13.9% / −1.3% / −11.8% | −2.5% / −10.8% / −2.4% / −2.8% |
-| shadow listing_short | flat: no listing in the last 60 days passes the $1M/day volume filter | flat |
+| main (HL, blend_nested) | $1,001 (+0.1%) | $195 (−2.4%): only 1 position fits |
+| main_bn (flow + momentum + blend) | $956 (−4.4%) | $201 (+0.3%): 2 positions fit |
+| funding pair book ($2,000) | $2,008 (+0.4%; funding +$12.1, fees $2.6) | $201.8 (+0.9%) |
+| tsmom / tsmom@bn | +8.8% / +8.8% (different coins, both short the majors) | +5.5% / +4.6% |
+| blend / blend_nested / blend@bn | +2.9% / +1.0% / −5.5% | +0.7% / −2.5% / +1.6% |
+| flow@bn / xsmom@bn / xsmom_k / xsmom_k@bn | −1.9% / −14.3% / −2.3% / −12.1% | −2.7% / −11.3% / −3.1% / −3.2% |
+| listing_short | flat (no recent listing passes the volume filter) | flat |
 
-**What happened on 11-13:** AKE, a tiny Binance coin (≈ $0.0026), rose about 4.7× within the day on huge volume (real, checked
-against the price bars; not a data or fill error). The Binance momentum-type books were short it as a loser: xsmom@bn lost ≈ 9% in
-a day, xsmom_k@bn, blend@bn and main_bn lost less. They covered the short at the next daily rebalance (0.4–1 bp slippage). This is the
-known weak point of shorting small losers (a few squeezes cost more than the average short earns). The backtests contain such days,
-so one event is no verdict, but I added a research item (R1) to measure how much single-name squeezes cost in the backtest and whether
-a liquidity floor or a per-name short cap removes that loss without removing the edge. Worst drawdown of any open book: −14% (xsmom@bn);
-the kill switch is at −25%. Live slippage over the last day: 0.15–2.1 bp per fill on average, in line with the cost check of 11-10.
+The Binance momentum books' losses are mostly one event: the AKE short squeeze on 11-13 (+370% in a day, verified as real). Worst book
+drawdown −14%; the kill switch is at −25%. Live costs per fill stay at 0.2–2 bp, in line with the 11-10 cost check.
 
-**$200 vs $1,000:** at $200 the main books can barely hold the mix, so a $200 account would need its own concentrated choice
-(listing shorts, trend or the funding pair, which keep their edge at $200). I'll decide that at Sunday's review, with a week of
-the $200 books in hand.
+## $200 decision (made today)
+At $200 the main books can't hold their mix: most weights fall below the $10/$5 minimum order. **If you fund $200, the book to watch
+is `small:blend`** (HL: trend + concentrated momentum + listing shorts). It holds 10 positions at $200. Its full-history Sharpe at the $200 size
+is 1.81, the highest among the HL candidates that fit in one account. The funding pair book also works at $200 but needs two exchange accounts
+of $100 each and earns about $8 a year at a safe size. `small:main` stays on as the record of why the mix doesn't fit.
+
+## What the retro found
+1. **The forward ledger was blind on Binance.** The Binance universe was built from monthly archives only, so it ended on 31 Oct and every
+   Binance row showed "0 forward days". It would have stayed that way until December, and "too early" hid it. Fixed: the download now tops up
+   to yesterday from the public API, and the ledger warns about any stale source. Binance forward days count from now on.
+2. **Picking the "best" parameter set mostly adds noise.** On the same out-of-sample periods, averaging all pre-registered settings beat
+   picking the best past performer in 6 of 9 strategy/exchange pairs (mean Sharpe 0.95 vs 0.78). Every result now also reports the average,
+   and Tuesday's session will write that into the rules. It doesn't promote anything; it changes how I read old verdicts. For example, trend on
+   Hyperliquid is 0.53 averaged against 0.18 picked.
+3. Old "dead" list audit: short-term reversal really is dead (four different versions failed, reason known). Low-volatility was tested in only
+   one form, so it is back to open, with three untried versions queued.
 
 ## Candidates (walk-forward out-of-sample Sharpe after costs; worst = lowest stress test). None passes the real-money gate.
 | strategy | Hyperliquid | Binance (all perps, 6 y) | worst | missing |
 |---|---|---|---|---|
 | blend, components chosen by rule (HL main) | 1.87 | 1.16 | 1.29 / 0.98 | multiple-testing check (0.63 < 0.9) |
-| funding pair | 1.26 (1.7 y) | n/a | 1.43 | multiple-testing check; deployable only at half size (above) |
-| blend (hand-picked) | 1.61 | 1.30 | 1.15 / 0.99 | multiple-testing check (0.81) |
-| flow (Binance) | n/a | 1.42 | 0.75 | multiple-testing check (0.88) |
-| broad momentum | −0.09 | 1.34 | 1.03 | negative on HL |
-| listing shorts | 0.89 | 0.86 | 1.33 / 0.85 | multiple-testing check |
+| funding pair | 1.26 (1.7 y) | n/a | 1.43 | multiple-testing check; deployable only at half size |
+| blend (hand-picked; the $200 reference) | 1.61 | 1.30 | 1.15 / 0.99 | multiple-testing check (0.81) |
+| flow (Binance) | n/a | 1.42 (settings averaged: 1.25) | 0.75 | multiple-testing check (0.88) |
+| broad momentum | −0.09 (averaged: 0.47) | 1.34 (averaged: 1.43) | 1.03 | weak on HL |
+| listing shorts | 0.89 (averaged: 1.20) | 0.86 (averaged: 0.68) | 1.33 / 0.85 | multiple-testing check |
 
-**Honest expectation if these edges are real:** blend-type books 12–27% a year with 20–30% drawdowns; the funding pair about
-4–5% a year at a deployable size. No real money should go in before the paper books have tracked their backtests for 2–3 months.
-That decision is yours.
+**Honest expectation if these edges are real:** blend-type books 12–27% a year with 20–30% drawdowns; the funding pair about 4–5% a year
+at a deployable size (≈ $40/yr on $1,000, ≈ $8/yr on $200). No real money should go in before the paper books have tracked their backtests
+for 2–3 months. That decision is yours.
 
-## What only time can produce
-Live-vs-backtest tracking check from about 11-16 (needs a week of books). Cost-model re-fit from 11-24 (needs two weeks of fills).
-First reading of the order-flow data from about 11-26. Forward-ledger verdicts from about 12-09 (needs 30 days; today's
-baseline holds 51 frozen configs).
+## Forward ledger
+Too early: Hyperliquid rows have 5–6 forward days, Binance rows start counting today. First verdicts around 12-09 (HL) and 12-15 (Binance).
 
 ## Next
-Sunday 11-15 retro: the weekly review, including the $200 choice. Tue 11-17 research: tracking check (T0a), then listing-short
-follow-ups (funding coverage, a 90/120-day hold). blend_nested component refit is due 2027-01-02 (the watchdog will remind me).
+Tue 11-17 research: live-vs-backtest tracking replay (T0a), then the parameter-averaging rule (WF1), then the short-squeeze study for the
+Binance momentum books (R1, together with the low-volatility filter). Cost-model re-fit from 11-24. First reading of Hyperliquid order-flow
+data around 11-26. blend_nested refit is due 2027-01-02 (the watchdog will remind me).

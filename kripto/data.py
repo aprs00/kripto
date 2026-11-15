@@ -326,6 +326,59 @@ def bn_download_all_daily(symbols: list[str] | None = None, workers: int = 16, l
                 log(f"[bn all] {i+1}/{len(symbols)} {s} klines+{nk} funding+{nf}")
 
 
+def bn_all_recent(client=None, symbols: list[str] | None = None, now_ms: int | None = None, log=print) -> int:
+    """Top up klines_1d_all / funding_all past the last MONTHLY archive with the public fapi (2026-11-15 retro: the monthly
+    archives alone left bnall ending at the previous month-end, so the forward ledger saw 0 Binance days for up to 6 weeks).
+    Only symbols traded in the last 45 days of stored data (live ones); a
+    perp listed after the last archive month is missing until its first monthly file (listing_short forward rows lag). Closed daily bars only. When the month's archive appears,
+    bn_download_all_daily re-reads that month and archive rows replace these (drop_duplicates keep="last").
+    Cost: ≤ 2 requests per live symbol (klines weight 1 + fundingRate), at the client's polite rate. Returns symbols updated."""
+    from .bn import BN
+    client = client or BN(min_interval=1.5)    # fundingRate has a 500/5 min/IP limit on a shared IP
+    now_ms = now_ms or int(time.time() * 1000)
+    kd, fd = DATA / "bn" / "klines_1d_all", DATA / "bn" / "funding_all"
+    files = sorted(kd.glob("*.parquet")) if symbols is None else [kd / f"{s}.parquet" for s in symbols]
+    tmax = {f.stem: int(pd.read_parquet(f, columns=["t"])["t"].max()) for f in files if f.exists()}
+    if not tmax:
+        return 0
+    newest = max(tmax.values())
+    live = [s for s, t in tmax.items() if t >= newest - 45 * DAY_MS_ALL]   # traded within ~the last archive month
+    n = 0
+    for sym in live:
+        try:
+            last = tmax[sym]
+            rows = client.klines(sym, "1d", start_ms=last + DAY_MS_ALL, limit=99) if last + 2 * DAY_MS_ALL <= now_ms else []
+            rows = [r for r in rows if int(r[6]) < now_ms]                  # close time passed: no partial bar
+            if rows:
+                k = pd.DataFrame([[r[i] for i in (0, 1, 2, 3, 4, 5, 7, 10)] for r in rows],
+                                 columns=["t", "o", "h", "l", "c", "v", "qv", "tbqv"]).apply(pd.to_numeric, errors="coerce")
+                k["t"] = k["t"].astype("int64")
+                have = pd.read_parquet(kd / f"{sym}.parquet")
+                d = pd.concat([have, k]).drop_duplicates("t", keep="first").sort_values("t").reset_index(drop=True)
+                tmp = (kd / f"{sym}.parquet").with_suffix(".tmp")
+                d.to_parquet(tmp)
+                tmp.replace(kd / f"{sym}.parquet")
+                n += 1
+            fp = fd / f"{sym}.parquet"
+            fh = pd.read_parquet(fp) if fp.exists() else None
+            if fh is not None and len(fh):
+                fr = client.funding_rate(sym, int(fh["time"].max()) + 1, now_ms)
+                if fr:
+                    f = pd.DataFrame({"time": [int(x["fundingTime"]) for x in fr],
+                                      "fundingRate": [float(x["fundingRate"]) for x in fr]})
+                    d = pd.concat([fh, f]).drop_duplicates("time", keep="first").sort_values("time").reset_index(drop=True)
+                    tmp = fp.with_suffix(".tmp")
+                    d.to_parquet(tmp)
+                    tmp.replace(fp)
+        except Exception as e:                                          # one bad symbol never stops the refresh
+            log(f"[bn recent] {sym}: {e!r}"[:160])
+    log(f"[bn recent] {n}/{len(live)} live symbols extended past the monthly archive")
+    return n
+
+
+DAY_MS_ALL = 86_400_000
+
+
 def load_bn_all_panel(symbols: list[str] | None = None) -> dict[str, pd.DataFrame]:
     """Daily panel over the full (survivorship-free) Binance USDT-perp universe (or only `symbols`)."""
     closes, vols, highs, lows, funds, tbs = {}, {}, {}, {}, {}, {}

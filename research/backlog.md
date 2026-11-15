@@ -6,7 +6,17 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 
 **Priority order (rewritten 2026-11-10 after H4/T9/X1b; research Tue + Thu, ≤ 6 new walk-forward experiments per session):**
 ## Owner instruction 2026-11-10 ("run everything now"): DONE 2026-11-12 06:40 research (M1, X2, W1 live; forward baseline). Journal 2026-11-12.
-**Next priorities (2026-11-12):** 1. T0a tracking (≈ 11-16, all books incl. main + pair) → 2. (X1d done: fspread deployable at gross 1.0) → 3. C1 cost calibration (from 11-24) → 4. W1 data analysis once ≥ 2 weeks (HL taker flow
+**Next priorities (2026-11-15 retro):** 1. T0a live-vs-backtest tracking (Tue 11-17; books have ≥ 6 days) → 2. WF1 selection rule (design.md
+entry; cheap, affects every verdict) → 3. R1 squeeze tail of the BN x-sec books, together with LV1 (c) (one study answers both) → 4. C1 cost
+calibration (from 11-24) → 5. W2/W1 HL flow data (≈ 11-26) → 6. T2b (a)/(c)/(d) → 7. T5b. Forward ledger: Binance rows count from 11-15 (bnall fix).
+- [ ] WF1 (2026-11-15 retro, assumptions row 9) **Walk-forward selection rule.** research/studies/wf_selection.py: the equal-weight grid average beat
+  the in-sample pick in 6/9 pairs (mean OOS SR 0.95 vs 0.78). `oos_grid_avg` is now in every result. Decide in a research session, with a
+  design.md entry whose rationale is general: report both; the gate reads min(pick, grid avg) where the grid is one hypothesis (no mixed signs);
+  consider trading the grid average (or top-3) in shadow books. Must not promote anything in the session that adopts it.
+- [ ] LV1 (2026-11-15 dead-list audit; lowvol relabelled OPEN) untried forms, prior low–medium: (a) bnall daily, survivorship-free (BN-82 drops the
+  delisted high-vol losers that the short leg would have earned on); (b) idiosyncratic (BTC-residual) vol instead of total vol; (c) as a FILTER:
+  drop the top-vol decile from the x-sec books' short side (same question as R1: are the high-vol shorts the squeeze losses?). ≤ 6 configs total.
+**Older priorities (2026-11-12):** 1. T0a tracking (≈ 11-16, all books incl. main + pair) → 2. (X1d done: fspread deployable at gross 1.0) → 3. C1 cost calibration (from 11-24) → 4. W1 data analysis once ≥ 2 weeks (HL taker flow
 vs next-day returns, same rule as flow@bn, ≈ 11-26) → 5. T2b (a)/(c) + longer hold (b showed decay continues to day 120) → 6. T5b.
 - [ ] R1 (added 2026-11-14 review) **single-name short-squeeze tail of the Binance cross-sectional books.** 11-13: AKE +370% in a day
 (0.0026→0.0124, $1.1B 4h volume) cost shadow:xsmom@bn ≈ 9% of the book and dented xsmom_k@bn/blend@bn/main_bn. Measure on bnall:
@@ -50,7 +60,7 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
   chat archive is only there): `prompts/insilico_pass2.md`. Think-through per rule, ≥ 3 formulations, explore on 2021–23 / 10 coins,
   confirm on 2024–26 / unseen coins; profile rules R14–R17 (the author's main topic) were never tested. Server sessions may take the
   parts that need no archive (R23 timing tilt = E2, R28, signals as filters for the existing books).
-- [ ] A1 **Dead-list audit** (design.md §4 2026-11-12): Sunday retro, two DEAD entries a week, oldest first: xsrev, lowvol,
+- [ ] A1 (11-15: xsrev audited, DEAD holds (4 forms, diagnosed); lowvol → OPEN, see LV1. Next: funding_contra, tsmom long-only) **Dead-list audit** (design.md §4 2026-11-12): Sunday retro, two DEAD entries a week, oldest first: xsrev, lowvol,
   funding_contra, tsmom long-only, carry (HL), carry_trend, resrev, T9 maker execution, L1 hourly lead-lag, minute-bar event study.
   Relabel to OPEN (one form failed) where fewer than three formulations were tested or no reason is diagnosed; list untried forms here.
 - [ ] E1 **lshock (liquidation fade) follow-ups** (findings: OPEN, tail-event; the only InSilico rule not dead). In this order:

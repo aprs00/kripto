@@ -46,3 +46,10 @@ López de Prado *Advances in Financial Machine Learning* (backtest overfitting, 
 Exchanges* (market microstructure); Bouchaud et al. *Trades, Quotes and Prices* (book version of the CFM papers);
 Isichenko *Quantitative Portfolio Management*; Kakushadze & Serur *151 Trading Strategies*. Many arXiv/SSRN papers on
 crypto factors, funding and perps are free and legal to read: prefer those.
+
+## Library ROI (retro 2026-11-15)
+Tested ideas from the library: 5 (N1 flow, N4 lead-lag, N5 residual reversion, N8 maker execution, N9 minute rules). Survived: 1, N1 order-flow
+persistence (Bouchaud et al. / Tóth et al.) → flow, the strongest Binance candidate. The academic microstructure sources produced the survivor
+and the next test (N10, W2); the practitioner/course books (Valtos, Tradingriot, Dalton) produced only rules that fail at taker costs (N9).
+Priority when reading: academic microstructure first; course books only as concept sources. Pole (N5 dead) demoted to reference.
+

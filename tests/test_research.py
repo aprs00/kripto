@@ -82,3 +82,24 @@ def test_robustness_reports_the_small_account_when_configured(tmp_path, monkeypa
     risk.write_text(json.dumps({"start_equity": 1000.0}))
     assert research.small_band() is None
     assert "small_acct" not in research.robustness("xsmom", _panel(), {"lookback": 14, "every_days": 1, "top_n": 6}, "t")
+
+
+def _panel(days=900, n=6, seed=1):
+    import numpy as np
+    import pandas as pd
+    rng = np.random.default_rng(seed)
+    idx = pd.date_range("2022-01-01", periods=days, freq="1D", tz="UTC")
+    cols = ["BTC"] + [f"C{i}" for i in range(n - 1)]
+    close = pd.DataFrame(100 * np.exp(np.cumsum(rng.normal(0.001, 0.03, (days, n)), axis=0)), idx, cols)
+    return {"close": close, "volume": pd.DataFrame(1e8, idx, cols), "high": close * 1.01, "low": close * 0.99,
+            "funding": pd.DataFrame(0.0, idx, cols)}
+
+
+def test_walk_forward_grid_average_known_answer(tmp_path, monkeypatch):
+    """One-config grid: the no-selection average IS the walk-forward choice, so both OOS Sharpes agree (2026-11-15)."""
+    monkeypatch.setattr(research, "REG", tmp_path / "registry.jsonl")
+    p = _panel()
+    one = research.walk_forward("tsmom", p, {"top_n": [5]}, "synthetic")
+    assert one["oos_grid_avg"] is not None and abs(one["oos_grid_avg"] - one["oos"]["sharpe"]) < 0.01
+    two = research.walk_forward("tsmom", p, {"top_n": [5], "every_days": [1, 3]}, "synthetic")
+    assert two["oos_grid_avg"] is not None

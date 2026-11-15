@@ -12,7 +12,7 @@ def line(d):
     o = d.get("oos", {})
     return (f"{d['strategy']:15s} {d['dataset']:7s} OOS SR={o.get('sharpe')} cagr={o.get('cagr')} mdd={o.get('max_dd')} "
             f"yrs={o.get('years')} dsr={o.get('dsr')} | grid med={d['grid_median_sharpe']} >0={d['grid_frac_positive']} n={d['n_configs']}"
-            f" | worst={(d.get('robust') or {}).get('worst')}")
+            f" | grid avg OOS={d.get('oos_grid_avg')} | worst={(d.get('robust') or {}).get('worst')}")
 
 
 if __name__ == "__main__":

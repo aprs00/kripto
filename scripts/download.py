@@ -37,4 +37,5 @@ if a.what in ("bn", "all"):
     data.bn_download(data.BN_SYMBOLS, log=log)
 if a.what == "bnall":
     data.bn_download_all_daily(log=log)
+    data.bn_all_recent(log=log)   # past the last monthly archive (fapi, polite)
 log("DONE")

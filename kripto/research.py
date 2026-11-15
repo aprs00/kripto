@@ -171,7 +171,7 @@ def walk_forward(name: str, panel: dict, spec: dict, dataset: str, train_days: i
     ppy = mx.periods_per_year(R.index)
     invested = R.ne(0).any(axis=1)
     t0 = R.index[invested.values.argmax()]
-    folds, oos, chosen = [], [], []
+    folds, oos, chosen, avg = [], [], [], []
     start = t0 + pd.Timedelta(days=train_days)
     while start < R.index[-1]:
         end = start + pd.Timedelta(days=test_days)
@@ -180,6 +180,7 @@ def walk_forward(name: str, panel: dict, spec: dict, dataset: str, train_days: i
         best = int(score.idxmax())
         seg = R.loc[(R.index >= start) & (R.index < end), best]
         oos.append(seg)
+        avg.append(R.loc[(R.index >= start) & (R.index < end)].mean(axis=1))
         chosen.append({"from": str(start.date()), "params": configs[best], "is_sharpe": round(float(score[best]), 2),
                        "oos_sharpe": round(mx.sharpe(seg, ppy), 2) if len(seg) > 10 else None})
         start = end
@@ -190,6 +191,9 @@ def walk_forward(name: str, panel: dict, spec: dict, dataset: str, train_days: i
         "grid_median_sharpe": round(float(grid_df["sharpe"].median()), 3),
         "grid_frac_positive": round(float((grid_df["sharpe"] > 0).mean()), 3),
         "oos": mx.summary(oos_r, n_trials=n_trials("walk_forward") + 1) if len(oos_r) > 30 else {},
+        # no-selection benchmark on the same folds (equal weight over the whole grid; assumptions.md row 9, 2026-11-15):
+        # if picking the in-sample best does not beat this, the pick is noise. Meaningless if the grid mixes opposite signs.
+        "oos_grid_avg": round(mx.sharpe(pd.concat(avg), ppy), 3) if avg and len(pd.concat(avg)) > 30 else None,
         "folds": chosen,
         "grid": grid_df.sort_values("sharpe", ascending=False).head(10).to_dict("records"),
         # stress block for the config the walk-forward would trade today (latest fold's choice)

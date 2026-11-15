@@ -103,3 +103,8 @@ if __name__ == "__main__":
         print(f"{r['strategy']:15s}{r['dataset']:9s}{r['registered'][:16]:17s}{r['days']:6.1f}{r['ret']:+9.2%}"
               f"{str(r['sharpe']):>8s}{str(r['backtest_oos_sharpe']):>8s}")
     print(f"{len(rows)} frozen configs -> {DEST.relative_to(ROOT)}. Under 30 days forward nothing can be concluded.")
+    # a stale source makes "0 forward days" look like "too early" (bnall ended at the archive month-end until 2026-11-15)
+    now = pd.Timestamp.now("UTC")
+    for ds, end in sorted({(r["dataset"], r["data_end"]) for r in rows if r.get("data_end")}):
+        if now - pd.Timestamp(end) > pd.Timedelta(days=3):
+            print(f"WARN stale data: {ds} ends {end[:10]} ({(now - pd.Timestamp(end)).days} d ago); its forward rows are not growing")

@@ -148,7 +148,7 @@ nice -n 19 .venv/bin/python -m scripts.research_run --grids <batch> --datasets h
 .venv/bin/python -m scripts.show_result --today            # one line per result written today; or: show_result <strategy> <dataset>
 .venv/bin/python -m scripts.health                         # HEALTH line from facts (trader, data, collector, disk, agent sessions)
 nice -n 19 .venv/bin/python -m scripts.forward_score       # forward ledger table (weekly; add a dataset name to limit it)
-nice -n 19 .venv/bin/python -m scripts.download bnall      # refresh the full Binance daily universe (before the forward ledger)
+nice -n 19 .venv/bin/python -m scripts.download bnall      # full Binance daily universe: monthly archives + fapi top-up to yesterday (≈ 30 min)
 systemctl --user list-timers ; journalctl --user -u kripto-trader -n 50
 scripts/dash.sh                                            # phone-width dashboard the owner reads over SSH; keep it working
 .venv/bin/python -m scripts.sql "select * from fills order by ts desc limit 20"   # no sqlite3 CLI on server
@@ -320,3 +320,11 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   audit in the Sunday retro (backlog A1), the ledger's verdict vocabulary, `prompts/insilico_pass2.md` for the second pass (P2).
   Lesson: pre-registration protects a test from me, not an idea from a bad test; the choice of WHAT to pre-register deserves more
   thought than the test itself.
+* 2026-11-15 retro: (1) **The forward ledger was blind on Binance.** bnall came only from data.binance.vision monthly archives, so it ended at the
+  previous month-end and all 30 Binance rows had 0 forward days (they would have until December); nobody noticed because "0 days, too early"
+  looks normal in week one. `data.bn_all_recent` now tops it up via the public fapi (tests/test_bn_recent.py); assumptions row 16. Lesson: a
+  number that is legitimately small early on hides a pipeline that will never grow it. Check that each source's last bar is recent (data_end),
+  not just that the tool runs. (2) Assumption row 9 tested: picking the in-sample best adds noise (grid average won 6/9); walk_forward now
+  stores `oos_grid_avg` (known-answer test) and show_result prints it; the gate change is backlog WF1, for a research session. (3) `pgrep -f`
+  / `pkill -f` match their own shell command line: wait on a PID (`while kill -0 $pid`) instead.
+

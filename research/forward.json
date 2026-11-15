@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12T07:03Z",
+ "updated": "2026-11-15T07:06Z",
  "rows": [
   {
    "strategy": "carry",
@@ -481,10 +481,10 @@
    "registered": "2026-11-08 15:55:00+00:00",
    "backtest_oos_sharpe": -0.579,
    "file": "20261108-1555_carry_hl.json",
-   "data_end": "2026-11-12 04:00:00+00:00",
-   "bars": 22,
-   "days": 3.7,
-   "ret": 0.0152,
+   "data_end": "2026-11-15 04:00:00+00:00",
+   "bars": 40,
+   "days": 6.7,
+   "ret": -0.001,
    "sharpe": null
   },
   {
@@ -499,10 +499,10 @@
    "registered": "2026-11-09 06:41:00+00:00",
    "backtest_oos_sharpe": -1.046,
    "file": "20261109-0641_carry_hl.json",
-   "data_end": "2026-11-12 04:00:00+00:00",
-   "bars": 18,
-   "days": 3.0,
-   "ret": 0.0354,
+   "data_end": "2026-11-15 04:00:00+00:00",
+   "bars": 36,
+   "days": 6.0,
+   "ret": 0.0268,
    "sharpe": null
   },
   {
@@ -515,10 +515,10 @@
    "registered": "2026-11-09 06:46:00+00:00",
    "backtest_oos_sharpe": -0.876,
    "file": "20261109-0646_carry_trend_hl.json",
-   "data_end": "2026-11-12 04:00:00+00:00",
-   "bars": 18,
-   "days": 3.0,
-   "ret": -0.0022,
+   "data_end": "2026-11-15 04:00:00+00:00",
+   "bars": 36,
+   "days": 6.0,
+   "ret": -0.0423,
    "sharpe": null
   },
   {
@@ -532,10 +532,10 @@
    "registered": "2026-11-09 06:41:00+00:00",
    "backtest_oos_sharpe": -0.808,
    "file": "20261109-0641_funding_contra_hl.json",
-   "data_end": "2026-11-12 04:00:00+00:00",
-   "bars": 18,
-   "days": 3.0,
-   "ret": 0.0089,
+   "data_end": "2026-11-15 04:00:00+00:00",
+   "bars": 36,
+   "days": 6.0,
+   "ret": 0.0211,
    "sharpe": null
   },
   {
@@ -548,10 +548,10 @@
    "registered": "2026-11-09 06:41:00+00:00",
    "backtest_oos_sharpe": -0.243,
    "file": "20261109-0641_lowvol_hl.json",
-   "data_end": "2026-11-12 04:00:00+00:00",
-   "bars": 18,
-   "days": 3.0,
-   "ret": -0.003,
+   "data_end": "2026-11-15 04:00:00+00:00",
+   "bars": 36,
+   "days": 6.0,
+   "ret": -0.043,
    "sharpe": null
   },
   {
@@ -564,10 +564,10 @@
    "registered": "2026-11-09 19:05:17+00:00",
    "backtest_oos_sharpe": -0.182,
    "file": "20261109-190517_199816_resrev_hl.json",
-   "data_end": "2026-11-12 04:00:00+00:00",
-   "bars": 15,
-   "days": 2.5,
-   "ret": -0.0079,
+   "data_end": "2026-11-15 04:00:00+00:00",
+   "bars": 33,
+   "days": 5.5,
+   "ret": 0.034,
    "sharpe": null
   },
   {
@@ -585,10 +585,10 @@
    "registered": "2026-11-08 15:41:00+00:00",
    "backtest_oos_sharpe": 0.546,
    "file": "20261108-1541_tsmom_hl.json",
-   "data_end": "2026-11-12 04:00:00+00:00",
-   "bars": 22,
-   "days": 3.7,
-   "ret": 0.032,
+   "data_end": "2026-11-15 04:00:00+00:00",
+   "bars": 40,
+   "days": 6.7,
+   "ret": 0.0955,
    "sharpe": null
   },
   {
@@ -608,10 +608,10 @@
    "registered": "2026-11-08 15:43:00+00:00",
    "backtest_oos_sharpe": 0.509,
    "file": "20261108-1543_tsmom_hl.json",
-   "data_end": "2026-11-12 04:00:00+00:00",
-   "bars": 22,
-   "days": 3.7,
-   "ret": 0.0381,
+   "data_end": "2026-11-15 04:00:00+00:00",
+   "bars": 40,
+   "days": 6.7,
+   "ret": 0.107,
    "sharpe": null
   },
   {
@@ -623,10 +623,10 @@
    "registered": "2026-11-08 17:45:00+00:00",
    "backtest_oos_sharpe": 0.617,
    "file": "20261108-1745_tsmom_hl.json",
-   "data_end": "2026-11-12 04:00:00+00:00",
-   "bars": 21,
-   "days": 3.5,
-   "ret": 0.0291,
+   "data_end": "2026-11-15 04:00:00+00:00",
+   "bars": 39,
+   "days": 6.5,
+   "ret": 0.0949,
    "sharpe": null
   },
   {
@@ -645,10 +645,10 @@
    "registered": "2026-11-09 06:40:00+00:00",
    "backtest_oos_sharpe": 0.426,
    "file": "20261109-0640_tsmom_hl.json",
-   "data_end": "2026-11-12 04:00:00+00:00",
-   "bars": 18,
-   "days": 3.0,
-   "ret": 0.0068,
+   "data_end": "2026-11-15 04:00:00+00:00",
+   "bars": 36,
+   "days": 6.0,
+   "ret": 0.0704,
    "sharpe": null
   },
   {
@@ -670,10 +670,10 @@
    "registered": "2026-11-09 06:46:00+00:00",
    "backtest_oos_sharpe": 0.571,
    "file": "20261109-0646_tsmom_hl.json",
-   "data_end": "2026-11-12 04:00:00+00:00",
-   "bars": 18,
-   "days": 3.0,
-   "ret": 0.0093,
+   "data_end": "2026-11-15 04:00:00+00:00",
+   "bars": 36,
+   "days": 6.0,
+   "ret": 0.0764,
    "sharpe": null
   },
   {
@@ -686,10 +686,10 @@
    "registered": "2026-11-08 15:41:00+00:00",
    "backtest_oos_sharpe": 0.708,
    "file": "20261108-1541_xsmom_hl.json",
-   "data_end": "2026-11-12 04:00:00+00:00",
-   "bars": 22,
-   "days": 3.7,
-   "ret": -0.02,
+   "data_end": "2026-11-15 04:00:00+00:00",
+   "bars": 40,
+   "days": 6.7,
+   "ret": 0.0042,
    "sharpe": null
   },
   {
@@ -702,10 +702,10 @@
    "registered": "2026-11-08 17:45:00+00:00",
    "backtest_oos_sharpe": 1.373,
    "file": "20261108-1745_xsmom_hl.json",
-   "data_end": "2026-11-12 04:00:00+00:00",
-   "bars": 21,
-   "days": 3.5,
-   "ret": -0.03,
+   "data_end": "2026-11-15 04:00:00+00:00",
+   "bars": 39,
+   "days": 6.5,
+   "ret": 0.0012,
    "sharpe": null
   },
   {
@@ -718,10 +718,10 @@
    "registered": "2026-11-09 06:40:00+00:00",
    "backtest_oos_sharpe": -2.661,
    "file": "20261109-0640_xsrev_hl.json",
-   "data_end": "2026-11-12 04:00:00+00:00",
-   "bars": 18,
-   "days": 3.0,
-   "ret": 0.026,
+   "data_end": "2026-11-15 04:00:00+00:00",
+   "bars": 36,
+   "days": 6.0,
+   "ret": -0.0085,
    "sharpe": null
   },
   {
@@ -733,10 +733,10 @@
    "registered": "2026-11-09 17:28:18+00:00",
    "backtest_oos_sharpe": 1.566,
    "file": "20261109-172818_2979611_blend_hl_1d.json",
-   "data_end": "2026-11-12 00:00:00+00:00",
-   "bars": 3,
-   "days": 3.0,
-   "ret": -0.0057,
+   "data_end": "2026-11-15 00:00:00+00:00",
+   "bars": 6,
+   "days": 6.0,
+   "ret": 0.0286,
    "sharpe": null
   },
   {
@@ -748,10 +748,10 @@
    "registered": "2026-11-10 06:42:40+00:00",
    "backtest_oos_sharpe": 1.874,
    "file": "20261110-064240_3366397_blend_nested_hl_1d.json",
-   "data_end": "2026-11-12 00:00:00+00:00",
-   "bars": 2,
-   "days": 2.0,
-   "ret": 0.002,
+   "data_end": "2026-11-15 00:00:00+00:00",
+   "bars": 5,
+   "days": 5.0,
+   "ret": 0.0305,
    "sharpe": null
   },
   {
@@ -765,9 +765,9 @@
    "registered": "2026-11-09 06:46:00+00:00",
    "backtest_oos_sharpe": 0.753,
    "file": "20261109-0646_listing_short_hl_1d.json",
-   "data_end": "2026-11-12 00:00:00+00:00",
-   "bars": 3,
-   "days": 3.0,
+   "data_end": "2026-11-15 00:00:00+00:00",
+   "bars": 6,
+   "days": 6.0,
    "ret": 0.0,
    "sharpe": null
   },
@@ -781,10 +781,10 @@
    "registered": "2026-11-09 19:44:33+00:00",
    "backtest_oos_sharpe": -0.592,
    "file": "20261109-194433_317825_resrev_hl_1d.json",
-   "data_end": "2026-11-12 00:00:00+00:00",
-   "bars": 3,
-   "days": 3.0,
-   "ret": 0.0147,
+   "data_end": "2026-11-15 00:00:00+00:00",
+   "bars": 6,
+   "days": 6.0,
+   "ret": 0.0556,
    "sharpe": null
   },
   {
@@ -802,10 +802,10 @@
    "registered": "2026-11-09 23:28:32+00:00",
    "backtest_oos_sharpe": 0.083,
    "file": "20261109-232832_955171_tsmom_hl_1d.json",
-   "data_end": "2026-11-12 00:00:00+00:00",
-   "bars": 3,
-   "days": 3.0,
-   "ret": 0.0131,
+   "data_end": "2026-11-15 00:00:00+00:00",
+   "bars": 6,
+   "days": 6.0,
+   "ret": 0.1002,
    "sharpe": null
   },
   {
@@ -818,10 +818,10 @@
    "registered": "2026-11-09 23:28:33+00:00",
    "backtest_oos_sharpe": -0.086,
    "file": "20261109-232833_955173_xsmom_hl_1d.json",
-   "data_end": "2026-11-12 00:00:00+00:00",
-   "bars": 3,
-   "days": 3.0,
-   "ret": -0.0104,
+   "data_end": "2026-11-15 00:00:00+00:00",
+   "bars": 6,
+   "days": 6.0,
+   "ret": 0.0194,
    "sharpe": null
   },
   {
@@ -835,10 +835,10 @@
    "registered": "2026-11-09 17:28:20+00:00",
    "backtest_oos_sharpe": 0.554,
    "file": "20261109-172820_2979609_xsmom_k_hl_1d.json",
-   "data_end": "2026-11-12 00:00:00+00:00",
-   "bars": 3,
-   "days": 3.0,
-   "ret": -0.0093,
+   "data_end": "2026-11-15 00:00:00+00:00",
+   "bars": 6,
+   "days": 6.0,
+   "ret": -0.0274,
    "sharpe": null
   },
   {
@@ -852,10 +852,10 @@
    "registered": "2026-11-09 23:06:48+00:00",
    "backtest_oos_sharpe": 0.029,
    "file": "20261109-230648_1058070_flow_hlx_1d.json",
-   "data_end": "2026-11-12 00:00:00+00:00",
-   "bars": 3,
-   "days": 3.0,
-   "ret": -0.0088,
+   "data_end": "2026-11-15 00:00:00+00:00",
+   "bars": 6,
+   "days": 6.0,
+   "ret": -0.0231,
    "sharpe": null
   },
   {
