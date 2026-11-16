@@ -1,6 +1,17 @@
-HEALTH: OK — 11-15 08:25 review: trader hourly on both venues, live watcher, both collectors (errors 0), nightly data and the retro succeeded; disk 66%.
+HEALTH: OK — 11-16 08:25 review: fixed a daily crash of the Hyperliquid order-flow recorder (out of memory at midnight, ~1 min of data lost per day since 11-14); trader, live watcher, collectors and nightly data fine; disk 69%.
 
-_Updated 2026-11-15 ~08:30 UTC (daily review; the rest is from the 07:45 Sunday retrospective)._
+_Updated 2026-11-16 ~08:35 UTC (daily review; the sections below the books table are from the 11-15 retro and interactive session)._
+
+## Today's review
+* The order-flow recorder (Hyperliquid trades over the websocket; this data can't be downloaded later) **was killed for using too much memory
+  at 00:00 UTC on each of the last three nights**, while it packed up the previous day's file. It restarted itself in 30 s, so each night about
+  a minute of data was lost and no alarm fired. Fixed: a leaner file reader (a third of the memory) and a higher memory cap. The watchdog now
+  reports any crash of the always-on services, even when they restart on their own. Tonight's midnight is the test.
+* Last night's extra review didn't run (the usage limit was hit). The reading that triggered it (trade-side check disagreeing) was one noisy
+  minute; the check runs at 0.1–0.4% disagreement, which is normal.
+* Books, 08:25: main $1,000.7 (+0.1%) | small:main $194.0 (−3.0%); main_bn $949.0 (−5.1%) | $200.5 (+0.3%); funding pair $2,019.8 (+1.0%,
+  funding +$19.6) | $202.4 (+1.2%); tsmom +8.9% / tsmom@bn +8.7%; small:blend $198.2 (−0.9%); worst drawdown xsmom@bn −14.4% (kill switch −25%).
+  One week of paper P&L is noise.
 
 ## Interactive 11-15: the trader's rules, second and wider pass (you asked for several forms per idea, and shorter timeframes)
 About 30 formulations across the idea families, each explored on 2021–23 and then checked on data it had never seen (2024–26 and up to 73

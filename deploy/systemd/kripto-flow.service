@@ -8,6 +8,6 @@ ExecStart=%h/kripto/.venv/bin/python -m kripto.flow
 Restart=always
 RestartSec=30
 Nice=10
-MemoryMax=300M
+MemoryMax=500M
 [Install]
 WantedBy=default.target

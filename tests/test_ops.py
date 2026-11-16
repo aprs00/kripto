@@ -47,6 +47,12 @@ def test_health_ok_and_each_failure_is_noticed():
     assert level == "WARN" and "blend_nested" in why[0]             # an overdue chore wakes a review
 
 
+def test_service_crash_with_fast_restart_is_noticed():
+    f = _ok(); f["crashes"] = {"kripto-flow": (1, "oom-kill")}
+    level, why = health.assess(f, NOW)
+    assert level == "WARN" and "oom-kill" in why[0]
+
+
 def test_dead_agent_is_an_alert_that_does_not_ask_the_agent_to_fix_itself():
     f = _ok(); f["sessions"] = [(iso(hours=80), "review", 0), (iso(hours=30), "review", 1), (iso(hours=6), "review", 1)]
     level, why = health.assess(f, NOW)

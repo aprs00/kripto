@@ -75,6 +75,18 @@ def gather(root: Path = ROOT, db: Path = DB) -> dict:
             elif line.strip() and not line.startswith("=== "):
                 prev = line.strip()
     f["sessions"].sort()
+    # Always-on services restart themselves in 30 s, faster than any heartbeat check notices: count real crashes instead
+    # (kripto-flow was OOM-killed at every 00:00 compaction 11-14..11-16 and the watchdog never said so).
+    f["crashes"] = {}
+    for unit in ("kripto-flow", "kripto-live"):
+        try:
+            out = subprocess.run(["journalctl", "--user", "-u", unit, "--since", "-2h", "--no-pager", "-o", "cat"],
+                                 capture_output=True, text=True, timeout=20).stdout
+            bad = [l for l in out.splitlines() if "Failed with result" in l]
+            if bad:
+                f["crashes"][unit] = (len(bad), bad[-1].split("Failed with result")[-1].strip(" '."))
+        except Exception:
+            pass
     return f
 
 
@@ -115,6 +127,8 @@ def assess(f: dict, now: datetime) -> tuple[str, list[str]]:
                          "(systemctl --user restart kripto-flow)")
         elif fl.get("side_bad", 0) > max(5, 0.05 * fl.get("side_ok", 0)):
             warn.append(f"flow collector: taker side disagrees with bbo ({fl['side_bad']} vs {fl['side_ok']})")
+    for unit, (n, why) in (f.get("crashes") or {}).items():
+        warn.append(f"{unit} crashed {n}x in 2h ({why}); auto-restarted, data around it is lost")
     c = f.get("collect")
     if c:
         ch = age(parse_ts(c.get("ts")))

@@ -338,3 +338,7 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   read whole): check the LARGEST file's size before choosing workers, not a typical one. (6) I used Bybit's public archive, which HARD RULE 1's
   endpoint list does not name; reported to the owner in STATUS.md. Do not add a venue's data, even historical, without saying so first.
 
+* 2026-11-16 review: kripto-flow was OOM-killed at every 00:00 day compaction for 3 days (pd.read_json on a whole day in a 300 MB unit) and
+  nobody noticed: systemd restarted it in 30 s, under every heartbeat threshold. Fix: pyarrow reader, 500 MB cap, and the watchdog now WARNs on
+  any kripto-flow/kripto-live "Failed with result" in the last 2 h; the review greps those journals too. Lesson: an auto-restarting service hides
+  its crashes from heartbeat checks, so count restarts, not just silence.

@@ -158,7 +158,10 @@ def compact(d=None, today: str | None = None):
     for f in sorted(d.glob("*.jsonl")):
         if f.stem >= today:
             continue
-        df = pd.read_json(f, lines=True)
+        # pyarrow, not pd.read_json: the latter peaked at ~+250 MB on a full day and the 300 MB unit was OOM-killed
+        # at every 00:00 compaction (11-14..11-16); pyarrow uses ~1/3 of that and parses floats exactly.
+        import pyarrow.json as pj
+        df = pj.read_json(f).to_pandas()
         out = d / f"{f.stem}.parquet"
         if out.exists():
             df = pd.concat([pd.read_parquet(out), df])

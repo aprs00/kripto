@@ -6,7 +6,7 @@ scheduled, something is broken: `cat state/health.json` tells you what.
 
 1. `git pull --rebase`. Read STATUS.md. Run `.venv/bin/python -m scripts.health` (the facts), then
    `.venv/bin/python -m kripto.paper status`, check
-   `systemctl --user list-timers`, `systemctl --user --failed`, `journalctl --user -u kripto-trader --since -25h | grep -iE 'error|warn|traceback|failed' | tail -30`,
+   `systemctl --user list-timers`, `systemctl --user --failed`, `journalctl --user -u kripto-trader -u kripto-flow -u kripto-live --since -25h | grep -iE 'error|warn|traceback|failed|oom' | tail -30`,
    and the latest `logs/agent-*` and `logs/agent-failures.log` if present. Check disk space (`df -h ~`).
 2. Health: if STATUS.md's first line was written by the watchdog ("not by Claude"), Claude sessions had been failing:
    find out why from logs/agent-*.log and say so in STATUS.md. Did the trader run every hour? Any ERROR/ALERT events? Is data fresh (last_bar within 8h)?
