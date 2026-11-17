@@ -1,6 +1,14 @@
-HEALTH: OK — 11-17 research: live paper books behave exactly like their backtests (checked book by book); new recorder of Binance liquidations running; trader, watchers and data fine.
+HEALTH: OK — 08:25 review: trader hourly, watchers, flow/liquidation/position collectors and data all fine; the 698-coin Binance history for Thursday's survivorship test finished downloading.
 
-_Updated 2026-11-17 ~07:20 UTC (research session). Detail: journal/2026-11-17.md._
+_Updated 2026-11-17 08:30 UTC (review). Detail: journal/2026-11-17.md._
+
+## Review 08:25 (short)
+* Everything ran: trader every hour (last 08:10), live watcher every 20 s, HL collector errors=0, HL trade-flow and Binance liquidation
+  recorders receiving data (1,286 liquidations since 07:00), nightly data job OK, research session OK. Disk 70%, RAM 4.8 GB free.
+* Survivorship-free hourly Binance data (698 coins, dead ones included) is complete, no download errors: Thursday's Friday-follow test can run.
+* Costs: fills cost 0.5–2 bp vs the model everywhere except the new HL listing XTEN (≈ 20 bp on every book that touched it, even a $27 order,
+  so it is the spread, not size). Same as yesterday's finding: new listings are thinner than modelled. Watching, no change.
+* xsmom@bn is −15.4% (AKE squeeze; kill switch at −25%). The new 5% per-coin cap applies to it from now on.
 
 ## Today in plain words
 1. **Do the paper books do what the backtests say? Yes.** I replayed every test book's backtest over exactly its live days and compared day by day.
@@ -20,7 +28,7 @@ _Updated 2026-11-17 ~07:20 UTC (research session). Detail: journal/2026-11-17.md
 5. **Friday-follow, survivorship check:** downloading hourly data for all 698 Binance coins that were ever in the top 100 (incl. dead ones). The test is
    written down in advance and runs Thursday.
 
-## Books (07:15 UTC; one week of paper P&L is noise, ±4 Sharpe)
+## Books (07:15 UTC, 08:25 within ±0.3%; one week of paper P&L is noise, ±4 Sharpe)
 | book | $1,000 (shadow $2,000) | $200 twin |
 |---|---|---|
 | main (HL, blend_nested) | $991 (−0.9%) | $194 (−3.0%): 1 position fits |
