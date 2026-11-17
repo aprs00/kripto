@@ -179,6 +179,7 @@ def run(store: P.Store, cfg: dict, risk: dict, bn: BN | None = None) -> dict:
 
     panel = live_panel(coins)
     last_bar = str(panel["close"].index[-1])
+    P.record_universe(store, "bn", panel, last_bar)
     strat_w = P.compute_targets(store, entries, panel, last_bar)
 
     depth = {}   # depth snapshots of this run, shared by all books trading the same coin

@@ -126,3 +126,19 @@ def test_failed_session_reason_is_shown():
     f["session_why"] = {f["sessions"][-1][0]: "You've hit your 5-hour limit"}
     level, reasons = health.assess(f, NOW)
     assert any("5-hour limit" in r for r in reasons)
+
+
+def test_silent_liquidation_collector_is_an_alert():
+    f = _ok(); f["liq"] = {"ts": iso(seconds=50), "events_total": 3}
+    assert health.assess(f, NOW) == ("OK", [])
+    f["liq"] = {"ts": iso(minutes=9), "events_total": 3}
+    level, why = health.assess(f, NOW)
+    assert level == "ALERT" and any("liquidation collector silent" in w for w in why)
+
+
+def test_liquidation_stream_without_data_is_a_warning():
+    f = _ok(); f["liq"] = {"ts": iso(seconds=50), "events_total": 0, "up_s": 3 * 3600}
+    level, why = health.assess(f, NOW)
+    assert level == "WARN" and "no liquidation for 2 h" in why[0]
+    f["liq"] = {"ts": iso(seconds=50), "events_total": 900, "last_event": iso(minutes=3), "up_s": 3 * 3600}
+    assert health.assess(f, NOW) == ("OK", [])

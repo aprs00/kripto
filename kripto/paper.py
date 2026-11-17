@@ -49,6 +49,7 @@ create table if not exists events(ts text, level text, msg text);
 create table if not exists meta(k text primary key, v text);
 create table if not exists rebalances(book text, bar text, primary key(book, bar));
 create table if not exists targets(strategy text primary key, bar text, weights text);
+create table if not exists universe(venue text, bar text, coins text, primary key(venue, bar));
 """
 
 
@@ -284,6 +285,13 @@ def rebalance(hl: HL, store: Store, book: str, target_w: pd.Series, marks: dict[
                             (now_iso(), book, c, d, px, mid, fee, slip, reason))
 
 
+def record_universe(store: Store, venue: str, panel: dict, last_bar: str):
+    """The coins the strategies saw at this bar (first run of the bar wins), so scripts/live_vs_backtest.py can replay
+    with the point-in-time universe: Binance's top-volume universe drifts, and a replay on today's list holds coins
+    (e.g. AGT after its pump) that live could not have held then."""
+    store.x("insert or ignore into universe values(?,?,?)", venue, last_bar, json.dumps(sorted(panel["close"].columns)))
+
+
 def compute_targets(store: Store, entries: dict, panel: dict, last_bar: str) -> dict[str, pd.Series]:
     """Latest target weights per non-retired config entry (saved in `targets` for the main-book blend)."""
     strat_w: dict[str, pd.Series] = {}
@@ -392,6 +400,7 @@ def run_once():
     panel = live_panel(coins)
     last_bar = str(panel["close"].index[-1])
     entries = {n: sc for n, sc in cfg.items() if venue_of(sc) == "hl"}
+    record_universe(store, "hl", panel, last_bar)
     strat_w = compute_targets(store, entries, panel, last_bar)
     l2 = {}   # order books fetched in this run, shared by all books trading the same coin (see simulate_fill)
     reb = lambda book, tgt, reason: rebalance(hl, store, book, tgt, marks, sz_dec, reason,
@@ -440,7 +449,8 @@ def collect_status(store: Store) -> str:
     l2_days = len(list((hl / "l2").glob("*.jsonl")))
     flow_days = len(list((hl / "flow").glob("*.parquet"))) + len(list((hl / "flow").glob("*.jsonl")))
     return (f"collector: last={last} | days held: ctx={ctx_days} positions={pos_days} l2={l2_days} flow={flow_days}\n"
-            f"flow (websocket): {store.get_meta('flow_tick') or 'never'}")
+            f"flow (websocket): {store.get_meta('flow_tick') or 'never'}\n"
+            f"bn liquidations (websocket, since 2026-11-17): {store.get_meta('liq_tick') or 'never'}")
 
 
 def status() -> str:

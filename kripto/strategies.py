@@ -127,6 +127,38 @@ def beta_to(panel, ref: str = "BTC", days: int = 60) -> pd.DataFrame:
     return cov.div(var, axis=0)
 
 
+def short_guard(w: pd.DataFrame, panel, mask: pd.DataFrame, mode: str = "none") -> pd.DataFrame:
+    """R1 (2026-11-17): restrict the SHORT side of a cross-sectional book before its beta hedge (r1_squeeze study: on bnall
+    2020-23 the alt short legs lost overall, the worst 1% of short coin-days costing more than the rest earned).
+    none = unchanged; longonly = no alt shorts (the BTC beta hedge is the only short); r7 = no short in a name whose
+    trailing 7-day return ranks in the top 20% of the universe (already squeezing); liq = no short in the less liquid half
+    of the universe by 30-day dollar volume. Uses only data up to the decision bar."""
+    if mode == "none":
+        return w
+    if mode == "longonly":
+        return w.clip(lower=0).where(w.notna())
+    c = panel["close"]
+    bpd = bars_per_day(c.index)
+    if mode == "r7":
+        bad = (c / c.shift(7 * bpd) - 1).where(mask).rank(axis=1, pct=True) > 0.8
+    elif mode == "liq":
+        bad = panel["volume"].rolling(30 * bpd, min_periods=7 * bpd).mean().where(mask).rank(axis=1, pct=True) <= 0.5
+    else:
+        raise ValueError(f"short_guard mode {mode!r}")
+    return w.where(~(bad & (w < 0)), 0.0).where(w.notna())
+
+
+def alt_cap(w: pd.DataFrame, cap: float | None, ref: str = "BTC") -> pd.DataFrame:
+    """R1 (2026-11-17): per-name concentration limit on the FINAL weights of a cross-sectional book: every name except the
+    beta-hedge reference is clipped to [-cap, cap] (both sides, so the book stays roughly neutral). None = off."""
+    if not cap:
+        return w
+    alts = [c for c in w.columns if c != ref]
+    out = w.copy()
+    out[alts] = out[alts].clip(lower=-cap, upper=cap)
+    return out
+
+
 def hedge_beta(w: pd.DataFrame, beta: pd.DataFrame, ref: str = "BTC") -> pd.DataFrame:
     rows = w.notna().any(axis=1)
     b = (w.fillna(0) * beta.fillna(1.0)).sum(axis=1)
@@ -178,15 +210,17 @@ def tsmom(panel, lookbacks=(7, 14, 28, 56), top_n=20, target_vol=0.30, every_day
 
 
 @register
-def xsmom(panel, lookback=28, skip=1, top_n=30, target_vol=0.25, every_days=3, beta_neutral=True, phase=None):
-    """Cross-sectional momentum (dollar & beta neutral)."""
+def xsmom(panel, lookback=28, skip=1, top_n=30, target_vol=0.25, every_days=3, beta_neutral=True, phase=None,
+          short_filter="none", cap=None):
+    """Cross-sectional momentum (dollar & beta neutral). short_filter: see short_guard (R1)."""
     c = panel["close"]
     bpd = bars_per_day(c.index)
     score = np.log(c.shift(skip * bpd) / c.shift((lookback + skip) * bpd)) / ann_vol(panel)
-    w = xs_demean_rank(score, universe(panel, top_n))
+    mask = universe(panel, top_n)
+    w = short_guard(xs_demean_rank(score, mask), panel, mask, short_filter)
     if beta_neutral:
         w = hedge_beta(w, beta_to(panel))
-    return scheduled(w, panel, every_days, target_vol, phase=phase)
+    return alt_cap(scheduled(w, panel, every_days, target_vol, phase=phase), cap)
 
 
 @register
@@ -296,7 +330,8 @@ def listing_short(panel, skip_days=1, hold_days=60, min_dv=1e6, target_vol=0.20,
 
 
 @register
-def xsmom_k(panel, lookback=28, skip=1, k=4, top_n=30, target_vol=0.25, every_days=3, beta_neutral=True, phase=None):
+def xsmom_k(panel, lookback=28, skip=1, k=4, top_n=30, target_vol=0.25, every_days=3, beta_neutral=True, phase=None,
+            short_filter="none", cap=None):
     """Small-account cross-sectional momentum (T11): long the top-k / short the bottom-k names by
     vol-normalised trailing return (within the top_n liquid universe), equal weight, BTC-beta hedged.
     Few, large positions so every leg clears the $10 min order at $200 equity (k <= 5 per side)."""
@@ -309,10 +344,10 @@ def xsmom_k(panel, lookback=28, skip=1, k=4, top_n=30, target_vol=0.25, every_da
     lo = score.rank(axis=1, ascending=True, method="first") <= k
     raw = (hi.astype(float) - lo.astype(float)) / (2.0 * k)
     raw = raw.where(n >= 2 * k, 0.0)
-    w = raw.where(mask.any(axis=1), np.nan)
+    w = short_guard(raw.where(mask.any(axis=1), np.nan), panel, mask, short_filter)
     if beta_neutral:
         w = hedge_beta(w, beta_to(panel))
-    return scheduled(w, panel, every_days, target_vol, phase=phase)
+    return alt_cap(scheduled(w, panel, every_days, target_vol, phase=phase), cap)
 
 
 def _ffill_targets(w: pd.DataFrame) -> pd.DataFrame:
@@ -368,7 +403,8 @@ def resrev(panel, lookback=7, thr=1.5, top_n=30, target_vol=0.20, every_days=1, 
 
 
 @register
-def flow(panel, lookback=7, sign=1, resid=False, top_n=30, target_vol=0.25, every_days=1, beta_neutral=True, phase=None):
+def flow(panel, lookback=7, sign=1, resid=False, top_n=30, target_vol=0.25, every_days=1, beta_neutral=True, phase=None,
+         short_filter="none", cap=None):
     """Taker-flow imbalance, cross-sectional (library N1/N2: Bouchaud-Farmer-Lillo, Toth et al. on metaorder splitting;
     Valtos/Tradingriot "delta"/absorption). imb = (taker buy - taker sell) / volume over `lookback` days.
     sign=+1: continuation (split metaorders keep coming). sign=-1: reversal (transient impact). resid=True: use only
@@ -389,10 +425,10 @@ def flow(panel, lookback=7, sign=1, resid=False, top_n=30, target_vol=0.25, ever
         sc, rc = score.sub(score.mean(axis=1), axis=0), ret.sub(ret.mean(axis=1), axis=0)
         b = (sc * rc).sum(axis=1) / (rc * rc).sum(axis=1).replace(0, np.nan)
         score = sc.sub(rc.mul(b, axis=0))
-    w = xs_demean_rank(sign * score, mask)
+    w = short_guard(xs_demean_rank(sign * score, mask), panel, mask, short_filter)
     if beta_neutral:
         w = hedge_beta(w, beta_to(panel))
-    return scheduled(w, panel, every_days, target_vol, phase=phase)
+    return alt_cap(scheduled(w, panel, every_days, target_vol, phase=phase), cap)
 
 
 @register

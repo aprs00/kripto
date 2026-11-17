@@ -159,8 +159,10 @@ def _months(start: str) -> list[str]:
     return [str(p) for p in pd.period_range(pd.Period(start, "M"), end, freq="M")]
 
 
-def bn_download(symbols: list[str], start: str = "2020-01", workers: int = 16, log=print):
-    kd, fd = DATA / "bn" / "klines_1h", DATA / "bn" / "funding"
+def bn_download(symbols: list[str], start: str = "2020-01", workers: int = 16, log=print, kdir=None, funding=True):
+    """Hourly klines (+ monthly funding unless funding=False) from the public archive into kdir (default: the hand-picked
+    82-coin `bn` set's klines_1h; the survivorship-free `bn100` set uses klines_1h_all, see bn_top_symbols)."""
+    kd, fd = kdir or DATA / "bn" / "klines_1h", DATA / "bn" / "funding"
     kd.mkdir(parents=True, exist_ok=True)
     fd.mkdir(parents=True, exist_ok=True)
 
@@ -186,7 +188,7 @@ def bn_download(symbols: list[str], start: str = "2020-01", workers: int = 16, l
                 df = _read_zip_csv(b).iloc[:, :8]
                 df.columns = ["t", "o", "h", "l", "c", "v", "T", "qv"]
                 ks.append(df[["t", "o", "h", "l", "c", "v", "qv"]])
-        for m in months_f:
+        for m in (months_f if funding else []):
             b = _bn_get(f"{BN_BASE}/fundingRate/{sym}/{sym}-fundingRate-{m}.zip")
             if b:
                 df = _read_zip_csv(b).iloc[:, [0, 2]]
@@ -210,10 +212,11 @@ def bn_download(symbols: list[str], start: str = "2020-01", workers: int = 16, l
             log(f"[bn] {sym} klines_months={nk} funding_months={nf}")
 
 
-def load_bn_panel(interval: str = "4h", symbols: list[str] | None = None) -> dict[str, pd.DataFrame]:
+def load_bn_panel(interval: str = "4h", symbols: list[str] | None = None, kdir=None, fdir=None) -> dict[str, pd.DataFrame]:
     rule = {"1h": "1h", "4h": "4h", "1d": "1D"}[interval]
     closes, vols, highs, lows, funds, tbs = {}, {}, {}, {}, {}, {}
-    for f in sorted((DATA / "bn" / "klines_1h").glob("*.parquet")):
+    fdir = fdir or DATA / "bn" / "funding"
+    for f in sorted((kdir or DATA / "bn" / "klines_1h").glob("*.parquet")):
         sym = f.stem
         if symbols and sym not in symbols:
             continue
@@ -228,7 +231,7 @@ def load_bn_panel(interval: str = "4h", symbols: list[str] | None = None) -> dic
         vols[coin] = r["qv"].sum()
         highs[coin] = r["h"].max()
         lows[coin] = r["l"].min()
-        fp = DATA / "bn" / "funding" / f"{sym}.parquet"
+        fp = fdir / f"{sym}.parquet"
         if fp.exists():
             fr = pd.read_parquet(fp)
             ts = pd.to_datetime(fr["time"] - 1, unit="ms", utc=True).dt.floor(rule)
@@ -377,6 +380,18 @@ def bn_all_recent(client=None, symbols: list[str] | None = None, now_ms: int | N
 
 
 DAY_MS_ALL = 86_400_000
+
+
+BN100_DIR = DATA / "bn" / "klines_1h_all"
+
+
+def bn_top_symbols(n: int = 100, days: int = 30) -> list[str]:
+    """Survivorship-free intraday universe (dataset `bn100`, 2026-11-17): every USDT perp that was ever in the point-in-time
+    top n by trailing `days`-day mean quote volume on the daily full-universe set (delisted coins included)."""
+    p = load_bn_all_panel()
+    dv = p["volume"].rolling(days, min_periods=7).mean()
+    top = dv.rank(axis=1, ascending=False) <= n
+    return sorted(c + "USDT" for c in top.columns[top.any()])
 
 
 def load_bn_all_panel(symbols: list[str] | None = None) -> dict[str, pd.DataFrame]:
@@ -529,6 +544,8 @@ def load_panel(ds: str, interval: str = "4h") -> dict[str, pd.DataFrame]:
     if ds == "bnm":
         assert interval == "1m", "bnm is 1-minute data: use --interval 1m"
         return load_bn_minute_panel()
+    if ds == "bn100":   # survivorship-free hourly top-100 (bn_top_symbols); build: python -m scripts.download bn100
+        return load_bn_panel(interval, kdir=BN100_DIR, fdir=DATA / "bn" / "funding_all")
     if ds in ("bnall", "hlx", "pair"):
         assert interval == "1d", f"{ds} is daily: use --interval 1d"
         return {"bnall": load_bn_all_panel, "hlx": load_hl_bnflow_panel, "pair": load_pair_panel}[ds]()

@@ -77,7 +77,7 @@ targeting, and switch regimes only if evidence supports it.
 ### Promotion gates
 | Stage | Requirement |
 |---|---|
-| candidate → **incubation** (paper, small weight) | WF out-of-sample Sharpe > 0.8 net on the **venue the strategy trades** (HL, or Binance = bnall); positive on the other venue where the signal is testable there; DSR > 0.9 of the WF OOS record on the longest survivorship-free venue that has the signal (bnall if a Binance analogue exists, else HL); robustness block of the WF-chosen config (`robust.worst` = the lowest full-sample Sharpe among: base, 2× costs, one bar of execution delay, first 6 and first 12 months dropped) > 0; grid median Sharpe > 0. Schedules slower than daily are run as staggered tranches (the average over every start day), never as one start day |
+| candidate → **incubation** (paper, small weight) | WF out-of-sample Sharpe > 0.8 net (from 2026-11-19: min(pick, grid average), changelog 2026-11-17) on the **venue the strategy trades** (HL, or Binance = bnall); positive on the other venue where the signal is testable there; DSR > 0.9 of the WF OOS record on the longest survivorship-free venue that has the signal (bnall if a Binance analogue exists, else HL); robustness block of the WF-chosen config (`robust.worst` = the lowest full-sample Sharpe among: base, 2× costs, one bar of execution delay, first 6 and first 12 months dropped) > 0; grid median Sharpe > 0. Schedules slower than daily are run as staggered tranches (the average over every start day), never as one start day |
 | incubation → **active** | ≥ 21 days live paper, live Sharpe not significantly below backtest (live return inside the backtest's 90% band), no operational errors |
 | active → **retired** | live drawdown > 2× backtest max DD, or 60-day live Sharpe < 0 with backtest-inconsistent behaviour |
 
@@ -204,3 +204,20 @@ See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits;
   descriptive and confined to an exploration sample while the gate numbers come only from a confirmation sample fixed in advance.
   It makes no gate easier: promotion clauses are unchanged, and an idea revived this way still has to pass them on data it was
   not shaped on. The Sunday retro audits two old DEAD entries a week against the new standard (relabel, do not re-test).
+* 2026-11-17 (research session; backlog WF1, assumptions row 9). **Which out-of-sample number a walk-forward is read by.** General
+  rationale, independent of any one strategy: choosing the in-sample-best config of a grid at each fold is a noisy estimator; on
+  the 9 pre-registered strategy × venue walk-forwards of 2026-11-09 (same folds, research/studies/wf_selection.py) the equal-weight
+  average of the whole grid beat the pick in 6/9 (mean OOS SR 0.95 vs 0.78). The pick's stitched OOS is one draw that contains
+  selection luck in both directions. Rule, from the next research session (2026-11-19; not applied to any lifecycle change today,
+  HARD RULE 5):
+  (1) **Real-money gate** (§4 "WF out-of-sample Sharpe > 0.8"): reads **min(pick OOS, grid-average OOS)**. A pick that beats its
+  grid average is treated as partly luck; a grid average above a weak pick does not rescue the pick for real money. DSR is
+  unchanged (computed on the pick's stitched record).
+  (2) **Main paper books' best estimate** (the 2026-11-10 M1 rule "WF OOS > 0.8 on the venue and robust.worst > 0"): reads the
+  **grid average** (the lower-variance estimate of the idea's value), and requires the pick's OOS > 0 as well (pick and average
+  must agree on sign). This can add or remove entries; the list is re-derived on 2026-11-19 by the fixed rule, not by hand.
+  (3) The grid average is only meaningful when the grid is ONE hypothesis: if a grid mixes opposite directions (a sign/side
+  parameter) or materially different signals, the average is taken within the picked direction, and the result says so.
+  (4) Every new walk-forward quotes pick, grid average and robust.worst together (show_result already prints all three).
+  This makes the real-money gate harder, never easier. It can make the paper best-estimate list longer or shorter; that list
+  governs paper only.

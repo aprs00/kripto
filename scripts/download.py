@@ -1,4 +1,4 @@
-"""Refresh datasets. Usage: python -m scripts.download [hl|bn|all|bnall] [--funding-since 2024-07-01]
+"""Refresh datasets. Usage: python -m scripts.download [hl|bn|all|bnall|bn100] [--funding-since 2024-07-01]
 `all` = hl + bn (nightly). `bnall` = every Binance USDT perp incl. delisted, daily bars (weekly, incremental)."""
 import argparse, os, sys
 from kripto import data
@@ -35,6 +35,10 @@ if a.what in ("hl", "all"):
     tried_p.write_text(json.dumps(tried))
 if a.what in ("bn", "all"):
     data.bn_download(data.BN_SYMBOLS, log=log)
+if a.what == "bn100":   # survivorship-free hourly top-100 (data.bn_top_symbols), monthly archives, incremental
+    syms = data.bn_top_symbols(100)
+    log(f"bn100: {len(syms)} symbols ever in the point-in-time top 100")
+    data.bn_download(syms, workers=8, log=log, kdir=data.BN100_DIR, funding=False)
 if a.what == "bnall":
     data.bn_download_all_daily(log=log)
     data.bn_all_recent(log=log)   # past the last monthly archive (fapi, polite)

@@ -59,3 +59,11 @@ coin for the last N hours will likely keep going. Mechanical rule (to pre-regist
 net taker $ of addresses whose same-side net taking spans ≥ k of the last 12 hours, scaled by volume → next 4h/24h return (continuation
 if impact is partly permanent). Kill condition: |IC| < 0.02 or < round-trip cost at the implied turnover. Data: data/hl/flow `big`,
 `n_takers` (recording since 2026-11-12 07:17). Backlog W2.
+### N11 Spread ∝ volatility per trade; small orders pay the half-spread, not impact (bouchaud-farmer-lillo-2008 §5.1, §7.3, §8; mined 2026-11-17) → backlog C1
+Claim: single-order impact is concave, E[r|v] ∝ v^ψ, ψ ≈ 0.2–0.5; the average spread is S = C·σ₁ with σ₁ = σ/√N the volatility per trade
+(N trades per unit time), R² 0.96 across 68 Paris stocks, C stock-independent (Wyart et al. 2006). Our slippage model (3·√(50M/dv) bp) has
+no volatility term and no order-size term. For our order sizes (median ~$50, Q/V ~ 1e-7) the impact term is negligible, so cost ≈ half-spread
+≈ (C/2)·σ/√N: cheap on calm days (the 11-10 calibration was two calm days) and expensive in a cascade. Rule to test in C1: fit live
+slip_bps (fills) and the hourly HL L2 snapshot spreads (data/hl/l2) against σ_h/√N_h per coin-hour (σ from 1h bars, N = trade count: HL
+candles `n`, HL flow `n` per minute, Binance klines col 8) and compare with the dv-only model; if it wins out of sample (later days), the
+backtest cost model becomes half-spread(σ, N) + a √(Q/V) impact term, which raises costs exactly on volatile days, when x-sec books trade most.

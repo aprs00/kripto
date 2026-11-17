@@ -6,19 +6,20 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 
 **Priority order (rewritten 2026-11-10 after H4/T9/X1b; research Tue + Thu, ≤ 6 new walk-forward experiments per session):**
 ## Owner instruction 2026-11-10 ("run everything now"): DONE 2026-11-12 06:40 research (M1, X2, W1 live; forward baseline). Journal 2026-11-12.
-**Next priorities (2026-11-15 retro):** 1. T0a live-vs-backtest tracking (Tue 11-17; books have ≥ 6 days) → 2. WF1 selection rule (design.md
-entry; cheap, affects every verdict) → 3. R1 squeeze tail of the BN x-sec books, together with LV1 (c) (one study answers both) → 4. C1 cost
-calibration (from 11-24) → 5. W2/W1 HL flow data (≈ 11-26) → 6. T2b (a)/(c)/(d) → 7. T5b. Forward ledger: Binance rows count from 11-15 (bnall fix).
-- [ ] WF1 (2026-11-15 retro, assumptions row 9) **Walk-forward selection rule.** research/studies/wf_selection.py: the equal-weight grid average beat
+**Next priorities (2026-11-17 research):** 1. Thu 11-19: re-derive the M1 paper best-estimate lists under WF1 (grid average, pick > 0) by the fixed
+rule, and FF1(a) walk-forward on bn100 (data download unit kripto-bn100-dl started 11-17; measure RAM of one evaluate first, `--workers 1`) →
+2. C1 cost calibration from 11-24 with N11 (spread ∝ σ/√N) → 3. W2/W1 HL flow data (≈ 11-26) → 4. E1 cascade definition with LQ1 data (≥ 2 weeks)
+→ 5. T2b (a)/(c)/(d) → 6. T5b (data job first). Weekly: `scripts.live_vs_backtest` (T0a) in the Sunday retro.
+- [x] WF1 DONE 2026-11-17: design.md entry (gate = min(pick, grid avg); M1 list = grid avg with pick > 0; from 11-19). Was: (2026-11-15 retro, assumptions row 9) **Walk-forward selection rule.** research/studies/wf_selection.py: the equal-weight grid average beat
   the in-sample pick in 6/9 pairs (mean OOS SR 0.95 vs 0.78). `oos_grid_avg` is now in every result. Decide in a research session, with a
   design.md entry whose rationale is general: report both; the gate reads min(pick, grid avg) where the grid is one hypothesis (no mixed signs);
   consider trading the grid average (or top-3) in shadow books. Must not promote anything in the session that adopts it.
-- [ ] LV1 (2026-11-15 dead-list audit; lowvol relabelled OPEN) untried forms, prior low–medium: (a) bnall daily, survivorship-free (BN-82 drops the
+- [ ] LV1 (2026-11-15 dead-list audit; lowvol relabelled OPEN) (c) ANSWERED 2026-11-17 by R1: high-vol shorts are not the losers (median +31–39 bp), no. (a)/(b) untried, prior low. Untried forms, prior low–medium: (a) bnall daily, survivorship-free (BN-82 drops the
   delisted high-vol losers that the short leg would have earned on); (b) idiosyncratic (BTC-residual) vol instead of total vol; (c) as a FILTER:
   drop the top-vol decile from the x-sec books' short side (same question as R1: are the high-vol shorts the squeeze losses?). ≤ 6 configs total.
 **Older priorities (2026-11-12):** 1. T0a tracking (≈ 11-16, all books incl. main + pair) → 2. (X1d done: fspread deployable at gross 1.0) → 3. C1 cost calibration (from 11-24) → 4. W1 data analysis once ≥ 2 weeks (HL taker flow
 vs next-day returns, same rule as flow@bn, ≈ 11-26) → 5. T2b (a)/(c) + longer hold (b showed decay continues to day 120) → 6. T5b.
-- [ ] R1 (added 2026-11-14 review) **single-name short-squeeze tail of the Binance cross-sectional books.** 11-13: AKE +370% in a day
+- [x] R1 DONE 2026-11-17 (findings): leg-sum tail real but the shorts are the alt-factor hedge; no-short filters fail; symmetric 5% per-name cap adopted (2/3 confirm). Untried: intraday stop via the watcher (needs hourly data + LQ1 cascade flag). Was: (added 2026-11-14 review) **single-name short-squeeze tail of the Binance cross-sectional books.** 11-13: AKE +370% in a day
 (0.0026→0.0124, $1.1B 4h volume) cost shadow:xsmom@bn ≈ 9% of the book and dented xsmom_k@bn/blend@bn/main_bn. Measure on bnall:
 share of xsmom/flow/blend short-leg P&L lost to the worst single-name days, then pre-register ≥ 3 formulations (liquidity/age floor for
 shorts, per-name short cap below max_asset_weight 0.35, intraday stop via the live watcher) judged on OOS SR + mdd, not on removing AKE.
@@ -31,7 +32,7 @@ not a funding recommendation. Then X2.
 ~60 coins, aggregated per coin per minute (taker buy / sell notional, trade count) into data/hl/flow/YYYY-MM-DD.parquet; verify
 the taker-side field empirically against the book before trusting it; watchdog check for gaps. Non-backfillable, so build it this
 week. Purpose: flow natively on HL (today only Binance flow exists; it transfers to HL prices before costs).
-0. **C1 cost-model calibration** (assumptions.md row 1): live fills cost 5.4 bp on HL vs 9.6 bp modelled (2 days). From 2026-11-24
+0. **C1 cost-model calibration** (assumptions.md row 1; 2026-11-17: add library N11, spread ∝ σ/√N, as the competing model; T0a: live costs ≤ model except listing_short 0.20% vs 0.13% of equity): live fills cost 5.4 bp on HL vs 9.6 bp modelled (2 days). From 2026-11-24
 (≥ 14 days of fills, must include a volatile day): fit slippage vs order size / volume from the fills table (and the stored L2
 snapshots), write scripts/cost_calibration.py, change `backtest.slippage_model` with a design.md entry in a session that promotes
 nothing, then re-measure every "dead at taker costs" verdict and the decision-frequency study. Until then quote the ×0.56
@@ -81,7 +82,7 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
 - [ ] W3 Sunday-move fade (findings 2026-11-15): fading the Sunday 12:00→18:00 New York move for 24 h made +20 bp (2020–23) and +105 bp
   (2024–26, t 2.6) across 82 coins; not pre-registered. One pre-registered confirmation on coins outside the 82 (needs FF1's hourly data).
 - [ ] D1 One-voiced buying at a 1-day high (+6 bp / 1 h held-out) as an entry-timing feature for `flow` / breakouts: low value, only with TSZ-HL.
-- [ ] LQ1 Binance liquidation prints: public websocket `!forceOrder@arr` (read-only, HARD RULE 1 allows it) → data/bn/liq, same pattern as
+- [x] LQ1 DONE 2026-11-17: kripto/liq.py + kripto-liq.service (/market/ws path; the legacy /ws path is silent), data/bn/liq raw rows, watchdog. Was: Binance liquidation prints: public websocket `!forceOrder@arr` (read-only, HARD RULE 1 allows it) → data/bn/liq, same pattern as
   kripto/flow.py. Needed to tell a liquidation cascade from an ordinary dump (E1b, T7, insilico R12). Non-backfillable.
 - [ ] R3/R7 Range ("rotation") bars with trade count and size-bucket delta: second aggTrades pass (scripts/aggtrades.py keeps 5-min bars
   only). Low prior now that R1 and R4 are dead on time bars; do only together with LQ1 or if TSZ-HL shows something.
@@ -89,10 +90,10 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
   funding-interval mix on BN (1h/4h/8h coins), and a re-run when HL funding backfill reaches all coins (pair has 84 → more).
 - [ ] blend@bn → nested choice? H4 on bnall picks carry+carry_trend+xsmom (1.16), not the hindsight trio (1.30). Needs Binance
   funding in the live BN panel (carry). Do with X2's BN funding collector.
-- [ ] T0a **Live-vs-backtest replay (tracking check)**: for each shadow book, re-run the backtest over exactly the live period
+- [x] T0a DONE 2026-11-17: scripts/live_vs_backtest.py; HL books track (corr 0.99–1.00), BN gaps = replay universe (fixed by paper.record_universe). Run weekly. Was: **Live-vs-backtest replay (tracking check)**: for each shadow book, re-run the backtest over exactly the live period
   and compare day by day: positions, turnover, costs/slippage (model vs live order book), funding, returns. Build
   scripts/live_vs_backtest.py once books have ≥ 7 days (≈ 2026-11-16). Large tracking error = bug or bad cost model.
-- [ ] T5b **Positioning hypotheses NOW on Binance history** (added 2026-11-09, owner wants results fast; don't wait months
+- [ ] T5b (2026-11-17: data/bn/metrics holds OI only, 10 coins, 2021–23; the long/short ratios need one daily archive file per coin-day ≈ 100k+ files: build a capped nightly download job first, e.g. current top-60 from 2022, ≈ 2k files/night) **Positioning hypotheses NOW on Binance history** (added 2026-11-09, owner wants results fast; don't wait months
   for HL collection). data.binance.vision publishes per-symbol daily `metrics` files (5-min open interest, top-trader
   long/short account + position ratios, taker buy/sell volume ratio) going back years, for the whole bnall universe.
   Test the T5/T6 ideas there first (OI change × price change regimes; crowded top-trader positioning as a contrarian or

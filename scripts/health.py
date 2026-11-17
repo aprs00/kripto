@@ -55,6 +55,10 @@ def gather(root: Path = ROOT, db: Path = DB) -> dict:
             f["flow"] = json.loads(meta["flow_tick"]) if meta.get("flow_tick") else None
         except Exception:
             f["flow"] = None
+        try:
+            f["liq"] = json.loads(meta["liq_tick"]) if meta.get("liq_tick") else None
+        except Exception:
+            f["liq"] = None
         since = (datetime.now(timezone.utc) - timedelta(hours=3)).strftime("%Y-%m-%dT%H:%M:%SZ")
         f["events"] = con.execute("select ts,level,msg from events where level!='INFO' and ts>? order by ts", (since,)).fetchall()
         f["halted"] = [r[0] for r in con.execute("select name from books where halted=1")]
@@ -78,7 +82,7 @@ def gather(root: Path = ROOT, db: Path = DB) -> dict:
     # Always-on services restart themselves in 30 s, faster than any heartbeat check notices: count real crashes instead
     # (kripto-flow was OOM-killed at every 00:00 compaction 11-14..11-16 and the watchdog never said so).
     f["crashes"] = {}
-    for unit in ("kripto-flow", "kripto-live"):
+    for unit in ("kripto-flow", "kripto-live", "kripto-liq"):
         try:
             out = subprocess.run(["journalctl", "--user", "-u", unit, "--since", "-2h", "--no-pager", "-o", "cat"],
                                  capture_output=True, text=True, timeout=20).stdout
@@ -127,6 +131,16 @@ def assess(f: dict, now: datetime) -> tuple[str, list[str]]:
                          "(systemctl --user restart kripto-flow)")
         elif fl.get("side_bad", 0) > max(5, 0.05 * fl.get("side_ok", 0)):
             warn.append(f"flow collector: taker side disagrees with bbo ({fl['side_bad']} vs {fl['side_ok']})")
+    lq = f.get("liq")
+    if lq:      # LQ1 Binance liquidation websocket collector (kripto-liq.service) writes a heartbeat every minute
+        qh = age(parse_ts(lq.get("ts")))
+        if qh is not None and qh > 5 / 60:
+            alert.append(f"liquidation collector silent for {qh * 60:.0f} min: Binance liquidations are being lost "
+                         "(systemctl --user restart kripto-liq)")
+        else:   # connected but no data: the legacy /ws/ path did exactly that on 2026-11-17
+            eh = age(parse_ts(lq.get("last_event"))) if lq.get("last_event") else None
+            if lq.get("events_total", 0) == 0 and lq.get("up_s", 0) > 2 * 3600 or eh is not None and eh > 2:
+                warn.append("liquidation collector connected but no liquidation for 2 h: stream path dead? (kripto/liq.py WS_URL)")
     for unit, (n, why) in (f.get("crashes") or {}).items():
         warn.append(f"{unit} crashed {n}x in 2h ({why}); auto-restarted, data around it is lost")
     c = f.get("collect")

@@ -120,6 +120,7 @@ kripto/live.py        always-on watcher: marks every 20 s, kill switch, live equ
 kripto/collect.py     hourly non-backfillable HL data (top-account positions, L2) -> data/hl/positions, data/hl/l2
 kripto/venue_pair.py  two-venue books (`<entry>@pair`, legs <COIN>@hl/<COIN>@bn; fspread_hold@pair), daily, inside the hourly step
 kripto/flow.py        always-on HL trade-flow websocket collector (kripto-flow.service) -> data/hl/flow (per coin per minute)
+kripto/liq.py         always-on Binance liquidation-print websocket collector (kripto-liq.service, /market/ws path) -> data/bn/liq
 kripto/events.py      intraday ORDER strategies (limits, targets, stops; conservative fills) -> daily BTResult; research.evaluate dispatches on EVENTS
 kripto/tsize.py       trade-size buckets of taker flow (Binance aggTrades via scripts/aggtrades.py -> data/bn/tsize; HL: `tsz` in kripto/flow.py)
 scripts/insilico_study.py  tables for the InSilico rules (calendar, tsize, decomp <strategy>, replicate); research/insilico_rules.md = the catalogue
@@ -131,6 +132,7 @@ scripts/inspect_strategy.py  yearly/funding/cost decomposition + 2x-cost stress
 scripts/download.py   data refresh (nightly timer)    scripts/agent.sh     how you are launched
 deploy/systemd/       timer/service units (copy to ~/.config/systemd/user, then daemon-reload)
 scripts/health.py     hourly deterministic watchdog (no Claude) -> state/health.json; starts a review on a new problem
+scripts/live_vs_backtest.py  T0a: each shadow book's live days vs a backtest replay (point-in-time universe from the `universe` table)
 scripts/forward_score.py  forward ledger (frozen configs, post-registration bars only) -> research/forward.json
 scripts/guard.py      agent.sh uses it to put the HARD RULES section back if a headless session edited it
 state/paper.db        sqlite paper ledger (gitignored) data/  parquet market data (gitignored)
@@ -145,9 +147,12 @@ nice -n 19 .venv/bin/python -m scripts.inspect_strategy tsmom hl '{}'          #
 nice -n 19 .venv/bin/python -m scripts.research_run --grids <batch> --datasets hl bn bnall --interval 1d   # daily-bar batch
 #   cross-venue daily datasets: hlx = HL prices + Binance taker flow for the same coins; pair = both venues in one panel
 #   (columns <COIN>@hl / <COIN>@bn, for books long on one venue and short on the other). data.load_panel(name, interval) loads any.
+#   bn100 + --interval 1h|4h|1d (2026-11-17): survivorship-free hourly Binance, every perp ever in the point-in-time top 100 (698;
+#   build: scripts.download bn100, ≈ 70 min). 698 columns: measure RAM of one evaluate before choosing workers.
 #   intraday datasets (2026-11-11): bnm + --interval 1m (10 coins, 1-min bars; --workers 1, 1.6 GB), bnts + --interval 1d|5m (BTC/ETH/SOL
 #   with trade-size buckets), bn + --interval 1h. Build the data first: scripts.aggtrades (≈ 2 h) and scripts.minute_study.download.
 .venv/bin/python -m scripts.show_result --today            # one line per result written today; or: show_result <strategy> <dataset>
+nice -n 19 .venv/bin/python -m scripts.live_vs_backtest    # live vs backtest replay per shadow book (weekly in the retro)
 .venv/bin/python -m scripts.health                         # HEALTH line from facts (trader, data, collector, disk, agent sessions)
 nice -n 19 .venv/bin/python -m scripts.forward_score       # forward ledger table (weekly; add a dataset name to limit it)
 nice -n 19 .venv/bin/python -m scripts.download bnall      # full Binance daily universe: monthly archives + fapi top-up to yesterday (≈ 30 min)
@@ -342,3 +347,11 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   nobody noticed: systemd restarted it in 30 s, under every heartbeat threshold. Fix: pyarrow reader, 500 MB cap, and the watchdog now WARNs on
   any kripto-flow/kripto-live "Failed with result" in the last 2 h; the review greps those journals too. Lesson: an auto-restarting service hides
   its crashes from heartbeat checks, so count restarts, not just silence.
+* 2026-11-17 research: (1) T0a finally built (`scripts/live_vs_backtest.py`): HL books track their replay at daily corr 0.99–1.00; the BN gaps were
+  the REPLAY's universe (today's top-volume list includes coins that pumped into it later), so live now records the point-in-time universe per bar
+  (`universe` table, paper.record_universe). Two of my own first-pass errors would have read as engine bugs (day grouping off by one; held-before-
+  rebalance vs live-after weights): a tracking tool needs its own known-answer check before its verdicts count. (2) **A connection is not data:**
+  Binance's legacy `/ws/` path accepts websocket connections and sends nothing; the new liquidation collector looked healthy with 0 events.
+  Every stream collector's watchdog now checks that data arrives (liq: WARN after 2 h without a print), not just a heartbeat. (3) A leg's P&L
+  sum is not its value (R1: alt shorts lose in sum but are the hedge; dropping them took SR 1.23 → 0.33). (4) `pkill -f` killed my own shell
+  again (logged 11-15): use the PID. (5) Long downloads go into a transient systemd unit (`systemd-run --user --unit ...`), not a session process.

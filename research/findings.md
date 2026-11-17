@@ -311,3 +311,16 @@ After a US-session (13:30–19:15 UTC) up-move ≥ 1.5%: +102 bp excess over 72 
 Fading a 4-sigma 5-minute move made on < 1.5× usual volume: +66 bp at 15 min in 2021–23 (n=342, t 1.4), +3.6 bp in 2024–26 (n=444).
 With the 11-10 minute study (fade any 4-sigma move: unstable) two formulations; not tested: thin-book measure from L2 instead of volume.
 
+### T0a live-vs-backtest tracking: 10 single-entry shadow books, 7–8 live days (scripts/live_vs_backtest.py, 2026-11-17) → live = backtest on HL
+HL books track their replay almost exactly: daily corr 0.99–1.00, tracking error 5–21 bp/day, turnover equal (tsmom 1.06 vs 1.09), position
+corr 0.88–0.98, cumulative tsmom +8.32% vs +8.25%. Costs: live ≤ model except listing_short (0.20% vs 0.13% of equity: new listings are
+thinner than the model thinks; C1). Binance x-sec books: corr 0.68–0.91, TE 80–200 bp/day, explained by the replay's universe, not live:
+today's top-volume list contains coins (AGT after its pump) live could not hold then. Fixed: paper.record_universe (point-in-time universe per bar,
+from 11-17). Re-run weekly; quote it next to every live number. **No engine bug found.**
+### R1 squeeze tail of the Binance x-sec books + LV1(c) high-vol shorts (bnall 1d; explore ≤ 2023-06, confirm 2023-07+; 2026-11-17) → small fix adopted
+Leg sums (explore, before funding): alt shorts lose (xsmom −0.59 vs longs +1.83; flow −0.70 vs +2.35); the worst 1% short coin-days (WAVES, FTT,
+DOGE 2021…) cost more than the other 99% earn. But removing alt shorts collapses the books (SR 1.23 → 0.33, mdd −23 → −41%): **they hedge the alt
+factor; a leg's P&L sum is not its value.** No-short filters fail on explore (r7 top-20% 7-d risers, liq less-liquid half: lower SR); high-vol shorts are
+NOT the losers (median +31–39 bp), so **LV1(c) is answered: no**. Symmetric 5% per-name cap after vol targeting (pre-registered, research/batches/
+2026-11-17_r1.json): confirm xsmom 1.61 vs 1.69 (mdd −14.4 vs −16.0), flow 1.24 vs 1.19 (−21.2 vs −21.8), xsmom_k 1.23 vs 1.37 → 2/3 pass → `cap: 0.05`
+on xsmom@bn, flow@bn, xsmom_k@bn. A risk limit, not edge. Untried: intraday stop via the live watcher (hourly data needed).
