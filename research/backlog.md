@@ -124,6 +124,9 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
   (b) per-listing event study (cumulative abnormal return vs BTC by days since listing, HL + bnall) to see the decay shape,
   not just a portfolio Sharpe; (c) sizing: vol_target under-estimates new-coin vol (pre-listing returns = 0) → use a
   per-name vol floor. Capacity at $200: ~6 concurrent shorts at gross 0.5 ≈ $16 each, which is executable.
+  (e) (review 2026-11-18) **liquidity-threshold churn**: XTEN entered on the 11-15 bar at 7-d dv $1.07M (min_dv $1M, just over), filled
+  at 60 bp slip, exited one bar later (dv $0.43M) at 22 bp: ≈ 80 bp round trip for a 1-day hold, ≈ 1% of the shadow book. Test entry at
+  min_dv with stay-in at min_dv/2 (hysteresis) and/or a dv floor of 2× min_dv at entry; count how often HL/bnall listings cross the line.
 - [ ] T13 **New low-correlation sleeves for the blend** (from T4: diversification is the lever). Judge any new idea partly by
   its correlation to the blend. Ideas: T3 HL-vs-BN funding spread; T2b event-driven shorts (token unlocks need external data);
   intraday seasonality of HL funding settlement. Each must still pass alone on its own merits (no blend-weight search).

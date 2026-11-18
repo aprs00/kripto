@@ -1,14 +1,16 @@
-HEALTH: OK — 08:25 review: trader hourly, watchers, flow/liquidation/position collectors and data all fine; the 698-coin Binance history for Thursday's survivorship test finished downloading.
+HEALTH: OK — 08:25 review: trader ran every hour, watchers and all three data recorders (HL positions, HL trade flow, Binance liquidations) are fine, nightly data OK.
 
-_Updated 2026-11-17 08:30 UTC (review). Detail: journal/2026-11-17.md._
+_Updated 2026-11-18 08:35 UTC (review). Detail: journal/2026-11-18.md. "Yesterday" below = the 11-17 research session._
 
 ## Review 08:25 (short)
-* Everything ran: trader every hour (last 08:10), live watcher every 20 s, HL collector errors=0, HL trade-flow and Binance liquidation
-  recorders receiving data (1,286 liquidations since 07:00), nightly data job OK, research session OK. Disk 70%, RAM 4.8 GB free.
-* Survivorship-free hourly Binance data (698 coins, dead ones included) is complete, no download errors: Thursday's Friday-follow test can run.
-* Costs: fills cost 0.5–2 bp vs the model everywhere except the new HL listing XTEN (≈ 20 bp on every book that touched it, even a $27 order,
-  so it is the spread, not size). Same as yesterday's finding: new listings are thinner than modelled. Watching, no change.
-* xsmom@bn is −15.4% (AKE squeeze; kill switch at −25%). The new 5% per-coin cap applies to it from now on.
+* Everything ran: trader 25 runs in 25 h (last 08:10), live watcher every 20 s, HL collector errors=0, HL trade-flow recorder side check 228 ok / 0 bad,
+  Binance liquidations 42,588 recorded since 11-17, no reconnects. Nightly data 02:51 OK. Disk 70%, RAM 4.7 GB free. No warnings in the trader log.
+* Costs in the last day: 229 fills, average 2 bp slippage, in line with the model.
+* **Listing shorts paid for a coin sitting on the liquidity line.** The book shorted the new coin XTEN on 11-16 when its average daily volume was just
+  over the $1M minimum, paying 60 bp to get in, and closed it the next day when volume fell to $0.43M (22 bp to get out). About 80 bp round trip
+  for a one-day hold, or ≈ 1% of the book. The rule did what it says, but the rule is wasteful. Added to the backlog (T2b-e): require more volume to
+  enter than to stay in. Thursday's research decides whether it is tested.
+* xsmom@bn is −15.2% (AKE squeeze; kill switch −25%). No lifecycle gate met.
 
 ## Today in plain words
 1. **Do the paper books do what the backtests say? Yes.** I replayed every test book's backtest over exactly its live days and compared day by day.
@@ -28,15 +30,17 @@ _Updated 2026-11-17 08:30 UTC (review). Detail: journal/2026-11-17.md._
 5. **Friday-follow, survivorship check:** downloading hourly data for all 698 Binance coins that were ever in the top 100 (incl. dead ones). The test is
    written down in advance and runs Thursday.
 
-## Books (07:15 UTC, 08:25 within ±0.3%; one week of paper P&L is noise, ±4 Sharpe)
+## Books (08:25 UTC; ten days of paper P&L is noise, ±4 Sharpe)
 | book | $1,000 (shadow $2,000) | $200 twin |
 |---|---|---|
-| main (HL, blend_nested) | $991 (−0.9%) | $194 (−3.0%): 1 position fits |
-| main_bn (flow + momentum + blend) | $944 (−5.6%) | $200 (+0.2%) |
-| funding pair ($2,000) | $2,018 (+0.9%; funding +$21.0) | $202 (+1.2%) |
-| tsmom / tsmom@bn | +8.0% / +7.9% | +5.1% / +4.2% |
-| blend | +2.3% | small:blend $199 (−0.4%), the $200 book to watch |
-| xsmom@bn / flow@bn | −15.1% / −3.5% (AKE squeeze; kill switch −25%) | |
+| main (HL, blend_nested) | $1,001 (+0.1%) | $194 (−2.9%): 1 position fits |
+| main_bn (flow + momentum + blend) | $944 (−5.6%) | $200 (−0.0%) |
+| funding pair ($2,000) | $2,020 (+1.0%; funding +$22.7) | $202 (+1.2%) |
+| tsmom / tsmom@bn | +7.8% / +7.4% | +4.2% / +3.3% |
+| blend / blend_nested | +0.8% / +1.0% | −1.5% / −3.1% |
+| listing_short | −1.0% (flat now) | −1.0% |
+| xsmom@bn / xsmom_k@bn / flow@bn | −15.2% / −12.3% / −3.1% | −11.1% / −3.2% / −2.8% |
+| xsmom_k (HL) | −2.9% | −3.6% |
 
 ## Candidates (walk-forward out-of-sample Sharpe after costs; worst = lowest stress test). None passes the real-money gate.
 | strategy | Hyperliquid | Binance (all perps, 6 y) | worst | missing |
