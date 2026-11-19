@@ -301,11 +301,13 @@ def carry_trend(panel, lookback=7, top_n=30, target_vol=0.20, every_days=1, look
 
 @register
 def listing_short(panel, skip_days=1, hold_days=60, min_dv=1e6, target_vol=0.20, every_days=1,
-                  max_gross=1.5, beta_neutral=True, phase=None):
+                  max_gross=1.5, beta_neutral=True, phase=None, enter_mult=1.0, stay_mult=1.0):
     """New-listing decay (T2): short perps from skip_days to skip_days+hold_days after their first traded
     bar (volume > 0), equal weight, BTC-beta hedged. Coins already trading in the first 30 days of the
     panel are not listing events (data start != listing). Rationale: post-listing supply overhang
-    (airdrops, unlocks, early holders selling to late retail longs)."""
+    (airdrops, unlocks, early holders selling to late retail longs).
+    enter_mult / stay_mult (T2b(e), 2026-11-19): liquidity hysteresis. A short opens only at 7-d dollar volume >= enter_mult*min_dv
+    and, once open, stays while dv >= stay_mult*min_dv (both 1.0 = the original single threshold, which churned on XTEN)."""
     c, v = panel["close"], panel["volume"]
     bpd = bars_per_day(c.index)
     traded = (v.fillna(0) > 0) & c.notna()
@@ -317,7 +319,19 @@ def listing_short(panel, skip_days=1, hold_days=60, min_dv=1e6, target_vol=0.20,
     t_cut = any_t.idxmax() + pd.Timedelta(days=30)
     pre = started.loc[started.index < t_cut].any()
     elig = (age > skip_days * bpd) & (age <= (skip_days + hold_days) * bpd) & c.notna()
-    elig = elig & (dollar_volume(panel) >= min_dv)
+    dv = dollar_volume(panel)
+    if enter_mult == 1.0 and stay_mult == 1.0:
+        elig = elig & (dv >= min_dv)
+    else:
+        A = elig.to_numpy()
+        E = (dv >= enter_mult * min_dv).to_numpy()
+        S = (dv >= stay_mult * min_dv).to_numpy()
+        out = np.zeros(A.shape, dtype=bool)
+        prev = np.zeros(A.shape[1], dtype=bool)
+        for i in range(len(A)):
+            prev = A[i] & (E[i] | (prev & S[i]))
+            out[i] = prev
+        elig = pd.DataFrame(out, c.index, c.columns)
     elig = elig.loc[:, ~pre]
     elig = elig.reindex(columns=c.columns, fill_value=False)
     elig = elig & pd.DataFrame(np.broadcast_to((c.index >= t_cut)[:, None], c.shape), c.index, c.columns)

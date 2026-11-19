@@ -212,8 +212,12 @@ def bn_download(symbols: list[str], start: str = "2020-01", workers: int = 16, l
             log(f"[bn] {sym} klines_months={nk} funding_months={nf}")
 
 
-def load_bn_panel(interval: str = "4h", symbols: list[str] | None = None, kdir=None, fdir=None) -> dict[str, pd.DataFrame]:
+def load_bn_panel(interval: str = "4h", symbols: list[str] | None = None, kdir=None, fdir=None,
+                  lean: bool = False) -> dict[str, pd.DataFrame]:
+    """lean=True (bn100, 2026-11-19): float32 and no high/low. The full hourly 698-coin panel peaked at 3.8 GB RSS on load,
+    over the 2 GB per-job limit; neither the backtest nor the hourly strategies read high/low."""
     rule = {"1h": "1h", "4h": "4h", "1d": "1D"}[interval]
+    f32 = (lambda x: x.astype("float32")) if lean else (lambda x: x)
     closes, vols, highs, lows, funds, tbs = {}, {}, {}, {}, {}, {}
     fdir = fdir or DATA / "bn" / "funding"
     for f in sorted((kdir or DATA / "bn" / "klines_1h").glob("*.parquet")):
@@ -227,22 +231,40 @@ def load_bn_panel(interval: str = "4h", symbols: list[str] | None = None, kdir=N
         df.index = pd.to_datetime(t, unit="ms", utc=True)
         df = df[~df.index.duplicated()]
         r = df.resample(rule)
-        closes[coin] = r["c"].last()
-        vols[coin] = r["qv"].sum()
-        highs[coin] = r["h"].max()
-        lows[coin] = r["l"].min()
+        closes[coin] = f32(r["c"].last())
+        vols[coin] = f32(r["qv"].sum())
+        if not lean:
+            highs[coin] = r["h"].max()
+            lows[coin] = r["l"].min()
         fp = fdir / f"{sym}.parquet"
         if fp.exists():
             fr = pd.read_parquet(fp)
             ts = pd.to_datetime(fr["time"] - 1, unit="ms", utc=True).dt.floor(rule)
-            funds[coin] = fr.groupby(ts)["fundingRate"].sum()
+            funds[coin] = f32(fr.groupby(ts)["fundingRate"].sum())
+    if lean:   # fill preallocated float32 arrays column by column (dict-of-Series construction doubled the peak)
+        idx = pd.DatetimeIndex(sorted(set().union(*(s.index for s in closes.values()))))
+        cols = list(closes)
+
+        def frame(d):
+            a = np.full((len(idx), len(cols)), np.nan, dtype="float32")
+            for j, c in enumerate(cols):
+                if c in d:
+                    sr = d.pop(c)
+                    a[idx.get_indexer(sr.index[sr.index.isin(idx)]), j] = sr[sr.index.isin(idx)].to_numpy()
+            return pd.DataFrame(a, idx, cols)
+        vol = frame(vols)
+        vol = vol.where(vol > 0)
+        close = frame(closes).where(vol.notna())
+        return {"close": close, "volume": vol, "funding": frame(funds)}
     close = pd.DataFrame(closes).sort_index()
     idx = close.index
     vol = pd.DataFrame(vols).reindex(idx)
     close = close.where(vol > 0)
-    return {"close": close, "volume": vol.where(vol > 0),
-            "high": pd.DataFrame(highs).reindex(idx), "low": pd.DataFrame(lows).reindex(idx),
-            "funding": pd.DataFrame(funds).reindex(index=idx, columns=close.columns)}
+    out = {"close": close, "volume": vol.where(vol > 0),
+           "funding": pd.DataFrame(funds).reindex(index=idx, columns=close.columns)}
+    if not lean:
+        out["high"], out["low"] = pd.DataFrame(highs).reindex(idx), pd.DataFrame(lows).reindex(idx)
+    return out
 
 
 BN_SYMBOLS = """BTC ETH BNB SOL XRP DOGE ADA AVAX LINK DOT LTC BCH TRX ATOM ETC XLM FIL NEAR UNI AAVE
@@ -545,7 +567,7 @@ def load_panel(ds: str, interval: str = "4h") -> dict[str, pd.DataFrame]:
         assert interval == "1m", "bnm is 1-minute data: use --interval 1m"
         return load_bn_minute_panel()
     if ds == "bn100":   # survivorship-free hourly top-100 (bn_top_symbols); build: python -m scripts.download bn100
-        return load_bn_panel(interval, kdir=BN100_DIR, fdir=DATA / "bn" / "funding_all")
+        return load_bn_panel(interval, kdir=BN100_DIR, fdir=DATA / "bn" / "funding_all", lean=True)
     if ds in ("bnall", "hlx", "pair"):
         assert interval == "1d", f"{ds} is daily: use --interval 1d"
         return {"bnall": load_bn_all_panel, "hlx": load_hl_bnflow_panel, "pair": load_pair_panel}[ds]()
