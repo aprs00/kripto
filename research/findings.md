@@ -293,11 +293,20 @@ Follow each liquid coin's ≥ 2–4% move of the 24 h before Friday 17:00 New Yo
 (2024–26, t 2.7); no other weekday does this (Saturday's move reverses). WF bn_1h OOS 1.21 (8/8 >0, worst 1.02); with the clock time traded
 as four tranches (12/15/17/20 h) **OOS 1.06, grid med 0.98, 4/4 >0, worst 0.78, $200 0.84, corr BTC −0.03, cagr 20%, mdd −30%; 2021 negative.**
 Weak points: the 82 coins are hand-picked survivors; on the full top-100 at the UTC-day cut it is +46 / +47 bp (t 1.0 / 1.5), top-30: nothing. → FF1.
+**FF1(a) survivorship check (2026-11-19, pre-registered 11-17, bn100 = all 698 perps ever in the point-in-time top 100, hourly, delisted incl.) → stays
+OPEN (weaker than thought), no book.** WF OOS pick 0.78 / 6.1y, **grid avg 0.61**, med 0.47, 4/4 >0, worst 0.43 (2× costs), $200 −0.11, DSR 0.30; rule
+needed min(pick, avg) > 0.8. Decomposition (research/studies/ff1_decomp.py): +42 bp gross per Friday (t 2.7; top-3 weeks 25%), costs ≈ 11 bp/week
+(turnover 82×); the P&L is the long leg of the hand-picked 82 (+1.11 of +1.55); coins outside them +14 bp/week 2020–23 and **+0.8 bp 2024–26**; 2026 −13%.
+Diagnosis: on survivors "follow the move" is partly "be long what later survived". Untried: market-relative move (excess over the universe), shorts only.
 
 ### Weekend fades, second pass (InSilico R21, 82 coins 1h, 2026-11-15) → gap fade DEAD; Sunday-move fade OPEN
 Fading the Friday→Sunday gap: −8 / +33 bp (n.s.), with the first pass's six walk-forward configs that form is dead; fading Friday's own move
 loses (−88 / −104 bp: it continues, see friday_follow). Fading the Sunday 12:00→18:00 New York move for 24 h: +20 bp (t 1.1) / +105 bp (t 2.6),
 positive in both samples but not pre-registered: one confirmation on new coins before it counts.
+**W3 replication (2026-11-19, pre-registered rule, research/studies/w3_sunday_fade.py) → CONFIRMED; OPEN pending its walk-forward.** 616 bn100 coins NOT in the
+82, point-in-time top 100: +61.9 bp per event in SIMPLE returns (median +51.5, n 9,398, 343 Sundays, t 2.32 on event-day means), ≤ 2023 +28 bp (t 1.2),
+≥ 2024 +88 bp (t 2.3), every year + (2023 only +8). Plumbing check reproduces 11-15 on the 82 (+19.7 / +106 bp log). Caveats: most of it may be a
+market-wide Sunday fade (one bet per Sunday, ≈ 50 a year), fades of down moves are skewed (mean 77, median 33 bp). Next: pre-registered WF (backlog W3).
 
 ### Unit-price bias (InSilico R28, bnall top-100, 2026-11-15) → DEAD (an alt-season effect)
 Cheapest fifth by price per unit vs the universe: +52 bp/week in 2020–23 (t 2.1), −52 bp/week in 2024–26 (t −1.3); vs the dearest fifth
@@ -324,3 +333,8 @@ factor; a leg's P&L sum is not its value.** No-short filters fail on explore (r7
 NOT the losers (median +31–39 bp), so **LV1(c) is answered: no**. Symmetric 5% per-name cap after vol targeting (pre-registered, research/batches/
 2026-11-17_r1.json): confirm xsmom 1.61 vs 1.69 (mdd −14.4 vs −16.0), flow 1.24 vs 1.19 (−21.2 vs −21.8), xsmom_k 1.23 vs 1.37 → 2/3 pass → `cap: 0.05`
 on xsmom@bn, flow@bn, xsmom_k@bn. A risk limit, not edge. Untried: intraday stop via the live watcher (hourly data needed).
+### T2b(e) listing_short liquidity hysteresis (cost fix after live XTEN churn; fixed configs, tag t2be, 2026-11-19) → rejected (pre-registered rule failed on HL)
+Enter at 7-d dv ≥ $1M, stay while ≥ $0.5M (B) vs one threshold (A). Explore bnall ≤ 2023-06: re-entries 7.1% → 3.0%, SR 0.44 → 0.45. Confirm: bnall 2023-07+
+SR 0.38 → 0.37, cost 1.37 → 1.22%/yr; **HL: re-entries 43% of events (!), cost 3.68 → 2.88%/yr, but SR 1.45 → 1.37, mdd −28.6 → −31.8% → FAIL.** On HL the
+low-volume exit is also a squeeze filter (thin dying coins, volume returning on pumps). Entry floor 2× loses signal. Re-check the same rule after C1
+(threshold names cost ≈ 3× the model live). research/studies/t2b_hyst.py.

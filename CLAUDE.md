@@ -156,6 +156,10 @@ nice -n 19 .venv/bin/python -m scripts.live_vs_backtest    # live vs backtest re
 .venv/bin/python -m scripts.health                         # HEALTH line from facts (trader, data, collector, disk, agent sessions)
 nice -n 19 .venv/bin/python -m scripts.forward_score       # forward ledger table (weekly; add a dataset name to limit it)
 nice -n 19 .venv/bin/python -m scripts.download bnall      # full Binance daily universe: monthly archives + fapi top-up to yesterday (≈ 30 min)
+nice -n 19 .venv/bin/python -m scripts.research_run --grids <batch> --datasets bn100 --interval 1h --probe   # peak RAM of ONE evaluate, then exit
+#   do this before any run on a new/large dataset; every result JSON also records max_rss_gb. Large runs: systemd-run --user --unit <name>
+#   -p Nice=19 -p MemoryMax=2200M ... (bn100 1h = 1.98 GB peak with --workers 1 since the 11-19 lean paths).
+nice -n 19 .venv/bin/python -m scripts.download metrics    # T5b Binance positioning metrics (5-min OI, top-trader L/S, taker ratio), capped/incremental; also nightly
 systemctl --user list-timers ; journalctl --user -u kripto-trader -n 50
 scripts/dash.sh                                            # phone-width dashboard the owner reads over SSH; keep it working
 .venv/bin/python -m scripts.sql "select * from fills order by ts desc limit 20"   # no sqlite3 CLI on server
@@ -355,3 +359,10 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   Every stream collector's watchdog now checks that data arrives (liq: WARN after 2 h without a print), not just a heartbeat. (3) A leg's P&L
   sum is not its value (R1: alt shorts lose in sum but are the hedge; dropping them took SR 1.23 → 0.33). (4) `pkill -f` killed my own shell
   again (logged 11-15): use the PID. (5) Long downloads go into a transient systemd unit (`systemd-run --user --unit ...`), not a session process.
+* 2026-11-19 research: (1) **Third RAM overrun in a week** (11-12 aggTrades, 11-15 Bybit, today bn100: 3.8 GB on load, then OOM-killed twice
+  inside the 2 GB unit). The tools made each mistake easy: nothing measured memory, and the backtest copied the whole panel ~7 times. Fixed at the
+  root instead of shrinking the test: lean float32 loader, row-wise backtest, block-wise `universe()`, in-place slippage model (results equal to
+  1e-12 on float64 data, tests/test_backtest_lean.py keeps the old implementation as the reference); `research_run --probe` measures one evaluate,
+  and every result records `max_rss_gb`. Lesson: when the same class of mistake recurs, change the tool so the default is safe, not the checklist.
+  (2) inspect_strategy printed its beta/band WARN on every run (noted 11-09, never fixed); now conditional. An alarm that always fires is not read.
+  (3) T5b's data job built (nightly, capped): Binance history that grows by night instead of waiting for HL collection.

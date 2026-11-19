@@ -35,4 +35,6 @@ lego = (W.drop(columns=ref, errors="ignore") * rets.drop(columns=ref, errors="ig
 print(f"band 0.005: sharpe={s3['sharpe']} cost_yr={s3['cost_yr']} | BTC-leg ann={legb.mean() * ppy:.3f} "
       f"other-legs ann={lego.mean() * ppy:.3f} (SR {mx.sharpe(lego, ppy):.2f}) | names ever held="
       f"{int((W.abs() > 0).any().sum())}")
-print("  WARN: |corr BTC| > 0.3 or BTC leg > other legs => result may be beta/band artifact, not the signal")
+# 2026-11-19: the WARN used to print unconditionally (backlog L2b noted it on flow; friday_follow had corr -0.03, BTC leg 0).
+if abs(r.corr(btc)) > 0.3 or abs(legb.mean()) > abs(lego.mean()):
+    print("  WARN: |corr BTC| > 0.3 or BTC leg > other legs => result may be beta/band artifact, not the signal")

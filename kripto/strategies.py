@@ -32,11 +32,36 @@ def universe(panel, top_n: int = 30, min_days: int = 30, vol_days: int = 30) -> 
     """Point-in-time liquid universe: top_n by trailing USD volume, with >= min_days of history."""
     c, v = panel["close"], panel["volume"]
     bpd = bars_per_day(c.index)
+    if c.size > LEAN_CELLS:
+        return _universe_lean(c, v, bpd, top_n, min_days, vol_days)
     dv = v.rolling(bpd * vol_days, min_periods=bpd * 7).mean()
     age = c.notna().cumsum()
     ok = (age >= bpd * min_days) & c.notna() & (dv > 0)
     rank = dv.where(ok).rank(axis=1, ascending=False)
     return (rank <= top_n) & ok
+
+
+LEAN_CELLS = 20_000_000   # above this (bn100 hourly: 42M cells) universe() works in column / row blocks to stay under 2 GB
+
+
+def _universe_lean(c, v, bpd, top_n, min_days, vol_days, block=64):
+    """Same result as the plain path (tests/test_listing_hyst.py::test_universe_lean_equals_plain): rolling volume and age are
+    per column, the rank is per row, so both can be computed in blocks without the full-panel float64 temporaries."""
+    T, N = c.shape
+    dvok = np.full((T, N), np.nan)
+    ok = np.zeros((T, N), dtype=bool)
+    for j in range(0, N, block):
+        cc, vv = c.iloc[:, j:j + block], v.iloc[:, j:j + block]
+        dv = vv.rolling(bpd * vol_days, min_periods=bpd * 7).mean()
+        o = ((cc.notna().cumsum() >= bpd * min_days) & cc.notna() & (dv > 0)).to_numpy()
+        ok[:, j:j + block] = o
+        dvok[:, j:j + block] = np.where(o, dv.to_numpy(dtype=float), np.nan)
+    out = np.zeros((T, N), dtype=bool)
+    rb = 4096
+    for i in range(0, T, rb):
+        rank = pd.DataFrame(dvok[i:i + rb]).rank(axis=1, ascending=False).to_numpy()
+        out[i:i + rb] = (rank <= top_n) & ok[i:i + rb]
+    return pd.DataFrame(out, c.index, c.columns)
 
 
 def ann_vol(panel, halflife_days: float = 20) -> pd.DataFrame:
@@ -702,13 +727,13 @@ def friday_follow(panel, thr=0.02, hold_h=24, top_n=30, max_names=10, cuts=(17,)
         return w                                     # defined on hourly bars only
     ny = (c.index + step).tz_convert("America/New_York")
     uni = universe(panel, top_n=top_n, min_days=30).to_numpy()
-    C = c.to_numpy(dtype=float)
-    W = np.zeros(C.shape)
+    C = c.to_numpy()                                 # native dtype; rows cast to float64 when used (bn100 memory, 2026-11-19)
+    W = np.zeros(C.shape, dtype=np.float32 if C.dtype == np.float32 else float)
     for cut in cuts:
         for f in np.flatnonzero((np.asarray(ny.day_of_week) == 4) & (np.asarray(ny.hour) == cut)):
             if f < 24:
                 continue
-            mv = np.log(C[f] / C[f - 24])
+            mv = np.log(C[f].astype(float) / C[f - 24].astype(float))
             ok = uni[f] & np.isfinite(mv) & (np.abs(mv) >= thr)
             if ok.any():
                 W[f:f + hold_h, ok] += np.sign(mv[ok]) / max(int(ok.sum()), max_names) / len(cuts)

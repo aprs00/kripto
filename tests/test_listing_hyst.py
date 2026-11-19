@@ -28,3 +28,20 @@ def test_hysteresis_keeps_position_between_thresholds():
     assert not any(d >= 56 for d in base)                                # base exits once 7-d dv < 1M (≈ day 53)
     assert any(60 <= d < 70 for d in hyst) and not any(d >= 76 for d in hyst)   # stays at 0.7M, leaves at 0.3M
     assert _short_days(enter_mult=2.0) == set()                          # never reached 2M: never entered
+
+
+def test_universe_lean_equals_plain(monkeypatch):
+    rng = np.random.default_rng(1)
+    idx = pd.date_range("2023-01-01", periods=24 * 90, freq="1h", tz="UTC")
+    c = pd.DataFrame(100 * np.exp(np.cumsum(rng.normal(0, 0.01, (len(idx), 150)), axis=0)), idx).astype("float32")
+    c.iloc[: 24 * 40, 10:30] = np.nan                       # late listings
+    c.iloc[24 * 70:, 30:40] = np.nan                        # delistings
+    v = pd.DataFrame(rng.lognormal(12, 2, c.shape), idx).astype("float32").where(c.notna())
+    v.iloc[100:200, 50:60] = 0.0
+    p = {"close": c, "volume": v}
+    for top_n, md in ((30, 30), (80, 10), (100, 30)):
+        plain = st.universe(p, top_n=top_n, min_days=md)
+        monkeypatch.setattr(st, "LEAN_CELLS", 0)
+        lean = st.universe(p, top_n=top_n, min_days=md)
+        monkeypatch.setattr(st, "LEAN_CELLS", 20_000_000)
+        assert lean.equals(plain) and plain.to_numpy().sum() > 0

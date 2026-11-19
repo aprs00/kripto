@@ -6,7 +6,10 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 
 **Priority order (rewritten 2026-11-10 after H4/T9/X1b; research Tue + Thu, ≤ 6 new walk-forward experiments per session):**
 ## Owner instruction 2026-11-10 ("run everything now"): DONE 2026-11-12 06:40 research (M1, X2, W1 live; forward baseline). Journal 2026-11-12.
-**Next priorities (2026-11-17 research):** 1. Thu 11-19: re-derive the M1 paper best-estimate lists under WF1 (grid average, pick > 0) by the fixed
+**Next priorities (2026-11-19 research):** 1. Tue 11-24: W3 walk-forward (pre-register formulations first, see W3) + C1 cost re-fit (≥ 14 days of fills
+from 11-24) → 2. W2/W1 HL flow data (≈ 11-26) → 3. T5b positioning on Binance once the metrics backfill is complete (≈ 11-29) → 4. E1 cascade definition
+with LQ1 (≥ 2 weeks, ≈ 12-01) → 5. T2b (a)/(c)/(d), and the T2b(e) re-run after C1 → 6. T6b HL positioning (≈ 12-07). Weekly: T0a in the retro.
+**Older (2026-11-17 research):** 1. Thu 11-19: re-derive the M1 paper best-estimate lists under WF1 (grid average, pick > 0) by the fixed
 rule, and FF1(a) walk-forward on bn100 (data download unit kripto-bn100-dl started 11-17; measure RAM of one evaluate first, `--workers 1`) →
 2. C1 cost calibration from 11-24 with N11 (spread ∝ σ/√N) → 3. W2/W1 HL flow data (≈ 11-26) → 4. E1 cascade definition with LQ1 data (≥ 2 weeks)
 → 5. T2b (a)/(c)/(d) → 6. T5b (data job first). Weekly: `scripts.live_vs_backtest` (T0a) in the Sunday retro.
@@ -32,7 +35,7 @@ not a funding recommendation. Then X2.
 ~60 coins, aggregated per coin per minute (taker buy / sell notional, trade count) into data/hl/flow/YYYY-MM-DD.parquet; verify
 the taker-side field empirically against the book before trusting it; watchdog check for gaps. Non-backfillable, so build it this
 week. Purpose: flow natively on HL (today only Binance flow exists; it transfers to HL prices before costs).
-0. **C1 cost-model calibration** (assumptions.md row 1; 2026-11-17: add library N11, spread ∝ σ/√N, as the competing model; T0a: live costs ≤ model except listing_short 0.20% vs 0.13% of equity): live fills cost 5.4 bp on HL vs 9.6 bp modelled (2 days). From 2026-11-24
+0. **C1 cost-model calibration** (2026-11-19: after the re-fit, re-run research/studies/t2b_hyst.py confirm with the new thin-name costs: HL listing churn is 43% of events) (assumptions.md row 1; 2026-11-17: add library N11, spread ∝ σ/√N, as the competing model; T0a: live costs ≤ model except listing_short 0.20% vs 0.13% of equity): live fills cost 5.4 bp on HL vs 9.6 bp modelled (2 days). From 2026-11-24
 (≥ 14 days of fills, must include a volatile day): fit slippage vs order size / volume from the fills table (and the stored L2
 snapshots), write scripts/cost_calibration.py, change `backtest.slippage_model` with a design.md entry in a session that promotes
 nothing, then re-measure every "dead at taker costs" verdict and the decision-frequency study. Until then quote the ×0.56
@@ -57,7 +60,7 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
 - [ ] W2 **Visible metaorders on HL (library N10, Tóth et al.)**: from ≈ 11-26 (2 weeks of W1 `big` data): persistent same-side net
   taking by one address → next 4h/24h return, per coin, volume-scaled; descriptive IC first (kill: |IC| < 0.02 or below costs), then a
   pre-registered ≤ 6-config walk-forward only if it survives. Also plain HL taker-flow imbalance (flow@bn's rule) on HL prices.
-- [ ] FF1 **friday_follow → candidate?** (findings 2026-11-15: WF bn_1h 1.06 cut-averaged, worst 0.78, corr BTC −0.03; the only second-pass
+- [ ] FF1 (2026-11-19: (a) DONE → pick 0.78 / grid avg 0.61 on bn100, stays OPEN, no book; P&L = long leg of the 82 survivors. Remaining, prior LOW: market-relative move (coin minus universe) as one pre-registered form; (b) only if something passes) **friday_follow → candidate?** (findings 2026-11-15: WF bn_1h 1.06 cut-averaged, worst 0.78, corr BTC −0.03; the only second-pass
   survivor with a book). Before any lifecycle change: (a) hourly Binance klines for the survivorship-free top-100 (data.bn_all_symbols; ≈ 3 GB,
   nightly-job style) and the same pre-registered grid (`"cuts": [12, 15, 17, 20]`) on it; on the hand-picked 82 it may be survivor luck: at the
   UTC-day cut the full top-100 shows +46 bp per event (t 1.0–1.5) against +37 / +88 on the 82. (b) The paper engine decides on daily/4h bars:
@@ -79,7 +82,12 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
 - [ ] TSZ-HL Trade-size buckets on Hyperliquid (kripto/flow.py `tsz`, per taker address, since 2026-11-12; non-backfillable). After ≥ 8
   weeks (≈ 2027-01-07): R1/R2 event study natively on HL, where one address = one order. Low prior after the Binance result; the data is
   also the input for W2 (large takers). Check at every review that `tsz` is non-empty.
-- [ ] W3 Sunday-move fade (findings 2026-11-15): fading the Sunday 12:00→18:00 New York move for 24 h made +20 bp (2020–23) and +105 bp
+- [ ] W3 (2026-11-19: REPLICATED on 616 unseen coins, +62 bp simple, t 2.3, both periods +) **NEXT: one pre-registered walk-forward** (Tue 11-24).
+  Think-through first: (1) market-wide vs coin-specific: split each event into the universe's Sunday move and the coin's excess; if the market
+  part carries it, the book is ONE bet per Sunday (≈ 50/yr: slow evidence) and BTC/ETH-only may be the cleaner form; (2) formulations: raw fade
+  (the replicated one) / excess-over-universe fade (market-neutral) / BTC+ETH-only fade; (3) grid ≤ 6 configs (thr 1–2%, hold 12/24 h), tranche the
+  18:00 clock time (17/18/19 NY) like friday_follow; dataset bn100 1h (fair universe; now fits in 2 GB, `--probe` first). Live book needs an hourly
+  Binance feed in venue_bn (shared with FF1(b)); build it only if the WF passes. Was: W3 Sunday-move fade (findings 2026-11-15): fading the Sunday 12:00→18:00 New York move for 24 h made +20 bp (2020–23) and +105 bp
   (2024–26, t 2.6) across 82 coins; not pre-registered. One pre-registered confirmation on coins outside the 82 (needs FF1's hourly data).
 - [ ] D1 One-voiced buying at a 1-day high (+6 bp / 1 h held-out) as an entry-timing feature for `flow` / breakouts: low value, only with TSZ-HL.
 - [x] LQ1 DONE 2026-11-17: kripto/liq.py + kripto-liq.service (/market/ws path; the legacy /ws path is silent), data/bn/liq raw rows, watchdog. Was: Binance liquidation prints: public websocket `!forceOrder@arr` (read-only, HARD RULE 1 allows it) → data/bn/liq, same pattern as
@@ -93,7 +101,7 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
 - [x] T0a DONE 2026-11-17: scripts/live_vs_backtest.py; HL books track (corr 0.99–1.00), BN gaps = replay universe (fixed by paper.record_universe). Run weekly. Was: **Live-vs-backtest replay (tracking check)**: for each shadow book, re-run the backtest over exactly the live period
   and compare day by day: positions, turnover, costs/slippage (model vs live order book), funding, returns. Build
   scripts/live_vs_backtest.py once books have ≥ 7 days (≈ 2026-11-16). Large tracking error = bug or bad cost model.
-- [ ] T5b (2026-11-17: data/bn/metrics holds OI only, 10 coins, 2021–23; the long/short ratios need one daily archive file per coin-day ≈ 100k+ files: build a capped nightly download job first, e.g. current top-60 from 2022, ≈ 2k files/night) **Positioning hypotheses NOW on Binance history** (added 2026-11-09, owner wants results fast; don't wait months
+- [ ] T5b (2026-11-19: DATA JOB BUILT: `scripts.download metrics` (also inside the nightly `all`, 15k files/night) → data/bn/metrics_full/<SYM>.parquet, cols oi, oiv, top_acct_ls, top_pos_ls, all_acct_ls, taker_ls, 5-min; target = every coin-day in the point-in-time top 60 since 2021 (290 coins, 128k files) ≈ 9 nights → analysis from ≈ 11-29. Explore 2021–23, confirm 2024+) (2026-11-17: data/bn/metrics holds OI only, 10 coins, 2021–23; the long/short ratios need one daily archive file per coin-day ≈ 100k+ files: build a capped nightly download job first, e.g. current top-60 from 2022, ≈ 2k files/night) **Positioning hypotheses NOW on Binance history** (added 2026-11-09, owner wants results fast; don't wait months
   for HL collection). data.binance.vision publishes per-symbol daily `metrics` files (5-min open interest, top-trader
   long/short account + position ratios, taker buy/sell volume ratio) going back years, for the whole bnall universe.
   Test the T5/T6 ideas there first (OI change × price change regimes; crowded top-trader positioning as a contrarian or
@@ -124,7 +132,7 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
   (b) per-listing event study (cumulative abnormal return vs BTC by days since listing, HL + bnall) to see the decay shape,
   not just a portfolio Sharpe; (c) sizing: vol_target under-estimates new-coin vol (pre-listing returns = 0) → use a
   per-name vol floor. Capacity at $200: ~6 concurrent shorts at gross 0.5 ≈ $16 each, which is executable.
-  (e) (review 2026-11-18) **liquidity-threshold churn**: XTEN entered on the 11-15 bar at 7-d dv $1.07M (min_dv $1M, just over), filled
+  (e) DONE 2026-11-19: hysteresis rejected by its pre-registered rule (HL SR 1.45 → 1.37; the dv exit is a squeeze filter on HL); re-run the same rule after C1. Was: (review 2026-11-18) **liquidity-threshold churn**: XTEN entered on the 11-15 bar at 7-d dv $1.07M (min_dv $1M, just over), filled
   at 60 bp slip, exited one bar later (dv $0.43M) at 22 bp: ≈ 80 bp round trip for a 1-day hold, ≈ 1% of the shadow book. Test entry at
   min_dv with stay-in at min_dv/2 (hysteresis) and/or a dv floor of 2× min_dv at entry; count how often HL/bnall listings cross the line.
 - [ ] T13 **New low-correlation sleeves for the blend** (from T4: diversification is the lever). Judge any new idea partly by

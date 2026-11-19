@@ -1,4 +1,4 @@
-"""Refresh datasets. Usage: python -m scripts.download [hl|bn|all|bnall|bn100] [--funding-since 2024-07-01]
+"""Refresh datasets. Usage: python -m scripts.download [hl|bn|all|bnall|bn100|metrics] [--funding-since 2024-07-01]
 `all` = hl + bn (nightly). `bnall` = every Binance USDT perp incl. delisted, daily bars (weekly, incremental)."""
 import argparse, os, sys
 from kripto import data
@@ -7,6 +7,7 @@ from kripto.hl import HL
 ap = argparse.ArgumentParser()
 ap.add_argument("what", nargs="?", default="all")
 ap.add_argument("--funding-since", default="2024-07-01")
+ap.add_argument("--metrics-max", type=int, default=15000, help="metrics coin-day files per run (T5b backfill; 0 = skip)")
 ap.add_argument("--top", type=int, default=0, help="limit HL coins to top-N by volume (0=all)")
 ap.add_argument("--funding-extra", type=int, default=8, help="per run, also start funding history for this many coins that\n"
                 "have none yet (listing shorts and the cross-venue pair book need funding beyond the top-N)")
@@ -42,4 +43,11 @@ if a.what == "bn100":   # survivorship-free hourly top-100 (data.bn_top_symbols)
 if a.what == "bnall":
     data.bn_download_all_daily(log=log)
     data.bn_all_recent(log=log)   # past the last monthly archive (fapi, polite)
+if a.what in ("all", "metrics") and a.metrics_max > 0:
+    # T5b (2026-11-19): Binance positioning metrics for every coin-day in the point-in-time top 60 since 2021 (survivorship-free),
+    # incremental and capped per run so the backfill spreads over nights; afterwards it only adds the newest days.
+    try:
+        data.bn_download_metrics(data.bn_metrics_targets(60, "2021-01-01"), max_files=a.metrics_max, log=log)
+    except Exception as e:                  # never fail the nightly price refresh because of this
+        log(f"[metrics] FAILED: {e!r}")
 log("DONE")

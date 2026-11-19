@@ -38,6 +38,8 @@ def job(args):
     t = time.time()
     res = walk_forward(name, panel(ds, since, interval), grid, dataset=ds if interval == "4h" else f"{ds}_{interval}")
     res["seconds"] = round(time.time() - t, 1)
+    import resource                             # peak RSS of this worker so far (upper bound for this job): RAM lessons 11-12, 11-15, 11-19
+    res["max_rss_gb"] = round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e6, 2)
     OUT.mkdir(parents=True, exist_ok=True)
     # seconds + pid: two jobs for the same strategy/dataset in one minute used to overwrite each other (2026-11-09)
     f = OUT / f"{time.strftime('%Y%m%d-%H%M%S', time.gmtime())}_{os.getpid()}_{name}_{res['dataset']}.json"
@@ -45,12 +47,20 @@ def job(args):
     return res
 
 
+def probe(name, ds, grid, since, interval):
+    import resource
+    from kripto import research as R
+    p = panel(ds, since, interval)
+    R.evaluate(name, p, R.grid(grid)[0], f"{ds}_{interval}", log=False)
+    return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e6
+
+
 def brief(r):
     o = r.get("oos", {})
     return (f"{r['strategy']:15s} {r['dataset']:3s} OOS sharpe={o.get('sharpe')} cagr={o.get('cagr')} "
             f"mdd={o.get('max_dd')} yrs={o.get('years')} dsr={o.get('dsr')} | grid med sharpe="
             f"{r['grid_median_sharpe']} frac>0={r['grid_frac_positive']} n={r['n_configs']} "
-            f"worst={(r.get('robust') or {}).get('worst')} ({r['seconds']}s)")
+            f"worst={(r.get('robust') or {}).get('worst')} ({r['seconds']}s, {r.get('max_rss_gb')} GB)")
 
 
 if __name__ == "__main__":
@@ -63,6 +73,9 @@ if __name__ == "__main__":
     ap.add_argument("--interval", default="4h", choices=["4h", "1d", "1h", "5m", "1m"],
                     help="bar size (dataset is logged as e.g. hl_1d); 1h: bn; 5m: bnts; 1m: bnm")
     ap.add_argument("--workers", type=int, default=3, help="~0.6 GB RAM each; keep <= 3 on the shared server")
+    ap.add_argument("--probe", action="store_true",
+                    help="measure the peak RAM of ONE evaluate (first config of each strategy x dataset, not logged) and exit; "
+                         "do this before choosing --workers on a new or large dataset (2 GB per job, HARD RULE 4)")
     a = ap.parse_args()
     if a.grids:
         spec = json.loads(Path(a.grids).read_text())
@@ -71,6 +84,13 @@ if __name__ == "__main__":
     else:
         jobs = [(s, d, json.loads(a.grid) if a.grid else GRIDS[s], a.since, a.interval)
                 for s in a.strategies for d in a.datasets]
+    if a.probe:
+        for name, ds, grid, since, interval in jobs:
+            with ProcessPoolExecutor(1) as ex:      # fresh process per probe, so ru_maxrss is this job's own peak
+                gb = ex.submit(probe, name, ds, grid, since, interval).result()
+            print(f"probe {name} {ds} {interval}: peak RSS {gb:.2f} GB -> workers <= {max(0, int(2.0 // gb))} "
+                  f"at 2 GB/job{'  OVER THE 2 GB LIMIT' if gb > 2.0 else ''}", flush=True)
+        raise SystemExit(0)
     with ProcessPoolExecutor(a.workers) as ex:
         for r in ex.map(job, jobs):
             print(brief(r), flush=True)

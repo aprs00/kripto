@@ -166,6 +166,7 @@ def walk_forward(name: str, panel: dict, spec: dict, dataset: str, train_days: i
     for i, p in enumerate(configs):
         res, s = evaluate(name, panel, p, dataset)
         rets[i] = res.returns
+        del res                                  # free the weights before the next config (bn100 memory, 2026-11-19)
         sums.append({"i": i, **p, **{k: s.get(k) for k in ("sharpe", "cagr", "max_dd", "turnover_yr", "cost_yr", "funding_yr")}})
     R = pd.DataFrame(rets)
     ppy = mx.periods_per_year(R.index)

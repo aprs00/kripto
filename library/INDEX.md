@@ -19,7 +19,7 @@ Status: `unread` → `skimmed` → `mined` (testable ideas extracted into librar
 | pole-2007-statistical-arbitrage | book (257 p) | ch. 3 defactored returns, ch. 4 "75% rule" of reversion, ch. 7 quantifying reversion opportunities, ch. 6 interstock vol | L4 residual reversion | skimmed |
 | gueant-2016-market-liquidity-execution | book (302 p, math heavy) | Almgren–Chriss execution; part on market making / limit-order placement | T9 maker execution | skimmed (TOC) |
 | tsay-analysis-of-financial-time-series | textbook (457 p) | reference only: volatility models, unit roots/cointegration, high-frequency data chapter | vol models, tests | reference |
-| bencik-2014-daily-range-forecasting | paper (26 p) | range-based vol estimators beat close-to-close; HAR on realized range is the best 1-day forecast | L6 better vol targeting | skimmed |
+| bencik-2014-daily-range-forecasting | paper (26 p) | range-based vol estimators beat close-to-close; HAR on realized range is the best 1-day forecast | L6 better vol targeting | mined 2026-11-19 (abstract, intro, conclusions: nothing beyond N6 → L6; the .txt is partly raw PDF bytes, grep -a with a text filter) |
 
 ## Tier B: discretionary practitioner sources (concepts only; must be turned into mechanical rules)
 | slug | what it is | testable concepts | feeds | status |

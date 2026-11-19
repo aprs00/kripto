@@ -255,7 +255,13 @@ def load_bn_panel(interval: str = "4h", symbols: list[str] | None = None, kdir=N
         vol = frame(vols)
         vol = vol.where(vol > 0)
         close = frame(closes).where(vol.notna())
-        return {"close": close, "volume": vol, "funding": frame(funds)}
+        out = {"close": close, "volume": vol, "funding": frame(funds)}
+        try:                                         # hand the per-coin temporaries back to the OS (≈ 0.3 GB on bn100)
+            import ctypes
+            ctypes.CDLL("libc.so.6").malloc_trim(0)
+        except OSError:
+            pass
+        return out
     close = pd.DataFrame(closes).sort_index()
     idx = close.index
     vol = pd.DataFrame(vols).reindex(idx)
@@ -572,3 +578,92 @@ def load_panel(ds: str, interval: str = "4h") -> dict[str, pd.DataFrame]:
         assert interval == "1d", f"{ds} is daily: use --interval 1d"
         return {"bnall": load_bn_all_panel, "hlx": load_hl_bnflow_panel, "pair": load_pair_panel}[ds]()
     return load_hl_panel(interval) if ds == "hl" else load_bn_panel(interval)
+
+
+# --------------------------------------------------------------------------- Binance positioning metrics (T5b, 2026-11-19)
+# data.binance.vision daily `metrics` files: 5-min open interest, top-trader long/short (accounts and positions), all-account
+# long/short, taker buy/sell volume ratio. ~12 kB per coin-day, history from 2020-09. Survivorship-free target set: every
+# coin-day on which the coin was in the point-in-time top `top` by 30-d volume (daily full universe), from `since`.
+# The nightly job fetches at most `max_files` per run (incremental), so the backfill spreads over several nights.
+METRICS_DIR = DATA / "bn" / "metrics_full"
+METRICS_URL = "https://data.binance.vision/data/futures/um/daily/metrics/{s}/{s}-metrics-{d}.zip"
+METRICS_COLS = {"create_time": "t", "sum_open_interest": "oi", "sum_open_interest_value": "oiv",
+                "count_toptrader_long_short_ratio": "top_acct_ls", "sum_toptrader_long_short_ratio": "top_pos_ls",
+                "count_long_short_ratio": "all_acct_ls", "sum_taker_long_short_vol_ratio": "taker_ls"}
+
+
+def bn_metrics_targets(top: int = 60, since: str = "2021-01-01", panel: dict | None = None) -> dict[str, list[str]]:
+    """{symbol: [YYYY-MM-DD, ...]} coin-days in the point-in-time top `top` (30-d mean quote volume), newest days first."""
+    p = panel or load_bn_all_panel()
+    dv = p["volume"].rolling(30, min_periods=7).mean()
+    inn = (dv.rank(axis=1, ascending=False) <= top) & (dv.index >= pd.Timestamp(since, tz="UTC"))[:, None]
+    last = pd.Timestamp.now(tz="UTC").floor("D") - pd.Timedelta(days=2)      # the archive lags ~1 day
+    inn = inn.loc[inn.index <= last]
+    return {c + "USDT": [d.strftime("%Y-%m-%d") for d in inn.index[inn[c].to_numpy()][::-1]] for c in inn.columns if inn[c].any()}
+
+
+def bn_download_metrics(targets: dict[str, list[str]], max_files: int = 15000, workers: int = 4, log=print, get=None) -> int:
+    """Fetch missing coin-days (newest first, round-robin over symbols so every coin fills evenly). 404s are remembered in
+    _missing.json and not retried. Returns the number of files fetched. `get(url) -> bytes | None` is injectable for tests."""
+    import json as _json
+    from concurrent.futures import ThreadPoolExecutor
+    METRICS_DIR.mkdir(parents=True, exist_ok=True)
+    miss_p = METRICS_DIR / "_missing.json"
+    missing = set(_json.loads(miss_p.read_text())) if miss_p.exists() else set()
+    s = requests.Session()
+
+    def _get(url):
+        for _ in range(3):
+            try:
+                r = s.get(url, timeout=30)
+                if r.status_code == 404:
+                    return None
+                if r.ok:
+                    return r.content
+            except requests.RequestException:
+                pass
+            time.sleep(1.0)
+        return b""                                    # transient failure: neither data nor a known 404
+    get = get or _get
+    have = {}
+    for sym in targets:
+        f = METRICS_DIR / f"{sym}.parquet"
+        have[sym] = set(pd.read_parquet(f, columns=["t"])["t"].dt.strftime("%Y-%m-%d")) if f.exists() else set()
+    queues = {sym: [d for d in days if d not in have[sym] and f"{sym}/{d}" not in missing] for sym, days in targets.items()}
+    todo = []
+    while len(todo) < max_files and any(queues.values()):   # round-robin: newest missing day of each symbol in turn
+        for sym in list(queues):
+            if queues[sym] and len(todo) < max_files:
+                todo.append((sym, queues[sym].pop(0)))
+
+    def one(job):
+        sym, day = job
+        b = get(METRICS_URL.format(s=sym, d=day))
+        if b is None:
+            return job, None
+        if not b:
+            return job, b""
+        z = zipfile.ZipFile(io.BytesIO(b))
+        df = pd.read_csv(z.open(z.namelist()[0]))
+        df = df[[c for c in METRICS_COLS if c in df]].rename(columns=METRICS_COLS)
+        df["t"] = pd.to_datetime(df["t"], utc=True)
+        return job, df
+    parts: dict[str, list] = {}
+    n = 0
+    recent = (pd.Timestamp.now(tz="UTC") - pd.Timedelta(days=7)).strftime("%Y-%m-%d")
+    with ThreadPoolExecutor(workers) as ex:
+        for (sym, day), df in ex.map(one, todo):
+            if df is None and day < recent:          # a 404 for the last week may just be the archive's publishing lag
+                missing.add(f"{sym}/{day}")
+            elif isinstance(df, pd.DataFrame) and len(df):
+                parts.setdefault(sym, []).append(df)
+                n += 1
+    for sym, dfs in parts.items():
+        f = METRICS_DIR / f"{sym}.parquet"
+        old = [pd.read_parquet(f)] if f.exists() else []
+        out = pd.concat(old + dfs).drop_duplicates("t").sort_values("t")
+        out.to_parquet(f, index=False)
+    miss_p.write_text(_json.dumps(sorted(missing)))
+    left = sum(len(q) for q in queues.values())
+    log(f"[metrics] fetched {n} coin-days for {len(parts)} symbols, {len(missing)} known missing, {left} still to fetch")
+    return n
