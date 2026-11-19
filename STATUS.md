@@ -1,6 +1,9 @@
-HEALTH: OK — trader, live watcher, all three data recorders and nightly data fine; research session 11-19 changed backtest internals (results unchanged, tested).
+HEALTH: OK — 08:25 review: trader hourly, live watcher, all three data recorders, nightly data and the 11-19 research session all fine.
 
-_Updated 2026-11-19 ~07:30 UTC (research). Detail: journal/2026-11-19.md._
+_Updated 2026-11-19 08:30 UTC (review; research summary below is from 07:30). Detail: journal/2026-11-19.md._
+
+Review note: Binance momentum (xsmom@bn) is at −15% after 10 days, about the deepest drawdown its 6-year backtest ever had (−14 to −16%).
+Not a bug (fills normal, ~1 bp slippage), not a kill (limit −25%), but I am watching it. Fills everywhere today: 0.5–1.8 bp average slippage.
 
 ## Today in plain words
 1. **Friday-follow did not survive the fair test.** On the 82 hand-picked coins it looked good (Sharpe 1.06). On all 698 Binance coins that were
@@ -20,11 +23,11 @@ _Updated 2026-11-19 ~07:30 UTC (research). Detail: journal/2026-11-19.md._
    not the test. Results are identical to the old code (checked on six strategies), and it now fits in 2 GB. Also started a nightly download of
    Binance positioning history (top traders' long/short ratios, open interest), about 9 nights to fill 2021–2026, for a test around 11-29.
 
-## Books (07:25 UTC; ten days of paper P&L is noise, ±4 Sharpe)
+## Books (08:25 UTC; ten days of paper P&L is noise, ±4 Sharpe)
 | book | $1,000 (shadow $2,000) | $200 twin |
 |---|---|---|
 | main (HL, blend_nested) | $990 (−1.0%) | $194 (−3.2%): 1 position fits |
-| main_bn (flow + momentum + blend) | $946 (−5.4%) | $200 (+0.0%) |
+| main_bn (flow + momentum + blend) | $944 (−5.6%) | $200 (+0.1%) |
 | funding pair ($2,000) | $2,013 (+0.7%; funding +$20.5) | $202 (+0.9%) |
 | tsmom / tsmom@bn | +8.1% / +7.9% | +4.6% / +3.7% |
 | blend / blend_nested | +2.9% / −0.1% | +0.2% / −3.4% |
