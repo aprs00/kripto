@@ -1,10 +1,10 @@
-HEALTH: OK — 08:25 review: trader hourly, live watcher, all three data recorders, nightly data (03:20) and the 11-19 research session all fine.
+HEALTH: OK — 08:25 review: trader hourly, live watcher, all three data recorders, nightly data (03:23) all fine; no warnings or errors.
 
-_Updated 2026-11-20 08:30 UTC (review). The research summary below is from 11-19. Detail: journal/2026-11-20.md._
+_Updated 2026-11-21 08:30 UTC (review). The research summary below is from 11-19. Detail: journal/2026-11-21.md._
 
-Review note: Binance momentum (xsmom@bn) is at −15.1% (−15.2% at its worst), the same as its deepest backtest drawdown (−14 to −16%). It is not a bug:
-fills are normal, with 1.3 bp average slippage over the last two days (worst 5.2 bp). The kill switch is at −25%, so it is not near that either. Still watching.
-Hyperliquid main is now +0.9%; Binance main −4.9%. Ten days of paper P&L is noise.
+Review note: Hyperliquid main is +2.1%, Binance main −3.1% (both up from yesterday). Binance momentum (xsmom@bn) recovered a little to −14.6%,
+still inside its deepest backtest drawdown (−14 to −16%), kill switch at −25%. Fills are normal: 1.2 bp average slippage on Binance and 1.9 bp
+on Hyperliquid over the last day. Twelve days of paper P&L is noise.
 
 ## Last research (11-19) in plain words
 1. **Friday-follow did not survive the fair test.** On the 82 hand-picked coins it looked good (Sharpe 1.06). On all 698 Binance coins that were
@@ -24,17 +24,17 @@ Hyperliquid main is now +0.9%; Binance main −4.9%. Ten days of paper P&L is no
    not the test. Results are identical to the old code (checked on six strategies), and it now fits in 2 GB. Also started a nightly download of
    Binance positioning history (top traders' long/short ratios, open interest), about 9 nights to fill 2021–2026, for a test around 11-29.
 
-## Books (11-20 08:25 UTC; ten days of paper P&L is noise, ±4 Sharpe)
+## Books (11-21 08:25 UTC; twelve days of paper P&L is noise)
 | book | $1,000 (shadow $2,000) | $200 twin |
 |---|---|---|
-| main (HL, blend_nested) | $1,009 (+0.9%) | $193 (−3.7%): 1 position fits |
-| main_bn (flow + momentum + blend) | $952 (−4.9%) | $200 (+0.2%) |
-| funding pair ($2,000) | $2,018 (+0.9%; funding +$22.5) | $202 (+1.1%) |
-| tsmom / tsmom@bn | +10.2% / +10.0% | +5.9% / +4.9% |
-| blend / blend_nested | +2.9% / +1.8% | +0.3% / −3.8% |
+| main (HL, blend_nested) | $1,021 (+2.1%) | $190 (−4.8%): 1 position fits |
+| main_bn (flow + momentum + blend) | $969 (−3.1%) | $201 (+0.6%) |
+| funding pair ($2,000) | $2,015 (+0.7%; funding +$21.7) | $201 (+0.7%) |
+| tsmom / tsmom@bn | +15.0% / +15.2% | +9.0% / +8.2% |
+| blend / blend_nested | +7.8% / +3.4% | +4.3% / −4.9% |
 | listing_short | −1.0% (flat now) | −1.0% |
-| xsmom@bn / xsmom_k@bn / flow@bn | −15.1% / −11.6% / −2.8% | −10.7% / −2.0% / −2.3% |
-| xsmom_k (HL) | −2.9% | −3.6% |
+| xsmom@bn / xsmom_k@bn / flow@bn | −14.6% / −10.6% / −2.6% | −10.5% / −0.8% / −2.3% |
+| xsmom_k (HL) | −1.4% | −1.9% |
 
 ## Candidates (walk-forward out-of-sample Sharpe after costs; worst = lowest stress test). None passes the real-money gate.
 | strategy | Hyperliquid | Binance (all perps, 6 y) | worst | missing |
