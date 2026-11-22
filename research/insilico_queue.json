@@ -397,7 +397,7 @@
    "forms": [
     {
      "id": "a",
-     "what": "RSI vs volume-zone-oscillator divergence on pumps (> 2 sigma day)",
+     "what": "RSI vs volume-zone-oscillator divergence on pumps (> 2 sigma day) [S1b: regular = reversal AND hidden = continuation, 1-bar lag]",
      "status": "planned"
     },
     {
@@ -417,12 +417,12 @@
     },
     {
      "id": "e",
-     "what": "FSVZO: volume zone oscillator with Fourier smoothing; enter on the first bar WITHOUT an extreme alert; midline as support",
+     "what": "FSVZO: volume zone oscillator with Fourier smoothing; enter on the first bar WITHOUT an extreme alert; midline as support [S1b: VZO14, alert = inside +-60/85/105 (dose), entry = close of first alert-free bar, exit at midline hold/fail; proxy smoothing fixed before the run]",
      "status": "planned"
     },
     {
      "id": "f",
-     "what": "Crayons: bearish / bullish climax, dominance shift, invalidation lines, only labels whose definition the guide gives",
+     "what": "Crayons: bearish / bullish climax, dominance shift, invalidation lines, only labels whose definition the guide gives [S1b: climax = pause OR reversal by trend age, base-trend veto; invalidation in form k]",
      "status": "planned"
     },
     {
@@ -438,6 +438,30 @@
     {
      "id": "i",
      "what": "camarilla pivots (tg:99, his mentor's tool): H3/L3 fade, H4/L4 break, vs pivots shifted by 37%",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "j",
+     "what": "Crayons H / W (p12-13): failed extension = new n-bar high by the wick, close back below the old high; H at an uptrend high -> fall; W in a downtrend -> continuation, in an uptrend -> only a pause; vs the same wick size away from the extreme (1h, 4h, 1d)",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "k",
+     "what": "Crayons invalidation as reverse signal (p19-22, 'hit rate as impressive if not more'): a climax / Leledc candle whose direction is invalidated by a CLOSE beyond its open (opposite side) -> trade the invalidation; vs a same-size close without a signal candle; reconfirmation close as the mirror case",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "l",
+     "what": "VZO midline rejection (FSVZO p8): band approaches 0 from one side within 10 points and turns without crossing -> continuation in the old direction; vs turns at the same distance from +-30; 1h, 4h, 1d",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "m",
+     "what": "FSVZO hue as a veto (p4, p15): never short into 'abnormal selling', never long into 'abnormal buying' -> expectancy of momentum entries with vs without the veto (feature for F1d), not a trade of its own",
      "status": "planned",
      "added": "2026-11-22"
     }
@@ -632,7 +656,10 @@
     {
      "id": "b",
      "what": "Crayons and FSVZO guides page by page: exact definitions for O2 (S1b__notes.json)",
-     "status": "planned"
+     "status": "done",
+     "result": "both guides read page by page: no formulas published (proxies only), but exact entry/invalidation/stop mechanics extracted; O2a,e,f corrected, 4 forms added (O2 j-m)",
+     "date": "2026-11-22",
+     "evidence": "S1b__notes"
     },
     {
      "id": "c",

@@ -1,0 +1,53 @@
+{
+ "form": "S1b",
+ "date": "2026-11-22",
+ "pages_read": {
+  "FSVZO": 16,
+  "Crayons": 31
+ },
+ "not_given": "neither guide publishes a formula: the Fourier part of FSVZO, the 'bubbles', the white-noise histogram, the hue and every Crayons label are proprietary. Any version coded here is a proxy and a failure of the proxy is not a failure of the indicator; the claims that ARE exact are the trading mechanics below.",
+ "fsvzo_exact": {
+  "base": "volume zone oscillator: 100*EMA(sign(close-close[1])*volume,n)/EMA(volume,n) (public VZO; n=14 default, proxy smoothing = 2-pole Butterworth/supersmoother fixed before the run, 5 and 10 bars)",
+  "levels": "extremes -105..-85..-60 and +60..+85..+105; inner +-40; midline 0",
+  "entry_O2e": "alert prints while the band is inside an extreme; entry = the close of the FIRST bar without an alert (p11-12); NOT on the alert; confirm 1 bar",
+  "midline": "major S/R; a turn from an extreme -> little chop until the midline; failing to cross it -> continuation (p8)",
+  "ma": "band crossing its MA -> directional impulse, confirmation 1 bar (p10), length not given",
+  "divergence": "regular = reversal, hidden = continuation, 1 bar lag (p13) -> O2a must test both kinds, not only regular",
+  "hue": "green = abnormal selling, do not short; red = abnormal buying, do not buy (p4, p15); 'take profit on the opposite position'",
+  "timeframes_shown": "1h, 4h, 12h BTC/ETH; 'originally built as a scalper component'"
+ },
+ "crayons_exact": {
+  "labels": "SC outranked by base colour: 'always give credence to the overarching trend versus one lone signal' (p9); opposite signals in a chain = chop, no trade; 3 colours mixed = no-trade zone (p5)",
+  "yellow_aqua": "climax; in extended strong trends it is 'more often a pit stop', i.e. pause, not reversal (p15) -> O2f must test pause (range) as well as reversal",
+  "invalidation": "lines at the signal candle's open and close: close beyond the invalidation side = signal void and can be traded in the opposite direction, safer after the NEXT candle extends (p19-22); high/low as a slower variant",
+  "stops": "beyond previous swing highs/lows, not the signal candle's open/close; 'to avoid illiquid wicking' (p24) -> relevant to L1/T1: the tight stop under the signal low is exactly what he advises against",
+  "pivots": "wall printed when price is stopped without confirmation; acceptance beyond -> goes on (p26-30); origin candle 'produces a directional impulse' (no formula)"
+ },
+ "corrections_to_queue": [
+  "O2a: test hidden divergences (continuation) next to regular ones",
+  "O2e: first alert-free bar at +-60/85/105 as dose-response, midline hold as exit",
+  "O2f: climax = pause or reversal by trend age; only with the base-colour veto"
+ ],
+ "new_forms": [
+  {
+   "item": "O2",
+   "form": "j",
+   "what": "Crayons H / W (p12-13): failed extension = new n-bar high by the wick, close back below the old high; H at an uptrend high -> fall; W in a downtrend -> continuation, in an uptrend -> only a pause; vs the same wick size away from the extreme (1h, 4h, 1d)"
+  },
+  {
+   "item": "O2",
+   "form": "k",
+   "what": "Crayons invalidation as reverse signal (p19-22, 'hit rate as impressive if not more'): a climax / Leledc candle whose direction is invalidated by a CLOSE beyond its open (opposite side) -> trade the invalidation; vs a same-size close without a signal candle; reconfirmation close as the mirror case"
+  },
+  {
+   "item": "O2",
+   "form": "l",
+   "what": "VZO midline rejection (FSVZO p8): band approaches 0 from one side within 10 points and turns without crossing -> continuation in the old direction; vs turns at the same distance from +-30; 1h, 4h, 1d"
+  },
+  {
+   "item": "O2",
+   "form": "m",
+   "what": "FSVZO hue as a veto (p4, p15): never short into 'abnormal selling', never long into 'abnormal buying' -> expectancy of momentum entries with vs without the veto (feature for F1d), not a trade of its own"
+  }
+ ]
+}
