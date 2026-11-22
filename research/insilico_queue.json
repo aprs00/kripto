@@ -1223,12 +1223,21 @@
     {
      "id": "f",
      "what": "survivorship: the frozen k20/k30 rule on 24 delisted coins (LUNA, SRM, ANC...), settled at the last price",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "24 delisted coins: k20 +117 bp (n 530, p .002), k30 +148 (n 216, p .001); pooled with confirmC k30 +154, net +144, p .003; LUNA death week: no fills (sigma already huge; data complete, checked)",
+     "date": "2026-11-22",
+     "evidence": "T1f_k30__confirmC"
     },
     {
      "id": "g",
      "what": "the ~500 other listed perps that were never in the 83 (point-in-time top 100, 1-min bars on the server): same frozen rule",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "h",
+     "what": "taker version without resting orders: after a >= 20/30 sigma low, buy at market 1 min later (explore +71/+121, confirmT +9/+15, confirmC +75/+117): how much of the edge is the limit price?",
      "status": "planned",
      "added": "2026-11-22"
     }
@@ -1362,6 +1371,40 @@
      "what": "relative version: coin move minus BTC-beta move; the residual is what bounces",
      "status": "planned",
      "added": "2026-11-22"
+    },
+    {
+     "id": "e",
+     "what": "up-spikes continue (T1 offers lose at every k, -36 to -82 bp over 60 min, p < .001): buy-stop / momentum after a >= 8-12 sigma up minute, taker costs, breadth dose",
+     "status": "planned",
+     "added": "2026-11-22"
+    }
+   ]
+  },
+  {
+   "id": "E2",
+   "prio": 0.55,
+   "group": "T",
+   "title": "Resting-ladder book: walk-forward and live paper (only if T1 closes CONFIRMED)",
+   "src": "T1",
+   "status": "todo",
+   "after": [
+    "T1"
+   ],
+   "forms": [
+    {
+     "id": "a",
+     "what": "kripto/events.py strategy `ladder` (frozen T1k30 rule; k grid 20/30/40, hold 15/60/240, slots 5/10) through kripto.research walk-forward on bnm, registered; 2x costs, 1-min delay, $1,000 and $200",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "gates as in design.md; if it passes: candidate + live paper book in the always-on watcher (1-min quotes, fills only from later trades through the limit by 30 bp, tests first), shadow $2,000 and $200 twin",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "risk: margin locked by resting orders, 2025-10-10 replay minute by minute, exchange outage during a cascade, max loss per day cap",
+     "status": "planned"
     }
    ]
   }

@@ -1,0 +1,57 @@
+{
+ "name": "T1f_k20",
+ "sample": "confirmC",
+ "n": 530,
+ "days": 204,
+ "coins": 22,
+ "mean_bp": 117.38,
+ "median_bp": 109.8,
+ "win": 0.655,
+ "se_bp": 38.66,
+ "ci95_bp": [
+  46.94,
+  197.72
+ ],
+ "p": 0.0024987506246876563,
+ "mde80_bp": 108.24,
+ "mean_ex_top3_bp": 72.92,
+ "top3_share": 0.41,
+ "t_day_mean": 3.02,
+ "by_year": {
+  "2021": [
+   149,
+   329.23
+  ],
+  "2022": [
+   107,
+   48.64
+  ],
+  "2023": [
+   187,
+   26.96
+  ],
+  "2024": [
+   87,
+   33.46
+  ]
+ },
+ "by_side": {
+  "1": [
+   530,
+   117.38
+  ]
+ },
+ "coins_positive": 0.91,
+ "net_bp": {
+  "free": 117.38,
+  "maker_taker": 109.38,
+  "taker": 104.38,
+  "taker_x2": 91.38,
+  "crash": 37.38,
+  "own_cost": 105.38
+ },
+ "passes": true,
+ "note": "delisted coins only, settled at the last price",
+ "rerun": "",
+ "at": "2026-11-22T19:32:49+00:00"
+}

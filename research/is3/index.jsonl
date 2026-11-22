@@ -129,3 +129,5 @@
 {"at": "2026-11-22T19:24:36+00:00", "name": "T1k30", "sample": "confirmT", "n": 164, "days": 45, "mean_bp": 105.58, "se_bp": 51.75, "p": 0.03798100949525238, "vs_base_bp": null, "p_vs_base": null, "passes": true, "rerun": ""}
 {"at": "2026-11-22T19:24:36+00:00", "name": "T1k20", "sample": "confirmC", "n": 5999, "days": 711, "mean_bp": 78.73, "se_bp": 34.29, "p": 0.02798600699650175, "vs_base_bp": null, "p_vs_base": null, "passes": true, "rerun": ""}
 {"at": "2026-11-22T19:24:36+00:00", "name": "T1k30", "sample": "confirmC", "n": 2580, "days": 361, "mean_bp": 154.91, "se_bp": 53.84, "p": 0.004997501249375313, "vs_base_bp": null, "p_vs_base": null, "passes": true, "rerun": ""}
+{"at": "2026-11-22T19:32:49+00:00", "name": "T1f_k20", "sample": "confirmC", "n": 530, "days": 204, "mean_bp": 117.38, "se_bp": 38.66, "p": 0.0024987506246876563, "vs_base_bp": null, "p_vs_base": null, "passes": true, "rerun": ""}
+{"at": "2026-11-22T19:32:49+00:00", "name": "T1f_k30", "sample": "confirmC", "n": 216, "days": 97, "mean_bp": 148.05, "se_bp": 45.4, "p": 0.0009995002498750624, "vs_base_bp": null, "p_vs_base": null, "passes": true, "rerun": ""}

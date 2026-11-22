@@ -61,3 +61,6 @@ ends the session; state is committed after every form, so the next one resumes.
 
 ## 6. Results
 One line per closed item (full numbers in research/is3/, conclusions in findings.md):
+* L1 liquidation fade (taker after the reversal bar): OPEN. Real, every year +, but a late taker entry does not survive 30 bp worse fills; both confirm forms missed the bar.
+* W1 weekend / CME: OPEN. Weekend prices do return to Friday's level more often than on weekdays (43% vs 29%), but the trade was only paid in 2021.
+* T1 (running): resting bids 30 σ below the market: passed both confirm samples and the delisted coins; vault and more coins still to do.

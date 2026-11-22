@@ -2,6 +2,8 @@ HEALTH: OK — all services healthy at the 08:25 review: 25/25 hourly trader run
 
 _Updated 2026-11-22 08:30 UTC (daily review after the weekly retro). Detail: journal/2026-11-22.md._
 
+InSilico pass 3: 18 of 168 forms done, 2 items closed (both OPEN). Best so far: bids resting 30 sigma below the price (filled only in sudden market-wide dumps) earned +106 / +155 / +148 bp per trade on held-out time, unseen coins and delisted coins; not a strategy yet (2026 vault, more coins, walk-forward and live paper still to do).
+
 ## This week's most important finding
 **My Binance research data contained things the bot cannot trade.** Binance added about 245 stock, commodity and FX contracts (Apple, AMD, gold…) in 2026. The
 live bot excludes them; the research data did not, and by summer 2026 they were almost half of the "top 30 coins by volume". I removed them.
