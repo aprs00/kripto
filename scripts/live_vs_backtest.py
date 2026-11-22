@@ -17,13 +17,17 @@ an approximation (today's list), which on Binance adds coins that only joined th
 Replays use the CURRENT config params: after a param change (e.g. the 2026-11-17 5% cap on the Binance x-sec books) compare
 only days after the change.
 
-usage: python -m scripts.live_vs_backtest [book ...]
+--since YYYY-MM-DD restricts returns / costs / turnover to days after that date (the replay still starts at the book's first bar, so
+its positions are warmed up). Use it after a param change or for the point-in-time-universe era (`--since 2026-11-18`).
+--daily prints the day-by-day live and replay returns.
+
+usage: python -m scripts.live_vs_backtest [--since YYYY-MM-DD] [--daily] [book ...]
 """
 from __future__ import annotations
 
+import argparse
 import json
 import sqlite3
-import sys
 
 import numpy as np
 import pandas as pd
@@ -99,7 +103,8 @@ def replay(name: str, sc: dict, venue: str, start_bar: pd.Timestamp, coins: list
     return res, panel
 
 
-def main(only: list[str]):
+def main(only: list[str], since: str | None = None, daily: bool = False):
+    since_ts = pd.Timestamp(since, tz="UTC") if since else None
     cfg, risk = P.load_cfg()
     c = _db()
     rows = []
@@ -135,11 +140,21 @@ def main(only: list[str]):
         live_ret = live.pct_change().dropna()
         days = live_ret.index.intersection(bt_day.index)
         days = days[days > live.index[0]]
+        sel = res.costs.index >= start_bar
+        if since_ts is not None:      # a live day D's return closes the bars of D-1: keep days strictly after `since`
+            days = days[days > since_ts]
+            sel &= res.costs.index >= since_ts
+            fills = fills[pd.to_datetime(fills["ts"], utc=True, format="ISO8601") >= since_ts]
+            fund = fund[pd.to_datetime(fund["ts"], utc=True, format="ISO8601") >= since_ts]
+        if len(days) == 0:
+            continue
         lr, br = live_ret.reindex(days), bt_day.reindex(days)
         eq_mean = float(live.mean())
         live_fee = float(fills["fee"].sum())
         live_slip = float((fills["size"] * (fills["px"] - fills["mid"])).sum())
-        sel = res.costs.index >= start_bar
+        if daily:
+            print(book)
+            print((100 * pd.DataFrame({"live%": lr, "bt%": br, "diff%": lr - br})).round(2).to_string())
         rows.append({
             "book": book, "days": len(days),
             "ret_live%": round(100 * ((1 + lr).prod() - 1), 2), "ret_bt%": round(100 * ((1 + br).prod() - 1), 2),
@@ -176,4 +191,9 @@ def wcorr(c, book: str, res, panel) -> float | None:
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    ap = argparse.ArgumentParser()
+    ap.add_argument("books", nargs="*")
+    ap.add_argument("--since")
+    ap.add_argument("--daily", action="store_true")
+    a = ap.parse_args()
+    main(a.books, a.since, a.daily)

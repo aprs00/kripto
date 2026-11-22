@@ -96,8 +96,9 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
 picking badly among the 12 (long-only variants), so the grid median is the fairer number: ~0.6 HL, ~1.0 Binance.
 Old: HL 4h 0.43–0.55, BN-82 1.31 (survivor-biased), bnall 0.97. One day late costs a third (1.06 → 0.71). Fails the gate alone.
 
-### tsmom long-only (2026-11-08) → DEAD
-2022 −33%, 2025 −11%: it is BTC beta, not an edge.
+### tsmom long-only (2026-11-08) → OPEN (one form, diagnosed as beta; audited 2026-11-22, was DEAD)
+2022 −33%, 2025 −11%: it is BTC beta, not an edge. Audit 2026-11-22: one form (a restriction of tsmom); its grid SR is 0.65–1.0 on bnall, like the L/S book,
+so "beta" was asserted, never measured against holding BTC at equal vol. Untried, prior low: LO1 (excess over vol-matched BTC; BTC-only timing; as blend leg).
 
 ### tsmom signal smoothing (EMA 3/7d) and $20M liquidity floor (T1c, 2026-11-09) → DEAD (smoothing) / weak (floor)
 Smoothing halves turnover (63→28/yr) but Sharpe falls more (HL 1.11→0.34, BN 1.00→0.99 at best; lag kills the signal).
@@ -146,8 +147,9 @@ DEFAULT config is HL full-sample 0.90 (bnall 0.22) and H4's selection rule picks
 Audit 2026-11-15: ONE form (total-vol rank, beta-hedged, HL + survivor-biased BN-82 4h) and no diagnosis of why it failed; H4 keeps
 picking it on HL. Untried forms → backlog LV1 (bnall, idiosyncratic vol, high-vol exclusion as a filter for the x-sec books' shorts = R1).
 
-### funding_contra: fade funding spikes vs own history (2026-11-08, re-run 11-09) → DEAD
-HL −0.81 (0/8 >0); BN −0.42 (med 0.15). Not robust.
+### funding_contra: fade funding spikes vs own history (2026-11-08, re-run 11-09) → OPEN (one form failed; audited 2026-11-22, was DEAD)
+HL −0.81 (0/8 >0); BN −0.42 (med 0.15). Not robust. Audit 2026-11-22: ONE form (z-scored funding jump, cross-sectional, daily); no diagnosis beyond turnover.
+BN grid is mixed, HL clearly negative (squeezes keep rising, as with carry). Untried → backlog FC1 (extreme negatives only, conditional on price, HL-vs-BN funding gap).
 
 ### resrev: BTC-defactored residual reversion with entry threshold (library N5/Pole, 2026-11-09, interactive) → DEAD
 New angle vs xsrev (threshold, residuals, low turnover). Still 0/9 >0 on HL 1d (OOS −0.59), bnall 1d (−0.85), BN 4h (−1.13);
@@ -319,6 +321,18 @@ After a US-session (13:30–19:15 UTC) up-move ≥ 1.5%: +102 bp excess over 72 
 ### Empty moves get refilled (InSilico R9, 10 coins 1-min, 2026-11-15) → OPEN (two forms failed, low prior)
 Fading a 4-sigma 5-minute move made on < 1.5× usual volume: +66 bp at 15 min in 2021–23 (n=342, t 1.4), +3.6 bp in 2024–26 (n=444).
 With the 11-10 minute study (fade any 4-sigma move: unstable) two formulations; not tested: thin-book measure from L2 instead of volume.
+
+### Stock / commodity perps in `bnall` (2026-11-22 retro, assumptions row 19) → data error fixed; Binance numbers with 2026 in the sample were flattered
+Binance lists 246 TRADIFI perps since 2026Q1; live drops them (contractType), bnall/bn100 did not: 46% of the bnall top-30 by volume in 2026Q3 was AAPL, AMD, ….
+Fixed: config/bn_tradfi.json, bars cut at the onboarding day. Same configs, to 10-31, full sample old → clean: xsmom_k 1.23→1.20, flow 1.49→1.43, tsmom 0.92→0.95,
+xsmom 1.34→1.31, blend 1.19→1.18, listing_short 0.42→0.33; **2026 only: flow 0.90→0.45, listing_short +0.36→−0.30, xsmom 1.61→1.35**. Walk-forwards not yet re-run → TF1.
+Sunday fade replication (W3) re-run on clean bn100: +65 bp (t 2.43), ≤ 2023 +28 (t 1.2), ≥ 2024 +92 (t 2.5): still CONFIRMED by its 11-19 rule. FF1 not re-run (OPEN, low prior).
+### Live candidate list = research universe? (2026-11-22, research/studies/live_universe.py; row 19) → HL yes (98.8%), Binance 95.1% on clean data
+Pre-set rule (change live if < 90%): leave live as it is. Caveat: the Binance share is falling (2023 96, 2025 91, 2026 87%; 3-day sticky 92%) and blend@bn's full-sample
+SR is 1.18 research / 0.77 live-style / 1.15 sticky (mdd −26 / −44 / −38%). The proxy is 24h volume by daily bar; the recorded live list is the direct test → LU1.
+### Live fills vs the decision close (2026-11-22, research/studies/fill_delay.py; row 20) → Binance ≈ 0, HL costs about +5 to +17 bp (t 1.3–2.8, 14 runs): OPEN
+Live decides ≈ 12 min after the bar close the backtest trades at. HL notional-weighted +15 bp (alts +17, BTC +6), median run +5–7 bp, +6 without the two largest runs;
+Binance +0.4 (t 0.3). Weak, but HL's live "0.9–4.7 bp slippage" measures against the mid at the fill and omits it, so "×0.56" must include a drift term → C1.
 
 ### T0a live-vs-backtest tracking: 10 single-entry shadow books, 7–8 live days (scripts/live_vs_backtest.py, 2026-11-17) → live = backtest on HL
 HL books track their replay almost exactly: daily corr 0.99–1.00, tracking error 5–21 bp/day, turnover equal (tsmom 1.06 vs 1.09), position

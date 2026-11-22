@@ -9,9 +9,12 @@ held through bar t (decided at close of t-1). funding[t] = sum of hourly rates p
 from __future__ import annotations
 
 import io
+import json
+import sys
 import time
 import zipfile
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import contextmanager
 from pathlib import Path
 
 import numpy as np
@@ -212,6 +215,56 @@ def bn_download(symbols: list[str], start: str = "2020-01", workers: int = 16, l
             log(f"[bn] {sym} klines_months={nk} funding_months={nf}")
 
 
+BN_TRADFI = Path(__file__).resolve().parent.parent / "config" / "bn_tradfi.json"
+
+
+def bn_tradfi() -> dict[str, int]:
+    """{symbol: onboardDate ms} of every Binance TRADIFI_PERPETUAL ever seen (stocks, commodities, FX). The live venue never trades
+    them (venue_bn.symbol_filters keeps contractType PERPETUAL), so research must not either: 2026-11-22 retro, they were 46% of
+    the bnall top-30 by volume in 2026Q3. Cut at the onboard date, not by symbol: some tickers had an earlier life as a coin."""
+    return {k: int(v) for k, v in json.loads(BN_TRADFI.read_text()).items()} if BN_TRADFI.exists() else {}
+
+
+def update_bn_tradfi(info: dict) -> int:
+    """Merge the TRADIFI_PERPETUAL symbols of an exchangeInfo reply into config/bn_tradfi.json (entries are never removed, so a
+    delisted stock perp stays excluded). Returns the number of new symbols."""
+    have = bn_tradfi()
+    new = {x["symbol"]: int(x["onboardDate"]) for x in info["symbols"]
+           if x.get("contractType") == "TRADIFI_PERPETUAL" and x["symbol"] not in have}
+    if new:
+        BN_TRADFI.write_text(json.dumps(dict(sorted({**have, **new}.items())), indent=0) + "\n")
+    return len(new)
+
+
+@contextmanager
+def refreshing(name: str):
+    """Marks dataset `name` as being rewritten (data/.refreshing_<name>). Long refreshes go coin by coin, so a panel loaded in the
+    middle mixes old and new coins: on 2026-11-22 that made cross-sectional ranks of live coins wrong, silently."""
+    m = DATA / f".refreshing_{name}"
+    DATA.mkdir(parents=True, exist_ok=True)
+    m.touch()
+    try:
+        yield
+    finally:
+        m.unlink(missing_ok=True)
+
+
+def warn_if_refreshing(name: str, max_age_h: float = 4) -> bool:
+    m = DATA / f".refreshing_{name}"
+    if m.exists() and time.time() - m.stat().st_mtime < max_age_h * 3600:
+        print(f"WARN dataset {name} is being refreshed right now: recent bars are incomplete for part of the coins. Wait or cut the panel.",
+              file=sys.stderr, flush=True)
+        return True
+    return False
+
+
+def drop_tradfi(df: pd.DataFrame, sym: str, tf: dict[str, int]) -> pd.DataFrame:
+    """Rows of `df` (UTC DatetimeIndex) before the symbol's TradFi onboarding day; unchanged for crypto symbols."""
+    if sym not in tf:
+        return df
+    return df[df.index < pd.Timestamp(tf[sym], unit="ms", tz="UTC").floor("D")]
+
+
 def load_bn_panel(interval: str = "4h", symbols: list[str] | None = None, kdir=None, fdir=None,
                   lean: bool = False) -> dict[str, pd.DataFrame]:
     """lean=True (bn100, 2026-11-19): float32 and no high/low. The full hourly 698-coin panel peaked at 3.8 GB RSS on load,
@@ -220,6 +273,7 @@ def load_bn_panel(interval: str = "4h", symbols: list[str] | None = None, kdir=N
     f32 = (lambda x: x.astype("float32")) if lean else (lambda x: x)
     closes, vols, highs, lows, funds, tbs = {}, {}, {}, {}, {}, {}
     fdir = fdir or DATA / "bn" / "funding"
+    tf = bn_tradfi()
     for f in sorted((kdir or DATA / "bn" / "klines_1h").glob("*.parquet")):
         sym = f.stem
         if symbols and sym not in symbols:
@@ -229,7 +283,9 @@ def load_bn_panel(interval: str = "4h", symbols: list[str] | None = None, kdir=N
         # some archive months use microsecond timestamps
         t = df["t"].where(df["t"] < 1e14, df["t"] // 1000)
         df.index = pd.to_datetime(t, unit="ms", utc=True)
-        df = df[~df.index.duplicated()]
+        df = drop_tradfi(df[~df.index.duplicated()], sym, tf)
+        if df.empty:
+            continue
         r = df.resample(rule)
         closes[coin] = f32(r["c"].last())
         vols[coin] = f32(r["qv"].sum())
@@ -373,7 +429,8 @@ def bn_all_recent(client=None, symbols: list[str] | None = None, now_ms: int | N
     if not tmax:
         return 0
     newest = max(tmax.values())
-    live = [s for s, t in tmax.items() if t >= newest - 45 * DAY_MS_ALL]   # traded within ~the last archive month
+    tf = bn_tradfi()                                 # stock / commodity perps: never loaded, so not refreshed either
+    live = [s for s, t in tmax.items() if t >= newest - 45 * DAY_MS_ALL and s not in tf]   # traded within ~the last archive month
     n = 0
     for sym in live:
         try:
@@ -424,7 +481,9 @@ def bn_top_symbols(n: int = 100, days: int = 30) -> list[str]:
 
 def load_bn_all_panel(symbols: list[str] | None = None) -> dict[str, pd.DataFrame]:
     """Daily panel over the full (survivorship-free) Binance USDT-perp universe (or only `symbols`)."""
+    warn_if_refreshing("bnall")
     closes, vols, highs, lows, funds, tbs = {}, {}, {}, {}, {}, {}
+    tf = bn_tradfi()
     for f in sorted((DATA / "bn" / "klines_1d_all").glob("*.parquet")):
         sym = f.stem
         if symbols and sym not in symbols:
@@ -433,7 +492,9 @@ def load_bn_all_panel(symbols: list[str] | None = None) -> dict[str, pd.DataFram
         df = pd.read_parquet(f)
         t = df["t"].where(df["t"] < 1e14, df["t"] // 1000)
         df.index = pd.to_datetime(t, unit="ms", utc=True).dt.floor("1D")
-        df = df[~df.index.duplicated()]
+        df = drop_tradfi(df[~df.index.duplicated()], sym, tf)
+        if df.empty:
+            continue
         closes[coin], vols[coin], highs[coin], lows[coin] = df["c"], df["qv"], df["h"], df["l"]
         if "tbqv" in df:
             tbs[coin] = df["tbqv"]

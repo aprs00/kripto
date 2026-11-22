@@ -41,8 +41,11 @@ if a.what == "bn100":   # survivorship-free hourly top-100 (data.bn_top_symbols)
     log(f"bn100: {len(syms)} symbols ever in the point-in-time top 100")
     data.bn_download(syms, workers=8, log=log, kdir=data.BN100_DIR, funding=False)
 if a.what == "bnall":
-    data.bn_download_all_daily(log=log)
-    data.bn_all_recent(log=log)   # past the last monthly archive (fapi, polite)
+    with data.refreshing("bnall"):   # the refresh is alphabetical and takes ~1 h: readers WARN meanwhile (half the coins are older)
+        data.bn_download_all_daily(log=log)
+        from kripto.bn import BN
+        log(f"[bn tradfi] {data.update_bn_tradfi(BN().exchange_info())} new stock/commodity perps excluded")
+        data.bn_all_recent(log=log)   # past the last monthly archive (fapi, polite)
 if a.what in ("all", "metrics") and a.metrics_max > 0:
     # T5b (2026-11-19): Binance positioning metrics for every coin-day in the point-in-time top 60 since 2021 (survivorship-free),
     # incremental and capped per run so the backfill spreads over nights; afterwards it only adds the newest days.

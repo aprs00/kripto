@@ -366,3 +366,8 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   and every result records `max_rss_gb`. Lesson: when the same class of mistake recurs, change the tool so the default is safe, not the checklist.
   (2) inspect_strategy printed its beta/band WARN on every run (noted 11-09, never fixed); now conditional. An alarm that always fires is not read.
   (3) T5b's data job built (nightly, capped): Binance history that grows by night instead of waiting for HL collection.
+* 2026-11-22 retro: (1) **The research universe held instruments live cannot trade.** bnall had 233 stock/commodity perps (46% of its top-30 in 2026Q3); live drops them by
+  contractType. Nobody had compared the two because T0a replays on live's own list. Loaders now cut them (`config/bn_tradfi.json`, refreshed by `download bnall`; `data.bn_tradfi`).
+  Lesson: a tracking check that reuses the live system's own input cannot see that input is wrong; compare the two universes directly. (2) I twice read bnall while its
+  alphabetical refresh was running and printed false ranks; `data.refreshing` now marks it and the loader WARNs. Cut a panel at the last date every file has, or wait.
+  (3) `live_vs_backtest --since / --daily`; `research/studies/{live_universe,fill_delay,tradfi_effect}.py`. Live delay costs HL +5–17 bp (weak): C1 must include it.
