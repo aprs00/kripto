@@ -1,0 +1,53 @@
+{
+ "name": "T1d_k30",
+ "sample": "explore",
+ "n": 320,
+ "days": 144,
+ "coins": 10,
+ "mean_bp": 183.61,
+ "median_bp": 114.17,
+ "win": 0.741,
+ "se_bp": 58.17,
+ "ci95_bp": [
+  90.6,
+  316.11
+ ],
+ "p": 0.00399800099950025,
+ "mde80_bp": 162.88,
+ "mean_ex_top3_bp": 109.42,
+ "top3_share": 0.44,
+ "t_day_mean": 4.24,
+ "by_year": {
+  "2021": [
+   51,
+   678.18
+  ],
+  "2022": [
+   78,
+   87.52
+  ],
+  "2023": [
+   191,
+   90.78
+  ]
+ },
+ "by_side": {
+  "1": [
+   320,
+   183.61
+  ]
+ },
+ "coins_positive": 1.0,
+ "net_bp": {
+  "free": 183.61,
+  "maker_taker": 175.61,
+  "taker": 170.61,
+  "taker_x2": 157.61,
+  "crash": 103.61,
+  "own_cost": 175.05
+ },
+ "passes": true,
+ "note": "$1,000: 10% = $100 per order; $200: 10% = $20 (Binance min $5, BTC $50 / ETH $20, HL $10): BTC needs 25% of $200, so skip BTC there",
+ "rerun": "",
+ "at": "2026-11-22T19:44:33+00:00"
+}

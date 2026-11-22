@@ -1208,8 +1208,11 @@
     {
      "id": "d",
      "what": "thin vs liquid coins; HL fee schedule (maker 1.5 bp) and Binance (2 bp); inventory limit 2 coins and 5 coins at $1,000 and $200",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "naive: all 107 coins, 10% each, cannot cancel inside a minute: 83 fills at once, 8.3x gross, worst day -60% (k20) / -43% (k30). Quote only top-20 liquid: k30 cagr +34% SR 1.84 mdd -9%, all 5 years + (pessimistic entry +14%, SR 1.0); top-10: +23% SR 1.9 / +11% SR 1.4. 50%+ of fills come in minutes with >= 20 coins and pay least (+73 vs +212..307 bp). Simultaneous-fill order: SR 2.3-2.5 random. CAUTION: universe cut chosen after seeing 2021-25 and ranked with in-quarter data",
+     "date": "2026-11-22",
+     "evidence": "T1d_k30__explore"
     },
     {
      "id": "e",
@@ -1238,8 +1241,11 @@
     {
      "id": "h",
      "what": "taker version without resting orders: after a >= 20/30 sigma low, buy at market 1 min later (explore +71/+121, confirmT +9/+15, confirmC +75/+117): how much of the edge is the limit price?",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "market 1 min later (d60): k20 +71 explore, +9 confirmT (p .79), +75 confirmC (p .03); k30 +121, +15 (p .68), +117 (p .005): on liquid coins 2024-25 only the resting price earns; on alts half of it survives",
+     "date": "2026-11-22",
+     "evidence": "T1k30__confirmC"
     }
    ],
    "sessions": 1

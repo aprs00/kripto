@@ -328,6 +328,44 @@ def sizing():
         L.card(f"T1d_k{k}", rows(sample(live[live.k == k], "explore"), "h60"), "explore", note="$1,000: 10% = $100 per order; $200: 10% = $20 (Binance min $5, BTC $50 / ETH $20, HL $10): BTC needs 25% of $200, so skip BTC there")
 
 
+def account_batch(t, col, start, end, size=0.1, max_open=5, top=None):
+    """Harsh account: orders cannot be cancelled inside a minute. A minute that starts with a free slot fills EVERY bid hit in it;
+    a minute that starts full has no bids. top = quote only the `top` most liquid coins (by 30-d volume) per fill minute's quarter."""
+    if top:
+        q = t.time.dt.strftime("%Y") + "Q" + t.time.dt.quarter.astype(str)
+        med = t.groupby([q, "coin"]).dv30.median().rename("m").reset_index().rename(columns={"time": "q"})
+        med["rk"] = med.groupby("q").m.rank(ascending=False)
+        key = set(zip(med.q[med.rk <= top], med.coin[med.rk <= top]))
+        t = t[[(a, b) in key for a, b in zip(q, t.coin)]]
+    until, keep, mx = [], [], 0
+    for tm, g in t.groupby("time", sort=True):
+        until = [x for x in until if x > tm]
+        if len(until) < max_open:
+            keep.append(g)
+            until += [tm + pd.Timedelta("60min")] * len(g)
+        mx = max(mx, len(until))
+    g = pd.concat(keep)
+    net = g[col] - 7e-4 - g.slip
+    d = (net * size).groupby(g.time.dt.floor("D")).sum().reindex(pd.date_range(start, end, tz="UTC", inclusive="left"), fill_value=0.0)
+    eq = (1 + d).cumprod()
+    return (f"n {len(g)} max open {mx} (gross {mx * size:.1f}x) cagr {eq.iloc[-1] ** (365 / len(d)) - 1:+.1%} SR {d.mean() / (d.std() + 1e-12) * 365 ** 0.5:.2f} "
+            f"mdd {(eq / eq.cummax() - 1).min():.1%} worst day {d.min():.1%} " + " ".join(f"{y}:{x.sum():+.1%}" for y, x in d.groupby(d.index.year)))
+
+
+def harsh():
+    t = pd.concat([pd.read_parquet(OUT / "ladder_frozen.parquet"), pd.read_parquet(OUT / "ladder_dead.parquet")]).sort_values(["time", "coin"])
+    t = t[(t.time >= "2021-01-01") & (t.time < "2026-01-01")]
+    for k in (20, 30):
+        q = t[t.k == k]
+        same = q.groupby("time").size()
+        print(f"k={k}: fills {len(q)}, minutes {len(same)}, share of fills in minutes with >=5 / >=10 / >=20 coins: {[round(float(same[same >= n].sum() / len(q)), 2) for n in (5, 10, 20)]}; biggest minute {same.max()} ({same.idxmax()})")
+        sz = q.groupby("time").h60.agg(["size", "mean"])
+        print("   mean h60 (bp) by coins filled in the same minute:", {n: round(float(sz[(sz["size"] >= a) & (sz["size"] <= b)]["mean"].mean() * 1e4)) for n, a, b in (("1", 1, 1), ("2-4", 2, 4), ("5-19", 5, 19), ("20+", 20, 999))})
+        for col in ("h60", "w60"):
+            for size, mo, top in ((0.1, 5, None), (0.05, 5, None), (0.1, 5, 20), (0.1, 5, 10), (0.05, 10, 20)):
+                print(f"   {col} {size:.0%} each, stop quoting at {mo} open, universe {top or 'all 107'}: {account_batch(q, col, '2021-01-01', '2026-01-01', size, mo, top)}")
+
+
 def checks():
     P = data.load_bn_minute_panel(["BTC", "DOGE", "AVAX"])
     P = {k: x[(x.index >= "2021-03-01") & (x.index < "2021-09-01")].astype("float64") for k, x in P.items()}
@@ -340,4 +378,4 @@ def checks():
 
 
 if __name__ == "__main__":
-    {"build": lambda: build(int(sys.argv[2]) if len(sys.argv) > 2 else 3), "checks": checks, "explore": explore, "stress": stress, "frozen": frozen_build, "confirm": confirm, "dead": dead, "fresh": fresh, "sizing": sizing}[sys.argv[1]]()
+    {"build": lambda: build(int(sys.argv[2]) if len(sys.argv) > 2 else 3), "checks": checks, "explore": explore, "stress": stress, "frozen": frozen_build, "confirm": confirm, "dead": dead, "fresh": fresh, "sizing": sizing, "harsh": harsh}[sys.argv[1]]()
