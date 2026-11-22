@@ -6,7 +6,7 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 
 **Priority order (rewritten 2026-11-10 after H4/T9/X1b; research Tue + Thu, ≤ 6 new walk-forward experiments per session):**
 ## Owner instruction 2026-11-10 ("run everything now"): DONE 2026-11-12 06:40 research (M1, X2, W1 live; forward baseline). Journal 2026-11-12.
-**Next priorities (2026-11-22 retro):** 1. Tue 11-24: TF1 (clean-data re-measure, first) → W3 walk-forward (on clean bn100) → C1 cost re-fit incl. the drift term → IS3 (1)–(2), Thu 11-26 at the latest
+**Next priorities (2026-11-22 retro):** 1. Tue 11-24: TF1 (clean-data re-measure, first) → W3 walk-forward (on clean bn100) → C1 cost re-fit incl. the drift term
 (row 20) → 2. W2/W1 HL flow data (≈ 11-26) → 3. T5b positioning (≈ 11-29) → 4. E1 + LQ1 (≈ 12-01) → 5. T2b (a)/(c)/(d), T2b(e) after C1 →
 6. T6b HL positioning (≈ 12-07) → 7. low prior: PL1, FC1, LV1, LO1. Weekly: T0a with `--since` in the retro.
 - [ ] TF1 **Re-run the Binance walk-forwards on the clean panel** (no stock perps): the same 11-09 v2 grids for flow, xsmom, xsmom_k, tsmom, listing_short,
@@ -17,7 +17,7 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
   e.g. drop names whose 28-d score is made by ≤ 2 days, or with 7-d volume > 5× the 30-d median. Explore bnall ≤ 2023-06, confirm later, ≤ 3 forms. One night is not evidence.
 - [ ] FC1 funding_contra untried forms (audit 11-22; prior low): (a) only extreme negative funding, long side; (b) conditional on price no longer rising; (c) HL-vs-BN funding
   gap as the crowding measure (= T3). ≤ 6 configs in all.  - [ ] LO1 tsmom long-only untried forms (prior low): excess over vol-matched BTC; BTC-only timing.
-- [ ] IS3 **InSilico: what the second pass planned and did not run** (audit 2026-11-22, journal). In order, think-through first, explore ≤ 2023 / confirm later, ≤ 6 WF in all:
+- [ ] IS3 **Superseded by the third-pass queue (research/insilico_queue.json, its own 12-h sessions: kripto-insilico.timer). Research sessions: do NOT work on it; W3's walk-forward stays here.** Was: what the second pass planned and did not run (audit 2026-11-22, journal). In order, think-through first, explore ≤ 2023 / confirm later, ≤ 6 WF in all:
   (1) **Range bars** (R3, R7; tg:103–107 "real edge", not even cited in the catalogue): build 0.4% move bars with trade count + size buckets from aggTrades (server can
   rebuild, public archive; raw is dropped, so a second pass; ≤ 2 workers, probe RAM first), BTC/ETH/SOL; R3 exhaustion, R7 ×10 velocity; judge against ≈ 13 bp. Prior low-medium:
   the 5-min version had the opposite sign. (2) lshock L6 pessimistic fills, L3 cascade-only on unseen coins, L4 wait for the end, L2 premium; then E1 (LQ1 ≈ 12-01).

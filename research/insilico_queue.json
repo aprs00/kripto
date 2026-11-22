@@ -1,0 +1,1112 @@
+{
+ "items": [
+  {
+   "id": "L1",
+   "prio": 1,
+   "group": "A",
+   "title": "Liquidation fade: the planned tests that were never run",
+   "src": "R5; tg:165-174; wa 18.10.18, 18.10.25, 18.10.35(3)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "pessimistic fills (z=8 m=5 e=1): entry 1 / 2 / 5 min late, +30 and +50 bp slippage per side, no target fills in the first minute",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "cascade-only: enter only when >= 5 coins have triggered (z>=6) in the previous 30 min, causal count over all coins with 1-min data",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "wait for the end: first up-close minute after volume has fallen below half of the cascade's peak minute; compare adverse excursion",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "perp discount: split by premium index at the low (archive premiumIndexKlines 1m)",
+     "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "exits: author's two levels vs fixed 5/15/60/240 min vs trailing; no tuning beyond these",
+     "status": "planned"
+    },
+    {
+     "id": "f",
+     "what": "hedged: long the coin, short the same USD of BTC (is the bounce coin-specific or the market's?)",
+     "status": "planned"
+    },
+    {
+     "id": "g",
+     "what": "thin coins vs liquid coins (terciles of 30-d volume); where is the bounce largest after a volume-scaled cost?",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "P1",
+   "prio": 3,
+   "group": "A",
+   "title": "Gap fill: next value forms where yesterday traded least",
+   "src": "R14; tg:29-38; wa 18.10.31(2)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "overlap of today's value area with yesterday's least-traded third vs a random third of the same width",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "nearest low-volume node above/below the open: reached before the same distance the other way? placebo = node set of 8 days earlier",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "delta gaps: price zones where yesterday's |delta|/volume was lowest, same test (needs M0 for BTC/ETH/SOL; 1-min taker split otherwise)",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "trade: breakout into a low-volume zone, target its far edge, stop the near edge; payoff vs random-walk odds",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "P2",
+   "prio": 4,
+   "group": "A",
+   "title": "The other balance laws, session profiles, poor lows, fat-node breaks",
+   "src": "R16-R18, R41, R42; tg:52-57, 133-134, 253-254, 288; wa 18.10.51, 18.10.57(1)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "edges reject until proven: first touch of a multi-day balance's edge from inside, vs placebo edge",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "time/volume building at an edge -> break: >= 4 of 6 half-hours within 0.15 x width of the edge, then direction of the next move",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "destination of an imbalance = an older balance's POC (naked POC), vs placebo",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "80% rule on session profiles and on 5-day composite balances (daily one failed)",
+     "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "his exception: single-print band directly under a big POC should NOT fill; compare fill rates",
+     "status": "planned"
+    },
+    {
+     "id": "f",
+     "what": "fat-node break (R41): close below the fattest node of a 20-day composite -> continuation vs an ordinary 20-day level break",
+     "status": "planned"
+    },
+    {
+     "id": "g",
+     "what": "poor / empty low (R42): low made in one half-hour with no tail vs with a tail; retest rate within 5 days",
+     "status": "planned"
+    },
+    {
+     "id": "h",
+     "what": "rotation factor ~0 sessions (R18): next-session range and direction vs R/F extremes",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "P3",
+   "prio": 8,
+   "group": "A",
+   "title": "Composite and naked POCs as magnet and support",
+   "src": "R15; tg:29, 38, 44-47",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "naked daily POCs: probability of being touched within 5 days vs mirrored placebo distance",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "20-day composite POC as magnet: return toward it when price is 2-5 sigma away vs plain mean reversion",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "first touch of naked POC: bounce vs first touch of the daily open (his explicit comparison) and vs placebo",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "W1",
+   "prio": 2,
+   "group": "A",
+   "title": "Weekend and CME: the collar price and the gap rules as he states them",
+   "src": "R21, R36; tg:69-70, 134; wa 18.10.59, 18.10.23(3), 18.10.31, 18.10.35",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "collar = Friday's highest-volume half-hour price after the US open; Sunday-evening entry toward it, out by Monday 17:00 NY",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "CME gap (Fri 17:00 -> Sun 18:00 NY) by size tercile: fill rate within 1/3/5 days vs a placebo gap at a random weekday 24-h-apart window",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "same for coins relative to BTC (excess gap)",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "Sunday pre-open bait: move 16:00-18:00 NY on rising vs falling volume (W3 itself belongs to the research session: do not repeat its walk-forward)",
+     "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "Monday US-open flow: first-hour taker imbalance 09:30-10:30 NY on Mondays -> rest of day / rest of week, vs other weekdays",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "C1",
+   "prio": 6,
+   "group": "A",
+   "title": "Calendar claims, including the ones I called untestable",
+   "src": "R22-R25; tg:98, 181-182; wa 18.10.24, 18.10.28(3), 18.11.00, 18.10.40(1), 18.11.02(1)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "lunar phase: new -> full vs full -> new moon returns (about 75 cycles since 2020; BTC and equal-weight top-30)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "quarterly expiry / equinox and monthly option expiry: week before vs after, vs other weeks",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "turn of month, day of week, hour of week (one table, FDR inside it)",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "FOMC and CPI days: drift 24 h before, reaction, reversal next day (dates from federalreserve.gov / bls.gov calendars, typed into the study)",
+     "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "September / Santa / Chinese New Year / sell in May: effect size and n only; verdict limited to 'cannot be known'",
+     "status": "planned"
+    },
+    {
+     "id": "f",
+     "what": "Stock Trader's Almanac rules that transfer (pre-holiday, triple-witching week, first days of month): take from the PDF text",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "C2",
+   "prio": 7,
+   "group": "A",
+   "title": "Kill zones, CME break hour, illiquid-hour moves, time-of-day flow",
+   "src": "R22-R24, R46, R36; tg:66-69; wa 18.11.01(2), 18.10.26(4), 18.10.35",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "kill-zone persistence: trend that leaves London/NY zones -> next zone, vs the same-length window at random hours",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "filler hours given back: move made between zones reverses in the next zone?",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "CME break hour drift (17-18 NY, t 2.3-3.6 in 2 coins): all 83 coins, year by year",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "pumps in illiquid hours (lowest volume quartile of the week's hours) are faded when volume returns",
+     "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "same clock-time flow persistence: taker imbalance in half-hour h predicts half-hour h of the next day (Heston-type)",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "O1",
+   "prio": 9,
+   "group": "A",
+   "title": "Oscillators: pinned extremes mean trend",
+   "src": "R29; tg:86, 91-92; wa 18.10.36*, 18.10.37",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "RSI14 > 70 for >= k bars -> hold long until it returns below 50 (1h, 4h, 1d), vs buy after the same past return",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "dip to 70 that holds = re-entry (his chart), mirror for 30",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "3-4 failed reversal signals in a row -> continuation",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "return from the extreme to the mean = the reversal signal (what he says actually works)",
+     "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "regime flag: 'breaks every rule' state -> do not fade (as a filter for mean-reversion events found elsewhere)",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "O2",
+   "prio": 10,
+   "group": "A",
+   "title": "The author's own indicators (guides never turned into rules)",
+   "src": "R30; tg:90, 99, 100; pdf Crayons V3.4 (31 p), FSVZO V2.8 (16 p)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "RSI vs volume-zone-oscillator divergence on pumps (> 2 sigma day)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "fade the first two candles after a MACD cross",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "Hull 55 slope entries with Hull 180 filter (1h, 4h, 1d)",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "Leledc exhaustion bars (public script logic) at 1h/4h/1d",
+     "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "FSVZO: volume zone oscillator with Fourier smoothing; enter on the first bar WITHOUT an extreme alert; midline as support",
+     "status": "planned"
+    },
+    {
+     "id": "f",
+     "what": "Crayons: bearish / bullish climax, dominance shift, invalidation lines, only labels whose definition the guide gives",
+     "status": "planned"
+    },
+    {
+     "id": "g",
+     "what": "Fisher transform turns on 1-min (his original method), with costs",
+     "status": "planned"
+    },
+    {
+     "id": "h",
+     "what": "linear-regression channel touches vs hand-drawn-line placebo (tg:77, wa 18.10.43(2))",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "N1",
+   "prio": 11,
+   "group": "A",
+   "title": "Round numbers",
+   "src": "R26; tg:119; wa 18.10.24(1)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "2-3% below a round level in an up move: +6% before -3%? vs the same setup at non-round levels",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "reaction at the round level itself (first touch) vs levels offset by 37%",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "overshoot then return: after closing beyond by 1-2%",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "N2",
+   "prio": 12,
+   "group": "A",
+   "title": "Spot delta vs perp delta",
+   "src": "R13; wa 18.11.00(2), 18.11.02(2)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "build hourly spot klines with taker split for the 30 most liquid coins (data.binance.vision spot archive); rally led by spot vs led by perp -> next 24/72 h",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "negative perp delta in a spot-led rally (his exact claim) vs negative perp delta otherwise",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "spot-perp delta difference as a cross-sectional daily signal, and as a feature inside flow",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "N3",
+   "prio": 13,
+   "group": "A",
+   "title": "Tape behaviour: swings, streaks, change of character, VWAP, shakeouts",
+   "src": "R37, R38, R40, R45, R51; tg:163, 239, 289; wa 18.10.28(1), 18.10.44(2)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "successive swings: each up-swing smaller / slower than the last (zigzag 2 x ATR) -> trend weakening?",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "persistent one-sided buyer whose daily net size halves -> fade (taker imbalance streak >= 3 days)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "change of character: delta flips from stable negative to stable positive (6+6 bars, 1h/4h)",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "distance from weekly / monthly anchored VWAP: reversion vs momentum by volatility regime",
+     "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "daily terminal shakeout: close back above a broken 20/55-day low on record volume",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "N4",
+   "prio": 14,
+   "group": "A",
+   "title": "Lead-lag: illiquid coins move first, decoupling is a canary",
+   "src": "R32, R33; wa 18.10.49; tg:114-116",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "volume-tercile baskets: does the thin basket lead BTC at 1-60 min?",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "drop in the alt-BTC correlation or a thin-basket divergence -> next-day |move| and direction of BTC",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "dumps sharper than pumps (asymmetry of 1-min cascades), and what it implies for stop placement",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "N5",
+   "prio": 15,
+   "group": "A",
+   "title": "Empty moves and volume on rallies, remaining forms",
+   "src": "R6, R8, R9; wa 18.10.58, 18.11.00(1), 18.10.35(1); tg:231, 286-287",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "empty move measured by trade count per bp instead of volume",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "drift up on falling volume (1h/4h, 5-20 bars) keeps going; squeeze without a sharp volume candle fades",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "low on thin volume in 1h/4h bars is revisited (R6), vs low on heavy volume",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "HL thin-book version with L2 depth (data too short before 2026-12-10: mark and move on)",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "S1",
+   "prio": 5,
+   "group": "A",
+   "title": "Re-read the sources I only skimmed, images included",
+   "src": "109 Telegram + 84 WhatsApp records no rule cites; tg:103-107",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "open every uncited record that has an image or video description; list each testable claim not yet in the queue (research/is3/S1a__notes.json), add items or forms",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "Crayons and FSVZO guides page by page: exact definitions for O2 (S1b__notes.json)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "Almanac, How to Lose Money in Derivatives, Artemis: rules that could transfer (S1c__notes.json)",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "46 chart templates: 193 labelled 2020 levels; which of his settings (VA 68%, sessions, range sizes, size thresholds) differ from mine? (S1d__notes.json)",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "M0",
+   "prio": 1.5,
+   "group": "B",
+   "title": "Data: micro move bars from aggTrades",
+   "src": "tg:103-107",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "BTC ETH SOL 2021-2023 built on the server (scripts.mbars_build)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "reconcile with 1-min klines: volume, taker share, high/low per day within 0.1%; bars per day by year",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "BTC ETH SOL 2024-01..2026-10",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "M1",
+   "prio": 16,
+   "group": "B",
+   "title": "Rotation momentum / exhaustion on range bars (R3 as he trades it)",
+   "src": "R3; tg:199-223; wa 18.10.41(1)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "range 0.1 / 0.2 / 0.43 / 0.8%: run of all-green bars -> ride to the first all-red bar",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "first all-red bar after a green run at a 1-day / weekly high -> short / exit (8-h bleed claim)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "z-scored intensity (his colour grades) instead of sign",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "adaptive size groups: quantiles of the previous day's sizes ('AI levels')",
+     "status": "planned"
+    }
+   ],
+   "after": [
+    "M0"
+   ]
+  },
+  {
+   "id": "M2",
+   "prio": 17,
+   "group": "B",
+   "title": "Order velocity x10",
+   "src": "R7; wa 18.10.41(2), 18.10.42, 18.10.29(1)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "trades per range bar drops or jumps >= 10x vs the previous bar (0.1%, 0.2%): reversal / consolidation?",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "same at a 1-day high / low only",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "seconds per bar (speed) instead of trade count",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "5x and 20x as dose-response",
+     "status": "planned"
+    }
+   ],
+   "after": [
+    "M0"
+   ]
+  },
+  {
+   "id": "M3",
+   "prio": 18,
+   "group": "B",
+   "title": "Mousetrap, absorption and trapped cohorts on range bars",
+   "src": "R4, R10, R12, R35; tg:168-171, 206; wa 18.10.39*, 18.10.54(3)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "mousetrap on range bars at prior-day / weekly low with small-sell large-buy split",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "absorption: |delta| in the top decile with price change in the bottom decile -> the absorbing side wins",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "cohort that sold below a level is trapped when price re-crosses it (size groups < 5k vs > 5k USD x 10)",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "volume at the extreme price bins of the bar vs the rest (delta at the low)",
+     "status": "planned"
+    }
+   ],
+   "after": [
+    "M0"
+   ]
+  },
+  {
+   "id": "M4",
+   "prio": 19,
+   "group": "B",
+   "title": "Capitulation with adaptive buckets and inside a trend",
+   "src": "R1, R2; tg:274-284; wa 18.10.55-57",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "daily, adaptive buckets (previous 30 d quantiles)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "session and 4-h bars instead of UTC days",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "R2: largest one-sided delta of the trend's life on a pullback",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "opposite side as a feature: breadth of one-voiced buying",
+     "status": "planned"
+    }
+   ],
+   "after": [
+    "M0"
+   ]
+  },
+  {
+   "id": "M5",
+   "prio": 20,
+   "group": "B",
+   "title": "Range -> impulse -> range on range bars with a real fill model",
+   "src": "R19; tg:226-234",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "previous range high as bid on range bars (0.1 / 0.2%), fill only if volume traded at the level after the order exceeds the queue ahead",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "levels = value-area edge / POC instead of bar highs",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "one attempt only, target = one average bar; maker both sides vs taker exit",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "thin coins where an average bar is large relative to fees (1-min bars)",
+     "status": "planned"
+    }
+   ],
+   "after": [
+    "M0"
+   ]
+  },
+  {
+   "id": "M6",
+   "prio": 21,
+   "group": "B",
+   "title": "Trend systems on move bars instead of time bars",
+   "src": "R33; tg:103-107, 195",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "time-series momentum on range bars vs time bars with the same number of trades per year",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "trend-reverse (TR) bars: follow until the reversal bar",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "consecutive reversals at one level = range -> fade its edges",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "point-and-figure double-top / bottom breaks",
+     "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "volume bars and delta bars (50M delta) as the clock",
+     "status": "planned"
+    }
+   ],
+   "after": [
+    "M0"
+   ]
+  },
+  {
+   "id": "M7",
+   "prio": 22,
+   "group": "B",
+   "title": "Delta at price and exact volume profiles",
+   "src": "R10, R14-R16; tg:59-61",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "largest positive / negative delta print of the day at an extreme or the POC -> next session",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "repeat P1-P3's best and worst forms with exact volume at price",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "flow AT the level: prior POC / single print touched with absorption vs without (his real usage)",
+     "status": "planned"
+    }
+   ],
+   "after": [
+    "M0",
+    "P1"
+   ]
+  },
+  {
+   "id": "F0",
+   "prio": 23,
+   "group": "C",
+   "title": "Filter harness: does a signal improve a book that already works?",
+   "src": "design.md §4 (filters)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "research/studies/is3_filter.py: book daily weights x coin-day or day mask -> SR / mdd / turnover difference with block bootstrap, explore <= 2023, confirm 2024-25; known-answer tests",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "baseline: 200 random masks with the same on-share and persistence (a filter must beat those)",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "F1",
+   "prio": 24,
+   "group": "C",
+   "title": "Filters and features for flow / xsmom / xsmom_k (Binance)",
+   "src": "R1, R8, R13, R29, P5, T6, L5",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "T6: breadth across size buckets inside flow (BTC ETH SOL only: say so)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "L5: no new shorts for 1-3 days after a cascade day",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "no new longs in 20-day highs made on a volume spike (R8)",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "oscillator-pinned names: keep / never fade (R29)",
+     "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "P5: entries at prior POC / inside value vs outside",
+     "status": "planned"
+    },
+    {
+     "id": "f",
+     "what": "round-number and poor-low proximity",
+     "status": "planned"
+    }
+   ],
+   "after": [
+    "F0"
+   ]
+  },
+  {
+   "id": "F2",
+   "prio": 25,
+   "group": "C",
+   "title": "Filters for tsmom, blend, listing shorts, funding pair",
+   "src": "same",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "cascade-day delay",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "CME break / weekend / kill-zone execution tilt (E2) on live fills and 6 y of hourly bars",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "volume-on-rally confirmation for trend entries (R8)",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "FOMC / CPI day de-risking",
+     "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "value-area location of trend entries (P5)",
+     "status": "planned"
+    }
+   ],
+   "after": [
+    "F0"
+   ]
+  },
+  {
+   "id": "X1",
+   "prio": 26,
+   "group": "C",
+   "title": "Confluence: he never trades one signal alone",
+   "src": "tg:59-61, 168; wa 18.10.42(1)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "liquidation fade at a prior-day / weekly low",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "capitulation flow at a prior POC",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "single-print fill + absorption",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "Sunday move + falling volume + distance from collar",
+     "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "pinned oscillator + fat-node break",
+     "status": "planned"
+    },
+    {
+     "id": "f",
+     "what": "order-velocity climax at a round number",
+     "status": "planned"
+    }
+   ],
+   "after": [
+    "L1",
+    "P1",
+    "P2",
+    "M3"
+   ]
+  },
+  {
+   "id": "L2",
+   "prio": 27,
+   "group": "D",
+   "title": "Liquidation prints: real cascades vs ordinary dumps",
+   "src": "R5, R12; backlog LQ1",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "lshock triggers split by liquidation notional in the dump (data/bn/liq)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "cascade defined by prints alone: fade after the print rate falls",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "size cohorts of liquidations vs R12's 1k-10k claim",
+     "status": "planned"
+    }
+   ],
+   "due": "2026-12-05"
+  },
+  {
+   "id": "V1",
+   "prio": 28,
+   "group": "D",
+   "title": "Liquidity withdrawal from L2 (HL hourly snapshots)",
+   "src": "R11; wa 18.10.30(2), 18.10.35",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "depth before / after FOMC, CPI, weekends, cascades",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "depth drop -> next-hour volatility and direction",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "thin book + move = empty move (R9 third form)",
+     "status": "planned"
+    }
+   ],
+   "due": "2026-12-14"
+  },
+  {
+   "id": "V2",
+   "prio": 29,
+   "group": "D",
+   "title": "Trade-size rules natively on Hyperliquid (one address = one order)",
+   "src": "R1-R4; backlog TSZ-HL, W2",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "R1 daily on HL",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "large takers vs small takers next-day",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "mousetrap split on HL",
+     "status": "planned"
+    }
+   ],
+   "due": "2027-01-07"
+  },
+  {
+   "id": "E1",
+   "prio": 30,
+   "group": "D",
+   "title": "Live 1-minute paper book for the liquidation fade",
+   "src": "backlog E1",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "decide from L1/L2 whether it is worth building; if yes build it in the watcher with tests, frozen config, $1,000 and $200",
+     "status": "planned"
+    }
+   ],
+   "after": [
+    "L1",
+    "L2"
+   ]
+  },
+  {
+   "id": "M8",
+   "prio": 31,
+   "group": "E",
+   "title": "Survivors of M1-M6 on unseen coins",
+   "src": "M1-M6",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "micro bars for six never-used coins (picked by volume rank 10-60 on 2023-12-31, fixed before download), confirmC cards",
+     "status": "planned"
+    }
+   ],
+   "after": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6"
+   ]
+  },
+  {
+   "id": "Z1",
+   "prio": 32,
+   "group": "E",
+   "title": "Walk-forwards of whatever survived, and the honest final report",
+   "src": "all",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "false-discovery table over every confirm card (is3_lib fdr)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "at most 8 walk-forwards through kripto.research, pre-registered batch; gates as usual; shadow books for passes",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "research/insilico_pass3.md final section + STATUS.md: per idea what was tried, why it failed, what stands, $1,000 and $200",
+     "status": "planned"
+    }
+   ],
+   "after": [
+    "L1",
+    "P1",
+    "P2",
+    "P3",
+    "W1",
+    "C1",
+    "C2",
+    "O1",
+    "O2",
+    "N1",
+    "N2",
+    "N3",
+    "N4",
+    "N5",
+    "F1",
+    "F2",
+    "X1",
+    "M8"
+   ]
+  },
+  {
+   "id": "B0",
+   "prio": 99,
+   "group": "-",
+   "title": "No lawful data: tweets (R27), options / dealer flow (R31), equities (R32 part), Bitfinex ratio, exchange latency",
+   "src": "R27 R31 R32",
+   "status": "closed",
+   "verdict": "UNTESTABLE",
+   "reason": "X terms forbid scraping; Deribit, Bitfinex and equity venues are outside HARD RULE 1; no latency history",
+   "closed": "2026-11-22",
+   "forms": []
+  },
+  {
+   "id": "NR",
+   "prio": 99,
+   "group": "-",
+   "title": "Principles, not rules: R20 small size is the edge, R10 vocabulary (tested inside M3), psychology, Benner cycle",
+   "src": "R10 R20",
+   "status": "closed",
+   "verdict": "UNTESTABLE",
+   "reason": "no falsifiable trade",
+   "closed": "2026-11-22",
+   "forms": []
+  }
+ ]
+}

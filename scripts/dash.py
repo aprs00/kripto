@@ -18,7 +18,7 @@ from pathlib import Path
 
 ROOT = Path(os.environ.get("KRIPTO_ROOT") or Path(__file__).resolve().parent.parent)
 DB = ROOT / "state" / "paper.db"
-UNITS = ["trader", "health", "review", "research", "data"]   # timers; kripto-live is a service (see books section)
+UNITS = ["trader", "health", "review", "research", "insilico", "data"]   # timers; kripto-live is a service (see books section)
 
 TTY = sys.stdout.isatty()
 

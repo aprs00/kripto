@@ -193,6 +193,8 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   See `prompts/review.md`.
 * **research** (Tue + Thu 06:40 UTC, long): 2–3 hypotheses tested in parallel (batch file + `--grids`), then gates.
   See `prompts/research.md`. Live testing is parallel too: every promising variant can get its own shadow book.
+* **insilico** (10:40 + 22:40 UTC, short, ≤ 70 turns): one chunk of the InSilico third pass from `research/insilico_queue.json`
+  (plan research/insilico_pass3.md, battery research/studies/is3_lib.py). Owner's stop switch: `touch state/insilico.paused`. No work due = no tokens.
 * **retro** (Sun 06:40 UTC): the weekly retrospective + forward ledger instead of new experiments (prompts/research.md).
   Don't add sessions back without evidence that session count, not data, is the bottleneck: each walk-forward
   experiment raises the DSR bar (N=49 → SR 1.44, N=500 → 1.76 on 6 y) and costs the owner money.
@@ -373,3 +375,8 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   (3) `live_vs_backtest --since / --daily`; `research/studies/{live_universe,fill_delay,tradfi_effect}.py`. Live delay costs HL +5–17 bp (weak): C1 must include it.
 * 2026-11-22 review: the review's journal grep matched the hourly `"errors": []` / `"errors": 0` status lines (48 of them a day), so its `tail -30` pushed real errors out
   (the six flow disconnects of 11-21 09:31, HL 502s, were not shown). prompts/review.md now filters them and includes kripto-liq.
+* 2026-11-22 interactive (owner: "did you thoroughly research insilico stuff?" → no; "test everything ... every 12 hours ... i mean it"): about half of what the second pass
+  planned had no code, families were still called DEAD, and his main method (distance bars) was never catalogued. Built: `scripts/insilico_queue.py` (137 planned forms; refuses
+  a verdict while one has no outcome), `research/studies/is3_lib.py` (one battery for every form: null data, causality, matched baseline, day-block bootstrap, MDE, cost ladder,
+  committed pre-registration, one-shot confirm, vault, FDR), `kripto/mbars.py` (move bars), session mode `insilico` + timer. Lesson: a plan without per-item outcomes is a wish;
+  put "done / skipped why" in a tool that blocks the verdict.

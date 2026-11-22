@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Headless Claude session. Usage: scripts/agent.sh review|research
+# Headless Claude session. Usage: scripts/agent.sh review|research|insilico
 set -uo pipefail
-MODE="${1:?review|research}"
+MODE="${1:?review|research|insilico}"
 cd "$(dirname "$0")/.."
 export PATH="$HOME/.local/bin:$PATH"
 mkdir -p logs
@@ -9,7 +9,11 @@ LOG="logs/agent-$(date -u +%F)-$MODE.log"
 exec 9>"$HOME/.kripto-agent.lock"
 flock -n 9 || { echo "$(date -u) another agent session is running; skip" >> "$LOG"; exit 0; }
 git pull -q --rebase || echo "git pull failed" >> "$LOG"
-case "$MODE" in review) TURNS=40; TMO=35m;; research) TURNS=250; TMO=140m;; *) exit 2;; esac
+case "$MODE" in review) TURNS=40; TMO=35m;; research) TURNS=250; TMO=140m;; insilico) TURNS=70; TMO=75m;; *) exit 2;; esac
+# The InSilico programme costs tokens only when it has work: paused (state/insilico.paused) or nothing due -> stop here
+if [ "$MODE" = insilico ]; then
+  WHY="$(.venv/bin/python -m scripts.insilico_queue should-run)" || { echo "$(date -u +%FT%TZ) insilico: no session ($WHY)" >> "$LOG"; exit 0; }
+fi
 # HARD RULES are immutable for headless sessions: remember the section now, put it back afterwards if it changed
 SNAP="$(mktemp)"; .venv/bin/python -m scripts.guard save "$SNAP" 2>> "$LOG" || SNAP=""
 echo "=== $(date -u +%FT%TZ) start $MODE" >> "$LOG"

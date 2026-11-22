@@ -1,0 +1,7 @@
+[Unit]
+Description=kripto agent InSilico programme every 12 h (clear of research 06:40, review 08:25, data 01:15)
+[Timer]
+OnCalendar=*-*-* 10,22:40:00
+Persistent=false
+[Install]
+WantedBy=timers.target
