@@ -1182,7 +1182,7 @@
    "group": "T",
    "title": "Be in the book BEFORE the dump: resting bid ladders (he is a maker: 'rebate harvest', 'contrarians slipping thru empty book')",
    "src": "tg:167, 226-234; owner 2026-11-22",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -1259,17 +1259,26 @@
     {
      "id": "i",
      "what": "NARROWED (post hoc, so needs clean data): only coins in the causal top-20 by 30-d volume (previous day's close, full clean bnall universe, listed >= 365 d or any age: both), k30, hold 60, all same-minute fills taken; frozen on 2021-25, judged on the 2026 vault ONCE and live paper",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "frozen causal top-20, pre-registered: confirmT 2024-25 +259 bp (n 356, p .001, ex-top3 +191), vault 2026 +203 (n 142, p .006, ex-top3 +150), both pass; pessimistic entry +150 p .02 / +84 p .18; two fills (LIGHT, AIA) = 35% of confirmT; account 10% x 5 slots SR 1.9 / 2.8, worst booked day -8.4%, intraday mark -34% bound on 2025-10-10",
+     "date": "2026-11-22",
+     "evidence": "T1i__vault"
     },
     {
      "id": "j",
      "what": "the crash tail itself (2025-10-10: -13..-16% per fill, hours): stop after entry (3/5/10%), one batch per day then stop quoting, stop quoting while BTC is already down > x% in 4 h, exit at 240 min or the next day; explore on 2021-23 crashes, 2024-25 only as a check already seen",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "causal top-20 2021-23 (644 fills, 215 d): plain 60 min +187 bp (p <.001, ex-top3 +136); stops 3/5/10% +14/+44/+70, no quoting when BTC 4-h < -3% +94, one batch a day SR 2.3 -> 1.4, all worse than plain (dose is the opposite: BTC -5% +1248); 11 exits x 3 universes x 5 quoting rules",
+     "date": "2026-11-22",
+     "evidence": "T1j_plain__explore"
     }
    ],
-   "sessions": 2
+   "sessions": 2,
+   "verdict": "CONFIRMED",
+   "reason": "liquid causal top-20 only, resting bid 30 sigma, 60 min: passes explore, confirmT, vault 2026 (one shot); any-coin form refuted by T1g, narrowing was post hoc before the vault; edge needs the resting fill (pessimistic entry n.s. in 2026), tail = many fills in one news minute, intraday marks -15..-34% at 10% size -> size <= 5% in E2",
+   "closed": "2026-11-22"
   },
   {
    "id": "T2",

@@ -2,7 +2,7 @@ HEALTH: OK — all services healthy at the 08:25 review: 25/25 hourly trader run
 
 _Updated 2026-11-22 08:30 UTC (daily review after the weekly retro). Detail: journal/2026-11-22.md._
 
-InSilico pass 3: 24 of 169 test forms done, 3 ideas closed (2 open, 1 confirmed on paper). Best lead: bids resting 30 sigma (about 3%) below the price on the 20 most-traded coins, sold an hour later. It passed on 2021–23, pre-registered 2024–25 and, opened once, 2026 (+203 bp per fill, p .006). Not a strategy yet: it earns only if a resting order would really have been filled (a pessimistic fill is not significant in 2026), fills bunch in crash minutes (2025-10-10 would have marked the account about −34% for part of an hour at 10% per order), and no walk-forward, live paper or cost stress has been run. Next: E2, the live test.
+InSilico pass 3: 24 of 169 test forms done, 3 ideas closed (2 open, 1 confirmed on paper). Best lead: bids resting 30 sigma (about 3%) below the price on the 20 most-traded coins, sold an hour later. It passed on 2021–23, pre-registered 2024–25 and, opened once, 2026 (+203 bp per fill, p .006). Not a strategy yet: it earns only if a resting order would really have been filled (a pessimistic fill is not significant in 2026), fills bunch in crash minutes (2025-10-10 could have marked the account down by up to about 34% inside the hour at 10% per order), and no walk-forward, live paper or cost stress has been run. Next: E2, the live test.
 
 ## This week's most important finding
 **My Binance research data contained things the bot cannot trade.** Binance added about 245 stock, commodity and FX contracts (Apple, AMD, gold…) in 2026. The
