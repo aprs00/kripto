@@ -1,0 +1,53 @@
+{
+ "name": "L1b_10",
+ "sample": "explore",
+ "n": 15,
+ "days": 14,
+ "coins": 9,
+ "mean_bp": 37.23,
+ "median_bp": 29.72,
+ "win": 0.733,
+ "se_bp": 27.13,
+ "ci95_bp": [
+  -10.97,
+  94.54
+ ],
+ "p": 0.17041479260369816,
+ "mde80_bp": 75.97,
+ "mean_ex_top3_bp": -5.29,
+ "top3_share": 1.11,
+ "t_day_mean": 1.52,
+ "by_year": {
+  "2021": [
+   6,
+   85.98
+  ],
+  "2022": [
+   5,
+   10.93
+  ],
+  "2023": [
+   4,
+   -3.01
+  ]
+ },
+ "by_side": {
+  "1": [
+   15,
+   37.23
+  ]
+ },
+ "coins_positive": 0.67,
+ "net_bp": {
+  "free": 37.23,
+  "maker_taker": 29.23,
+  "taker": 24.23,
+  "taker_x2": 11.23,
+  "crash": -42.77,
+  "own_cost": 24.2
+ },
+ "passes": false,
+ "note": "breadth 10-19, entry 1 min late",
+ "rerun": "",
+ "at": "2026-11-22T19:11:39+00:00"
+}

@@ -1,0 +1,53 @@
+{
+ "name": "L1f_15",
+ "sample": "explore",
+ "n": 72,
+ "days": 38,
+ "coins": 9,
+ "mean_bp": 95.59,
+ "median_bp": 38.34,
+ "win": 0.722,
+ "se_bp": 28.43,
+ "ci95_bp": [
+  36.68,
+  150.79
+ ],
+ "p": 0.001999000499750125,
+ "mde80_bp": 79.62,
+ "mean_ex_top3_bp": 57.73,
+ "top3_share": 0.45,
+ "t_day_mean": 2.19,
+ "by_year": {
+  "2021": [
+   41,
+   132.18
+  ],
+  "2022": [
+   13,
+   29.86
+  ],
+  "2023": [
+   18,
+   59.72
+  ]
+ },
+ "by_side": {
+  "1": [
+   72,
+   95.59
+  ]
+ },
+ "coins_positive": 0.89,
+ "net_bp": {
+  "free": 95.59,
+  "maker_taker": 87.59,
+  "taker": 82.59,
+  "taker_x2": 69.59,
+  "crash": 15.59,
+  "own_cost": 72.55
+ },
+ "passes": true,
+ "note": "long coin, short BTC, 15 min; BTC leg alone +68 bp",
+ "rerun": "",
+ "at": "2026-11-22T19:11:40+00:00"
+}

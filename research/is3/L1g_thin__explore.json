@@ -1,0 +1,53 @@
+{
+ "name": "L1g_thin",
+ "sample": "explore",
+ "n": 59,
+ "days": 48,
+ "coins": 8,
+ "mean_bp": 23.53,
+ "median_bp": 13.96,
+ "win": 0.593,
+ "se_bp": 41.06,
+ "ci95_bp": [
+  -59.06,
+  104.21
+ ],
+ "p": 0.5717141429285357,
+ "mde80_bp": 114.98,
+ "mean_ex_top3_bp": -22.34,
+ "top3_share": 1.84,
+ "t_day_mean": 0.46,
+ "by_year": {
+  "2021": [
+   27,
+   42.78
+  ],
+  "2022": [
+   14,
+   -18.27
+  ],
+  "2023": [
+   18,
+   27.17
+  ]
+ },
+ "by_side": {
+  "1": [
+   59,
+   23.53
+  ]
+ },
+ "coins_positive": 0.62,
+ "net_bp": {
+  "free": 23.53,
+  "maker_taker": 15.53,
+  "taker": 10.53,
+  "taker_x2": -2.47,
+  "crash": -56.47,
+  "own_cost": 10.14
+ },
+ "passes": false,
+ "note": "thin tercile, 1 min late",
+ "rerun": "",
+ "at": "2026-11-22T19:11:40+00:00"
+}

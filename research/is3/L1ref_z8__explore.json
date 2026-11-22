@@ -1,0 +1,57 @@
+{
+ "name": "L1ref_z8",
+ "sample": "explore",
+ "n": 78,
+ "days": 41,
+ "coins": 10,
+ "mean_bp": 194.36,
+ "median_bp": 98.47,
+ "win": 0.692,
+ "se_bp": 54.75,
+ "ci95_bp": [
+  90.2,
+  307.13
+ ],
+ "p": 0.0009995002498750624,
+ "mde80_bp": 153.31,
+ "mean_ex_top3_bp": 104.58,
+ "top3_share": 0.56,
+ "t_day_mean": 3.5,
+ "by_year": {
+  "2021": [
+   43,
+   281.29
+  ],
+  "2022": [
+   13,
+   38.66
+  ],
+  "2023": [
+   22,
+   116.47
+  ]
+ },
+ "by_side": {
+  "1": [
+   78,
+   194.36
+  ]
+ },
+ "coins_positive": 0.9,
+ "net_bp": {
+  "free": 194.36,
+  "maker_taker": 186.36,
+  "taker": 181.36,
+  "taker_x2": 168.36,
+  "crash": 114.36,
+  "own_cost": 181.32
+ },
+ "base_n": 3976,
+ "base_bp": 4.03,
+ "vs_base_bp": 190.34,
+ "p_vs_base": 0.0014992503748125937,
+ "passes": true,
+ "note": "base/unconditional z>=8 was seen on all coins and years in passes 1-2",
+ "rerun": "",
+ "at": "2026-11-22T19:11:39+00:00"
+}

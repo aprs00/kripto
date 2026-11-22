@@ -6,7 +6,7 @@
    "group": "A",
    "title": "Liquidation fade: the planned tests that were never run",
    "src": "R5; tg:165-174; wa 18.10.18, 18.10.25, 18.10.35(3)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -42,8 +42,15 @@
      "id": "g",
      "what": "thin coins vs liquid coins (terciles of 30-d volume); where is the bounce largest after a volume-scaled cost?",
      "status": "planned"
+    },
+    {
+     "id": "h",
+     "what": "climax within the last 5 minutes (largest-volume down minute), reversal bar later, as his chart shows",
+     "status": "planned",
+     "added": "2026-11-22"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "P1",

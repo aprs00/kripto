@@ -1,0 +1,14 @@
+{
+ "L1h": {
+  "claim": "After a z>=8, >=5x volume down minute, the first full take-back on less volume within 5 minutes is followed by a bounce that a 1-minute-late taker entry can still earn",
+  "rule": "is3_lshock rows(R[z>=8], 'x1'), author exit, 60 min; card passes = net of 10 bp fees + 2x modelled slippage > 0, p<0.05, better than the same drops without the pattern (p<0.05), net positive without the best 3 days. Both confirmT and confirmC must pass. Not clean: z=8 d=1 at-the-close was seen on all coins and years before; d=2..5 and the late entry were not.",
+  "params": {},
+  "at": "2026-11-22T19:12:06+00:00"
+ },
+ "L1f": {
+  "claim": "The bounce is coin-specific: long the coin, short BTC for 15 minutes after the d=1 reversal earns more than four taker legs",
+  "rule": "is3_lshock q.h15-q.b15, z>=8, d=1, alts; card passes with 20 bp fees + 2x slippage; both confirm samples",
+  "params": {},
+  "at": "2026-11-22T19:12:06+00:00"
+ }
+}
