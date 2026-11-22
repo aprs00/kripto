@@ -178,6 +178,10 @@ def frozen_one(coin):
         ix = ix.append(pd.date_range(ix[-1] + pd.Timedelta("1min"), periods=300, freq="1min"))
         cl = P["close"].reindex(ix).ffill()
         P = {"close": cl, "high": P["high"].reindex(ix).fillna(cl), "low": P["low"].reindex(ix).fillna(cl), "volume": P["volume"].reindex(ix).fillna(0.0)}
+    return frozen_core(coin, P)
+
+
+def frozen_core(coin, P):
     idx = P["close"].index
     c, h, l, v = (P[k][coin].to_numpy(dtype=np.float64) for k in ("close", "high", "low", "volume"))
     t = fills(c, h, l, v, idx, through=30e-4, sides=(1,), ks=(20, 30))
@@ -257,6 +261,73 @@ def dead(workers=3):
         print(f"   pooled confirmC + delisted: n {a['n']} mean {a['mean_bp']:+.0f} net {a['net_bp']['own_cost']:+.0f} p {a['p']:.3f} ex-top3 {a['mean_ex_top3_bp']:+.0f}; account 5x10%: {account(both, 'h60', '2021-01-01', '2026-01-01', 0.1, 5)}")
 
 
+def fresh60() -> list[str]:
+    """Form g: 60 coins picked by a fixed hash from the point-in-time top-100 list, in none of the earlier sets, no stock perps."""
+    import zlib
+    tf = data.bn_tradfi()
+    used = set(coins()) | set(DEAD24)
+    pool = [x[:-4] for x in data.bn_top_symbols(100, 30) if x.endswith("USDT") and x not in tf and x[:-4] not in used]
+    return sorted(sorted(pool, key=lambda c: zlib.crc32(("T1g" + c).encode()))[:60])
+
+
+def fresh(workers=3):
+    """Download each fresh coin's minutes (kept under data/is3/k1m so the 83-coin sets never change), run the frozen rule, card it."""
+    from scripts import minute_study as ms
+    names = fresh60()
+    print(len(names), "fresh coins:", " ".join(names), flush=True)
+    ms.DIR = OUT / "k1m"
+    for i in range(0, len(names), 6):
+        ms.download(names[i:i + 6], [str(p) for p in pd.period_range("2021-01", "2025-12", freq="M")], log=lambda x: print(x, flush=True))
+    with ProcessPoolExecutor(workers) as ex:
+        t = pd.concat([x for x in ex.map(fresh_one, names) if len(x)]).sort_values(["time", "coin"]).reset_index(drop=True)
+    t.to_parquet(OUT / "ladder_fresh.parquet")
+    for k in (20, 30):
+        q = t[(t.k == k) & (t.time < "2026-01-01")]
+        L.card(f"T1g_k{k}", rows(q, "h60"), "confirmC", note="60 fresh coins (hash sample of the point-in-time top 100)")
+        for col, nm in (("w60", "max(limit, minute close)"), ("d60", "market 1 min later")):
+            w = L.stats(rows(q, col), reps=1000)
+            print(f"   {nm}: mean {w['mean_bp']:+.0f} p {w['p']:.3f} ex-top3 {w['mean_ex_top3_bp']:+.0f} years {w['by_year']}")
+        for mo in (5, 10):
+            print(f"   account {mo} slots x 10%: limit {account(q, 'h60', '2021-01-01', '2026-01-01', 0.1, mo)} | pessimistic {account(q, 'w60', '2021-01-01', '2026-01-01', 0.1, mo)}")
+
+
+def fresh_one(coin):
+    f = OUT / "k1m" / f"{coin}USDT.parquet"
+    if not f.exists():
+        return pd.DataFrame()
+    df = pd.read_parquet(f, columns=["t", "h", "l", "c", "qv"])
+    df.index = pd.to_datetime(df["t"].where(df["t"] < 1e14, df["t"] // 1000), unit="ms", utc=True)
+    df = df[~df.index.duplicated()].sort_index()
+    ended = df.index[-1] < pd.Timestamp("2025-12-30", tz="UTC")
+    idx = pd.date_range(df.index[0], df.index[-1] + pd.Timedelta(minutes=300 if ended else 0), freq="1min")
+    cl = df["c"].reindex(idx).ffill().astype(float)
+    P = {"close": cl.to_frame(coin), "high": df["h"].reindex(idx).fillna(cl).astype(float).to_frame(coin),
+         "low": df["l"].reindex(idx).fillna(cl).astype(float).to_frame(coin), "volume": df["qv"].reindex(idx).fillna(0.0).astype(float).to_frame(coin)}
+    return frozen_core(coin, P)
+
+
+def sizing():
+    """Form d on explore only (choices, not evidence): slots, size, $200, order in which simultaneous fills are taken."""
+    live = pd.read_parquet(OUT / "ladder_frozen.parquet")
+    dead = pd.read_parquet(OUT / "ladder_dead.parquet")
+    t = pd.concat([live, dead])
+    t = t[(t.time >= "2021-01-01") & (t.time < "2024-01-01")]
+    rng = np.random.default_rng(0)
+    for k in (20, 30):
+        q = t[t.k == k]
+        for nm, g in (("first-come alphabetical", q.sort_values(["time", "coin"])), ("most liquid first", q.sort_values(["time", "dv30"], ascending=[True, False])),
+                      ("thinnest first", q.sort_values(["time", "dv30"])), ("worst first (hindsight bound)", q.sort_values(["time", "h60"]))):
+            print(f"k={k} {nm}: 5 x 10% {account(g, 'h60', '2021-01-01', '2024-01-01', 0.1, 5)}")
+        for mo, sz in ((3, 0.2), (5, 0.2), (10, 0.1), (10, 0.05), (20, 0.05)):
+            print(f"k={k} {mo} slots x {sz:.0%}: {account(q.sort_values(['time', 'dv30'], ascending=[True, False]), 'h60', '2021-01-01', '2024-01-01', sz, mo)}")
+        r = []
+        for _ in range(20):
+            g = q.assign(u=rng.random(len(q))).sort_values(["time", "u"])
+            r.append(float(account(g, "h60", "2021-01-01", "2024-01-01", 0.1, 5).split("SR ")[1].split()[0]))
+        print(f"k={k} random order of simultaneous fills, 20 draws: SR {min(r):.2f}..{max(r):.2f}")
+        L.card(f"T1d_k{k}", rows(sample(live[live.k == k], "explore"), "h60"), "explore", note="$1,000: 10% = $100 per order; $200: 10% = $20 (Binance min $5, BTC $50 / ETH $20, HL $10): BTC needs 25% of $200, so skip BTC there")
+
+
 def checks():
     P = data.load_bn_minute_panel(["BTC", "DOGE", "AVAX"])
     P = {k: x[(x.index >= "2021-03-01") & (x.index < "2021-09-01")].astype("float64") for k, x in P.items()}
@@ -269,4 +340,4 @@ def checks():
 
 
 if __name__ == "__main__":
-    {"build": lambda: build(int(sys.argv[2]) if len(sys.argv) > 2 else 3), "checks": checks, "explore": explore, "stress": stress, "frozen": frozen_build, "confirm": confirm, "dead": dead}[sys.argv[1]]()
+    {"build": lambda: build(int(sys.argv[2]) if len(sys.argv) > 2 else 3), "checks": checks, "explore": explore, "stress": stress, "frozen": frozen_build, "confirm": confirm, "dead": dead, "fresh": fresh, "sizing": sizing}[sys.argv[1]]()

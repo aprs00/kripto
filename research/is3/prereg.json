@@ -40,5 +40,17 @@
   "rule": "same",
   "params": {},
   "at": "2026-11-22T19:25:36+00:00"
+ },
+ "T1g_k20": {
+  "claim": "The frozen T1k20 rule earns on 60 fresh coins",
+  "rule": "hash sample of the point-in-time top 100, 2021-25; card passes",
+  "params": {},
+  "at": "2026-11-22T19:44:27+00:00"
+ },
+ "T1g_k30": {
+  "claim": "The frozen T1k30 rule earns on 60 fresh coins",
+  "rule": "same; plus positive in the pessimistic entry",
+  "params": {},
+  "at": "2026-11-22T19:44:27+00:00"
  }
 }
