@@ -63,4 +63,4 @@ ends the session; state is committed after every form, so the next one resumes.
 One line per closed item (full numbers in research/is3/, conclusions in findings.md):
 * L1 liquidation fade (taker after the reversal bar): OPEN. Real, every year +, but a late taker entry does not survive 30 bp worse fills; both confirm forms missed the bar.
 * W1 weekend / CME: OPEN. Weekend prices do return to Friday's level more often than on weekdays (43% vs 29%), but the trade was only paid in 2021.
-* T1 (running): resting bids 30 σ below the market: passed both confirm samples and the delisted coins; vault and more coins still to do.
+* T1 resting bids 30 σ under the price: CONFIRMED for the causal top-20 only (+187 explore, +259 2024–25, +203 bp 2026 vault, gross per fill; net of own costs +178 / +250 / +194). Any-coin version refuted (T1g). Needs the resting fill; −34% intraday mark at 10% size on 2025-10-10. Next: E2.

@@ -236,7 +236,7 @@ def confirm(sample="confirmT", name="ladtop_c"):
         print(f"   {lab} pessimistic entry h60 {s['mean_bp']:+.0f} p {s['p']:.3f} | ACC SR {a['sr']:.2f} cagr {a['cagr']:+.1%} {a['yr']}")
     d = e.groupby("day").h60.agg(["sum", "mean", "size"])
     print("   worst days:", d.nsmallest(4, "sum").round(3).to_dict("index"), "best:", d.nlargest(4, "sum").round(3).to_dict("index"))
-    print("   by BTC 4-h:", [(a, int(((e.btc240 >= a) & (e.btc240 < b)).sum()), round(e[(e.btc240 >= a) & (e.btc240 < b)].h60.mean() * 1e4)) for a, b in ((-1, -.05), (-.05, -.03), (-.03, -.01), (-.01, .01), (.01, 1))])
+    print("   by BTC 4-h:", [(a, int(((e.btc240 >= a) & (e.btc240 < b)).sum()), round(float(np.nan_to_num(e[(e.btc240 >= a) & (e.btc240 < b)].h60.mean())) * 1e4)) for a, b in ((-1, -.05), (-.05, -.03), (-.03, -.01), (-.01, .01), (.01, 1))])
 
 
 if __name__ == "__main__":

@@ -355,3 +355,9 @@ Enter at 7-d dv ≥ $1M, stay while ≥ $0.5M (B) vs one threshold (A). Explore 
 SR 0.38 → 0.37, cost 1.37 → 1.22%/yr; **HL: re-entries 43% of events (!), cost 3.68 → 2.88%/yr, but SR 1.45 → 1.37, mdd −28.6 → −31.8% → FAIL.** On HL the
 low-volume exit is also a squeeze filter (thin dying coins, volume returning on pumps). Entry floor 2× loses signal. Re-check the same rule after C1
 (threshold names cost ≈ 3× the model live). research/studies/t2b_hyst.py.
+
+### InSilico T1 resting bids 30 σ below the last price, causal top-20 coins, exit 60 min (2026-11-22, is3_ladtop.py) → CONFIRMED by card, not yet a book
+Explore 2021–23 +187 bp/fill (n 644, 215 d, every year +), pre-registered 2024–25 +259 (n 356, p .001, two lottery fills 35% of it), 2026 vault once +203 (n 142, p .006, ex-top3 +150).
+Account 10% × 5 slots: SR 2.3 / 1.9 / 2.8, cagr 35–38%, worst booked day −8%; 5% size halves everything. Any-coin version refuted (60 fresh coins +13 bp), so the narrowing to liquid coins was post hoc before the vault.
+Not yet real: entry at max(limit, minute close) +115 / +150 / +84 (2026 p .18), so the edge is the resting fill; 2025-10-10 marks −34% inside the hour at 10% size (booked −8%). Stops, calm filters and "don't quote when BTC falls" all make it worse
+(the cascade is what pays). Needs: live resting-order paper with real queue and outage behaviour, walk-forward, costs ×2 (E2).

@@ -1,0 +1,53 @@
+{
+ "name": "T1j_btcdown",
+ "sample": "explore",
+ "n": 557,
+ "days": 201,
+ "coins": 85,
+ "mean_bp": 94.27,
+ "median_bp": 105.69,
+ "win": 0.707,
+ "se_bp": 22.36,
+ "ci95_bp": [
+  48.35,
+  137.01
+ ],
+ "p": 0.0004997501249375312,
+ "mde80_bp": 62.62,
+ "mean_ex_top3_bp": 75.52,
+ "top3_share": 0.26,
+ "t_day_mean": 7.12,
+ "by_year": {
+  "2021": [
+   52,
+   253.6
+  ],
+  "2022": [
+   176,
+   44.91
+  ],
+  "2023": [
+   329,
+   95.49
+  ]
+ },
+ "by_side": {
+  "1": [
+   557,
+   94.27
+  ]
+ },
+ "coins_positive": 0.85,
+ "net_bp": {
+  "free": 94.27,
+  "maker_taker": 86.27,
+  "taker": 81.27,
+  "taker_x2": 68.27,
+  "crash": 14.27,
+  "own_cost": 85.65
+ },
+ "passes": true,
+ "note": "no quoting while BTC 4h < -3%",
+ "rerun": "",
+ "at": "2026-11-22T20:34:10+00:00"
+}

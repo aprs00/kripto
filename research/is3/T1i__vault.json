@@ -1,0 +1,45 @@
+{
+ "name": "T1i",
+ "sample": "vault",
+ "n": 142,
+ "days": 78,
+ "coins": 46,
+ "mean_bp": 203.3,
+ "median_bp": 168.24,
+ "win": 0.754,
+ "se_bp": 70.89,
+ "ci95_bp": [
+  69.01,
+  342.89
+ ],
+ "p": 0.006496751624187906,
+ "mde80_bp": 198.49,
+ "mean_ex_top3_bp": 150.33,
+ "top3_share": 0.32,
+ "t_day_mean": 2.49,
+ "by_year": {
+  "2026": [
+   142,
+   203.3
+  ]
+ },
+ "by_side": {
+  "1": [
+   142,
+   203.3
+  ]
+ },
+ "coins_positive": 0.78,
+ "net_bp": {
+  "free": 203.3,
+  "maker_taker": 195.3,
+  "taker": 190.3,
+  "taker_x2": 177.3,
+  "crash": 123.3,
+  "own_cost": 193.96
+ },
+ "passes": true,
+ "note": "causal top-20 by 30-d volume, hold 60, no stop",
+ "rerun": "",
+ "at": "2026-11-22T20:33:52+00:00"
+}

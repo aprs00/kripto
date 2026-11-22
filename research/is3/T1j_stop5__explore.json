@@ -1,0 +1,53 @@
+{
+ "name": "T1j_stop5",
+ "sample": "explore",
+ "n": 644,
+ "days": 215,
+ "coins": 92,
+ "mean_bp": 43.57,
+ "median_bp": 89.69,
+ "win": 0.651,
+ "se_bp": 35.49,
+ "ci95_bp": [
+  -25.0,
+  116.45
+ ],
+ "p": 0.21339330334832585,
+ "mde80_bp": 99.37,
+ "mean_ex_top3_bp": 16.83,
+ "top3_share": 0.63,
+ "t_day_mean": 4.42,
+ "by_year": {
+  "2021": [
+   107,
+   157.27
+  ],
+  "2022": [
+   184,
+   19.78
+  ],
+  "2023": [
+   353,
+   21.52
+  ]
+ },
+ "by_side": {
+  "1": [
+   644,
+   43.57
+  ]
+ },
+ "coins_positive": 0.61,
+ "net_bp": {
+  "free": 43.57,
+  "maker_taker": 35.57,
+  "taker": 30.57,
+  "taker_x2": 17.57,
+  "crash": -36.43,
+  "own_cost": 28.36
+ },
+ "passes": false,
+ "note": "5% stop, 60 min cap",
+ "rerun": "",
+ "at": "2026-11-22T20:34:10+00:00"
+}
