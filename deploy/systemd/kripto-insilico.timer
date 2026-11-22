@@ -1,7 +1,8 @@
 [Unit]
-Description=kripto agent InSilico programme every 12 h (clear of research 06:40, review 08:25, data 01:15)
+Description=kripto agent InSilico programme every 12 h (01:47 + 13:47 UTC, owner 2026-11-22; overlaps the 01:15-03:25 data job: see prompts/insilico.md step 1)
 [Timer]
-OnCalendar=*-*-* 10,22:40:00
+OnCalendar=*-*-* 01:47:00
+OnCalendar=*-*-* 13:47:00
 Persistent=false
 [Install]
 WantedBy=timers.target

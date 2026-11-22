@@ -1,6 +1,8 @@
 Scheduled INSILICO session (headless, every 12 h, nobody will answer). Follow CLAUDE.md (HARD RULES). Token budget is tight: one chunk of work,
 done properly, then stop. Do NOT read STATUS.md, findings.md, backlog.md or old journals in full; grep what you need.
 
+0. The nightly data job runs 01:15–03:30 UTC: in that window do not load bnall / bn100 or rebuild a universe (half-refreshed files gave false ranks on 11-22); use files already built in
+   data/is3, or work on items that need only minute data or reading. Keep RAM under 1.5 GB then. Outside that window this does not apply.
 1. `git pull --rebase`; `.venv/bin/python -m scripts.insilico_queue status | tail -5`; take the `next` item: `show <id>`, then `start <id>`. Read
    research/insilico_pass3.md sections 2, 3 (once) and the last ~60 lines of research/is3/notes.md (where the previous session left off). Results of
    transient units started earlier: check their output files first. While M0 is open: if `ls data/bn/mbars/*/ | wc -l` is not complete, start one 45-min chunk (command in

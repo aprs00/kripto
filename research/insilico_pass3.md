@@ -54,7 +54,7 @@ E. M8 unseen coins for move-bar survivors, Z1 final accounting and report.
 At two sessions a day and one to two items per three sessions this is about 3–5 weeks; D's last item waits for January anyway.
 
 ## 5. Cost control
-`kripto-insilico.timer` 10:40 and 22:40 UTC → `scripts/agent.sh insilico` (prompts/insilico.md, ≤ 70 turns, ≤ 75 min). Before any tokens are spent it asks
+`kripto-insilico.timer` 01:47 and 13:47 UTC → `scripts/agent.sh insilico` (prompts/insilico.md, ≤ 70 turns, ≤ 75 min). Before any tokens are spent it asks
 `insilico_queue should-run`: paused (`touch state/insilico.paused`) or nothing due → exit, zero cost. Long computations go into transient units
 (`systemd-run --user`, Nice=19, MemoryMax ≤ 2 GB, RuntimeMaxSec ≤ 2700) and are read by the next session, so waiting costs nothing. A usage-limit error just
 ends the session; state is committed after every form, so the next one resumes.

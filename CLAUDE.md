@@ -193,7 +193,7 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   See `prompts/review.md`.
 * **research** (Tue + Thu 06:40 UTC, long): 2–3 hypotheses tested in parallel (batch file + `--grids`), then gates.
   See `prompts/research.md`. Live testing is parallel too: every promising variant can get its own shadow book.
-* **insilico** (10:40 + 22:40 UTC, short, ≤ 70 turns): one chunk of the InSilico third pass from `research/insilico_queue.json`
+* **insilico** (01:47 + 13:47 UTC, short, ≤ 70 turns): one chunk of the InSilico third pass from `research/insilico_queue.json`
   (plan research/insilico_pass3.md, battery research/studies/is3_lib.py). Owner's stop switch: `touch state/insilico.paused`. No work due = no tokens.
 * **retro** (Sun 06:40 UTC): the weekly retrospective + forward ledger instead of new experiments (prompts/research.md).
   Don't add sessions back without evidence that session count, not data, is the bottleneck: each walk-forward
