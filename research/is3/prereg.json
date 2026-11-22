@@ -10,5 +10,11 @@
   "rule": "is3_lshock q.h15-q.b15, z>=8, d=1, alts; card passes with 20 bp fees + 2x slippage; both confirm samples",
   "params": {},
   "at": "2026-11-22T19:12:06+00:00"
+ },
+ "W1f": {
+  "claim": "A Sunday 16-18 New York move of >= 0.5% made on less volume than the two hours before continues until Monday 17:00 NY",
+  "rule": "is3_weekend confirm(); follow; card passes (net of taker 13 bp, p<0.05, better than the same rule on Thursdays, ex-top3) in confirmT and confirmC. Found in explore as the opposite of the author claim; 2024-25 partly seen via W3 (12-18 move, no volume split).",
+  "params": {},
+  "at": "2026-11-22T19:21:51+00:00"
  }
 }

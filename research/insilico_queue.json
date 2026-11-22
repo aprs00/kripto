@@ -6,51 +6,78 @@
    "group": "A",
    "title": "Liquidation fade: the planned tests that were never run",
    "src": "R5; tg:165-174; wa 18.10.18, 18.10.25, 18.10.35(3)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "pessimistic fills (z=8 m=5 e=1): entry 1 / 2 / 5 min late, +30 and +50 bp slippage per side, no target fills in the first minute",
-     "status": "planned"
+     "status": "done",
+     "result": "z8 d1: +194 bp at close, +129 1 min late, +106 2 min, +88 5 min (p .02); net of +30 bp/side +15..+56 but ex-top3 fails; 15 variants",
+     "date": "2026-11-22",
+     "evidence": "L1a_x1_30__explore"
     },
     {
      "id": "b",
      "what": "cascade-only: enter only when >= 5 coins have triggered (z>=6) in the previous 30 min, causal count over all coins with 1-min data",
-     "status": "planned"
+     "status": "done",
+     "result": "dose in breadth: <5 coins ~0/neg, 10-19 +37, >=20 +97 (p .002); almost all triggers are cascades already; 6 variants",
+     "date": "2026-11-22",
+     "evidence": "L1b__explore"
     },
     {
      "id": "c",
      "what": "wait for the end: first up-close minute after volume has fallen below half of the cascade's peak minute; compare adverse excursion",
-     "status": "planned"
+     "status": "done",
+     "result": "waiting for volume to halve: +2.5 / +7.7 bp vs +105 / +194 for the reversal bar: the pattern is the edge, not the waiting; 2 variants",
+     "date": "2026-11-22",
+     "evidence": "L1c_z8__explore"
     },
     {
      "id": "d",
      "what": "perp discount: split by premium index at the low (archive premiumIndexKlines 1m)",
-     "status": "planned"
+     "status": "done",
+     "result": "premium drop: deep tercile +105, none +11, but it proxies the size of the fall (no difference within fall terciles); big-fall tercile +260; 3 variants",
+     "date": "2026-11-22",
+     "evidence": "L1d_deep__explore"
     },
     {
      "id": "e",
      "what": "exits: author's two levels vs fixed 5/15/60/240 min vs trailing; no tuning beyond these",
-     "status": "planned"
+     "status": "done",
+     "result": "longer is better: 5m +121, 15m +156, 60m +304, 4h +418 (p .003); author exit +194; 5 variants",
+     "date": "2026-11-22",
+     "evidence": "L1e_h60__explore"
     },
     {
      "id": "f",
      "what": "hedged: long the coin, short the same USD of BTC (is the bounce coin-specific or the market's?)",
-     "status": "planned"
+     "status": "done",
+     "result": "hedged with BTC 15m: explore +96 (p .002); confirmT +97 (n 36, p .08), confirmC +14 (p .74, 2025 -266): not confirmed",
+     "date": "2026-11-22",
+     "evidence": "L1f__confirmC"
     },
     {
      "id": "g",
      "what": "thin coins vs liquid coins (terciles of 30-d volume); where is the bounce largest after a volume-scaled cost?",
-     "status": "planned"
+     "status": "done",
+     "result": "thin +24 (n.s.), mid +63, liquid +119 (z6, 1 min late): better on liquid coins; 3 variants",
+     "date": "2026-11-22",
+     "evidence": "L1g_liquid__explore"
     },
     {
      "id": "h",
      "what": "climax within the last 5 minutes (largest-volume down minute), reversal bar later, as his chart shows",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "d 1-5, 1 min late: explore +123 (p .002); confirmT +29 (p .30), confirmC +69 (n 1089, 221 d, p .04; vs same drops p .062), every year +; net -8 at +30 bp/side: not confirmed",
+     "date": "2026-11-22",
+     "evidence": "L1h__confirmC"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "Real effect (pattern beats equal drops, null data ~0, every year + on 73 coins) but a taker entry after the close is too late and too dear: 30 bp worse fills kill it; misses the pre-registered bar. Untested: resting entries (T1), context (T2, T3), real liquidations (L2), live fills (E1).",
+   "closed": "2026-11-22"
   },
   {
    "id": "P1",
@@ -163,34 +190,56 @@
    "group": "A",
    "title": "Weekend and CME: the collar price and the gap rules as he states them",
    "src": "R21, R36; tg:69-70, 134; wa 18.10.59, 18.10.23(3), 18.10.31, 18.10.35",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "collar = Friday's highest-volume half-hour price after the US open; Sunday-evening entry toward it, out by Monday 17:00 NY",
-     "status": "planned"
+     "status": "done",
+     "result": "collar touched more often than placebo (c16: 43% vs 29%, all 4 references, all gap sizes) but mean -20..+36 bp (p .5+): median +100, fat left tail; 2021 +50..+214, 2022-23 negative; BTC -67, ETH -14; 18 variants",
+     "date": "2026-11-22",
+     "evidence": "W1a_c16_2__explore"
     },
     {
      "id": "b",
      "what": "CME gap (Fri 17:00 -> Sun 18:00 NY) by size tercile: fill rate within 1/3/5 days vs a placebo gap at a random weekday 24-h-apart window",
-     "status": "planned"
+     "status": "done",
+     "result": "CME gap: big gaps fill more than placebo (3%+: 48 vs 32% in 3 d) but toward-gap trade -26..-179 bp, small gaps same as placebo; 9 variants",
+     "date": "2026-11-22",
+     "evidence": "W1b_3_3d__explore"
     },
     {
      "id": "c",
      "what": "same for coins relative to BTC (excess gap)",
-     "status": "planned"
+     "status": "done",
+     "result": "excess gap vs BTC hedged: -4..+6 bp, placebo -44..-77 (weekday excess moves continue); 3 variants",
+     "date": "2026-11-22",
+     "evidence": "W1c_2__explore"
     },
     {
      "id": "d",
      "what": "Sunday pre-open bait: move 16:00-18:00 NY on rising vs falling volume (W3 itself belongs to the research session: do not repeat its walk-forward)",
-     "status": "planned"
+     "status": "done",
+     "result": "bait fade: all -40..-131; rising volume +27..+65 (n.s.); LOW volume fade -156/-211/-535 (p .01/.04/.06), all years: it continues; placebo weekday opposite; 9 variants -> form f",
+     "date": "2026-11-22",
+     "evidence": "W1d_1_vol_dn__explore"
     },
     {
      "id": "e",
      "what": "Monday US-open flow: first-hour taker imbalance 09:30-10:30 NY on Mondays -> rest of day / rest of week, vs other weekdays",
-     "status": "planned"
+     "status": "done",
+     "result": "Monday first US hour imbalance to EOD +34 (p .04) but Tue-Fri +9..+33, diff n.s., falls with z; to Friday 0; 6 variants",
+     "date": "2026-11-22",
+     "evidence": "W1e_eod_z0.5__explore"
+    },
+    {
+     "id": "f",
+     "what": "FOLLOW the Sunday 16-18 NY move when its volume is below the previous two hours' (found in explore d: it continues to Monday 17:00, dose-response)",
+     "status": "planned",
+     "added": "2026-11-22"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "C1",
@@ -1121,7 +1170,7 @@
    "group": "T",
    "title": "Be in the book BEFORE the dump: resting bid ladders (he is a maker: 'rebate harvest', 'contrarians slipping thru empty book')",
    "src": "tg:167, 226-234; owner 2026-11-22",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -1153,7 +1202,8 @@
      "status": "planned",
      "added": "2026-11-22"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "T2",

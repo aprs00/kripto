@@ -1,0 +1,60 @@
+{
+ "name": "W1a_vwap_1",
+ "sample": "explore",
+ "n": 1157,
+ "days": 156,
+ "coins": 10,
+ "mean_bp": -14.61,
+ "median_bp": 104.74,
+ "win": 0.565,
+ "se_bp": 32.69,
+ "ci95_bp": [
+  -79.39,
+  48.2
+ ],
+ "p": 0.656671664167916,
+ "mde80_bp": 91.53,
+ "mean_ex_top3_bp": -43.68,
+ "top3_share": null,
+ "t_day_mean": -0.51,
+ "by_year": {
+  "2021": [
+   430,
+   86.26
+  ],
+  "2022": [
+   389,
+   -93.21
+  ],
+  "2023": [
+   338,
+   -52.46
+  ]
+ },
+ "by_side": {
+  "-1": [
+   671,
+   6.89
+  ],
+  "1": [
+   486,
+   -44.29
+  ]
+ },
+ "coins_positive": 0.3,
+ "net_bp": {
+  "free": -14.61,
+  "maker_taker": -22.61,
+  "taker": -27.61,
+  "taker_x2": -40.61,
+  "crash": -94.61
+ },
+ "base_n": 1317,
+ "base_bp": -40.97,
+ "vs_base_bp": 26.36,
+ "p_vs_base": 0.5807096451774113,
+ "passes": false,
+ "note": "touch rate wk 39% vs placebo 31%",
+ "rerun": "",
+ "at": "2026-11-22T19:21:21+00:00"
+}

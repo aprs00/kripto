@@ -1,0 +1,60 @@
+{
+ "name": "W1a_BTC",
+ "sample": "explore",
+ "n": 88,
+ "days": 88,
+ "coins": 1,
+ "mean_bp": -66.64,
+ "median_bp": -1.57,
+ "win": 0.5,
+ "se_bp": 49.69,
+ "ci95_bp": [
+  -162.01,
+  30.99
+ ],
+ "p": 0.1889055472263868,
+ "mde80_bp": 139.12,
+ "mean_ex_top3_bp": -100.62,
+ "top3_share": null,
+ "t_day_mean": -1.32,
+ "by_year": {
+  "2021": [
+   38,
+   38.15
+  ],
+  "2022": [
+   27,
+   -157.51
+  ],
+  "2023": [
+   23,
+   -133.08
+  ]
+ },
+ "by_side": {
+  "-1": [
+   54,
+   -62.42
+  ],
+  "1": [
+   34,
+   -73.33
+  ]
+ },
+ "coins_positive": 0.0,
+ "net_bp": {
+  "free": -66.64,
+  "maker_taker": -74.64,
+  "taker": -79.64,
+  "taker_x2": -92.64,
+  "crash": -146.64
+ },
+ "base_n": 123,
+ "base_bp": -36.6,
+ "vs_base_bp": -30.04,
+ "p_vs_base": 0.6131934032983508,
+ "passes": false,
+ "note": "the coin he trades",
+ "rerun": "",
+ "at": "2026-11-22T19:21:22+00:00"
+}

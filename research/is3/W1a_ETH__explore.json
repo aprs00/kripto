@@ -1,0 +1,60 @@
+{
+ "name": "W1a_ETH",
+ "sample": "explore",
+ "n": 105,
+ "days": 105,
+ "coins": 1,
+ "mean_bp": -13.71,
+ "median_bp": 57.05,
+ "win": 0.552,
+ "se_bp": 41.55,
+ "ci95_bp": [
+  -99.91,
+  63.74
+ ],
+ "p": 0.7496251874062968,
+ "mde80_bp": 116.34,
+ "mean_ex_top3_bp": -43.16,
+ "top3_share": null,
+ "t_day_mean": -0.33,
+ "by_year": {
+  "2021": [
+   41,
+   104.55
+  ],
+  "2022": [
+   37,
+   -109.97
+  ],
+  "2023": [
+   27,
+   -61.35
+  ]
+ },
+ "by_side": {
+  "-1": [
+   61,
+   -16.3
+  ],
+  "1": [
+   44,
+   -10.1
+  ]
+ },
+ "coins_positive": 0.0,
+ "net_bp": {
+  "free": -13.71,
+  "maker_taker": -21.71,
+  "taker": -26.71,
+  "taker_x2": -39.71,
+  "crash": -93.71
+ },
+ "base_n": 126,
+ "base_bp": 31.06,
+ "vs_base_bp": -44.76,
+ "p_vs_base": 0.44227886056971516,
+ "passes": false,
+ "note": "the coin he trades",
+ "rerun": "",
+ "at": "2026-11-22T19:21:22+00:00"
+}

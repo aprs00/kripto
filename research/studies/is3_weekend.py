@@ -175,6 +175,20 @@ def explore(s="explore", prefix="W1"):
             L.card(f"{prefix}e_{h}_z{z}", ev(m, np.sign(m.z) * m[h], np.sign(m.z)), s, base=ev(r, np.sign(r.z) * r[h], np.sign(r.z)))
 
 
+def confirm():
+    """Form f, frozen (prereg W1f): follow the Sunday 16-18 NY move of >= 0.5% made on less volume than 14-16, to Monday 17:00."""
+    for s in ("confirmT", "confirmC"):
+        t = sample(pd.read_parquet(OUT / "weekend.parquet"), s)
+        f = lambda u: u[(u.bait.abs() >= 0.005) & (u.bait_v < 1)]
+        q, pl = f(t[t.kind == "wk"]), f(t[t.kind == "pl"])
+        L.card("W1f", ev(q, np.sign(q.bait) * q.fwd_m17, np.sign(q.bait)), s, base=ev(pl, np.sign(pl.bait) * pl.fwd_m17, np.sign(pl.bait)), note="base = same rule on Thursdays")
+        mk = q.groupby("time").agg(m=("bait", "mean"), f=("fwd_m17", "mean"))
+        print(f"   one market-wide bet per Sunday: n={len(mk)} mean {(np.sign(mk.m) * mk.f).mean() * 1e4:+.0f} bp, t {(np.sign(mk.m) * mk.f).mean() / ((np.sign(mk.m) * mk.f).std() / len(mk) ** 0.5):.2f}")
+        for th in (0.01, 0.02):
+            g = q[q.bait.abs() >= th]
+            print(f"   dose |move| >= {th:.0%}: n={len(g)} {(np.sign(g.bait) * g.fwd_m17).mean() * 1e4:+.0f} bp")
+
+
 def checks():
     x = {k: bars(k).loc["2022-01-01":"2022-12-31"] for k in ("BTC", "ETH", "DOGE")}
     P = {n: pd.DataFrame({k: v[f] for k, v in x.items()}) for n, f in (("close", "c"), ("high", "h"), ("low", "l"), ("volume", "v"), ("tb", "tb"))}
@@ -192,4 +206,4 @@ def checks():
 
 
 if __name__ == "__main__":
-    {"build": lambda: build(int(sys.argv[2]) if len(sys.argv) > 2 else 2), "checks": checks, "explore": explore}[sys.argv[1]]()
+    {"build": lambda: build(int(sys.argv[2]) if len(sys.argv) > 2 else 2), "checks": checks, "explore": explore, "confirm": confirm}[sys.argv[1]]()
