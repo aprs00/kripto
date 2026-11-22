@@ -549,7 +549,7 @@
   },
   {
    "id": "S1",
-   "prio": 5,
+   "prio": 0.52,
    "group": "A",
    "title": "Re-read the sources I only skimmed, images included",
    "src": "109 Telegram + 84 WhatsApp records no rule cites; tg:103-107",
@@ -574,6 +574,12 @@
      "id": "d",
      "what": "46 chart templates: 193 labelled 2020 levels; which of his settings (VA 68%, sessions, range sizes, size thresholds) differ from mine? (S1d__notes.json)",
      "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "re-read the records the 32 rules DO cite (text, transcript, image itself) against the rule as coded: what did the catalogue flatten or get wrong? correct the affected queue forms before they run (S1e__notes.json)",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ]
   },
