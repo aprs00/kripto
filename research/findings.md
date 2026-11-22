@@ -327,9 +327,9 @@ Binance lists 246 TRADIFI perps since 2026Q1; live drops them (contractType), bn
 Fixed: config/bn_tradfi.json, bars cut at the onboarding day. Same configs, to 10-31, full sample old → clean: xsmom_k 1.23→1.20, flow 1.49→1.43, tsmom 0.92→0.95,
 xsmom 1.34→1.31, blend 1.19→1.18, listing_short 0.42→0.33; **2026 only: flow 0.90→0.45, listing_short +0.36→−0.30, xsmom 1.61→1.35**. Walk-forwards not yet re-run → TF1.
 Sunday fade replication (W3) re-run on clean bn100: +65 bp (t 2.43), ≤ 2023 +28 (t 1.2), ≥ 2024 +92 (t 2.5): still CONFIRMED by its 11-19 rule. FF1 not re-run (OPEN, low prior).
-### Live candidate list = research universe? (2026-11-22, research/studies/live_universe.py; row 19) → HL yes (98.8%), Binance 95.1% on clean data
-Pre-set rule (change live if < 90%): leave live as it is. Caveat: the Binance share is falling (2023 96, 2025 91, 2026 87%; 3-day sticky 92%) and blend@bn's full-sample
-SR is 1.18 research / 0.77 live-style / 1.15 sticky (mdd −26 / −44 / −38%). The proxy is 24h volume by daily bar; the recorded live list is the direct test → LU1.
+### Live candidate list = research universe? (2026-11-22, research/studies/live_universe.py; row 19) → yes on both venues
+Direct test (recorded live lists on 4 bars 11-17 → 11-22 vs the clean, fully refreshed bnall): live's top-30 contains 29, 30, 30, 30 of the research top-30. HL by proxy 98.8%.
+The Binance 24h-volume proxy said 95.1% (2026: 87%) and a bad blend@bn, but it ignores that held coins stay listed; the direct number wins. No change to live.
 ### Live fills vs the decision close (2026-11-22, research/studies/fill_delay.py; row 20) → Binance ≈ 0, HL costs about +5 to +17 bp (t 1.3–2.8, 14 runs): OPEN
 Live decides ≈ 12 min after the bar close the backtest trades at. HL notional-weighted +15 bp (alts +17, BTC +6), median run +5–7 bp, +6 without the two largest runs;
 Binance +0.4 (t 0.3). Weak, but HL's live "0.9–4.7 bp slippage" measures against the mid at the fill and omits it, so "×0.56" must include a drift term → C1.

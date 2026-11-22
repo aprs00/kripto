@@ -1,60 +1,52 @@
-HEALTH: OK — 08:25 review: trader hourly, live watcher, all three data recorders, nightly data (03:23) all fine; no warnings or errors.
+HEALTH: OK — 07:15 trader run clean on new code; live watcher, recorders and nightly data fine. Binance main fell to −6.1% overnight (explained below).
 
-_Updated 2026-11-21 08:30 UTC (review). The research summary below is from 11-19. Detail: journal/2026-11-21.md._
+_Updated 2026-11-22 07:30 UTC (weekly retro). Detail: journal/2026-11-22.md._
 
-Review note: Hyperliquid main is +2.1%, Binance main −3.1% (both up from yesterday). Binance momentum (xsmom@bn) recovered a little to −14.6%,
-still inside its deepest backtest drawdown (−14 to −16%), kill switch at −25%. Fills are normal: 1.2 bp average slippage on Binance and 1.9 bp
-on Hyperliquid over the last day. Twelve days of paper P&L is noise.
+## This week's most important finding
+**My Binance research data contained things the bot cannot trade.** Binance added about 245 stock, commodity and FX contracts (Apple, AMD, gold…) in 2026. The
+live bot excludes them; the research data did not, and by summer 2026 they were almost half of the "top 30 coins by volume". I removed them.
+Effect on the same settings, before → after: over six years small (flow 1.49 → 1.43, broad momentum 1.34 → 1.31, blend 1.19 → 1.18, listing shorts 0.42 → 0.33). For 2026
+alone it is bigger: **flow 0.90 → 0.45, listing shorts +0.36 → −0.30, momentum 1.61 → 1.35**. The old Binance walk-forward numbers in the table are therefore a bit
+too good until re-run on Tuesday. The Sunday fade was re-checked on clean data and still holds (+0.65% per trade, positive in both periods).
 
-## Last research (11-19) in plain words
-1. **Friday-follow did not survive the fair test.** On the 82 hand-picked coins it looked good (Sharpe 1.06). On all 698 Binance coins that were
-   ever in the top 100 (dead ones included) it falls to 0.78 for the chosen setting and 0.61 averaged over settings. That is below the 0.8 bar I wrote
-   down before the test, so **no paper book**. Why: most of its profit came from being long coins that later survived and made my hand-picked list.
-   On the other coins it earned almost nothing since 2024. The idea stays open, but my expectation for it is low.
-2. **The Sunday fade held up on coins it had never seen.** On 11-15 I noticed that big Sunday-afternoon moves (New York 12:00→18:00) tend to reverse
-   over the next day. Today, on 616 coins outside the original list, with the pass/fail rule written down first: +0.62% per trade on average,
-   positive in every year, statistically solid. It is **not a strategy yet**: next Tuesday it gets a proper walk-forward test. My main worry: it
-   may be one market-wide bet per Sunday (about 50 a year), which would make live evidence slow.
-3. **Fixing churn in the new-listing shorts did not pass.** After XTEN cost ~80 bp for a one-day hold, I tested a "harder to get in than to stay in"
-   volume rule. It cuts costs, but on Hyperliquid it also lowered the Sharpe (1.45 → 1.37) and deepened the drawdown. The current exit doubles as a
-   protection against squeezes in thin, dying coins. Rule unchanged. I'll re-check it after the cost model is re-fitted (from 11-24).
-4. **Main-book mixes re-checked under the stricter 11-17 reading rule: no change.** Hyperliquid main = the self-choosing blend; Binance main = flow +
-   momentum + blend, a third each.
-5. **Plumbing:** the big 698-coin hourly test needed 3.8 GB of memory and was killed twice (limit 2 GB). I rewrote the backtest's memory handling,
-   not the test. Results are identical to the old code (checked on six strategies), and it now fits in 2 GB. Also started a nightly download of
-   Binance positioning history (top traders' long/short ratios, open interest), about 9 nights to fill 2021–2026, for a test around 11-29.
+## Why Binance main dropped (−3.1% → −6.1%)
+Three small coins the momentum strategy held after big rises (IDOL, EVAA, AKE) fell 42–48% in one night: −4.3% of that book, with the 5%-per-coin cap in force. Checked:
+fills normal, live matches its backtest replay (gaps ≤ 0.35% over the last 4 days), and those coins are genuine members of the tested universe (29–30 of 30 match). It is a real
+risk of the strategy, not a bug. xsmom@bn −17.2%, a little beyond its backtest worst (−16%); kill switch −25%.
 
-## Books (11-21 08:25 UTC; twelve days of paper P&L is noise)
+## Books (11-22 07:30 UTC; two weeks of paper P&L is noise)
 | book | $1,000 (shadow $2,000) | $200 twin |
 |---|---|---|
-| main (HL, blend_nested) | $1,021 (+2.1%) | $190 (−4.8%): 1 position fits |
-| main_bn (flow + momentum + blend) | $969 (−3.1%) | $201 (+0.6%) |
-| funding pair ($2,000) | $2,015 (+0.7%; funding +$21.7) | $201 (+0.7%) |
-| tsmom / tsmom@bn | +15.0% / +15.2% | +9.0% / +8.2% |
-| blend / blend_nested | +7.8% / +3.4% | +4.3% / −4.9% |
-| listing_short | −1.0% (flat now) | −1.0% |
-| xsmom@bn / xsmom_k@bn / flow@bn | −14.6% / −10.6% / −2.6% | −10.5% / −0.8% / −2.3% |
-| xsmom_k (HL) | −1.4% | −1.9% |
+| main (HL, blend_nested) | $1,015 (+1.5%) | $191 (−4.4%): 1 position fits |
+| main_bn (flow + momentum + blend) | $939 (−6.1%) | $201 (+0.3%) |
+| funding pair ($2,000) | $2,012 (+0.6%; funding +$20.7) | $202 (+0.8%) |
+| tsmom / tsmom@bn | +12.8% / +12.9% | +7.8% / +6.7% |
+| blend / blend_nested | +6.7% / +2.4% | +3.0% / −4.5% |
+| blend@bn | −3.8% | +1.3% |
+| listing_short | −1.0% (flat) | −1.0% |
+| xsmom@bn / xsmom_k@bn / flow@bn | −17.2% / −12.9% / −5.0% | −10.8% / −3.4% / −2.3% |
+| xsmom_k (HL) | −1.1% | −0.8% |
 
 ## Candidates (walk-forward out-of-sample Sharpe after costs; worst = lowest stress test). None passes the real-money gate.
-| strategy | Hyperliquid | Binance (all perps, 6 y) | worst | missing |
+Binance column = before the data fix (to be re-run 11-24). Hyperliquid column unaffected.
+| strategy | Hyperliquid | Binance (6 y) | worst | missing |
 |---|---|---|---|---|
 | blend, components chosen by rule (HL main) | 1.87 | 1.16 | 1.29 / 0.98 | multiple-testing check (0.63 < 0.9) |
 | funding pair | 1.26 (1.7 y) | n/a | 1.43 | multiple-testing check; deployable only at half size |
 | blend (hand-picked; the $200 reference) | 1.61 | 1.30 | 1.15 / 0.99 | multiple-testing check (0.81) |
-| flow (Binance) | n/a | 1.42 (settings averaged: 1.25) | 0.75 | multiple-testing check (0.88) |
-| broad momentum | −0.09 (averaged: 0.47) | 1.34 (averaged: 1.43) | 1.03 | weak on HL |
-| listing shorts | 0.89 (averaged: 1.20) | 0.86 (averaged: 0.68) | 1.33 / 0.85 | multiple-testing check |
-| friday_follow (Binance hourly, fair universe) | n/a | 0.78 (averaged: 0.61) | 0.43 | below 0.8: no book |
+| flow (Binance) | n/a | 1.42 (averaged 1.25) | 0.75 | multiple-testing check; weakest after the fix |
+| broad momentum | −0.09 (averaged 0.47) | 1.34 (averaged 1.43) | 1.03 | weak on HL |
+| listing shorts | 0.89 (averaged 1.20) | 0.86 (averaged 0.68) | 1.33 / 0.85 | multiple-testing check; 2026 negative on Binance |
 
-**Honest expectation if these edges are real:** blend-type books 12–27% a year with 20–30% drawdowns; the funding pair about 4–5% a year
-at a deployable size (≈ $40/yr on $1,000, ≈ $8/yr on $200). No real money should go in before the paper books have tracked their backtests
-for 2–3 months. That decision is yours.
+**Honest expectation if these edges are real:** blend-type books 12–27% a year with 20–30% drawdowns; the funding pair about 4–5% a year at a deployable size
+(≈ $40/yr on $1,000, ≈ $8/yr on $200). No real money before the paper books have tracked their backtests for 2–3 months. That decision is yours.
 
-## Forward ledger
-Too early (≈ 10 forward days). First verdicts around 12-09.
+## Other findings
+* Live orders on Hyperliquid go out about 12 minutes after the price the backtest assumes. That delay looks to cost about 0.05–0.17% per trade (weak evidence, 14 runs), so the
+  earlier "real costs are only 56% of the model" claim is not established. The cost re-fit will include it. Binance: about zero.
+* Two old "dead" ideas (long-only trend, funding-spike fade) were tested in only one form each; now OPEN with low prior.
+* Forward ledger: 11–13.7 forward days; too early (first verdicts about 12-09).
 
 ## Next
-Sun 11-22 retro: forward ledger, live-vs-backtest (including whether xsmom@bn still tracks its replay), assumption audit.
-Tue 11-24 research: Sunday-fade walk-forward (formulations thought through first); cost-model re-fit on two weeks of live fills, with a volatility
-term. ≈ 11-26: first look at Hyperliquid order-flow data. ≈ 11-29: Binance positioning history complete → first test. blend_nested refit due 2027-01-02.
+Tue 11-24: re-run the Binance walk-forwards on clean data, Sunday-fade walk-forward, cost re-fit. ≈ 11-26 Hyperliquid order-flow data. ≈ 11-29 Binance positioning
+(the metrics download now skips stock perps). blend_nested refit due 2027-01-02.

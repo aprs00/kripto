@@ -7,14 +7,12 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 **Priority order (rewritten 2026-11-10 after H4/T9/X1b; research Tue + Thu, ≤ 6 new walk-forward experiments per session):**
 ## Owner instruction 2026-11-10 ("run everything now"): DONE 2026-11-12 06:40 research (M1, X2, W1 live; forward baseline). Journal 2026-11-12.
 **Next priorities (2026-11-22 retro):** 1. Tue 11-24: TF1 (clean-data re-measure, first) → W3 walk-forward (on clean bn100) → C1 cost re-fit incl. the drift term
-(row 20) → LU1 → 2. W2/W1 HL flow data (≈ 11-26) → 3. T5b positioning (≈ 11-29) → 4. E1 + LQ1 (≈ 12-01) → 5. T2b (a)/(c)/(d), T2b(e) after C1 →
+(row 20) → 2. W2/W1 HL flow data (≈ 11-26) → 3. T5b positioning (≈ 11-29) → 4. E1 + LQ1 (≈ 12-01) → 5. T2b (a)/(c)/(d), T2b(e) after C1 →
 6. T6b HL positioning (≈ 12-07) → 7. low prior: PL1, FC1, LV1, LO1. Weekly: T0a with `--since` in the retro.
 - [ ] TF1 **Re-run the Binance walk-forwards on the clean panel** (no stock perps): the same 11-09 v2 grids for flow, xsmom, xsmom_k, tsmom, listing_short,
   blend, blend_nested on bnall, tagged as a data correction (no new hypotheses, grids unchanged). Report old and clean pick / grid average / worst; then re-derive the
   M1 lists by the fixed rule (grid average > 0.8, pick > 0, worst > 0) in the following session, not the same one. flow@bn (2026: 0.90 → 0.45) is the one at risk.
-- [ ] LU1 **Recorded live universe vs the clean research universe** (direct test behind row 19). Written before measuring: take every `universe` bar 11-17 → 11-24 once bnall is
-  fully refreshed; mean share of the research top-30 (30-d volume, crypto only) that live's own top-30 contains. < 90% → Binance download list 60 → 120 coins (≈ +60 weight/h)
-  on fidelity grounds; ≥ 90% → leave. (Disclosed: on 11-22 I saw an artefact of 6–7/30 from half-refreshed files; it is not evidence.)
+- [x] LU1 DONE 2026-11-22 (4 recorded bars): live top-30 = 29, 30, 30, 30 of the clean research top-30 → leave live as it is.
 - [ ] PL1 **Pump-and-crash tail on the LONG side** (11-22: IDOL, EVAA, AKE −42 to −48% overnight took 4.3% off xsmom@bn): R1 tested filters on shorts only. Think-through first;
   e.g. drop names whose 28-d score is made by ≤ 2 days, or with 7-d volume > 5× the 30-d median. Explore bnall ≤ 2023-06, confirm later, ≤ 3 forms. One night is not evidence.
 - [ ] FC1 funding_contra untried forms (audit 11-22; prior low): (a) only extreme negative funding, long side; (b) conditional on price no longer rising; (c) HL-vs-BN funding
