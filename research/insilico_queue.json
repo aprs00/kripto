@@ -180,6 +180,12 @@
      "what": "fat node + 'lower deviation' break with OI falling (wa 18.10.51: 'positions placed at the fattest side ... puked'): 1h close below 20-d node minus 1 value width -> speed of the next move, vs same break without a node",
      "status": "planned",
      "added": "2026-11-22"
+    },
+    {
+     "id": "l",
+     "what": "single prints and tails at HIS resolution: session rows of ~4 bp (47 ticks at 57k), minimum 3 rows, tails kept apart (my pass-2 bands were >= 30 bp, so his typical ones were excluded)",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ]
   },
@@ -205,6 +211,12 @@
      "id": "c",
      "what": "first touch of naked POC: bounce vs first touch of the daily open (his explicit comparison) and vs placebo",
      "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "weekly and monthly naked POC / VAH / VAL, HVN and LVN (his D/W/M overview templates have naked levels on; passes 1-2 only used daily): first touch vs placebo",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ]
   },
@@ -669,7 +681,10 @@
     {
      "id": "d",
      "what": "46 chart templates: 193 labelled 2020 levels; which of his settings (VA 68%, sessions, range sizes, size thresholds) differ from mine? (S1d__notes.json)",
-     "status": "planned"
+     "status": "done",
+     "result": "46 templates decoded: settings table vs mine (row size, single-print minimum, imbalance 250/400%, net longs/shorts, weekly/monthly naked levels); discovery: 107 unique hand-drawn levels of Jun-Oct 2020 carry creation timestamps; 5 forms added (T2e M7d P3d P2l T5h)",
+     "date": "2026-11-22",
+     "evidence": "S1d__notes"
     },
     {
      "id": "e",
@@ -936,6 +951,12 @@
      "id": "c",
      "what": "flow AT the level: prior POC / single print touched with absorption vs without (his real usage)",
      "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "footprint imbalance as he sets it: diagonal taker imbalance 250% / 400% / 750%, >= 3 stacked rows -> zone holds on first retest, vs same-size zones without imbalance",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ],
    "after": [
@@ -1414,6 +1435,12 @@
      "what": "same for moments he says he would NOT trade",
      "status": "planned",
      "added": "2026-11-22"
+    },
+    {
+     "id": "e",
+     "what": "his (or his template author's) 107 hand-drawn levels of June-Oct 2020 carry a creation time (drawing id = ms epoch, S1d): first touch AFTER creation, reaction 15/60/240 min in the bounce direction, vs placebo levels at the same distance on the other side and vs +-37% shifted levels; by label (naked POC, single print, HVN, composite, SR, tail, plain); hand-labelled SHORT / LONG / BUY separately",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ]
   },
@@ -1526,6 +1553,12 @@
     {
      "id": "g",
      "what": "dump with open interest falling (closing / puke) vs rising (new shorts) (wa 18.10.51): 5-min OI change split of all 1-h falls >= 2-4 sigma, 10 coins 2021-12..2023 explore",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "h",
+     "what": "net longs / net shorts (OI change split by taker sign, his NL / NS panels, 12 templates): price falls while net longs still rise -> trapped longs -> continuation then flush; price rises on net shorts; 10 coins, 5-min OI",
      "status": "planned",
      "added": "2026-11-22"
     }

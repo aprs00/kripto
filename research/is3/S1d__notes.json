@@ -1,0 +1,912 @@
+{
+ "form": "S1d",
+ "date": "2026-11-22",
+ "templates": 46,
+ "levels_total": 193,
+ "levels_unique": 107,
+ "discovery": "each drawing's `id` is a millisecond timestamp (e.g. 1592869164052 = 2020-06-22 23:39 UTC) -> the levels are DATED in real time, 2020-06-15 .. 2020-10-13 (one 2021-04). That is a forward record of human-drawn levels with no hindsight. Authorship: the collection was compressed by 'veran' and others; not provably his.",
+ "levels": [
+  {
+   "created": 1592222778297,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9693.5329,
+   "text": "prev month suppot",
+   "n_templates": 1,
+   "first_template": "Exo - TPO Aestethic"
+  },
+  {
+   "created": 1592223965168,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9311.8898,
+   "text": "month support",
+   "n_templates": 1,
+   "first_template": "Exo - TPO Aestethic"
+  },
+  {
+   "created": 1592224164719,
+   "symbol": "bitmex-XBTUSD",
+   "price": 8886.1016,
+   "text": "Week Low",
+   "n_templates": 1,
+   "first_template": "Exo - TPO Aestethic"
+  },
+  {
+   "created": 1592224310615,
+   "symbol": "binancefutures-LTCUSDT",
+   "price": 42.2546,
+   "text": "Scalp this ponzi",
+   "n_templates": 3,
+   "first_template": "Exo - NightScalper 2"
+  },
+  {
+   "created": 1592224329601,
+   "symbol": "binancefutures-LTCUSDT",
+   "price": 42.8103,
+   "text": "Retreat",
+   "n_templates": 3,
+   "first_template": "Exo - NightScalper 2"
+  },
+  {
+   "created": 1592224676937,
+   "symbol": "binancefutures-LTCUSDT",
+   "price": 45.0321,
+   "text": "R/S",
+   "n_templates": 3,
+   "first_template": "Exo - NightScalper 2"
+  },
+  {
+   "created": 1592227574792,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9023.9625,
+   "text": "S/R",
+   "n_templates": 3,
+   "first_template": "Exo - NightScalper 2"
+  },
+  {
+   "created": 1592252849012,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9185.0955,
+   "text": "Init",
+   "n_templates": 3,
+   "first_template": "Exo - NightScalper 2"
+  },
+  {
+   "created": 1592252854190,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9648.0866,
+   "text": "Stalk Zone 2",
+   "n_templates": 3,
+   "first_template": "Exo - NightScalper 2"
+  },
+  {
+   "created": 1592252857742,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9815.3574,
+   "text": "Fakeout zone",
+   "n_templates": 3,
+   "first_template": "Exo - NightScalper 2"
+  },
+  {
+   "created": 1592290225105,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9390.2742,
+   "text": "Range POC",
+   "n_templates": 3,
+   "first_template": "Exo - NightScalper 2"
+  },
+  {
+   "created": 1592292658472,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9598.8896,
+   "text": "Range S/R",
+   "n_templates": 3,
+   "first_template": "Exo - NightScalper 2"
+  },
+  {
+   "created": 1592861455242,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9800.0,
+   "text": "True",
+   "n_templates": 4,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1592861467080,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10063.0,
+   "text": "True",
+   "n_templates": 4,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1592861504186,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9547.0,
+   "text": "True",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious Cluster ETH"
+  },
+  {
+   "created": 1592861525975,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9596.0,
+   "text": "True",
+   "n_templates": 4,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1592869097790,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10000.0,
+   "text": "Retest Area",
+   "n_templates": 1,
+   "first_template": "Exo - 4H OFA"
+  },
+  {
+   "created": 1592869164052,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9688.0,
+   "text": "Retest Area",
+   "n_templates": 1,
+   "first_template": "Exo - 4H OFA"
+  },
+  {
+   "created": 1592869316547,
+   "symbol": "bitmex-XBTUSD",
+   "price": 8952.0,
+   "text": "Magnet Area",
+   "n_templates": 1,
+   "first_template": "Exo - 4H OFA"
+  },
+  {
+   "created": 1592869701430,
+   "symbol": "bitmex-XBTUSD",
+   "price": 8620.0,
+   "text": "Magnet Area",
+   "n_templates": 1,
+   "first_template": "Exo - 4H OFA"
+  },
+  {
+   "created": 1592869825181,
+   "symbol": "bitmex-XBTUSD",
+   "price": 8791.0,
+   "text": "Liq Pool of 25X & 50X Longers",
+   "n_templates": 1,
+   "first_template": "Exo - 4H OFA"
+  },
+  {
+   "created": 1593523674748,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9094.0489,
+   "text": "First response",
+   "n_templates": 2,
+   "first_template": "Exo - NightScalper 2"
+  },
+  {
+   "created": 1593523800633,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9055.939,
+   "text": "2nd response",
+   "n_templates": 2,
+   "first_template": "Exo - NightScalper 2"
+  },
+  {
+   "created": 1593622280715,
+   "symbol": "bitmex-ETHUSD",
+   "price": 233.446,
+   "text": "Daily High",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious Cluster ETH"
+  },
+  {
+   "created": 1593622329325,
+   "symbol": "bitmex-ETHUSD",
+   "price": 235.3513,
+   "text": "Daily High",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious Cluster ETH"
+  },
+  {
+   "created": 1593947461161,
+   "symbol": "bitmex-XBTUSD",
+   "price": 8978.0,
+   "text": "True",
+   "n_templates": 3,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1593947493263,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9019.0,
+   "text": "True",
+   "n_templates": 3,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1594020183368,
+   "symbol": "bitmex-ETHUSD",
+   "price": 233.2663,
+   "text": "WH",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious Cluster ETH"
+  },
+  {
+   "created": 1594116519232,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9246.0,
+   "text": "L",
+   "n_templates": 3,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1594116524548,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9280.0,
+   "text": "L",
+   "n_templates": 3,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1594205711770,
+   "symbol": "bitmex-ETHUSD",
+   "price": 244.991,
+   "text": "L",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious Cluster ETH"
+  },
+  {
+   "created": 1594217129211,
+   "symbol": "bitmex-ETHUSD",
+   "price": 249.3016,
+   "text": "WH",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious Cluster ETH"
+  },
+  {
+   "created": 1595160171657,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9113.5466,
+   "text": "Level",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1595759025040,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10043.1142,
+   "text": "SR",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1595759141499,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10214.2194,
+   "text": "SR",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1595853193531,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10525.2965,
+   "text": "W",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1595884925720,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10672.3301,
+   "text": "SR",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1595918704637,
+   "symbol": "bitmex-XBTUSD",
+   "price": 11449.6373,
+   "text": "SR",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1596637010381,
+   "symbol": "bitmex-XBTUSD",
+   "price": 12066.0,
+   "text": "True",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1597047686111,
+   "symbol": "bitmex-XBTUSD",
+   "price": 12686.0,
+   "text": "True",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1597993634991,
+   "symbol": "bitmex-XBTUSD",
+   "price": 11869.0,
+   "text": "Level",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1598517632558,
+   "symbol": "binancefutures-LINKUSDT",
+   "price": 16.1019,
+   "text": "Naked POC",
+   "n_templates": 4,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1598517766737,
+   "symbol": "binancefutures-LINKUSDT",
+   "price": 16.497,
+   "text": "Naked POC",
+   "n_templates": 4,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1598517806213,
+   "symbol": "binancefutures-LINKUSDT",
+   "price": 17.0731,
+   "text": "Naked VAH",
+   "n_templates": 4,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1598521528265,
+   "symbol": "binancefutures-LINKUSDT",
+   "price": 17.7216,
+   "text": "Singles & Daily Hi",
+   "n_templates": 4,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1598521597017,
+   "symbol": "binancefutures-LINKUSDT",
+   "price": 18.4865,
+   "text": "Singles End",
+   "n_templates": 4,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1598529135161,
+   "symbol": "binancefutures-LINKUSDT",
+   "price": 14.6006,
+   "text": "Naked POC",
+   "n_templates": 4,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1598779324751,
+   "symbol": "binancefutures-ETHUSDT",
+   "price": 422.3948,
+   "text": "Comp VAL",
+   "n_templates": 4,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1598779325143,
+   "symbol": "binancefutures-ETHUSDT",
+   "price": 433.7843,
+   "text": "Comp VAH",
+   "n_templates": 4,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1598779325520,
+   "symbol": "binancefutures-ETHUSDT",
+   "price": 430.0,
+   "text": "Comp POC",
+   "n_templates": 4,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1598779467898,
+   "symbol": "binancefutures-ETHUSDT",
+   "price": 410.9203,
+   "text": "D Hi",
+   "n_templates": 4,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1598779523679,
+   "symbol": "binancefutures-ETHUSDT",
+   "price": 419.0799,
+   "text": "D Hi",
+   "n_templates": 4,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1598894481268,
+   "symbol": "binancefutures-ETHUSDT",
+   "price": 422.7146,
+   "text": "Comp VAL",
+   "n_templates": 1,
+   "first_template": "Exo - TPO ETH 2"
+  },
+  {
+   "created": 1598894490132,
+   "symbol": "binancefutures-ETHUSDT",
+   "price": 437.713,
+   "text": "Comp VAH",
+   "n_templates": 1,
+   "first_template": "Exo - TPO ETH 2"
+  },
+  {
+   "created": 1598906288353,
+   "symbol": "bybit-BTCUSD",
+   "price": 9761.8755,
+   "text": "Monthly HVN",
+   "n_templates": 1,
+   "first_template": "Exo - MWD Levels Bybit"
+  },
+  {
+   "created": 1598906294976,
+   "symbol": "bybit-BTCUSD",
+   "price": 9392.8433,
+   "text": "Monthly HVN",
+   "n_templates": 1,
+   "first_template": "Exo - MWD Levels Bybit"
+  },
+  {
+   "created": 1598906342172,
+   "symbol": "bybit-BTCUSD",
+   "price": 10996.4066,
+   "text": "Monthly HVN",
+   "n_templates": 1,
+   "first_template": "Exo - MWD Levels Bybit"
+  },
+  {
+   "created": 1598906405493,
+   "symbol": "bybit-BTCUSD",
+   "price": 10277.8796,
+   "text": "Weekly HVN",
+   "n_templates": 1,
+   "first_template": "Exo - MWD Levels Bybit"
+  },
+  {
+   "created": 1598906526940,
+   "symbol": "bybit-BTCUSD",
+   "price": 10549.6472,
+   "text": "LVN ",
+   "n_templates": 1,
+   "first_template": "Exo - MWD Levels Bybit"
+  },
+  {
+   "created": 1598906629445,
+   "symbol": "bybit-BTCUSD",
+   "price": 9003.0258,
+   "text": "LVN",
+   "n_templates": 1,
+   "first_template": "Exo - MWD Levels Bybit"
+  },
+  {
+   "created": 1598906684106,
+   "symbol": "bybit-BTCUSD",
+   "price": 11117.77,
+   "text": "wekly HVN",
+   "n_templates": 1,
+   "first_template": "Exo - MWD Levels Bybit"
+  },
+  {
+   "created": 1598906716076,
+   "symbol": "bybit-BTCUSD",
+   "price": 11453.4628,
+   "text": "wHVN",
+   "n_templates": 1,
+   "first_template": "Exo - MWD Levels Bybit"
+  },
+  {
+   "created": 1598906839127,
+   "symbol": "bybit-BTCUSD",
+   "price": 11876.2788,
+   "text": "wHVN",
+   "n_templates": 1,
+   "first_template": "Exo - MWD Levels Bybit"
+  },
+  {
+   "created": 1598906856455,
+   "symbol": "bybit-BTCUSD",
+   "price": 11746.8136,
+   "text": "weekly HVN",
+   "n_templates": 1,
+   "first_template": "Exo - MWD Levels Bybit"
+  },
+  {
+   "created": 1598906877667,
+   "symbol": "bybit-BTCUSD",
+   "price": 12091.2769,
+   "text": "wLVN",
+   "n_templates": 1,
+   "first_template": "Exo - MWD Levels Bybit"
+  },
+  {
+   "created": 1599494883121,
+   "symbol": "bitmex-XBTUSD",
+   "price": 8661.7135,
+   "text": "God",
+   "n_templates": 1,
+   "first_template": "TPO simple daily"
+  },
+  {
+   "created": 1599494890856,
+   "symbol": "bitmex-XBTUSD",
+   "price": 8975.8719,
+   "text": ":)",
+   "n_templates": 1,
+   "first_template": "TPO simple daily"
+  },
+  {
+   "created": 1599840945781,
+   "symbol": "binancefutures-ETHUSDT",
+   "price": 402.8913,
+   "text": "Naked POC",
+   "n_templates": 1,
+   "first_template": "Exo - ETH TPO 3"
+  },
+  {
+   "created": 1600169553444,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 10940.0,
+   "text": "Single Prints",
+   "n_templates": 4,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1600169800297,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 11200.0,
+   "text": "Single prints",
+   "n_templates": 4,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1600169857565,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 10701.9148,
+   "text": "Naked POC",
+   "n_templates": 1,
+   "first_template": "Exo - MP Daily BTC"
+  },
+  {
+   "created": 1600169857565,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 11366.0,
+   "text": "OLD POC",
+   "n_templates": 3,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1600171803679,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 11295.0,
+   "text": "Naked VAH",
+   "n_templates": 4,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1600171889449,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 11701.5947,
+   "text": "Naked VAH",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1600171889449,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 11705.0,
+   "text": "Naked VAH",
+   "n_templates": 3,
+   "first_template": "Exo - MP Daily BTC"
+  },
+  {
+   "created": 1600175678904,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 10520.0,
+   "text": "Single Prints",
+   "n_templates": 1,
+   "first_template": "Exo - MP Daily BTC"
+  },
+  {
+   "created": 1600175678904,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 10526.0583,
+   "text": "Single Prints",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1600175678904,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 10664.0,
+   "text": "Single Prints",
+   "n_templates": 2,
+   "first_template": "Exo - White Stingray 2"
+  },
+  {
+   "created": 1600284413478,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 10577.0,
+   "text": "Single Print",
+   "n_templates": 2,
+   "first_template": "Exo - White Stingray 2"
+  },
+  {
+   "created": 1600284449733,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 10521.0,
+   "text": "Single Print",
+   "n_templates": 2,
+   "first_template": "Exo - White Stingray 2"
+  },
+  {
+   "created": 1600284609259,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 10418.9289,
+   "text": "Level",
+   "n_templates": 1,
+   "first_template": "Exo - White Stingray 2"
+  },
+  {
+   "created": 1600284609259,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 10437.9411,
+   "text": "Level",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1600284609259,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 10617.0,
+   "text": "Level",
+   "n_templates": 1,
+   "first_template": "Exo - White Stingray"
+  },
+  {
+   "created": 1600631504349,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10628.4662,
+   "text": "TAIL",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1600631562127,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10832.9396,
+   "text": "SP",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1600631887984,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10305.4277,
+   "text": "COMPOSITE TAIL",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1600631955299,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10793.7063,
+   "text": "SP",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1600631985659,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10771.8375,
+   "text": "SP",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1600807459881,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10189.3009,
+   "text": "TAIL",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1600889347109,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10853.3085,
+   "text": "SHORT",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1600927801793,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10648.358,
+   "text": "ACCEPT HERE IS BULLISH",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1601411299873,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10595.6835,
+   "text": "TAIL",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1601411600503,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10691.786,
+   "text": "LONG",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1601442042825,
+   "symbol": "bitmex-XBTUSD",
+   "price": 11067.1382,
+   "text": "Level",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1601619739797,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10283.6863,
+   "text": "Level",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1601619747248,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10137.8963,
+   "text": "Level",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1601619762284,
+   "symbol": "bitmex-XBTUSD",
+   "price": 10201.4923,
+   "text": "Level",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1601619914410,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9909.82,
+   "text": "Level",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1601619923833,
+   "symbol": "bitmex-XBTUSD",
+   "price": 9823.4358,
+   "text": "Level",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1601831305597,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 10935.3357,
+   "text": "Level",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1601831326493,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 10857.8936,
+   "text": "Level",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1601831348043,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 10480.9119,
+   "text": "Level",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1602100506701,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 10614.9162,
+   "text": "BUY",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1602100798710,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 10789.2566,
+   "text": "Level",
+   "n_templates": 1,
+   "first_template": "Exo - Dark Stingray Reastruth"
+  },
+  {
+   "created": 1602504678398,
+   "symbol": "bitmex-XBTUSD",
+   "price": 11246.0,
+   "text": "SR",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1602575118575,
+   "symbol": "bitmex-XBTUSD",
+   "price": 11449.0,
+   "text": "QQ",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious 3"
+  },
+  {
+   "created": 1617610783377,
+   "symbol": "binancefutures-BTCUSDT",
+   "price": 57341.2733,
+   "text": "Level",
+   "n_templates": 1,
+   "first_template": "Exo - Obvious 3"
+  }
+ ],
+ "settings": {
+  "value_area": "68% in most profile templates, 69% in his own session template, 70% some, 35% in one scalper template (mine: 70%: immaterial except the 35% one)",
+  "utcOffset": "display +3/+2; session splits 07:00 / 13:30 / 19:15 UTC (one variant 06/12/20), matching mine",
+  "row_size": "session template (clusterMultiplier 47 x 0.5 USD = 23.5 USD = 4.1 bp at 57k; checked: SP 56647-57023 (17) = 16 rows x 23.5; BT 55049-55190 (7) = 6 x 23.5). 2020 daily profiles: 60 USD rows = 60 bp",
+  "tail_min_rows": 3,
+  "single_print_min_rows": "3 (34 of 46), some 1-2",
+  "IB_candles": "1 (32) or 2 (14) half hours",
+  "imbalance": "250% default, 400% scalping, 750% sentiment",
+  "tsize": "TSize/TrS min volume 500k contracts, sensitivity 17; delta mode in 19 templates",
+  "oi_zigzag": "0.25 / 0.38",
+  "NL/NS": "net longs/shorts panels used in ~12 templates: my rules have no such input"
+ },
+ "differences_from_mine": [
+  "single-print min band 30 bp vs his ~8-12 bp in sessions",
+  "no footprint imbalance form",
+  "weekly/monthly levels never tested",
+  "net longs/shorts never built",
+  "IB 30 or 60 min (P2j: test both)"
+ ],
+ "new_forms": [
+  {
+   "item": "T2",
+   "form": "e",
+   "what": "his (or his template author's) 107 hand-drawn levels of June-Oct 2020 carry a creation time (drawing id = ms epoch, S1d): first touch AFTER creation, reaction 15/60/240 min in the bounce direction, vs placebo levels at the same distance on the other side and vs +-37% shifted levels; by label (naked POC, single print, HVN, composite, SR, tail, plain); hand-labelled SHORT / LONG / BUY separately"
+  },
+  {
+   "item": "M7",
+   "form": "d",
+   "what": "footprint imbalance as he sets it: diagonal taker imbalance 250% / 400% / 750%, >= 3 stacked rows -> zone holds on first retest, vs same-size zones without imbalance"
+  },
+  {
+   "item": "P3",
+   "form": "d",
+   "what": "weekly and monthly naked POC / VAH / VAL, HVN and LVN (his D/W/M overview templates have naked levels on; passes 1-2 only used daily): first touch vs placebo"
+  },
+  {
+   "item": "P2",
+   "form": "l",
+   "what": "single prints and tails at HIS resolution: session rows of ~4 bp (47 ticks at 57k), minimum 3 rows, tails kept apart (my pass-2 bands were >= 30 bp, so his typical ones were excluded)"
+  },
+  {
+   "item": "T5",
+   "form": "h",
+   "what": "net longs / net shorts (OI change split by taker sign, his NL / NS panels, 12 templates): price falls while net longs still rise -> trapped longs -> continuation then flush; price rises on net shorts; 10 coins, 5-min OI"
+  }
+ ]
+}
