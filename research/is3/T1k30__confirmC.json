@@ -1,0 +1,61 @@
+{
+ "name": "T1k30",
+ "sample": "confirmC",
+ "n": 2580,
+ "days": 361,
+ "coins": 73,
+ "mean_bp": 154.91,
+ "median_bp": 149.41,
+ "win": 0.717,
+ "se_bp": 53.84,
+ "ci95_bp": [
+  46.59,
+  258.39
+ ],
+ "p": 0.004997501249375313,
+ "mde80_bp": 150.76,
+ "mean_ex_top3_bp": 119.89,
+ "top3_share": 0.26,
+ "t_day_mean": 8.03,
+ "by_year": {
+  "2021": [
+   209,
+   756.97
+  ],
+  "2022": [
+   257,
+   95.53
+  ],
+  "2023": [
+   1018,
+   84.72
+  ],
+  "2024": [
+   778,
+   191.15
+  ],
+  "2025": [
+   318,
+   -56.75
+  ]
+ },
+ "by_side": {
+  "1": [
+   2580,
+   154.91
+  ]
+ },
+ "coins_positive": 0.96,
+ "net_bp": {
+  "free": 154.91,
+  "maker_taker": 146.91,
+  "taker": 141.91,
+  "taker_x2": 128.91,
+  "crash": 74.91,
+  "own_cost": 144.39
+ },
+ "passes": true,
+ "note": "bid k sigma below the last close, fill if 30 bp through, taker exit after 60 min",
+ "rerun": "",
+ "at": "2026-11-22T19:24:36+00:00"
+}

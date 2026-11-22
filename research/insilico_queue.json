@@ -1219,6 +1219,18 @@
      "result": "through 10/30/60/100 bp: k20 +95/+105/+114/+122; entry at max(limit, minute close) +51 (p .046) k20, +98 k30; 1 min late +71 / +121; 2021-05-19 is the biggest day but ex-top3 holds",
      "date": "2026-11-22",
      "evidence": "T1e_k20_through60__explore"
+    },
+    {
+     "id": "f",
+     "what": "survivorship: the frozen k20/k30 rule on 24 delisted coins (LUNA, SRM, ANC...), settled at the last price",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "g",
+     "what": "the ~500 other listed perps that were never in the 83 (point-in-time top 100, 1-min bars on the server): same frozen rule",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ],
    "sessions": 1

@@ -132,8 +132,12 @@ def one(coin: str) -> pd.DataFrame:
     return t
 
 
+DEAD24 = ("LUNA GAL SRM TOMO RNDR KEEP FRONT BTT HNT AUDIO COCOS ANT DODO BZRX ANC NU FOOTBALL YFII AKRO BTS MBL DOTECO 1000BTTC BLUEBIRD").split()
+
+
 def coins() -> list[str]:
-    return sorted(p.stem[:-4] for p in (data.DATA / "bn" / "klines_1m").glob("*USDT.parquet"))
+    """The 83 coins of the programme's minute data (fixed; DEAD24 = delisted coins added later for the survivorship checks)."""
+    return sorted(c for c in (p.stem[:-4] for p in (data.DATA / "bn" / "klines_1m").glob("*USDT.parquet")) if c not in DEAD24)
 
 
 def build(workers=3):

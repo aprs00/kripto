@@ -20,7 +20,7 @@ import pandas as pd
 from kripto import data
 from kripto import events as ev
 from research.studies import is3_lib as L
-from research.studies.is3_lshock import coins, path, sample
+from research.studies.is3_lshock import DEAD24, coins, sample
 
 OUT = data.DATA / "is3"
 KS, HOLDS = (6, 8, 10, 12, 15, 20, 30), (1, 5, 15, 60, 240)
@@ -170,8 +170,14 @@ def stress():
 
 
 def frozen_one(coin):
-    """Frozen T1k20 / T1k30: fills only if price trades 30 bp through the limit; h60 from the limit, w60 = entry at max(limit, minute close)."""
+    """Frozen T1k20 / T1k30: fills only if price trades 30 bp through the limit; h60 from the limit, w60 = entry at max(limit, minute close).
+    A delisted coin is settled at its last price: its series is padded, so fills in its last hours count."""
     P = data.load_bn_minute_panel([coin])
+    if coin in DEAD24:
+        ix = P["close"].index
+        ix = ix.append(pd.date_range(ix[-1] + pd.Timedelta("1min"), periods=300, freq="1min"))
+        cl = P["close"].reindex(ix).ffill()
+        P = {"close": cl, "high": P["high"].reindex(ix).fillna(cl), "low": P["low"].reindex(ix).fillna(cl), "volume": P["volume"].reindex(ix).fillna(0.0)}
     idx = P["close"].index
     c, h, l, v = (P[k][coin].to_numpy(dtype=np.float64) for k in ("close", "high", "low", "volume"))
     t = fills(c, h, l, v, idx, through=30e-4, sides=(1,), ks=(20, 30))
@@ -227,6 +233,30 @@ def confirm(samples=("confirmT", "confirmC")):
             print("   worst 5:", q.nsmallest(5, "h60")[["time", "coin", "h60", "mae60"]].round(3).values.tolist())
 
 
+def dead(workers=3):
+    """Form f (survivorship): the frozen rule on 24 coins that were delisted (LUNA, SRM, ANC, ...). They are in no earlier sample."""
+    from scripts import minute_study as ms
+    for i in range(0, len(DEAD24), 4):
+        ms.download(DEAD24[i:i + 4], [str(p) for p in pd.period_range("2021-01", "2024-09", freq="M")], log=lambda x: print(x, flush=True))
+    with ProcessPoolExecutor(workers) as ex:
+        t = pd.concat([x for x in ex.map(frozen_one, [c for c in DEAD24 if (data.DATA / "bn" / "klines_1m" / f"{c}USDT.parquet").exists()]) if len(x)])
+    t = t.sort_values(["time", "coin"]).reset_index(drop=True)
+    t.to_parquet(OUT / "ladder_dead.parquet")
+    for k in (20, 30):
+        q = t[t.k == k]
+        L.card(f"T1f_k{k}", rows(q, "h60"), "confirmC", note="delisted coins only, settled at the last price")
+        w = L.stats(rows(q, "w60"), reps=1000)
+        print(f"   pessimistic entry: mean {w['mean_bp']:+.0f} net {w['net_bp']['own_cost']:+.0f} p {w['p']:.3f}")
+        print("   by coin:", (q.groupby("coin").h60.agg(["size", "mean", "min"])).round(3).sort_values("mean").head(6).to_dict("index"))
+        print("   worst 6:", q.nsmallest(6, "h60")[["time", "coin", "h60", "mae60"]].round(3).values.tolist())
+        lu = q[q.coin == "LUNA"]
+        print("   LUNA 2022-05-07..13:", lu[lu.time >= "2022-05-07"][["time", "h60", "h240"]].round(3).values.tolist()[:40])
+        live = pd.read_parquet(OUT / "ladder_frozen.parquet")
+        both = pd.concat([sample(live[live.k == k], "confirmC"), q]).sort_values("time")
+        a = L.stats(rows(both, "h60"), reps=1000)
+        print(f"   pooled confirmC + delisted: n {a['n']} mean {a['mean_bp']:+.0f} net {a['net_bp']['own_cost']:+.0f} p {a['p']:.3f} ex-top3 {a['mean_ex_top3_bp']:+.0f}; account 5x10%: {account(both, 'h60', '2021-01-01', '2026-01-01', 0.1, 5)}")
+
+
 def checks():
     P = data.load_bn_minute_panel(["BTC", "DOGE", "AVAX"])
     P = {k: x[(x.index >= "2021-03-01") & (x.index < "2021-09-01")].astype("float64") for k, x in P.items()}
@@ -239,4 +269,4 @@ def checks():
 
 
 if __name__ == "__main__":
-    {"build": lambda: build(int(sys.argv[2]) if len(sys.argv) > 2 else 3), "checks": checks, "explore": explore, "stress": stress, "frozen": frozen_build, "confirm": confirm}[sys.argv[1]]()
+    {"build": lambda: build(int(sys.argv[2]) if len(sys.argv) > 2 else 3), "checks": checks, "explore": explore, "stress": stress, "frozen": frozen_build, "confirm": confirm, "dead": dead}[sys.argv[1]]()
