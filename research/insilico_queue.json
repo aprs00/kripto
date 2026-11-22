@@ -1114,6 +1114,176 @@
    "reason": "no falsifiable trade",
    "closed": "2026-11-22",
    "forms": []
+  },
+  {
+   "id": "T1",
+   "prio": 0.5,
+   "group": "T",
+   "title": "Be in the book BEFORE the dump: resting bid ladders (he is a maker: 'rebate harvest', 'contrarians slipping thru empty book')",
+   "src": "tg:167, 226-234; owner 2026-11-22",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "standing bids k x sigma below the last close (k = 6..20), re-quoted every minute; fill only if price trades >= 10 bp through; exits 5/15/60 min",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "b",
+     "what": "same, exits by the author's levels (half the retrace, the origin) as resting offers",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "c",
+     "what": "only when >= 5 other coins are already dumping (breadth at t-1); only after a calm hour; conditional quoting",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "d",
+     "what": "thin vs liquid coins; HL fee schedule (maker 1.5 bp) and Binance (2 bp); inventory limit 2 coins and 5 coins at $1,000 and $200",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "e",
+     "what": "fill realism: 10 / 30 / 60 bp through, 1-s path from aggTrades for the largest 50 fills, order alive during venue overload?",
+     "status": "planned",
+     "added": "2026-11-22"
+    }
+   ]
+  },
+  {
+   "id": "T2",
+   "prio": 0.6,
+   "group": "T",
+   "title": "Forensics: reconstruct every dated trade and chart example he posts and find what distinguishes them",
+   "src": "tg:165-174, 226-234, 274-284; wa 18.10.18-26, 18.10.39-42, 18.10.55-57; owner 2026-11-22: 'he probably wont give everything on the platter'",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "table of every dated example (instrument, minute, direction, stated entry / targets / reason) from text AND images; 1-min data around each",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "b",
+     "what": "feature vector at each example (about 25 features: fall, speed, volume decay, retrace of the first 1/2/3 min, taker share, trade count, location vs prior-day / week / POC, hour, trend, breadth, premium, OI) vs all similar moments: which unstated features are extreme in ALL his examples?",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "c",
+     "what": "analog test: nearest neighbours of his examples in 2021-23 (never the examples themselves) -> what happened next, vs random moments with the same fall",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "d",
+     "what": "same for moments he says he would NOT trade",
+     "status": "planned",
+     "added": "2026-11-22"
+    }
+   ]
+  },
+  {
+   "id": "T3",
+   "prio": 0.7,
+   "group": "T",
+   "title": "Context model instead of if-x-then-y: the whole state -> distribution of the next 5/15/60 min",
+   "src": "tg:167 'can determine how strong the bounce or dive will be from initial mechanical spring after liqs'; owner 2026-11-22",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "features as T2b on every climax event (about 800k rows in data/is3/lshock.parquet); ridge and small gradient-boosted trees, walk-forward by quarter with a 1-day purge, trained on explore coins only",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "b",
+     "what": "spring strength: retrace fraction and speed in the first 1-3 minutes, as a continuous predictor (dose-response curves with CIs), in both directions (weak spring = dive continues: short)",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "c",
+     "what": "size the bet by the predicted return (top decile only / proportional) vs the fixed rule",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "d",
+     "what": "shuffle test: same pipeline with permuted targets must earn nothing",
+     "status": "planned",
+     "added": "2026-11-22"
+    }
+   ]
+  },
+  {
+   "id": "T4",
+   "prio": 0.8,
+   "group": "T",
+   "title": "Exits as decisions, not timers: manage the trade as he describes",
+   "src": "tg:167 'do a round quickly'; wa 18.10.28, 18.10.32(2) 'they give u money u take it and run'",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "leave when the bounce stalls (volume of up minutes falls below that of down minutes; 2 closes without a new high)",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "b",
+     "what": "leave on the first opposite climax; re-enter on the next reversal (cascades repeat: liq -> bounce -> liq)",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "c",
+     "what": "optimal-stopping bound: best exit in hindsight vs achievable, to see how much the exit can matter at all",
+     "status": "planned",
+     "added": "2026-11-22"
+    }
+   ]
+  },
+  {
+   "id": "T5",
+   "prio": 0.9,
+   "group": "T",
+   "title": "1-minute bounces and continuations in general (not only liquidations), by context",
+   "src": "tg:226-234, 103-107; minute study 11-10",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "all 1-min moves >= 3 sigma, 83 coins: continuation vs reversal by location (prior-day / weekly extremes, POC, round), hour, trend, breadth, taker share, trades per bp",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "b",
+     "what": "who moved it: many small vs few large trades (n, average trade size) as the split between stop runs and informed flow",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "c",
+     "what": "maker version of whatever shows a dose-response in a or b (resting order, trade-through fill)",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "d",
+     "what": "relative version: coin move minus BTC-beta move; the residual is what bounces",
+     "status": "planned",
+     "added": "2026-11-22"
+    }
+   ]
   }
  ]
 }

@@ -1,0 +1,61 @@
+{
+ "name": "L1f",
+ "sample": "confirmC",
+ "n": 512,
+ "days": 153,
+ "coins": 73,
+ "mean_bp": 14.48,
+ "median_bp": 20.09,
+ "win": 0.596,
+ "se_bp": 43.27,
+ "ci95_bp": [
+  -73.02,
+  92.31
+ ],
+ "p": 0.736631684157921,
+ "mde80_bp": 121.14,
+ "mean_ex_top3_bp": -20.66,
+ "top3_share": 2.33,
+ "t_day_mean": 1.77,
+ "by_year": {
+  "2021": [
+   90,
+   81.08
+  ],
+  "2022": [
+   81,
+   41.72
+  ],
+  "2023": [
+   129,
+   43.19
+  ],
+  "2024": [
+   125,
+   114.38
+  ],
+  "2025": [
+   87,
+   -265.88
+  ]
+ },
+ "by_side": {
+  "1": [
+   512,
+   14.48
+  ]
+ },
+ "coins_positive": 0.51,
+ "net_bp": {
+  "free": 14.48,
+  "maker_taker": 6.48,
+  "taker": 1.48,
+  "taker_x2": -11.52,
+  "crash": -65.52,
+  "own_cost": -12.33
+ },
+ "passes": false,
+ "note": "z>=8, d=1, long coin short BTC, 15 min, four taker legs",
+ "rerun": "",
+ "at": "2026-11-22T19:12:13+00:00"
+}

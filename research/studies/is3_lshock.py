@@ -233,6 +233,53 @@ def explore(s="explore", prefix="L1", zs=(4, 6, 8, 10)):
     L.card(f"{prefix}short_z8", rows(T[lambda d: d.index.isin(t.index) & (d.kind == "rev") & (d.side == -1) & (d.d == 1) & (d.z >= 8)], "x0"), s)
 
 
+def premium(s="explore"):
+    """Form d: split by the perp's discount to its index. Daily premiumIndexKlines files (public archive), only for trigger days."""
+    import io
+    import time
+    import zipfile
+
+    import requests
+    t = sample(pd.read_parquet(OUT / "lshock.parquet"), s)
+    R = t[(t.kind == "rev") & (t.side == 1) & (t.z >= 6)].copy()
+    cache = OUT / "premium.json"
+    import json
+    got = json.loads(cache.read_text()) if cache.exists() else {}
+    for (coin, day), g in R.groupby(["coin", R.time.dt.strftime("%Y-%m-%d")]):
+        if f"{coin}|{day}" in got:
+            continue
+        u = f"https://data.binance.vision/data/futures/um/daily/premiumIndexKlines/{coin}USDT/1m/{coin}USDT-1m-{day}.zip"
+        try:
+            r = requests.get(u, timeout=60)
+        except requests.RequestException:
+            continue
+        if r.ok:
+            z = zipfile.ZipFile(io.BytesIO(r.content))
+            rows_ = [x.split(",") for x in z.read(z.namelist()[0]).decode().splitlines() if x[:1].isdigit()]
+            got[f"{coin}|{day}"] = {str(int(float(x[0]) // 60000)): [float(x[3]), float(x[4])] for x in rows_}
+        else:
+            got[f"{coin}|{day}"] = {}
+        time.sleep(0.5)
+    cache.write_text(json.dumps(got))
+    lowp, nowp = [], []
+    for tm, coin in zip(R.time, R.coin):
+        d = got.get(f"{coin}|{tm.strftime('%Y-%m-%d')}", {})
+        m = int(tm.timestamp() // 60)
+        x = [d[str(k)] for k in range(m - 6, m + 1) if str(k) in d]
+        pre = [d[str(k)][1] for k in range(m - 60, m - 10) if str(k) in d]
+        lowp.append(min(a for a, _ in x) - np.median(pre) if len(x) >= 5 and len(pre) >= 20 else np.nan)
+        nowp.append(x[-1][1] if x else np.nan)
+    R["dprem"], R["prem"] = lowp, nowp
+    print(f"premium found for {R.dprem.notna().sum()}/{len(R)} triggers; drop vs the hour before, deciles bp:", (R.dprem.quantile([.1, .25, .5, .75, .9]) * 1e4).round(1).to_dict())
+    q = R[R.dprem.notna()]
+    for nm, g in (("deep", q[q.dprem <= q.dprem.quantile(1 / 3)]), ("mid", q[(q.dprem > q.dprem.quantile(1 / 3)) & (q.dprem <= q.dprem.quantile(2 / 3))]), ("none", q[q.dprem > q.dprem.quantile(2 / 3)])):
+        L.card(f"L1d_{nm}", rows(g, "x1"), s, note=f"tercile of premium drop, z>=6, d 1-5, 1 min late; mean z {g.z.mean():.1f}, fall {g.fall.mean() * 1e4:.0f} bp")
+    print("does the discount add to the size of the fall? rank corr of x1 with dprem / fall / z:",
+          [round(float(q[["x1", k]].corr(method="spearman").iloc[0, 1]), 2) for k in ("dprem", "fall", "z")])
+    res = q.assign(f3=pd.qcut(q.fall.rank(method="first"), 3, labels=["small", "mid", "big"]))
+    print(res.groupby(["f3", res.dprem <= res.dprem.median()], observed=True)["x1"].agg(["size", lambda x: round(x.mean() * 1e4)]))
+
+
 def confirm():
     """The two frozen forms (research/is3/prereg.json: L1h, L1f). One run per sample."""
     T = pd.read_parquet(OUT / "lshock.parquet")
@@ -251,4 +298,4 @@ def confirm():
 
 
 if __name__ == "__main__":
-    {"build": lambda: build(int(sys.argv[2]) if len(sys.argv) > 2 else 3), "checks": checks, "explore": explore, "confirm": confirm}[sys.argv[1]]()
+    {"build": lambda: build(int(sys.argv[2]) if len(sys.argv) > 2 else 3), "checks": checks, "explore": explore, "confirm": confirm, "premium": premium}[sys.argv[1]]()

@@ -1,0 +1,53 @@
+{
+ "name": "L1d_mid",
+ "sample": "explore",
+ "n": 105,
+ "days": 66,
+ "coins": 10,
+ "mean_bp": 32.42,
+ "median_bp": 31.81,
+ "win": 0.619,
+ "se_bp": 28.69,
+ "ci95_bp": [
+  -18.86,
+  92.65
+ ],
+ "p": 0.2563718140929535,
+ "mde80_bp": 80.33,
+ "mean_ex_top3_bp": -3.84,
+ "top3_share": 1.11,
+ "t_day_mean": 1.11,
+ "by_year": {
+  "2021": [
+   32,
+   92.37
+  ],
+  "2022": [
+   33,
+   -33.36
+  ],
+  "2023": [
+   40,
+   38.72
+  ]
+ },
+ "by_side": {
+  "1": [
+   105,
+   32.42
+  ]
+ },
+ "coins_positive": 0.6,
+ "net_bp": {
+  "free": 32.42,
+  "maker_taker": 24.42,
+  "taker": 19.42,
+  "taker_x2": 6.42,
+  "crash": -47.58,
+  "own_cost": 19.29
+ },
+ "passes": false,
+ "note": "tercile of premium drop, z>=6, d 1-5, 1 min late; mean z 9.1, fall 700 bp",
+ "rerun": "",
+ "at": "2026-11-22T19:19:53+00:00"
+}

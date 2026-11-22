@@ -1,0 +1,53 @@
+{
+ "name": "L1d_deep",
+ "sample": "explore",
+ "n": 85,
+ "days": 34,
+ "coins": 10,
+ "mean_bp": 105.41,
+ "median_bp": 95.65,
+ "win": 0.624,
+ "se_bp": 64.48,
+ "ci95_bp": [
+  -17.24,
+  228.2
+ ],
+ "p": 0.10794602698650675,
+ "mde80_bp": 180.55,
+ "mean_ex_top3_bp": 19.91,
+ "top3_share": 0.85,
+ "t_day_mean": 2.32,
+ "by_year": {
+  "2021": [
+   52,
+   151.28
+  ],
+  "2022": [
+   16,
+   14.48
+  ],
+  "2023": [
+   17,
+   50.68
+  ]
+ },
+ "by_side": {
+  "1": [
+   85,
+   105.41
+  ]
+ },
+ "coins_positive": 0.7,
+ "net_bp": {
+  "free": 105.41,
+  "maker_taker": 97.41,
+  "taker": 92.41,
+  "taker_x2": 79.41,
+  "crash": 25.41,
+  "own_cost": 92.38
+ },
+ "passes": false,
+ "note": "tercile of premium drop, z>=6, d 1-5, 1 min late; mean z 10.8, fall 1571 bp",
+ "rerun": "",
+ "at": "2026-11-22T19:19:53+00:00"
+}
