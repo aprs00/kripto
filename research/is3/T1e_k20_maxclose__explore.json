@@ -1,0 +1,53 @@
+{
+ "name": "T1e_k20_maxclose",
+ "sample": "explore",
+ "n": 1050,
+ "days": 312,
+ "coins": 10,
+ "mean_bp": 50.69,
+ "median_bp": 26.33,
+ "win": 0.616,
+ "se_bp": 25.32,
+ "ci95_bp": [
+  8.15,
+  107.12
+ ],
+ "p": 0.046476761619190406,
+ "mde80_bp": 70.9,
+ "mean_ex_top3_bp": 18.28,
+ "top3_share": 0.65,
+ "t_day_mean": 3.27,
+ "by_year": {
+  "2021": [
+   189,
+   252.58
+  ],
+  "2022": [
+   292,
+   0.23
+  ],
+  "2023": [
+   569,
+   9.52
+  ]
+ },
+ "by_side": {
+  "1": [
+   1050,
+   50.69
+  ]
+ },
+ "coins_positive": 1.0,
+ "net_bp": {
+  "free": 50.69,
+  "maker_taker": 42.69,
+  "taker": 37.69,
+  "taker_x2": 24.69,
+  "crash": -29.31,
+  "own_cost": 42.13
+ },
+ "passes": true,
+ "note": "entry = max(limit, close of the fill minute)",
+ "rerun": "",
+ "at": "2026-11-22T19:23:21+00:00"
+}

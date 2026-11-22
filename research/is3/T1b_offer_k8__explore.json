@@ -1,0 +1,53 @@
+{
+ "name": "T1b_offer_k8",
+ "sample": "explore",
+ "n": 5135,
+ "days": 982,
+ "coins": 10,
+ "mean_bp": -25.46,
+ "median_bp": 43.84,
+ "win": 0.632,
+ "se_bp": 6.08,
+ "ci95_bp": [
+  -37.94,
+  -13.81
+ ],
+ "p": 0.0004997501249375312,
+ "mde80_bp": 17.03,
+ "mean_ex_top3_bp": -27.69,
+ "top3_share": null,
+ "t_day_mean": -1.57,
+ "by_year": {
+  "2021": [
+   1255,
+   -38.41
+  ],
+  "2022": [
+   1849,
+   -2.67
+  ],
+  "2023": [
+   2031,
+   -38.21
+  ]
+ },
+ "by_side": {
+  "-1": [
+   5135,
+   -25.46
+  ]
+ },
+ "coins_positive": 0.0,
+ "net_bp": {
+  "free": -25.46,
+  "maker_taker": -33.46,
+  "taker": -38.46,
+  "taker_x2": -51.46,
+  "crash": -105.46,
+  "own_cost": -29.46
+ },
+ "passes": false,
+ "note": "author levels as resting offers, 240 min cap",
+ "rerun": "",
+ "at": "2026-11-22T19:22:33+00:00"
+}

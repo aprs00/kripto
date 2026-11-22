@@ -1,0 +1,53 @@
+{
+ "name": "T1c_offer_k8_b1",
+ "sample": "explore",
+ "n": 2693,
+ "days": 816,
+ "coins": 10,
+ "mean_bp": -14.24,
+ "median_bp": 1.53,
+ "win": 0.507,
+ "se_bp": 6.6,
+ "ci95_bp": [
+  -27.49,
+  -1.39
+ ],
+ "p": 0.03548225887056472,
+ "mde80_bp": 18.49,
+ "mean_ex_top3_bp": -18.33,
+ "top3_share": null,
+ "t_day_mean": -0.82,
+ "by_year": {
+  "2021": [
+   651,
+   -8.54
+  ],
+  "2022": [
+   987,
+   -6.31
+  ],
+  "2023": [
+   1055,
+   -25.19
+  ]
+ },
+ "by_side": {
+  "-1": [
+   2693,
+   -14.24
+  ]
+ },
+ "coins_positive": 0.0,
+ "net_bp": {
+  "free": -14.24,
+  "maker_taker": -22.24,
+  "taker": -27.24,
+  "taker_x2": -40.24,
+  "crash": -94.24,
+  "own_cost": -22.82
+ },
+ "passes": false,
+ "note": "breadth 1-4",
+ "rerun": "",
+ "at": "2026-11-22T19:22:34+00:00"
+}

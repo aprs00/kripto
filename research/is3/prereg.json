@@ -16,5 +16,17 @@
   "rule": "is3_weekend confirm(); follow; card passes (net of taker 13 bp, p<0.05, better than the same rule on Thursdays, ex-top3) in confirmT and confirmC. Found in explore as the opposite of the author claim; 2024-25 partly seen via W3 (12-18 move, no volume split).",
   "params": {},
   "at": "2026-11-22T19:21:51+00:00"
+ },
+ "T1k20": {
+  "claim": "A bid resting 20 sigma (24h std of 1-min returns) below the last minute close, filled only if price trades 30 bp through it, is worth more 60 minutes later",
+  "rule": "is3_ladder confirm(); net of 2 bp maker + 5 bp taker + modelled slippage; card passes in confirmT and confirmC; also report max(limit, minute close) entries, which must be positive for a book",
+  "params": {},
+  "at": "2026-11-22T19:23:58+00:00"
+ },
+ "T1k30": {
+  "claim": "Same with 30 sigma (dose-response: should be larger than T1k20)",
+  "rule": "same",
+  "params": {},
+  "at": "2026-11-22T19:23:58+00:00"
  }
 }

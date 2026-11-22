@@ -1,0 +1,53 @@
+{
+ "name": "T1c_bid_k8_b5",
+ "sample": "explore",
+ "n": 1421,
+ "days": 410,
+ "coins": 10,
+ "mean_bp": 16.55,
+ "median_bp": 23.83,
+ "win": 0.602,
+ "se_bp": 9.69,
+ "ci95_bp": [
+  -2.73,
+  35.23
+ ],
+ "p": 0.08895552223888056,
+ "mde80_bp": 27.13,
+ "mean_ex_top3_bp": 9.3,
+ "top3_share": 0.45,
+ "t_day_mean": 3.04,
+ "by_year": {
+  "2021": [
+   398,
+   38.62
+  ],
+  "2022": [
+   410,
+   7.14
+  ],
+  "2023": [
+   613,
+   8.51
+  ]
+ },
+ "by_side": {
+  "1": [
+   1421,
+   16.55
+  ]
+ },
+ "coins_positive": 0.9,
+ "net_bp": {
+  "free": 16.55,
+  "maker_taker": 8.55,
+  "taker": 3.55,
+  "taker_x2": -9.45,
+  "crash": -63.45,
+  "own_cost": 7.96
+ },
+ "passes": false,
+ "note": "breadth 5-19",
+ "rerun": "",
+ "at": "2026-11-22T19:22:33+00:00"
+}

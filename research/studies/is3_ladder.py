@@ -116,6 +116,117 @@ def explore(s="explore", prefix="T1"):
                     L.card(f"{prefix}c_{nm}_k{k}_b{lo}", rows(g, "h60"), s, note=f"breadth {lo}-{hi}")
 
 
+def stress_one(coin):
+    P = data.load_bn_minute_panel([coin])
+    P = {k: x[x.index < "2024-01-03"] for k, x in P.items()}
+    idx = P["close"].index
+    c, h, l, v = (P[k][coin].to_numpy(dtype=np.float64) for k in ("close", "high", "low", "volume"))
+    slip = ev.slip_per_day(P["volume"])[coin]
+    out = []
+    for th in (10, 30, 60, 100):
+        t = fills(c, h, l, v, idx, through=th / 1e4, sides=(1,), ks=(12, 20, 30))
+        if len(t):
+            pos = idx.get_indexer(t.time)
+            # pessimistic: the fill is the close of the fill minute if that is WORSE for us than our limit (no credit for the bounce inside the minute)
+            t["p_close"] = [c[i] for i in pos]
+            for hh in (15, 60, 240):
+                t[f"w{hh}"] = [c[i + hh] / max(c[i], c[i - 1] * (1 - k * sg)) - 1 for i, k, sg in zip(pos, t.k, t.sig)]      # bought at the HIGHER of limit and that minute's close
+                t[f"d{hh}"] = [c[i + 1 + hh] / c[i + 1] - 1 for i in pos]                        # bought one minute later at market
+            t["wick"] = [(min(c[i], c[i - 1]) - l[i]) / c[i] for i in pos]
+            out.append(t.assign(through_bp=th))
+    t = pd.concat(out)
+    t["slip"] = slip.reindex(t.time.dt.floor("D")).to_numpy()
+    return t.assign(coin=coin)
+
+
+def stress():
+    """Form e and d on the explore sample: harder fills, no credit for the bounce inside the fill minute, worst trades, account."""
+    with ProcessPoolExecutor(3) as ex:
+        t = pd.concat(ex.map(stress_one, L.COINS10))
+    t = t[t.time < "2024-01-01"].sort_values("time").reset_index(drop=True)
+    for k in (12, 20, 30):
+        print(f"== e: k={k}: gross bp after 60 min by how far price must trade through our limit")
+        for th in (10, 30, 60, 100):
+            q = t[(t.k == k) & (t.through_bp == th)]
+            a, b, d = (L.stats(q.assign(gross=q[x]), reps=400) for x in ("h60", "w60", "d60"))
+            print(f"  through {th:3d} bp n={len(q):5d}: limit fill {a['mean_bp']:+.0f} (p {a['p']:.3f}, ex3 {a['mean_ex_top3_bp']:+.0f}) | bought at max(limit, minute close) {b['mean_bp']:+.0f} (p {b['p']:.3f}) "
+                  f"| bought 1 min later {d['mean_bp']:+.0f} (p {d['p']:.3f})")
+    q = t[(t.k == 20) & (t.through_bp == 10)]
+    L.card("T1e_k20_through60", rows(t[(t.k == 20) & (t.through_bp == 60)], "h60"), "explore", note="fill only if price trades 60 bp through")
+    L.card("T1e_k20_maxclose", rows(q, "w60"), "explore", note="entry = max(limit, close of the fill minute)")
+    print("worst 8 trades:", q.nsmallest(8, "h60")[["time", "coin", "h60", "mae60"]].round(3).to_string(index=False))
+    print("top days:", (q.assign(d=q.time.dt.date).groupby("d").h60.agg(["sum", "size"]).nlargest(6, "sum")).round(3).to_string())
+    print("fills per day: max", q.groupby(q.time.dt.date).size().max(), " share of fills in minutes with >= 4 coins:", round((q.groupby("time").coin.transform("size") >= 4).mean(), 2))
+    print("== d: account: rest one bid per coin, 10 coins, size = 10% of equity each (max gross 1x), exit after 60 min")
+    for k in (12, 20, 30):
+        for col, nm in (("h60", "limit"), ("w60", "max(limit, close)")):
+            for th in (10, 60):
+                g = t[(t.k == k) & (t.through_bp == th)]
+                net = g[col] - 7e-4 - g.slip
+                d = (net * 0.1).groupby(g.time.dt.floor("D")).sum().reindex(pd.date_range("2021-01-01", "2023-12-31", tz="UTC"), fill_value=0.0)
+                eq = (1 + d).cumprod()
+                print(f"  k={k} {nm} through {th}: cagr {eq.iloc[-1] ** (1 / 3) - 1:+.1%} SR {d.mean() / d.std() * 365 ** 0.5:.2f} mdd {(eq / eq.cummax() - 1).min():.1%} worst day {d.min():.1%} "
+                      + " ".join(f"{y}:{x.sum():+.1%}" for y, x in d.groupby(d.index.year)))
+
+
+def frozen_one(coin):
+    """Frozen T1k20 / T1k30: fills only if price trades 30 bp through the limit; h60 from the limit, w60 = entry at max(limit, minute close)."""
+    P = data.load_bn_minute_panel([coin])
+    idx = P["close"].index
+    c, h, l, v = (P[k][coin].to_numpy(dtype=np.float64) for k in ("close", "high", "low", "volume"))
+    t = fills(c, h, l, v, idx, through=30e-4, sides=(1,), ks=(20, 30))
+    if not len(t):
+        return t
+    pos = idx.get_indexer(t.time)
+    t["w60"] = [c[i + 60] / max(c[i], c[i - 1] * (1 - k * sg)) - 1 for i, k, sg in zip(pos, t.k, t.sig)]
+    t["d60"] = [c[i + 61] / c[i + 1] - 1 for i in pos]
+    dv = pd.Series(v, idx).resample("1D").sum().rolling(30, min_periods=5).mean().shift(1)
+    t["dv30"] = dv.reindex(t.time.dt.floor("D")).to_numpy()
+    t["slip"] = ev.slip_per_day(P["volume"])[coin].reindex(t.time.dt.floor("D")).to_numpy()
+    return t.assign(coin=coin)
+
+
+def frozen_build(workers=3):
+    with ProcessPoolExecutor(workers) as ex:
+        t = pd.concat([x for x in ex.map(frozen_one, coins()) if len(x)]).sort_values(["time", "coin"]).reset_index(drop=True)
+    t.to_parquet(OUT / "ladder_frozen.parquet")
+    print(len(t), t.groupby("k").size().to_dict())
+
+
+def account(t, col, start, end, size=0.1, max_open=10):
+    """One account: every fill takes `size` of equity if fewer than max_open positions are open; exit after 60 min. Daily series."""
+    until, keep = [], []
+    for tm in t.time:
+        until = [x for x in until if x > tm]
+        ok = len(until) < max_open
+        keep.append(ok)
+        if ok:
+            until.append(tm + pd.Timedelta("60min"))
+    g = t[keep]
+    net = g[col] - 7e-4 - g.slip
+    d = (net * size).groupby(g.time.dt.floor("D")).sum().reindex(pd.date_range(start, end, tz="UTC", inclusive="left"), fill_value=0.0)
+    eq = (1 + d).cumprod()
+    return (f"n {len(g)}/{len(t)} cagr {eq.iloc[-1] ** (365 / len(d)) - 1:+.1%} SR {d.mean() / (d.std() + 1e-12) * 365 ** 0.5:.2f} mdd {(eq / eq.cummax() - 1).min():.1%} "
+            f"worst day {d.min():.1%} " + " ".join(f"{y}:{x.sum():+.1%}" for y, x in d.groupby(d.index.year)))
+
+
+def confirm(samples=("confirmT", "confirmC")):
+    T = pd.read_parquet(OUT / "ladder_frozen.parquet")
+    for s in samples:
+        t = sample(T, s)
+        for k in (20, 30):
+            q = t[t.k == k]
+            L.card(f"T1k{k}", rows(q, "h60"), s, note="bid k sigma below the last close, fill if 30 bp through, taker exit after 60 min")
+            w = L.stats(rows(q, "w60"), reps=1000)
+            print(f"   pessimistic entry max(limit, minute close): mean {w['mean_bp']:+.0f} net {w['net_bp']['own_cost']:+.0f} p {w['p']:.3f} ex-top3 {w['mean_ex_top3_bp']:+.0f} years {w['by_year']}")
+            w = L.stats(rows(q, "d60"), reps=1000)
+            print(f"   bought 1 min later at market: mean {w['mean_bp']:+.0f} p {w['p']:.3f} ex-top3 {w['mean_ex_top3_bp']:+.0f}")
+            lo, hi = L.SAMPLES[s]
+            for mo in (5, 10):
+                print(f"   account {mo} slots x 10%: limit {account(q, 'h60', lo, hi, 0.1, mo)} | pessimistic {account(q, 'w60', lo, hi, 0.1, mo)}")
+            print("   worst 5:", q.nsmallest(5, "h60")[["time", "coin", "h60", "mae60"]].round(3).values.tolist())
+
+
 def checks():
     P = data.load_bn_minute_panel(["BTC", "DOGE", "AVAX"])
     P = {k: x[(x.index >= "2021-03-01") & (x.index < "2021-09-01")].astype("float64") for k, x in P.items()}
@@ -128,4 +239,4 @@ def checks():
 
 
 if __name__ == "__main__":
-    {"build": lambda: build(int(sys.argv[2]) if len(sys.argv) > 2 else 3), "checks": checks, "explore": explore}[sys.argv[1]]()
+    {"build": lambda: build(int(sys.argv[2]) if len(sys.argv) > 2 else 3), "checks": checks, "explore": explore, "stress": stress, "frozen": frozen_build, "confirm": confirm}[sys.argv[1]]()

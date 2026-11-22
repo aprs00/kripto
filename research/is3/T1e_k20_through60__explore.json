@@ -1,0 +1,53 @@
+{
+ "name": "T1e_k20_through60",
+ "sample": "explore",
+ "n": 580,
+ "days": 211,
+ "coins": 10,
+ "mean_bp": 113.58,
+ "median_bp": 64.55,
+ "win": 0.672,
+ "se_bp": 43.92,
+ "ci95_bp": [
+  41.26,
+  209.1
+ ],
+ "p": 0.014492753623188406,
+ "mde80_bp": 122.97,
+ "mean_ex_top3_bp": 57.23,
+ "top3_share": 0.51,
+ "t_day_mean": 4.56,
+ "by_year": {
+  "2021": [
+   128,
+   397.68
+  ],
+  "2022": [
+   149,
+   19.02
+  ],
+  "2023": [
+   303,
+   40.06
+  ]
+ },
+ "by_side": {
+  "1": [
+   580,
+   113.58
+  ]
+ },
+ "coins_positive": 1.0,
+ "net_bp": {
+  "free": 113.58,
+  "maker_taker": 105.58,
+  "taker": 100.58,
+  "taker_x2": 87.58,
+  "crash": 33.58,
+  "own_cost": 105.03
+ },
+ "passes": true,
+ "note": "fill only if price trades 60 bp through",
+ "rerun": "",
+ "at": "2026-11-22T19:23:21+00:00"
+}

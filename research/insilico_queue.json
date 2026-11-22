@@ -190,7 +190,7 @@
    "group": "A",
    "title": "Weekend and CME: the collar price and the gap rules as he states them",
    "src": "R21, R36; tg:69-70, 134; wa 18.10.59, 18.10.23(3), 18.10.31, 18.10.35",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -235,11 +235,17 @@
     {
      "id": "f",
      "what": "FOLLOW the Sunday 16-18 NY move when its volume is below the previous two hours' (found in explore d: it continues to Monday 17:00, dose-response)",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "explore +156 (p .013); confirmT -7 (p .92), confirmC +36 (p .34, vs Thursdays p .05), 2024-25 negative: not confirmed",
+     "date": "2026-11-22",
+     "evidence": "W1f__confirmC"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "Gravity is real (collar/gap touched 9-15 points more often than weekday placebo) but unpaid: fat left tail, only 2021 positive; every form MDE 80-200 bp, so underpowered rather than refuted. W3 (Sunday 12-18 fade) stays with the research session. Note for W3: fading works on rising volume only in explore, not confirmed.",
+   "closed": "2026-11-22"
   },
   {
    "id": "C1",
@@ -1175,20 +1181,29 @@
     {
      "id": "a",
      "what": "standing bids k x sigma below the last close (k = 6..20), re-quoted every minute; fill only if price trades >= 10 bp through; exits 5/15/60 min",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "bids k sigma below: gross h60 +12 (k8), +26 (k12), +95 (k20, n 1050, 312 d, p .005), +172 (k30); monotone; every year + at k>=20; offers lose at all k (up-spikes continue); 7 k x 5 holds x 2 sides",
+     "date": "2026-11-22",
+     "evidence": "T1a_bid_k20__explore"
     },
     {
      "id": "b",
      "what": "same, exits by the author's levels (half the retrace, the origin) as resting offers",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "author levels as resting offers: k8 +18, k12 +34, k20 +98 (p <.001): like the 60-min hold; 3 k",
+     "date": "2026-11-22",
+     "evidence": "T1b_bid_k20__explore"
     },
     {
      "id": "c",
      "what": "only when >= 5 other coins are already dumping (breadth at t-1); only after a calm hour; conditional quoting",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "breadth before the fill: k8 b0 -6, 1-4 +3, 5-19 +17, >=20 +59 (p .001); k12 same: market-wide dumps pay, lone dumps do not",
+     "date": "2026-11-22",
+     "evidence": "T1c_bid_k8_b20__explore"
     },
     {
      "id": "d",
@@ -1199,8 +1214,11 @@
     {
      "id": "e",
      "what": "fill realism: 10 / 30 / 60 bp through, 1-s path from aggTrades for the largest 50 fills, order alive during venue overload?",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "through 10/30/60/100 bp: k20 +95/+105/+114/+122; entry at max(limit, minute close) +51 (p .046) k20, +98 k30; 1 min late +71 / +121; 2021-05-19 is the biggest day but ex-top3 holds",
+     "date": "2026-11-22",
+     "evidence": "T1e_k20_through60__explore"
     }
    ],
    "sessions": 1

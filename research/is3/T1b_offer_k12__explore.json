@@ -1,0 +1,53 @@
+{
+ "name": "T1b_offer_k12",
+ "sample": "explore",
+ "n": 1865,
+ "days": 667,
+ "coins": 10,
+ "mean_bp": -37.15,
+ "median_bp": 39.82,
+ "win": 0.603,
+ "se_bp": 13.12,
+ "ci95_bp": [
+  -61.48,
+  -10.65
+ ],
+ "p": 0.004997501249375313,
+ "mde80_bp": 36.73,
+ "mean_ex_top3_bp": -44.4,
+ "top3_share": null,
+ "t_day_mean": -1.06,
+ "by_year": {
+  "2021": [
+   367,
+   -57.41
+  ],
+  "2022": [
+   663,
+   6.14
+  ],
+  "2023": [
+   835,
+   -62.62
+  ]
+ },
+ "by_side": {
+  "-1": [
+   1865,
+   -37.15
+  ]
+ },
+ "coins_positive": 0.0,
+ "net_bp": {
+  "free": -37.15,
+  "maker_taker": -45.15,
+  "taker": -50.15,
+  "taker_x2": -63.15,
+  "crash": -117.15,
+  "own_cost": -41.15
+ },
+ "passes": false,
+ "note": "author levels as resting offers, 240 min cap",
+ "rerun": "",
+ "at": "2026-11-22T19:22:34+00:00"
+}

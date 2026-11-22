@@ -1,0 +1,56 @@
+{
+ "name": "W1f",
+ "sample": "confirmT",
+ "n": 199,
+ "days": 62,
+ "coins": 10,
+ "mean_bp": -7.53,
+ "median_bp": -10.24,
+ "win": 0.492,
+ "se_bp": 76.33,
+ "ci95_bp": [
+  -162.0,
+  135.65
+ ],
+ "p": 0.9230384807596201,
+ "mde80_bp": 213.73,
+ "mean_ex_top3_bp": -101.88,
+ "top3_share": null,
+ "t_day_mean": -0.2,
+ "by_year": {
+  "2024": [
+   101,
+   -30.27
+  ],
+  "2025": [
+   98,
+   15.92
+  ]
+ },
+ "by_side": {
+  "-1": [
+   111,
+   44.17
+  ],
+  "1": [
+   88,
+   -72.73
+  ]
+ },
+ "coins_positive": 0.6,
+ "net_bp": {
+  "free": -7.53,
+  "maker_taker": -15.53,
+  "taker": -20.53,
+  "taker_x2": -33.53,
+  "crash": -87.53
+ },
+ "base_n": 347,
+ "base_bp": -14.46,
+ "vs_base_bp": 6.94,
+ "p_vs_base": 0.9410294852573713,
+ "passes": false,
+ "note": "base = same rule on Thursdays",
+ "rerun": "",
+ "at": "2026-11-22T19:21:56+00:00"
+}
