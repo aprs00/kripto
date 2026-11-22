@@ -1,0 +1,61 @@
+{
+ "name": "T1g_k20",
+ "sample": "confirmC",
+ "n": 1330,
+ "days": 403,
+ "coins": 55,
+ "mean_bp": -19.46,
+ "median_bp": 97.66,
+ "win": 0.639,
+ "se_bp": 68.6,
+ "ci95_bp": [
+  -172.05,
+  81.85
+ ],
+ "p": 0.7841079460269865,
+ "mde80_bp": 192.07,
+ "mean_ex_top3_bp": -45.09,
+ "top3_share": null,
+ "t_day_mean": 0.1,
+ "by_year": {
+  "2021": [
+   15,
+   528.43
+  ],
+  "2022": [
+   21,
+   105.35
+  ],
+  "2023": [
+   206,
+   51.39
+  ],
+  "2024": [
+   284,
+   62.67
+  ],
+  "2025": [
+   804,
+   -80.11
+  ]
+ },
+ "by_side": {
+  "1": [
+   1330,
+   -19.46
+  ]
+ },
+ "coins_positive": 0.45,
+ "net_bp": {
+  "free": -19.46,
+  "maker_taker": -27.46,
+  "taker": -32.46,
+  "taker_x2": -45.46,
+  "crash": -99.46,
+  "own_cost": -33.52
+ },
+ "passes": false,
+ "note": "60 fresh coins (hash sample of the point-in-time top 100)",
+ "rerun": "",
+ "at": "2026-11-22T20:01:17+00:00"
+}

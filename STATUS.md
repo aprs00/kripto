@@ -2,7 +2,7 @@ HEALTH: OK — all services healthy at the 08:25 review: 25/25 hourly trader run
 
 _Updated 2026-11-22 08:30 UTC (daily review after the weekly retro). Detail: journal/2026-11-22.md._
 
-InSilico pass 3: 19 of 166 test forms done, 2 ideas closed (both OPEN). Best so far: bids resting 30 sigma below the price (filled only in sudden market-wide dumps) earned +106 / +155 / +148 bp per trade on held-out time, unseen coins and delisted coins; not a strategy yet (2026 vault, more coins, walk-forward and live paper still to do).
+InSilico pass 3: 22 of 168 test forms done, 2 ideas closed (both OPEN). Best lead, NOT a strategy: bids resting 30 sigma below the price. Passed on held-out time, 73 unseen and 24 delisted coins (+106 / +155 / +148 bp a trade), then FAILED on 60 fresh coins (+13 bp): on 2025-10-10 the fills lost about 16% each; other days +147 bp. It sells crash insurance. A liquid-coins-only version with a hard exposure cap is next and must pass on clean 2026 data.
 
 ## This week's most important finding
 **My Binance research data contained things the bot cannot trade.** Binance added about 245 stock, commodity and FX contracts (Apple, AMD, gold…) in 2026. The
