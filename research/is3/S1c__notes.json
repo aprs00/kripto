@@ -1,0 +1,51 @@
+{
+ "form": "S1c",
+ "date": "2026-11-22",
+ "read": {
+  "Almanac": "table of contents, introduction, the 20 pages that state a rule (87,105,111,117,120,139,151,160,163,172,175,216-218,226); the 120 calendar/statistics pages not read line by line",
+  "HOFM5": "abstract, list of causes (p1-5), conclusions (p60-62); the case histories (LTCM, Niederhoffer, Amaranth, SocGen) not read line by line",
+  "Artemis": "10 of 52 pages (argument and the convexity sections)"
+ },
+ "transfer": {
+  "almanac": [
+   "first day of month / turn of month -> C1c,C1i",
+   "down Friday + down Monday -> C1g",
+   "week after triple witching, expiry -> C1b,C1f",
+   "holiday before/after -> C1f",
+   "Dec 15 lows -> C1h",
+   "half-hour-of-day -> C2, C1c",
+   "first month of quarter, December low, best six months, MACD timing: <= 6 observations on crypto -> cannot be known (C1e)"
+  ],
+  "hofm": [
+   "losses come from over-betting plus lack of diversification in one scenario: the T1 ladder is exactly this (80 fills in one minute) -> E2d",
+   "'forced liquidation at unfavourable prices: gap moves through stops' -> same finding as T1j (stops hurt)",
+   "managers double up: never reload T1 in the same event"
+  ],
+  "artemis": [
+   "97% of strategies are implicitly short volatility -> T1, flow, listing shorts and funding capture all are; tsmom is the only long-convexity book -> check combined tail (E2d), do not add T1 size on top of other short-vol books"
+  ]
+ },
+ "not_transferable": "Artemis and HOFM contain no trading rule; presidential cycle, sector tables, decennial cycle",
+ "new_forms": [
+  {
+   "item": "C1",
+   "form": "g",
+   "what": "Almanac p120: a down Friday followed by a down Monday marks an inflection (lower over the next weeks), vs down Friday / up Monday and vs any two down days of equal size; BTC and equal-weight top-30"
+  },
+  {
+   "item": "C1",
+   "form": "h",
+   "what": "Almanac p175 tax-loss 'free lunch': coins within 5% of their 52-week low on Dec 15 -> until Feb 15 vs the rest (cross-section, clean bnall); placebo = the same on the 15th of every other month; only 5-6 Decembers, so report effect and MDE, verdict limited"
+  },
+  {
+   "item": "C1",
+   "form": "i",
+   "what": "Almanac p139, p226: FIRST day of the month (12x an average day) and last + first four days; split C1c into these two exact windows before looking at the table"
+  },
+  {
+   "item": "E2",
+   "form": "d",
+   "what": "T1 is short crash insurance (Artemis: 'short convexity'; HOFM: overbetting kills, not being wrong): daily P&L of the ladder vs tsmom / flow shadow returns in the 20 worst weeks, and size from a fractional-Kelly with a worst case of -50% on every simultaneous fill added by hand, vs the 5% rule"
+  }
+ ]
+}

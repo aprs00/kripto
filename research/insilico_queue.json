@@ -320,6 +320,24 @@
      "id": "f",
      "what": "Stock Trader's Almanac rules that transfer (pre-holiday, triple-witching week, first days of month): take from the PDF text",
      "status": "planned"
+    },
+    {
+     "id": "g",
+     "what": "Almanac p120: a down Friday followed by a down Monday marks an inflection (lower over the next weeks), vs down Friday / up Monday and vs any two down days of equal size; BTC and equal-weight top-30",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "h",
+     "what": "Almanac p175 tax-loss 'free lunch': coins within 5% of their 52-week low on Dec 15 -> until Feb 15 vs the rest (cross-section, clean bnall); placebo = the same on the 15th of every other month; only 5-6 Decembers, so report effect and MDE, verdict limited",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "i",
+     "what": "Almanac p139, p226: FIRST day of the month (12x an average day) and last + first four days; split C1c into these two exact windows before looking at the table",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ]
   },
@@ -676,7 +694,10 @@
     {
      "id": "c",
      "what": "Almanac, How to Lose Money in Derivatives, Artemis: rules that could transfer (S1c__notes.json)",
-     "status": "planned"
+     "status": "done",
+     "result": "Almanac rule pages, HOFM5 and Artemis arguments read (statistics tables and case histories skimmed, stated in the notes): 4 forms added (C1ghi, E2d); no other transferable rule",
+     "date": "2026-11-22",
+     "evidence": "S1c__notes"
     },
     {
      "id": "d",
@@ -1589,6 +1610,12 @@
      "id": "c",
      "what": "risk: margin locked by resting orders, 2025-10-10 replay minute by minute, exchange outage during a cascade, max loss per day cap",
      "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "T1 is short crash insurance (Artemis: 'short convexity'; HOFM: overbetting kills, not being wrong): daily P&L of the ladder vs tsmom / flow shadow returns in the 20 worst weeks, and size from a fractional-Kelly with a worst case of -50% on every simultaneous fill added by hand, vs the 5% rule",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ]
   }
