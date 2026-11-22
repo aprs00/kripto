@@ -255,13 +255,15 @@ Agrees with the 11-10 minute study (sweeps of the 4h range: ≈ 0). Not tested: 
 > 2021–23 / 10 coins (studies research/studies/is2_*.py), confirmed on 2024–26 and on unseen coins (batch 2026-11-15-insilico-pass2.json).
 > The entries below supersede the first-pass verdicts above where they overlap.
 
-### Profile / auction levels: prior POC, value area, single prints, 80% rule (InSilico R14–R17, 2026-11-15) → DEAD as mechanical level rules
+### Profile / auction levels: prior POC, value area, single prints, 80% rule (InSilico R15–R17, 2026-11-15) → DEAD as mechanical level rules; R14 relabelled OPEN 2026-11-22
+**Correction 11-22:** the header said R14–R17, but R14's own test (P4 gap fill) and P5 (levels as a filter for the slow books) were planned and have no code; R17 = 1 of his 10 laws. → IS3
 Three formulations, each failing on the exploration sample AND three held-out samples (10 coins 2024–26, 20 unseen coins 2021–26):
 (1) single-print bands fill 48–49% vs 51–52% for placebo bands; (2) first touch of yesterday's POC / VAH / VAL reacts like a fake level;
 (3) 80% rule: far edge reached 26–30% vs 37% for a random walk with the same geometry (t −8 to −11). Reason: any level a move reaches
 reacts the same. Real but useless: +4–5 bp more bounce in the 30 min after a real band is filled (was +10 bp in 2021–23, +2 since 2024).
 
-### Trade-size buckets as capitulation / exhaustion (InSilico R1–R3, 2026-11-15) → DEAD on Binance; OPEN (weak) on the author's venue type
+### Trade-size buckets as capitulation / exhaustion (InSilico R1–R2, 2026-11-15) → DEAD on Binance; OPEN (weak) on the author's venue type; R3 relabelled OPEN 2026-11-22
+**Correction 11-22:** R3 is a RANGE-BAR rule. T4 was planned on 0.4% move bars and run on 5-minute time bars; T6 (breadth as a feature inside `flow`) was run only as an event table. → IS3
 Binance, five formulations beyond the first-pass sign rule, all with the OPPOSITE sign: abnormal one-voiced selling on big down days (next
 3 d −235 bp vs +26), total-delta extreme, the same in an uptrend, large-sell/small-buy, intraday "top signal" at a 1-day high (price rose).
 Reason: one-voiced flow continues (what `flow` trades). Bybit inverse BTCUSD, his literal rule: fires on 4.5% of days (Binance 17–30%);
@@ -277,6 +279,7 @@ volume and the small-sold/large-bought split (n=93) add nothing; failed breaks o
 low, with and without the size split) that is three formulations; reason: reclaiming ANY broken low is followed by the generic dip bounce.
 
 ### lshock, second pass (InSilico R5, 2026-11-15) → OPEN (tail-event; unchanged verdict, better understood)
+**Correction 11-22:** of L1–L6 only L1 (+ a z dose-response) has code. L2 premium, L3 cascade-only, L4 wait-for-end, L5 risk filter, L6 pessimistic fills were NOT run; E1's live book was never started. → IS3
 Dose-response on 2021–23 is monotonic (z=4 +6 bp, 5 +28, 6 +70, 8 +150, 10 +194 net per trade; short side negative; half engulf ≈ 0): what
 forced selling predicts. But held-out, z=8: original coins 2024–26 +219 bp of which −3 bp without the three best days; 20 unseen coins +188 bp,
 +30 without them, days with 1–2 triggers −6 bp. Open-interest split fails (5-min OI too coarse, missing in the wildest minutes). The pattern

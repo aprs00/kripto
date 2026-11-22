@@ -17,6 +17,12 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
   e.g. drop names whose 28-d score is made by ≤ 2 days, or with 7-d volume > 5× the 30-d median. Explore bnall ≤ 2023-06, confirm later, ≤ 3 forms. One night is not evidence.
 - [ ] FC1 funding_contra untried forms (audit 11-22; prior low): (a) only extreme negative funding, long side; (b) conditional on price no longer rising; (c) HL-vs-BN funding
   gap as the crowding measure (= T3). ≤ 6 configs in all.  - [ ] LO1 tsmom long-only untried forms (prior low): excess over vol-matched BTC; BTC-only timing.
+- [ ] IS3 **InSilico: what the second pass planned and did not run** (audit 2026-11-22, journal). In order, think-through first, explore ≤ 2023 / confirm later, ≤ 6 WF in all:
+  (1) **Range bars** (R3, R7; tg:103–107 "real edge", not even cited in the catalogue): build 0.4% move bars with trade count + size buckets from aggTrades (server can
+  rebuild, public archive; raw is dropped, so a second pass; ≤ 2 workers, probe RAM first), BTC/ETH/SOL; R3 exhaustion, R7 ×10 velocity; judge against ≈ 13 bp. Prior low-medium:
+  the 5-min version had the opposite sign. (2) lshock L6 pessimistic fills, L3 cascade-only on unseen coins, L4 wait for the end, L2 premium; then E1 (LQ1 ≈ 12-01).
+  (3) **Filters for the live books** (never tested): P5 entries at prior POC / inside value, L5 no new shorts after a cascade day, T6 breadth inside `flow`. (4) R14 P4 gap fill; R21 with
+  the real "collar" price. (5) low prior: FSVZO / Crayons guides (47 pages, no rule was ever written), R13 perp vs spot delta, R18, R26, R29, R30. Confluence: one fixed pair at most.
 - [ ] A1 progress: 11-15 xsrev, lowvol; 11-22 tsmom long-only, funding_contra (both → OPEN, one form). Next: carry (HL), carry_trend.
 **Superseded 2026-11-19 list:**  1. Tue 11-24: W3 walk-forward (pre-register formulations first, see W3) + C1 cost re-fit (≥ 14 days of fills
 from 11-24) → 2. W2/W1 HL flow data (≈ 11-26) → 3. T5b positioning on Binance once the metrics backfill is complete (≈ 11-29) → 4. E1 cascade definition

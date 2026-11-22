@@ -7,6 +7,7 @@ the three `describes_manipulation_*` records are used only as descriptions (R11,
 
 Score = testability on our data (0–3) × fit for a $1,000/$200 account (0–3) × author's emphasis (0–3).
 **Tested 2026-11-11/12: R1, R4, R19, R21 dead; R5 open (tail events); R22–R24 nothing tradable. Verdicts and numbers: research/findings.md.**
+**Audit 2026-11-22:** R3 and R14 are OPEN (their own forms were not run); R7, R13, R18, R26, R29, R30 never tested; second-pass skips listed in backlog IS3.
 Status: **PRE-REG** = in research/batches/2026-11-11-insilico.json · **DESC** = descriptive table only (no walk-forward) ·
 **BACKLOG** · **NO DATA** · **NOTE** (context, not a rule). Verdicts go to research/findings.md, not here.
 
