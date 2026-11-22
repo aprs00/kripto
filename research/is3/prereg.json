@@ -52,5 +52,11 @@
   "rule": "same; plus positive in the pessimistic entry",
   "params": {},
   "at": "2026-11-22T19:44:27+00:00"
+ },
+ "T1i": {
+  "claim": "The T1k30 rule (resting bid 30 sigma under the last minute close, 30 bp trade-through) on a causal universe, top 20 coins by 30-d volume at the previous day's close, earns after costs 60 minutes later, in 2024-25 and then in 2026",
+  "rule": "is3_ladtop build + confirm(): net of 2 bp maker + 5 bp taker + modelled slippage, card passes (p<.05, net>0, ex-top3) on confirmT = 2024-25 first; only then the 2026 vault, once. 2024-25 fills of parts of this universe were already seen (T1k30, T1g; 2025-10-10 is known to be bad), so confirmT is weak evidence and the vault is the real one; if confirmT fails the vault stays closed and T1 is OPEN. Also reported, not gating: pessimistic entry max(limit, minute close), account SR / worst day, top-10, age>=365, holds 15/240.",
+  "params": {},
+  "at": "2026-11-22T20:32:10+00:00"
  }
 }
