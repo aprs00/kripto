@@ -1,0 +1,126 @@
+{
+ "form": "S1a",
+ "date": "2026-11-22",
+ "records_read": 211,
+ "of_which": {
+  "telegram": 126,
+  "whatsapp": 84,
+  "video": 1
+ },
+ "skipped_flagged": [
+  "wa:18.11.03(1)",
+  "wa:18.11.03(2)"
+ ],
+ "images_opened": [
+  "wa:18.10.24(2)",
+  "wa:18.10.28(1)",
+  "wa:18.10.51",
+  "wa:18.11.03(3)"
+ ],
+ "limit": "read text, transcript and the stored image description (no OCR dump) of every uncited record; only 4 images opened by eye; one of these 4 contradicted its description, so the images of cited records are opened in form e / T2",
+ "new_forms": [
+  {
+   "item": "P2",
+   "form": "i",
+   "what": "time vs volume disagree (tg:49-50 'if its not the same then u have a fuckery brewing'): |TPO POC - volume POC| / value width -> next-day range and direction; placebo = random pair of days' POCs"
+  },
+  {
+   "item": "P2",
+   "form": "j",
+   "what": "initial balance (first hour) high/low of each session, first touch later in the session, vs levels offset by 37% of IB width (tg:15)"
+  },
+  {
+   "item": "P2",
+   "form": "k",
+   "what": "fat node + 'lower deviation' break with OI falling (wa 18.10.51: 'positions placed at the fattest side ... puked'): 1h close below 20-d node minus 1 value width -> speed of the next move, vs same break without a node"
+  },
+  {
+   "item": "P1",
+   "form": "e",
+   "what": "law 5 'what doesn't happen' (wa 18.10.57(1)): low-volume gap approached >= 3 times in 5 days and NOT filled -> move away from it, vs gaps never approached"
+  },
+  {
+   "item": "N3",
+   "form": "f",
+   "what": "failed bad news / absorption (tg:93, wa 18.10.54(3) 'in control: the one that absorbs'): strongly negative taker delta over 1-5 days with price flat or up -> next days, dose in the residual of price on delta, cross-section of liquid coins"
+  },
+  {
+   "item": "N3",
+   "form": "g",
+   "what": "change of character (wa 18.10.28(1) picture): after an up-run of >= n bars making new highs, the first bar whose body is larger than any opposite body of the run, on a volume spike, vs the same bar size without the run (1h, 4h)"
+  },
+  {
+   "item": "N3",
+   "form": "h",
+   "what": "his AVWAP (wa 18.11.01(1)): anchor at the 90-day / 1-y extreme, at the nearby volume cluster if the extreme is thin; first touch bounce vs AVWAP from random anchor days and vs the plain price level"
+  },
+  {
+   "item": "N3",
+   "form": "i",
+   "what": "claim 'higher timeframe trend as filter is false' (tg:196): 1h momentum / reversal signals split by daily-trend agreement, vs unsplit; what the claim predicts = no difference"
+  },
+  {
+   "item": "N3",
+   "form": "j",
+   "what": "last minutes painted (wa 18.10.50(1)): price push in the last 5 min of an hour (or of the UTC day) on below-median volume AND against that hour's taker delta -> reversal next hour; placebo = the same push at minutes 25-30"
+  },
+  {
+   "item": "T5",
+   "form": "f",
+   "what": "effort without result (wa 18.10.24(2), second example: the volume spike had a SMALL body, not a dump): 1-min volume >= 10x median with range <= median at a local low after a decline, then a small-volume opposite bar; vs same volume with a large range"
+  },
+  {
+   "item": "T5",
+   "form": "g",
+   "what": "dump with open interest falling (closing / puke) vs rising (new shorts) (wa 18.10.51): 5-min OI change split of all 1-h falls >= 2-4 sigma, 10 coins 2021-12..2023 explore"
+  },
+  {
+   "item": "M2",
+   "form": "e",
+   "what": "engine-lag proxy (wa 18.10.41): on 1-min klines of all coins, trade count >= 10x normal and STILL rising -> continuation; count falling from its peak ('unclogged') -> reversal; dose 5/10/20x"
+  },
+  {
+   "item": "O2",
+   "form": "i",
+   "what": "camarilla pivots (tg:99, his mentor's tool): H3/L3 fade, H4/L4 break, vs pivots shifted by 37%"
+  },
+  {
+   "item": "C2",
+   "form": "f",
+   "what": "Monday US-open TWAP (wa 18.10.35): drift and taker imbalance Mon 13:30-17:00 UTC vs the same hours Tue-Fri, by trailing regime; does the previous Monday's imbalance predict it ('lose consistency')"
+  }
+ ],
+ "already_covered": {
+  "tg:15 sessions": "P2d,P2h",
+  "tg:77-78,wa:18.10.43(2) regressions": "O2h",
+  "tg:99 fisher": "O2g",
+  "tg:103-107 rangeUS": "M6b,M6c",
+  "tg:162-163 shakeout": "N3e",
+  "tg:238 clock-time flow": "C2e",
+  "tg:239 shrinking bidder": "N3b",
+  "tg:289 swings": "N3a",
+  "wa:18.10.22(3) lunar": "C1a",
+  "wa:18.10.40(1) solstice": "C1b",
+  "wa:18.11.01 december": "C1e",
+  "wa:18.11.02(1) CPI": "C1d",
+  "wa:18.10.26(4) illiquid hours": "C2d",
+  "wa:18.10.37,36(2),40(3) RSI pinned / re-entry / 'redard mode'": "O1a,O1b,O1e",
+  "wa:18.10.39 x4 size cohorts at level": "M3c",
+  "wa:18.10.40(2) pulled limits": "V1",
+  "wa:18.10.45,34(2) R/F 0": "P2h",
+  "wa:18.10.49 illiquid first": "N4",
+  "wa:18.10.41(1) extremes then normalise": "O1d,M2d",
+  "wa:18.10.28 take profit, flat before sleep": "T4",
+  "wa:18.11.03(3) short the spike that hits a stale offer while shorts are liquidated": "T5e/T5a/L2a; the unconditional version loses (T1 offers); the stale order itself needs L2 history (V1)",
+  "wa:18.10.50(1) big lots sell, small lots buy": "M3a,M4,V2b"
+ },
+ "untestable": {
+  "tg:246": "Grayscale posts",
+  "wa:18.10.38(1)": "Benner cycle, 1 obs per 9 y",
+  "wa:18.10.38(2),50": "SPX beta, no equity data",
+  "wa:18.10.31(1),45(1)": "options",
+  "wa:18.10.44": "macro",
+  "tg:277 'covered'": "4 dates, no rule stated; T2 has them"
+ },
+ "contradiction_found": "wa:18.10.24(2): the description says two big red candles engulfed; the picture's second example is a tiny red body on a volume spike, then a tiny green candle on tiny volume. L1 demanded a fall of z>=6-8, so this pattern (effort, no result) has never been tested -> T5f"
+}

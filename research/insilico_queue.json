@@ -106,6 +106,12 @@
      "id": "d",
      "what": "trade: breakout into a low-volume zone, target its far edge, stop the near edge; payoff vs random-walk odds",
      "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "law 5 'what doesn't happen' (wa 18.10.57(1)): low-volume gap approached >= 3 times in 5 days and NOT filled -> move away from it, vs gaps never approached",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ]
   },
@@ -156,6 +162,24 @@
      "id": "h",
      "what": "rotation factor ~0 sessions (R18): next-session range and direction vs R/F extremes",
      "status": "planned"
+    },
+    {
+     "id": "i",
+     "what": "time vs volume disagree (tg:49-50 'if its not the same then u have a fuckery brewing'): |TPO POC - volume POC| / value width -> next-day range and direction; placebo = random pair of days' POCs",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "j",
+     "what": "initial balance (first hour) high/low of each session, first touch later in the session, vs levels offset by 37% of IB width (tg:15)",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "k",
+     "what": "fat node + 'lower deviation' break with OI falling (wa 18.10.51: 'positions placed at the fattest side ... puked'): 1h close below 20-d node minus 1 value width -> speed of the next move, vs same break without a node",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ]
   },
@@ -319,6 +343,12 @@
      "id": "e",
      "what": "same clock-time flow persistence: taker imbalance in half-hour h predicts half-hour h of the next day (Heston-type)",
      "status": "planned"
+    },
+    {
+     "id": "f",
+     "what": "Monday US-open TWAP (wa 18.10.35): drift and taker imbalance Mon 13:30-17:00 UTC vs the same hours Tue-Fri, by trailing regime; does the previous Monday's imbalance predict it ('lose consistency')",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ]
   },
@@ -404,6 +434,12 @@
      "id": "h",
      "what": "linear-regression channel touches vs hand-drawn-line placebo (tg:77, wa 18.10.43(2))",
      "status": "planned"
+    },
+    {
+     "id": "i",
+     "what": "camarilla pivots (tg:99, his mentor's tool): H3/L3 fade, H4/L4 break, vs pivots shifted by 37%",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ]
   },
@@ -489,6 +525,36 @@
      "id": "e",
      "what": "daily terminal shakeout: close back above a broken 20/55-day low on record volume",
      "status": "planned"
+    },
+    {
+     "id": "f",
+     "what": "failed bad news / absorption (tg:93, wa 18.10.54(3) 'in control: the one that absorbs'): strongly negative taker delta over 1-5 days with price flat or up -> next days, dose in the residual of price on delta, cross-section of liquid coins",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "g",
+     "what": "change of character (wa 18.10.28(1) picture): after an up-run of >= n bars making new highs, the first bar whose body is larger than any opposite body of the run, on a volume spike, vs the same bar size without the run (1h, 4h)",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "h",
+     "what": "his AVWAP (wa 18.11.01(1)): anchor at the 90-day / 1-y extreme, at the nearby volume cluster if the extreme is thin; first touch bounce vs AVWAP from random anchor days and vs the plain price level",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "i",
+     "what": "claim 'higher timeframe trend as filter is false' (tg:196): 1h momentum / reversal signals split by daily-trend agreement, vs unsplit; what the claim predicts = no difference",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "j",
+     "what": "last minutes painted (wa 18.10.50(1)): price push in the last 5 min of an hour (or of the UTC day) on below-median volume AND against that hour's taker delta -> reversal next hour; placebo = the same push at minutes 25-30",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ]
   },
@@ -553,12 +619,15 @@
    "group": "A",
    "title": "Re-read the sources I only skimmed, images included",
    "src": "109 Telegram + 84 WhatsApp records no rule cites; tg:103-107",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "open every uncited record that has an image or video description; list each testable claim not yet in the queue (research/is3/S1a__notes.json), add items or forms",
-     "status": "planned"
+     "status": "done",
+     "result": "211 uncited records read (2 flagged skipped, 4 images opened): 14 new testable forms added (P1e P2ijk N3fghij T5fg M2e O2i C2f), ~25 claims already covered, 6 untestable; one picture contradicts its description (wa 18.10.24(2) = effort without result, never tested)",
+     "date": "2026-11-22",
+     "evidence": "S1a__notes"
     },
     {
      "id": "b",
@@ -581,7 +650,8 @@
      "status": "planned",
      "added": "2026-11-22"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "M0",
@@ -668,6 +738,12 @@
      "id": "d",
      "what": "5x and 20x as dose-response",
      "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "engine-lag proxy (wa 18.10.41): on 1-min klines of all coins, trade count >= 10x normal and STILL rising -> continuation; count falling from its peak ('unclogged') -> reversal; dose 5/10/20x",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ],
    "after": [
@@ -1411,6 +1487,18 @@
     {
      "id": "e",
      "what": "up-spikes continue (T1 offers lose at every k, -36 to -82 bp over 60 min, p < .001): buy-stop / momentum after a >= 8-12 sigma up minute, taker costs, breadth dose",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "f",
+     "what": "effort without result (wa 18.10.24(2), second example: the volume spike had a SMALL body, not a dump): 1-min volume >= 10x median with range <= median at a local low after a decline, then a small-volume opposite bar; vs same volume with a large range",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "g",
+     "what": "dump with open interest falling (closing / puke) vs rising (new shorts) (wa 18.10.51): 5-min OI change split of all 1-h falls >= 2-4 sigma, 10 coins 2021-12..2023 explore",
      "status": "planned",
      "added": "2026-11-22"
     }

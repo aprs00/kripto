@@ -81,3 +81,10 @@ T1 i confirmT (2024–25, causal top-20, pre-registered in fb57ce3; first push w
 T1 CLOSED CONFIRMED (2026-11-22). E2 inputs: universe = top-20 by 30-d volume at previous close (is3_ladtop.universe; minute data for past coins in data/is3/k1m_top, rebuild: `is3_ladtop universe`, `fetch`, then `build`).
  Size ≤ 5% per order (3% × 10 slots: cagr +10%, mdd −3.6% in 2024–25), all same-minute fills taken; intraday mark matters more than the booked worst day (bounds: 2023-11-09 −16%, 2024-01-03 −29%, 2025-10-10 −34% at 10% size); the fill must be proven live (max(limit, close) entries: 2026 p .18, SR 1.1).
  Not to try again: stops, BTC-fall or calm filters on this rule (they remove the cascade that pays). Vault for T1i is spent.
+
+## S1 re-reading the sources (think-through, 2026-11-22 session)
+Nothing to compute here; the risk is a lazy reading that "finds" only what the catalogue already has. Rule for a new form: a claim with a mechanism (who pays), data we hold, and a placebo/baseline I can name now.
+Not a form: anything needing news / tweets / options / equities, jokes, psychology (kept only if it changes how a trade is managed → T4). What he does not say: where the picture contradicts the caption, believe the picture.
+Order: a (uncited records) → b (indicator guides) → c (PDFs) → d (templates) → e (cited records against the rule as coded). Forms are ADDED only, never removed; each carries its source id.
+S1 a done: 14 forms added. Biggest miss of passes 1–2: the second example in the "Issa fade" picture (wa 18.10.24(2)) is a volume spike with almost no body, then a small green bar on no volume = absorption, not a dump. L1 only ever tested dumps (z ≥ 6). → T5f.
+ Also new: OI falling vs rising during a dump (wa 18.10.51: "almost all selling was closing") → T5g (5-min OI of 10 coins is on the server, 2021-12..2023); time-POC vs volume-POC disagreement (tg:49) → P2i. Trade-count lag proxy needs no micro bars (M2e, minute klines).
