@@ -361,3 +361,8 @@ Explore 2021–23 +187 bp/fill (n 644, 215 d, every year +), pre-registered 2024
 Account 10% × 5 slots: SR 2.3 / 1.9 / 2.8, cagr 35–38%, worst booked day −8%; 5% size halves everything. Any-coin version refuted (60 fresh coins +13 bp), so the narrowing to liquid coins was post hoc before the vault.
 Not yet real: entry at max(limit, minute close) +115 / +150 / +84 (2026 p .18), so the edge is the resting fill; 2025-10-10 marks −34% inside the hour at 10% size (booked −8%). Stops, calm filters and "don't quote when BTC falls" all make it worse
 (the cascade is what pays). Needs: live resting-order paper with real queue and outage behaviour, walk-forward, costs ×2 (E2).
+
+### InSilico S1: sources re-read against the rules as coded (2026-11-22) → no verdict, but several older DEADs were verdicts on my translation
+Read: 374 chat records (image descriptions; 8 images opened by eye), 2 guides, 46 templates, rule pages of 3 PDFs. 11 rules had been flattened: R3 (thin fast bar, not the sign of 7 groups), R4 (two tests),
+R14 (valley between two humps), R19 (second target), R1 (magnitude), R7 (location), R18, R23, R24, Hull, R30. 33 new queue forms, 11 forms reworded; those rules are not settled until they run.
+New data: 107 hand-drawn levels of 2020-06..10 (4 coins, plus one 2021) have creation timestamps inside the templates, i.e. a dated record without hindsight (authorship unproven) → queue T2e.
