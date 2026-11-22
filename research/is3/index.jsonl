@@ -135,3 +135,4 @@
 {"at": "2026-11-22T19:44:33+00:00", "name": "T1d_k30", "sample": "explore", "n": 320, "days": 144, "mean_bp": 183.61, "se_bp": 58.17, "p": 0.00399800099950025, "vs_base_bp": null, "p_vs_base": null, "passes": true, "rerun": ""}
 {"at": "2026-11-22T20:01:17+00:00", "name": "T1g_k20", "sample": "confirmC", "n": 1330, "days": 403, "mean_bp": -19.46, "se_bp": 68.6, "p": 0.7841079460269865, "vs_base_bp": null, "p_vs_base": null, "passes": false, "rerun": ""}
 {"at": "2026-11-22T20:01:17+00:00", "name": "T1g_k30", "sample": "confirmC", "n": 578, "days": 205, "mean_bp": 13.28, "se_bp": 131.34, "p": 0.9255372313843079, "vs_base_bp": null, "p_vs_base": null, "passes": false, "rerun": ""}
+{"at": "2026-11-22T20:32:54+00:00", "name": "T1i", "sample": "confirmT", "n": 356, "days": 110, "mean_bp": 258.57, "se_bp": 61.64, "p": 0.0009995002498750624, "vs_base_bp": null, "p_vs_base": null, "passes": true, "rerun": ""}

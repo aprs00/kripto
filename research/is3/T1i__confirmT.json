@@ -1,0 +1,49 @@
+{
+ "name": "T1i",
+ "sample": "confirmT",
+ "n": 356,
+ "days": 110,
+ "coins": 85,
+ "mean_bp": 258.57,
+ "median_bp": 183.92,
+ "win": 0.739,
+ "se_bp": 61.64,
+ "ci95_bp": [
+  156.92,
+  401.52
+ ],
+ "p": 0.0009995002498750624,
+ "mde80_bp": 172.6,
+ "mean_ex_top3_bp": 190.84,
+ "top3_share": 0.33,
+ "t_day_mean": 3.98,
+ "by_year": {
+  "2024": [
+   208,
+   188.93
+  ],
+  "2025": [
+   148,
+   356.45
+  ]
+ },
+ "by_side": {
+  "1": [
+   356,
+   258.57
+  ]
+ },
+ "coins_positive": 0.74,
+ "net_bp": {
+  "free": 258.57,
+  "maker_taker": 250.57,
+  "taker": 245.57,
+  "taker_x2": 232.57,
+  "crash": 178.57,
+  "own_cost": 250.0
+ },
+ "passes": true,
+ "note": "causal top-20 by 30-d volume, hold 60, no stop",
+ "rerun": "",
+ "at": "2026-11-22T20:32:54+00:00"
+}
