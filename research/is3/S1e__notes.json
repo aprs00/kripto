@@ -1,0 +1,70 @@
+{
+ "form": "S1e",
+ "date": "2026-11-22",
+ "records_read": 163,
+ "how": "text, transcript and stored image description of the 163 cited records (first ~500-900 characters each); images opened by eye: tg:29 (4.png), tg:207, tg:216, tg:227; not opened: the other cited images (T2 opens every dated trade example one by one)",
+ "flattened_by_the_catalogue": {
+  "R3 / M1": "reduced to the SIGN of seven groups; in the picture the demand bar is the one with 78% delta share, 5-10x the speed and almost no opposing trades on LOW volume (form M1e)",
+  "R4 / M3": "two tests of the level with different volume, coded as one undercut (form M3e)",
+  "R14 / P1": "interior valley of a two-hump day, coded as 'least-traded third' (form P1f)",
+  "R19 / M5": "second target at the post-breakout consolidation low never coded; retest can come > 40 min later (form M5e)",
+  "R18": "never coded: overlap ends the trend (form N3k)",
+  "R30 / O2a": "'VZO barely moving' is not a divergence of swings",
+  "R29 / O2c": "Hull Suite is one average against its lag",
+  "R24 / C2b": "target = previous session's POC",
+  "R1 / M4": "sign only; his examples are large negative shares in every bucket on big down days (M4e)",
+  "R7 / M2": "location at pdVAH dropped",
+  "R23 / C2c": "one of two break windows coded"
+ },
+ "consistent_with_code": [
+  "R5 entry after the opposite candle closes (tg:174)",
+  "R1 close-only rule (tg:283)",
+  "session splits 07:00 / 13:30 / 19:15 UTC"
+ ],
+ "still_not_coded_by_design": [
+  "R27 sentiment, R31 options, R12 liquidation sizes (L2)"
+ ],
+ "new_forms": [
+  {
+   "item": "P1",
+   "form": "f",
+   "what": "the gap in his picture (tg:29) is the VALLEY BETWEEN TWO HUMPS of yesterday's profile (bimodal day), not its thin tails: on bimodal days does next-day POC / value land in the valley, vs the same-width band elsewhere in the range and vs unimodal days; trade = enter at the valley edge, out at the far edge"
+  },
+  {
+   "item": "M1",
+   "form": "e",
+   "what": "the green 'all groups' bar he boxes (tg:207, 216) is thin and fast: 18M volume (the smallest of the run), delta +14M = 78% of volume, 24.98 buys/s and 137 sell trades where its neighbours have 1-5 buys/s and 1,000-12,000 sells. Score = delta share x speed with few opposing trades -> continuation (dose); the red bar that ended it (60M, -16%, 4.6/s) is ordinary: so test entry on the thin fast bar, exit on first all-red"
+  },
+  {
+   "item": "M3",
+   "form": "e",
+   "what": "mousetrap as narrated (tg:170): FIRST test of the level gets few prints, SECOND test gets many times more volume with small-trade selling and no progress -> close back above; ratio of second to first test volume as dose"
+  },
+  {
+   "item": "M5",
+   "form": "e",
+   "what": "his other target (tg:227 picture): bid the old range high (B), offer the low of the small consolidation made right after the breakout (A), not one average candle; the retest came > 40 min later and after a +9 point run: order must rest until then"
+  },
+  {
+   "item": "N3",
+   "form": "k",
+   "what": "trend lasts until bars overlap (wa 18.10.19(1), R18): ride an impulse whose bars do not overlap (1h/4h), exit on the first bar that overlaps half of the leg; efficiency ratio as dose, vs fixed holding"
+  },
+  {
+   "item": "M4",
+   "form": "e",
+   "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is \u22123..\u221221% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did"
+  }
+ ],
+ "corrected_forms": [
+  "O2a",
+  "O2c",
+  "M1b",
+  "C2b",
+  "P1a",
+  "M1c",
+  "M2b",
+  "C2c"
+ ],
+ "note_on_completeness": "the first print of the records was cut at wa 18.10.30(2) by an output limit; the remaining 27 were read afterwards (first 1000 characters each)"
+}

@@ -89,7 +89,7 @@
    "forms": [
     {
      "id": "a",
-     "what": "overlap of today's value area with yesterday's least-traded third vs a random third of the same width",
+     "what": "overlap of today's value area with yesterday's least-traded third vs a random third of the same width [S1e: see form f, the source picture shows a valley between two humps; keep this form as the literal reading]",
      "status": "planned"
     },
     {
@@ -110,6 +110,12 @@
     {
      "id": "e",
      "what": "law 5 'what doesn't happen' (wa 18.10.57(1)): low-volume gap approached >= 3 times in 5 days and NOT filled -> move away from it, vs gaps never approached",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "f",
+     "what": "the gap in his picture (tg:29) is the VALLEY BETWEEN TWO HUMPS of yesterday's profile (bimodal day), not its thin tails: on bimodal days does next-day POC / value land in the valley, vs the same-width band elsewhere in the range and vs unimodal days; trade = enter at the valley edge, out at the far edge",
      "status": "planned",
      "added": "2026-11-22"
     }
@@ -356,12 +362,12 @@
     },
     {
      "id": "b",
-     "what": "filler hours given back: move made between zones reverses in the next zone?",
+     "what": "filler hours given back: move made between zones reverses in the next zone? [S1e tg:69: what it returns to is the previous session's highest-volume price, so target = that POC]",
      "status": "planned"
     },
     {
      "id": "c",
-     "what": "CME break hour drift (17-18 NY, t 2.3-3.6 in 2 coins): all 83 coins, year by year",
+     "what": "CME break hour drift (17-18 NY, t 2.3-3.6 in 2 coins): all 83 coins, year by year [S1e wa 18.11.01(2): his list has TWO windows, 16:15-16:30 NY (old equity-index halt, gone since 2021) and 17:00-18:00 NY; test both, the first only before its end]",
      "status": "planned"
     },
     {
@@ -427,7 +433,7 @@
    "forms": [
     {
      "id": "a",
-     "what": "RSI vs volume-zone-oscillator divergence on pumps (> 2 sigma day) [S1b: regular = reversal AND hidden = continuation, 1-bar lag]",
+     "what": "RSI vs volume-zone-oscillator divergence on pumps (> 2 sigma day) [S1b: regular = reversal AND hidden = continuation, 1-bar lag] [S1e tg:90: not a swing divergence: RSI at an extreme while VZO barely moves = sham pump -> fade]",
      "status": "planned"
     },
     {
@@ -437,7 +443,7 @@
     },
     {
      "id": "c",
-     "what": "Hull 55 slope entries with Hull 180 filter (1h, 4h, 1d)",
+     "what": "Hull 55 slope entries with Hull 180 filter (1h, 4h, 1d) [S1e tg:98: Hull Suite = ONE HMA(55) against its own value 2 bars ago, not two averages; chop exits at breakeven]",
      "status": "planned"
     },
     {
@@ -609,6 +615,12 @@
      "what": "last minutes painted (wa 18.10.50(1)): price push in the last 5 min of an hour (or of the UTC day) on below-median volume AND against that hour's taker delta -> reversal next hour; placebo = the same push at minutes 25-30",
      "status": "planned",
      "added": "2026-11-22"
+    },
+    {
+     "id": "k",
+     "what": "trend lasts until bars overlap (wa 18.10.19(1), R18): ride an impulse whose bars do not overlap (1h/4h), exit on the first bar that overlaps half of the leg; efficiency ratio as dose, vs fixed holding",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ]
   },
@@ -673,7 +685,7 @@
    "group": "A",
    "title": "Re-read the sources I only skimmed, images included",
    "src": "109 Telegram + 84 WhatsApp records no rule cites; tg:103-107",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -710,11 +722,17 @@
     {
      "id": "e",
      "what": "re-read the records the 32 rules DO cite (text, transcript, image itself) against the rule as coded: what did the catalogue flatten or get wrong? correct the affected queue forms before they run (S1e__notes.json)",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "163 cited records re-read (27 of them after an output cut was noticed) + 4 images: 11 rules flattened by the catalogue (R1 magnitude, R3 thin fast bar, R4 two tests, R7 location, R14 valley, R18, R19 second target, R23, R24, Hull, R30); 6 forms added, 8 corrected",
+     "date": "2026-11-22",
+     "evidence": "S1e__notes"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "UNTESTABLE",
+   "reason": "a reading item, not a hypothesis: 374 records, 2 guides, 3 PDFs and 46 templates read; 33 forms added and 11 corrected in other items, where they will be tested",
+   "closed": "2026-11-22"
   },
   {
    "id": "M0",
@@ -756,18 +774,24 @@
     },
     {
      "id": "b",
-     "what": "first all-red bar after a green run at a 1-day / weekly high -> short / exit (8-h bleed claim)",
+     "what": "first all-red bar after a green run at a 1-day / weekly high -> short / exit (8-h bleed claim) [S1e tg:216: location in the example = weekly VAH and weekly high, test both]",
      "status": "planned"
     },
     {
      "id": "c",
-     "what": "z-scored intensity (his colour grades) instead of sign",
+     "what": "z-scored intensity (his colour grades) instead of sign [S1e tg:204-207: bar statistics also hold buys per second and sell trades]",
      "status": "planned"
     },
     {
      "id": "d",
      "what": "adaptive size groups: quantiles of the previous day's sizes ('AI levels')",
      "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "the green 'all groups' bar he boxes (tg:207, 216) is thin and fast: 18M volume (the smallest of the run), delta +14M = 78% of volume, 24.98 buys/s and 137 sell trades where its neighbours have 1-5 buys/s and 1,000-12,000 sells. Score = delta share x speed with few opposing trades -> continuation (dose); the red bar that ended it (60M, -16%, 4.6/s) is ordinary: so test entry on the thin fast bar, exit on first all-red",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ],
    "after": [
@@ -789,7 +813,7 @@
     },
     {
      "id": "b",
-     "what": "same at a 1-day high / low only",
+     "what": "same at a 1-day high / low only [S1e: his 826 -> 80 example sits at the previous day's value-area high (pdVAH), so test pdVAH/pdVAL as well as 1-day extremes]",
      "status": "planned"
     },
     {
@@ -840,6 +864,12 @@
      "id": "d",
      "what": "volume at the extreme price bins of the bar vs the rest (delta at the low)",
      "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "mousetrap as narrated (tg:170): FIRST test of the level gets few prints, SECOND test gets many times more volume with small-trade selling and no progress -> close back above; ratio of second to first test volume as dose",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ],
    "after": [
@@ -873,6 +903,12 @@
      "id": "d",
      "what": "opposite side as a feature: breadth of one-voiced buying",
      "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ],
    "after": [
@@ -906,6 +942,12 @@
      "id": "d",
      "what": "thin coins where an average bar is large relative to fees (1-min bars)",
      "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "his other target (tg:227 picture): bid the old range high (B), offer the low of the small consolidation made right after the breakout (A), not one average candle; the retest came > 40 min later and after a +9 point run: order must rest until then",
+     "status": "planned",
+     "added": "2026-11-22"
     }
    ],
    "after": [
