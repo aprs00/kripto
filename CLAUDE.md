@@ -371,3 +371,5 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   Lesson: a tracking check that reuses the live system's own input cannot see that input is wrong; compare the two universes directly. (2) I twice read bnall while its
   alphabetical refresh was running and printed false ranks; `data.refreshing` now marks it and the loader WARNs. Cut a panel at the last date every file has, or wait.
   (3) `live_vs_backtest --since / --daily`; `research/studies/{live_universe,fill_delay,tradfi_effect}.py`. Live delay costs HL +5–17 bp (weak): C1 must include it.
+* 2026-11-22 review: the review's journal grep matched the hourly `"errors": []` / `"errors": 0` status lines (48 of them a day), so its `tail -30` pushed real errors out
+  (the six flow disconnects of 11-21 09:31, HL 502s, were not shown). prompts/review.md now filters them and includes kripto-liq.

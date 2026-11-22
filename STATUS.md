@@ -1,6 +1,6 @@
-HEALTH: OK — 07:15 trader run clean on new code; live watcher, recorders and nightly data fine. Binance main fell to −6.1% overnight (explained below).
+HEALTH: OK — all services healthy at the 08:25 review: 25/25 hourly trader runs, data fresh, recorders without errors. Binance main −6.4% (explained below).
 
-_Updated 2026-11-22 07:30 UTC (weekly retro). Detail: journal/2026-11-22.md._
+_Updated 2026-11-22 08:30 UTC (daily review after the weekly retro). Detail: journal/2026-11-22.md._
 
 ## This week's most important finding
 **My Binance research data contained things the bot cannot trade.** Binance added about 245 stock, commodity and FX contracts (Apple, AMD, gold…) in 2026. The
@@ -9,23 +9,23 @@ Effect on the same settings, before → after: over six years small (flow 1.49 �
 alone it is bigger: **flow 0.90 → 0.45, listing shorts +0.36 → −0.30, momentum 1.61 → 1.35**. The old Binance walk-forward numbers in the table are therefore a bit
 too good until re-run on Tuesday. The Sunday fade was re-checked on clean data and still holds (+0.65% per trade, positive in both periods).
 
-## Why Binance main dropped (−3.1% → −6.1%)
+## Why Binance main dropped (−3.1% → −6.4%)
 Three small coins the momentum strategy held after big rises (IDOL, EVAA, AKE) fell 42–48% in one night: −4.3% of that book, with the 5%-per-coin cap in force. Checked:
 fills normal, live matches its backtest replay (gaps ≤ 0.35% over the last 4 days), and those coins are genuine members of the tested universe (29–30 of 30 match). It is a real
-risk of the strategy, not a bug. xsmom@bn −17.2%, a little beyond its backtest worst (−16%); kill switch −25%.
+risk of the strategy, not a bug. xsmom@bn −17.4% (true peak-to-now −17.5%), a little beyond its backtest worst (−16%); kill switch −25%.
 
-## Books (11-22 07:30 UTC; two weeks of paper P&L is noise)
+## Books (11-22 08:25 UTC; two weeks of paper P&L is noise)
 | book | $1,000 (shadow $2,000) | $200 twin |
 |---|---|---|
-| main (HL, blend_nested) | $1,015 (+1.5%) | $191 (−4.4%): 1 position fits |
-| main_bn (flow + momentum + blend) | $939 (−6.1%) | $201 (+0.3%) |
-| funding pair ($2,000) | $2,012 (+0.6%; funding +$20.7) | $202 (+0.8%) |
-| tsmom / tsmom@bn | +12.8% / +12.9% | +7.8% / +6.7% |
-| blend / blend_nested | +6.7% / +2.4% | +3.0% / −4.5% |
-| blend@bn | −3.8% | +1.3% |
+| main (HL, blend_nested) | $1,012 (+1.2%) | $191 (−4.4%): 1 position fits |
+| main_bn (flow + momentum + blend) | $936 (−6.4%) | $201 (+0.3%) |
+| funding pair ($2,000) | $2,012 (+0.6%; funding +$20.7) | $202 (+0.9%) |
+| tsmom / tsmom@bn | +12.5% / +12.6% | +7.7% / +6.5% |
+| blend / blend_nested | +6.7% / +2.1% | +3.0% / −4.5% |
+| blend@bn | −4.3% | +0.9% |
 | listing_short | −1.0% (flat) | −1.0% |
-| xsmom@bn / xsmom_k@bn / flow@bn | −17.2% / −12.9% / −5.0% | −10.8% / −3.4% / −2.3% |
-| xsmom_k (HL) | −1.1% | −0.8% |
+| xsmom@bn / xsmom_k@bn / flow@bn | −17.4% / −13.3% / −5.1% | −11.0% / −3.6% / −2.3% |
+| xsmom_k (HL) | −0.8% | −0.6% |
 
 ## Candidates (walk-forward out-of-sample Sharpe after costs; worst = lowest stress test). None passes the real-money gate.
 Binance column = before the data fix (to be re-run 11-24). Hyperliquid column unaffected.
