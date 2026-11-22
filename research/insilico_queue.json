@@ -1631,7 +1631,7 @@
    "id": "E2",
    "prio": 0.55,
    "group": "T",
-   "title": "Resting-ladder book: walk-forward and live paper (only if T1 closes CONFIRMED)",
+   "title": "Resting-ladder book: walk-forward and live paper (only if T1 closes CONFIRMED); READ research/is3/T1i_audit.md FIRST",
    "src": "T1",
    "status": "todo",
    "after": [
@@ -1656,6 +1656,82 @@
     {
      "id": "d",
      "what": "T1 is short crash insurance (Artemis: 'short convexity'; HOFM: overbetting kills, not being wrong): daily P&L of the ladder vs tsmom / flow shadow returns in the 20 worst weeks, and size from a fractional-Kelly with a worst case of -50% on every simultaneous fill added by hand, vs the 5% rule",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "e",
+     "what": "T1i_audit: quote min(30 sigma, Binance PERCENT_PRICE band) from exchangeInfo, skip when outside; same-minute fills all taken; size <= 5% (audit: LAB -58% in an hour)",
+     "status": "planned",
+     "added": "2026-11-22"
+    }
+   ]
+  },
+  {
+   "id": "S2",
+   "prio": 0.57,
+   "group": "A",
+   "title": "Look at every picture and video myself (S1 opened 8 of them)",
+   "src": "owner 2026-11-22: reread the sources; wa 18.10.24(2) contradicted its description",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "b1",
+     "what": "open EVERY image of batch b1 in research/is3/S2_batches.json (40 charts) with the Read tool (paths under data/chat_extract/); per image one line in S2b1__notes.json: what is drawn, entry / exit / level / timing visible, and whether it contradicts the stored description",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "b2",
+     "what": "open EVERY image of batch b2 in research/is3/S2_batches.json (40 charts) with the Read tool (paths under data/chat_extract/); per image one line in S2b2__notes.json: what is drawn, entry / exit / level / timing visible, and whether it contradicts the stored description",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "b3",
+     "what": "open EVERY image of batch b3 in research/is3/S2_batches.json (8 charts) with the Read tool (paths under data/chat_extract/); per image one line in S2b3__notes.json: what is drawn, entry / exit / level / timing visible, and whether it contradicts the stored description",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "b4",
+     "what": "open EVERY image of batch b4 in research/is3/S2_batches.json (40 other pictures) with the Read tool (paths under data/chat_extract/); per image one line in S2b4__notes.json: what is drawn, entry / exit / level / timing visible, and whether it contradicts the stored description",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "b5",
+     "what": "open EVERY image of batch b5 in research/is3/S2_batches.json (40 other pictures) with the Read tool (paths under data/chat_extract/); per image one line in S2b5__notes.json: what is drawn, entry / exit / level / timing visible, and whether it contradicts the stored description",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "b6",
+     "what": "open EVERY image of batch b6 in research/is3/S2_batches.json (40 other pictures) with the Read tool (paths under data/chat_extract/); per image one line in S2b6__notes.json: what is drawn, entry / exit / level / timing visible, and whether it contradicts the stored description",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "b7",
+     "what": "open EVERY image of batch b7 in research/is3/S2_batches.json (40 other pictures) with the Read tool (paths under data/chat_extract/); per image one line in S2b7__notes.json: what is drawn, entry / exit / level / timing visible, and whether it contradicts the stored description",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "b8",
+     "what": "open EVERY image of batch b8 in research/is3/S2_batches.json (5 other pictures) with the Read tool (paths under data/chat_extract/); per image one line in S2b8__notes.json: what is drawn, entry / exit / level / timing visible, and whether it contradicts the stored description",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "v",
+     "what": "the 22 videos: contact sheets and keyframes in data/chat_extract/out/av (look at them) plus transcripts; what does he do, second by second, on the tape videos? (S2v__notes.json)",
+     "status": "planned",
+     "added": "2026-11-22"
+    },
+    {
+     "id": "p",
+     "what": "PDF pages skimmed in S1c and the 163 cited records that were read truncated: finish them (S2p__notes.json)",
      "status": "planned",
      "added": "2026-11-22"
     }
