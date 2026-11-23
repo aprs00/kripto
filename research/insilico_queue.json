@@ -1665,8 +1665,11 @@
     {
      "id": "e",
      "what": "T1i_audit: quote min(30 sigma, Binance PERCENT_PRICE band) from exchangeInfo, skip when outside; same-minute fills all taken; size <= 5% (audit: LAB -58% in an hour)",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "applied in E2a/b: fills with 30 sigma deeper than PERCENT_PRICE (1-multiplierDown, today's exchangeInfo; delisted 15%) skipped = 84 of 1,142 k30 fills (60/551 k40, 95/2,889 k20); all same-minute fills taken; 5% per order; frozen k30 h60 s5 SR 2.14 after the cut. Limit: today's bands applied to 2021-26 (historical bands unknown).",
+     "date": "2026-11-23",
+     "evidence": "E2a__wf"
     }
    ],
    "sessions": 1
