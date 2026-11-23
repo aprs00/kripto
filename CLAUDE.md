@@ -47,9 +47,9 @@ and the other project on this server. "Profitable" means after every cost, on mo
 by evidence that would survive a sceptic: a backtest that only looks good is not the goal and never satisfies this mandate.
 
 ## What the owner wants (2026-11-09, interactive)
-The owner reviewed the project and said plainly that what a $200 account can earn is far too little. They have **$1,000**
-of real money they could deploy and chose the **steady** risk mode (25–30% volatility target, no extra leverage). So:
-* The product of this project is **evidence strong enough to justify putting that $1,000 in** (their decision, never yours),
+The owner reviewed the project: a $200 account earns too little to matter. The reference account size is **$1,000**,
+in the **steady** risk mode (25–30% volatility target, no extra leverage). So:
+* The product of this project is **evidence strong enough to justify funding a real account of that size** (the owner's decision, never yours),
   and later more. Main paper books are $1,000. Honest expectation if the edge is real at Sharpe 0.6–1.2: 12–27% a year.
   Say so in STATUS.md; never dress a number up.
 * Generic momentum/trend on liquid perps is crowded and a small account has no advantage there. Prefer hypotheses where
@@ -177,7 +177,7 @@ HL $10; Binance $5 (BTC $50, ETH $20). Taker fee: HL 4.5 bp, Binance 5 bp (VIP0)
 `candidate` → `incubation` → `active` → `retired`. Each non-retired strategy automatically runs in its
 own shadow paper book (`shadow:<name>`, `shadow_equity` in config/risk.json, currently $2,000 so the $10 min
 order doesn't distort signal measurement). Only `incubation`/`active` strategies with `alloc > 0` trade in the
-`main` book ($1,000 = the money the owner could really deploy; `main` and `main_bn` are alternative homes for it). Every
+`main` book ($1,000 = the reference account size; `main` and `main_bn` are alternative homes for it). Every
 book also has a `small:` twin at $200 that gets the same targets (what the same thing does in a $200 account); it is created,
 retired and closed together with its big sibling. Keep `sum(alloc)` ≤ 1.0 per venue (main and main_bn are separate allocations). Since M1 (2026-11-12) `incubation` = the
 main book's best estimate (design.md 2026-11-10 rule), so allocs are the equal-risk mix, not a 0.25 toe-in. Promotion and
@@ -291,7 +291,7 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   180 s) so twins cost no API calls, dashboard section for the small accounts. First comparison (full-sample, chosen configs):
   many-name books lose most of their edge at $200 (flow 1.31 → 0.72, broad momentum 1.49 → 0.97), concentrated ones don't
   (listing shorts, trend, funding capture, the hand-picked blend). Lesson: "which strategy" depends on "which account".
-* 2026-11-10 interactive (owner, angry, and right: "why isn't it always live", "why only daily data", "this does not seem
+* 2026-11-10 interactive (owner: "why isn't it always live", "why only daily data", "this does not seem
   RSI at all"): three day-1 choices had never been tested. (1) Monitoring was hourly only because the trader was a timer →
   `kripto/live.py` + kripto-live.service (20 s). (2) Decisions/bars: decision-frequency study says faster decisions earn more
   before costs and less after them at modelled costs. (3) The cost model had never been compared with live fills: live slippage
@@ -327,7 +327,7 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   result depends on is on the server or rebuildable there by one command written in the journal. (2) A failed-then-promising result gets a
   frozen-config replication on unseen instruments, pre-registered before their data is downloaded; then check clustering (t on daily sums,
   top-3-day share) before believing it. (3) Measure the RAM of one unit of work before parallelising (first run: 6 GB against a 2 GB limit).
-* 2026-11-12 interactive (owner: "what you are doing now is very bad and unprofessional, you are giving up on things too suddenly"):
+* 2026-11-12 interactive (owner: "you are giving up on things too suddenly"):
   the five InSilico rules had each been tested in one literal form and recorded as dead. The protocol had many guards against
   false positives and none against false negatives. Added: design.md §4 "No verdict on one formulation" (think-through, ≥ 3
   formulations, explore/confirm split, diagnosed failures, DEAD needs three failed forms), research prompt step 2b, a dead-list

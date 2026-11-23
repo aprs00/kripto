@@ -139,7 +139,7 @@ See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits;
   paper venue is built and tested, and never in the session that builds it.
 * 2026-11-09 (owner direction, interactive; effective from the next research session, and not used to promote anything in
   the session that made it; nothing passes anyway). The owner reviewed the project, said the earnings a $200 account can produce
-  are not worth having, has **$1,000** of real capital they could deploy, and chose the **steady** risk mode (the existing
+  are not worth having, set a **$1,000** reference account size, and chose the **steady** risk mode (the existing
   25–30% volatility target, no extra leverage). Changes, each with a rationale that does not depend on any strategy's result:
   (1) **Main paper books are $1,000 per venue** (HL and Binance are alternative homes for the same $1,000, not $2,000 together).
   A paper account must mirror the capital that would really be deployed, otherwise executability is tested at the wrong scale.
