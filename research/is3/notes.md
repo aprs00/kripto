@@ -137,3 +137,13 @@ batch (19) must stay above the 25% kill → f; (ii) half-Kelly from daily return
 E2 d done (is3_e2d.py, E2d__insurance.json): NOT short insurance at the booked level: +11.3% over the main_bn mix's 20 worst weeks (18/20 ≥ 0), +3.9% over BTC's; weekly corr −0.12 / +0.08.
  Pre-set worst case (−50% on all 17 fills of the largest batch must stay above the 25% kill) → f ≤ 2.94%: live SIZE 0.05 → 0.029 (kripto/ladder.py; BTC can no longer fill in the $2,000 shadow, step 0.001 ≈ $60 > $58).
 E2 CLOSED OPEN: everything left is live evidence (fills/week ≈ 5, bp/fill vs 116 one-bar-late; at 2.9% expect ≈ +8%/yr simple). Next item per queue.
+
+## S2 b1 (think-through 2026-11-23 22:40 UTC, before opening anything)
+Reading item: the risk is confirming the stored vision descriptions instead of looking. Per image: what is drawn, the visible entry/exit/level/timing, and a flag
+contradict yes/no vs the description (descriptions printed by /tmp-style helper from items.jsonl image.vision). b1 = the 2021-03 profile thread (tg:15–59), tweet-overlay
+"sentiment" pictures (tg:136–154), the 1-min fade pictures (tg:165/173 = L1/T5f sources) and the range-500 footprint momentum sequence (tg:199–222 = R3 / M1e source).
+What he does NOT say but must be doing, to look for: where the entry is relative to the profile (edge vs POC), whether the fade examples have a resting order visible (DOM/limit
+heatmap), and what invalidates the footprint "rotation" (the frame where he would be out). A new form only if a picture shows a mechanism with data we hold and a nameable baseline.
+S2 b1 done (40/40 opened by eye, 0 contradictions: the stored descriptions of this batch are accurate). New: M4f pitstop-then-continuation (tg:206 'demand momentum is no mo, PITSTOP ... and breakout' at the all-red bar on the high,
+ then 8 h rotation with big all-red bars that make no new low at wVAL = absorption, go = first bar whose buckets flip green, outcome +0.4% breakout). tg:165 dated 15 Feb 2021 02:21 UTC and hand-checked (fixture for L1/T5f).
+ tg:52: the session with POC at its own extreme (time+volume at the low) is his reversal picture; P2 family. Next: b2.

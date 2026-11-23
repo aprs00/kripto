@@ -909,6 +909,12 @@
      "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
      "status": "planned",
      "added": "2026-11-22"
+    },
+    {
+     "id": "f",
+     "what": "pitstop, not top (S2b1: tg:206, 216-222): inside a strong up move (e.g. >= 2 sigma over 12-24 h), an all-negative-bucket bar at a new high is a PAUSE; long on the first later bar whose size buckets are all positive after a rotation that held above value low; vs the same all-negative bar outside a strong move and vs random entries in the rotation; BTC ETH SOL tsize only (say so)",
+     "status": "planned",
+     "added": "2026-11-23"
     }
    ],
    "after": [
@@ -1692,13 +1698,16 @@
    "group": "A",
    "title": "Look at every picture and video myself (S1 opened 8 of them)",
    "src": "owner 2026-11-22: reread the sources; wa 18.10.24(2) contradicted its description",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "b1",
      "what": "open EVERY image of batch b1 in research/is3/S2_batches.json (40 charts) with the Read tool (paths under data/chat_extract/); per image one line in S2b1__notes.json: what is drawn, entry / exit / level / timing visible, and whether it contradicts the stored description",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "40/40 images opened by eye; 0 contradictions with stored descriptions; tg:165 is a 15 Feb 2021 chart (hand-checked on Binance 1m: low 45,349 02:21 UTC, TP1 +1.7% in 18 min, TP2 +2.6% 32 min, origin +3.7% 6.5 h); new form M4f (pitstop then continuation); tg:52 session POC at extreme noted (P2 family); tg:38 = P3c",
+     "date": "2026-11-23",
+     "evidence": "S2b1__notes"
     },
     {
      "id": "b2",
@@ -1754,7 +1763,8 @@
      "status": "planned",
      "added": "2026-11-22"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }
