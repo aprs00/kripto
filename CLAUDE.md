@@ -121,6 +121,7 @@ kripto/collect.py     hourly non-backfillable HL data (top-account positions, L2
 kripto/venue_pair.py  two-venue books (`<entry>@pair`, legs <COIN>@hl/<COIN>@bn; fspread_hold@pair), daily, inside the hourly step
 kripto/flow.py        always-on HL trade-flow websocket collector (kripto-flow.service) -> data/hl/flow (per coin per minute)
 kripto/liq.py         always-on Binance liquidation-print websocket collector (kripto-liq.service, /market/ws path) -> data/bn/liq
+kripto/ladder.py      always-on resting-ladder paper book on Binance (kripto-ladder.service; books shadow:/small:ladder@bn; heartbeat meta.ladder_tick)
 kripto/events.py      intraday ORDER strategies (limits, targets, stops; conservative fills) -> daily BTResult; research.evaluate dispatches on EVENTS
 kripto/tsize.py       trade-size buckets of taker flow (Binance aggTrades via scripts/aggtrades.py -> data/bn/tsize; HL: `tsz` in kripto/flow.py)
 scripts/insilico_study.py  tables for the InSilico rules (calendar, tsize, decomp <strategy>, replicate); research/insilico_rules.md = the catalogue
@@ -380,3 +381,5 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   a verdict while one has no outcome), `research/studies/is3_lib.py` (one battery for every form: null data, causality, matched baseline, day-block bootstrap, MDE, cost ladder,
   committed pre-registration, one-shot confirm, vault, FDR), `kripto/mbars.py` (move bars), session mode `insilico` + timer. Lesson: a plan without per-item outcomes is a wish;
   put "done / skipped why" in a tool that blocks the verdict.
+* 2026-11-23 insilico: first ORDER-level live book (E2b, kripto/ladder.py). Its fill model is the one-bar-late backtest by construction (a quote only
+  judges minutes that open after it was computed), so live-vs-backtest compares like with like. Lesson: build the live fill rule from the stressed backtest variant, not the base one.
