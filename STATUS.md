@@ -1,6 +1,6 @@
-HEALTH: OK — all services healthy at the 08:25 review: 25/25 hourly trader runs, data fresh, recorders without errors. Binance main −6.4% (explained below).
+HEALTH: OK — 08:25 review 11-23: all services healthy, 25/25 hourly trader runs, data fresh, recorders without errors, nightly data job and last InSilico session OK.
 
-_Updated 2026-11-22 08:30 UTC (daily review after the weekly retro). Detail: journal/2026-11-22.md._
+_Updated 2026-11-23 08:30 UTC (daily review). Detail: journal/2026-11-23.md._
 
 InSilico pass 3: 31 of 213 test forms done, 6 of 42 items closed (2 open, 1 confirmed on paper). Best lead: resting bids 30 sigma (about 3%) below the price on the 20 most-traded Binance coins, sold an hour later. Walk-forward run on 2026-11-23 (registered): +14.7% a year out of sample at 5% per order, every year 2021–26 positive, booked worst drawdown −6% (the intraday mark in a crash is far deeper), unchanged at double costs, with one minute of delay and at $200. All 18 settings worked and choosing between them added nothing, so the frozen rule is the candidate. It passes the incubation gate on backtest. Not proven: that a resting order really gets filled in those minutes. Next: build the live paper book for it (E2b), tests first.
 
@@ -16,18 +16,18 @@ Three small coins the momentum strategy held after big rises (IDOL, EVAA, AKE) f
 fills normal, live matches its backtest replay (gaps ≤ 0.35% over the last 4 days), and those coins are genuine members of the tested universe (29–30 of 30 match). It is a real
 risk of the strategy, not a bug. xsmom@bn −17.4% (true peak-to-now −17.5%), a little beyond its backtest worst (−16%); kill switch −25%.
 
-## Books (11-22 08:25 UTC; two weeks of paper P&L is noise)
+## Books (11-23 08:25 UTC; two weeks of paper P&L is noise)
 | book | $1,000 (shadow $2,000) | $200 twin |
 |---|---|---|
-| main (HL, blend_nested) | $1,012 (+1.2%) | $191 (−4.4%): 1 position fits |
-| main_bn (flow + momentum + blend) | $936 (−6.4%) | $201 (+0.3%) |
-| funding pair ($2,000) | $2,012 (+0.6%; funding +$20.7) | $202 (+0.9%) |
-| tsmom / tsmom@bn | +12.5% / +12.6% | +7.7% / +6.5% |
-| blend / blend_nested | +6.7% / +2.1% | +3.0% / −4.5% |
-| blend@bn | −4.3% | +0.9% |
+| main (HL, blend_nested) | $1,009 (+0.9%) | $192 (−3.8%): 1 position fits |
+| main_bn (flow + momentum + blend) | $933 (−6.7%) | $200 (+0.1%) |
+| funding pair ($2,000) | $2,011 (+0.6%; funding +$20.0) | $202 (+1.1%) |
+| tsmom / tsmom@bn | +10.8% / +11.1% | +6.8% / +5.6% |
+| blend / blend_nested | +5.3% / +1.7% | +1.8% / −4.0% |
+| blend@bn | −5.4% | −0.1% |
 | listing_short | −1.0% (flat) | −1.0% |
-| xsmom@bn / xsmom_k@bn / flow@bn | −17.4% / −13.3% / −5.1% | −11.0% / −3.6% / −2.3% |
-| xsmom_k (HL) | −0.8% | −0.6% |
+| xsmom@bn / xsmom_k@bn / flow@bn | −17.4% / −13.7% / −5.2% | −11.1% / −4.3% / −2.3% |
+| xsmom_k (HL) | −1.3% | −1.3% |
 
 ## Candidates (walk-forward out-of-sample Sharpe after costs; worst = lowest stress test). None passes the real-money gate.
 Binance column = before the data fix (to be re-run 11-24). Hyperliquid column unaffected.
