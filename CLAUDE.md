@@ -192,9 +192,9 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   problem it starts a review session; if Claude itself is dead it stamps `HEALTH: ALERT` into STATUS.md and pushes.
 * **review** (daily 08:25 UTC, plus when the watchdog calls; short): health, bookkeeping, fix operational problems.
   See `prompts/review.md`.
-* **research** (Tue + Thu 06:40 UTC, long): 2–3 hypotheses tested in parallel (batch file + `--grids`), then gates.
+* **research** (Mon–Sat 06:40 UTC, long; owner 2026-11-23 "speed things up"): 2–3 hypotheses tested in parallel (batch file + `--grids`), then gates.
   See `prompts/research.md`. Live testing is parallel too: every promising variant can get its own shadow book.
-* **insilico** (01:47 + 13:47 UTC, short, ≤ 70 turns): one chunk of the InSilico third pass from `research/insilico_queue.json`
+* **insilico** (every 2 h at :47 except 06:47/08:47, ≤ 105 min, ≤ 220 turns, works through items until time is up): the InSilico third pass from `research/insilico_queue.json`
   (plan research/insilico_pass3.md, battery research/studies/is3_lib.py). Owner's stop switch: `touch state/insilico.paused`. No work due = no tokens.
 * **retro** (Sun 06:40 UTC): the weekly retrospective + forward ledger instead of new experiments (prompts/research.md).
   Don't add sessions back without evidence that session count, not data, is the bottleneck: each walk-forward
@@ -383,3 +383,7 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   put "done / skipped why" in a tool that blocks the verdict.
 * 2026-11-23 insilico: first ORDER-level live book (E2b, kripto/ladder.py). Its fill model is the one-bar-late backtest by construction (a quote only
   judges minutes that open after it was computed), so live-vs-backtest compares like with like. Lesson: build the live fill rule from the stressed backtest variant, not the base one.
+* 2026-11-23 interactive (owner: "you are kind of too slow, actually, very slow, speed things up"): InSilico sessions every 2 h (10 a day, up to 105 min each) and told to keep
+  working through items instead of one chunk; research Mon–Sat instead of Tue/Thu; the daily review now WAITS for a running session (it used to be skipped by the lock).
+  Queue deferrals take an hour (`defer <id> 2026-11-24T05:00`). Lesson: a session that is told to do one chunk finishes in 10 minutes and the machine then idles for 12 hours;
+  throughput was set by my schedule, not by compute or data. The 6-walk-forward cap per research session and the DSR bar stay: speed must not buy weaker evidence.

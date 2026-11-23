@@ -7,7 +7,7 @@
   python -m scripts.insilico_queue form L1 a done "result in one line" <evidence>     # evidence = file stem in research/is3/
   python -m scripts.insilico_queue form L1 b skipped "why it cannot be tested"
   python -m scripts.insilico_queue add-form L1 d "what"         # a NEW formulation you thought of (say so before you run it)
-  python -m scripts.insilico_queue defer L1 2026-12-01 "why"    # waits for data
+  python -m scripts.insilico_queue defer L1 2026-12-01 "why"    # waits for data (or 2026-11-24T05:00: waits for a transient unit)
   python -m scripts.insilico_queue close L1 DEAD|OPEN|FEATURE|CONFIRMED|UNTESTABLE "diagnosed reason"
 
 Owner's stop switch: `touch state/insilico.paused` (resume: delete it). Why this tool exists: the second pass (2026-11-15)
@@ -48,8 +48,13 @@ def today() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
 
+def now_iso() -> str:
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M")
+
+
 def next_item(day: str | None = None) -> dict | None:
-    day, d = day or today(), load()
+    """day: 'YYYY-MM-DD' or 'YYYY-MM-DDTHH:MM' (UTC). An item's `due` may be either; a bare date is due from 00:00 that day."""
+    day, d = day or now_iso(), load()
     closed = {it["id"] for it in d["items"] if it["status"] == "closed"}
     ok = [it for it in d["items"] if it["status"] in ("todo", "wip") and it.get("due", "") <= day
           and all(a in closed for a in it.get("after", []))]
@@ -118,7 +123,7 @@ def status() -> None:
     d = load()
     for it in sorted(d["items"], key=lambda x: (x["status"] == "closed", x["prio"])):
         n = {k: sum(x["status"] == k for x in it["forms"]) for k in ("done", "skipped", "planned")}
-        tail = it.get("verdict") or (f"due {it['due']}" if it.get("due", "") > today() else "")
+        tail = it.get("verdict") or (f"due {it['due']}" if it.get("due", "") > now_iso() else "")
         print(f"{it['prio']:>3} {it['id']:<4} {it['status']:<6} {n['done']}/{len(it['forms'])} done {n['skipped']} skip  "
               f"{it['title'][:62]:<62} {tail}")
     f = [x for it in d["items"] for x in it["forms"]]

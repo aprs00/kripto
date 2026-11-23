@@ -4,4 +4,4 @@ Description=kripto agent: InSilico third pass, one chunk per session (research/i
 Type=oneshot
 WorkingDirectory=%h/kripto
 ExecStart=%h/kripto/scripts/agent.sh insilico
-TimeoutStartSec=85min
+TimeoutStartSec=115min

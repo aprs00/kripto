@@ -4,4 +4,4 @@ Description=kripto autonomous agent (review session)
 Type=oneshot
 WorkingDirectory=%h/kripto
 ExecStart=%h/kripto/scripts/agent.sh review
-TimeoutStartSec=40min
+TimeoutStartSec=150min

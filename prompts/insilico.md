@@ -1,5 +1,6 @@
-Scheduled INSILICO session (headless, every 12 h, nobody will answer). Follow CLAUDE.md (HARD RULES). Token budget is tight: one chunk of work,
-done properly, then stop. Do NOT read STATUS.md, findings.md, backlog.md or old journals in full; grep what you need.
+Scheduled INSILICO session (headless, every 2 h, up to ~105 min, nobody will answer). Follow CLAUDE.md (HARD RULES). Owner 2026-11-23: "you are too slow,
+speed things up". Keep working: when an item closes or has to wait, take the next one; stop only when ~95 minutes have passed (check `date -u`), the queue
+has nothing due, or the usage limit hits. Commit and push after every form, so a cut-off session loses nothing. Do NOT read STATUS.md, findings.md, backlog.md or old journals in full; grep what you need.
 
 0. The nightly data job runs 01:15–03:30 UTC: in that window do not load bnall / bn100 or rebuild a universe (half-refreshed files gave false ranks on 11-22); use files already built in
    data/is3, or work on items that need only minute data or reading. Keep RAM under 1.5 GB then. Outside that window this does not apply.
@@ -17,7 +18,7 @@ done properly, then stop. Do NOT read STATUS.md, findings.md, backlog.md or old 
 3. Work through its forms in order, as many as the budget allows (a form done well beats three done badly). Code: research/studies/is3_<topic>.py, reuse
    is3_lib for every number (null_check + check_causal for every event function, then card with a matched or placebo baseline, dose-response). Simple
    returns, not log. Probe RAM on one coin first; `nice -n 19`; ≤ 2 GB; anything > 10 min → `systemd-run --user --unit is3-<id> -p Nice=19
-   -p MemoryMax=1800M -p RuntimeMaxSec=2700 ...` writing to data/is3/, then `defer` the item one day if nothing else can be done, and take the next item.
+   -p MemoryMax=1800M -p RuntimeMaxSec=2700 ...` writing to data/is3/, then `defer <id> <YYYY-MM-DDTHH:MM>` to when the unit will be done, and take the next item. Two units at a time at most (RAM).
 4. A failure gets a reason (no effect before costs / baseline does the same / costs / fills / too few events, quote the MDE / one regime / wrong venue) before you go on.
    A surprise in either direction: first suspect a bug (null check, one hand-checked event printed bar by bar).
 5. After EACH form: `insilico_queue form <id> <form> done "<n, mean vs baseline, p, MDE, verdict in one line, variants tried>" <evidence stem>`, append 2–4 lines
@@ -25,6 +26,6 @@ done properly, then stop. Do NOT read STATUS.md, findings.md, backlog.md or old 
 6. Good explore result (beats baseline, dose-response, positive after its costs) → `L.prereg`, commit, then confirmT / confirmC once. Max 2 forms per item.
    Never tune on a confirm sample; never open the vault unless every confirm card passed.
 7. All forms have an outcome → `close <id> <VERDICT> "<diagnosed reason>"` (rules in pass3 §3), one line in pass3 §6, ≤ 5 lines in findings.md. Ask first: would a
-   sceptical colleague say I tested the idea, or only my translation? If there is budget left, start the next item; otherwise stop.
+   sceptical colleague say I tested the idea, or only my translation? Then start the next item (loop to step 1) until the time budget is used.
 8. End: ≤ 6 lines in journal/<today>.md (`## HH:MM UTC insilico`), `pytest -q` if you touched kripto/ or scripts/ (and then run the trader, rule 6), commit, push.
    Update only the line starting `InSilico pass 3:` in STATUS.md (forms done / total, items closed, best finding so far in plain words). Do not touch the rest.

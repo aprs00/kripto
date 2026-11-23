@@ -1,7 +1,7 @@
 [Unit]
-Description=kripto agent research: Tue + Thu, and the weekly retrospective on Sun (06:40 UTC)
+Description=kripto agent research Mon-Sat (owner 2026-11-23 "speed things up"), the weekly retrospective on Sun (06:40 UTC)
 [Timer]
-OnCalendar=Tue,Thu,Sun *-*-* 06:40:00
+OnCalendar=*-*-* 06:40:00
 Persistent=true
 [Install]
 WantedBy=timers.target

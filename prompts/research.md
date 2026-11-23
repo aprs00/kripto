@@ -4,7 +4,7 @@ Time budget: ~90–120 minutes of wall clock. Heavy compute with `nice -n 19`.
 
 0. `git pull --rebase`. Read STATUS.md, research/findings.md, research/backlog.md, the last 2 journal files,
    and `.venv/bin/python -m kripto.paper status`. If today (UTC) is **Sunday**, do the WEEKLY RETROSPECTIVE
-   below instead of steps 2–4. Research runs on Tue and Thu only: the history is fixed, so every extra walk-forward
+   below instead of steps 2–4. Research runs Mon–Sat (owner 2026-11-23: faster). The history is fixed, so every extra walk-forward
    experiment raises the DSR bar for all of them (N=49 → SR 1.44, N=500 → 1.76) without adding information.
    Read "What the owner wants" in CLAUDE.md: $1,000 of real capital is waiting on evidence, steady risk, and
    small-account edges (maker execution, listings, cross-venue funding, positioning data) come before more generic factors.

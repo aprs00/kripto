@@ -7,9 +7,11 @@ export PATH="$HOME/.local/bin:$PATH"
 mkdir -p logs
 LOG="logs/agent-$(date -u +%F)-$MODE.log"
 exec 9>"$HOME/.kripto-agent.lock"
-flock -n 9 || { echo "$(date -u) another agent session is running; skip" >> "$LOG"; exit 0; }
+# reviews (health) wait up to 100 min for a running session instead of being skipped; other modes skip
+WAIT=0; [ "$MODE" = review ] && WAIT=6000
+flock -w "$WAIT" 9 || { echo "$(date -u) another agent session is running; skip" >> "$LOG"; exit 0; }
 git pull -q --rebase || echo "git pull failed" >> "$LOG"
-case "$MODE" in review) TURNS=40; TMO=35m;; research) TURNS=250; TMO=140m;; insilico) TURNS=70; TMO=75m;; *) exit 2;; esac
+case "$MODE" in review) TURNS=40; TMO=35m;; research) TURNS=250; TMO=140m;; insilico) TURNS=220; TMO=105m;; *) exit 2;; esac
 # The InSilico programme costs tokens only when it has work: paused (state/insilico.paused) or nothing due -> stop here
 if [ "$MODE" = insilico ]; then
   WHY="$(.venv/bin/python -m scripts.insilico_queue should-run)" || { echo "$(date -u +%FT%TZ) insilico: no session ($WHY)" >> "$LOG"; exit 0; }
