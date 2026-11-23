@@ -41,7 +41,7 @@ def one_k(a):
 
 
 def build(k, workers=2):
-    k = int(k)
+    k, workers = int(k), int(workers)
     u = pd.read_parquet(OUT / "top_universe.parquet")
     u = u[(u.day >= LO) & (u.day < HI)]
     jobs = [(c, LO, HI, g[["day", "rank", "age"]], k) for c, g in u.groupby("coin")]
