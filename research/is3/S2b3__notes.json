@@ -1,0 +1,22 @@
+{
+ "form": "S2b3",
+ "date": "2026-11-23",
+ "images_opened": 8,
+ "of_batch": 8,
+ "how": "opened each with the Read tool; compared with stored descriptions",
+ "contradictions": 0,
+ "new_or_sharpened": [
+  "M4e examples confirmed by eye (3 days, all buckets -2..-21% on -2.6k..-5.6k days); wa 18.10.57's low was retested 2 days later (-2.4%) before the rally: M4e must score a 2-5 day window, not next day only",
+  "no new form"
+ ],
+ "per_image": {
+  "wa 18.10.51": "King G tweet 23 Jan 2022 with Exocharts daily bid/ask profiles 15-22 Jan 2022 + OI zigzag (-5.5%/-7.6% on 20-21 Jan) + TSize; his replies: 'curve is because of puke: positions placed at the fattest side, broke lower deviation, puked down for repricing' and 'almost all selling was closing of positions' (OI fell) = T5g; matches",
+  "wa 18.10.52(2)": "his tweets ~23 Jan 2022: volume low for weeks, 200-300M session volume per venue = a few bots; avg trade-size distribution chart for last 30 d (spikes at round sizes); no rule (round-size spikes = tsize buckets context); matches",
+  "wa 18.10.55(1)": "BTC daily profiles 2021 53-59k + trades-by-size + bar statistics: blue circle on the 53,564 (-5,625.5) day: -263M, delta -493M, buckets -21/-10/-12/-10/-3/-3% -> next days 55,307 (+1,640) and 57,492 (+4,188) = M4e example; matches",
+  "wa 18.10.56": "BTC daily 45-51k 2021: blue circle on 45,555 (-4,608.5) day, -193M, buckets -16/-6/-3/-3/-4/-3% -> next day 48,630 (+2,362) = M4e; matches",
+  "wa 18.10.57": "BTC daily Jan 2022 39.6-44.5k: circle on 40,500 (-2,624) day, -164M, buckets -12/-6/-4/-5/-2/-2% -> 42,271 (+1,762) then 39,595 (-2,627) two days later, then rally to 44,451 = M4e (the low was retested once: example is less clean); matches",
+  "wa 18.10.58": "21 Dec 2021 tweet: session TPO with a big empty gap; 'Empty stop driven move = no volume, repricing driven by stop triggers on an illiquid book, not demand' (cites his medium article); = single-print/empty-move family (P/X1); matches",
+  "wa 18.11.02(2)": "7 Nov 2021 sarcasm thread on CT's longs/shorts framework ('funding positive -> bullish as fuck, negative -> bullish as fuck') + whale-sequence parody; NR (no rule, sarcasm about positioning narratives); matches",
+  "wa 18.11.03(3)": "Robot James tweet 'recognize money left on the table: stale limit orders, hedge legs, risk limits' + chart: short at the price of a large resting ask that 'sat around for a while' (heatmap line) coinciding with a short-liquidation spike at the top; = upside mirror of L1 / spike_high_short; third-party; matches"
+ }
+}

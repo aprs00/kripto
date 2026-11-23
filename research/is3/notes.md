@@ -149,3 +149,4 @@ S2 b1 done (40/40 opened by eye, 0 contradictions: the stored descriptions of th
  tg:52: the session with POC at its own extreme (time+volume at the low) is his reversal picture; P2 family. Next: b2.
 S2 b2 done (40/40, 0 contradictions). No new form: the pictures map to M5 (range-high retest; tg:229 hand-checked: ETHUSDT perp 8 Apr 2021, range high 2074.96 22:26 UTC, breakout 23:03, retest wick 2071.37 ~23:35, 2085.6 at 23:44),
  M4e (20 Jul 2021 all-bucket negative day = bottom), M2e (capitulation bar = most trades), P2g ('issa fart': thin-volume wick low), P2h (R/F 0 'perfection'), O1d (RSI out of band = trend), W1, B0. Next: b3.
+S2 b3 done (8/8, 0 contradictions): M4e's three capitulation pictures confirmed by eye; the Jan 2022 one retested its low 2 days later (−2.4%) before rallying → M4e must look 2–5 days out, not only next day. Next: b4.

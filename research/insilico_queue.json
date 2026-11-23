@@ -1721,8 +1721,11 @@
     {
      "id": "b3",
      "what": "open EVERY image of batch b3 in research/is3/S2_batches.json (8 charts) with the Read tool (paths under data/chat_extract/); per image one line in S2b3__notes.json: what is drawn, entry / exit / level / timing visible, and whether it contradicts the stored description",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "8/8 opened by eye; 0 contradictions; M4e's three capitulation days confirmed (all buckets -2..-21% on -2.6k..-5.6k days; wa 18.10.57 retested its low 2 days later, so score 2-5 days); wa 18.10.51 = T5g (OI falling = closing); no new form",
+     "date": "2026-11-23",
+     "evidence": "S2b3__notes"
     },
     {
      "id": "b4",
