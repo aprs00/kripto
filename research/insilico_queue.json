@@ -1657,7 +1657,10 @@
     {
      "id": "c",
      "what": "risk: margin locked by resting orders, 2025-10-10 replay minute by minute, exchange outage during a cascade, max loss per day cap",
-     "status": "planned"
+     "status": "done",
+     "result": "1,597 kept one-bar-late fills, minute paths (exit check exact). Worst MARK (open positions at minute low, start-equity units) -17.4% (2025-10-10), -16.9% (2024-01-03), -12.3% (2021-09-07) vs booked worst day -4.6%, mdd -2.9%: below the 25% kill, so 5%/order stays (10% would be -34.8%). Gross up to 95% (19 same-minute fills, 2023-12-11); resting bids up to 100% notional -> real money needs cross margin >= 2x. Outage proxy (exit 3 h late on 79 cascade days, 814 fills): SR 2.05 vs 2.14, h240 better than h60 on those days. Daily loss cap 2/3/5%: no effect (SR 2.13; damage arrives in one batch minute). Size is the risk lever. 1 run.",
+     "date": "2026-11-23",
+     "evidence": "E2c__risk"
     },
     {
      "id": "d",
