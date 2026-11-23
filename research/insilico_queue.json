@@ -1633,7 +1633,7 @@
    "group": "T",
    "title": "Resting-ladder book: walk-forward and live paper (only if T1 closes CONFIRMED); READ research/is3/T1i_audit.md FIRST",
    "src": "T1",
-   "status": "todo",
+   "status": "wip",
    "after": [
     "T1"
    ],
@@ -1665,7 +1665,8 @@
      "status": "planned",
      "added": "2026-11-22"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "S2",

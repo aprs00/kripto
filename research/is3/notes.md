@@ -96,3 +96,13 @@ S1 c done. Usable: Almanac first-of-month / turn-of-month windows, down Friday +
 S1 e done, S1 closed (reading item). Biggest corrections, all from pictures: (1) R3's demand bar is THIN and FAST (18M volume = lowest of the run, delta 78% of it, 24.98 buys/s vs 1–5, 137 sell trades vs 1,000–12,000): I coded only the sign of 7 groups → M1e.
  (2) R14's gap is the valley between two humps of yesterday's profile, not "the least-traded third" → P1f. (3) mousetrap = two tests, the second with many times the volume → M3e. (4) R1's examples are big negative shares on −2.6k..−5.6k days → M4e. (5) R7 at pdVAH → M2b. (6) the retest bid has a second target (A) → M5e.
  NEXT: E2a (walk-forward of the ladder), or T2 with the new form e (dated 2020 levels, needs 1-min klines 2020-06..12 of BTC ETH LINK LTC; ~24 small monthly files).
+
+## E2 a (think-through 2026-11-23 01:50 UTC, before any run; T1i_audit read)
+Source (tg:167/228, T1 records) adds nothing new for E2: E2 is the engineering of the T1 book. What a walk-forward must answer that T1 did not: does a CAUSAL choice among
+k 20/30/40 × hold 15/60/240 × slots 5/10 (18 configs, refit every 60 d on all prior days like kripto.research.walk_forward, first 240 d burn-in) keep the edge, and does
+the in-sample pick beat the grid average (assumptions row 9)? Fixed before the run, from the audit: 5% per order for every config (slots 5 = 25% gross cap, 10 = 50%);
+fills with depth k·σ beyond the coin's Binance PERCENT_PRICE band (live_exchange_info.json multiplierDown; delisted coins 15%) are dropped; all same-minute fills taken;
+costs 7 bp + volume slip per round trip, stress 2×; $200 twin = same with BTC/ETH fills dropped (5% = $10 < their $50/$20 min). 2021-01..2026-10 incl. the vault year
+(already opened for T1k30 h60 only; k20/k40 and other holds in 2026 are new). Not modelled: a 1-min delay of a resting quote (needs a rebuild; next form if a passes).
+Registered as one walk_forward line (strategy `ladder`, dataset `bntop20_1m`). Kill: OOS SR < 0.8 net, or < grid average, or 2× cost SR < 0.5.
+What he does NOT say: the bid is a small resting order he forgets about; capacity is the slot cap, not the signal. So the account, not bp per fill, is judged.
