@@ -1641,7 +1641,10 @@
     {
      "id": "a",
      "what": "kripto/events.py strategy `ladder` (frozen T1k30 rule; k grid 20/30/40, hold 15/60/240, slots 5/10) through kripto.research walk-forward on bnm, registered; 2x costs, 1-min delay, $1,000 and $200",
-     "status": "planned"
+     "status": "done",
+     "result": "WF 18 cfg (k20/30/40 x h15/60/240 x slots5/10), 60-d refit, 2021-08..2026-10, 5%/order, PERCENT_PRICE band (3-11% of fills dropped): OOS SR 1.94, cagr +14.7%, booked mdd -6.0%, DSR .98 (N 77), every year + (2022 +1.8%); grid 18/18 positive, median 1.88; pick < grid avg 2.19 -> pre-registered selection kill fires: parameter choice is noise, trade the frozen T1k30 h60 (full-sample 2.14), not a WF pick; 2x cost 1.83, $200 (no BTC/ETH) 1.97, both 1.87. Not modelled: intraday mark, 1-min quote delay, crash exits. 1 run.",
+     "date": "2026-11-23",
+     "evidence": "E2a__wf"
     },
     {
      "id": "b",
