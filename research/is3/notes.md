@@ -147,3 +147,5 @@ heatmap), and what invalidates the footprint "rotation" (the frame where he woul
 S2 b1 done (40/40 opened by eye, 0 contradictions: the stored descriptions of this batch are accurate). New: M4f pitstop-then-continuation (tg:206 'demand momentum is no mo, PITSTOP ... and breakout' at the all-red bar on the high,
  then 8 h rotation with big all-red bars that make no new low at wVAL = absorption, go = first bar whose buckets flip green, outcome +0.4% breakout). tg:165 dated 15 Feb 2021 02:21 UTC and hand-checked (fixture for L1/T5f).
  tg:52: the session with POC at its own extreme (time+volume at the low) is his reversal picture; P2 family. Next: b2.
+S2 b2 done (40/40, 0 contradictions). No new form: the pictures map to M5 (range-high retest; tg:229 hand-checked: ETHUSDT perp 8 Apr 2021, range high 2074.96 22:26 UTC, breakout 23:03, retest wick 2071.37 ~23:35, 2085.6 at 23:44),
+ M4e (20 Jul 2021 all-bucket negative day = bottom), M2e (capitulation bar = most trades), P2g ('issa fart': thin-volume wick low), P2h (R/F 0 'perfection'), O1d (RSI out of band = trend), W1, B0. Next: b3.

@@ -1712,8 +1712,11 @@
     {
      "id": "b2",
      "what": "open EVERY image of batch b2 in research/is3/S2_batches.json (40 charts) with the Read tool (paths under data/chat_extract/); per image one line in S2b2__notes.json: what is drawn, entry / exit / level / timing visible, and whether it contradicts the stored description",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "40/40 opened by eye (16 telegram, 24 whatsapp); 0 contradictions; tg:229 ETH range-high retest dated 8 Apr 2021 23:03-23:44 UTC and hand-checked (fixture for M5); capitulation = max trade-count bar (wa 18.10.41(2), M2e); thin-volume wick low 'issa fart' (P2g); no new form, all map to M5 M4e M2 P2 O1d W1 B0",
+     "date": "2026-11-23",
+     "evidence": "S2b2__notes"
     },
     {
      "id": "b3",
