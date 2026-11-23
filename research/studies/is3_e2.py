@@ -26,11 +26,32 @@ LO, HI = pd.Timestamp("2021-01-01", tz="UTC"), pd.Timestamp("2026-11-01", tz="UT
 KS, HOLDS, SLOTS, SIZE = (20, 30, 40), (15, 60, 240), (5, 10), 0.05
 
 
+def events_late(c, h, l, v, idx, k=30, through=T.THROUGH, lock=60):
+    """One bar of delay on both sides: the quote uses the close two minutes back (sigma too), the exit is one minute late (hold + 1)."""
+    r = np.diff(np.log(c), prepend=np.nan)
+    sig = pd.Series(r).rolling(1440, min_periods=720).std().to_numpy()
+    cp, sp = np.roll(c, 2), np.roll(sig, 2)
+    lim = cp * (1 - k * sp)
+    rows, last, T_ = [], -1, len(c)
+    for t in np.flatnonzero((l <= lim * (1 - through)) & (sp > 0)):
+        if t < 720 or t <= last or t + 1442 >= T_:
+            continue
+        p = lim[t]
+        row = {"time": idx[t], "t": t, "depth": k * sp[t]}
+        for hh in (15, 60, 240):
+            row[f"h{hh}"] = c[t + hh + 1] / p - 1
+        rows.append(row)
+        last = t + lock
+    return pd.DataFrame(rows)
+
+
 def one_k(a):
     coin, lo, hi, days, k = a
     out = []
+    late = k < 0
     for x in T.series(coin, lo, hi):
-        e = T.events(*(x[f].to_numpy() for f in ("c", "h", "l", "qv")), x.index, k=k)
+        f = events_late if late else T.events
+        e = f(*(x[f_].to_numpy() for f_ in ("c", "h", "l", "qv")), x.index, k=abs(k))
         if len(e):
             e["slip"] = ev.slip_per_day(x["qv"].to_frame(coin))[coin].reindex(e.time.dt.floor("D")).to_numpy()
             out.append(e)
@@ -47,7 +68,7 @@ def build(k, workers=2):
     jobs = [(c, LO, HI, g[["day", "rank", "age"]], k) for c, g in u.groupby("coin")]
     with ProcessPoolExecutor(workers) as ex:
         t = pd.concat([x for x in ex.map(one_k, jobs) if len(x)]).sort_values(["time", "coin"]).reset_index(drop=True)
-    t.to_parquet(OUT / f"e2_k{k}.parquet")
+    t.to_parquet(OUT / f"e2_k{k}.parquet")      # k < 0: the one-bar-late version of |k| (events_late)
     print(k, len(t), "fills", t.coin.nunique(), "coins", t.time.min(), t.time.max(), flush=True)
 
 

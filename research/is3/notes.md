@@ -106,3 +106,9 @@ costs 7 bp + volume slip per round trip, stress 2×; $200 twin = same with BTC/E
 (already opened for T1k30 h60 only; k20/k40 and other holds in 2026 are new). Not modelled: a 1-min delay of a resting quote (needs a rebuild; next form if a passes).
 Registered as one walk_forward line (strategy `ladder`, dataset `bntop20_1m`). Kill: OOS SR < 0.8 net, or < grid average, or 2× cost SR < 0.5.
 What he does NOT say: the bid is a small resting order he forgets about; capacity is the slot cap, not the signal. So the account, not bp per fill, is judged.
+E2 b gate (02:20 UTC). Frozen T1k30 h60 slots 5, 5%/order, band rule: base 2.14, 2× cost 2.04, ONE BAR LATE (quote from close t−2, exit +1 min; `is3_e2 build -30`) 2.14 (1,597 fills, 116 bp/fill vs 1,005 at 161:
+ a stale bid is hit more often in the 2nd minute of a dump, worse per fill, same SR), first 6 / 12 months dropped 2.11 / 2.00, $200 2.16 → robust.worst 2.00 > 0. WF min(pick 1.94, grid 2.19) = 1.94 > 0.8, DSR .98 > .9,
+ grid median 1.88 > 0. HL leg: not testable (no HL minute history); live paper is the test. → INCUBATION-ELIGIBLE on Binance. Form b stays open: the live book is code (next session, tests first, rule 6):
+ spec: kripto/ladder.py run by a 1-min user timer or inside kripto/live.py; per minute for causal top-20 (30-d vol rank at previous close): σ = 24-h std of 1-min log returns from public 1-min klines, bid = close·(1−30σ),
+ skip if 30σ > PERCENT_PRICE (1−multiplierDown); fill only if a LATER minute's low ≤ bid·(1−30 bp) (no same-minute look-back), 5% per fill, all fills of a minute taken while < 5 open, exit at the close 60 min later
+ + taker fee + slip; books shadow:ladder@bn $2,000 + small twin; mark every 20 s via live.py marks. Binance request budget: 20 klines calls/min = too much at ≤ 1 req/s shared? → use one ticker/24hr + per-coin 1m klines limit 2 = 20 req/min, OK (≤ 1 req/s).
