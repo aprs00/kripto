@@ -116,3 +116,15 @@ E2 b done (13:47 UTC session): live book running. kripto/ladder.py (kripto-ladde
  Quote valid only for minutes opening after it was computed = the one-bar-late backtest (2.14). Universe rebuilt daily in a child process from bnall (0.42 GB, 14 s); matches is3 top_universe exactly on 2026-10-31 / 06-15 / 2025-03-02.
  First tick: 20 coins, 18 quoted (2 outside PERCENT_PRICE). Kept out of main_bn: promote only when live fills (count, bp/fill vs backtest 116 bp one-bar-late) say the fill model holds. Next: E2 c (risk: margin, 2025-10-10 minute replay, daily loss cap), d (crash-insurance view).
  What to check weekly: fills/week (backtest ~1,600 / 5.8 y ≈ 5/week at one-bar-late across 20 coins), mean bp/fill net, worst intraday mark.
+
+## E2 c (think-through 2026-11-23 22:20 UTC, before any run)
+No new source text: c is the engineering risk of the live book (shadow:ladder@bn, one-bar-late rule, 5%/order, < 5 open, all same-minute fills taken, kill switch at −25% from peak in kripto.live).
+What the booked-daily numbers hide and this form measures on the one-bar-late fills (e2_k-30, band rule), minute by minute (fill → exit at t+61):
+ (1) intraday MARK of the account (each open position at the minute low = worst case, and at the close): worst mark drawdown from the running peak vs the booked worst day; would the 25% kill have fired?
+ (2) gross when a cascade fills many coins in one minute (rule takes them all): max simultaneous gross, and the margin resting bids lock (Binance reserves initial margin for open orders: 18 coins × 5% = 90% notional).
+ (3) outage during a cascade: exits delayed to 240 min on days with ≥ 5 same-minute fills (proxy: cannot close for 3 h).
+ (4) a daily loss cap (stop taking fills for the rest of the UTC day once the day's marked P&L < −2/−3/−5%), judged on SR, mdd, worst day; the T1 lesson says filters that skip cascades hurt, so expected: cap costs SR.
+What he does NOT say: he sizes so that a cascade of fills is survivable ("overbetting kills"); the size rule, not the signal, is the risk control. Kill/keep: if the minute-mark mdd at 5% would breach 25%, the live size is wrong → cut it (rule = largest size whose worst minute mark ≥ −15%).
+E2 c done (is3_e2risk.py, data/is3/e2c_risk.json): worst minute-LOW mark −17.4% of starting equity (2025-10-10), −16.9% (2024-01-03), vs booked worst day −4.6% → under the 25% kill; 5%/order kept (10% would be −35% = killed).
+ Gross reaches 95% when a cascade fills 19 coins in one minute; resting bids lock up to 100% notional → a real account needs cross margin ≥ 2×. Exits 3 h late on cascade days do not hurt (SR 2.05, h240 > h60 there).
+ Daily loss caps do nothing (the loss arrives in one batch minute). Size is the only risk lever; the 25% kill is reachable only at ≥ 8%/order.
