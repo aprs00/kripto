@@ -236,8 +236,30 @@ def server() -> None:
     print(dim(f"backtests in registry: {n}   {now():%Y-%m-%d %H:%M} UTC"))
 
 
+def insilico() -> None:
+    """The InSilico test programme (research/insilico_queue.json): its tests do not appear in the trader log or the registry."""
+    import json as _j
+    p = ROOT / "research" / "insilico_queue.json"
+    if not p.exists():
+        return
+    items = _j.loads(p.read_text())["items"]
+    forms = [f for it in items for f in it["forms"]]
+    done = sum(f["status"] == "done" for f in forms)
+    section("insilico tests")
+    print(f"{done}/{len(forms)} tests done, {sum(it['status'] == 'closed' for it in items)}/{len(items)} items closed")
+    live = [it for it in items if it["status"] == "wip"] or sorted((it for it in items if it["status"] == "todo"), key=lambda x: x["prio"])[:1]
+    for it in live[:2]:
+        print(dim(f"now: {it['id']} {it['title']}"[:46]))
+    last = sorted(((f.get("date", ""), it["id"] + f["id"], f.get("result", "")) for it in items for f in it["forms"] if f["status"] == "done"), reverse=True)[:3]
+    for d, k, r in last:
+        print(f"{dim(d[5:])} {k} {r}"[:46])
+    for it in items:
+        if it["status"] == "closed" and it.get("verdict") not in (None, "UNTESTABLE"):
+            print(f"{it['id']} {it['verdict']}: {it['title']}"[:46])
+
+
 def main() -> None:
-    for f in (health, books, timers, sessions, commits, server):
+    for f in (health, books, insilico, timers, sessions, commits, server):
         try:
             f()
         except Exception as e:  # a broken section must never hide the others
