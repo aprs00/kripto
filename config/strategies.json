@@ -145,5 +145,19 @@
       "enter": 0.1
     },
     "note": "2026-11-10 X1b: HL-vs-Binance funding capture with hysteresis (open at |14d mean spread| > enter, hold until it flips; 10% legs, <=10 pairs). pair 1d WF OOS 1.26 / 1.66y (cagr 8.4%, mdd -1.7%), grid med 2.22, 6/6 >0, worst 1.43 (2x costs); funding +7-10%/yr vs costs 2-3%/yr, turnover 22-33x (X1 was 70-410x). 40-52 pairs, every year +, HL leg short 95% of pair-days. Fails DSR (0.006: 1.66y, fat tails). venue 'pair' is NOT traded by the engine yet (needs a two-venue book, backlog X2); the forward ledger scores it meanwhile. Params = latest WF choice. | 2026-11-12: live as a two-venue paper book (X2, kripto/venue_pair.py). X1c/X1d: the paper book runs gross 2.0 to measure the signal; in two real accounts 2.0 is liquidated on 2025-10-10, so the deployable size is gross 1.0 (~4.8%/yr before costs)."
+  },
+  "ladder@bn": {
+    "status": "candidate",
+    "venue": "ladder",
+    "alloc": 0.0,
+    "params": {
+      "k": 30,
+      "through_bp": 30,
+      "hold_min": 60,
+      "size": 0.05,
+      "slots": 5,
+      "universe": "top-20 by 30-d mean volume (bnall)"
+    },
+    "note": "InSilico T1 CONFIRMED (2026-11-22); E2a WF OOS SR 1.94 (pick < grid avg: trade the frozen rule), E2b gate on Binance backtest: frozen k30 h60 s5 SR 2.14, 2x cost 2.04, one-bar-late 2.14, robust.worst 2.00, DSR .98. Live since 2026-11-23 as kripto-ladder.service (kripto/ladder.py, one-bar-late quotes, fills 30 bp through, 2 bp maker in / taker depth-walk out). Not in main_bn: the fill must be proven live first (max(limit, close) entries 2026 p .18). Intraday mark risk -34% at 10%/order on 2025-10-10 (size here 5%)."
   }
 }

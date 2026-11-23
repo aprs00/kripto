@@ -1,0 +1,13 @@
+[Unit]
+Description=kripto resting-ladder paper book on Binance (public 1-min klines + depth only; no keys, no orders; InSilico T1/E2)
+[Service]
+Type=simple
+WorkingDirectory=%h/kripto
+Environment=KRIPTO_LADDER_INTERVAL=1.5
+ExecStart=%h/kripto/.venv/bin/python -m kripto.ladder
+Restart=always
+RestartSec=30
+Nice=10
+MemoryMax=700M
+[Install]
+WantedBy=default.target

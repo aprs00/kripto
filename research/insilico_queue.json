@@ -1649,7 +1649,10 @@
     {
      "id": "b",
      "what": "gates as in design.md; if it passes: candidate + live paper book in the always-on watcher (1-min quotes, fills only from later trades through the limit by 30 bp, tests first), shadow $2,000 and $200 twin",
-     "status": "planned"
+     "status": "done",
+     "result": "gate passed in 01:47 session (robust.worst 2.00, WF min 1.94, DSR .98); live paper book built: kripto/ladder.py + kripto-ladder.service (started 2026-11-23 13:50 UTC), books shadow:ladder@bn $2,000 + small:ladder@bn $200, config ladder@bn candidate (not in main_bn until live fills prove the fill model). Quotes one bar late (valid only for minutes opening after the quote), fill at bid if a later 1-min low is 30 bp through, 2 bp maker, exit taker depth-walk 61 min after fill-minute open, 5%/order, <5 open, PERCENT_PRICE band skip; universe = causal top-20 (equals is3 top_universe on 3 checked days). 6 known-answer tests; watchdog heartbeat ladder_tick. Live evidence accrues from today.",
+     "date": "2026-11-23",
+     "evidence": "E2a__wf"
     },
     {
      "id": "c",
@@ -1672,7 +1675,7 @@
      "evidence": "E2a__wf"
     }
    ],
-   "sessions": 1
+   "sessions": 2
   },
   {
    "id": "S2",
