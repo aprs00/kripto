@@ -35,7 +35,8 @@ from . import paper as P
 from . import venue_bn as V
 
 ENTRY = "ladder@bn"
-K, THROUGH, HOLD_MIN, SIZE, SLOTS, TOPN = 30.0, 30e-4, 60, 0.05, 5, 20
+# SIZE 0.05 -> 0.029 (2026-11-23 E2d, rule fixed before the run): -50% on every fill of the largest historical same-minute batch (17) must stay above the 25% kill.
+K, THROUGH, HOLD_MIN, SIZE, SLOTS, TOPN = 30.0, 30e-4, 60, 0.029, 5, 20
 MAKER_FEE_BN = 0.0002
 WIN, MINP = 1440, 720
 MIN_MS = 60_000

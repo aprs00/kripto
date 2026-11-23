@@ -128,3 +128,12 @@ What he does NOT say: he sizes so that a cascade of fills is survivable ("overbe
 E2 c done (is3_e2risk.py, data/is3/e2c_risk.json): worst minute-LOW mark −17.4% of starting equity (2025-10-10), −16.9% (2024-01-03), vs booked worst day −4.6% → under the 25% kill; 5%/order kept (10% would be −35% = killed).
  Gross reaches 95% when a cascade fills 19 coins in one minute; resting bids lock up to 100% notional → a real account needs cross margin ≥ 2×. Exits 3 h late on cascade days do not hurt (SR 2.05, h240 > h60 there).
  Daily loss caps do nothing (the loss arrives in one batch minute). Size is the only risk lever; the 25% kill is reachable only at ≥ 8%/order.
+
+## E2 d (think-through 22:50 UTC, before any run)
+Claim (S1 c: Artemis "short convexity", HOFM "overbetting kills"): a resting bid under a crash is SHORT a put: small steady gains, rare big losses, and the losses land exactly when
+the other books also lose. Test: the ladder's booked daily P&L (one-bar-late, band, 5%, 5 slots) next to the main_bn mix (flow@bn, xsmom@bn, blend@bn, 1/3 each, bnall 1d, research.evaluate, tag E2d)
+and BTC in the 20 worst weeks of each; weekly correlation. Insurance-seller verdict if ladder sum in the mix's 20 worst weeks < 0 and corr > 0.3. Size: (i) worst case −50% on every fill of the largest same-minute
+batch (19) must stay above the 25% kill → f; (ii) half-Kelly from daily returns. If (i) or (ii) < 5%, the live size is too large and must be cut (decided now).
+E2 d done (is3_e2d.py, E2d__insurance.json): NOT short insurance at the booked level: +11.3% over the main_bn mix's 20 worst weeks (18/20 ≥ 0), +3.9% over BTC's; weekly corr −0.12 / +0.08.
+ Pre-set worst case (−50% on all 17 fills of the largest batch must stay above the 25% kill) → f ≤ 2.94%: live SIZE 0.05 → 0.029 (kripto/ladder.py; BTC can no longer fill in the $2,000 shadow, step 0.001 ≈ $60 > $58).
+E2 CLOSED OPEN: everything left is live evidence (fills/week ≈ 5, bp/fill vs 116 one-bar-late; at 2.9% expect ≈ +8%/yr simple). Next item per queue.

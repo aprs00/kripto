@@ -1,0 +1,68 @@
+{
+ "days": 2130,
+ "weekly_corr": {
+  "ladder": {
+   "ladder": 1.0,
+   "mix": -0.12,
+   "btc": 0.08
+  },
+  "mix": {
+   "ladder": -0.12,
+   "mix": 1.0,
+   "btc": 0.02
+  },
+  "btc": {
+   "ladder": 0.08,
+   "mix": 0.02,
+   "btc": 1.0
+  }
+ },
+ "daily_corr": {
+  "ladder": {
+   "ladder": 1.0,
+   "mix": -0.06,
+   "btc": -0.02
+  },
+  "mix": {
+   "ladder": -0.06,
+   "mix": 1.0,
+   "btc": 0.0
+  },
+  "btc": {
+   "ladder": -0.02,
+   "mix": 0.0,
+   "btc": 1.0
+  }
+ },
+ "worst20_mix": {
+  "ladder_sum": 0.1126,
+  "ladder_mean": 0.0056,
+  "ladder_neg_weeks": 2,
+  "mix_sum": -0.722,
+  "mix_plus_ladder_sum": -0.6094
+ },
+ "worst20_btc": {
+  "ladder_sum": 0.0389,
+  "ladder_mean": 0.0019,
+  "ladder_neg_weeks": 6,
+  "btc_sum": -3.089,
+  "mix_plus_ladder_sum": 0.1847
+ },
+ "ladder_total": 0.8473,
+ "ladder_worst_weeks": {
+  "2025-10-12": -0.0414,
+  "2023-08-20": -0.0279,
+  "2023-06-11": -0.0265,
+  "2022-09-18": -0.0226,
+  "2024-06-09": -0.0221
+ },
+ "size_worstcase": {
+  "largest_batch": 17,
+  "f_for_minus25_at_50pct_loss": 0.0294
+ },
+ "size_kelly": {
+  "kelly_mult_of_5pct": 31.55,
+  "half_kelly_f": 0.7888
+ },
+ "worst_fill_h60": -0.3483
+}

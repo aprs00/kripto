@@ -74,7 +74,7 @@ def test_quote_judges_only_minutes_opening_after_it(lad):
     f = store.q("select book, px, size, fee, reason from fills order by book")
     assert all(abs(px - q2) < 1e-9 for _, px, *_ in f)
     sh = [r for r in f if r[0].startswith("shadow")][0]
-    assert sh[2] == pytest.approx(round(np.floor(0.05 * 2000 / q2 / 0.01) * 0.01, 2))
+    assert sh[2] == pytest.approx(round(np.floor(LD.SIZE * 2000 / q2 / 0.01) * 0.01, 2))
     assert sh[3] == pytest.approx(sh[2] * q2 * LD.MAKER_FEE_BN)
     assert sh[4] == f"ladder bid {T0 + (i + 1) * M}"
 
@@ -109,6 +109,7 @@ def test_exit_after_hold_and_lock(lad):
 def test_band_and_min_notional(lad):
     L, bn, store = lad
     L.band["SOL"] = 1e-4                      # 30 sigma deeper than the PERCENT_PRICE band -> no quote
+    L.filters["BTC"]["step"] = 1e-4           # at SIZE 2.9% x $2,000 = $58 a 0.001 step (~$60) would round to 0
     L.step()
     assert "SOL" not in L.quotes and "BTC" in L.quotes
     tick(L, bn)
@@ -117,7 +118,7 @@ def test_band_and_min_notional(lad):
     bn.low["BTC"][i] = q * 0.99
     tick(L, bn)
     books = {r[0] for r in store.q("select book from fills")}
-    assert books == {"shadow:ladder@bn"}       # 5% of $200 = $10 < BTC's $50 minimum
+    assert books == {"shadow:ladder@bn"}       # SIZE x $200 < BTC's $50 minimum
 
 
 def test_halted_book_does_not_trade(lad):

@@ -1633,7 +1633,7 @@
    "group": "T",
    "title": "Resting-ladder book: walk-forward and live paper (only if T1 closes CONFIRMED); READ research/is3/T1i_audit.md FIRST",
    "src": "T1",
-   "status": "wip",
+   "status": "closed",
    "after": [
     "T1"
    ],
@@ -1665,8 +1665,11 @@
     {
      "id": "d",
      "what": "T1 is short crash insurance (Artemis: 'short convexity'; HOFM: overbetting kills, not being wrong): daily P&L of the ladder vs tsmom / flow shadow returns in the 20 worst weeks, and size from a fractional-Kelly with a worst case of -50% on every simultaneous fill added by hand, vs the 5% rule",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "Not short insurance at the booked level: ladder +11.3% summed over the main_bn mix's (flow/xsmom/blend, bnall 1d, evaluate tag E2d) 20 worst weeks (18/20 >= 0), +3.9% over BTC's 20 worst weeks; weekly corr with mix -0.12, BTC +0.08; worst ladder week -4.1% (2025-10-12). Half-Kelly meaningless (31x of 5%). Pre-set worst case (-50% on every fill of the largest batch, 17) must stay above the 25% kill -> f <= 2.94%: live SIZE cut 0.05 -> 0.029 (kripto/ladder.py, tests pass). Cost: return scales to ~8.4%/yr simple at SR unchanged; side effect: BTC (step 0.001 ~ $60+) no longer fills in the $2,000 shadow. 1 run.",
+     "date": "2026-11-23",
+     "evidence": "E2d__insurance"
     },
     {
      "id": "e",
@@ -1678,7 +1681,10 @@
      "evidence": "E2a__wf"
     }
    ],
-   "sessions": 3
+   "sessions": 3,
+   "verdict": "OPEN",
+   "reason": "Engineering of the confirmed T1 ladder; its own confirmation is the live book, not a card. WF OOS SR 1.94 (grid avg 2.19 -> trade frozen T1k30 h60), gate passed, live since 11-23. Minute-mark worst -17% at 5% (2025-10-10); pre-set worst-case rule cut size to 2.9%; loss caps/stops useless, size is the lever; not crash-correlated with the main_bn mix (+11% in its 20 worst weeks). Open until live fills (count, bp/fill vs 116 bp one-bar-late) prove the fill model.",
+   "closed": "2026-11-23"
   },
   {
    "id": "S2",
