@@ -1606,27 +1606,48 @@
    "group": "T",
    "title": "Exits as decisions, not timers: manage the trade as he describes",
    "src": "tg:167 'do a round quickly'; wa 18.10.28, 18.10.32(2) 'they give u money u take it and run'",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "leave when the bounce stalls (volume of up minutes falls below that of down minutes; 2 closes without a new high)",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "on the LIVE trade (T1k30 ladder, one-bar-late fills, explore 2021-23, n 1147; baseline reproduces stored h60 exactly): stall exit (2 closes no new high + up-vol < down-vol over 5 min, one bar late) +54 bp vs timer +148, diff -94 bp (p < .001, MDE 70), median hold 3 min; variant a2 (not before 15 min) +85, diff -63 (p .007). Worse every year. Leaving when the bounce stalls cuts a bounce that lasts hours",
+     "date": "2026-11-24",
+     "evidence": "T4__exits"
     },
     {
      "id": "b",
      "what": "leave on the first opposite climax; re-enter on the next reversal (cascades repeat: liq -> bounce -> liq)",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "leave on the first new down-climax (<= -4 sigma on >= 5x volume, next close): +63 bp vs timer +148, diff -85 (p < .001, MDE 96), median hold 12 min; re-entry not tested (exit alone already loses 85 bp)",
+     "date": "2026-11-24",
+     "evidence": "T4__exits"
     },
     {
      "id": "c",
      "what": "optimal-stopping bound: best exit in hindsight vs achievable, to see how much the exit can matter at all",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "hindsight bounds within 240 min: timer +148 bp, oracle best close +385, best high +412: timing could matter a lot in principle, but every rule-based exit tried (a, a2, b, d) captures LESS than the plain 61-min timer",
+     "date": "2026-11-24",
+     "evidence": "T4__exits"
+    },
+    {
+     "id": "d",
+     "what": "his own condition (tg:167 'do a round quickly UNLESS impressive cascade, in which case we sit'): quick exit a2 only on lone fills (< 3 ladder fills across coins within +-2 min), the 61-min timer on cascade fills; vs the timer on all; explore fills 2021-23, decided before looking at a/a2 by breadth",
+     "status": "done",
+     "added": "2026-11-24",
+     "result": "quick exit only on lone fills (10% of fills; < 3 fills across coins within +-2 min), timer on cascades: +145 vs +148, diff -3 bp (p .064, MDE 89); on lone fills the timer also wins (+173 vs +146 with a2). His 'unless impressive cascade' condition does not rescue the quick round",
+     "date": "2026-11-24",
+     "evidence": "T4__exits"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "every decision exit tested on the live ladder fills (stall, stall after 15 min, first opposite climax, quick exit on lone fills) is WORSE than the fixed 61-min market exit, by 3-94 bp (three of four p < .01); the hindsight best close (+385 vs +148) shows exits matter but not these. Not DEAD only because MDEs (67-96 bp) exceed the 26-bp rule. Decision: the live ladder keeps its timer; consistent with T1j (stops hurt) and E2c (3-h exits on cascade days do not hurt)",
+   "closed": "2026-11-24"
   },
   {
    "id": "T5",

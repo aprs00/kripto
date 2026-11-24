@@ -384,3 +384,7 @@ Consequence: M4a now scores the size of the negative bucket shares, not the sign
 tg:167 'the initial mechanical spring tells how strong the bounce will be': no. Fade return by spring decile is flat (+7..+13 bp at 60 min) and turns negative when > 54% is already retraced (−11 bp vs matched, p .02,
 MDE 12.5): a strong spring = bounce used up. A weak spring does not predict continuation (−1 bp vs matched). Ridge on 22 features: OOS IC +0.075 (t 3.2; shuffle −0.003) but = 'fade dumps, ride pumps' (−7.5 bp vs that
 rule); sizing by prediction = sizing by volatility. All below taker cost. Untried: tree models (not installed). Lesson: always test a model against the simplest rule it could be rediscovering, not only against a shuffle.
+
+### InSilico T4: exits as decisions instead of a timer, on the live ladder fills (2026-11-24) → OPEN by the MDE rule, practically: keep the timer
+Explore 2021–23, 1,147 one-bar-late T1k30 fills, baseline = market 61 min after the fill (+148 bp): leave when the bounce stalls −94 bp (p < .001), the same after 15 min −63 (p .007), on the first new down-climax −85
+(p < .001), quick exit only on lone fills −3 (p .06). The bounce lasts hours; "take it and run" cuts it. Hindsight best close +385 bp, so exits matter, just not these. Live ladder unchanged.

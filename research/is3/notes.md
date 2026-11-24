@@ -238,3 +238,11 @@ through), weak spring -> dive continues. Failure mode to watch: mean reversion o
 What he does NOT say: the spring is relative to the fall, and he waits for it (no entry at the extreme). Form a (model) after b, only if b shows a curve.
 T3 a/c/d done (is3_t3a.py): ridge on 22 context features has real OOS IC (+0.075, t 3.2; shuffle −0.003) but it is the side rule (fade dumps, ride pumps; 78% agreement, −7.5 bp vs the rule on matched
  climaxes). Sizing by the prediction = sizing by volatility (same risk-adjusted t). Spring (b) is not a dose-response; a strong spring means the bounce is used up. Trees untried (not installed).
+
+## T4 (think-through 05:17 UTC, before any run)
+Applied to the LIVE trade, not L1: the ladder (T1k30, one-bar-late fills, e2_k-30, explore 2021–23), live exit = market 61 min after the fill. His words: "do a round quickly unless impressive
+cascade", "they give u money u take it and run". Rules (fixed in is3_t4.py docstring): a stall (2 closes no new high + up-volume < down-volume over 5 min, from fill+2), a2 same not before 15 min,
+b first new down-climax, c hindsight bounds. All decisions one bar late. T1j/E2c already showed: stops hurt, 3-h exits on cascade days do not hurt (h240 > h60) → prior: early exits LOSE,
+because the bounce lasts hours. Kill/keep: an exit is kept only if > base with p < .05 in explore; otherwise the timer stays.
+T4 done/closed OPEN (is3_t4.py, data/is3/t4_exits.parquet): on the live ladder fills every decision exit loses to the 61-min timer (stall −94, stall≥15 min −63, first climax −85 bp, lone-fill quick exit −3).
+ Hindsight best close +385 vs +148: timing matters, but not his 'take it and run'. The live book keeps the timer. Untested idea worth a form later: LONGER holds on cascade fills (h240 > h60 in E2c).
