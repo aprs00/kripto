@@ -886,7 +886,7 @@
    "forms": [
     {
      "id": "a",
-     "what": "daily, adaptive buckets (previous 30 d quantiles)",
+     "what": "daily, adaptive buckets: quantiles of the PREVIOUS DAY's sizes as primary (S2b4: tg:205 'Days back for AI levels = 1'), previous 30 d as the variant",
      "status": "planned"
     },
     {
@@ -1730,8 +1730,11 @@
     {
      "id": "b4",
      "what": "open EVERY image of batch b4 in research/is3/S2_batches.json (40 other pictures) with the Read tool (paths under data/chat_extract/); per image one line in S2b4__notes.json: what is drawn, entry / exit / level / timing visible, and whether it contradicts the stored description",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "40/40 opened by eye; 0 contradictions; tg:205 TSize 'AI levels' recomputed from the previous 1 day (31k/57k/111k/155k/250k on XBTUSD; our fixed EDGES match the snapshot) -> M4a primary now 1-d quantiles; tg:204 colour grade capped at 90th pct -> M1c clip; tg:200 'tails not mid noise' + wait for full dominance flip (M1e/M4f); rest = tweets, book pages, memes; no new form",
+     "date": "2026-11-24",
+     "evidence": "S2b4__notes"
     },
     {
      "id": "b5",

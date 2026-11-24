@@ -150,3 +150,13 @@ S2 b1 done (40/40 opened by eye, 0 contradictions: the stored descriptions of th
 S2 b2 done (40/40, 0 contradictions). No new form: the pictures map to M5 (range-high retest; tg:229 hand-checked: ETHUSDT perp 8 Apr 2021, range high 2074.96 22:26 UTC, breakout 23:03, retest wick 2071.37 ~23:35, 2085.6 at 23:44),
  M4e (20 Jul 2021 all-bucket negative day = bottom), M2e (capitulation bar = most trades), P2g ('issa fart': thin-volume wick low), P2h (R/F 0 'perfection'), O1d (RSI out of band = trend), W1, B0. Next: b3.
 S2 b3 done (8/8, 0 contradictions): M4e's three capitulation pictures confirmed by eye; the Jan 2022 one retested its low 2 days later (−2.4%) before rallying → M4e must look 2–5 days out, not only next day. Next: b4.
+
+## S2 b4 (think-through 2026-11-24 04:55 UTC, before opening anything)
+b4 = tg:17–205 (Mar–Apr 2021) + tg:296: mostly tweet/text screenshots, book pages (HOFM, Wilmott, Almanac, PTJ clipping), memes, two Exocharts settings dialogs and the
+oscillator template. Expected: few trading rules; the risk is the opposite of b1 (assuming "just a meme" without looking). Look for: (1) any number in the settings
+dialogs that differs from what M1e / T5 use (TSize levels in tg:205, row set in tg:204, Tick*47 in tg:17), (2) the oscillator template (tg:86) = his trend/range regime
+rule for O1, (3) the 'X is dead' sentiment tweets = B0 (no lawful tweet data) unless a date + price can be checked by hand (tg:135 VIX 22 Mar 2021).
+What he does NOT say: the sentiment fade needs a price location too ("double bottom + laser eyes" tg:141), i.e. the tweet is a filter on a level, not a signal.
+S2 b4 done (40/40 opened, 0 contradictions). Mostly tweets/book pages/memes. Useful: tg:205 his TSize groups are 'AI levels' from the PREVIOUS DAY only (31k/57k/111k/155k/250k
+ on XBTUSD; our fixed EDGES match that snapshot) → M4a primary changed to 1-d quantiles (30 d = variant); tg:204 colour grades capped at the 90th pct → M1c should clip z there; tg:78 he calls
+ his lines 'meme lines, reactive' (placebo levels stay mandatory). Cross-cutting idea from Wilmott p.17 (tg:158): 'avoid the hands just a little worse' = check the 2nd-best bucket of every dose-response. Next: b5.
