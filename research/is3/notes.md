@@ -609,3 +609,5 @@ M5 b/d plan (before runs): b = level is the 10-bar range's approx. value-area hi
  thin = explore median daily quote volume $0.5-50M (44 coins, data/is3/m5d_coins.csv, chosen before any run), range bars 0.5% / 1% so +1w >> 4 bp maker round trip.
 M5 c plan (before run): his literal target = the average 1-min candle (mean ln(h/l) of the 1440 finished klines before placement), first touch only, same queue ladder / stop / 60 min;
  c = maker exit (1 bp trade-through, 2x2 bp), ctk = taker exit on the first touch (2+6 bp). OOM fix: one year at a time (SOL 2021 alone = 1.3 GB RSS) -> micro-bar forms run serially.
+M5 d done (23:2x): thin coins = placebo levels at every fill rung (MDE 2-9 bp); the more volume trades through our level before we count a fill, the worse (q250k -40 bp gross,
+ same for placebos): queue-position fills on thin coins are pure adverse selection. Touch fills ~0 gross. No level effect to sell, before or after costs.
