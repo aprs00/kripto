@@ -256,3 +256,6 @@ by decile of each feature with day-block CIs; a feature 'works' only if its curv
 What he does NOT say: the level matters (into prior high/low), size of the crowd matters (breadth), and he stays out of news minutes (breadth ≥ 5 ≈ macro).
 T5 a/b/c done (is3_t5a.py, data/is3/t5a.parquet): 116k ordinary 1-min >= 3 sigma moves fade +2 bp over 60 min; 11 context features (level, round number, trend, breadth, taker share, trade size, hour)
  move it by < 5 bp in their middle deciles; two extreme cells (+17 trend, +12 beyond prior-day extreme) are 2 of 110 and not dose-responses. Ordinary shocks are noise; only the deep resting fill (T1) pays.
+T5 d done: BTC-hedged residual does not bounce more (top idio decile +1.3 bp, diff −2.3, MDE 5.6).
+T5 e: up-spikes continue, down-spikes bounce (= the side rule seen in T3). Dose in z (+10/+18/+21 bp at z 5/8/12) and breadth (lone +2.5, 2–3 coins +45, 4+ +22). Pre-registered T5e_upspike_z8_b2_h60
+ (breadth cut chosen after seeing it: said in the prereg). Explore +27.2 vs −2.2 (p .002), hand-checked (ETH 2023-11-09 14:51, +3.1%). confirmT +39.2 vs +2.5, diff +36.7, p .075, both years +, MDE 59: FAILS p.
