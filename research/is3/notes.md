@@ -402,3 +402,11 @@ Sources wa 18.11.00(2), 18.11.02(2): a rally led by spot buying (with perp delta
 unlevered and do not get liquidated; perp-led moves are paid back by funding and liquidations. Not on the server: spot taker flow. Data = Binance spot 1h klines (taker-buy quote volume) from
 data.binance.vision/data/spot (same public archive host as the futures files; flagged in STATUS). Unit is3-n2 started 11:49 (30 top coins 2021-01..2025-12, 1 req/s). Forms once it lands:
 a share of the 24-h up move's taker imbalance from spot vs perp -> next 24/72 h; b his exact case (spot-led rally with negative perp delta); c cross-sectional daily spot-minus-perp delta, and as a flow feature.
+
+## N3 tape behaviour (think-through 11:53 UTC, before any run)
+Sources tg:93, 163, 239, 289; wa 18.10.28(1) (change of character picture), 18.10.44(2), 18.10.54(3) ("in control: the one that absorbs"), 18.10.50(1) (last minutes painted), 18.11.01(1) (his AVWAP).
+Mechanism worth a prior: absorption (f) = aggressive sellers met by a passive buyer; if price does not fall under heavy selling, the passive side is bigger -> up next. Known context: Binance taker flow
+PERSISTS (flow book), and T5f found effort-without-result does not bounce at 1 min; f is the multi-day version (residual of price on delta). b/e are exhaustion stories (a persistent buyer tiring,
+a record-volume reclaim of a broken low). What he does NOT say: absorption only means something when the delta is large relative to the coin's own normal, so the dose is the delta's z-score and
+the price residual; and it should hold cross-sectionally (coin vs coin the same day), not just in time. This session: daily forms b, e, f on bnall half-0 top-100 coins 2021–23, baseline = same coin at the
+same trailing-14-day return decile (O1 harness). Remaining forms (a, c, d, g–k) next session.

@@ -781,7 +781,7 @@
    "group": "A",
    "title": "Tape behaviour: swings, streaks, change of character, VWAP, shakeouts",
    "src": "R37, R38, R40, R45, R51; tg:163, 239, 289; wa 18.10.28(1), 18.10.44(2)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -844,7 +844,8 @@
      "status": "planned",
      "added": "2026-11-22"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "N4",

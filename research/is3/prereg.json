@@ -82,5 +82,15 @@
    "note": "explore saw 3 RSI bins (+12/+73/+243 bp); the 50 cut is the bin edge seen; the unconditional ladder already used 2024-25 as its confirm sample, the RSI split is new"
   },
   "at": "2026-11-24T11:32:12+00:00"
+ },
+ "N3f_absorption_long_5d": {
+  "claim": "absorption (wa 18.10.54(3) the one that absorbs is in control; tg:93 failed bad news): heavy taker selling over 3 days while price holds -> the passive buyer wins, price rises over the next 5 days more than for the same coin at the same trailing return",
+  "rule": "bnall clean, coins in the point-in-time top 100; imb = 2 taker_buy/volume - 1; z = (imb - 60d mean)/60d sd shift 1; event: sum of z over 3 days <= -2 and 3-day return >= 0; long at the close, 5 days; baseline: same coin, same trailing 14-day return decile, 3 matched; confirmT half-0 2024-25, confirmC half-1 2021-25, one run each",
+  "params": {
+   "explore_diff_bp": 146.1,
+   "explore_p": 0.014,
+   "note": "explore by year: diff +195 (2021), +253 (2022, p .02), -12 (2023); cross-sectional residual version failed (2021 only); dose monotone in the 3-day return (136/217/341 bp); thresholds -2 and 0 were the first and only ones tried"
+  },
+  "at": "2026-11-24T11:50:47+00:00"
  }
 }
