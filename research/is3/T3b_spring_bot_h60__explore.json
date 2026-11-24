@@ -1,0 +1,60 @@
+{
+ "name": "T3b_spring_bot_h60",
+ "sample": "explore",
+ "n": 6332,
+ "days": 966,
+ "coins": 10,
+ "mean_bp": -13.2,
+ "median_bp": -5.19,
+ "win": 0.475,
+ "se_bp": 8.73,
+ "ci95_bp": [
+  -30.54,
+  3.75
+ ],
+ "p": 0.13493253373313344,
+ "mde80_bp": 24.44,
+ "mean_ex_top3_bp": -19.63,
+ "top3_share": null,
+ "t_day_mean": -2.27,
+ "by_year": {
+  "2021": [
+   2255,
+   -22.67
+  ],
+  "2022": [
+   1871,
+   -13.56
+  ],
+  "2023": [
+   2206,
+   -3.2
+  ]
+ },
+ "by_side": {
+  "-1": [
+   2421,
+   -67.72
+  ],
+  "1": [
+   3911,
+   20.55
+  ]
+ },
+ "coins_positive": 0.2,
+ "net_bp": {
+  "free": -13.2,
+  "maker_taker": -21.2,
+  "taker": -26.2,
+  "taker_x2": -39.2,
+  "crash": -93.2
+ },
+ "base_n": 18996,
+ "base_bp": -11.79,
+ "vs_base_bp": -1.4,
+ "p_vs_base": 0.8510744627686156,
+ "passes": false,
+ "note": "continuation after a weak spring (bottom decile), 60 min",
+ "rerun": "",
+ "at": "2026-11-24T05:10:57+00:00"
+}

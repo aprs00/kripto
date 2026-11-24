@@ -1,0 +1,60 @@
+{
+ "name": "T3b_spring_top_h60",
+ "sample": "explore",
+ "n": 6333,
+ "days": 994,
+ "coins": 10,
+ "mean_bp": -5.28,
+ "median_bp": 2.83,
+ "win": 0.511,
+ "se_bp": 4.45,
+ "ci95_bp": [
+  -14.38,
+  2.98
+ ],
+ "p": 0.2433783108445777,
+ "mde80_bp": 12.46,
+ "mean_ex_top3_bp": -9.05,
+ "top3_share": null,
+ "t_day_mean": -2.02,
+ "by_year": {
+  "2021": [
+   1742,
+   -9.25
+  ],
+  "2022": [
+   1909,
+   -11.69
+  ],
+  "2023": [
+   2682,
+   1.86
+  ]
+ },
+ "by_side": {
+  "-1": [
+   2678,
+   -26.12
+  ],
+  "1": [
+   3655,
+   9.98
+  ]
+ },
+ "coins_positive": 0.2,
+ "net_bp": {
+  "free": -5.28,
+  "maker_taker": -13.28,
+  "taker": -18.28,
+  "taker_x2": -31.28,
+  "crash": -85.28
+ },
+ "base_n": 18999,
+ "base_bp": 6.12,
+ "vs_base_bp": -11.4,
+ "p_vs_base": 0.022488755622188907,
+ "passes": false,
+ "note": "fade after a strong spring (top decile), 60 min",
+ "rerun": "",
+ "at": "2026-11-24T05:10:57+00:00"
+}

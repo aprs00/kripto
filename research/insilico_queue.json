@@ -1556,7 +1556,7 @@
    "group": "T",
    "title": "Context model instead of if-x-then-y: the whole state -> distribution of the next 5/15/60 min",
    "src": "tg:167 'can determine how strong the bounce or dive will be from initial mechanical spring after liqs'; owner 2026-11-22",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -1567,8 +1567,11 @@
     {
      "id": "b",
      "what": "spring strength: retrace fraction and speed in the first 1-3 minutes, as a continuous predictor (dose-response curves with CIs), in both directions (weak spring = dive continues: short)",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "explore (COINS10 2021-23), 63,322 climaxes (lshock 'any', both directions), spring = share of the 10-min origin->extreme move taken back by climax+3: dose-response is FLAT, not monotone: 60-min fade return +7..+13 bp in spring deciles 1-9 (weak spring does NOT mean the dive continues: bottom decile continuation card -13 bp, diff vs matched -1 bp, p .85, MDE 24), and turns NEGATIVE in the top decile (>54% retraced): -5 bp vs matched +6, diff -11 bp (p .022, MDE 12.5) = a strong spring means the bounce is used up, opposite of tg:167. All below taker costs (13 bp). Pump fades lose, dump fades win (as L1). Causal by construction (decision at the close of climax+3); trigger table passed null/causality in L1. Variants tried: 1 (spring at +3 min; spring1 stored, not scored)",
+     "date": "2026-11-24",
+     "evidence": "T3b__spring"
     },
     {
      "id": "c",
@@ -1582,7 +1585,8 @@
      "status": "planned",
      "added": "2026-11-22"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "T4",

@@ -230,3 +230,9 @@ T2 e think-through (05:10 UTC, before downloading or running): 107 levels with c
  What he does NOT say: the level is a resting order area, so the reaction should appear within minutes of the first touch; later touches are weaker (count first touch only).
 T2 c: analogs = matched down days (diff +6 bp, MDE 353). d: one stay-out example; analogs better, n.s. e: 85 dated levels: price goes through them (−28 bp vs same-side placebo at 60 min, p .03), touch rate = mirror.
  First null run with 20 coin-toss copies read +67 bp: small-sample noise (400 copies: +15/+2/−2 bp over 3 seeds); is3_t2c now uses 400. T2 CLOSED OPEN (MDE rule). Next per queue.
+
+## T3 b (think-through 05:14 UTC, before any run)
+tg:167: "can determine how strong the bounce or dive will be from initial mechanical spring after liqs". Spring = share of the climax move (10-min origin -> extreme) taken back by the close of
+climax+3; decision at that close, simple returns 15/60/240 min in the fade direction, explore coins/dates only. Expect monotone: strong spring -> bounce continues (book empty, contrarians slip
+through), weak spring -> dive continues. Failure mode to watch: mean reversion of the 3-min move itself (bid-ask bounce on a torn book, the M0 trap) would show as NEGATIVE slope at 15 min.
+What he does NOT say: the spring is relative to the fall, and he waits for it (no entry at the extreme). Form a (model) after b, only if b shows a curve.
