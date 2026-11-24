@@ -410,3 +410,6 @@ PERSISTS (flow book), and T5f found effort-without-result does not bounce at 1 m
 a record-volume reclaim of a broken low). What he does NOT say: absorption only means something when the delta is large relative to the coin's own normal, so the dose is the delta's z-score and
 the price residual; and it should hold cross-sectionally (coin vs coin the same day), not just in time. This session: daily forms b, e, f on bnall half-0 top-100 coins 2021–23, baseline = same coin at the
 same trailing-14-day return decile (O1 harness). Remaining forms (a, c, d, g–k) next session.
+N3 b/e/f done (is3_n3d.py, is3_n3d_card.py): absorption passed explore (+146 bp vs matched over 5 d, dose monotone, 2 of 3 years) and failed both confirms (2024-25 -72, unseen coins +47 p .27).
+ Second filter-like idea today that lived on 2021-22 only. Pattern worth keeping in mind: daily explore cards dominated by 2021 rarely survive; ask for every explore year to be positive vs matched before
+ pre-registering a daily form (O1e and N3f both had one null/negative explore year). Remaining N3 forms: a, c, d, g, h, i, j, k.

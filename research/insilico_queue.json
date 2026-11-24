@@ -791,7 +791,10 @@
     {
      "id": "b",
      "what": "persistent one-sided buyer whose daily net size halves -> fade (taker imbalance streak >= 3 days)",
-     "status": "planned"
+     "status": "done",
+     "result": "daily bnall half-0 top-100 2021-23, baseline same coin + trailing-14-d return decile: buyer streak (taker-imbalance z > 0.5 for >= 3 days) whose imbalance today is positive but <= half the streak mean -> short: 3 d -41 bp vs matched (p .67, MDE 235), 5 d -70 (p .55, MDE 300); every year negative. Fading a tiring buyer loses (flow persistence), n.s.",
+     "date": "2026-11-24",
+     "evidence": "N3d__explore"
     },
     {
      "id": "c",
@@ -806,13 +809,19 @@
     {
      "id": "e",
      "what": "daily terminal shakeout: close back above a broken 20/55-day low on record volume",
-     "status": "planned"
+     "status": "done",
+     "result": "terminal shakeout: low broke the prior 20-d (55-d) low within 3 days, close back above it on the highest volume of 20 days -> long: 20-d version 5 d +18 bp vs matched (p .91, MDE 373), 10 d -68; 55-d version 5 d -208 (p .24), 10 d -52. Nothing",
+     "date": "2026-11-24",
+     "evidence": "N3d__explore"
     },
     {
      "id": "f",
      "what": "failed bad news / absorption (tg:93, wa 18.10.54(3) 'in control: the one that absorbs'): strongly negative taker delta over 1-5 days with price flat or up -> next days, dose in the residual of price on delta, cross-section of liquid coins",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "absorption (3-day taker-imbalance z sum <= -2 with 3-day return >= 0) -> long 5 d: explore +231 vs +85 matched (diff +146, p .014, ex-top-3 +193, passes; by year +195 / +253 (p .02) / -12; dose by 3-day return +136/+217/+341), cross-sectional residual version +26 bp (p .38, 2021 only). Pre-registered N3f_absorption_long_5d: confirmT 2024-25 -92 vs -20 (diff -72, p .18; 2025 -264), confirmC half-1 coins 2021-25 +70 vs +23 (diff +47, p .27) -> FAILS both; vault untouched. The explore effect was 2021-22 (a regime where dips with heavy selling were bought)",
+     "date": "2026-11-24",
+     "evidence": "N3f_absorption_long_5d__confirmC"
     },
     {
      "id": "g",

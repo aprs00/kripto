@@ -1,0 +1,52 @@
+{
+ "name": "N3f_absorption_long_5d",
+ "sample": "confirmT",
+ "n": 2844,
+ "days": 514,
+ "coins": 254,
+ "mean_bp": -92.42,
+ "median_bp": -115.83,
+ "win": 0.452,
+ "se_bp": 61.59,
+ "ci95_bp": [
+  -213.47,
+  27.31
+ ],
+ "p": 0.1329335332333833,
+ "mde80_bp": 172.44,
+ "mean_ex_top3_bp": -130.27,
+ "top3_share": null,
+ "t_day_mean": -2.74,
+ "by_year": {
+  "2024": [
+   1587,
+   43.48
+  ],
+  "2025": [
+   1257,
+   -263.99
+  ]
+ },
+ "by_side": {
+  "1": [
+   2844,
+   -92.42
+  ]
+ },
+ "coins_positive": 0.41,
+ "net_bp": {
+  "free": -92.42,
+  "maker_taker": -100.42,
+  "taker": -105.42,
+  "taker_x2": -118.42,
+  "crash": -172.42
+ },
+ "base_n": 8517,
+ "base_bp": -20.24,
+ "vs_base_bp": -72.17,
+ "p_vs_base": 0.17491254372813594,
+ "passes": false,
+ "note": "long 5 d after 3-day taker-imbalance z <= -2 with the 3-day return >= 0; base = same coin, same trailing 14-d return decile",
+ "rerun": "",
+ "at": "2026-11-24T11:51:04+00:00"
+}
