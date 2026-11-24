@@ -957,6 +957,12 @@
      "id": "d",
      "what": "HL thin-book version with L2 depth (data too short before 2026-12-10: mark and move on)",
      "status": "planned"
+    },
+    {
+     "id": "e",
+     "what": "long at a new 20-bar low made on thin volume (< 24-bar median), 4h and 1h, hold 24 bars, vs same coin at the same trailing-14-bar return decile (matched); per-year diffs before any prereg (from N5 c: thin lows are undercut but end higher)",
+     "status": "planned",
+     "added": "2026-11-24"
     }
    ],
    "sessions": 1

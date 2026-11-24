@@ -92,5 +92,15 @@
    "note": "explore by year: diff +195 (2021), +253 (2022, p .02), -12 (2023); cross-sectional residual version failed (2021 only); dose monotone in the 3-day return (136/217/341 bp); thresholds -2 and 0 were the first and only ones tried"
   },
   "at": "2026-11-24T11:50:47+00:00"
+ },
+ "N5e_thin_low_long_4h": {
+  "claim": "R6 refined: a 4h new 20-bar low made on thin volume is undercut (stop-run) but price is higher 4 days later than for the same coin at the same trailing return",
+  "rule": "COINS10-style 4h bars from Binance 1-min klines; event = low < min(prior 20 lows) and bar volume < median of prior 24 bars; long at the close, hold 24 bars; baseline same coin, same trailing-14-bar return decile, 3 matched; confirmT COINS10 2024-25, confirmC other klines_1m coins 2021-25; one run each",
+  "params": {
+   "explore_diff_bp": 167.5,
+   "explore_p": 0.037,
+   "note": "idea arose from N5 c in the same session (chosen after seeing thin vs heavy lows); per-year explore diffs +337/+135/+54 (only 2021 significant); 1h version failed the per-year rule and is not registered; effect below its MDE (236 bp)"
+  },
+  "at": "2026-11-24T11:58:54+00:00"
  }
 }
