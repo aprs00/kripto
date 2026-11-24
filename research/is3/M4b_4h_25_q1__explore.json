@@ -1,0 +1,56 @@
+{
+ "name": "M4b_4h_25_q1",
+ "sample": "explore",
+ "n": 282,
+ "days": 204,
+ "coins": 3,
+ "mean_bp": 98.31,
+ "median_bp": 9.16,
+ "win": 0.504,
+ "se_bp": 67.77,
+ "ci95_bp": [
+  -30.79,
+  230.36
+ ],
+ "p": 0.14992503748125938,
+ "mde80_bp": 189.75,
+ "mean_ex_top3_bp": 50.17,
+ "top3_share": 0.5,
+ "t_day_mean": 2.41,
+ "by_year": {
+  "2021": [
+   157,
+   260.27
+  ],
+  "2022": [
+   72,
+   -219.87
+  ],
+  "2023": [
+   53,
+   50.78
+  ]
+ },
+ "by_side": {
+  "1": [
+   282,
+   98.31
+  ]
+ },
+ "coins_positive": 0.33,
+ "net_bp": {
+  "free": 98.31,
+  "maker_taker": 90.31,
+  "taker": 85.31,
+  "taker_x2": 72.31,
+  "crash": 18.31
+ },
+ "base_n": 1410,
+ "base_bp": 112.58,
+ "vs_base_bp": -14.27,
+ "p_vs_base": 0.8630684657671165,
+ "passes": false,
+ "note": "4-h bars <= -2.5%, most negative quintile of min adaptive group share (<= -0.279), long 2 d (12 bars); vs matched other down bars",
+ "rerun": "",
+ "at": "2026-11-24T18:54:34+00:00"
+}

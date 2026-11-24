@@ -1289,7 +1289,10 @@
     {
      "id": "b",
      "what": "session and 4-h bars instead of UTC days",
-     "status": "planned"
+     "status": "done",
+     "result": "4-h bars (BTC/ETH/SOL 2021-23, adaptive groups from the previous day's sizes): bars <= -1.5% (n 2790) / -2.5% (n 1408), most negative quintile of min group delta share, long 12 bars: +95 vs matched +143 (diff -48, p .36, MDE 133) / +98 vs +113 (diff -14, p .86); quintile curves flat at 3/12/18 bars (Q1..Q5 +95/+105/+149/+109/+112); 2022 negative. 2 thresholds x 3 horizons. Shorter bars do not rescue it. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "M4b_4h_15_q1__explore"
     },
     {
      "id": "c",

@@ -105,5 +105,81 @@ def explore() -> None:
                 L.check_causal(fn, p, "2022-07-01", "6D")
 
 
+
+# ---------------------------------------------------------------- b: 4-hour bars
+def adaptive4h(sym: str) -> pd.DataFrame:
+    """Per 4-h bar: min adaptive group delta share; groups cut at the PREVIOUS UTC day's volume septiles."""
+    z = tsize.load(sym)
+    B, S = z["buy"].astype(np.float64), z["sell"].astype(np.float64)          # (D, 288, 12)
+    D = len(B)
+    V4 = (B + S).reshape(D, 6, 48, 12).sum(2)
+    D4 = (B - S).reshape(D, 6, 48, 12).sum(2)
+    Vd = (B + S).sum(1)
+    rows, idx = [], []
+    days = pd.DatetimeIndex(z["days"]).tz_localize("UTC")
+    for i in range(1, D):
+        r = Vd[i - 1]
+        for j in range(6):
+            idx.append(days[i] + pd.Timedelta(hours=4 * j))
+            v, d = V4[i, j], D4[i, j]
+            if r.sum() <= 0 or v.sum() <= 0:
+                rows.append(np.nan)
+                continue
+            mid = (np.cumsum(r) - r / 2) / r.sum()
+            g = np.minimum((mid * NG).astype(int), NG - 1)
+            gv, gd = np.bincount(g, v, NG), np.bincount(g, d, NG)
+            live = gv >= 0.01 * v.sum()
+            rows.append(float(np.nanmin(np.where(live, gd / np.where(gv > 0, gv, 1), np.nan))))
+    return pd.Series(rows, index=pd.DatetimeIndex(idx))
+
+
+def panel4h() -> dict:
+    import pyarrow.parquet as pq
+    out = {k: {} for k in ("close", "high", "low", "volume", "fmin")}
+    for c, s in SYMS.items():
+        k = pq.read_table(f"data/bn/klines_1m/{s}.parquet", columns=["t", "h", "l", "c", "qv"]).to_pandas()
+        k.index = pd.to_datetime(k.t, unit="ms", utc=True)
+        a = k.resample("4h").agg({"h": "max", "l": "min", "c": "last", "qv": "sum"})
+        out["close"][c], out["high"][c], out["low"][c], out["volume"][c] = a.c, a.h, a.l, a.qv
+        out["fmin"][c] = adaptive4h(s)
+    p = {k: pd.DataFrame(v) for k, v in out.items()}
+    ix = p["close"].index
+    return {k: v.reindex(ix) for k, v in p.items()}
+
+
+def events4h(p: dict, thr: float = -0.015, hi: float = np.inf, lo: float = -np.inf, H: int = 12, sample: str = "explore") -> pd.DataFrame:
+    c = p["close"]
+    r = c / c.shift(1) - 1
+    fwd = c.shift(-H) / c - 1
+    a, b = (pd.Timestamp(x, tz="UTC") for x in L.SAMPLES[sample])
+    rows = []
+    for coin in c.columns:
+        dec = pd.qcut(r[coin].where(r[coin] <= thr), 10, labels=False, duplicates="drop")
+        f = p["fmin"][coin]
+        ok = (r[coin] <= thr) & (f > lo) & (f <= hi) & fwd[coin].notna() & (c.index >= a) & (c.index < b)
+        for t in c.index[ok.to_numpy()]:
+            rows.append({"time": t, "coin": coin, "side": 1, "gross": float(fwd.at[t, coin]), "m": int(dec[t]) if pd.notna(dec[t]) else -1, "f": float(f[t])})
+    return pd.DataFrame(rows, columns=["time", "coin", "side", "gross", "m", "f"])
+
+
+def explore_b() -> None:
+    p = panel4h()
+    for thr in (-0.015, -0.025):
+        pool = events4h(p, thr)
+        qs = np.nanquantile(pool.f, [0.2, 0.4, 0.6, 0.8])
+        for H in (3, 12, 18):
+            pool = events4h(p, thr, H=H)
+            tab = [f"Q{k + 1}({hi:+.2f}) {pool[(pool.f > lo) & (pool.f <= hi)].gross.mean() * 1e4:+.0f}bp n{int(((pool.f > lo) & (pool.f <= hi)).sum())}"
+                   for k, (lo, hi) in enumerate(zip([-np.inf, *qs], [*qs, np.inf]))]
+            print(f"4h thr {thr} H{H} bars: " + " | ".join(tab), flush=True)
+        fn = lambda pp, t=thr, q=qs[0]: events4h(pp, t, hi=q, H=12)
+        e = fn(p)
+        base = L.matched(e, events4h(p, thr, lo=qs[0], H=12))
+        L.card(f"M4b_4h_{int(-thr * 1000)}_q1", e[["time", "coin", "side", "gross", "m"]], "explore", base,
+               note=f"4-h bars <= {thr:.1%}, most negative quintile of min adaptive group share (<= {qs[0]:+.3f}), long 2 d (12 bars); vs matched other down bars")
+        if thr == -0.015:
+            L.check_causal(fn, p, "2022-07-01", "3D")
+
+
 if __name__ == "__main__":
-    {"dist": dist, "explore": explore}[sys.argv[1]]()
+    {"dist": dist, "explore": explore, "b": explore_b}[sys.argv[1]]()

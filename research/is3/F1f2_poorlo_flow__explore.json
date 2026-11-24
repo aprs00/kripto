@@ -1,0 +1,31 @@
+{
+ "name": "F1f2_poorlo_flow",
+ "sample": "explore",
+ "side": 1,
+ "on_share": 0.837,
+ "base": {
+  "sr": 1.582424239123744,
+  "ann": 0.3521987575566836,
+  "mdd": -0.23519443530744344,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.7538471209497292,
+  "ann": 0.1865473723912292,
+  "mdd": -0.29033877706295164,
+  "days": 1095
+ },
+ "dSR": -0.829,
+ "dMDD": -0.0551,
+ "p_daily_diff": 0.14792603698150925,
+ "n_random": 100,
+ "pct_dSR_vs_random": 0.72,
+ "random_dSR_q05_q50_q95": [
+  -1.329,
+  -0.935,
+  -0.545
+ ],
+ "pct_dMDD_vs_random": 0.4,
+ "note": "block longs whose day low is poor (bottom bin >= 2 hours); touched 0.1827; per-year dSR 2021:-1.38 2022:+0.73 2023:-2.03",
+ "passes": false
+}
