@@ -1,0 +1,64 @@
+{
+ "name": "N5e_thin_low_long_4h",
+ "sample": "confirmC",
+ "n": 17062,
+ "days": 1279,
+ "coins": 97,
+ "mean_bp": 59.66,
+ "median_bp": -9.27,
+ "win": 0.494,
+ "se_bp": 50.47,
+ "ci95_bp": [
+  -39.0,
+  157.17
+ ],
+ "p": 0.2463768115942029,
+ "mde80_bp": 141.32,
+ "mean_ex_top3_bp": 22.03,
+ "top3_share": 0.64,
+ "t_day_mean": 2.93,
+ "by_year": {
+  "2021": [
+   3212,
+   461.57
+  ],
+  "2022": [
+   4289,
+   -130.5
+  ],
+  "2023": [
+   2577,
+   62.73
+  ],
+  "2024": [
+   3325,
+   4.96
+  ],
+  "2025": [
+   3659,
+   -22.68
+  ]
+ },
+ "by_side": {
+  "1": [
+   17062,
+   59.66
+  ]
+ },
+ "coins_positive": 0.63,
+ "net_bp": {
+  "free": 59.66,
+  "maker_taker": 51.66,
+  "taker": 46.66,
+  "taker_x2": 33.66,
+  "crash": -20.34
+ },
+ "base_n": 3754526,
+ "base_bp": 69.16,
+ "vs_base_bp": -9.49,
+ "p_vs_base": 0.8255872063968016,
+ "passes": false,
+ "note": "long 4 days after a 4h new 20-bar low on thin volume; base = same coin, same trailing 14-bar return decile",
+ "rerun": "",
+ "at": "2026-11-24T11:59:29+00:00"
+}

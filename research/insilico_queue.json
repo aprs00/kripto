@@ -961,8 +961,11 @@
     {
      "id": "e",
      "what": "long at a new 20-bar low made on thin volume (< 24-bar median), 4h and 1h, hold 24 bars, vs same coin at the same trailing-14-bar return decile (matched); per-year diffs before any prereg (from N5 c: thin lows are undercut but end higher)",
-     "status": "planned",
-     "added": "2026-11-24"
+     "status": "done",
+     "added": "2026-11-24",
+     "result": "new form from N5 c, tested once: 4h new 20-bar low on thin volume -> long 24 bars vs same coin at the same trailing-return decile: explore +230 vs +62 (diff +168, p .03, every year positive +337/+135/+54; 1h version only 2022, not registered). Pre-registered N5e_thin_low_long_4h: confirmT COINS10 2024-25 +39 vs +63 (diff -24, p .68), confirmC 97 other coins 2021-25 +60 vs +69 (diff -9.5, p .83) -> FAILS both; vault untouched. The explore edge was 2021 (+560 bp) again",
+     "date": "2026-11-24",
+     "evidence": "N5e_thin_low_long_4h__confirmC"
     }
    ],
    "sessions": 1

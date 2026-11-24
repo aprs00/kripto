@@ -438,3 +438,5 @@ looks like volume; a drift on falling volume = no sellers (continuation) only if
 (same coin, same move-size bin or same trailing-return decile). d (HL L2 thin-book) waits for L2 history (>= 2026-12-10).
 N5 a/b/c done (is3_n5.py): empty-by-trade-count moves are not refilled; volume on rallies says nothing at 1h/4h; thin-volume lows ARE undercut more (84 vs 75%) but price is higher 24 bars later
  (+230 vs -3 bp at 4h): the undercut is a stop-run, not a continuation. Candidate idea (not a form yet): buy thin-volume 4h lows with a stop BELOW the likely undercut. N5 d waits for HL L2 history.
+N5 e (added, tested once): thin-volume 4h lows passed explore even under the per-year rule (all 3 years positive) and failed both confirms (-24, -9.5 bp). Third 2021-heavy explore that died in confirm today:
+ the per-year rule is necessary but not sufficient when one year carries most of the magnitude. Next session: N5 d waits (HL L2 >= 2026-12-10); M-items need M0c; then F0/F1/F2 (two 'trend tiring' features to test as filters), X1, L2 (due 12-05), N2 (spot data landing).
