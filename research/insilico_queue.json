@@ -118,6 +118,12 @@
      "what": "the gap in his picture (tg:29) is the VALLEY BETWEEN TWO HUMPS of yesterday's profile (bimodal day), not its thin tails: on bimodal days does next-day POC / value land in the valley, vs the same-width band elsewhere in the range and vs unimodal days; trade = enter at the valley edge, out at the far edge",
      "status": "planned",
      "added": "2026-11-22"
+    },
+    {
+     "id": "g",
+     "what": "per-candle 'salad' profile (wa 18.10.31(2), S2p: 'where we had lots of volume, on next candle we have little ... pockets are magnets, flow has long memory and clustering'): 1h candles from aggTrades/1m bins (10-bp price bins), does hour t+1 put its volume into hour t's low-volume bins inside t's range more than a shuffled-bin placebo and a same-range random-day placebo? dose = LVN depth; trade view = touch of the nearest prior-hour LVN within 60 min vs same-distance placebo level",
+     "status": "planned",
+     "added": "2026-11-24"
     }
    ]
   },
@@ -1710,7 +1716,7 @@
    "group": "A",
    "title": "Look at every picture and video myself (S1 opened 8 of them)",
    "src": "owner 2026-11-22: reread the sources; wa 18.10.24(2) contradicted its description",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "b1",
@@ -1796,11 +1802,17 @@
     {
      "id": "p",
      "what": "PDF pages skimmed in S1c and the 163 cited records that were read truncated: finish them (S2p__notes.json)",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "140 cited records longer than 500 chars (of 189 rebuilt cited ids, superset of S1e's 163) read from char 500 on (91k chars); 0 contradictions; new form P1g (per-candle 'salad' profile, wa 18.10.31(2)); HOFM case histories, Artemis rest and Almanac calendar pages scanned by keyword grep with hits read in context (not line by line): lessons = over-betting / crisis correlation / CVaR, all already in E2d and C1; no other new form",
+     "date": "2026-11-24",
+     "evidence": "S2p__notes"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "UNTESTABLE",
+   "reason": "a reading item, not a hypothesis: 253 images opened by eye (8 batches: 88 on 2026-11-23, 165 on 2026-11-24; 4 long scrolls too low-res to verify), 21 video sheets + 4 tape keyframes + 13 transcripts, 140 truncated records finished, PDF remainders scanned; 0 contradictions with stored descriptions; 6 forms added (M2f, C2g, P1g, M4a reworded, M3e entry, M1c clip) and 2 backlog items (W2 book-event collector, L1p liquidation-print spring-back), tested in their own items",
+   "closed": "2026-11-24"
   }
  ]
 }

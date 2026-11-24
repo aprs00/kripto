@@ -369,3 +369,8 @@ E2c/d 2026-11-23 (is3_e2risk.py, is3_e2d.py): minute-low mark worst −17% of eq
 Read: 374 chat records (image descriptions; 8 images opened by eye), 2 guides, 46 templates, rule pages of 3 PDFs. 11 rules had been flattened: R3 (thin fast bar, not the sign of 7 groups), R4 (two tests),
 R14 (valley between two humps), R19 (second target), R1 (magnitude), R7 (location), R18, R23, R24, Hull, R30. 33 new queue forms, 11 forms reworded; those rules are not settled until they run.
 New data: 107 hand-drawn levels of 2020-06..10 (4 coins, plus one 2021) have creation timestamps inside the templates, i.e. a dated record without hindsight (authorship unproven) → queue T2e.
+
+### InSilico S2: every picture and video opened by eye (2026-11-23/24) → no verdict, the stored descriptions hold
+253 images (4 unreadable low-res scrolls), 21 video sheets + tape keyframes + 13 transcripts, 140 truncated cited records finished, PDF remainders scanned (keyword greps, not line by line). 0 contradictions with the
+stored descriptions, so forms built from them stand. The pictures still added things the text lacked: his size groups are recomputed from the PREVIOUS DAY (M4a), exhaustion = market orders getting smaller and rarer (M2f),
+mousetrap entry = first bar where buyers take over at the level (M3e), Friday pump after the US cash close (C2g), hourly 'salad' profile (P1g). Two claims need data we do not collect yet: book pulls/lifts (backlog W2) and single big liquidations (L1p).

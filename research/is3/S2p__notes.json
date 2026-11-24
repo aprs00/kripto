@@ -1,0 +1,30 @@
+{
+ "form": "S2p",
+ "date": "2026-11-24",
+ "records": {
+  "cited_set": "rebuilt from insilico_rules.md + insilico_queue.json + insilico_pass3.md ids: 189 records (superset of S1e's 163)",
+  "longer_than_500_chars": 140,
+  "read": "every one of the 140 from char 500 to ~2600 (text + stored image description + transcript): 91k chars",
+  "new_forms": [
+   "P1g per-candle 'salad' profile (wa 18.10.31(2)): next hour fills this hour's low-volume bins; LVN pockets as 1-h magnets"
+  ],
+  "confirmed_already_queued": [
+   "tg:100 MACD-cross fade (O-family)",
+   "tg:98 Hull 55/180 (O-family)",
+   "tg:92 failed reversal signals in a row -> continuation",
+   "tg:66 kill zones (C2)",
+   "tg:226-232 range-high bid / avg candle target (M5)",
+   "tg:274-284 TSize daily (M4e), close-only (M4)",
+   "wa 18.10.58 empty stop-driven moves (N5)",
+   "wa 18.11.00(1) fart rises (N5b)",
+   "wa 18.10.41(1) wait for normalization after extremes (M2e/O1)"
+  ]
+ },
+ "pdfs": {
+  "HOFM5": "case histories p6-59 scanned by grep for lessons/rules (lesson, should, never, Kelly, over-bet, liquidation, margin) and pages 9-13 read in full: lessons = do not over-bet (beyond full Kelly), scenario-dependent correlations go to 1 in crises, copycat unwinds, extra illiquidity, CVaR over VaR, 'when in doubt bet less'; Ziemba's naked-put strategy skipped 6 of 83 quarters by an option-price sentiment filter. Our analogue is E2d (size from worst simultaneous fill) and the ladder's crash correlation; a vol-regime filter for the ladder needs implied vol (no whitelisted source) and T1j showed BTC-fall filters hurt -> no new form",
+  "Artemis": "remaining 42 pages scanned by grep (short vol, convexity, reflexivity, liquidity, tail, gamma); a macro essay on central-bank-suppressed volatility; no trading rule; already used in S1c/E2d",
+  "Almanac": "the 120 calendar/statistics pages scanned by grep for recurring calendar claims (expiration week/day, first/last trading day, Monday/Friday, triple witching, best six months, holidays): all already in C1b/c/f/g/e; equity-specific numbers not transferable",
+  "not_done": "the PDFs were not read line by line; scanned with keyword greps and the hits read in context"
+ },
+ "contradictions": 0
+}
