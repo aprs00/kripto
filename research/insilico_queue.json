@@ -645,7 +645,10 @@
     {
      "id": "g",
      "what": "Fisher transform turns on 1-min (his original method), with costs",
-     "status": "planned"
+     "status": "done",
+     "result": "Ehlers Fisher(10) turns on 1-min bars, explore COINS10 2021-23, entry one bar late, vs same-coin same-side minutes in the same trailing-10-min return decile: extremes X 1.5 / 2 / 2.5 give 15-min edges of +0.7 / +0.7 / +1.7 bp (longs) and -0.1 / -0.7 / -1.2 (shorts) vs matched (MDE 0.7-2.4 bp, well powered); 60 min within +-4 bp; gross 0-3 bp against a 13-bp taker round trip (net -10 to -16). Dead at any realistic cost",
+     "date": "2026-11-24",
+     "evidence": "O2g__explore"
     },
     {
      "id": "h",
