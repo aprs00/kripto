@@ -77,3 +77,4 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * C2 time of day: OPEN only for the Friday 16–20 NY window (+21 bp, MDE 38, goes to FF1); kill zones, filler give-back, illiquid-hour fades, same-clock persistence, Monday TWAP: dead.
 * P3 naked / composite POCs: DEAD. Not magnets (touched less than mirror levels), no first-touch reaction beyond a generic bounce (+16 bp vs matched mirror, p .09, anti-dose in node fatness).
 * O1 oscillators: DEAD. RSI adds nothing beyond the past return; 'back to 50' is followed by trend resumption, not reversal; the ladder-by-RSI filter passed explore and failed confirmT (2021 artifact).
+* O2 his own indicators (VZO, Hull, Leledc, camarilla, Fisher, channels, Crayons H/invalidation): DEAD. None adds to the past return; VZO alert end and invalidations are wrong-way. Feature idea: a failed new high weakens trend continuation (F2).

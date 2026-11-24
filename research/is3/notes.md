@@ -386,3 +386,4 @@ O2 9/13 forms done (is3_o2.py, O2__explore; peak RSS 1.94 GB - at the limit, run
 O2 j done (is3_o2.py j): an H (failed new high in an uptrend) is followed by less upside than ordinary uptrend bars (+28 bp at 6 h, +71 at 24 h on 4h, p .003) but not by a fall: shorts still lose.
  Feature idea for F2 (trim trend longs after an H), not a trade. O2 left: f, g, h.
 O2 g done (is3_o2g.py): 1-min Fisher turns are worth 0–3 bp gross (MDE ~1 bp), −10..−16 net. O2 left: f (Crayons climax labels, vague), h (regression channel vs hand-drawn placebo).
+O2 h done (regression channel = placebo channels), f skipped (no formula in the guide; d and k are its public analogues). O2 closed DEAD: ~70 cells, 3-4 at p < .05 as chance predicts, several wrong-way.

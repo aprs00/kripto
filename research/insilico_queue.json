@@ -595,7 +595,7 @@
    "group": "A",
    "title": "The author's own indicators (guides never turned into rules)",
    "src": "R30; tg:90, 99, 100; pdf Crayons V3.4 (31 p), FSVZO V2.8 (16 p)",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -640,7 +640,9 @@
     {
      "id": "f",
      "what": "Crayons: bearish / bullish climax, dominance shift, invalidation lines, only labels whose definition the guide gives [S1b: climax = pause OR reversal by trend age, base-trend veto; invalidation in form k]",
-     "status": "planned"
+     "status": "skipped",
+     "result": "the Crayons guide (pages 14-17, opened in data/chat_extract/out/pdf/InSilico_Crayons_Product_Guide.md) defines climax points only in words ('extremely early reversal detection mechanics', 'in strong trends more often a pitstop marker'), no formula; the indicator is closed-source. Its public analogues were tested instead: Leledc exhaustion (d) and signal invalidation (k), both without an edge",
+     "date": "2026-11-24"
     },
     {
      "id": "g",
@@ -703,7 +705,10 @@
      "date": "2026-11-24",
      "evidence": "O2__explore"
     }
-   ]
+   ],
+   "verdict": "DEAD",
+   "reason": "12 forms done + 1 skipped (Crayons climax has no published formula; Leledc and invalidation tested instead). Explore 2021-23, COINS10 1h/4h + bnall top-100 1d, baseline = same coin at the same trailing-return decile. Nothing adds to the past return: sham-pump fade, MACD-cross fade (MDE 7 bp), Leledc, VZO alert end (wrong-way: flow persists), invalidation (loses at 1h), VZO midline, VZO veto, camarilla (= 0.63x/1.37x placebo pivots), regression channel (= placebo widths), 1-min Fisher (0-3 bp gross vs 13 bp cost). Only cells at p < .05: Hull55+180 up-turn at 1h +17 bp gross over 6 h (absent at 4h/1d, ~ costs) and the H failed-extension relative effect (shorts still lose) -> F2 feature idea. ~70 cells, 3-4 at p < .05 = chance",
+   "closed": "2026-11-24"
   },
   {
    "id": "N1",

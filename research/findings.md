@@ -424,3 +424,8 @@ were an approach-side artifact. Lesson: compare level touches within the same ap
 Explore 2021–23, COINS10 1h/4h + bnall top-100 1d, baseline = same coin at the same trailing-14-bar return decile. RSI > 70 for 1/3/6 bars adds nothing stable (no run-length dose); re-entry dips = matched;
 3 failed sell signals precede a DROP at 1h (−58 bp, p .02). RSI back through 50 after > 70 is followed by the trend resuming at 1h/4h/1d (shorts lose, p .03–.06; long card p .18). Ladder filter (fills when
 daily RSI ≥ 50): explore +243 vs +68 bp, confirmT 2024–25 +183 vs +137 (p .60) → fails; the gap was 2021. Scripts research/studies/is3_o1.py, is3_o1_card.py.
+
+### InSilico O2 / R30 the author's own indicators (2026-11-24) → DEAD
+Explore 2021–23, COINS10 1h/4h + bnall top-100 1d, baseline = same coin at the same trailing-14-bar return decile, ~70 cells. VZO (signed volume) alert ends are followed by MORE of the same flow; invalidated
+exhaustion bars lose at 1h; Leledc, MACD-cross fade, VZO midline/veto, camarilla (= placebo pivots), regression channel (= placebo widths), sham-pump fade: nothing; 1-min Fisher turns 0–3 bp gross. Hull55+180 at 1h
++17 bp/6 h (p .03, absent at 4h/1d). Crayons H (failed new high in an uptrend): less upside than ordinary uptrend bars (+28 bp/6 h, p .003) but shorting it loses → F2 feature idea. Crayons climax: no formula published.
