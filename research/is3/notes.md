@@ -236,3 +236,5 @@ tg:167: "can determine how strong the bounce or dive will be from initial mechan
 climax+3; decision at that close, simple returns 15/60/240 min in the fade direction, explore coins/dates only. Expect monotone: strong spring -> bounce continues (book empty, contrarians slip
 through), weak spring -> dive continues. Failure mode to watch: mean reversion of the 3-min move itself (bid-ask bounce on a torn book, the M0 trap) would show as NEGATIVE slope at 15 min.
 What he does NOT say: the spring is relative to the fall, and he waits for it (no entry at the extreme). Form a (model) after b, only if b shows a curve.
+T3 a/c/d done (is3_t3a.py): ridge on 22 context features has real OOS IC (+0.075, t 3.2; shuffle −0.003) but it is the side rule (fade dumps, ride pumps; 78% agreement, −7.5 bp vs the rule on matched
+ climaxes). Sizing by the prediction = sizing by volatility (same risk-adjusted t). Spring (b) is not a dose-response; a strong spring means the bounce is used up. Trees untried (not installed).

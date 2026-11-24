@@ -87,12 +87,17 @@ def main() -> None:
         perms.append((sp["ic_mean"], sp["top10_mean_bp"]))
     pa = np.array(perms)
     print(f"shuffle (20): IC {pa[:, 0].mean():+.4f} sd {pa[:, 0].std():.4f}; top-10% {pa[:, 1].mean():+.1f} bp sd {pa[:, 1].std():.1f}")
-    pool = e.assign(gross=e.h60)
-    pool["m"] = pool.groupby("coin").fall.transform(lambda x: pd.qcut(x.rank(method="first"), 10, labels=False))
-    top = s.pop("top").merge(pool[["time", "coin", "m"]], on=["time", "coin"], how="left")
-    base = L.matched(top, pool, k=3)
+    pool = e.assign(gross=e.h60)                              # 'm' = fall-size decile per coin, from events()
+    top = s.pop("top")
+    orig_side = np.sign(top.p.to_numpy()) * top.side.to_numpy()                      # undo: top.side = orig * sign(p)
+    rule_g = np.where(orig_side > 0, 1, -1) * top.h60.to_numpy()                     # simple rule: fade dumps, ride pumps
+    s["side_rule_same_events_bp"] = float(rule_g.mean() * 1e4)
+    s["model_vs_side_rule_agree"] = float((np.sign(top.p.to_numpy()) == np.where(orig_side > 0, 1, -1)).mean())
+    print(f"same top events, simple side rule (fade dumps / ride pumps): {s['side_rule_same_events_bp']:+.1f} bp; model agrees with it on {s['model_vs_side_rule_agree']:.0%}")
+    sr = pool.assign(side=np.where(pool.side > 0, 1, -1), gross=np.where(pool.side > 0, 1, -1) * pool.h60)
+    base = L.matched(top, sr, k=3)
     cols = ["time", "coin", "side", "gross"]
-    card = L.card("T3a_ridge_top10_h60", top[cols], "explore", base[cols], note="ridge walk-forward by quarter, top 10% |pred|, traded by sign; base = fade matched climaxes")
+    card = L.card("T3a_ridge_top10_h60", top[cols], "explore", base[cols], note="ridge walk-forward by quarter, top 10% |pred|, traded by sign; base = simple side rule (fade dumps, ride pumps) on matched climaxes")
     res = {**s, "shuffle_ic_mean": float(pa[:, 0].mean()), "shuffle_ic_sd": float(pa[:, 0].std()), "shuffle_top_mean_bp": float(pa[:, 1].mean()),
            "shuffle_top_sd_bp": float(pa[:, 1].std()), "card": {k: card.get(k) for k in ("n", "mean_bp", "p", "vs_base_bp", "p_vs_base", "mde80_bp", "passes")}}
     OUT.write_text(json.dumps(res, indent=1, default=float))

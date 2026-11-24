@@ -1,0 +1,56 @@
+{
+ "name": "T3a_ridge_top10_h60",
+ "sample": "explore",
+ "n": 4537,
+ "days": 494,
+ "coins": 10,
+ "mean_bp": 34.78,
+ "median_bp": 9.92,
+ "win": 0.543,
+ "se_bp": 21.42,
+ "ci95_bp": [
+  -2.62,
+  80.89
+ ],
+ "p": 0.09945027486256872,
+ "mde80_bp": 59.98,
+ "mean_ex_top3_bp": 7.34,
+ "top3_share": 0.8,
+ "t_day_mean": 3.79,
+ "by_year": {
+  "2022": [
+   2997,
+   21.23
+  ],
+  "2023": [
+   1540,
+   61.15
+  ]
+ },
+ "by_side": {
+  "-1": [
+   1008,
+   3.71
+  ],
+  "1": [
+   3529,
+   43.65
+  ]
+ },
+ "coins_positive": 0.7,
+ "net_bp": {
+  "free": 34.78,
+  "maker_taker": 26.78,
+  "taker": 21.78,
+  "taker_x2": 8.78,
+  "crash": -45.22
+ },
+ "base_n": 13611,
+ "base_bp": 42.32,
+ "vs_base_bp": -7.54,
+ "p_vs_base": 0.7156421789105447,
+ "passes": false,
+ "note": "ridge walk-forward by quarter, top 10% |pred|, traded by sign; base = simple side rule (fade dumps, ride pumps) on matched climaxes",
+ "rerun": "",
+ "at": "2026-11-24T05:12:38+00:00"
+}

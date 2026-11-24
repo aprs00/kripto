@@ -379,3 +379,8 @@ mousetrap entry = first bar where buyers take over at the level (M3e), Friday pu
 His capitulation days (M4e) are ordinary >= -3% down days: 'all trade-size buckets negative' happens on 54% of them and changes nothing (next 3 d +0.51% vs +0.55%). 56 unseen analogs: +79 bp vs matched
 +74 (MDE 353). His 85 dated 2020–21 levels: after the first touch price goes THROUGH them more than through distance-matched placebo lines (60 min −18 vs +11 bp, p .03) and they are not touched more often.
 Consequence: M4a now scores the size of the negative bucket shares, not the sign. If his edge is real it is in what candles don't show (book: backlog W2) or in his discretion. research/is3/T2*__*.json, studies/is3_t2*.py.
+
+### InSilico T3: context model / spring strength after a liquidation climax (2026-11-24) → DEAD (4 forms; explore COINS10 2021–23, 63k climaxes)
+tg:167 'the initial mechanical spring tells how strong the bounce will be': no. Fade return by spring decile is flat (+7..+13 bp at 60 min) and turns negative when > 54% is already retraced (−11 bp vs matched, p .02,
+MDE 12.5): a strong spring = bounce used up. A weak spring does not predict continuation (−1 bp vs matched). Ridge on 22 features: OOS IC +0.075 (t 3.2; shuffle −0.003) but = 'fade dumps, ride pumps' (−7.5 bp vs that
+rule); sizing by prediction = sizing by volatility. All below taker cost. Untried: tree models (not installed). Lesson: always test a model against the simplest rule it could be rediscovering, not only against a shuffle.

@@ -1556,13 +1556,16 @@
    "group": "T",
    "title": "Context model instead of if-x-then-y: the whole state -> distribution of the next 5/15/60 min",
    "src": "tg:167 'can determine how strong the bounce or dive will be from initial mechanical spring after liqs'; owner 2026-11-22",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "features as T2b on every climax event (about 800k rows in data/is3/lshock.parquet); ridge and small gradient-boosted trees, walk-forward by quarter with a 1-day purge, trained on explore coins only",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "ridge (numpy; trees not installed, so untried), 22 features incl. spring, side interactions, hour, dv30, breadth; walk-forward by quarter, 1-d purge, COINS10 explore, 62,928 climaxes, target 60-min fade return: OOS rank IC +0.075 (t 3.2, 7/8 quarters > 0); top-10% |pred| traded by sign +34.8 bp/event. But it is the known side rule: model agrees with 'fade dumps, ride pumps' on 78% of those events, the rule earns +33.1 bp on the same events, and vs the rule on matched climaxes the model is -7.5 bp (p .72, MDE 60). Taker-net +22 bp, p .099, 2022 +21 / 2023 +61, ex-top3 +7. Verdict: no information beyond side + volatility",
+     "date": "2026-11-24",
+     "evidence": "T3a__model"
     },
     {
      "id": "b",
@@ -1576,17 +1579,26 @@
     {
      "id": "c",
      "what": "size the bet by the predicted return (top decile only / proportional) vs the fixed rule",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "sizing on the walk-forward predictions (all OOS climaxes): fixed side rule equal size +6.3 bp/event (per-day t 1.66); proportional to prediction +28.4 (t 1.81); the SAME side rule sized by |prediction| +28.1 (t 1.78): the per-event gain is bigger bets on volatile events, not better direction; risk-adjusted no improvement",
+     "date": "2026-11-24",
+     "evidence": "T3a__model"
     },
     {
      "id": "d",
      "what": "shuffle test: same pipeline with permuted targets must earn nothing",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "shuffle test, 20 permutations of the target inside every training window, same pipeline: OOS IC -0.0025 (sd 0.015), top-10% +3.6 bp (sd 7.8) vs real +0.075 / +34.8: the pipeline itself does not manufacture edge; the real model's edge is real but = the side rule (form a)",
+     "date": "2026-11-24",
+     "evidence": "T3a__model"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "4 forms, none positive against its baseline in explore: (b) spring is not a dose-response (flat +7..+13 bp in deciles 1-9, top decile -11 bp vs matched, p .02, MDE 12.5 = a strong spring means the bounce is used up, opposite of tg:167; weak spring does not mean continuation, -1 bp vs matched); (a) ridge context model has OOS IC +0.075 (t 3.2, shuffle 0) but only reproduces 'fade dumps, ride pumps' (-7.5 bp vs that rule, 78% agreement); (c) sizing by prediction = sizing by volatility; (d) shuffle clean. Diagnosis: the state of a climax carries direction (side) and scale (volatility), both already known from L1; nothing about bounce strength. Untried angle: nonlinear trees (not installed; deciles in b cover the main nonlinearity)",
+   "closed": "2026-11-24"
   },
   {
    "id": "T4",
