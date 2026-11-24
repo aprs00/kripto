@@ -781,7 +781,7 @@
    "group": "A",
    "title": "Tape behaviour: swings, streaks, change of character, VWAP, shakeouts",
    "src": "R37, R38, R40, R45, R51; tg:163, 239, 289; wa 18.10.28(1), 18.10.44(2)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -810,7 +810,10 @@
     {
      "id": "d",
      "what": "distance from weekly / monthly anchored VWAP: reversion vs momentum by volatility regime",
-     "status": "planned"
+     "status": "done",
+     "result": "COINS10 1h 2021-23, daily close distance from week-to-date / month-to-date VWAP in 20-day sd units -> next 24 h by quintile, split by volatility regime: no monotone curve (weekly low-vol 26/-1/21/51/56 bp, high-vol 81/-2/12/8/3); top minus bottom quintile +30 (low vol) / -78 (high vol) weekly, +28 / -33 monthly, all p > .26, MDE 62-93. The regime-dependent sign he implies (reversion in high vol, momentum in low vol) has the right shape but no significance",
+     "date": "2026-11-24",
+     "evidence": "N3dh__explore"
     },
     {
      "id": "e",
@@ -841,8 +844,11 @@
     {
      "id": "h",
      "what": "his AVWAP (wa 18.11.01(1)): anchor at the 90-day / 1-y extreme, at the nearby volume cluster if the extreme is thin; first touch bounce vs AVWAP from random anchor days and vs the plain price level",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "AVWAP anchored at the 90-day high / low (weekly anchor sets), first touch after >= 2% away, 6-h reaction one bar late away from the approach, side-matched: high-anchored -30.5 bp vs AVWAP from a random anchor -17.4 (diff -13, p .49, MDE 48), vs the plain high price -75.6 (+45, p .33); low-anchored +9.8 vs random -19.4 (+29, p .23, MDE 60), vs the plain low +10.3 (-0.5). His AVWAP anchors react like arbitrary anchors",
+     "date": "2026-11-24",
+     "evidence": "N3dh__explore"
     },
     {
      "id": "i",
@@ -872,7 +878,10 @@
      "evidence": "N3kg__explore"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "11/11 forms, explore 2021-23. Absorption (heavy taker selling while price holds, long 5 d) passed explore (+146 bp vs matched, dose monotone) and FAILED both confirms (2024-25 -72, unseen coins +47 p .27) -> dead as a trade. Shrinking swings (+15 bp vs strong swings at 1h, p .002) and, from O2 j, failed new highs mark a weaker trend but never pay a counter-trade: unconfirmed features for F2. Nothing else: buyer-streak fade, shakeout reclaim, delta flips (too rare), HTF filter (no difference, as he says), painted closes, non-overlap impulses (anti-dose), change-of-character bar, AVWAP distance / anchors. OPEN only because the two trend-tiring features are untested as filters",
+   "closed": "2026-11-24"
   },
   {
    "id": "N4",

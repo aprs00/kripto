@@ -433,3 +433,8 @@ exhaustion bars lose at 1h; Leledc, MACD-cross fade, VZO midline/veto, camarilla
 ### InSilico N1 / R26 round numbers, 'hundy roll' (2026-11-24) → DEAD
 Explore 2021–23, one-significant-digit levels vs placebo levels 37% of the way to the next. +6% before −3% from 2–3% below a round level in an up move: 35.0% vs 31.8% placebo (random walk 33%, p .18);
 first daily close 1–2% beyond → back within 5 d 93 vs 92%; 1-min first-touch reaction −21 bp vs placebo (p .06: run through, not defended). Script research/studies/is3_n1.py.
+
+### InSilico N3 tape behaviour (2026-11-24) → OPEN as features only; absorption dead after confirms
+Explore 2021–23. Absorption (3-day taker-imbalance z ≤ −2 while price holds, long 5 d): explore +146 bp vs matched (dose monotone) → confirmT −72, confirmC +47 (p .27): fails (2021–22 regime). Shrinking zigzag
+swings (1h): counter-trade +4 vs −10 bp after strong swings (p .002) — a 'trend tiring' feature like O2 j, not a trade. Nothing: buyer-streak fade, shakeout reclaim, delta flip (rare), HTF filter (no difference, as
+he says), painted hour closes, non-overlap impulses (anti-dose in efficiency), change-of-character bar, AVWAP distance and his 90-day AVWAP anchors (= random anchors). Scripts research/studies/is3_n3*.py.

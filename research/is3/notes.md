@@ -419,3 +419,5 @@ N3 k/g done (is3_n3kg.py): non-overlapping impulses carry a little at 1h (+29 bp
  reverse. N3 left for next session: a (successive swings), d (weekly/monthly AVWAP distance), h (his AVWAP anchors). Then N4, N5, the M-items (need M0c), F, X, L2 (due 12-05).
 N3 a done (is3_n3a.py): shrinking swings mark a weaker trend (counter-trade +4 vs -10 bp after a strong swing, p .002) but never pay a counter-trade. Same shape as O2 j (failed new high): both are
  'trend is tiring' features for F2 (trim trend exposure), neither is a reversal signal. N3 left: d, h.
+N3 d/h done (is3_n3dh.py): weekly/monthly AVWAP distance has no significant curve (regime shapes as he implies, n.s.); his 90-day-extreme AVWAPs react like random-anchor AVWAPs. N3 closed OPEN
+ (absorption failed both confirms; shrinking swings and failed new highs are 'trend tiring' features for F2, unconfirmed).
