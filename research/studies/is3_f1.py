@@ -70,5 +70,32 @@ def explore_d() -> None:
                     note=f"block longs while RSI14 <= {lo}; weight touched {touched(w, m, 1, 'explore')}")
 
 
+def explore_g() -> None:
+    """form g: 1-day short block after a cascade day, threshold dose and per-year dSR (both books)."""
+    for name, prm in BOOKS.items():
+        w, p, s = F.book(name, "bnall", prm)
+        base = F.run(w, p, s)
+        for thr, n in ((-0.05, 100), (-0.07, 0), (-0.10, 100)):
+            m = cascade_mask(p["close"], thr, 1)
+            if n:
+                F.judge(f"F1g_{name}_casc{int(-thr * 100)}_1d", w, p, s, m, "explore", side=-1, n_random=n,
+                        note=f"block shorts 1 d from a cascade day (median coin <= {thr:.0%}); weight touched {touched(w, m, -1, 'explore')}")
+            filt = F.run(F.apply(w, m, -1), p, s)
+            ex = F.cut(base, "explore")
+            yrs = {}
+            for y in (2021, 2022, 2023):
+                b_, f_ = ex[ex.index.year == y], F.cut(filt, "explore")
+                f_ = f_[f_.index.year == y]
+                yrs[y] = round(F.stats(f_)["sr"] - F.stats(b_)["sr"], 2)
+            casc = ~m
+            nxt = (p["close"].shift(-1) / p["close"] - 1).median(axis=1)
+            print(f"{name} thr {thr:.0%} 1d: per-year dSR {yrs}; cascade days 2021-23 {int(casc.loc[:'2023-12-31'].sum())}, median coin next-day return after them "
+                  f"{float(nxt[casc].loc[:'2023-12-31'].median()) * 1e4:+.0f} bp (all days {float(nxt.loc[:'2023-12-31'].median()) * 1e4:+.0f})", flush=True)
+        if name == "xsmom":
+            m = cascade_mask(p["close"], -0.07, 1)
+            F.judge(f"F1g_{name}_casc7_1d", w, p, s, m, "explore", side=-1, n_random=200,
+                    note=f"block shorts 1 d from a cascade day (median coin <= -7%); weight touched {touched(w, m, -1, 'explore')}")
+
+
 if __name__ == "__main__":
-    {"explore": explore, "d": explore_d}[sys.argv[1]]()
+    {"explore": explore, "d": explore_d, "g": explore_g}[sys.argv[1]]()
