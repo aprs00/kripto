@@ -1,0 +1,31 @@
+{
+ "name": "F1g_flow_casc10_1d",
+ "sample": "explore",
+ "side": -1,
+ "on_share": 0.978,
+ "base": {
+  "sr": 1.582424239123744,
+  "ann": 0.3521987575566836,
+  "mdd": -0.23519443530744344,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 1.649049238941125,
+  "ann": 0.4449129696467655,
+  "mdd": -0.20307121524350802,
+  "days": 1095
+ },
+ "dSR": 0.067,
+ "dMDD": 0.0321,
+ "p_daily_diff": 0.10644677661169415,
+ "n_random": 100,
+ "pct_dSR_vs_random": 0.7,
+ "random_dSR_q05_q50_q95": [
+  -0.33,
+  -0.002,
+  0.244
+ ],
+ "pct_dMDD_vs_random": 0.89,
+ "note": "block shorts 1 d from a cascade day (median coin <= -10%); weight touched 0.0127",
+ "passes": false
+}

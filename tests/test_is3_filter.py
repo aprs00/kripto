@@ -59,3 +59,10 @@ def test_side_mask_only_touches_that_side():
     m = pd.DataFrame(False, w.index, w.columns)
     out = F.apply(w, m, side=-1)
     assert (out.iloc[:, :3] == 0).all().all() and (out.iloc[:, 3:] == w.iloc[:, 3:]).all().all()
+
+
+def test_confirm_needs_prereg(monkeypatch):
+    w, panel, _ = synth()
+    monkeypatch.setattr(L, "committed_prereg", lambda: {})
+    with pytest.raises(SystemExit):
+        F.judge("T_x", w, panel, None, pd.DataFrame(True, w.index, w.columns), "confirmT", n_random=2)

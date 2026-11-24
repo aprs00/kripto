@@ -97,5 +97,16 @@ def explore_g() -> None:
                     note=f"block shorts 1 d from a cascade day (median coin <= -7%); weight touched {touched(w, m, -1, 'explore')}")
 
 
+def confirm_g() -> None:
+    """pre-registered F1g (prereg.json): 1-day short block after a -7% cascade day, confirmT 2024-25, both books."""
+    for name, prm in BOOKS.items():
+        w, p, s = F.book(name, "bnall", prm)
+        m = cascade_mask(p["close"], -0.07, 1)
+        F.judge(f"F1g_{name}_casc7_1d", w, p, s, m, "confirmT", side=-1, n_random=200,
+                note=f"pre-registered; cascade days 2024-25 {int((~m).loc['2024-01-01':'2025-12-31'].sum())}; weight touched {touched(w, m, -1, 'confirmT')}")
+        filt, base = F.cut(F.run(F.apply(w, m, -1), p, s), "confirmT"), F.cut(F.run(w, p, s), "confirmT")
+        print(name, "per-year dSR", {y: round(F.stats(filt[filt.index.year == y])["sr"] - F.stats(base[base.index.year == y])["sr"], 2) for y in (2024, 2025)}, flush=True)
+
+
 if __name__ == "__main__":
-    {"explore": explore, "d": explore_d, "g": explore_g}[sys.argv[1]]()
+    {"explore": explore, "d": explore_d, "g": explore_g, "confirmT": confirm_g}[sys.argv[1]]()

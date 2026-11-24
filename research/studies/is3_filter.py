@@ -93,7 +93,13 @@ def boot_diff(d: pd.Series, reps: int = 2000, block: int = 20, seed: int = 7) ->
 
 def judge(name: str, w: pd.DataFrame, panel: dict, slip, mask, sample: str, side: int | None = None, n_random: int = 200,
           seed: int = 0, note: str = "") -> dict:
-    """Base book vs filtered book on `sample`; percentile of ΔSR among n_random same-share same-persistence masks."""
+    """Base book vs filtered book on `sample`; percentile of ΔSR among n_random same-share same-persistence masks.
+    Confirm / vault samples follow the L.card rules: pre-registered and committed first, one run per name and sample."""
+    if sample != "explore":
+        if name not in L.committed_prereg():
+            raise SystemExit(f"{name}: pre-register (L.prereg) and COMMIT before touching {sample}")
+        if (L.OUT / f"{name}__{sample}.json").exists():
+            raise SystemExit(f"{name}: {sample} was already used")
     base = cut(run(w, panel, slip), sample)
     filt = cut(run(apply(w, mask, side), panel, slip), sample)
     sb, sf = stats(base), stats(filt)

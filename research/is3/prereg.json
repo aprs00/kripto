@@ -123,5 +123,38 @@
   "rule": "same events as M2b_long10_w43, gross = late60",
   "params": {},
   "at": "2026-11-24T16:59:09+00:00"
+ },
+ "F1g_flow_casc7_1d": {
+  "claim": "After a cascade day (cross-sectional median daily close-to-close return of the bnall clean universe <= -7%), the next day bounces (median coin +179 bp in 2020-23), so a long/short book should hold NO shorts over the next day. Explore 2021-23: flow SR 1.58 -> 2.14 (100th pct of 50 random masks, p .005), xsmom 1.19 -> 1.62 (99.5th of 200, p .009), every explore year + in both. The 1-day window was found in form b (2 and 3 days did nothing); -7% was fixed before any run; -5% / -10% also positive in flow, weaker in xsmom.",
+  "rule": "research/studies/is3_f1.py: cascade_mask(close, -0.07, 1) (False on the cascade day close, so the shorts are out for the following bar); F.judge(name, w, panel, slip, mask, \"confirmT\", side=-1, n_random=200) on the book from F.book(<book>, \"bnall\", BOOKS[<book>]); pass = dSR > 0 at >= 95th percentile of 200 same-share same-persistence random masks.",
+  "params": {
+   "book": "flow",
+   "params": {
+    "lookback": 3,
+    "cap": 0.05
+   },
+   "thr": -0.07,
+   "days": 1,
+   "side": -1,
+   "n_random": 200
+  },
+  "at": "2026-11-24T17:47:22+00:00"
+ },
+ "F1g_xsmom_casc7_1d": {
+  "claim": "After a cascade day (cross-sectional median daily close-to-close return of the bnall clean universe <= -7%), the next day bounces (median coin +179 bp in 2020-23), so a long/short book should hold NO shorts over the next day. Explore 2021-23: flow SR 1.58 -> 2.14 (100th pct of 50 random masks, p .005), xsmom 1.19 -> 1.62 (99.5th of 200, p .009), every explore year + in both. The 1-day window was found in form b (2 and 3 days did nothing); -7% was fixed before any run; -5% / -10% also positive in flow, weaker in xsmom.",
+  "rule": "research/studies/is3_f1.py: cascade_mask(close, -0.07, 1) (False on the cascade day close, so the shorts are out for the following bar); F.judge(name, w, panel, slip, mask, \"confirmT\", side=-1, n_random=200) on the book from F.book(<book>, \"bnall\", BOOKS[<book>]); pass = dSR > 0 at >= 95th percentile of 200 same-share same-persistence random masks.",
+  "params": {
+   "book": "xsmom",
+   "params": {
+    "lookback": 28,
+    "every_days": 1,
+    "cap": 0.05
+   },
+   "thr": -0.07,
+   "days": 1,
+   "side": -1,
+   "n_random": 200
+  },
+  "at": "2026-11-24T17:47:22+00:00"
  }
 }
