@@ -465,8 +465,16 @@ BTC/ETH/SOL aggTrades range bars 0.2/0.43%, explore 2021–23, entries 5 min lat
 MDE 43, anti-dose); his small-sell/large-buy split is rare (44) and negative; absorption bars (takers against the bar) = within-day matched (MDE 11; the +71 bp tail is 2021-05-19 / thin-SOL wicks);
 trapped small sellers below a reclaimed level: no dose (MDE 51), but LARGE sellers below it were right (weaker rebound every year); volume at a bar's extreme → slight continuation. Script is3_m3.py.
 
-### InSilico F0 filter harness + F1 filters on flow / xsmom (2026-11-24) → harness built; F1 b c d g dead, a e f open
+### InSilico F0 filter harness + F1 filters on flow / xsmom (2026-11-24) → harness built; F1 closed OPEN (nothing usable)
 research/studies/is3_filter.py: a filter is judged against 200 random masks with the same on-share and persistence (a random 80% mask alone cut flow's mdd −23.5% → −16.4%, 87th pct: not a pass).
 bnall 1d, explore 2021–23. R8 backwards: blocking longs at volume-spike 20-day highs costs 0.5–0.7 SR (volume breakouts are the best longs). RSI-pin filters touch < 2% of weight: nothing.
 No shorts for 1 day after a cascade day (median coin ≤ −7%): explore flow 1.58 → 2.14, xsmom 1.19 → 1.62 (≥ 99.5th pct, every year), pre-registered, confirmT 2024–25 FAILED both (−0.25, −0.32): the
 next-day bounce after cascades (+61..+291 bp 2020–23) reversed in 2024–25 (−28, −150 bp). Lesson: 'bounce after a flush' held 2021–23 and failed 2024–25 three times (O1, N5, F1g).
+F1 a/e/f/h (evening): trade-size breadth, value-area location (3 readings, VA from bn100 1h day profiles), round numbers, poor extremes = random masks or worse. Blocking positions AGAINST
+value (long closing below VAL) costs flow 1.3 SR: those are the book's best days because of the plain next-day reversal (standalone: +4 bp vs return-decile matched, MDE 90). is3_f1.py, is3_f1loc.py.
+
+### InSilico M4 / R1 R2 capitulation with adaptive buckets, in a trend, pitstops (2026-11-24) → OPEN (MDE rule only; every form ≤ baseline)
+Adaptive 7 size groups (prev-day septiles of 12 bins), BTC/ETH/SOL 2021–23: most-negative quintile +130 bp vs matched (p .34, MDE 314), no dose; his literal picture −151; 4-h bars flat.
+R2 on bnall (most one-sided selling day of an uptrend on a pullback): anti-dose. Buying breadth: nothing. Pitstop (red bar at a high → first green bar) on his 0.5% range bars: −38..−45 bp vs green
+bars in the same move (p .06). Binance size-bucket footprints read as continuation, not exhaustion. is3_m4*.py.
+

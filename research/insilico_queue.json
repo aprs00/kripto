@@ -1493,7 +1493,7 @@
    "group": "C",
    "title": "Filters and features for flow / xsmom / xsmom_k (Binance)",
    "src": "R1, R8, R13, R29, P5, T6, L5",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -1530,12 +1530,18 @@
     {
      "id": "e",
      "what": "P5: entries at prior POC / inside value vs outside",
-     "status": "planned"
+     "status": "done",
+     "result": "F0 harness, bnall 1d explore 2021-23, day profiles from bn100 1h (650 coins, 100% of book weight covered): e1 block positions against location (long < VAL, short > VAH) COSTS flow -1.33 / xsmom -0.70 SR (0th pct, every year; VA 50/85 the same): mechanical, blocking = selling right after a late dump and missing the plain next-day reversal (form h); e2 block positions inside value: flow -0.98 (53rd pct), xsmom -2.16 (0th); e3 Dalton's responsive reading (block longs above VAH / shorts below VAL): xsmom +0.10 (97th pct of 100) but 2021 -0.30 and flow -0.26 (37th) -> fails the pre-set rule (both books, every year). 7 judges per book. Value-area location does not improve either book. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "F1e3_va70_xsmom__explore"
     },
     {
      "id": "f",
      "what": "round-number and poor-low proximity",
-     "status": "planned"
+     "status": "done",
+     "result": "F0 harness, both books, explore: f1 R26 block shorts within 1/2/3% below the next 1/2/5x10^k level: dSR +0.02..+0.06 / -0.01..+0.06 (40-73rd pct), touches 0.5-1.7% of weight; f2 poor (unfinished) extremes: block longs with a poor day low flow -0.83 (72nd pct), xsmom -0.77 (34th); shorts with a poor day high -0.07 (67th) / -0.46 (4th). Round numbers touch almost nothing; poor extremes = random masks. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "F1f1_round2_xsmom__explore"
     },
     {
      "id": "g",
@@ -1559,7 +1565,10 @@
    "after": [
     "F0"
    ],
-   "sessions": 2
+   "sessions": 2,
+   "verdict": "OPEN",
+   "reason": "8 filter forms on flow / xsmom (bnall 1d, F0 harness vs 200 random masks): size-bucket breadth, cascade-day short block (2 / 1 day), volume-spike highs, pinned RSI, value-area location (3 readings), round numbers, poor extremes, value-location reversal standalone. One explore pass (g: 1-day short block after a -7% cascade day, both books, every year) FAILED its pre-registered 2024-25 confirm (the next-day bounce after cascades reversed in 2024-25). Two forms are backwards (volume-spike breakouts and against-location positions are the books' BEST positions). OPEN only because g passed explore; nothing usable for the books.",
+   "closed": "2026-11-24"
   },
   {
    "id": "F2",
