@@ -166,6 +166,9 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
 - [ ] W2 **Book-event collector (non-backfillable)**: HL public websocket `l2Book` deltas for BTC/ETH/SOL + 2 thin names, per-minute aggregates of
   size pulled / added within 5 bp of mid on each side (InSilico wa 18.10.19: "real alpha is price reaction to pulls and lifts of limit orders"; S2b5).
   Every week not collected is lost; build like kripto/flow.py (heartbeat + data-arrival check, ≤ 300 MB). Test after ≥ 6 weeks.
+- [ ] L1p **Single-liquidation spring-back (from 2027-02-17, ≥ 3 months of data/bn/liq)**: InSilico wa 18.10.35(3) "as a big (or relatively big for the contract) position
+  is liquidated fully, we spring back to origination points; tracking individual liqs is ok". Event = one coin's liquidation prints in 1 min ≥ 99th pct of its own
+  liq size; entry after the prints stop; target = price before the first print; placebo = same-size taker bursts without liq prints. L1 (closed OPEN) had no print data.
 - [ ] T3 HL-vs-Binance funding spread as a crowding signal (HL retail flow is distinct; HL hourly vs BN 8h funding).
 - [ ] T7 Liquidation-cluster proximity as risk filter for trend positions (positions data now collected, T6b).
 - [ ] T8 Regime filter: trend/carry vs BTC vol regime or funding level (≤ 2 regime params; beware overfitting).

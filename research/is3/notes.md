@@ -169,3 +169,12 @@ wa 18.10.19 'real alpha is price reaction to pulls and lifts of limit orders' (n
 what he does NOT say: in tg:230 the ask size is a TARGET distance (avg candle range), not an order size, i.e. a fixed-R target after a range break-retest; check the picture says so.
 S2 b5 done (40/40 opened, 39 legible: wa 18.10.19(2) is a 119-px-wide scroll, unverifiable; 0 contradictions). Rule pictures all map to queued forms (M1, N3k overlap, N3a swing speed, P2 balance laws, N1 round
  numbers). Only gap: wa 18.10.19 'real alpha is price reaction to pulls and lifts of limit orders' needs book deltas we do not collect → backlog W2 (HL websocket l2Book collector). Next: b6.
+
+## S2 b6 (think-through 2026-11-24 ~04:52 UTC, before opening anything)
+b6 = 40 WhatsApp screenshots (wa 18.10.21–18.10.35, tweets 2021–2025): mostly attitude/psychology. Rule-bearing ones to read closely: 18.10.24(1) Sep 2021 'mechanical reaction to 40,000,
+bottoms need time/volume, V-reversals rare' (N1/M4), 18.10.28(1) 'change of character = stable negative deltas start to pour rotations of high positive deltas' (M4f/M1), 18.10.29(1) 'mean rev
+course ... just needs order velocity' (X1f), 18.10.35(3) 'liquidations pull orders that don't come back ... spring-back to origin' (L1), 18.10.32(3) faucet withdrawals (R20 small-size edge),
+18.10.23(3) 'Saturday after Friday's downpush' (W1), 18.10.24 Chinese New Year, 18.10.23 sell in May, 18.10.28(3) September (C-family calendar), 18.10.34 venue choice for flow (Bybit inverse).
+What he does NOT say: in CHoCH the threshold is relative to the coin's OWN routine (z vs its recent distribution), not an absolute delta; check the picture for numbers that fix the scale.
+S2 b6 done (40/40 opened, 38 legible; 0 contradictions). Attitude tweets mostly; every rule claim is already a queued form (C1, V1a, M3b, N3f, X1f, W1). New angle: wa 18.10.35(3) the spring-back
+ needs ONE big position liquidated FULLY → needs liq prints (data/bn/liq from 2026-11-17) → backlog L1p, testable from 2027-02-17. CHoCH (wa 18.10.28(1)) = break of the coin's own routine: z-score, no fixed threshold. Next: b7.

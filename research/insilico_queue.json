@@ -1748,8 +1748,11 @@
     {
      "id": "b6",
      "what": "open EVERY image of batch b6 in research/is3/S2_batches.json (40 other pictures) with the Read tool (paths under data/chat_extract/); per image one line in S2b6__notes.json: what is drawn, entry / exit / level / timing visible, and whether it contradicts the stored description",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "40/40 opened by eye (38 legible: wa 18.10.22(1), 18.10.27(2) long scrolls unverifiable); 0 contradictions; all rule claims map to queued forms (C1 calendar, V1a/C1d FOMC book thinning, M3b absorption, N3f, X1f, W1); new angle: single big liquidation filled fully -> spring back (wa 18.10.35(3)) needs liq prints -> backlog L1p from 2027-02-17; CHoCH must be z-scored to the coin's routine; no new form",
+     "date": "2026-11-24",
+     "evidence": "S2b6__notes"
     },
     {
      "id": "b7",
