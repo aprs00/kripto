@@ -771,7 +771,9 @@
      "what": "spot-perp delta difference as a cross-sectional daily signal, and as a feature inside flow",
      "status": "planned"
     }
-   ]
+   ],
+   "due": "2026-11-24T12:45",
+   "defer_why": "spot 1h archive downloading in unit is3-n2"
   },
   {
    "id": "N3",

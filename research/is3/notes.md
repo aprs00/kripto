@@ -396,3 +396,9 @@ Lesson from P3: compare touches within the same approach side. a: daily bnall ha
 (daily first passage, 30 d; random walk ~33%) real vs placebo. b: COINS10 1-min, first touch after >= 2% away, 60-min return one bar late away from the approach, side-matched real vs placebo.
 c: first daily close 1–2% beyond a level after crossing: back to the level within 5 days, real vs placebo.
 N1 done (is3_n1.py): round numbers behave like placebo levels: hundy roll 35 vs 32% (RW 33), overshoot-return 93 vs 92%, first-touch bounce weaker than placebo (−21 bp, p .06 = runs through). Closed DEAD.
+
+## N2 spot vs perp delta (think-through 11:50 UTC, before any run)
+Sources wa 18.11.00(2), 18.11.02(2): a rally led by spot buying (with perp delta negative = perps shorting into it) is the strong kind; perp-led rallies are leverage and fade. Mechanism: spot buyers are
+unlevered and do not get liquidated; perp-led moves are paid back by funding and liquidations. Not on the server: spot taker flow. Data = Binance spot 1h klines (taker-buy quote volume) from
+data.binance.vision/data/spot (same public archive host as the futures files; flagged in STATUS). Unit is3-n2 started 11:49 (30 top coins 2021-01..2025-12, 1 req/s). Forms once it lands:
+a share of the 24-h up move's taker imbalance from spot vs perp -> next 24/72 h; b his exact case (spot-led rally with negative perp delta); c cross-sectional daily spot-minus-perp delta, and as a flow feature.
