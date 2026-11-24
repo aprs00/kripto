@@ -109,4 +109,31 @@ def confirm_g() -> None:
 
 
 if __name__ == "__main__":
-    {"explore": explore, "d": explore_d, "g": explore_g, "confirmT": confirm_g}[sys.argv[1]]()
+    {"explore": explore, "d": explore_d, "g": explore_g, "confirmT": confirm_g, "a": lambda: None}[sys.argv[1]]()
+
+
+def explore_a() -> None:
+    """T6 breadth inside flow (BTC ETH SOL only, the coins with trade-size history): keep a flow position in those coins only when every
+    author7 size bucket's net taker delta over the book's 3-day lookback agrees with the position's sign; block otherwise."""
+    from kripto import tsize
+    w, p, s = F.book("flow", "bnall", BOOKS["flow"])
+    m = pd.DataFrame(True, w.index, w.columns)
+    for coin in ("BTC", "ETH", "SOL"):
+        col = coin if coin in w.columns else f"{coin}USDT"
+        fr = tsize.frames(f"{coin}USDT", "author7")
+        if fr is None or col not in w.columns:
+            print("missing", coin); continue
+        d, v = fr
+        d3, v3 = d.rolling(3).sum(), v.rolling(3).sum()
+        ov = pd.Series(tsize.one_voiced(d3.to_numpy(), v3.to_numpy()), d.index)
+        ov.index = ov.index.tz_convert(None) if w.index.tz is None else ov.index
+        ov = ov.reindex(w.index)
+        sg = np.sign(w[col])
+        m[col] = ~((sg != 0) & ov.notna() & (ov != sg))
+        print(coin, "days with a position", int((sg != 0).loc[:'2023-12-31'].sum()), "blocked", int((~m[col]).loc[:'2023-12-31'].sum()), flush=True)
+    F.judge("F1a_flow_tsize_breadth", w, p, s, m, "explore", side=None, n_random=200,
+            note=f"BTC ETH SOL flow positions kept only when all author7 buckets agree over 3 d; weight touched {touched(w, m, None, 'explore')}")
+
+
+if __name__ == "__main__" and sys.argv[1:2] == ["a"]:
+    explore_a()

@@ -1467,7 +1467,10 @@
     {
      "id": "a",
      "what": "T6: breadth across size buckets inside flow (BTC ETH SOL only: say so)",
-     "status": "planned"
+     "status": "done",
+     "result": "T6 breadth inside flow (BTC ETH SOL only, the coins with trade-size history; said so): keep a flow position only when all author7 size buckets' 3-day net taker delta agree with its sign (blocks 68-86% of those coins' position-days, 13.5% of the book's weight): SR 1.58 -> 1.53 (dSR -0.05, 58th pct of 200 random masks), mdd -23.5 -> -18.1% (random masks do that too). Size-bucket breadth adds nothing to flow. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "F1a_flow_tsize_breadth__explore"
     },
     {
      "id": "b",

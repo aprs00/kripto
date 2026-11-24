@@ -546,3 +546,5 @@ F1 b/c/d done (is3_f1.py; data/is3/f1_explore.txt, f1d_explore.txt): c backwards
 F1 g confirmT (17:5x): FAILED both books (flow dSR -0.25, xsmom -0.32, every 2024-25 year negative). Next-day bounce after -7% cascade days: 2020-23 mean +61..+291 bp, 2024 -28, 2025 -150 (43% up).
  Third 2021-23 'bounce after a flush' result that dies in 2024-25 (O1 ladder-by-RSI, N5 thin lows, now F1g); the intraday version (M2b, 60 min) replicated in direction but only on 3 crash days.
  Honesty note: my diagnosis table printed 2026 too (7 cascade days, next day +228 bp); seen, not used, F1g is failed by its pre-registered confirm. F1 left: a (tsize breadth in flow), e (POC), f (round/poor low).
+F1 a done (17:58): tsize breadth on BTC/ETH/SOL inside flow = random masks (dSR -0.05, 58th pct). F1 left: e (prior POC / value area) and f (poor lows) need intraday profiles for the
+ whole flow/xsmom universe -> build from bn100 1h (hourly profile per coin-day; RAM: probe first) next session.
