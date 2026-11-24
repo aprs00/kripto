@@ -103,7 +103,7 @@ def form_a(s, res):
             st = L.stats(x, reps=2000)
             out[f"{smp}_{col}"] = {"cycles": st["n"], "wax_minus_wane_bp": st["mean_bp"], "ci95_bp": st["ci95_bp"], "p": st["p"], "mde_bp": st["mde80_bp"]}
     res["a_lunar_waxing_minus_waning_per_cycle"] = out
-    print("a", out)
+    print("a", {k: v for k, v in out.items() if k.startswith("explore")})
 
 
 def form_b(s, res):
@@ -214,7 +214,7 @@ def form_g(s, res):
                 out[f"{smp}_{col}_{H}"] = {"n_downfri_downmon": st["n"], "fwd_bp": st["mean_bp"], "vs_matched_two_down_days_bp": st["base_bp"],
                                           "diff_bp": st["vs_base_bp"], "p": st["p_vs_base"], "mde_bp": st["mde80_bp"], "downfri_upmon_fwd_bp": st2["mean_bp"], "n_downfri_upmon": st2["n"]}
     res["g_down_friday_down_monday"] = out
-    print("g", {k: (v["fwd_bp"], v["diff_bp"], v["p"]) for k, v in out.items()})
+    print("g", {k: (v["fwd_bp"], v["diff_bp"], v["p"]) for k, v in out.items() if k.startswith("explore")})
 
 
 def form_h(s, R, res):
