@@ -586,3 +586,4 @@ M4 f think-through (19:0x): tg:206, 216-222 (stored descriptions; BTC range bars
  pitstop above the 24-h move's midpoint; forward 4/12/24 h. Baselines: (1) same sequence outside strong moves (z < 1), (2) all-positive bars in strong moves without the pitstop sequence, same coin, z decile.
 M4 f/g done (is3_m4f.py 1-h, is3_m4g.py range bars): pitstop -> first green bar = worse than any green bar in the same strong move (4 h -20/-38/-45 bp at >= 3/5/8% moves, MDE 45-98), null -8+-10.
 M4 CLOSED OPEN (MDE rule missed narrowly, every form <= baseline, strongest cells opposite sign). Lesson: across M1-M4, N5 and pass 2, Binance size-bucket footprints consistently read as continuation.
+F1 h done (is3_f1loc.py h): value-location reversal = plain 1-day return reversal (below VAL +4 bp vs return-decile matched, MDE 90). Explains e1's cost (mechanical, not value).

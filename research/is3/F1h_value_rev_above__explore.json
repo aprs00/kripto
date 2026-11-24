@@ -1,0 +1,56 @@
+{
+ "name": "F1h_value_rev_above",
+ "sample": "explore",
+ "n": 6632,
+ "days": 781,
+ "coins": 122,
+ "mean_bp": -10.59,
+ "median_bp": 35.34,
+ "win": 0.526,
+ "se_bp": 26.16,
+ "ci95_bp": [
+  -62.22,
+  40.11
+ ],
+ "p": 0.7006496751624188,
+ "mde80_bp": 73.23,
+ "mean_ex_top3_bp": -36.23,
+ "top3_share": null,
+ "t_day_mean": 0.4,
+ "by_year": {
+  "2021": [
+   1910,
+   -45.75
+  ],
+  "2022": [
+   2276,
+   29.91
+  ],
+  "2023": [
+   2446,
+   -20.82
+  ]
+ },
+ "by_side": {
+  "-1": [
+   6632,
+   -10.59
+  ]
+ },
+ "coins_positive": 0.54,
+ "net_bp": {
+  "free": -10.59,
+  "maker_taker": -18.59,
+  "taker": -23.59,
+  "taker_x2": -36.59,
+  "crash": -90.59
+ },
+ "base_n": 33090,
+ "base_bp": 34.38,
+ "vs_base_bp": -44.97,
+ "p_vs_base": 0.13543228385807096,
+ "passes": false,
+ "note": "close above the day's 70% VA by > 0.2 VA widths -> short next day; vs inside-VA days, same coin and day-return decile",
+ "rerun": "",
+ "at": "2026-11-24T19:02:26+00:00"
+}

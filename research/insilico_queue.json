@@ -1549,8 +1549,11 @@
     {
      "id": "h",
      "what": "seen in e1: flow's positions AGAINST the day's value location (long closing below VAL, short above VAH) are its best (blocking them costs 1.3 SR, 0th pct). Standalone test: next-day simple return of liquid bnall half-0 coins by close location vs the day's own VA (below VAL / inside / above VAH, distance in VA widths as dose), MATCHED on the coin's day-return decile, so plain 1-day reversal does not count; explore 2021-23",
-     "status": "planned",
-     "added": "2026-11-24"
+     "status": "done",
+     "added": "2026-11-24",
+     "result": "standalone, bnall half-0 liquid coin-days 2021-23 (58,894, 123 coins, bn100 1h day profiles): close below the day's 70% VA by > 0.2 widths -> long next day +49 bp raw but +4 vs inside-VA days of the same coin and day-return decile (p .92, MDE 90); above VAH -> short -11 bp, diff -45 (p .14: above-value closes CONTINUE a little); dose table vs return decile flat (-1..+25 bp below VAL, +21/+27/-2/+202(n 301) above), years mixed. Location adds nothing beyond the plain 1-day reversal of the day's return. Diagnosis of e1's -1.33 SR: blocking a long that closed below value = selling right after the dump and missing the ordinary next-day reversal, not a value effect. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "F1h_value_rev_below__explore"
     }
    ],
    "after": [

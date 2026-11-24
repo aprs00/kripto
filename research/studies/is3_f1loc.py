@@ -146,5 +146,101 @@ def run_f() -> None:
         judge("f2_poorhi", name, w, p, s, ~(phi == True), -1, 100, "block shorts whose day high is poor")                       # noqa: E712
 
 
+
+# ---------------------------------------------------------------- h: value-location reversal, standalone
+FEAT2 = Path("data/is3/f1loc_feat2.parquet")
+
+
+def day_dist(k: pd.DataFrame) -> pd.DataFrame:
+    """Signed distance of the close outside the day's 70% value area, in VA widths (0 inside), and the close location in the day's range."""
+    k = k.copy()
+    k["time"] = pd.to_datetime(k.t, unit="ms", utc=True)
+    k["day"] = k.time.dt.floor("D")
+    k = k[(k.h > 0) & (k.l > 0)]
+    full = k.groupby("day").size()
+    k = k[k.day.isin(full[full == 24].index)].sort_values("time")
+    if k.empty:
+        return pd.DataFrame()
+    days = k.day.unique()
+    H, Lo, V = (k[c].to_numpy().reshape(len(days), 24) for c in ("h", "l", "qv"))
+    C = k.c.to_numpy().reshape(len(days), 24)[:, -1]
+    lh, ll = np.log(H), np.log(Lo)
+    dlo, dhi = ll.min(1, keepdims=True), lh.max(1, keepdims=True)
+    width = np.maximum(dhi - dlo, 1e-9)
+    edges = dlo[:, :, None] + width[:, :, None] * np.linspace(0, 1, NB + 1)[None, None, :]
+    blo, bhi = edges[..., :-1], edges[..., 1:]
+    ov = np.clip(np.minimum(lh[..., None], bhi) - np.maximum(ll[..., None], blo), 0, None)
+    span = np.maximum(lh - ll, 1e-12)[..., None]
+    point = (lh - ll)[..., None] <= 1e-12
+    inbin = (ll[..., None] >= blo) & (ll[..., None] <= bhi)
+    share = np.where(point, inbin.astype(float), ov / span)
+    share = share / np.maximum(share.sum(-1, keepdims=True), 1e-12)
+    vol = (share * V[..., None]).sum(1)
+    x = (np.log(C) - dlo[:, 0]) / width[:, 0] * NB
+    rows = []
+    for i, d in enumerate(days):
+        _, a, b = value_area(vol[i], 0.7)
+        w = b + 1 - a
+        dist = (x[i] - (b + 1)) / w if x[i] > b + 1 else ((x[i] - a) / w if x[i] < a else 0.0)
+        rows.append({"day": d, "dva": dist, "clv": x[i] / NB})
+    return pd.DataFrame(rows)
+
+
+def feat2() -> None:
+    cols = [c for c in data.load_panel("bnall", "1d")["close"].columns if __import__("research.studies.is3_lib", fromlist=["half"]).half(c) == 0]
+    out = []
+    for coin in cols:
+        f = data.BN100_DIR / f"{coin}USDT.parquet"
+        if f.exists():
+            d = day_dist(pd.read_parquet(f, columns=["t", "h", "l", "c", "qv"]))
+            if len(d):
+                d["coin"] = coin
+                out.append(d)
+    pd.concat(out, ignore_index=True).to_parquet(FEAT2)
+
+
+def run_h() -> None:
+    from research.studies import is3_lib as L
+    if not FEAT2.exists():
+        feat2()
+    p = data.load_panel("bnall", "1d")
+    f = pd.read_parquet(FEAT2)
+    cols = sorted(f.coin.unique())
+    c, v = p["close"][cols].astype(float), p["volume"][cols].astype(float)
+    dva = f.pivot(index="day", columns="coin", values="dva").reindex(index=c.index, columns=cols)
+    clv = f.pivot(index="day", columns="coin", values="clv").reindex(index=c.index, columns=cols)
+    r = c / c.shift(1) - 1
+    nxt = c.shift(-1) / c - 1
+    liq = v.rolling(30, min_periods=20).median().shift(1) >= 2e7
+    a, b = (pd.Timestamp(x, tz="UTC") for x in L.SAMPLES["explore"])
+    df = pd.DataFrame({"dva": dva.stack(future_stack=True), "clv": clv.stack(future_stack=True), "r": r.stack(future_stack=True),
+                       "nxt": nxt.stack(future_stack=True), "liq": liq.stack(future_stack=True)}).dropna()
+    df = df[df.liq.astype(bool)].reset_index().rename(columns={"level_0": "time", "level_1": "coin"})
+    df = df[(df.time >= a) & (df.time < b)]
+    df["rdec"] = pd.qcut(df.r, 10, labels=False)
+    df["cdec"] = pd.qcut(df.clv, 5, labels=False)
+    print("liquid half-0 coin-days explore:", len(df), "coins", df.coin.nunique())
+    # dose table: next-day return by dva bucket, raw and minus the same return-decile mean
+    df["rd_mean"] = df.groupby("rdec").nxt.transform("mean")
+    df["rc_mean"] = df.groupby(["rdec", "cdec"]).nxt.transform("mean")
+    bins = [-99, -1.0, -0.5, -0.2, -1e-9, 1e-9, 0.2, 0.5, 1.0, 99]
+    df["db"] = pd.cut(df.dva, bins)
+    t = df.groupby("db", observed=True).agg(n=("nxt", "size"), raw=("nxt", "mean"), ex_retdec=("rd_mean", lambda s: 0), )
+    t["raw_bp"] = (df.groupby("db", observed=True).nxt.mean() * 1e4).round(1)
+    t["vs_retdec_bp"] = ((df.nxt - df.rd_mean).groupby(df.db, observed=True).mean() * 1e4).round(1)
+    t["vs_ret_x_clv_bp"] = ((df.nxt - df.rc_mean).groupby(df.db, observed=True).mean() * 1e4).round(1)
+    print(t[["n", "raw_bp", "vs_retdec_bp", "vs_ret_x_clv_bp"]].to_string())
+    for y in (2021, 2022, 2023):
+        x = df[df.time.dt.year == y]
+        lo_, hi_ = x[x.dva < -0.2], x[x.dva > 0.2]
+        print(y, "below VAL by > .2 w: next", round(lo_.nxt.mean() * 1e4, 1), "vs ret-dec", round((lo_.nxt - lo_.rd_mean).mean() * 1e4, 1),
+              "| above VAH by > .2 w:", round(hi_.nxt.mean() * 1e4, 1), "vs ret-dec", round((hi_.nxt - hi_.rd_mean).mean() * 1e4, 1))
+    for side, sel, nm in ((1, df.dva < -0.2, "below"), (-1, df.dva > 0.2, "above")):
+        e = df[sel].assign(side=side, gross=lambda x: side * x.nxt, m=lambda x: x.rdec)[["time", "coin", "side", "gross", "m"]]
+        pool = df[df.dva == 0].assign(side=side, gross=lambda x: side * x.nxt, m=lambda x: x.rdec)[["time", "coin", "side", "gross", "m"]]
+        L.card(f"F1h_value_rev_{nm}", e.reset_index(drop=True), "explore", L.matched(e.reset_index(drop=True), pool.reset_index(drop=True)),
+               note=f"close {nm} the day's 70% VA by > 0.2 VA widths -> {'long' if side > 0 else 'short'} next day; vs inside-VA days, same coin and day-return decile")
+
+
 if __name__ == "__main__":
-    {"feat": feat, "e": run_e, "f": run_f}[sys.argv[1]]()
+    {"feat": feat, "e": run_e, "f": run_f, "h": run_h}[sys.argv[1]]()

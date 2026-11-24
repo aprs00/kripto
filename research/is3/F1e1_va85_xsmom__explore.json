@@ -1,0 +1,31 @@
+{
+ "name": "F1e1_va85_xsmom",
+ "sample": "explore",
+ "side": null,
+ "on_share": 0.995,
+ "base": {
+  "sr": 1.1884505026561278,
+  "ann": 0.2553299466480741,
+  "mdd": -0.1890858535335379,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.7849612170185499,
+  "ann": 0.187439214555182,
+  "mdd": -0.40662547107778846,
+  "days": 1095
+ },
+ "dSR": -0.403,
+ "dMDD": -0.2175,
+ "p_daily_diff": 0.4292853573213393,
+ "n_random": 30,
+ "pct_dSR_vs_random": 0.03333333333333333,
+ "random_dSR_q05_q50_q95": [
+  -0.354,
+  -0.115,
+  0.121
+ ],
+ "pct_dMDD_vs_random": 0.0,
+ "note": "block positions against location (long below VAL, short above VAH), VA 85%; touched 0.1251; per-year dSR 2021:+0.04 2022:-0.66 2023:-0.31",
+ "passes": false
+}
