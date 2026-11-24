@@ -1497,13 +1497,16 @@
    "group": "T",
    "title": "Forensics: reconstruct every dated trade and chart example he posts and find what distinguishes them",
    "src": "tg:165-174, 226-234, 274-284; wa 18.10.18-26, 18.10.39-42, 18.10.55-57; owner 2026-11-22: 'he probably wont give everything on the platter'",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "table of every dated example (instrument, minute, direction, stated entry / targets / reason) from text AND images; 1-min data around each",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "10 dated examples tabled (S1/S2 notes, dates hand-resolved: M4e days = 2021-07-20, 11-26, 12-13, 2022-01-07 matched on daily low+range; 1 is 2020, no minute data). 8 trade examples with data: +60 min mean +0.75% (7/8 > 0), +1 d +3.5% (7/8), median percentile vs all minutes of the same coin-month 87% (60 min) / 79% (1 d). Descriptive only: n=8, his own selected winners, not a test. His one 'stay out, not a bottom' example (2021-09-21 thin-volume low) went +6.9% next day (98th pct) = counterexample. Anchors set by rule were hand-checked bar by bar (L1-0323 08:57, N5-1110 14:13)",
+     "date": "2026-11-24",
+     "evidence": "T2a__table"
     },
     {
      "id": "b",
@@ -1529,7 +1532,8 @@
      "status": "planned",
      "added": "2026-11-22"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "T3",

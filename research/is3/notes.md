@@ -204,3 +204,14 @@ S2 v done (21 sheets + 4 full keyframes + 13 transcripts; 0 contradictions). The
 S1e read the 163 cited records only to ~500–900 chars. Rebuilt the cited set from insilico_rules.md + queue + pass3 (/tmp script, regex on tg:/wa ids): 189 records (superset), 140 longer than 500 chars,
 91k chars unread past char 500. Read all of it; then the PDF remainder: HOFM case histories (p6–59), Artemis remaining 42 pages, Almanac calendar pages (skim for rules with a crypto analogue only).
 Looking for: conditions/exits/stays-out stated late in long messages (the tail of a post is where he qualifies the rule), and numbers that fix a threshold.
+
+## T2 (think-through 2026-11-24 05:05 UTC, before any run)
+Source: owner 11-22 "he won't give everything on the platter". His examples are the only labelled data we have: each is a moment HE chose. What he does NOT say but must be doing:
+he picks moments where something is EXTREME relative to the coin's own recent routine (volume, trade count, delta share, speed), at a LOCATION (prior low/high, POC, range edge, round number),
+and he only posts winners (selection bias: an analog test (c) on unseen moments is the only honest use; the examples themselves can never be the test set).
+a = the table (from S1/S2 per-image notes, dates hand-resolved; 2020 ones need T2e data), 1-min Binance path after each anchor: +15/60/240 min, 1/3/5 d, MFE/MAE, vs the same horizons from
+every minute of the same coin-month (placebo distribution, percentile). No verdict from a: n ≈ 10–15, it is a description. Bias warning written now: exits he describes are partial
+(TP1/TP2/origin), so the path, not a single return, is the fair description.
+T2 a done (research/studies/is3_t2a.py, T2a__table.json): 10 examples, 8 tradable with minute data. His winners are good but not freakish: +1 d +3.5% mean, median 79th pct of their month's
+ minutes (60 min: 87th). Counterexample: his 'Issa fart, not a bottom' stay-out (2021-09-21) rallied +6.9% next day. The 4 daily M4e days (all buckets negative) +1 d +3.6% mean, 4/4 > 0 at 3 d.
+ Next: T2b feature vector (needs taker share / trade count / location per example; 1-min klines have n and tbqv → enough for a first pass on the 4 minute-level examples).
