@@ -183,12 +183,18 @@
     {
      "id": "d",
      "what": "80% rule on session profiles and on 5-day composite balances (daily one failed)",
-     "status": "planned"
+     "status": "done",
+     "result": "explore COINS10 2021-23, open outside the prior value area, two 30-min closes back inside -> far edge vs stop 0.25 w beyond the near edge, out at session/day end. Counting only resolved trades (random-walk odds are conditional on resolution): session profiles 47.6% vs 49.5% RW (n 5,937, 22% unresolved, -2.0 pp p .02); previous day 37.2% vs 38.9% (n 2,448, -1.7 pp p .20); 5-day composite 21% vs 31% but 49% unresolved and a finite horizon favours the nearer stop, so not interpretable. The 80% rule is a random walk at best. BUG FOUND: pass 2 counted unresolved trades as misses against unconditional odds; its '26-30% vs 37%, t -8 to -11' was mostly that bias (corrected daily figure -1.7 pp, n.s.); verdict unchanged (no edge), numbers corrected in findings",
+     "date": "2026-11-24",
+     "evidence": "P2del__explore"
     },
     {
      "id": "e",
      "what": "his exception: single-print band directly under a big POC should NOT fill; compare fill rates",
-     "status": "planned"
+     "status": "done",
+     "result": "8,820 previous-session single-print bands (10-bp rows, >= 3 rows, tails excluded), fill = far edge touched within 2 days: bands adjacent (<= 2 bins) to the session POC are rare (34); they fill MORE than distance-matched other bands (82% vs 72%, p .16; with a top-third POC 88% vs 69%, n 26, p .03, MDE 18 pp). His exception (should NOT fill) is not supported; too few events for more",
+     "date": "2026-11-24",
+     "evidence": "P2del__explore"
     },
     {
      "id": "f",
@@ -241,8 +247,11 @@
     {
      "id": "l",
      "what": "single prints and tails at HIS resolution: session rows of ~4 bp (47 ticks at 57k), minimum 3 rows, tails kept apart (my pass-2 bands were >= 30 bp, so his typical ones were excluded)",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "single prints at his resolution (4-bp rows, >= 3 rows, tails excluded; median band 40 bp wide, 118 bp from the session close): far edge before the same distance the other way 48.3% (n 13,399) vs 51.0% for the same band geometry 8 days earlier moved to today's price (n 12,828), diff -2.7 pp p .04, MDE 2.5. Same as pass 2 at 30 bp: real single prints are filled LESS than placebo bands",
+     "date": "2026-11-24",
+     "evidence": "P2del__explore"
     }
    ]
   },

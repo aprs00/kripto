@@ -259,7 +259,7 @@ Agrees with the 11-10 minute study (sweeps of the 4h range: ≈ 0). Not tested: 
 **Correction 11-22:** the header said R14–R17, but R14's own test (P4 gap fill) and P5 (levels as a filter for the slow books) were planned and have no code; R17 = 1 of his 10 laws. → IS3
 Three formulations, each failing on the exploration sample AND three held-out samples (10 coins 2024–26, 20 unseen coins 2021–26):
 (1) single-print bands fill 48–49% vs 51–52% for placebo bands; (2) first touch of yesterday's POC / VAH / VAL reacts like a fake level;
-(3) 80% rule: far edge reached 26–30% vs 37% for a random walk with the same geometry (t −8 to −11). Reason: any level a move reaches
+(3) 80% rule: far edge reached 26–30% vs 37% for a random walk with the same geometry (t −8 to −11). **Correction 11-24 (IS3 P2d):** that test counted unresolved trades as misses against unconditional odds; resolved-only, the daily form is 37.2% vs 38.9% (−1.7 pp, p .20), sessions 47.6 vs 49.5%: a random walk, not worse. Verdict (no edge) unchanged. Reason: any level a move reaches
 reacts the same. Real but useless: +4–5 bp more bounce in the 30 min after a real band is filled (was +10 bp in 2021–23, +2 since 2024).
 
 ### Trade-size buckets as capitulation / exhaustion (InSilico R1–R2, 2026-11-15) → DEAD on Binance; OPEN (weak) on the author's venue type; R3 relabelled OPEN 2026-11-22

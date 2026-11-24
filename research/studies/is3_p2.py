@@ -277,8 +277,187 @@ def form_jh() -> dict:
     return res
 
 
+def sess_profile(h, l, v, i0, i1, binw):
+    """TPO (30-min periods) and volume per log bin of width binw over minutes [i0, i1]."""
+    lb = np.floor(np.log(l[i0:i1 + 1]) / binw).astype(np.int64)
+    hb = np.floor(np.log(h[i0:i1 + 1]) / binw).astype(np.int64)
+    b0, n = int(lb.min()), int(hb.max() - lb.min() + 1)
+    dv, dt = np.zeros(n + 1), np.zeros(n + 1)
+    w = v[i0:i1 + 1] / (hb - lb + 1)
+    np.add.at(dv, lb - b0, w); np.add.at(dv, hb - b0 + 1, -w)
+    for s0 in range(0, len(lb), 30):
+        dt[lb[s0:s0 + 30].min() - b0] += 1; dt[hb[s0:s0 + 30].max() - b0 + 1] -= 1
+    return b0, np.cumsum(dv)[:n], np.cumsum(dt)[:n]
+
+
+def single_bands(tpo, minrows):
+    """runs of bins touched by exactly one period, inside the range (not touching either end = tails excluded), >= minrows."""
+    one = tpo == 1
+    out, i = [], 0
+    while i < len(one):
+        if one[i]:
+            j = i
+            while j + 1 < len(one) and one[j + 1]:
+                j += 1
+            if i > 0 and j < len(one) - 1 and j - i + 1 >= minrows:
+                out.append((i, j))
+            i = j + 1
+        else:
+            i += 1
+    return out
+
+
+def rw80(H, Lw, C, t0, tgt, stop, end):
+    """+1 target first, 0 stop first or neither; and the random-walk odds |stop - p| / |target - stop|."""
+    from research.studies.is2_profile import first_passage
+    p0 = C[t0]
+    up, dn = (tgt, stop) if tgt > p0 else (stop, tgt)
+    r, _ = first_passage(H, Lw, C, t0, up, dn, end - t0)
+    if r == 0:                                  # neither level within the horizon: unresolved (random-walk odds are conditional on resolution)
+        return np.nan, abs(stop - p0) / abs(tgt - stop)
+    hit = float((r == 1 and tgt > p0) or (r == -1 and tgt < p0))
+    return hit, abs(stop - p0) / abs(tgt - stop)
+
+
+def form_del() -> dict:
+    """d 80% rule on session profiles and 5-day composites; e single-print band adjacent to a big session POC vs other bands;
+    l single prints at 4-bp rows (>= 3 rows) vs the same band geometry 8 days earlier moved to today's price."""
+    D80, E, Lr = [], [], []
+    for coin in L.COINS10:
+        k = P.load(coin, LO, "2024-01-10")
+        h, l, c, v = k.h.to_numpy(), k.l.to_numpy(), k.c.to_numpy(), k.qv.to_numpy()
+        ix = pd.Series(np.arange(len(k)), index=k.index.floor("D")).groupby(level=0).agg(["min", "max"])
+        ix = ix[(ix["max"] - ix["min"]) == 1439]
+        days = list(ix.index)
+        sess = []                                             # (day, name, i0, i1)
+        for d in days:
+            a = int(ix.loc[d, "min"])
+            for s0, s1, nm in SESS:
+                sess.append((d, nm, a + s0, a + s1 - 1))
+        bands4 = {}
+        for q in range(1, len(sess)):
+            d, nm, i0, i1 = sess[q]
+            pd_, pn, p0, p1 = sess[q - 1]
+            if not (pd.Timestamp(LO, tz="UTC") <= d < pd.Timestamp(HI, tz="UTC")) or p1 + 1 != i0 or i1 + 2880 >= len(c):
+                continue
+            # d (session): previous session's value area
+            b0, vol, tpo = sess_profile(h, l, v, p0, p1, P.BIN)
+            poc, va, vb = value_area(vol)
+            VAL, VAH = np.exp((b0 + va) * P.BIN), np.exp((b0 + vb + 1) * P.BIN)
+            op = c[i0 - 1]
+            if op > VAH or op < VAL:
+                closes = c[i0 + 29:i1 + 1:30]
+                inside = (closes > VAL) & (closes < VAH)
+                for m in range(1, len(inside)):
+                    if inside[m] and inside[m - 1]:
+                        t0 = i0 + 29 + 30 * m + 1
+                        if t0 >= i1:
+                            break
+                        wv = VAH - VAL
+                        tgt, stop = (VAL, VAH + 0.25 * wv) if op > VAH else (VAH, VAL - 0.25 * wv)
+                        hit, odds = rw80(h, l, c, t0, tgt, stop, i1)
+                        D80.append({"time": k.index[t0], "coin": coin, "kind": "session", "hit": hit, "rw": odds})
+                        break
+            # e: single-print bands of the previous session (10 bp rows, >= 3 rows), adjacent (<= 2 bins) to its POC
+            share = vol[poc] / vol.sum()
+            for (x0, x1) in single_bands(tpo, 3):
+                adj = (x1 < poc and poc - x1 <= 2) or (x0 > poc and x0 - poc <= 2)
+                lo_p, hi_p = np.exp((b0 + x0) * P.BIN), np.exp((b0 + x1 + 1) * P.BIN)
+                cl = c[p1]
+                if lo_p <= cl <= hi_p:
+                    continue
+                far = lo_p if cl > hi_p else hi_p
+                seg = slice(p1 + 1, p1 + 2881)
+                filled = float((l[seg] <= far).any()) if cl > hi_p else float((h[seg] >= far).any())
+                near = hi_p if cl > hi_p else lo_p
+                E.append({"time": k.index[p1], "coin": coin, "side": 1, "adj_big": bool(adj and share >= 0.06), "adj": bool(adj), "share": share,
+                          "filled": filled, "dist": abs(np.log(cl / near)), "width": abs(np.log(hi_p / lo_p))})
+            # l: 4-bp rows, >= 3 rows, real vs 8-days-earlier geometry
+            B4 = np.log(1.0004)
+            b04, _, tpo4 = sess_profile(h, l, v, p0, p1, B4)
+            bands4[(pd_, pn)] = (b04, single_bands(tpo4, 3), c[p1])
+            prev8 = (pd_ - pd.Timedelta("8D"), pn)
+            for kind, key in (("real", (pd_, pn)), ("placebo", prev8)):
+                if key not in bands4:
+                    continue
+                bb0, bl, ref = bands4[key]
+                cl = c[p1]
+                for (x0, x1) in bl:
+                    lo_p, hi_p = np.exp((bb0 + x0) * B4) * cl / ref, np.exp((bb0 + x1 + 1) * B4) * cl / ref
+                    if lo_p <= cl <= hi_p:
+                        continue
+                    above = lo_p > cl
+                    near, far = (lo_p, hi_p) if above else (hi_p, lo_p)
+                    dist = abs(near - cl)
+                    seg_h, seg_l = h[p1 + 1:p1 + 2881], l[p1 + 1:p1 + 2881]
+                    # fill = far edge reached before price moves the same distance (to the far edge) the other way
+                    other = cl - (far - cl)
+                    hf = (seg_h >= far) if above else (seg_l <= far)
+                    ho = (seg_l <= other) if above else (seg_h >= other)
+                    a_ = int(np.argmax(hf)) if hf.any() else 10**9
+                    b_ = int(np.argmax(ho)) if ho.any() else 10**9
+                    if a_ == b_ == 10**9:
+                        continue
+                    Lr.append({"time": k.index[p1], "coin": coin, "side": 1, "kind": kind, "fill_first": 0.5 if a_ == b_ else float(a_ < b_),
+                               "width_bp": abs(np.log(hi_p / lo_p)) * 1e4, "dist_bp": dist / cl * 1e4})
+        # d (5-day composite): previous 5 days' value area, today's open outside, two 30-min closes inside
+        for n_, d in enumerate(days):
+            for NB in (1, 5):
+                if n_ < NB or not (pd.Timestamp(LO, tz="UTC") <= d < pd.Timestamp(HI, tz="UTC")) or (d - days[n_ - NB]).days != NB:
+                    continue
+                a0 = int(ix.loc[days[n_ - NB], "min"]); a1 = int(ix.loc[days[n_ - 1], "max"])
+                b0, vol, _ = sess_profile(h, l, v, a0, a1, P.BIN)
+                poc, va, vb = value_area(vol)
+                VAL, VAH = np.exp((b0 + va) * P.BIN), np.exp((b0 + vb + 1) * P.BIN)
+                i0 = int(ix.loc[d, "min"]); i1 = i0 + 1439
+                op = c[i0 - 1]
+                if not (op > VAH or op < VAL):
+                    continue
+                closes = c[i0 + 29:i1 + 1:30]
+                inside = (closes > VAL) & (closes < VAH)
+                for m in range(1, len(inside)):
+                    if inside[m] and inside[m - 1]:
+                        t0 = i0 + 29 + 30 * m + 1
+                        if t0 >= i1:
+                            break
+                        wv = VAH - VAL
+                        tgt, stop = (VAL, VAH + 0.25 * wv) if op > VAH else (VAH, VAL - 0.25 * wv)
+                        hit, odds = rw80(h, l, c, t0, tgt, stop, i1)
+                        D80.append({"time": k.index[t0], "coin": coin, "kind": f"composite{NB}", "hit": hit, "rw": odds})
+                        break
+    res = {}
+    d8 = pd.DataFrame(D80)
+    res["d_unresolved_share"] = {kk: round(float(z.hit.isna().mean()), 3) for kk, z in d8.groupby("kind")}
+    d8 = d8.dropna(subset=["hit"])
+    for kind, x in d8.groupby("kind"):
+        s = L.stats(x.assign(side=1, gross=x.hit - x.rw)[["time", "coin", "side", "gross"]], reps=2000)
+        res[f"d_{kind}"] = {"n": int(len(x)), "hit": round(float(x.hit.mean()), 4), "rw_odds": round(float(x.rw.mean()), 4),
+                            "diff_pp": round(s["mean_bp"] / 100, 2), "ci95_pp": [round(v_ / 100, 2) for v_ in s["ci95_bp"]], "p": s["p"]}
+    e = pd.DataFrame(E)
+    e["m"] = pd.qcut((e.dist / e.width).rank(method="first"), 10, labels=False)
+    big = e.share >= e.share.quantile(2 / 3)
+    for nm_, evm in (("adjacent_any_poc", e.adj), ("adjacent_top_third_poc", e.adj & big)):
+        ev_, pool_ = e[evm], e[~e.adj]
+        b_ = L.matched(ev_, pool_, k=3)
+        s_ = L.stats(ev_.assign(gross=ev_.filled)[["time", "coin", "side", "gross"]], b_.assign(gross=b_.filled)[["time", "coin", "side", "gross"]], reps=2000)
+        res[f"e_{nm_}_vs_other"] = {"n": s_["n"], "fill": round(float(ev_.filled.mean()), 4), "fill_matched_other": round(float(b_.filled.mean()), 4),
+                                    "diff_pp": round(s_["vs_base_bp"] / 100, 2), "p": s_["p_vs_base"], "mde_pp": round(s_["mde80_bp"] / 100, 2)}
+    ev, pool = e[e.adj_big], e[~e.adj]
+    base = L.matched(ev, pool, k=3)
+    s = L.stats(ev.assign(gross=ev.filled)[["time", "coin", "side", "gross"]], base.assign(gross=base.filled)[["time", "coin", "side", "gross"]], reps=2000)
+    res["e_adjacent_big_poc_vs_other"] = {"n": s["n"], "fill": round(float(ev.filled.mean()), 4), "fill_matched_other": round(float(base.filled.mean()), 4),
+                                          "diff_pp": round(s["vs_base_bp"] / 100, 2), "p": s["p_vs_base"], "mde_pp": round(s["mde80_bp"] / 100, 2), "n_bands": int(len(e))}
+    lr = pd.DataFrame(Lr)
+    re_, pl = lr[lr.kind == "real"], lr[lr.kind == "placebo"]
+    s = L.stats(re_.assign(gross=re_.fill_first)[["time", "coin", "side", "gross"]], pl.assign(gross=pl.fill_first)[["time", "coin", "side", "gross"]], reps=2000)
+    res["l_4bp_real_vs_placebo"] = {"n_real": int(len(re_)), "n_placebo": int(len(pl)), "real": round(float(re_.fill_first.mean()), 4), "placebo": round(float(pl.fill_first.mean()), 4),
+                                     "diff_pp": round(s["vs_base_bp"] / 100, 2), "p": s["p_vs_base"], "mde_pp": round(s["mde80_bp"] / 100, 2),
+                                     "width_bp_median": round(float(re_.width_bp.median()), 1), "dist_bp_median": round(float(re_.dist_bp.median()), 1)}
+    return res
+
+
 if __name__ == "__main__":
     f = sys.argv[1]
-    r = {"ab": form_ab, "gfi": form_gfi, "jh": form_jh}[f]()
+    r = {"ab": form_ab, "gfi": form_gfi, "jh": form_jh, "del": form_del}[f]()
     print(json.dumps(r, indent=1, default=float))
     (ROOT / f"research/is3/P2{f}__explore.json").write_text(json.dumps(r, indent=1, default=float))

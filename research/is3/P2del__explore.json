@@ -1,0 +1,76 @@
+{
+ "d_unresolved_share": {
+  "composite1": 0.167,
+  "composite5": 0.492,
+  "session": 0.221
+ },
+ "d_composite1": {
+  "n": 2448,
+  "hit": 0.3721,
+  "rw_odds": 0.3891,
+  "diff_pp": -1.7,
+  "ci95_pp": [
+   -4.32,
+   0.93
+  ],
+  "p": 0.20439780109945027
+ },
+ "d_composite5": {
+  "n": 995,
+  "hit": 0.2121,
+  "rw_odds": 0.3109,
+  "diff_pp": -9.89,
+  "ci95_pp": [
+   -12.75,
+   -6.66
+  ],
+  "p": 0.0004997501249375312
+ },
+ "d_session": {
+  "n": 5937,
+  "hit": 0.4757,
+  "rw_odds": 0.4954,
+  "diff_pp": -1.98,
+  "ci95_pp": [
+   -3.61,
+   -0.4
+  ],
+  "p": 0.01699150424787606
+ },
+ "e_adjacent_any_poc_vs_other": {
+  "n": 34,
+  "fill": 0.8235,
+  "fill_matched_other": 0.7157,
+  "diff_pp": 10.78,
+  "p": 0.15692153923038482,
+  "mde_pp": 17.6
+ },
+ "e_adjacent_top_third_poc_vs_other": {
+  "n": 26,
+  "fill": 0.8846,
+  "fill_matched_other": 0.6923,
+  "diff_pp": 19.23,
+  "p": 0.029985007496251874,
+  "mde_pp": 18.15
+ },
+ "e_adjacent_big_poc_vs_other": {
+  "n": 26,
+  "fill": 0.8846,
+  "fill_matched_other": 0.6923,
+  "diff_pp": 19.23,
+  "p": 0.029985007496251874,
+  "mde_pp": 18.15,
+  "n_bands": 8820
+ },
+ "l_4bp_real_vs_placebo": {
+  "n_real": 13399,
+  "n_placebo": 12828,
+  "real": 0.4832,
+  "placebo": 0.5101,
+  "diff_pp": -2.68,
+  "p": 0.03648175912043978,
+  "mde_pp": 2.51,
+  "width_bp_median": 40.0,
+  "dist_bp_median": 118.0
+ }
+}
