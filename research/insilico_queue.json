@@ -1281,7 +1281,10 @@
     {
      "id": "a",
      "what": "daily, adaptive buckets: quantiles of the PREVIOUS DAY's sizes as primary (S2b4: tg:205 'Days back for AI levels = 1'), previous 30 d as the variant [T2b: the SIGN rule is the base rate (54% of >= -3% BTC days have all 7 buckets negative, no forward difference), so score the MAGNITUDE: min / large-bucket delta share as dose, not the all-negative flag]",
-     "status": "planned"
+     "status": "done",
+     "result": "BTC/ETH/SOL 2021-23, 607 <= -3% days, 12 bins -> 7 adaptive groups at prev-day (and prev-30-d) volume septiles (coarse: 12 bins). Most negative quintile of min group delta share, long 3 d: +223 bp vs matched +93 (diff +130, p .34, MDE 314), 2022 -269; no dose (quintiles +223/-116/+61/+107/+369: the LEAST-selling quintile is best); largest-two-groups share: diff +23 (p .86); 30-d reference the same (+130 / -22). 4 variants x 3 horizons. Null on sign-flipped data +64 bp on ALL down days = simple-return convexity on high-vol days, not the feature (Q1 minus all +45 +- 22). Magnitude of size-bucket selling does not predict a bounce. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "M4a_ref1_fmin_q1__explore"
     },
     {
      "id": "b",
@@ -1301,8 +1304,11 @@
     {
      "id": "e",
      "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "his literal picture (every live adaptive bucket -3..-21% of its volume, day <= -7%), long 3 d: n 55, +105 bp vs matched +256 (diff -151, p .50, MDE 494), 2022 -470; 2-way table fall x selling: U-shape (no selling +989 and extreme selling <= -20% +711 on 16-18 events at <= -8%; his -3..-21% range -30..+278), no monotone dose in either direction. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "M4e_literal_3d__explore"
     },
     {
      "id": "f",

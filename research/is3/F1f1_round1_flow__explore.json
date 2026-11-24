@@ -1,0 +1,31 @@
+{
+ "name": "F1f1_round1_flow",
+ "sample": "explore",
+ "side": -1,
+ "on_share": 0.995,
+ "base": {
+  "sr": 1.582424239123744,
+  "ann": 0.3521987575566836,
+  "mdd": -0.23519443530744344,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 1.6123787855213492,
+  "ann": 0.3598693979676536,
+  "mdd": -0.20205384161139284,
+  "days": 1095
+ },
+ "dSR": 0.03,
+ "dMDD": 0.0331,
+ "p_daily_diff": 0.47276361819090457,
+ "n_random": 30,
+ "pct_dSR_vs_random": 0.7,
+ "random_dSR_q05_q50_q95": [
+  -0.062,
+  0.01,
+  0.094
+ ],
+ "pct_dMDD_vs_random": 1.0,
+ "note": "R26: block shorts within 1% below the next 1/2/5x10^k level; touched 0.0063; per-year dSR 2021:-0.02 2022:+0.04 2023:+0.08",
+ "passes": false
+}

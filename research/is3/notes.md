@@ -573,3 +573,6 @@ Build (a): 12 fixed notional bins -> 7 adaptive groups = cut points at the previ
  delta share and the two largest groups' delta share (continuous, quintiles among >= -3% down days). Long at the day close, 1/3/5 d simple returns; baseline = same coin, same day-return
  decile down days. BTC/ETH/SOL 2021-23 only (tsize coverage). Change my mind: the most negative quintile beats matched by > 100 bp at 3 d, rising with the dose, every year.
  Expected from pass 2: the opposite sign (continuation).
+M4 a/e done (is3_m4.py; data/is3/m4a_explore.txt): adaptive 7 groups from 12 bins (prev-day / 30-d septiles). Most negative quintile of min group delta share +130 bp vs matched (p .34, MDE 314),
+ no dose (least-selling quintile best), 2022 negative; his literal picture (all buckets -3..-21%, day <= -7%) -151 vs matched. Null +64 bp on all surrogate down days = simple-return convexity (baseline handles it).
+ Next M4: b (4-h / session bars), c (R2 largest one-sided delta of a trend's life on a pullback), d (one-voiced buying breadth), f (pitstop in a strong move).

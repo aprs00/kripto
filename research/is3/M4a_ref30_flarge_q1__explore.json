@@ -1,0 +1,56 @@
+{
+ "name": "M4a_ref30_flarge_q1",
+ "sample": "explore",
+ "n": 122,
+ "days": 101,
+ "coins": 3,
+ "mean_bp": 108.17,
+ "median_bp": 28.86,
+ "win": 0.541,
+ "se_bp": 129.53,
+ "ci95_bp": [
+  -162.21,
+  351.21
+ ],
+ "p": 0.392303848075962,
+ "mde80_bp": 362.68,
+ "mean_ex_top3_bp": 11.05,
+ "top3_share": 0.9,
+ "t_day_mean": 1.44,
+ "by_year": {
+  "2021": [
+   60,
+   408.31
+  ],
+  "2022": [
+   25,
+   -625.93
+  ],
+  "2023": [
+   37,
+   117.46
+  ]
+ },
+ "by_side": {
+  "1": [
+   122,
+   108.17
+  ]
+ },
+ "coins_positive": 0.33,
+ "net_bp": {
+  "free": 108.17,
+  "maker_taker": 100.17,
+  "taker": 95.17,
+  "taker_x2": 82.17,
+  "crash": 28.17
+ },
+ "base_n": 610,
+ "base_bp": 129.63,
+ "vs_base_bp": -21.46,
+ "p_vs_base": 0.8765617191404298,
+ "passes": false,
+ "note": "most negative quintile of flarge (<= -0.109, thresholds from the explore pool, not outcomes) on <= -3% days, long 3 d; ref 30 d buckets",
+ "rerun": "",
+ "at": "2026-11-24T18:52:26+00:00"
+}

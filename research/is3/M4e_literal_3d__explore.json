@@ -1,0 +1,56 @@
+{
+ "name": "M4e_literal_3d",
+ "sample": "explore",
+ "n": 55,
+ "days": 41,
+ "coins": 3,
+ "mean_bp": 104.72,
+ "median_bp": -51.31,
+ "win": 0.491,
+ "se_bp": 176.3,
+ "ci95_bp": [
+  -229.03,
+  482.53
+ ],
+ "p": 0.5397301349325337,
+ "mde80_bp": 493.65,
+ "mean_ex_top3_bp": -87.88,
+ "top3_share": 1.76,
+ "t_day_mean": 0.53,
+ "by_year": {
+  "2021": [
+   33,
+   406.37
+  ],
+  "2022": [
+   18,
+   -470.35
+  ],
+  "2023": [
+   4,
+   203.84
+  ]
+ },
+ "by_side": {
+  "1": [
+   55,
+   104.72
+  ]
+ },
+ "coins_positive": 0.67,
+ "net_bp": {
+  "free": 104.72,
+  "maker_taker": 96.72,
+  "taker": 91.72,
+  "taker_x2": 78.72,
+  "crash": 24.72
+ },
+ "base_n": 275,
+ "base_bp": 256.07,
+ "vs_base_bp": -151.36,
+ "p_vs_base": 0.49975012493753124,
+ "passes": false,
+ "note": "allneg, every live bucket -3..-21% (fmin >= -21%, <= -3%), day <= -7%, long 3 d; adaptive prev-day buckets",
+ "rerun": "",
+ "at": "2026-11-24T18:53:46+00:00"
+}

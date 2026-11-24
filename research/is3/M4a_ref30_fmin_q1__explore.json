@@ -1,0 +1,56 @@
+{
+ "name": "M4a_ref30_fmin_q1",
+ "sample": "explore",
+ "n": 122,
+ "days": 105,
+ "coins": 3,
+ "mean_bp": 200.16,
+ "median_bp": 35.53,
+ "win": 0.557,
+ "se_bp": 127.69,
+ "ci95_bp": [
+  -58.25,
+  439.08
+ ],
+ "p": 0.11444277861069466,
+ "mde80_bp": 357.53,
+ "mean_ex_top3_bp": 95.49,
+ "top3_share": 0.53,
+ "t_day_mean": 2.15,
+ "by_year": {
+  "2021": [
+   65,
+   503.22
+  ],
+  "2022": [
+   22,
+   -520.01
+  ],
+  "2023": [
+   35,
+   89.99
+  ]
+ },
+ "by_side": {
+  "1": [
+   122,
+   200.16
+  ]
+ },
+ "coins_positive": 1.0,
+ "net_bp": {
+  "free": 200.16,
+  "maker_taker": 192.16,
+  "taker": 187.16,
+  "taker_x2": 174.16,
+  "crash": 120.16
+ },
+ "base_n": 610,
+ "base_bp": 70.06,
+ "vs_base_bp": 130.1,
+ "p_vs_base": 0.3663168415792104,
+ "passes": false,
+ "note": "most negative quintile of fmin (<= -0.167, thresholds from the explore pool, not outcomes) on <= -3% days, long 3 d; ref 30 d buckets",
+ "rerun": "",
+ "at": "2026-11-24T18:52:25+00:00"
+}
