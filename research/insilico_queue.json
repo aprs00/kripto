@@ -541,35 +541,53 @@
    "group": "A",
    "title": "Oscillators: pinned extremes mean trend",
    "src": "R29; tg:86, 91-92; wa 18.10.36*, 18.10.37",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "RSI14 > 70 for >= k bars -> hold long until it returns below 50 (1h, 4h, 1d), vs buy after the same past return",
-     "status": "planned"
+     "status": "done",
+     "result": "explore 2021-23, baseline = same coin, same trailing-14-bar return decile: RSI > 70 for k = 1/3/6 bars -> long: 1h (6 h) -6/+16/-1 bp vs matched (MDE 23-60), 4h (24 h) +100/+132/-59 (p .04/.03/.29, MDE 143-163), 1d (5 d) +52/+105/+50 (n.s., MDE 240-490); pinned < 30 -> short similar mix. No dose in k (k=6 falls back); RSI adds nothing stable beyond the past return it is built from (= momentum the books already trade)",
+     "date": "2026-11-24",
+     "evidence": "O1__explore"
     },
     {
      "id": "b",
      "what": "dip to 70 that holds = re-entry (his chart), mirror for 30",
-     "status": "planned"
+     "status": "done",
+     "result": "re-entry (RSI was > 70, dips to 55-70 without 50, turns up) -> long: 1h +17.8 vs matched +17.6 (n 4,609, MDE 22), 4h +2 bp diff, 1d -70 (n.s.). The dip that holds is just a bar of the same trend",
+     "date": "2026-11-24",
+     "evidence": "O1__explore"
     },
     {
      "id": "c",
      "what": "3-4 failed reversal signals in a row -> continuation",
-     "status": "planned"
+     "status": "done",
+     "result": "failed sell signals (RSI down through 70, then a new 20-bar high within 10 bars): at the 3rd failure in 40 bars, long: 1h -33 bp vs matched +25 (diff -58, p .02, MDE 55), 4h -1 (n.s.), 1d +234 (p .24, MDE 498); 1st failure 1h +5, 4h +124 (p .05). His '3-4 failed signals -> continuation' is not seen; at 1h the third failure is followed by the drop",
+     "date": "2026-11-24",
+     "evidence": "O1__explore"
     },
     {
      "id": "d",
      "what": "return from the extreme to the mean = the reversal signal (what he says actually works)",
-     "status": "planned"
+     "status": "done",
+     "result": "RSI through 50 after > 70 within 20 bars as a SHORT signal loses at every timeframe: short return 1h -18 vs matched -2 (p .06), 4h -80 vs +3 (p .03), 1d -289 vs -36 (p .03). The reset to 50 is followed by the trend resuming (his own 'uptrend: buy the dip that turns up' template), not a reversal. Long version as a card: 4h explore +79.6 bp vs matched +24 (diff +55, p .18 with a fresh matched draw; 2022 -63), passes=False -> not pre-registered",
+     "date": "2026-11-24",
+     "evidence": "O1d_reset50_long_4h__explore"
     },
     {
      "id": "e",
      "what": "regime flag: 'breaks every rule' state -> do not fade (as a filter for mean-reversion events found elsewhere)",
-     "status": "planned"
+     "status": "done",
+     "result": "filter on the live ladder (T1k30 fills, h60) by the coin's prior-day daily RSI: explore +12 / +73 / +243 bp for RSI < 30 / 30-50 / >= 50 (n 49 / 576 / 522); pre-registered RSI >= 50 vs < 50 (+243 vs +68, p < .001, ex-top-3 +183, passes); confirmT 2024-25: +183 vs +137, diff +46, p .60 -> FAILS. The explore gap was 2021 (+526 bp in a bull year); in 2024-25 the ladder pays in both states. Live ladder stays unfiltered; vault untouched",
+     "date": "2026-11-24",
+     "evidence": "O1e_ladder_rsi50__confirmT"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "5/5 forms, explore 2021-23 (COINS10 1h/4h, bnall top-100 daily), baseline = same coin, same trailing-return decile. Pinned RSI adds nothing stable beyond the past return (no dose in run length); re-entry = matched; 3 failed sell signals precede a drop at 1h (opposite); RSI back to 50 is NOT a reversal signal (shorts lose at all 3 timeframes; the long card p .18); ladder filter by daily RSI passed explore and failed confirmT (+46 bp, p .60): 2021 regime artifact. Oscillators here are momentum in disguise; MDE 22-23 bp at 1h",
+   "closed": "2026-11-24"
   },
   {
    "id": "O2",

@@ -419,3 +419,8 @@ Friday 16–20 NY +26 vs +5 bp Mon–Thu (p .18, MDE 38): test inside FF1. Scrip
 Explore COINS10 2021–23, mirror levels as placebo. Naked daily POCs touched within 5 d 54.8% vs 57.6% mirror; weekly = mirror; monthly −9 pp. 20-d composite POC no magnet vs the 20-d mean. First touch of a daily
 naked POC +15 bp/60 min vs −1 for mirror touches matched on approach side and distance (p .09, MDE 18.5); larger for far, old and THIN nodes (fat nodes ≈ 0) = generic bounce. Weekly/monthly VAH/VAL 'reactions'
 were an approach-side artifact. Lesson: compare level touches within the same approach side. Script research/studies/is3_p3.py.
+
+### InSilico O1 / R29 oscillators: pinned extremes mean trend (2026-11-24) → DEAD
+Explore 2021–23, COINS10 1h/4h + bnall top-100 1d, baseline = same coin at the same trailing-14-bar return decile. RSI > 70 for 1/3/6 bars adds nothing stable (no run-length dose); re-entry dips = matched;
+3 failed sell signals precede a DROP at 1h (−58 bp, p .02). RSI back through 50 after > 70 is followed by the trend resuming at 1h/4h/1d (shorts lose, p .03–.06; long card p .18). Ladder filter (fills when
+daily RSI ≥ 50): explore +243 vs +68 bp, confirmT 2024–25 +183 vs +137 (p .60) → fails; the gap was 2021. Scripts research/studies/is3_o1.py, is3_o1_card.py.

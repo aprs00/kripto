@@ -1,0 +1,52 @@
+{
+ "name": "O1e_ladder_rsi50",
+ "sample": "confirmT",
+ "n": 255,
+ "days": 69,
+ "coins": 67,
+ "mean_bp": 183.09,
+ "median_bp": 159.78,
+ "win": 0.722,
+ "se_bp": 43.28,
+ "ci95_bp": [
+  97.43,
+  271.18
+ ],
+ "p": 0.0004997501249375312,
+ "mde80_bp": 121.19,
+ "mean_ex_top3_bp": 138.86,
+ "top3_share": 0.37,
+ "t_day_mean": 5.92,
+ "by_year": {
+  "2024": [
+   184,
+   192.46
+  ],
+  "2025": [
+   71,
+   158.81
+  ]
+ },
+ "by_side": {
+  "1": [
+   255,
+   183.09
+  ]
+ },
+ "coins_positive": 0.78,
+ "net_bp": {
+  "free": 183.09,
+  "maker_taker": 175.09,
+  "taker": 170.09,
+  "taker_x2": 157.09,
+  "crash": 103.09
+ },
+ "base_n": 285,
+ "base_bp": 137.26,
+ "vs_base_bp": 45.83,
+ "p_vs_base": 0.5952023988005997,
+ "passes": false,
+ "note": "ladder fills (T1k30 one bar late) h60 when the coin's prior-day daily RSI14 >= 50; base = fills with RSI < 50",
+ "rerun": "",
+ "at": "2026-11-24T11:32:28+00:00"
+}

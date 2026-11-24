@@ -368,3 +368,6 @@ guys fucked up": RSI out of its mean = turbo bull; full-retard mode, standard be
 time-series momentum dressed as RSI. What he does NOT say: whether RSI adds anything beyond the past return itself. So the baseline for every form is the same coin at the same trailing-14-bar return
 decile without the RSI condition. Failed-signal count (c) is the only part that is not a plain return transform. e = filter: does the live ladder's dump-fade do worse when the coin's daily RSI is pinned
 (he says 'do not fade' in that state)? Explore COINS10 1h/4h 2021–23 and bnall top-100 daily 2021–23.
+O1 done (is3_o1.py, is3_o1_card.py): RSI is a transform of past returns and adds nothing stable to them (a, b). His 'reversal signal' (RSI back to 50) is followed by the trend resuming at 1h/4h/1d
+ (d; long card p .18, not pre-registered); 3 failed sell signals at 1h precede a drop, not continuation (c). Filter e (ladder fills by daily RSI) passed explore (+243 vs +68) and FAILED confirmT (+183 vs
+ +137, p .60): a 2021 bull-year artifact. Lesson: a filter on a book that already works must be compared within years before pre-registering (2021 carried the whole gap).
