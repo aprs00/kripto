@@ -541,7 +541,7 @@
    "group": "A",
    "title": "Oscillators: pinned extremes mean trend",
    "src": "R29; tg:86, 91-92; wa 18.10.36*, 18.10.37",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -568,7 +568,8 @@
      "what": "regime flag: 'breaks every rule' state -> do not fade (as a filter for mean-reversion events found elsewhere)",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "O2",

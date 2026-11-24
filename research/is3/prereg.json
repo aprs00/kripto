@@ -70,5 +70,17 @@
    "caveat": "breadth >= 2 chosen AFTER seeing the explore breadth split (lone +2.5, 2-3 +45.5, 4+ +22.1 bp); z >= 8 from the queue text (8-12). confirmC breadth is counted among 73 coins (more likely to be >= 2 than among 10)"
   },
   "at": "2026-11-24T05:22:19+00:00"
+ },
+ "O1e_ladder_rsi50": {
+  "claim": "the live ladder (T1k30 resting bid 30 sigma below, one-bar-late fills) earns more at 60 min when the coin is not in a pinned-down state: prior-day daily RSI14 >= 50 vs < 50 (InSilico: do not fade full-retard downside)",
+  "rule": "fills from data/is3/e2_k-30.parquet; event = fills with rsi14(daily bnall close).shift(1) >= 50 on the fill day; base = fills with < 50; gross = h60; card on confirmT 2024-01-01..2026-01-01 once",
+  "params": {
+   "threshold": 50,
+   "horizon": "h60",
+   "explore_diff_bp": 174.9,
+   "explore_p": 0.0005,
+   "note": "explore saw 3 RSI bins (+12/+73/+243 bp); the 50 cut is the bin edge seen; the unconditional ladder already used 2024-25 as its confirm sample, the RSI split is new"
+  },
+  "at": "2026-11-24T11:32:12+00:00"
  }
 }

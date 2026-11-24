@@ -360,3 +360,11 @@ Fixed: a level is evaluated once, at the close of the first day after its period
 P3 done (is3_p3.py, P3__explore, P3_sidematched__explore): naked POCs are touched less than mirror levels (daily −2.7 pp, monthly −9); not magnets after 2–5 σ either. First touch of a daily naked POC bounces
  +15 bp (mirror matched on side and distance −1, p .09); the dose runs with distance travelled and AGAINST node fatness, so it is the generic bounce after a long move. Weekly/monthly VAH/VAL 'reactions'
  were an approach-side artifact (lesson: any level-touch reaction must be compared within the same approach side; touches from above and below have different drifts). Closed DEAD.
+
+## O1 oscillators (think-through 11:30 UTC, before any run)
+Sources tg:86, 91–92 (5-panel template: uptrend = buy oscillator dips that turn up, sell above +40; "if indicator reaches 100 it doesn't mean it has to reverse, it means stupidly bullish ... red flag it
+won't reverse is multiple tools signalling down and price still rising ... 3–4 signals to reverse in close proximity -> it's full of shit and we keep tanking"), wa 18.10.36/37 ("Quick guide ... How TA
+guys fucked up": RSI out of its mean = turbo bull; full-retard mode, standard behaviour not expected). Mechanism: an oscillator is a transform of past returns; pinned = strong recent trend; his claim is
+time-series momentum dressed as RSI. What he does NOT say: whether RSI adds anything beyond the past return itself. So the baseline for every form is the same coin at the same trailing-14-bar return
+decile without the RSI condition. Failed-signal count (c) is the only part that is not a plain return transform. e = filter: does the live ladder's dump-fade do worse when the coin's daily RSI is pinned
+(he says 'do not fade' in that state)? Explore COINS10 1h/4h 2021–23 and bnall top-100 daily 2021–23.
