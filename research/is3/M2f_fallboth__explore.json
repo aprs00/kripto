@@ -1,0 +1,56 @@
+{
+ "name": "M2f_fallboth",
+ "sample": "explore",
+ "n": 231597,
+ "days": 1092,
+ "coins": 10,
+ "mean_bp": 0.99,
+ "median_bp": -6.34,
+ "win": 0.465,
+ "se_bp": 2.28,
+ "ci95_bp": [
+  -3.64,
+  5.53
+ ],
+ "p": 0.6376811594202898,
+ "mde80_bp": 6.37,
+ "mean_ex_top3_bp": -0.54,
+ "top3_share": 1.54,
+ "t_day_mean": -2.43,
+ "by_year": {
+  "2021": [
+   67890,
+   2.42
+  ],
+  "2022": [
+   87402,
+   3.04
+  ],
+  "2023": [
+   76305,
+   -2.63
+  ]
+ },
+ "by_side": {
+  "-1": [
+   120282,
+   -4.66
+  ],
+  "1": [
+   111315,
+   7.1
+  ]
+ },
+ "coins_positive": 0.7,
+ "net_bp": {
+  "free": 0.99,
+  "maker_taker": -7.01,
+  "taker": -12.01,
+  "taker_x2": -25.01,
+  "crash": -79.01
+ },
+ "passes": false,
+ "note": "1-min klines COINS10, 1 min late, 60 min, in the move's direction; gross = minus same coin/year/move-size-decile mean",
+ "rerun": "",
+ "at": "2026-11-24T17:02:40+00:00"
+}

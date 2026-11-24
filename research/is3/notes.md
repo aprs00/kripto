@@ -496,3 +496,11 @@ M2 a/c/d done (is3_m2.py; data/is3/m2_explore.txt, m2_null.txt): 5-20x count cha
 M2 b explore: at a 24 h extreme, >=1-s 0.43% bars, LONG side only (down burst at the low = his 701 example): +50 bp vs matched (p .001, n=600, 2021/22/23 +82/+19/+63, BTC/ETH/SOL +17/+15/+85,
  dose 27/50/42); raw +96, +16 at crash costs; the same on sub-1-s bars -6; short side (burst at the high) -14. ~36 cells searched; overlaps L1. Pre-registered M2b_long10_w43 (+_raw); confirmT
  2024-25 after M0c SOL lands. pdVAH/VAL proximity: nothing (n.s., mixed signs).
+M2 e/f think-through (17:0x, before run). e source opened (wa 18.10.41, Dec 2021 tweets): "orders pile in as lag increases in the trade engine; as long as it's clogged assume the same direction; when
+ it unclogs ..." (he leaves the punchline open: the push is over). Proxy without latency data: trades/min vs the coin's trailing-24h median (x). Clogged = x >= K and above the previous minute; unclogged
+ = a burst (max x of the last 15 min >= K) now below half its peak. Side = direction of the last 15 min. f: his tape table "market orders smaller and less frequent as price moves -> exhaustion".
+ Both on COINS10 1-min klines 2021-23, enter at the close of the next minute (1 min late), 15/60/240 min; baseline = same coin, same year, same move-size decile (|15 min| or |60 min| return / sigma).
+ What he does not say: the engine-lag edge was an FTX/BitMEX phenomenon (overload = mark price stale); on Binance 2021+ the matching engine rarely clogs, so I expect at most the generic
+ flow-continuation inside bursts, and the dose must be in x.
+M2 e/f done (is3_m2m.py; data/is3/m2m_explore.txt): engine-lag proxy backwards (clogged bursts reverse -5 bp/60 min, 2021 only; unclogging nothing, MDE 3); exhaustion row backwards and tiny
+ (falling count+size +1 bp vs matched, rising count -5). Binance minute data has no 'clog' to read; the FTX-era mechanism is not in this venue's data. Only M2b_long10_w43 remains (confirmT pending SOL).

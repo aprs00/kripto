@@ -1180,14 +1180,20 @@
     {
      "id": "e",
      "what": "engine-lag proxy (wa 18.10.41): on 1-min klines of all coins, trade count >= 10x normal and STILL rising -> continuation; count falling from its peak ('unclogged') -> reversal; dose 5/10/20x",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "COINS10 1-min 2021-23, 1 min late, vs same coin/year/move-size decile: 'clogged' bursts (trades/min >= 10x 24h median and still rising) do NOT continue: -5.1 bp/60 min (p .13, MDE 9), 20x -7.4/-11.8 at 240, all from 2021 (-18; 2022/23 -1). 'Unclogging' (below half the 15-min peak) +0.4 (MDE 2.9). Dose 5/10/20x. Opposite of his claim and below costs. DEAD",
+     "date": "2026-11-24",
+     "evidence": "M2e_clog_10__explore"
     },
     {
      "id": "f",
      "what": "exhaustion row of his tape table (wa 18.10.54(3), 18.10.24(3): 'market orders becoming smaller & less frequent as price moves -> exhaustion'): in moves >= 2 sigma over 60 min (1-min klines, all coins), slope of trades/min and of mean trade size (quote volume / trades) over the move's last 20 min; falling-both vs rising-both -> next 60-240 min continuation share and return; matched baseline = same-size moves, other intensity paths; dose = slope tercile",
-     "status": "planned",
-     "added": "2026-11-24"
+     "status": "done",
+     "added": "2026-11-24",
+     "result": "moves >= 2 sigma over 60 min, slope of trades/min and of mean trade size over the last 20 min: both falling (his exhaustion) +1.0 bp vs matched continuation (MDE 6.4), both rising -1.5; count-slope terciles +2.0/-1.9/-4.7 at 60 min (rising activity -> slight reversal, 2021-only). Exhaustion row backwards and tiny. DEAD",
+     "date": "2026-11-24",
+     "evidence": "M2f_fallboth__explore"
     }
    ],
    "after": [

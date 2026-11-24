@@ -1,0 +1,56 @@
+{
+ "name": "M2e_unclog_10",
+ "sample": "explore",
+ "n": 598647,
+ "days": 1092,
+ "coins": 10,
+ "mean_bp": 0.36,
+ "median_bp": -5.58,
+ "win": 0.465,
+ "se_bp": 1.04,
+ "ci95_bp": [
+  -1.61,
+  2.4
+ ],
+ "p": 0.736631684157921,
+ "mde80_bp": 2.93,
+ "mean_ex_top3_bp": -0.56,
+ "top3_share": 2.55,
+ "t_day_mean": -4.72,
+ "by_year": {
+  "2021": [
+   137061,
+   -0.2
+  ],
+  "2022": [
+   196495,
+   1.46
+  ],
+  "2023": [
+   265091,
+   -0.16
+  ]
+ },
+ "by_side": {
+  "-1": [
+   324574,
+   -4.82
+  ],
+  "1": [
+   274073,
+   6.5
+  ]
+ },
+ "coins_positive": 0.6,
+ "net_bp": {
+  "free": 0.36,
+  "maker_taker": -7.64,
+  "taker": -12.64,
+  "taker_x2": -25.64,
+  "crash": -79.64
+ },
+ "passes": false,
+ "note": "1-min klines COINS10, 1 min late, 60 min, in the move's direction; gross = minus same coin/year/move-size-decile mean",
+ "rerun": "",
+ "at": "2026-11-24T17:02:40+00:00"
+}
