@@ -163,6 +163,9 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
   Watch the `collector:` line of `paper status` at every review (a gap = data lost forever).
 - [ ] T0b Scheduled re-checks of HL-only DEAD ideas (carry, carry_trend) once HL has ≥ 6 more months (~2027-05). Low priority:
   this is a re-check of dead ideas, not the main path. New ideas get evidence now from bnall/BN history.
+- [ ] W2 **Book-event collector (non-backfillable)**: HL public websocket `l2Book` deltas for BTC/ETH/SOL + 2 thin names, per-minute aggregates of
+  size pulled / added within 5 bp of mid on each side (InSilico wa 18.10.19: "real alpha is price reaction to pulls and lifts of limit orders"; S2b5).
+  Every week not collected is lost; build like kripto/flow.py (heartbeat + data-arrival check, ≤ 300 MB). Test after ≥ 6 weeks.
 - [ ] T3 HL-vs-Binance funding spread as a crowding signal (HL retail flow is distinct; HL hourly vs BN 8h funding).
 - [ ] T7 Liquidation-cluster proximity as risk filter for trend positions (positions data now collected, T6b).
 - [ ] T8 Regime filter: trend/carry vs BTC vol regime or funding level (≤ 2 regime params; beware overfitting).

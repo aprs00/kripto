@@ -1739,8 +1739,11 @@
     {
      "id": "b5",
      "what": "open EVERY image of batch b5 in research/is3/S2_batches.json (40 other pictures) with the Read tool (paths under data/chat_extract/); per image one line in S2b5__notes.json: what is drawn, entry / exit / level / timing visible, and whether it contradicts the stored description",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "40/40 opened by eye (39 legible: wa 18.10.19(2) is 119 px wide, unverifiable); 0 contradictions; rule pictures map to queued forms (tg:210 M1, wa 18.10.19(1) N3k, tg:289 N3a, tg:288 P2, tg:119 N1); new: 'pulls and lifts of limit orders' has no data -> backlog W2 (HL l2Book delta collector); no new form",
+     "date": "2026-11-24",
+     "evidence": "S2b5__notes"
     },
     {
      "id": "b6",

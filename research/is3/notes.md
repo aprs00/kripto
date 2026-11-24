@@ -160,3 +160,12 @@ What he does NOT say: the sentiment fade needs a price location too ("double bot
 S2 b4 done (40/40 opened, 0 contradictions). Mostly tweets/book pages/memes. Useful: tg:205 his TSize groups are 'AI levels' from the PREVIOUS DAY only (31k/57k/111k/155k/250k
  on XBTUSD; our fixed EDGES match that snapshot) → M4a primary changed to 1-d quantiles (30 d = variant); tg:204 colour grades capped at the 90th pct → M1c should clip z there; tg:78 he calls
  his lines 'meme lines, reactive' (placebo levels stay mandatory). Cross-cutting idea from Wilmott p.17 (tg:158): 'avoid the hands just a little worse' = check the 2nd-best bucket of every dose-response. Next: b5.
+
+## S2 b5 (think-through 2026-11-24 ~05:00 UTC, before opening anything)
+b5 = tg:118–289 (Mar–Sep 2021) + wa 18.10.18–18.10.21 (tweets 2021–2025). Contains rule-bearing pictures: tg:210 'anomaly = one-voiced bias through all 7 groups ... ends in reversion
+or serious puke if faded' (M1/M4 source), tg:230 'bid at previous high, ask at average size of that timeframe's candle' + Wyckoff range→impulse (M5 source), tg:231 'anatomy of a price surge'
+(thin weak base leg), tg:261 the FPBS Excel export (which columns he actually studies), tg:279/290 per-day TSize cells, tg:288 '10 laws of market dynamics' (balance areas = P family),
+wa 18.10.19 'real alpha is price reaction to pulls and lifts of limit orders' (needs L2 deltas: we collect HL L2 hourly only). Check each picture's numbers against the stored text;
+what he does NOT say: in tg:230 the ask size is a TARGET distance (avg candle range), not an order size, i.e. a fixed-R target after a range break-retest; check the picture says so.
+S2 b5 done (40/40 opened, 39 legible: wa 18.10.19(2) is a 119-px-wide scroll, unverifiable; 0 contradictions). Rule pictures all map to queued forms (M1, N3k overlap, N3a swing speed, P2 balance laws, N1 round
+ numbers). Only gap: wa 18.10.19 'real alpha is price reaction to pulls and lifts of limit orders' needs book deltas we do not collect → backlog W2 (HL websocket l2Book collector). Next: b6.
