@@ -157,7 +157,7 @@
    "group": "A",
    "title": "The other balance laws, session profiles, poor lows, fat-node breaks",
    "src": "R16-R18, R41, R42; tg:52-57, 133-134, 253-254, 288; wa 18.10.51, 18.10.57(1)",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -178,7 +178,10 @@
     {
      "id": "c",
      "what": "destination of an imbalance = an older balance's POC (naked POC), vs placebo",
-     "status": "planned"
+     "status": "done",
+     "result": "explore COINS10 2021-23, 1,237 imbalance days (close beyond the prior 3 days' high/low) with a naked daily POC (last 30 d, untraded since) in the move direction (median 598 bp away): reached within 5 days 48.5% vs 53.3% for the same distance on the coin's other same-direction imbalance days without a naked POC near it: diff -4.8 pp, CI [-8.6, -1.0], p .02, MDE 5.5. Naked POCs are not destinations; if anything they are reached less",
+     "date": "2026-11-24",
+     "evidence": "P2ck__explore"
     },
     {
      "id": "d",
@@ -241,8 +244,11 @@
     {
      "id": "k",
      "what": "fat node + 'lower deviation' break with OI falling (wa 18.10.51: 'positions placed at the fattest side ... puked'): 1h close below 20-d node minus 1 value width -> speed of the next move, vs same break without a node",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "1-h close through the 20-d composite POC -/+ one composite value width (1,861 first crosses, 10 coins 2021-12..2023, 5-min OI): 4 h with the break +11.9 bp vs +18.6 for the same cross of the 20-d median -/+ width (diff -6.7, p .33, MDE 20); OI falling -5.2 (p .66), OI rising -7.5; 24 h -23 (p .26). His case (down break, OI falling) +4.6 bp CI [-23, +37], 2023 negative. A node adds nothing to a break",
+     "date": "2026-11-24",
+     "evidence": "P2ck__explore"
     },
     {
      "id": "l",
@@ -253,7 +259,10 @@
      "date": "2026-11-24",
      "evidence": "P2del__explore"
     }
-   ]
+   ],
+   "verdict": "DEAD",
+   "reason": "12/12 forms, explore COINS10 2021-23. Balance edges break more than placebo (reject 43 vs 47%, p .04), build-up has no dose; naked POCs reached less than the same distance (48.5 vs 53%, p .02); 80% rule = random walk (session 47.6 vs 49.5%, daily 37.2 vs 38.9% once unresolved trades are excluded; pass-2 numbers biased, corrected); poor lows = tailed lows (74.6 vs 74.9%); single prints under a POC fill more (n 34); 4-bp single prints fill less than placebo (48 vs 51%); fat-node breaks = median breaks (-7 bp, MDE 20), with OI falling too; IB edges extended more than placebo; R/F and TPO/volume POC gap only track today's range. Reason: profile levels carry no resting-order memory a day later; the only regularity is volume memory (P1) and that real levels get broken slightly more often",
+   "closed": "2026-11-24"
   },
   {
    "id": "P3",

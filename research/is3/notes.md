@@ -318,3 +318,6 @@ break). Distance confound again: compare every level with the same construction 
 Order (budget): a + b in one harness (3-day overlapping-value composites, first touch of its high/low from inside, reject = back 0.25 width inside before 0.25 beyond, and the build count of
 the 6 prior half-hours near that edge as b's dose), then g (poor vs tailed lows, retest within 5 d, matched by distance), f (close through the 20-d composite POC vs through the 20-d median close),
 j (session IB first touch vs 37% offset), i (TPO POC vs volume POC gap -> next-day range). Explore COINS10 2021–23 only.
+P2 done (is3_p2.py, P2{ab,gfi,jh,del,ck}__explore): 12/12 forms. Every profile level is, if anything, broken/avoided MORE than its placebo: 3-day balance edges reject 43 vs 47%, IB edges 48 vs 52%,
+ 4-bp single prints fill 48 vs 51%, naked POCs reached 48.5 vs 53%. No dose anywhere (build-up, fatness, R/F, poor lows). 80% rule = random walk once unresolved trades are not counted as misses
+ (bug in pass 2, corrected in findings). Unstated conditions tried: multi-day balance instead of yesterday, his 4-bp resolution, OI falling at the break, time vs volume disagreement. Closed DEAD.

@@ -72,3 +72,4 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * T4 exits as decisions: OPEN (MDE rule), practically settled: on the live ladder fills every 'take it and run' exit loses to the 61-min timer (−3 to −94 bp; 3 of 4 p < .01). The live book keeps its timer.
 * T5 1-min bounces/continuations by context: OPEN. Ordinary shocks are noise (+2 bp, no context helps); absorption bars do not bounce (claim reversed); up-spikes >= 8σ with breadth continue (confirmed on coins p .009, not on time p .075, tail-driven).
 * P1 gap fill: DEAD. The reverse is true: the next day/hour trades more where the prior traded most (+2.5 / +1.2 pp vs mirror) and avoids its thin zones; valleys, LVNs, delta gaps = placebo.
+* P2 balance laws, session profiles, poor lows, fat nodes: DEAD (12 forms). Real balance/IB edges, naked POCs and single prints are broken or skipped slightly MORE than placebo levels; 80% rule = random walk (pass-2 bias corrected).

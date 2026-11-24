@@ -399,3 +399,8 @@ Use: don't rest asks against broad up-spikes (ladder feature idea). Scripts rese
 Explore COINS10 2021–23, profiles from 1-min klines in 10-bp bins, placebo = the same bins mirrored around the next open. Next-day volume in yesterday's thin third −0.86 pp, busy third +2.5 pp (every year;
 hourly −0.43 / +1.24 pp); thinnest tenth most avoided. Bimodal valley (his picture) +0.6 pp p .29; nearest LVN reached first 49–50% (random walk 50); delta gaps = volume effect once volume is controlled;
 LVNs approached ≥ 3 times and not filled: price drifts toward, not away (n 198, p .3, MDE 85 bp). Scripts research/studies/is3_p1.py, is3_p1cg.py. Possible FEATURE only: busy zones are where tomorrow trades.
+
+### InSilico P2 / R16–R18, R41, R42 balance laws and session profiles (2026-11-24) → DEAD (12 forms)
+Explore COINS10 2021–23, every level vs a placebo (same construction 8 days earlier moved to today's price, or same distance). 3-day balance edges reject 43% vs 47% placebo; IB edges 48 vs 52%; 4-bp single prints
+fill 48 vs 51%; naked POCs reached 48.5 vs 53% (p .02); poor lows = tailed lows (74.6 vs 74.9%); fat-node / deviation breaks = median-level breaks (MDE 20 bp), OI split no help; R/F and TPO-vs-volume POC
+gap only echo today's range. 80% rule = random walk (session −2 pp, daily −1.7 pp) once unresolved trades are excluded (pass-2 '26–30% vs 37%' was that bias). Scripts research/studies/is3_p2.py.

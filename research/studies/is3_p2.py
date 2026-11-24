@@ -456,8 +456,119 @@ def form_del() -> dict:
     return res
 
 
+def form_ck() -> dict:
+    """c imbalance day (close beyond the prior 3 days' high/low) -> nearest naked daily POC (last 30 days, not traded through
+    since) in the move direction reached within 5 days, vs the hit rate of the same distance on the coin's other imbalance
+    days (same direction) that had no naked POC within 0.8-1.2 x that distance.
+    k 1-h close through the 20-day composite POC -/+ one composite value width ('lower deviation'), first cross, split by OI
+    change over the hour (10 coins 2021-12..2023, 5-min OI): 4 h / 24 h return with the break, 5 min after the hour, vs the
+    same cross of the 20-day median close -/+ the same width (a break without a node)."""
+    from research.studies import is3_t5g as G
+    C, K = [], []
+    for coin in L.COINS10:
+        k = P.load(coin, LO, "2024-01-10")
+        h, l, c, v = k.h.to_numpy(), k.l.to_numpy(), k.c.to_numpy(), k.qv.to_numpy()
+        ix = pd.Series(np.arange(len(k)), index=k.index.floor("D")).groupby(level=0).agg(["min", "max"])
+        ix = ix[(ix["max"] - ix["min"]) == 1439]
+        days = list(ix.index)
+        info = {}
+        for d in days:
+            a_, b_ = int(ix.loc[d, "min"]), int(ix.loc[d, "max"])
+            b0, vol, _ = sess_profile(h, l, v, a_, b_, P.BIN)
+            info[d] = dict(b0=b0, vol=vol, poc=np.exp((b0 + int(vol.argmax()) + 0.5) * P.BIN), hi=h[a_:b_ + 1].max(), lo=l[a_:b_ + 1].min(), close=c[b_], a=a_, b=b_)
+        ev = []
+        for n, d in enumerate(days):
+            if n < 31 or n + 5 >= len(days) or not (pd.Timestamp(LO, tz="UTC") <= d < pd.Timestamp(HI, tz="UTC")):
+                continue
+            x = info[d]
+            ph, pl_ = max(info[z]["hi"] for z in days[n - 3:n]), min(info[z]["lo"] for z in days[n - 3:n])
+            sgn = 1 if x["close"] > ph else (-1 if x["close"] < pl_ else 0)
+            if not sgn:
+                continue
+            naked = []
+            for m in range(n - 30, n):
+                pp = info[days[m]]["poc"]
+                if all(not (info[days[j]]["lo"] <= pp <= info[days[j]]["hi"]) for j in range(m + 1, n + 1)):
+                    naked.append(pp)
+            fut = slice(info[days[n + 1]]["a"], info[days[n + 5]]["b"] + 1)
+            mfe = np.log(h[fut].max() / x["close"]) if sgn > 0 else np.log(x["close"] / l[fut].min())
+            dists = sorted(sgn * np.log(np.array(naked) / x["close"])) if naked else []
+            dists = [q for q in dists if q > 0]
+            ev.append({"time": d, "coin": coin, "dir": sgn, "mfe": mfe, "D": dists[0] if dists else np.nan, "alld": dists})
+        e = pd.DataFrame(ev)
+        for i_, r in e.dropna(subset=["D"]).iterrows():
+            D_ = r.D
+            pool = e[(e.dir == r.dir) & (e.index != i_)]
+            pool = pool[[not any(0.8 * D_ <= q <= 1.2 * D_ for q in z) for z in pool.alld]]
+            if len(pool) < 20:
+                continue
+            C.append({"time": r.time, "coin": coin, "side": 1, "hit": float(r.mfe >= D_), "base": float((pool.mfe >= D_).mean()), "D_bp": D_ * 1e4})
+        # k
+        if coin != "BTC":
+            lo_k = "2022-01-01"
+        else:
+            lo_k = "2021-02-01"
+        pnl = G.panel([coin], lo_k, HI)
+        oi = pnl["oi"][coin]
+        cc = pnl["close"][coin].ffill()
+        hc = cc.resample("1h").last()
+        pos = pd.Series(np.arange(len(cc)), index=cc.index)
+        cv = cc.to_numpy()
+        lev = {}
+        for n, d in enumerate(days):
+            if n < 20:
+                continue
+            comp = {}
+            for dd in days[n - 20:n]:
+                y = info[dd]
+                for j, vv in enumerate(y["vol"]):
+                    comp[y["b0"] + j] = comp.get(y["b0"] + j, 0.0) + vv
+            keys = np.array(sorted(comp)); vols = np.array([comp[q] for q in keys])
+            pc, va, vb = value_area(vols)
+            node = np.exp((keys[pc] + 0.5) * P.BIN); w = np.exp((keys[vb] + 1) * P.BIN) - np.exp(keys[va] * P.BIN)
+            lev[d] = (node, w, float(np.median([info[dd]["close"] for dd in days[n - 20:n]])))
+        hv = hc.to_numpy(); hidx = hc.index
+        for j in range(1, len(hv)):
+            H = hidx[j]
+            dd = H.floor("D")
+            if dd not in lev or not (pd.Timestamp(lo_k, tz="UTC") <= H < pd.Timestamp(HI, tz="UTC")):
+                continue
+            node, w, med = lev[dd]
+            q = H + pd.Timedelta("64min")
+            if q not in pos.index:
+                continue
+            i = int(pos[q])
+            if i + 1440 >= len(cv):
+                continue
+            o_s, o_e = oi.get(H), oi.get(H + pd.Timedelta("60min"))
+            doi = (o_e / o_s - 1) if (o_s and o_e and np.isfinite(o_s) and np.isfinite(o_e)) else np.nan
+            for kind, base_lv in (("node", node), ("median", med)):
+                for sgn in (1, -1):
+                    lvl = base_lv + sgn * w
+                    if (hv[j - 1] - lvl) * sgn <= 0 < (hv[j] - lvl) * sgn:
+                        K.append({"time": q, "coin": coin, "kind": kind, "side": sgn, "doi": doi,
+                                  "f240": sgn * (cv[i + 240] / cv[i] - 1), "f1440": sgn * (cv[i + 1440] / cv[i] - 1)})
+    res = {}
+    cdf = pd.DataFrame(C)
+    s = L.stats(cdf.assign(gross=cdf.hit - cdf.base)[["time", "coin", "side", "gross"]], reps=2000)
+    res["c_naked_poc"] = {"n": s["n"], "hit": round(float(cdf.hit.mean()), 4), "base": round(float(cdf.base.mean()), 4), "diff_pp": round(s["mean_bp"] / 100, 2),
+                          "ci95_pp": [round(x_ / 100, 2) for x_ in s["ci95_bp"]], "p": s["p"], "mde_pp": round(s["mde80_bp"] / 100, 2), "D_bp_median": round(float(cdf.D_bp.median()), 1)}
+    kdf = pd.DataFrame(K)
+    kdf["oi_dir"] = np.where(kdf.doi < 0, "oi_down", np.where(kdf.doi > 0, "oi_up", "na"))
+    for H in ("f240", "f1440"):
+        for od in ("all", "oi_down", "oi_up"):
+            a_ = kdf[(kdf.kind == "node") & ((kdf.oi_dir == od) if od != "all" else True)]
+            b_ = kdf[(kdf.kind == "median") & ((kdf.oi_dir == od) if od != "all" else True)]
+            s = L.stats(a_.assign(gross=a_[H])[["time", "coin", "side", "gross"]], b_.assign(gross=b_[H])[["time", "coin", "side", "gross"]], reps=1000)
+            res[f"k_{H}_{od}"] = {"n_node": s["n"], "node_bp": s["mean_bp"], "n_median": int(len(b_)), "median_bp": s["base_bp"], "diff_bp": s["vs_base_bp"], "p": s["p_vs_base"], "mde_bp": s["mde80_bp"]}
+    a_ = kdf[(kdf.kind == "node") & (kdf.side == -1) & (kdf.oi_dir == "oi_down")]
+    s = L.stats(a_.assign(gross=a_.f240)[["time", "coin", "side", "gross"]], reps=1000)
+    res["k_his_case_down_break_oi_falling_f240"] = {"n": s["n"], "mean_bp": s["mean_bp"], "ci95_bp": s["ci95_bp"], "by_year": s["by_year"]}
+    return res
+
+
 if __name__ == "__main__":
     f = sys.argv[1]
-    r = {"ab": form_ab, "gfi": form_gfi, "jh": form_jh, "del": form_del}[f]()
+    r = {"ab": form_ab, "gfi": form_gfi, "jh": form_jh, "del": form_del, "ck": form_ck}[f]()
     print(json.dumps(r, indent=1, default=float))
     (ROOT / f"research/is3/P2{f}__explore.json").write_text(json.dumps(r, indent=1, default=float))
