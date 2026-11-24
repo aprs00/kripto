@@ -1305,7 +1305,10 @@
     {
      "id": "d",
      "what": "opposite side as a feature: breadth of one-voiced buying",
-     "status": "planned"
+     "status": "done",
+     "result": "breadth of one-voiced buying as a market state (bnall half 0 liquid, share of coins with taker-delta-share z >= 1 / 2 vs own 30 d; event = breadth >= expanding 80th pct), equal-weight basket 1/3 d vs days with the same basket-return decile: diff +13 / +31 (z1), +5 / +53 (z2) bp, all p >= .44, MDE 101-184; quintile curves not monotone (z2 3 d: +126/-206/-4/-37/+126); short side the mirror. Null +23 bp = simple-return convexity of a long basket (same on all days; the matched diff is the test). 8 cards. Buying breadth carries no market-timing information. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "M4d_breadth_z2_H3_long__explore"
     },
     {
      "id": "e",

@@ -578,3 +578,4 @@ M4 a/e done (is3_m4.py; data/is3/m4a_explore.txt): adaptive 7 groups from 12 bin
  Next M4: b (4-h / session bars), c (R2 largest one-sided delta of a trend's life on a pullback), d (one-voiced buying breadth), f (pitstop in a strong move).
 M4 b done: 4-h bars, flat quintile curves, Q1 -48 bp vs matched (MDE 133). Shorter bars do not help.
 M4 c done (is3_m4c.py, bnall half 0, 12 cells): most one-sided selling day of an uptrend's life on a pullback = matched pullbacks or worse, anti-dose in N. Same sign as pass 2 (one-voiced selling continues).
+M4 d done: breadth of one-voiced buying (bnall) = matched market days (+5..+53 bp n.s., not monotone).

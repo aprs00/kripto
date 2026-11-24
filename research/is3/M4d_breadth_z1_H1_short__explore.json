@@ -1,0 +1,56 @@
+{
+ "name": "M4d_breadth_z1_H1_short",
+ "sample": "explore",
+ "n": 196,
+ "days": 196,
+ "coins": 1,
+ "mean_bp": -26.76,
+ "median_bp": -18.69,
+ "win": 0.48,
+ "se_bp": 46.85,
+ "ci95_bp": [
+  -118.42,
+  66.61
+ ],
+ "p": 0.5642178910544727,
+ "mde80_bp": 131.17,
+ "mean_ex_top3_bp": -66.82,
+ "top3_share": null,
+ "t_day_mean": -0.58,
+ "by_year": {
+  "2021": [
+   77,
+   -8.16
+  ],
+  "2022": [
+   68,
+   -10.83
+  ],
+  "2023": [
+   51,
+   -76.1
+  ]
+ },
+ "by_side": {
+  "-1": [
+   196,
+   -26.76
+  ]
+ },
+ "coins_positive": 0.0,
+ "net_bp": {
+  "free": -26.76,
+  "maker_taker": -34.76,
+  "taker": -39.76,
+  "taker_x2": -52.76,
+  "crash": -106.76
+ },
+ "base_n": 980,
+ "base_bp": -13.95,
+ "vs_base_bp": -12.81,
+ "p_vs_base": 0.8110944527736131,
+ "passes": false,
+ "note": "breadth of one-voiced buying (share of liquid half-0 coins with delta-share z >= 1.0) >= expanding 80th pct; equal-weight basket 1 d; vs days with the same basket return decile",
+ "rerun": "",
+ "at": "2026-11-24T18:57:08+00:00"
+}
