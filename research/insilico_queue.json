@@ -1383,8 +1383,11 @@
     {
      "id": "e",
      "what": "his other target (tg:227 picture): bid the old range high (B), offer the low of the small consolidation made right after the breakout (A), not one average candle; the retest came > 40 min later and after a +9 point run: order must rest until then",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "target A = post-breakout low (A-B >= 1w), order + position 6 h, BTC/ETH/SOL 2021-23: 0.2% n658 through gross -3.7 vs placebo -3.1 (MDE 3.6), q250k -13.2; 0.43% n138 through +7.6 vs placebo -3.0 (p .07, MDE 15) but the real level sits between its placebos (-27 / +25), q50k -1.9, q250k -9.5, net +2.3 at best. Verdict: no level effect at 0.2%, too few events and fill-dependent at 0.43%; not worth a confirm. Variants: 2 widths x 5 fills",
+     "date": "2026-11-24",
+     "evidence": "M5e_w4_through__explore"
     },
     {
      "id": "f",

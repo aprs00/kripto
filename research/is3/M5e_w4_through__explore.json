@@ -1,0 +1,61 @@
+{
+ "name": "M5e_w4_through",
+ "sample": "explore",
+ "n": 138,
+ "days": 90,
+ "coins": 3,
+ "mean_bp": 7.57,
+ "median_bp": 45.65,
+ "win": 0.688,
+ "se_bp": 5.31,
+ "ci95_bp": [
+  -2.8,
+  17.59
+ ],
+ "p": 0.15992003998001,
+ "mde80_bp": 14.88,
+ "mean_ex_top3_bp": 4.56,
+ "top3_share": 0.43,
+ "t_day_mean": 1.64,
+ "by_year": {
+  "2021": [
+   83,
+   7.2
+  ],
+  "2022": [
+   37,
+   1.5
+  ],
+  "2023": [
+   18,
+   21.74
+  ]
+ },
+ "by_side": {
+  "-1": [
+   63,
+   3.79
+  ],
+  "1": [
+   75,
+   10.75
+  ]
+ },
+ "coins_positive": 0.67,
+ "net_bp": {
+  "free": 7.57,
+  "maker_taker": -0.43,
+  "taker": -5.43,
+  "taker_x2": -18.43,
+  "crash": -72.43,
+  "own_cost": 2.32
+ },
+ "base_n": 273,
+ "base_bp": -3.02,
+ "vs_base_bp": 10.59,
+ "p_vs_base": 0.0734632683658171,
+ "passes": false,
+ "note": "form e: bid old range high on 0.4% range bars after a 3w impulse, fill through, target A = post-breakout low, stop -2w, 6 h; base = placebo levels 0.63x/1.37x",
+ "rerun": "",
+ "at": "2026-11-24T23:31:45+00:00"
+}
