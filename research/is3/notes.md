@@ -387,3 +387,12 @@ O2 j done (is3_o2.py j): an H (failed new high in an uptrend) is followed by les
  Feature idea for F2 (trim trend longs after an H), not a trade. O2 left: f, g, h.
 O2 g done (is3_o2g.py): 1-min Fisher turns are worth 0–3 bp gross (MDE ~1 bp), −10..−16 net. O2 left: f (Crayons climax labels, vague), h (regression channel vs hand-drawn placebo).
 O2 h done (regression channel = placebo channels), f skipped (no formula in the guide; d and k are its public analogues). O2 closed DEAD: ~70 cells, 3-4 at p < .05 as chance predicts, several wrong-way.
+
+## N1 round numbers (think-through 11:46 UTC, before any run)
+Source tg:119 (Flood's 'hundy roll' thread he reposted: buy at 97–98 expecting a run through 100 to 106; "human beings are dumb enough to shoot for round numbers"), wa 18.10.24(1) ("current action is mechanical
+reaction to 40,000"). Mechanism: limit orders and stops cluster at round prices (documented in FX/equities: Osler); targets attract, then stops beyond them extend the move (overshoot). What he does NOT say:
+'round' depends on the coin's own price scale -> use one-significant-digit levels (d x 10^k); the placebo must have the same geometry, so placebo = the level 37% of the way to the next round level.
+Lesson from P3: compare touches within the same approach side. a: daily bnall half-0 coins 2021–23, close entering 2–3% below a level from below while close > close 20 d ago: +6% before -3%
+(daily first passage, 30 d; random walk ~33%) real vs placebo. b: COINS10 1-min, first touch after >= 2% away, 60-min return one bar late away from the approach, side-matched real vs placebo.
+c: first daily close 1–2% beyond a level after crossing: back to the level within 5 days, real vs placebo.
+N1 done (is3_n1.py): round numbers behave like placebo levels: hundy roll 35 vs 32% (RW 33), overshoot-return 93 vs 92%, first-touch bounce weaker than placebo (−21 bp, p .06 = runs through). Closed DEAD.

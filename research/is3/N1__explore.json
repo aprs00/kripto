@@ -1,0 +1,46 @@
+{
+ "a_hundy_roll_6_before_3": {
+  "n_real": 550,
+  "n_placebo": 620,
+  "real": 0.35,
+  "placebo": 0.3177,
+  "random_walk": 0.333,
+  "diff_pp": 3.23,
+  "p": 0.18181818181818182,
+  "mde_pp": 5.58
+ },
+ "c_overshoot_return_up": {
+  "n_real": 866,
+  "real": 0.9342,
+  "placebo": 0.9241,
+  "diff_pp": 1.01,
+  "p": 0.41058941058941056,
+  "mde_pp": 2.67
+ },
+ "c_overshoot_return_down": {
+  "n_real": 818,
+  "real": 0.8851,
+  "placebo": 0.9009,
+  "diff_pp": -1.58,
+  "p": 0.2857142857142857,
+  "mde_pp": 3.69
+ },
+ "b_first_touch_r60_side_matched": {
+  "n_real": 6319,
+  "real_bp": 11.76,
+  "placebo_bp": 32.98,
+  "diff_bp": -21.22,
+  "p": 0.057942057942057944,
+  "mde_bp": 17.24,
+  "by_side_real": {
+   "-1": [
+    3067,
+    -37.98
+   ],
+   "1": [
+    3252,
+    58.66
+   ]
+  }
+ }
+}

@@ -716,24 +716,37 @@
    "group": "A",
    "title": "Round numbers",
    "src": "R26; tg:119; wa 18.10.24(1)",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "2-3% below a round level in an up move: +6% before -3%? vs the same setup at non-round levels",
-     "status": "planned"
+     "status": "done",
+     "result": "explore 2021-23, bnall clean half-0 coins in the top 100, one-significant-digit levels vs placebo levels 37% of the way to the next round level: close entering 2-3% below the level from below in an up move -> +6% before -3% (30 d): 35.0% (n 550) vs placebo 31.8% (n 620) vs random walk 33.3%: diff +3.2 pp, p .18, MDE 5.6. No hundy roll",
+     "date": "2026-11-24",
+     "evidence": "N1__explore"
     },
     {
      "id": "b",
      "what": "reaction at the round level itself (first touch) vs levels offset by 37%",
-     "status": "planned"
+     "status": "done",
+     "result": "COINS10 1-min, first touch after >= 2% away, 60-min return one bar late away from the approach, side-matched: round levels +11.8 bp vs placebo +33.0 (diff -21, p .06, MDE 17; n 6,319). Round numbers bounce LESS than other levels (if anything price runs through them, the overshoot reading), not significant",
+     "date": "2026-11-24",
+     "evidence": "N1__explore"
     },
     {
      "id": "c",
      "what": "overshoot then return: after closing beyond by 1-2%",
-     "status": "planned"
+     "status": "done",
+     "result": "first daily close 1-2% beyond a level after crossing: back to the level within 5 days up-cross 93.4% vs placebo 92.4% (n 866, p .41), down-cross 88.5 vs 90.1% (p .29), MDE 2.7-3.7 pp. Overshoot-and-return is what any level 1-2% away does",
+     "date": "2026-11-24",
+     "evidence": "N1__explore"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "3/3 forms, explore 2021-23 with placebo levels 37% toward the next round level. Hundy roll (+6% before -3% from 2-3% below in an up move) 35.0 vs 31.8% placebo (p .18, MDE 5.6 pp, random walk 33%); overshoot then return 93 vs 92% (MDE 2.7 pp); first-touch reaction at round levels -21 bp vs placebo (p .06, MDE 17: they are run through slightly more, not defended). Round numbers carry no tradable edge",
+   "closed": "2026-11-24"
   },
   {
    "id": "N2",
@@ -972,8 +985,8 @@
     }
    ],
    "sessions": 1,
-   "due": "2026-11-24T11:40",
-   "defer_why": "M0c building in unit is3-m0 (2024-01..2026-10)"
+   "due": "2026-11-24T12:25",
+   "defer_why": "M0c chunk 2 running in is3-m0 (restarted 11:39)"
   },
   {
    "id": "M1",

@@ -429,3 +429,7 @@ daily RSI ≥ 50): explore +243 vs +68 bp, confirmT 2024–25 +183 vs +137 (p .6
 Explore 2021–23, COINS10 1h/4h + bnall top-100 1d, baseline = same coin at the same trailing-14-bar return decile, ~70 cells. VZO (signed volume) alert ends are followed by MORE of the same flow; invalidated
 exhaustion bars lose at 1h; Leledc, MACD-cross fade, VZO midline/veto, camarilla (= placebo pivots), regression channel (= placebo widths), sham-pump fade: nothing; 1-min Fisher turns 0–3 bp gross. Hull55+180 at 1h
 +17 bp/6 h (p .03, absent at 4h/1d). Crayons H (failed new high in an uptrend): less upside than ordinary uptrend bars (+28 bp/6 h, p .003) but shorting it loses → F2 feature idea. Crayons climax: no formula published.
+
+### InSilico N1 / R26 round numbers, 'hundy roll' (2026-11-24) → DEAD
+Explore 2021–23, one-significant-digit levels vs placebo levels 37% of the way to the next. +6% before −3% from 2–3% below a round level in an up move: 35.0% vs 31.8% placebo (random walk 33%, p .18);
+first daily close 1–2% beyond → back within 5 d 93 vs 92%; 1-min first-touch reaction −21 bp vs placebo (p .06: run through, not defended). Script research/studies/is3_n1.py.
