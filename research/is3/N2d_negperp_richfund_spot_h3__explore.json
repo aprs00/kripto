@@ -1,0 +1,56 @@
+{
+ "name": "N2d_negperp_richfund_spot_h3",
+ "sample": "explore",
+ "n": 179,
+ "days": 124,
+ "coins": 24,
+ "mean_bp": 226.15,
+ "median_bp": 109.63,
+ "win": 0.559,
+ "se_bp": 84.5,
+ "ci95_bp": [
+  63.6,
+  396.82
+ ],
+ "p": 0.006496751624187906,
+ "mde80_bp": 236.59,
+ "mean_ex_top3_bp": 143.32,
+ "top3_share": 0.38,
+ "t_day_mean": 2.09,
+ "by_year": {
+  "2021": [
+   65,
+   609.77
+  ],
+  "2022": [
+   48,
+   -115.76
+  ],
+  "2023": [
+   66,
+   97.01
+  ]
+ },
+ "by_side": {
+  "1": [
+   179,
+   226.15
+  ]
+ },
+ "coins_positive": 0.75,
+ "net_bp": {
+  "free": 226.15,
+  "maker_taker": 218.15,
+  "taker": 213.15,
+  "taker_x2": 200.15,
+  "crash": 146.15
+ },
+ "base_n": 895,
+ "base_bp": 132.46,
+ "vs_base_bp": 93.69,
+ "p_vs_base": 0.31634182908545727,
+ "passes": false,
+ "note": "rally, zp<-1, zs>0, rich funding; matched same coin same rally bin",
+ "rerun": "",
+ "at": "2026-11-24T16:51:13+00:00"
+}

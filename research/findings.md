@@ -447,3 +447,9 @@ divergence predicts BTC the other way (−22 bp/day, p .03). 1-min down/up tail 
 BTC/ETH/SOL 2021–23 aggTrades move bars (.2/.43/.8%), author7 and previous-day-quantile size groups. Riding an all-green run to the first all-red bar: +2 bp vs bars of the same coin-day, side and
 prior up-run (p < .01, MDE 1–2 bp) = 1/7 of a taker round trip, worse with longer runs. All-red bar at a 24 h/7 d high: no better short than any bar at the high. His thin-fast boxed bar: −6 bp vs matched.
 Top-|delta share| bars "reverse" −22 bp/1 h, but 94–100% are sub-1-s torn-book bars; 5-min late entry: +3 vs matched (p .63). Lesson: on range bars, match within day AND on the prior price path (null failed twice before that). Scripts is3_m1*.py.
+
+### InSilico N2 / R13 spot delta vs perp delta (2026-11-24) → OPEN (general claim dead; his narrow case underpowered)
+Binance spot 1h archives (30 coins) vs perp taker flow, daily, explore 2021–23. Spot-led rallies (spot-minus-perp imbalance z, top quintile) = same coin same-size rallies (−17 bp/3 d, p .70); as a
+cross-sectional rank −6 bp/1 d (MDE 19); spot agreement adds +1 bp to perp flow momentum (perp flow, not spot, carries the information). His case (rally + perp selling + spot buying, + rich funding as the
+carry condition) +62 bp/1 d vs matched, every explore year +, p .22, n=179 (MDE 132); 3 d flips in 2022–23. Not pre-registered. Reopen only with spot for ~100 coins. Lesson: a sign-flip null on any long-only
+daily rule earns +σ²/2 (≈ +57 bp/3 d here) by convexity; run the null on event minus matched. Script research/studies/is3_n2.py.

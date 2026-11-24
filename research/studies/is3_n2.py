@@ -192,4 +192,82 @@ def checks() -> None:
 
 
 if __name__ == "__main__":
-    {"explore": explore, "checks": checks}[sys.argv[1]]()
+    {"explore": explore, "checks": checks, "c": lambda: None, "d": lambda: None}[sys.argv[1]]()
+
+
+# ------------------------------------------------------------------ form c: cross-sectional
+def xs(d: pd.DataFrame) -> pd.DataFrame:
+    d = d[d.groupby("time")["coin"].transform("size") >= 10].copy()
+    g = d.groupby("time")
+    for k in ("D", "zp", "zs"):
+        d[f"q{k}"] = g[k].rank(pct=True)
+    d["mp"] = np.minimum((d.qzp * 5).astype(int), 4)          # cross-sectional perp-flow quintile = the matching bin
+    return d
+
+
+def fn_c(p: dict, h: int = 1) -> pd.DataFrame:
+    d = xs(long_df(feats(p), h))
+    return pd.concat([ev(d, (d.qD > 0.8).to_numpy(), 1, d.mp.to_numpy()), ev(d, (d.qD <= 0.2).to_numpy(), -1, d.mp.to_numpy())])
+
+
+def form_c() -> None:
+    p = panel()
+    print("null c (L/S, no convexity issue):"); L.null_check(fn_c, p, n=20); L.check_causal(fn_c, p, "2023-06-01", "3D")
+    f = feats(p)
+    for h in (1, 3):
+        d = xs(cut(long_df(f, h), "explore", h))
+        mp = d.mp.to_numpy()
+        for k in ("D", "zs"):
+            lo_, hi_ = d[f"q{k}"] <= 0.2, d[f"q{k}"] > 0.8
+            el, es = ev(d, hi_.to_numpy(), 1, mp), ev(d, lo_.to_numpy(), -1, mp)
+            base = pd.concat([L.matched(el, pool(d, 1, mp)), L.matched(es, pool(d, -1, mp))])
+            L.card(f"N2c_xs_{k}_h{h}", pd.concat([el, es]), "explore", base=base,
+                   note=f"daily XS rank of {k}: long top / short bottom quintile; matched = same coin, same XS perp-flow quintile, same side")
+            print("   ", k, "quintile curve (fwd bp, all coin-days):", " ".join(f"{x * 1e4:+.1f}" for x in d.groupby(np.minimum((d[f'q{k}'] * 5).astype(int), 4))["fwd"].mean()))
+        # flow momentum (perp taker z, XS top quintile long / bottom short) split by whether spot agrees
+        top, bot = d.qzp > 0.8, d.qzp <= 0.2
+        agree = pd.concat([ev(d, (top & (d.zs > 0)).to_numpy(), 1, mp), ev(d, (bot & (d.zs < 0)).to_numpy(), -1, mp)])
+        disagree = pd.concat([ev(d, (top & (d.zs <= 0)).to_numpy(), 1, mp), ev(d, (bot & (d.zs >= 0)).to_numpy(), -1, mp)])
+        L.card(f"N2c_flow_spot_agree_h{h}", agree, "explore", base=disagree,
+               note=f"perp flow XS quintile trade where spot delta agrees; baseline = same trade where spot disagrees (n={len(disagree)})")
+        allflow = pd.concat([ev(d, top.to_numpy(), 1, mp), ev(d, bot.to_numpy(), -1, mp)])
+        print(f"    flow alone h{h}: n={len(allflow)} mean {allflow.gross.mean() * 1e4:+.1f} bp; by year",
+              allflow.groupby(allflow.time.dt.year).gross.mean().mul(1e4).round(1).to_dict())
+
+
+if __name__ == "__main__" and sys.argv[1] == "c":
+    form_c()
+
+
+# ------------------------------------------------------------------ form d: funding as the carry condition
+def funding_daily(cols, idx) -> pd.DataFrame:
+    out = {}
+    for c in cols:
+        f = pd.read_parquet(ROOT / "data/bn/funding_all" / f"{c}USDT.parquet")
+        s = pd.Series(f.fundingRate.to_numpy(float), pd.to_datetime(f.time, unit="ms", utc=True))
+        out[c] = s.resample("1D").sum(min_count=1)          # payments stamped inside the UTC day (known at its close)
+    return pd.DataFrame(out).reindex(idx)
+
+
+def form_d() -> None:
+    p = panel()
+    f = feats(p)
+    fd = funding_daily(p["close"].columns, p["close"].index)
+    rich = (fd > fd.rolling(30, min_periods=20).median().shift(1)).astype(float).where(fd.notna())
+    for h in (1, 3):
+        d = long_df(f, h)
+        d = d.merge(rich.stack(future_stack=True).rename("rich").reset_index().set_axis(["day", "coin", "rich"], axis=1), on=["day", "coin"], how="left").dropna(subset=["rich"])
+        d = cut(d, "explore", h)
+        m = rally_bin(d).to_numpy()
+        po = pool(d, 1, m)
+        base_mask = ((d.rk >= 2 / 3) & (d.zp < -1)).to_numpy()
+        er = ev(d, base_mask & (d.rich == 1).to_numpy(), 1, m)
+        ep = ev(d, base_mask & (d.rich == 0).to_numpy(), 1, m)
+        L.card(f"N2d_negperp_richfund_h{h}", er, "explore", base=L.matched(er, po), note="rally, zp<-1, funding above own 30d median; matched same coin same rally bin")
+        L.card(f"N2d_rich_vs_poor_h{h}", er, "explore", base=ep, note=f"baseline = same with funding at/below median (n={len(ep)})")
+        es = ev(d, base_mask & (d.rich == 1).to_numpy() & (d.zs > 0).to_numpy(), 1, m)
+        L.card(f"N2d_negperp_richfund_spot_h{h}", es, "explore", base=L.matched(es, po), note="rally, zp<-1, zs>0, rich funding; matched same coin same rally bin")
+
+
+if __name__ == "__main__" and sys.argv[1] == "d":
+    form_d()

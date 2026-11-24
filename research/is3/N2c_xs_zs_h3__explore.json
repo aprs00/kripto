@@ -1,0 +1,60 @@
+{
+ "name": "N2c_xs_zs_h3",
+ "sample": "explore",
+ "n": 8254,
+ "days": 1067,
+ "coins": 25,
+ "mean_bp": 20.22,
+ "median_bp": -6.17,
+ "win": 0.495,
+ "se_bp": 12.98,
+ "ci95_bp": [
+  -5.84,
+  45.89
+ ],
+ "p": 0.12343828085957022,
+ "mde80_bp": 36.34,
+ "mean_ex_top3_bp": 10.81,
+ "top3_share": 0.47,
+ "t_day_mean": 1.49,
+ "by_year": {
+  "2021": [
+   2313,
+   53.75
+  ],
+  "2022": [
+   2683,
+   13.46
+  ],
+  "2023": [
+   3258,
+   1.98
+  ]
+ },
+ "by_side": {
+  "-1": [
+   3695,
+   -79.75
+  ],
+  "1": [
+   4559,
+   101.24
+  ]
+ },
+ "coins_positive": 0.56,
+ "net_bp": {
+  "free": 20.22,
+  "maker_taker": 12.22,
+  "taker": 7.22,
+  "taker_x2": -5.78,
+  "crash": -59.78
+ },
+ "base_n": 41265,
+ "base_bp": 7.67,
+ "vs_base_bp": 12.55,
+ "p_vs_base": 0.44177911044477763,
+ "passes": false,
+ "note": "daily XS rank of zs: long top / short bottom quintile; matched = same coin, same XS perp-flow quintile, same side",
+ "rerun": "",
+ "at": "2026-11-24T16:50:41+00:00"
+}

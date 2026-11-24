@@ -754,7 +754,7 @@
    "group": "A",
    "title": "Spot delta vs perp delta",
    "src": "R13; wa 18.11.00(2), 18.11.02(2)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -775,12 +775,27 @@
     {
      "id": "c",
      "what": "spot-perp delta difference as a cross-sectional daily signal, and as a feature inside flow",
-     "status": "planned"
+     "status": "done",
+     "result": "explore 2021-23 daily XS (n=8278 coin-days, 25 coins): long top / short bottom quintile of D=zspot-zperp -6 bp/1d (MDE 19, p .38), -8/3d; spot z alone +4 vs matched on perp-flow quintile (p .62); as a filter on perp flow momentum spot agreement adds +1.3 bp/1d (p .94), +3.6/3d (p .92). Flow alone +19.5/1d, 2021-heavy (55, 7, 5). 3 variants x 2 horizons. Spot delta carries no information beyond perp delta. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "N2c_flow_spot_agree_h1__explore"
+    },
+    {
+     "id": "d",
+     "what": "unstated condition of his 'spot hedges' story = carry: negative perp delta in a rally is benign when funding is rich (cash-and-carry shorts), bearish when funding is low. Rally (rk>=2/3) & zp<-1, split by the day's summed funding vs the coin's trailing-30d median; matched same coin same rally bin; also with zs>0",
+     "status": "done",
+     "added": "2026-11-24",
+     "result": "carry condition (added): rally + perp z<-1 + funding above own 30d median n=510: +10 bp/1d vs matched (p .80), -7/3d; rich vs poor funding +46/1d (p .46), +9/3d. Full combo with spot buying (n=179, MDE 132): +62/1d vs matched (p .22; every explore year +25/+75/+57) but 3d +94 pooled with 2022 -98, 2023 -18. 3 variants x 2 horizons. Points his way, never significant; not pre-registered (fails 'beats baseline'; a 2024-25 confirm of ~120 events would have MDE ~150)",
+     "date": "2026-11-24",
+     "evidence": "N2d_negperp_richfund_spot_h1__explore"
     }
    ],
    "due": "2026-11-24T12:45",
    "defer_why": "spot 1h archive downloading in unit is3-n2",
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "general claim dead with power: spot-led rallies = same-size rallies (-17 bp/3d), spot delta adds nothing to perp flow (+1 bp/1d, MDE 19). His narrow case (rally + perp selling + spot buying, + rich funding) is directionally positive in b and d (+62 bp/1d vs matched, p .22) but only ~60 events a year on 30 coins: underpowered. Reopen only with spot for ~100 coins (new coins = a clean explore+confirm)",
+   "closed": "2026-11-24"
   },
   {
    "id": "N3",

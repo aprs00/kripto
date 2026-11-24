@@ -1,0 +1,56 @@
+{
+ "name": "N2d_rich_vs_poor_h3",
+ "sample": "explore",
+ "n": 509,
+ "days": 227,
+ "coins": 24,
+ "mean_bp": 120.69,
+ "median_bp": 17.28,
+ "win": 0.505,
+ "se_bp": 72.32,
+ "ci95_bp": [
+  -26.98,
+  259.61
+ ],
+ "p": 0.095952023988006,
+ "mde80_bp": 202.51,
+ "mean_ex_top3_bp": 72.16,
+ "top3_share": 0.42,
+ "t_day_mean": 3.15,
+ "by_year": {
+  "2021": [
+   155,
+   477.06
+  ],
+  "2022": [
+   141,
+   -326.44
+  ],
+  "2023": [
+   213,
+   157.34
+  ]
+ },
+ "by_side": {
+  "1": [
+   509,
+   120.69
+  ]
+ },
+ "coins_positive": 0.67,
+ "net_bp": {
+  "free": 120.69,
+  "maker_taker": 112.69,
+  "taker": 107.69,
+  "taker_x2": 94.69,
+  "crash": 40.69
+ },
+ "base_n": 129,
+ "base_bp": 111.61,
+ "vs_base_bp": 9.07,
+ "p_vs_base": 0.9385307346326837,
+ "passes": false,
+ "note": "baseline = same with funding at/below median (n=129)",
+ "rerun": "",
+ "at": "2026-11-24T16:51:13+00:00"
+}

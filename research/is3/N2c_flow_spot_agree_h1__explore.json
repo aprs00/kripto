@@ -1,0 +1,60 @@
+{
+ "name": "N2c_flow_spot_agree_h1",
+ "sample": "explore",
+ "n": 5296,
+ "days": 1069,
+ "coins": 24,
+ "mean_bp": 19.92,
+ "median_bp": -3.07,
+ "win": 0.495,
+ "se_bp": 8.99,
+ "ci95_bp": [
+  2.96,
+  37.6
+ ],
+ "p": 0.02798600699650175,
+ "mde80_bp": 25.17,
+ "mean_ex_top3_bp": 14.8,
+ "top3_share": 0.26,
+ "t_day_mean": 2.14,
+ "by_year": {
+  "2021": [
+   1467,
+   47.43
+  ],
+  "2022": [
+   1677,
+   14.42
+  ],
+  "2023": [
+   2152,
+   5.46
+  ]
+ },
+ "by_side": {
+  "-1": [
+   2354,
+   0.01
+  ],
+  "1": [
+   2942,
+   35.85
+  ]
+ },
+ "coins_positive": 0.54,
+ "net_bp": {
+  "free": 19.92,
+  "maker_taker": 11.92,
+  "taker": 6.92,
+  "taker_x2": -6.08,
+  "crash": -60.08
+ },
+ "base_n": 2982,
+ "base_bp": 18.64,
+ "vs_base_bp": 1.28,
+ "p_vs_base": 0.936031984007996,
+ "passes": false,
+ "note": "perp flow XS quintile trade where spot delta agrees; baseline = same trade where spot disagrees (n=2982)",
+ "rerun": "",
+ "at": "2026-11-24T16:50:40+00:00"
+}

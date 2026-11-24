@@ -472,3 +472,8 @@ N2 think-through, part 2 (16:58 UTC, before any run). Source re-read and image o
 N2 a/b done (is3_n2.py explore|checks): spot-led rallies earn exactly what same-size rallies earn (-17 bp vs matched at 3 d, curve flips by year); his exact case (rally + negative perp delta + spot
  buying, n=221) = matched (-1 bp), +98 vs negative-perp-without-spot (p .27, MDE 230): too few events. Null: raw sign-flip null is +57 bp for ANY long-only daily rule (simple-return convexity);
  run the null on event minus matched instead (clean here). Next: c (cross-sectional D rank; D as filter on flow).
+N2 c done: XS spot-minus-perp rank -6 bp/1d (MDE 19); spot agreement adds +1 bp to perp flow momentum. Spot delta has no information beyond perp delta at daily resolution.
+N2 d added (17:2x, before run): his "spot hedges" are cash-and-carry shorts, which only exist when funding/basis pays them. So the unstated condition is funding: rally + perp selling + rich funding
+ (above the coin's own 30-day median) should continue; rally + perp selling + poor funding = real bears. Tested once, h1/h3, matched same coin same rally bin, and rich-vs-poor as a direct contrast.
+N2 d done, N2 closed OPEN (17:35): carry condition (rich funding) + spot buying + perp selling in a rally +62 bp/1 d vs matched (all explore years +, p .22, n=179, MDE 132), 3 d flips; not pre-registered
+ (fails "beats baseline", and a 2024-25 confirm of ~120 events could not see 60 bp). Path to reopen: spot for coins 31-100 (unseen = explore + confirm with 3x the events).
