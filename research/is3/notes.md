@@ -190,3 +190,12 @@ S2 b7 done (40/40 opened, 39 legible; 0 contradictions). New form M2f: the 4th r
  had no test. wa 18.10.42(2): his 10x trade-count rule promises 'reversal, or at least consolidation' → M2a scores 'trend ends', not reversal only. Rest maps to queued forms. Next: b8 (5), then v, p.
 S2 b8 done (5/5, 0 contradictions). His clock is EET (wa 18.11.01(2): regular 16:30–23:15 = 09:30–16:15 NY) → every time he writes = NY + 7 h. New form C2g: Friday post-US-cash-close pump
  (wa 18.11.03 'most fridays have nice pump post cash'), not the same as friday_follow (UTC Friday → Saturday). All 8 image batches done: 213 images opened, 0 contradictions. Next: S2 v (videos), p (PDF/truncated records).
+
+## S2 v (think-through 2026-11-24 ~04:57 UTC, before opening anything)
+22 videos (out/av: 22 contact sheets, 544 keyframes, transcripts, stored descriptions). Most are memes/audio. Tape videos to watch frame by frame: Mousetrap 3 (2:03), Mousetrap2 (24 s),
+MousetrapTwitter (59 s) = M3 mousetrap source (S1e said: two tests of a level, the second with many times the volume; check that holds in every clip and WHERE the entry is: trap bar close,
+next bar, or a resting bid at the level), 2022-07-16 DOM ladders (what moves in the book before the move: pulls/lifts = backlog W2), WhatsApp 18.10.20 cat 'Insilico casual fading routine'
+(tape-table sequence, M2f), 18.10.20(1) quote stuffing. Plan: every contact sheet opened (22), keyframes of the 6 tape videos opened in full, transcripts read for audio-only ones.
+What he does NOT say: in a mousetrap, the stop — below the trap bar's low? Look for it in the frames.
+S2 v done (21 sheets + 4 full keyframes + 13 transcripts; 0 contradictions). The mousetrap clips are static ES footprints with narration: entry 'as soon as those buyers take over, right at
+ that spot' after a high-volume test that cannot move price → M3e entry = first bar with positive delta at the level (was: close back above). The '18.10.20' cat video carries his tape table (M2f). Next: S2 p.

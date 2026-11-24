@@ -1,0 +1,41 @@
+{
+ "form": "S2v",
+ "date": "2026-11-24",
+ "videos": 23,
+ "sheets_opened": 21,
+ "full_keyframes_opened": 4,
+ "transcripts_read": 13,
+ "how": "every contact sheet opened with the Read tool (21: one video is byte-identical, one item is an mp3), 4 full-size keyframes of the tape videos, 13 transcripts read; compared with video_descriptions.json",
+ "contradictions": 0,
+ "new_or_sharpened": [
+  "M3e entry fixed from the MousetrapTwitter narration: first bar where buyers take over (delta turns positive) after the high-volume failed test, at the level; score bars 1-5",
+  "his own captioned tape table appears as a video (18.10.20): momentum then exhaustion rows = M2f, confirms that form came from him, not from a guess",
+  "the two Whisper-hallucinated transcripts were already flagged in the stored notes",
+  "no new form"
+ ],
+ "per_video": {
+  "Mousetrap 3.mp4": "sheet + transcript: static ES footprint (04/06/10), cursor over the boxed Mousetrap bar under a dashed level; audio 'either you get a huge relative thing with total volume or you don't ... wait for it to exhaust ... see where volume shifts ... until we get domination of buyers, we don't care'; matches",
+  "Mousetrap2.mp4": "sheet + full keyframe f_000480 read: ES 5M/1M staircase sell-off, dashed level at the low, boxed trap bar (331x742 ... 2216x1518), audio '253 prints here, nothing happening; next test people piled in ... couldn't move it'; matches (M3e)",
+  "MousetrapTwitter.mp4": "sheet + keyframe f_000721 read: ES 1M, dashed blue level, trap bar (0x61 ... 3200x694) under it, then climb; audio: entry 'as soon as those buyers take over, piling in right at that spot', stops of trapped shorts print (1600, 1000, 683, 1013), 'volume shifted to the bottom part of the bar'; matches; sharpened M3e entry",
+  "2022-07-16 20-55-57.mp4": "sheet + keyframes f_000000 and f_003842 read: two DOM ladders (BTC ~21,370 then ~21,250), resting bids/asks 0.8-2.8M, time & sales with NL/NS (net longs/shorts) tags; transcript is Whisper hallucination (already flagged in the stored note); no narration, no rule; matches",
+  "WhatsApp Video 2026-11-10 at 18.10.20.mp4": "sheet: cat-door meme captioned 'PRICE IMPULSE - Insilico casual fading routine': 'market orders consistently overwhelming limit orders -> momentum', then 'market orders becoming smaller & less frequent as price moves -> exhaustion' (= his tape table; M2f); matches",
+  "WhatsApp Video 2026-11-10 at 18.10.20 (1).mp4": "sheet: Nanex quote-stuffing replay (23,676 quotes, 43 trades in 60 s); transcript hallucinated (flagged); matches",
+  "Tools.mp4": "black screen; transcript: algo firm says intraday cannot be mechanized without constant volatility re-optimization, arbs squash fixed edges; matches (a warning, not a rule: our live ladder is volatility-scaled sigma, consistent)",
+  "masksss.mp4": "sheet: bears in green masks loop; transcript: higher timeframe as filter for lower is false, small timeframes build the larger ones; matches",
+  "Contrarian.mp4": "sheet: lemmings over a crypto chart falling off a crash; transcript: contrarian intraday beats trend intraday on risk/stops; matches (supports fade forms, no new rule)",
+  "2021-03-23 07-02-05.mov": "black sheet (audio only); transcript Wyckoff course: selling/buying climaxes stopped by superior demand/supply; matches",
+  "2021-03-23 07-22-49.mov": "black sheet; transcript: terminal shakeout, public sells new lows, professionals absorb; matches (M3/M4)",
+  "2021-03-23 07-27-39.mov": "black sheet; transcript: distribution, pros sell to public on good news; matches",
+  "Beta.mp4": "sheet: Investopedia relative-strength lesson, beta .27 / 1.30 / -1.05 examples; matches",
+  "Delusion, Reality and Madness.mp4": "sheet: video essay (butterfly dream, egg/chick, tick, Green/Red chalkboard); matches, no rule",
+  "Exclusive_release_1_oz_Silver_Bitcoin_2021_coininvest_com.mp4": "sheet: silver 1 oz bitcoin coin promo (Niue 2021, 1.3 mBTC); matches",
+  "FUCKING NORMIES.mp4": "sheet: red angry Pepe + text; matches",
+  "FUCKING NORMIES (1).mp4": "byte-identical to the above (stored note); not opened separately",
+  "Fullretard.mp4": "sheet: Tropic Thunder clip; matches",
+  "Manfeels.mp4": "sheet: meme with crashing DOM screenshot; matches",
+  "bizzz.gif.mp4": "sheet: /biz/ scam banner; matches",
+  "catsmash.mp4": "sheet: cat smashing a remote; matches",
+  "theend.mp4": "sheet: Looney Tunes end circles; matches",
+  "Noncomfor.mp3": "audio only, no picture; transcript 'most people are dumb ... gravitate towards things that feel safe'; matches"
+ }
+}

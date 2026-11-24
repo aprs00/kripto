@@ -879,7 +879,7 @@
     },
     {
      "id": "e",
-     "what": "mousetrap as narrated (tg:170): FIRST test of the level gets few prints, SECOND test gets many times more volume with small-trade selling and no progress -> close back above; ratio of second to first test volume as dose",
+     "what": "mousetrap as narrated (tg:170): FIRST test of the level gets few prints, SECOND test gets many times more volume with small-trade selling and no progress -> close back above; ratio of second to first test volume as dose [S2v, MousetrapTwitter audio: entry 'as soon as those buyers take over ... right at that spot' = the first bar whose delta turns positive after the high-volume failed test, at or near the level; then trapped shorts' stops print (1600/1000/683/1013 lots) -> score the first 1-5 bars too]",
      "status": "planned",
      "added": "2026-11-22"
     }
@@ -1787,8 +1787,11 @@
     {
      "id": "v",
      "what": "the 22 videos: contact sheets and keyframes in data/chat_extract/out/av (look at them) plus transcripts; what does he do, second by second, on the tape videos? (S2v__notes.json)",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "all 21 contact sheets opened (23 items: 1 byte-identical duplicate, 1 mp3), 4 full keyframes of the tape videos, 13 transcripts read; 0 contradictions (2 hallucinated transcripts already flagged); M3e entry sharpened from the MousetrapTwitter narration (first bar where buyers take over, at the level); cat video = his tape table (M2f); no new form",
+     "date": "2026-11-24",
+     "evidence": "S2v__notes"
     },
     {
      "id": "p",
