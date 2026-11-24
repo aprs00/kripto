@@ -371,3 +371,15 @@ decile without the RSI condition. Failed-signal count (c) is the only part that 
 O1 done (is3_o1.py, is3_o1_card.py): RSI is a transform of past returns and adds nothing stable to them (a, b). His 'reversal signal' (RSI back to 50) is followed by the trend resuming at 1h/4h/1d
  (d; long card p .18, not pre-registered); 3 failed sell signals at 1h precede a drop, not continuation (c). Filter e (ladder fills by daily RSI) passed explore (+243 vs +68) and FAILED confirmT (+183 vs
  +137, p .60): a 2021 bull-year artifact. Lesson: a filter on a book that already works must be compared within years before pre-registering (2021 carried the whole gap).
+
+## O2 his own indicators (think-through 11:35 UTC, before any run)
+Sources tg:90, 98–100 (Hull Suite = one HMA(55) vs its value 2 bars ago; VZO vs RSI: "RSI at an extreme while VZO barely moves = sham pump"; camarilla = his mentor's tool), Crayons V3.4 / FSVZO V2.8 guides
+(climax, invalidation 'hit rate as impressive if not more', H/W failed extensions, VZO alerts and midline). Mechanism candidates: VZO is signed volume / volume = taker-flow proxy (flow persistence is real on
+Binance); exhaustion / failed-extension bars = stop runs at extremes; the rest are price transforms (expect nothing beyond the past return). What he does NOT say: his tools are filters he reads together
+(confluence, X1), and a label is only acted on at a location; so each form here is a single-tool screen, and failure means 'not alone', not 'useless in confluence'.
+Fixed now: explore COINS10 1h/4h + bnall top-100 1d, 2021–23; baseline = same coin, same trailing-14-bar return decile (as O1); horizons 6/24 bars (1h), 6/18 (4h), 5/10 (1d). VZO = 100·EMA14(sign(dc)·v)/EMA14(v);
+FSVZO proxy = WMA4 of VZO (causal), alerts |VZO| > 40/60/80 (dose; VZO is bounded at 100 so his 60/85/105 scale is mapped down). Leledc: count of close > close[4] (and <) > 6, then an opposite-colour
+bar at the 30-bar extreme. Camarilla from the prior UTC day (H3/L3 fade, H4/L4 break) vs levels at 0.63x/1.37x the distance. Deferred: f (Crayons climax labels), g (1-min Fisher), h (regression channel).
+O2 9/13 forms done (is3_o2.py, O2__explore; peak RSS 1.94 GB - at the limit, run alone): none of his indicators beats 'same coin, same past return'. Wrong-way signals: end of an abnormal-selling VZO alert
+ is followed by more selling (flow persistence), invalidated exhaustion bars lose at 1h, daily bearish Leledc bars precede rises. Only Hull55 turns at 1h show +9..+20 bp gross (p .03-.11), absent at 4h/1d.
+ Bug caught before recording: mixed-side forms with one-sided matched baselines (now asserted in the script). Left: f (Crayons climax labels), g (1-min Fisher), h (regression channel), j (H/W failed extension).

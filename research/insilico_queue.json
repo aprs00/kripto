@@ -600,27 +600,42 @@
     {
      "id": "a",
      "what": "RSI vs volume-zone-oscillator divergence on pumps (> 2 sigma day) [S1b: regular = reversal AND hidden = continuation, 1-bar lag] [S1e tg:90: not a swing divergence: RSI at an extreme while VZO barely moves = sham pump -> fade]",
-     "status": "planned"
+     "status": "done",
+     "result": "explore 2021-23 (COINS10 1h/4h, bnall top-100 1d), baseline same coin + trailing-14-bar return decile: pump bar >= 2 sigma with RSI > 70, sham (|VZO| < 20) vs real (VZO > 40), fade: sham 1h n 78 -96 bp vs matched -31 (diff -65, p .13, MDE 97), 4h n 31, 1d n 33 (+692, p .07, MDE 870); real pumps fade no better than matched (1h -2, 4h -222 p .18). Sham pumps are rare (31-78) and not reliably faded; fading real pumps loses",
+     "date": "2026-11-24",
+     "evidence": "O2__explore"
     },
     {
      "id": "b",
      "what": "fade the first two candles after a MACD cross",
-     "status": "planned"
+     "status": "done",
+     "result": "fade the first 2 bars after a MACD(12,26,9) cross: 1h up-cross -0.4 bp diff vs matched (n 10,153, MDE 7.5), down-cross +2.0 (MDE 7.0); 4h -12/-4 (MDE 24-28); 1d -46/-27 (n.s.). Nothing at 2 bars; at 6 h the up-cross fade loses 8 bp (p .05)",
+     "date": "2026-11-24",
+     "evidence": "O2__explore"
     },
     {
      "id": "c",
      "what": "Hull 55 slope entries with Hull 180 filter (1h, 4h, 1d) [S1e tg:98: Hull Suite = ONE HMA(55) against its own value 2 bars ago, not two averages; chop exits at breakeven]",
-     "status": "planned"
+     "status": "done",
+     "result": "Hull Suite (HMA55 vs 2 bars ago) turns, one side per card (a mixed-side baseline bug in the first run was caught and fixed): 1h up +9.1 bp vs matched (p .08, MDE 15), down +9.3 (p .11); with the HMA180 slope filter up +16.8 (p .03, MDE 23), down +19.9 (p .07) over 6 h; 4h -15..+13 (MDE 52-85), 1d -46/-52 (n.s.). A weak 1-h trend-turn edge of 9-20 bp gross that does not exist at 4h/1d: below a taker round trip plus the turnover of a flip-every-few-hours rule",
+     "date": "2026-11-24",
+     "evidence": "O2__explore"
     },
     {
      "id": "d",
      "what": "Leledc exhaustion bars (public script logic) at 1h/4h/1d",
-     "status": "planned"
+     "status": "done",
+     "result": "Leledc exhaustion (close > close[4] count > 6, then an opposite bar at the 30-bar extreme): 1h bear +6.7 vs matched (p .48), bull -25.6 (p .20); 4h -22/+12 (n.s., MDE 117-219); 1d bear -321 bp (p .01, MDE 309: price keeps RISING after a bearish exhaustion bar, i.e. the signal is wrong-way), bull +169 (p .34). No reversal edge; daily bear signal is momentum's opposite",
+     "date": "2026-11-24",
+     "evidence": "O2__explore"
     },
     {
      "id": "e",
      "what": "FSVZO: volume zone oscillator with Fourier smoothing; enter on the first bar WITHOUT an extreme alert; midline as support [S1b: VZO14, alert = inside +-60/85/105 (dose), entry = close of first alert-free bar, exit at midline hold/fail; proxy smoothing fixed before the run]",
-     "status": "planned"
+     "status": "done",
+     "result": "end of a VZO alert run (FSVZO proxy = WMA4 of VZO14), dose X = 40/60/80: after abnormal selling ends, long: 1h -16 (p .03) / -44 (p .007) / +36 (n 61) bp vs matched - the bounce he expects goes the other way, worse at stronger alerts; after abnormal buying ends, short: 1h ... -129 at X 80 (n 100); 4h/1d n.s. (MDE 72-513). The end of abnormal flow is followed by MORE of the same direction (flow persistence), not exhaustion",
+     "date": "2026-11-24",
+     "evidence": "O2__explore"
     },
     {
      "id": "f",
@@ -640,8 +655,11 @@
     {
      "id": "i",
      "what": "camarilla pivots (tg:99, his mentor's tool): H3/L3 fade, H4/L4 break, vs pivots shifted by 37%",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "camarilla from the prior UTC day, 1h, first touch / first close: H3 fade -0.9 bp vs matched (n 6,923, MDE 16), L3 fade +5.7 (p .43), H4 break -10.6 (p .22), L4 break -5.2; the placebo levels at 0.63x/1.37x the distance react the same (H3 near +2.2, far +3.1; L3 near +12.6, far -3.9). His mentor's pivots are ordinary levels",
+     "date": "2026-11-24",
+     "evidence": "O2__explore"
     },
     {
      "id": "j",
@@ -652,20 +670,29 @@
     {
      "id": "k",
      "what": "Crayons invalidation as reverse signal (p19-22, 'hit rate as impressive if not more'): a climax / Leledc candle whose direction is invalidated by a CLOSE beyond its open (opposite side) -> trade the invalidation; vs a same-size close without a signal candle; reconfirmation close as the mirror case",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "invalidated exhaustion bar (a close beyond the Leledc bar's open within 10 bars, trade the invalidation): 1h bear-invalidated long +2.1 vs matched +28 (diff -26, p .03), bull-invalidated short -51 vs -2.5 (diff -48, p .03): both LOSE; 4h +59/+113 (p .29-.30, MDE 139-307), 1d +56/-314 (n.s.); placebo (close above any red bar's open) -1.9 (1h). 'Hit rate as impressive' not seen; at 1h the invalidation trade loses",
+     "date": "2026-11-24",
+     "evidence": "O2__explore"
     },
     {
      "id": "l",
      "what": "VZO midline rejection (FSVZO p8): band approaches 0 from one side within 10 points and turns without crossing -> continuation in the old direction; vs turns at the same distance from +-30; 1h, 4h, 1d",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "VZO midline rejection (turn within 0-10 without crossing) vs the same turn at 30-40: 1h up -1.8 / down +0.6 bp vs matched (MDE 15-17), placebo-30 up -21 (p .06); 4h -29/-7 (n.s.); 1d up -184 (p .003, MDE 158: the midline 'support' is followed by weakness), down -31. No continuation from the midline",
+     "date": "2026-11-24",
+     "evidence": "O2__explore"
     },
     {
      "id": "m",
      "what": "FSVZO hue as a veto (p4, p15): never short into 'abnormal selling', never long into 'abnormal buying' -> expectancy of momentum entries with vs without the veto (feature for F1d), not a trade of its own",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "veto on 20-bar breakout entries (long into VZO > 60 / short into VZO < -60): 1h breakout allowed -11 vs matched (p .05) / vetoed -12 (p .39); breakdown allowed -27 (p .01) / vetoed -25; 4h vetoed breakouts +19 vs allowed -25 (n.s.); 1d vetoed +142 vs allowed +113 (both n.s.). The veto removes nothing worse: entries with abnormal flow do no worse than the rest (if anything better at 4h/1d)",
+     "date": "2026-11-24",
+     "evidence": "O2__explore"
     }
    ]
   },
