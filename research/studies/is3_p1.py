@@ -37,16 +37,17 @@ def load(coin: str, lo: str, hi: str) -> pd.DataFrame:
     return k.dropna(subset=["h", "l", "c"])
 
 
-def profiles(k: pd.DataFrame) -> dict:
-    """day -> (offset bin, volume per bin, minute arrays (lb, hb) for first passage, open bin)."""
+def profiles(k: pd.DataFrame, freq: str = "D", minbars: int = 1200, delta: bool = False) -> dict:
+    """period -> (offset bin, volume per bin, minute arrays (lb, hb) for first passage, open bin[, |delta| per bin])."""
     lb = np.floor(np.log(k.l.to_numpy()) / BIN).astype(np.int64)
     hb = np.floor(np.log(k.h.to_numpy()) / BIN).astype(np.int64)
     w = k.qv.to_numpy() / (hb - lb + 1)
-    day = k.index.floor("D")
+    wd = (2 * k.tbqv.to_numpy() - k.qv.to_numpy()) / (hb - lb + 1)
+    day = k.index.floor(freq)
     out = {}
     for d, ix in pd.Series(np.arange(len(k)), index=day).groupby(level=0):
         i = ix.to_numpy()
-        if len(i) < 1200:
+        if len(i) < minbars:
             continue
         off = lb[i].min()
         size = hb[i].max() - off + 2
@@ -55,6 +56,10 @@ def profiles(k: pd.DataFrame) -> dict:
         prof = np.cumsum(diff)[:-1]
         open_bin = int(np.floor(np.log(k.c.to_numpy()[i[0] - 1] if i[0] > 0 else k.c.to_numpy()[i[0]]) / BIN))
         out[d] = (int(off), prof, lb[i], hb[i], open_bin)
+        if delta:
+            dd = np.zeros(size)
+            np.add.at(dd, lb[i] - off, wd[i]); np.add.at(dd, hb[i] - off + 1, -wd[i])
+            out[d] = out[d] + (np.abs(np.cumsum(dd)[:-1]),)
     return out
 
 

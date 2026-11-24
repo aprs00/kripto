@@ -85,7 +85,7 @@
    "group": "A",
    "title": "Gap fill: next value forms where yesterday traded least",
    "src": "R14; tg:29-38; wa 18.10.31(2)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -106,18 +106,26 @@
     {
      "id": "c",
      "what": "delta gaps: price zones where yesterday's |delta|/volume was lowest, same test (needs M0 for BTC/ETH/SOL; 1-min taker split otherwise)",
-     "status": "planned"
+     "status": "done",
+     "result": "10,878 coin-days, 1-min taker split spread over 10-bp bins: next-day share in yesterday's lowest |delta|/volume third 20.9% vs mirror 19.8% (+1.1 pp, p .003), highest third +0.5 pp; but inside volume terciles the low-delta half minus the high-delta half is -0.25 pp (CI [-0.71, +0.23], p .28): the 'delta gap' pull is the volume-memory effect of form a, nothing of its own",
+     "date": "2026-11-24",
+     "evidence": "P1c__explore"
     },
     {
      "id": "d",
      "what": "trade: breakout into a low-volume zone, target its far edge, stop the near edge; payoff vs random-walk odds",
-     "status": "planned"
+     "status": "skipped",
+     "result": "no attraction to support a trade: low-volume zones are entered LESS than mirror zones (a, g), LVN first passage is 49-50% (b, g) and the same far-edge-before-near-edge geometry failed in pass 2 (single-print bands 48-49% vs placebo 51-52%). A target/stop trade on a 50% first passage has random-walk odds by construction",
+     "date": "2026-11-24"
     },
     {
      "id": "e",
      "what": "law 5 'what doesn't happen' (wa 18.10.57(1)): low-volume gap approached >= 3 times in 5 days and NOT filled -> move away from it, vs gaps never approached",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "untouched interior LVNs over 5 days, approach = hour within 30 bp (deepest node only: 24 events with >= 3 approaches, MDE 251 -> too few) and every node within 50 bp: 198 events, from day-5 close signed AWAY from the node: 24 h -20 bp vs matched (same 5-day move quintile, never approached) +26, diff -46 p .31, MDE 85; 72 h -38 vs +41, p .29. Direction is the opposite of 'move away'. 2 variants",
+     "date": "2026-11-24",
+     "evidence": "P1e2__explore"
     },
     {
      "id": "f",
@@ -131,11 +139,17 @@
     {
      "id": "g",
      "what": "per-candle 'salad' profile (wa 18.10.31(2), S2p: 'where we had lots of volume, on next candle we have little ... pockets are magnets, flow has long memory and clustering'): 1h candles from aggTrades/1m bins (10-bp price bins), does hour t+1 put its volume into hour t's low-volume bins inside t's range more than a shuffled-bin placebo and a same-range random-day placebo? dose = LVN depth; trade view = touch of the nearest prior-hour LVN within 60 min vs same-distance placebo level",
-     "status": "planned",
-     "added": "2026-11-24"
+     "status": "done",
+     "added": "2026-11-24",
+     "result": "hourly salad, 186,781 coin-hours: hour t+1 share in hour t's least-traded third -0.43 pp vs mirror (CI [-0.55, -0.33]), most-traded third +1.24 pp (every year); nearest prior-hour LVN reached before the mirror distance 49.99% (n 23,705). Pockets are avoided, not magnets: same volume memory as the daily profile",
+     "date": "2026-11-24",
+     "evidence": "P1g__explore"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "6 forms done + 1 skipped with reason. Volume memory, not gap fill: the next day (and hour) trades MORE where the prior traded most (+2.5 / +1.2 pp vs same-distance mirror bins, every year) and LESS in its thin zones (-0.9 / -0.4 pp, thinnest bins most avoided); bimodal valleys = mirror (+0.6 pp, p .29), LVNs reached 49-50% (random walk 50), delta gaps = volume, approached-not-filled nodes n.s. MDE 85 bp (24 h). Tested his literal reading, his picture (valley between humps) and his salad thread at 1 h.",
+   "closed": "2026-11-24"
   },
   {
    "id": "P2",

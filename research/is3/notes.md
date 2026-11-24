@@ -304,3 +304,6 @@ Fixed now: 1-min klines, volume spread evenly over each bar's range in 10-bp log
 vs mirror; same for the most-traded third (his "slip thru high volume" predicts LV > mirror and HV < mirror). f: bimodal days (two humps each >= 30% of POC, valley <= 50% of the smaller hump,
 >= 15 bins apart): next-day volume share in the valley band vs its mirror band; dose by valley depth. b: nearest interior LVN from the open reached before the same distance the other way
 (random walk 50%) vs a placebo node set 8 days earlier at the same distance. Verdict needs effect beyond the mirror with day-block CIs; trade forms (d) only if a/f show something.
+P1 done (is3_p1.py, is3_p1cg.py): the opposite of gap fill at both scales. Next day / next hour put LESS volume into the prior period's thin third (-0.86 / -0.43 pp vs the same bins mirrored around
+ the open) and MORE into its busy third (+2.5 / +1.2 pp); thinnest bins most avoided (dose runs the wrong way). Valleys of bimodal days, LVN first passage (49–50%), delta gaps (= volume once volume
+ is controlled) and 'approached but not filled' (n 198, toward not away, p .3) add nothing. Unstated condition tried: valley between humps (his picture), hourly salad (his thread). Closed DEAD.

@@ -394,3 +394,8 @@ Explore COINS10 2021–23: 116k ordinary >= 3σ minutes fade +2 bp/60 min; level
 range) +2 bp vs +18 for large-range bars: claim reversed. OI split of 1-h moves: puke falls bounce like any fall; OI-up falls continue only in 2022; NL/NS trapped cells too rare at 1 h (MDE > 200).
 Up-spike >= 8σ, breadth >= 2, long 60 min: explore +27 vs −2 (p .002), confirmC +47 vs 0 (73 coins, p .009), confirmT +37 vs +3 (p .075, MDE 59): not CONFIRMED; median +2..7 bp, top-3 days 44–74%. Vault untouched.
 Use: don't rest asks against broad up-spikes (ladder feature idea). Scripts research/studies/is3_t5{a,d,e,f,g}.py.
+
+### InSilico P1 / R14 gap fill (2026-11-24) → DEAD (the reverse holds: volume memory)
+Explore COINS10 2021–23, profiles from 1-min klines in 10-bp bins, placebo = the same bins mirrored around the next open. Next-day volume in yesterday's thin third −0.86 pp, busy third +2.5 pp (every year;
+hourly −0.43 / +1.24 pp); thinnest tenth most avoided. Bimodal valley (his picture) +0.6 pp p .29; nearest LVN reached first 49–50% (random walk 50); delta gaps = volume effect once volume is controlled;
+LVNs approached ≥ 3 times and not filled: price drifts toward, not away (n 198, p .3, MDE 85 bp). Scripts research/studies/is3_p1.py, is3_p1cg.py. Possible FEATURE only: busy zones are where tomorrow trades.
