@@ -51,7 +51,7 @@ def rbars(b: dict, w: float) -> dict:
     e = np.asarray(ends, dtype=np.int64)
     st = np.concatenate([[0], e[:-1] + 1])
     return {"t0": b["t0"][st], "t1": b["t1"][e], "o": b["o"][st], "c": b["c"][e], "h": np.maximum.reduceat(h, st),
-            "l": np.minimum.reduceat(l, st), "v": np.add.reduceat(b["v"], st), "d": np.add.reduceat(b["d"], st)}
+            "l": np.minimum.reduceat(l, st), "v": np.add.reduceat(b["v"], st), "d": np.add.reduceat(b["d"], st), "st": st}
 
 
 def exits(bt, bcl, bl, t_entry, stop=None):
@@ -170,7 +170,7 @@ def explore() -> None:
 
 
 if __name__ == "__main__":
-    {"explore": explore, "b": lambda: None}[sys.argv[1]]()
+    {"explore": explore, "b": lambda: None, "a": lambda: None}[sys.argv[1]]()
 
 
 # ------------------------------------------------------------------ form b: absorption bars
@@ -247,3 +247,95 @@ def form_b() -> None:
 
 if __name__ == "__main__" and sys.argv[1:2] == ["b"]:
     form_b()
+
+
+# ------------------------------------------------------------------ form a: level types x small-sell / large-buy split
+def load_split(sym: str, lo: str, hi: str) -> dict:
+    fs = [f for f in sorted((mbars.DIR / sym).glob("????-??-??.npz")) if lo <= f.stem < hi]
+    if not fs:
+        raise FileNotFoundError(sym)
+    parts = []
+    for f in fs:
+        z = np.load(f)
+        B, S = z["buy"].astype(np.float64), z["sell"].astype(np.float64)
+        parts.append({k: z[k] for k in ("t0", "t1", "o", "h", "l", "c")} | {"v": B.sum(1) + S.sum(1), "d": B.sum(1) - S.sum(1),
+                     "dsm": B[:, :3].sum(1) - S[:, :3].sum(1), "dlg": B[:, 6:].sum(1) - S[:, 6:].sum(1)})
+    return {k: np.concatenate([p[k] for p in parts]) for k in parts[0]}
+
+
+def a_coin(sym: str, lo: str, hi: str) -> pd.DataFrame:
+    """Traps (undercut + reclaim, entry on the first positive-delta bar above the level, 5 min late) at the previous day's low and at the
+    7-day low (min of the previous 7 UTC days), with the trap's small-trade (< 10k USD) and large-trade (>= 60k) taker deltas."""
+    b = load_split(sym, lo, hi)
+    bt, bcl, bl = b["t1"], b["c"], b["l"]
+    r = rbars(b, W)
+    # re-aggregate the split deltas onto the range bars
+    r["dsm"], r["dlg"] = np.add.reduceat(b["dsm"], r["st"]), np.add.reduceat(b["dlg"], r["st"])
+    day = r["t1"] // 86_400_000
+    days = np.unique(day)
+    lows = pd.Series({d: r["l"][day == d].min() for d in days})
+    rows = []
+    for dd in days[7:]:
+        ix = np.flatnonzero(day == dd)
+        prev = lows.reindex(range(dd - 7, dd)).dropna()
+        if len(prev) < 7:
+            continue
+        for kind, Lv in (("pd", prev.iloc[-1]), ("7d", prev.min())):
+            near = r["l"][ix] <= Lv * 1.001
+            if not near.any():
+                continue
+            # first undercut of the day that follows a close >= 30 bp above the level, then the reclaim bar
+            above = np.maximum.accumulate(r["c"][ix] >= Lv * 1.003)
+            und = np.flatnonzero((r["l"][ix] < Lv) & np.concatenate([[False], above[:-1]]))
+            if not len(und):
+                continue
+            j_u = ix[und[0]]
+            cand = [j for j in range(j_u, min(j_u + 20, len(r["c"]))) if r["d"][j] > 0 and r["c"][j] > Lv]
+            if not cand:
+                continue
+            je = cand[0]
+            seg = slice(j_u, je + 1)
+            trap_low = r["l"][seg].min()
+            t_e = int(r["t1"][je]) + 5 * 60_000
+            g60, g240, g240s = exits(bt, bcl, bl, t_e, stop=trap_low)
+            rows.append({"time": pd.to_datetime(t_e, unit="ms", utc=True), "kind": kind, "g60": g60, "g240": g240, "g240s": g240s,
+                         "dsm": r["dsm"][seg].sum(), "dlg": r["dlg"][seg].sum(), "slow": (r["t1"][je] - r["t0"][je]) >= 1000})
+    d = pd.DataFrame(rows)
+    if len(d):
+        d["coin"] = sym.replace("USDT", "")
+        bad = {pd.Timestamp(x, tz="UTC") for x in BAD.get(sym, {})}
+        d = d[~d.time.dt.floor("D").isin(bad)].dropna(subset=["g240"])
+    return d
+
+
+def form_a() -> None:
+    out = []
+    for sym in COINS:
+        for y in (2021, 2022, 2023):
+            for q in range(4):
+                a = f"{y}-{3 * q + 1:02d}-01"
+                z = f"{y}-{3 * q + 4:02d}-01" if q < 3 else f"{y + 1}-01-01"
+                a0 = str((pd.Timestamp(a) - pd.Timedelta("8D")).date())
+                d = a_coin(sym, a0, z)
+                out.append(d[(d.time >= pd.Timestamp(a, tz="UTC"))] if len(d) else d)
+        print(sym, flush=True)
+    D = pd.concat(out, ignore_index=True)
+    D.to_parquet(ROOT / "data/is3/m3a_explore.parquet")
+    P = pd.read_parquet(ROOT / "data/is3/m3e_explore.parquet").query("kind == 'placebo'")
+    bp = lambda s: round(float(np.nanmean(s)) * 1e4, 1)
+    print(f"\nplacebo near prev-day low: g60 {bp(P.g60)} g240 {bp(P.g240)}")
+    for kind, X in D.groupby("kind"):
+        for lab, m in (("small-sell large-buy", (X.dsm < 0) & (X.dlg > 0)), ("small-buy large-sell", (X.dsm > 0) & (X.dlg < 0)),
+                       ("both sell", (X.dsm < 0) & (X.dlg <= 0)), ("all", X.g240.notna())):
+            x = X[m]
+            print(f"{kind} {lab:22s} n={len(x):4d} g60 {bp(x.g60):+6.1f} g240 {bp(x.g240):+6.1f} stop {bp(x.g240s):+6.1f} | yrs "
+                  + " ".join(f"{y}:{bp(g.g240):+.0f}" for y, g in x.groupby(x.time.dt.year)))
+    e = D[(D.dsm < 0) & (D.dlg > 0)].assign(side=1)
+    base = D[~((D.dsm < 0) & (D.dlg > 0))].assign(side=1)
+    L.card("M3a_trap_split_g240", e.assign(gross=e.g240)[["time", "coin", "side", "gross"]], "explore",
+           base=base.assign(gross=base.g240)[["time", "coin", "side", "gross"]],
+           note="prev-day and 7-day-low traps where small takers (<10k) net sold and large (>=60k) net bought; base = the same traps without that split")
+
+
+if __name__ == "__main__" and sys.argv[1:2] == ["a"]:
+    form_a()

@@ -1211,7 +1211,10 @@
     {
      "id": "a",
      "what": "mousetrap on range bars at prior-day / weekly low with small-sell large-buy split",
-     "status": "planned"
+     "status": "done",
+     "result": "traps (undercut + reclaim + first positive-delta bar, 5 min late) at prev-day low (n=959) and 7-day low (n=311), BTC ETH SOL 0.2% bars 2021-23: his split (small <10k net selling, large >=60k net buying in the trap) is rare (n=44) and negative: -36 bp/240 min vs other traps +16 (diff -52, p .23, MDE 116). Traps where every size sold do best (7d +53, pd +16) but 2022 negative both (-10, -15); 7d-low traps all +28 vs placebo +12 (2022 -21). Fails per-year rule. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "M3a_trap_split_g240__explore"
     },
     {
      "id": "b",
