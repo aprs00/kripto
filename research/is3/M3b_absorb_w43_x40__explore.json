@@ -1,0 +1,56 @@
+{
+ "name": "M3b_absorb_w43_x40",
+ "sample": "explore",
+ "n": 8383,
+ "days": 641,
+ "coins": 3,
+ "mean_bp": 2.5,
+ "median_bp": 2.19,
+ "win": 0.503,
+ "se_bp": 3.99,
+ "ci95_bp": [
+  -4.97,
+  10.29
+ ],
+ "p": 0.5077461269365318,
+ "mde80_bp": 11.17,
+ "mean_ex_top3_bp": -1.56,
+ "top3_share": 1.59,
+ "t_day_mean": 2.57,
+ "by_year": {
+  "2021": [
+   6806,
+   2.01
+  ],
+  "2022": [
+   1309,
+   3.76
+  ],
+  "2023": [
+   268,
+   8.63
+  ]
+ },
+ "by_side": {
+  "-1": [
+   3350,
+   -42.79
+  ],
+  "1": [
+   5033,
+   32.64
+  ]
+ },
+ "coins_positive": 1.0,
+ "net_bp": {
+  "free": 2.5,
+  "maker_taker": -5.5,
+  "taker": -10.5,
+  "taker_x2": -23.5,
+  "crash": -77.5
+ },
+ "passes": false,
+ "note": "0.43% >= 1-s bars, taker delta share >= .4 against the bar's direction, follow the bar 5 min late, 60 min; gross = minus within-day matched (takers with the bar)",
+ "rerun": "",
+ "at": "2026-11-24T17:07:46+00:00"
+}

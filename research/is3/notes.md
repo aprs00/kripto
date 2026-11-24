@@ -516,3 +516,5 @@ What he does NOT say: (1) the level must be one that many see (prior-day low, we
  delta near the level (a confirmation entry, not a resting bid), stop below the trap bar's low (risk known, small); (3) the second test's volume relative to the first is the dose (e).
 Plan: e first (his narrated version, dose = 2nd/1st test volume), then a (level type + small-sell/large-buy split), b (absorption bar on range bars), c, d. Baseline = within-day matched
  (M1/M2 harness) and undercuts of the same level WITHOUT the volume burst. >= 1-s bars only; entry 1 bar / 5 min late.
+M3 e done (is3_m3.py explore): prev-day-low mousetrap with a volume surge on the second test = placebo near-level entries (-13 bp/240 min, MDE 43), anti-dose. M3 b done (is3_m3.py b): absorption bars
+ (takers against the bar) follow-through = matched (MDE 11); the one +71 bp tail cell is crash-day/thin-SOL wicks (188/597 on 2021-05-19). Next M3: a (level types + size split), c, d.

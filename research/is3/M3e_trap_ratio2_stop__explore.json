@@ -1,0 +1,56 @@
+{
+ "name": "M3e_trap_ratio2_stop",
+ "sample": "explore",
+ "n": 359,
+ "days": 288,
+ "coins": 3,
+ "mean_bp": 4.42,
+ "median_bp": -22.52,
+ "win": 0.412,
+ "se_bp": 9.46,
+ "ci95_bp": [
+  -13.66,
+  23.86
+ ],
+ "p": 0.6426786606696652,
+ "mde80_bp": 26.49,
+ "mean_ex_top3_bp": -5.68,
+ "top3_share": 2.27,
+ "t_day_mean": 0.68,
+ "by_year": {
+  "2021": [
+   115,
+   34.34
+  ],
+  "2022": [
+   135,
+   -7.45
+  ],
+  "2023": [
+   109,
+   -12.46
+  ]
+ },
+ "by_side": {
+  "1": [
+   359,
+   4.42
+  ]
+ },
+ "coins_positive": 0.67,
+ "net_bp": {
+  "free": 4.42,
+  "maker_taker": -3.58,
+  "taker": -8.58,
+  "taker_x2": -21.58,
+  "crash": -75.58
+ },
+ "base_n": 14397,
+ "base_bp": 12.03,
+ "vs_base_bp": -7.61,
+ "p_vs_base": 0.487256371814093,
+ "passes": false,
+ "note": "same with a stop at the trap low (5 bp slip)",
+ "rerun": "",
+ "at": "2026-11-24T17:06:37+00:00"
+}

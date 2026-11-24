@@ -1,0 +1,56 @@
+{
+ "name": "M3e_trap_ratio2_g240",
+ "sample": "explore",
+ "n": 359,
+ "days": 288,
+ "coins": 3,
+ "mean_bp": -0.78,
+ "median_bp": 12.19,
+ "win": 0.552,
+ "se_bp": 15.35,
+ "ci95_bp": [
+  -30.9,
+  28.74
+ ],
+ "p": 0.9580209895052474,
+ "mde80_bp": 42.98,
+ "mean_ex_top3_bp": -15.29,
+ "top3_share": null,
+ "t_day_mean": 0.26,
+ "by_year": {
+  "2021": [
+   115,
+   26.07
+  ],
+  "2022": [
+   135,
+   -17.01
+  ],
+  "2023": [
+   109,
+   -9.01
+  ]
+ },
+ "by_side": {
+  "1": [
+   359,
+   -0.78
+  ]
+ },
+ "coins_positive": 0.67,
+ "net_bp": {
+  "free": -0.78,
+  "maker_taker": -8.78,
+  "taker": -13.78,
+  "taker_x2": -26.78,
+  "crash": -80.78
+ },
+ "base_n": 14397,
+ "base_bp": 12.03,
+ "vs_base_bp": -12.81,
+ "p_vs_base": 0.3373313343328336,
+ "passes": false,
+ "note": "prev-day-low mousetrap, 2nd/1st test volume >= 2, long 5 min after the buyers' bar, 240 min; base = near-level placebo entries",
+ "rerun": "",
+ "at": "2026-11-24T17:06:37+00:00"
+}

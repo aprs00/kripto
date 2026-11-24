@@ -1206,7 +1206,7 @@
    "group": "B",
    "title": "Mousetrap, absorption and trapped cohorts on range bars",
    "src": "R4, R10, R12, R35; tg:168-171, 206; wa 18.10.39*, 18.10.54(3)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -1216,7 +1216,10 @@
     {
      "id": "b",
      "what": "absorption: |delta| in the top decile with price change in the bottom decile -> the absorbing side wins",
-     "status": "planned"
+     "status": "done",
+     "result": "BTC ETH SOL 0.2/0.43% range bars 2021-23, >= 1-s bars whose taker delta share points against the bar (dose .2-1.0), follow the bar 5 min late: diff vs within-day matched -10..+4 bp at 60/240 min, no dose (card x>=.4 at 0.43%: +2.5, p .51, MDE 11). Only the extreme cell (x>=.8, 0.43%, n=408) shows +71, and it is an artifact: 188/597 such bars on 2021-05-19, most of the rest thin SOL Jan 2021, 1-3 s bars at 0.28x median volume with a 0.1% body in a 0.43% wick (torn book, not absorption). DEAD form",
+     "date": "2026-11-24",
+     "evidence": "M3b_absorb_w43_x40__explore"
     },
     {
      "id": "c",
@@ -1231,13 +1234,17 @@
     {
      "id": "e",
      "what": "mousetrap as narrated (tg:170): FIRST test of the level gets few prints, SECOND test gets many times more volume with small-trade selling and no progress -> close back above; ratio of second to first test volume as dose [S2v, MousetrapTwitter audio: entry 'as soon as those buyers take over ... right at that spot' = the first bar whose delta turns positive after the high-volume failed test, at or near the level; then trapped shorts' stops print (1600/1000/683/1013 lots) -> score the first 1-5 bars too]",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "BTC ETH SOL 0.2% range bars 2021-23, prev-day low: 1054 undercut-and-reclaim traps (90% >= 1-s), long 5 min after the first positive-delta bar above the level. 2nd/1st test volume >= 2 (n=359): -0.8 bp/240 min vs near-level placebo +12 (diff -13, p .34, MDE 43); stop at trap low +4 (diff -8). Anti-dose: ratio <1 +17, 1-2 -12, 2-5 +11, >=5 -10; years and coins flip. Causal by construction (levels from the prior day, entry after the bar). Volume surge on the second test adds nothing. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "M3e_trap_ratio2_g240__explore"
     }
    ],
    "after": [
     "M0"
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "M4",
