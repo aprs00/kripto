@@ -600,3 +600,7 @@ Build (a): micro bars BTC/ETH/SOL 2021-23 -> range bars w = 0.1 / 0.2%. Range = 
  confirmed), lives 2 h, first touch only. Fill ladder: touch / touch + Q notional traded at or below the level (Q = $50k, $250k; pro-rata of each micro bar under the level) / trade-through 1 bp.
  Exit: maker ask at +1w (one bar), stop at -2w taker, timeout 60 min taker. Fees maker 2 bp, taker 5 bp + 1 bp. Mirror for breakdowns. Placebo levels at 0.63x and 1.37x the distance (same
  placement time, same fill/exit rules). Change my mind: real - placebo > 0 under the queue fill (Q = $50k) after fees, every year, both sides.
+M5 a run note (22:4x): first unit died at once (EMFILE: mbars.load kept ~1000 lazy NpzFiles open under the unit's fd limit), fixed in kripto/mbars.py (eager read). Range-bar
+ widths in the code are 0.2% / 0.43%, not the planned 0.1/0.2%: micro bars step 10 bp, so a 0.1% range bar would be ~1 micro bar (stated deviation, decided before results).
+M5 e plan (before any run): target A = lowest low between the breakout close and placement (the post-breakout consolidation, always above B by construction), order rests 6 h,
+ position up to 6 h, stop -2w; same fill ladder and placebo levels (placebo target keeps A's distance above its own level). Require A - B >= 1w so the trade can pay 2 maker fees.

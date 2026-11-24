@@ -27,9 +27,9 @@ def first(mask: np.ndarray) -> int:
     return int(np.argmax(mask)) if mask.any() else -1
 
 
-def trade(xh, xl, vol, t1, p0, lev, w, fill):
+def trade(xh, xl, vol, t1, p0, lev, w, fill, tgt_off=None, h_order=H_ORDER, h_pos=H_POS):
     """Resting bid at log level `lev` placed after micro bar p0. Returns (fill idx, return, fee) or None."""
-    end = int(np.searchsorted(t1, t1[p0] + H_ORDER, side="right"))
+    end = int(np.searchsorted(t1, t1[p0] + h_order, side="right"))
     hh, ll, vv = xh[p0 + 1:end], xl[p0 + 1:end], vol[p0 + 1:end]
     if fill is None:
         k = first(ll <= lev)
@@ -42,21 +42,23 @@ def trade(xh, xl, vol, t1, p0, lev, w, fill):
     if k < 0:
         return None
     g = p0 + 1 + k
-    stop = int(np.searchsorted(t1, t1[g] + H_POS, side="right"))
+    stop = int(np.searchsorted(t1, t1[g] + h_pos, side="right"))
     h2, l2 = xh[g + 1:stop], xl[g + 1:stop]
     if len(h2) == 0:
         return None
-    tgt, sl = lev + w + 1e-4, lev - 2 * w
+    off = w if tgt_off is None else tgt_off
+    tgt, sl = lev + off + 1e-4, lev - 2 * w
     it, is_ = first(h2 >= tgt), first(l2 <= sl)
     if is_ >= 0 and (it < 0 or is_ <= it):
         return g, np.exp(sl - lev) - 1, MK + TK
     if it >= 0:
-        return g, np.exp(w) - 1, 2 * MK
+        return g, np.exp(off) - 1, 2 * MK
     xc = (h2[-1] + l2[-1]) / 2                 # timeout: mid of the last micro bar (within one 10-bp step)
     return g, np.exp(xc - lev) - 1, MK + TK
 
 
-def coin_events(sym: str, lo: str, hi: str, w: float) -> pd.DataFrame:
+def coin_events(sym: str, lo: str, hi: str, w: float, form: str = "a") -> pd.DataFrame:
+    """form a: target +1w, order 2 h, position 1 h. form e: target = A (lowest low between breakout close and placement), 6 h / 6 h."""
     b = mbars.load(sym, lo, hi)
     r = rbars(b, w)
     t1 = b["t1"].astype(np.int64)
@@ -86,10 +88,34 @@ def coin_events(sym: str, lo: str, hi: str, w: float) -> pd.DataFrame:
             if (xl[m0:p0 + 1] <= H).any() or (t1[p0] // 86_400_000) in bad:
                 continue
             P = H + 3 * w
-            busy = int(np.searchsorted(t1, t1[p0] + H_ORDER + H_POS, side="right"))
-            for kind, lev in (("real", H), ("pl063", P - 0.63 * 3 * w), ("pl137", P - 1.37 * 3 * w)):
+            ho, hp, toff = H_ORDER, H_POS, None
+            if form == "e":
+                toff = float(xl[m0:p0 + 1].min() - H)
+                if toff < w:
+                    continue
+                ho = hp = 6 * 3.6e6
+            busy = int(np.searchsorted(t1, t1[p0] + ho + hp, side="right"))
+            R = H
+            if form in ("bvah", "bpoc"):            # level = the 10-bar range's value-area high / POC (log space, 5-bp bins of micro-bar mids)
+                s0 = int(r["end"][i - 11]) + 1 if i > 10 else 0
+                s1 = int(r["end"][i - 1]) + 1
+                mid = (xh[s0:s1] + xl[s0:s1]) / 2
+                k = np.floor(mid / 5e-4).astype(np.int64)
+                k0 = k.min()
+                v = np.bincount(k - k0, weights=vol[s0:s1])
+                if form == "bpoc":
+                    R = (k0 + int(np.argmax(v)) + 0.5) * 5e-4
+                else:
+                    order = np.argsort(-v)
+                    take = order[:int(np.searchsorted(np.cumsum(v[order]), 0.7 * v.sum())) + 1]   # top-volume bins to 70% (approximate VA)
+                    R = (k0 + take.max() + 1) * 5e-4
+                R = min(R, H)
+                if P - R < 2 * w:
+                    continue
+            d = P - R
+            for kind, lev in (("real", R), ("pl063", P - 0.63 * d), ("pl137", P - 1.37 * d)):
                 for fname, f in FILLS.items():
-                    out = trade(xh, xl, vol, t1, p0, lev, w, f)
+                    out = trade(xh, xl, vol, t1, p0, lev, w, f, toff, ho, hp)
                     if out is None:
                         continue
                     g, ret, fee = out
@@ -98,20 +124,20 @@ def coin_events(sym: str, lo: str, hi: str, w: float) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def explore() -> None:
+def explore(form: str = "a") -> None:
     a, b = L.SAMPLES["explore"]
     E = []
     for w in (0.002, 0.0043):
         for s in COINS:
-            e = coin_events(s, a, b, w)
+            e = coin_events(s, a, b, w, form)
             print(s, w, "orders placed", e[(e.kind == "real") & (e.fill == "touch")].shape[0] if len(e) else 0, flush=True)
             E.append(e)
     E = pd.concat(E, ignore_index=True)
-    E.to_parquet(L.ROOT / "data/is3/m5a_explore.parquet")
-    report(E, "explore")
+    E.to_parquet(L.ROOT / f"data/is3/m5{form}_explore.parquet")
+    report(E, "explore", form)
 
 
-def report(E: pd.DataFrame, sample: str) -> None:
+def report(E: pd.DataFrame, sample: str, form: str = "a") -> None:
     for w in (0.002, 0.0043):
         for fname in FILLS:
             x = E[(E.w == w) & (E.fill == fname)]
@@ -124,8 +150,8 @@ def report(E: pd.DataFrame, sample: str) -> None:
                 real = x[x.kind == "real"][["time", "coin", "side", "gross", "cost"]].reset_index(drop=True)
                 pl = x[x.kind != "real"][["time", "coin", "side", "gross", "cost"]].reset_index(drop=True)
                 if len(real) > 20:
-                    L.card(f"M5a_w{int(w * 1000)}_{fname}", real, sample, pl,
-                           note=f"bid old range high on {w:.1%} range bars after a 3w impulse, fill {fname}, target +1w maker, stop -2w, 60 min; base = placebo levels 0.63x/1.37x")
+                    L.card(f"M5{form}_w{int(w * 1000)}_{fname}", real, sample, pl,
+                           note=f"form {form}: bid old range high on {w:.1%} range bars after a 3w impulse, fill {fname}, " + ("target +1w maker, stop -2w, 60 min" if form != "e" else "target A = post-breakout low, stop -2w, 6 h") + "; base = placebo levels 0.63x/1.37x")
         y = E[(E.w == w) & (E.fill == "q250k") & (E.kind == "real")]
         if len(y):
             t = pd.to_datetime(y.time)
@@ -134,4 +160,4 @@ def report(E: pd.DataFrame, sample: str) -> None:
 
 
 if __name__ == "__main__":
-    {"explore": explore}[sys.argv[1]]()
+    {"explore": explore}[sys.argv[1]](*sys.argv[2:])
