@@ -170,7 +170,7 @@ def explore() -> None:
 
 
 if __name__ == "__main__":
-    {"explore": explore, "b": lambda: None, "a": lambda: None}[sys.argv[1]]()
+    {"explore": explore, "b": lambda: None, "a": lambda: None, "cd": lambda: None}[sys.argv[1]]()
 
 
 # ------------------------------------------------------------------ form b: absorption bars
@@ -339,3 +339,126 @@ def form_a() -> None:
 
 if __name__ == "__main__" and sys.argv[1:2] == ["a"]:
     form_a()
+
+
+# ------------------------------------------------------------------ forms c and d
+def cd_coin(sym: str, lo: str, hi: str) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """c: price spends >= 30 min below the previous day's low, then the first 0.2% bar closing back above it = re-cross (entry 5 min late).
+    Trapped cohort = net taker SELLING below the level by small (< 10k) and large (>= 60k) trades, scaled by the coin's previous-day volume.
+    d: for every >= 1-s 0.43% bar, the share of its volume traded in the extreme quarter of its range in the direction it went against
+    (bottom quarter of a down bar = 'volume at the low'); side = against the bar (reversal); within-day matched like M2."""
+    b = load_split(sym, lo, hi)
+    bt, bcl, bl = b["t1"], b["c"], b["l"]
+    r = rbars(b, W)
+    r["dsm"], r["dlg"] = np.add.reduceat(b["dsm"], r["st"]), np.add.reduceat(b["dlg"], r["st"])
+    day = r["t1"] // 86_400_000
+    days = np.unique(day)
+    lows = {d: r["l"][day == d].min() for d in days}
+    vols = {d: r["v"][day == d].sum() for d in days}
+    rows = []
+    for dd in days[1:]:
+        if dd - 1 not in lows:
+            continue
+        Lv, V = lows[dd - 1], vols[dd - 1]
+        ix = np.flatnonzero(day == dd)
+        below = r["c"][ix] < Lv
+        k = 0
+        while k < len(ix):
+            if not below[k]:
+                k += 1
+                continue
+            s0 = k
+            while k < len(ix) and below[k]:
+                k += 1
+            if k >= len(ix):
+                break
+            j0, j1 = ix[s0], ix[k]                                 # first bar below, re-cross bar
+            if r["t1"][j1] - r["t1"][j0] < 30 * 60_000:
+                continue
+            seg = slice(j0, j1)
+            t_e = int(r["t1"][j1]) + 5 * 60_000
+            g60, g240, _ = exits(bt, bcl, bl, t_e)
+            rows.append({"time": pd.to_datetime(t_e, unit="ms", utc=True), "g60": g60, "g240": g240, "sm": -r["dsm"][seg].sum() / V,
+                         "lg": -r["dlg"][seg].sum() / V, "all": -r["d"][seg].sum() / V, "mins": (r["t1"][j1] - r["t1"][j0]) / 6e4})
+            break                                                  # first re-cross of the day
+    C = pd.DataFrame(rows)
+    # d
+    r4 = rbars(b, 0.0043)
+    n = len(r4["st"])
+    ends = np.concatenate([r4["st"][1:] - 1, [len(b["c"]) - 1]])
+    mid = np.sqrt(b["h"] * b["l"])
+    bar_of = np.repeat(np.arange(n), ends - r4["st"] + 1)
+    lo4, hi4 = r4["l"][bar_of], r4["h"][bar_of]
+    dirn = np.sign(r4["c"] - r4["o"])
+    pos = (mid - lo4) / np.maximum(hi4 - lo4, 1e-12)              # 0 = bar low, 1 = bar high
+    ext = np.where(dirn[bar_of] < 0, pos <= 0.25, pos >= 0.75)
+    vext = np.bincount(bar_of, weights=b["v"] * ext, minlength=n)
+    share = vext / np.maximum(r4["v"], 1e-9)
+    up = dirn > 0
+    def runlen(x):
+        out, kk = np.zeros(len(x), dtype=np.int32), 0
+        for i, v in enumerate(x):
+            kk = kk + 1 if v else 0
+            out[i] = kk
+        return out
+    pl = np.minimum(np.where(up, runlen(up), runlen(~up)), 4)
+    t_e = r4["t1"] + 5 * 60_000
+    k0 = np.minimum(np.searchsorted(bt, t_e), len(bt) - 1)
+    k = np.searchsorted(bt, t_e + 60 * 60_000)
+    g = np.full(n, np.nan)
+    ok = k < len(bt)
+    g[ok] = -dirn[ok] * (bcl[k[ok]] / bcl[k0[ok]] - 1)
+    Dd = pd.DataFrame({"time": pd.to_datetime(t_e, unit="ms", utc=True), "share": share, "side": (-dirn).astype(int), "g60": g,
+                       "slow": (r4["t1"] - r4["t0"]) >= 1000, "m": (r4["t1"] // 86_400_000) * 100 + (dirn + 1) * 10 + pl})
+    Dd = Dd[(Dd.side != 0) & Dd.g60.notna() & Dd.slow]
+    Dd["q"] = np.minimum((Dd.share * 5).astype(int), 4)
+    A = Dd.groupby(["m", "q"]).g60.agg(["sum", "count"]).reset_index()
+    for X in (C, Dd, A):
+        X["coin"] = sym.replace("USDT", "")
+    bad = {pd.Timestamp(x, tz="UTC") for x in BAD.get(sym, {})}
+    if len(C):
+        C = C[~C.time.dt.floor("D").isin(bad)].dropna(subset=["g240"])
+    Dd = Dd[~Dd.time.dt.floor("D").isin(bad)]
+    return C, Dd[Dd.share >= 0.6], A
+
+
+def form_cd() -> None:
+    CC, DD, AA = [], [], []
+    for sym in COINS:
+        for y in (2021, 2022, 2023):
+            for q in range(4):
+                a = f"{y}-{3 * q + 1:02d}-01"
+                z = f"{y}-{3 * q + 4:02d}-01" if q < 3 else f"{y + 1}-01-01"
+                c, d, ag = cd_coin(sym, str((pd.Timestamp(a) - pd.Timedelta("1D")).date()), z)
+                lo_t = pd.Timestamp(a, tz="UTC")
+                CC.append(c[c.time >= lo_t] if len(c) else c); DD.append(d[d.time >= lo_t]); AA.append(ag)
+        print(sym, flush=True)
+    C, Dd, A = pd.concat(CC, ignore_index=True), pd.concat(DD, ignore_index=True), pd.concat(AA, ignore_index=True)
+    bp = lambda s: round(float(np.nanmean(s)) * 1e4, 1)
+    P = pd.read_parquet(ROOT / "data/is3/m3e_explore.parquet").query("kind == 'placebo'")
+    print(f"\nc: re-crosses of the prev-day low after >= 30 min below: n={len(C)}, g60 {bp(C.g60)} g240 {bp(C.g240)} (near-level placebo g240 {bp(P.g240)})")
+    for col in ("sm", "lg", "all"):
+        t = pd.qcut(C[col].rank(method="first"), 3, labels=False)
+        print(f"  trapped {col:3s} terciles g240:", " ".join(f"{bp(C.g240[t == i]):+.1f}" for i in range(3)),
+              "| top-bottom by year:", {y: round(bp(g.g240[t[g.index] == 2]) - bp(g.g240[t[g.index] == 0]), 1) for y, g in C.groupby(C.time.dt.year)})
+    t = pd.qcut(C["sm"].rank(method="first"), 3, labels=False)
+    e, base = C[t == 2].assign(side=1), C[t == 0].assign(side=1)
+    L.card("M3c_trapped_small_sellers", e.assign(gross=e.g240)[["time", "coin", "side", "gross"]], "explore",
+           base=base.assign(gross=base.g240)[["time", "coin", "side", "gross"]], note="re-cross of prev-day low after >= 30 min below; top vs bottom tercile of small-trade net selling below the level (/ prev-day volume), long 5 min late, 240 min")
+    A = A.groupby(["coin", "m", "q"])[["sum", "count"]].sum()
+    Ab = A.xs(0, level="q") if 0 in A.index.get_level_values("q") else None
+    Abm = A.groupby(level=["coin", "m"]).sum()
+    mu = (Abm["sum"] / Abm["count"]).rename("b")
+    Dd = Dd.join(mu, on=["coin", "m"])
+    print("\nd: share of a >= 1-s 0.43% bar's volume in its extreme quarter (against the bar); fade from 5 min late, 60 min; diff vs all bars of the same cell")
+    for lo_, hi_ in ((0.6, 0.8), (0.8, 1.01)):
+        x = Dd[(Dd.share >= lo_) & (Dd.share < hi_)]
+        print(f"  share {lo_}-{hi_} n={len(x)} g60 {bp(x.g60):+.1f} diff {bp(x.g60 - x.b):+.1f} | yrs", {y: bp(g.g60 - g.b) for y, g in x.groupby(x.time.dt.year)},
+              "| sides", {s: bp(g.g60 - g.b) for s, g in x.groupby("side")})
+    x = Dd[Dd.share >= 0.6]
+    L.card("M3d_volume_at_extreme", x.assign(gross=x.g60 - x.b)[["time", "coin", "side", "gross"]], "explore",
+           note=">= 1-s 0.43% bars with >= 60% of volume in the extreme quarter they went to; fade 5 min late, 60 min; gross = minus same coin/day/side/prior-run cell mean")
+
+
+if __name__ == "__main__" and sys.argv[1:2] == ["cd"]:
+    form_cd()

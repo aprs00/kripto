@@ -1,0 +1,56 @@
+{
+ "name": "M3d_volume_at_extreme",
+ "sample": "explore",
+ "n": 6711,
+ "days": 922,
+ "coins": 3,
+ "mean_bp": -6.53,
+ "median_bp": -2.87,
+ "win": 0.493,
+ "se_bp": 4.01,
+ "ci95_bp": [
+  -14.71,
+  0.74
+ ],
+ "p": 0.10344827586206896,
+ "mde80_bp": 11.24,
+ "mean_ex_top3_bp": -9.19,
+ "top3_share": null,
+ "t_day_mean": -2.47,
+ "by_year": {
+  "2021": [
+   3921,
+   -3.41
+  ],
+  "2022": [
+   2020,
+   -10.63
+  ],
+  "2023": [
+   770,
+   -11.61
+  ]
+ },
+ "by_side": {
+  "-1": [
+   3479,
+   -21.9
+  ],
+  "1": [
+   3232,
+   10.03
+  ]
+ },
+ "coins_positive": 0.33,
+ "net_bp": {
+  "free": -6.53,
+  "maker_taker": -14.53,
+  "taker": -19.53,
+  "taker_x2": -32.53,
+  "crash": -86.53
+ },
+ "passes": false,
+ "note": ">= 1-s 0.43% bars with >= 60% of volume in the extreme quarter they went to; fade 5 min late, 60 min; gross = minus same coin/day/side/prior-run cell mean",
+ "rerun": "",
+ "at": "2026-11-24T17:12:09+00:00"
+}

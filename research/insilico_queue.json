@@ -1212,7 +1212,7 @@
    "group": "B",
    "title": "Mousetrap, absorption and trapped cohorts on range bars",
    "src": "R4, R10, R12, R35; tg:168-171, 206; wa 18.10.39*, 18.10.54(3)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -1233,12 +1233,18 @@
     {
      "id": "c",
      "what": "cohort that sold below a level is trapped when price re-crosses it (size groups < 5k vs > 5k USD x 10)",
-     "status": "planned"
+     "status": "done",
+     "result": "re-crosses of the prev-day low after >= 30 min below (n=759, BTC ETH SOL 0.2% bars 2021-23), long 5 min late: +5 bp/240 min vs near-level placebo +12. Trapped small-trade sellers below the level (tercile of net selling / prev-day volume): top vs bottom +0.4 (p .99, MDE 51), years flip. Large (>=60k) net selling below the level predicts a WEAKER rebound every year (-16/-67/-17 top-bottom): large sellers were informed, not trapped. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "M3c_trapped_small_sellers__explore"
     },
     {
      "id": "d",
      "what": "volume at the extreme price bins of the bar vs the rest (delta at the low)",
-     "status": "planned"
+     "status": "done",
+     "result": ">= 1-s 0.43% bars with >= 60% of volume in the extreme quarter of the range they went to ('volume built at the low'): fade from 5 min late -6.5 bp/60 min vs same coin/day/side/prior-run cell (p .10, MDE 11), every year negative at share .6-.8 = slight CONTINUATION; >= .8 n=561 +4.4 mixed; long side +6..+52 vs short side -20..-38 = the down-bar bounce asymmetry seen everywhere. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "M3d_volume_at_extreme__explore"
     },
     {
      "id": "e",
@@ -1253,7 +1259,10 @@
    "after": [
     "M0"
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "5 forms on BTC/ETH/SOL aggTrades range bars 2021-23 with placebo or within-day matched baselines: volume-surge mousetrap at the prev-day low = placebo (-13 bp, MDE 43, anti-dose); his small-sell/large-buy split rare and negative; absorption bars = matched (MDE 11; the +71 tail cell is crash-day wicks); trapped small sellers no dose (MDE 51) while large sellers below a level were RIGHT; volume at the bar's extreme = slight continuation (MDE 11). Untested translation: intraday multi-touch bases as the level (only prev-day / 7-day lows used); ES 2010 footprints do not carry to Binance 2021+",
+   "closed": "2026-11-24"
   },
   {
    "id": "M4",

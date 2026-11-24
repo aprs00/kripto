@@ -459,3 +459,8 @@ BTC/ETH/SOL aggTrades range bars 0.1/0.2/0.43% + COINS10 1-min, explore 2021–2
 continuation vs within-day matched from 5 min late (MDE 2–11 bp); count drops are sub-1-s torn-book bars. Engine-lag proxy (clogged bursts continue) and exhaustion row (fading activity) both backwards and
 tiny. Survivor: ≥10× burst on a slow down bar at the 24 h low, long 5 min late for 60 min: +50 bp vs matched explore (n=600), pre-registered, confirmT +65 (p .047) but ex-top-3-days +12 < taker, 85% of it
 2025-10-10 / 2025-02-03 / 2024-04-13 → the liquidation fade (L1/E1), FAILED as a separate edge. Scripts is3_m2.py, is3_m2m.py.
+
+### InSilico M3 / R4 R10 R12 R35 mousetrap, absorption, trapped cohorts (2026-11-24) → DEAD
+BTC/ETH/SOL aggTrades range bars 0.2/0.43%, explore 2021–23, entries 5 min late, ≥ 1-s bars. Mousetrap at the prev-day low with a volume surge on the second test = near-level placebo (−13 bp/240 min,
+MDE 43, anti-dose); his small-sell/large-buy split is rare (44) and negative; absorption bars (takers against the bar) = within-day matched (MDE 11; the +71 bp tail is 2021-05-19 / thin-SOL wicks);
+trapped small sellers below a reclaimed level: no dose (MDE 51), but LARGE sellers below it were right (weaker rebound every year); volume at a bar's extreme → slight continuation. Script is3_m3.py.

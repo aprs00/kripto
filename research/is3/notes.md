@@ -521,3 +521,6 @@ M3 e done (is3_m3.py explore): prev-day-low mousetrap with a volume surge on the
 M2 b confirmT (17:1x): +65 bp vs matched (p .047, n=202, both years, every coin +) but ex-top-3 +12 < taker -> fails; 85% of the sum from 2025-10-10, 2025-02-03, 2024-04-13. It is the crash-day
  liquidation fade (L1/E1). M2 closed OPEN. Bad-day list extended to 2026-10 by rerunning is3_m0b (13 new BTC, 13 ETH, 4 SOL days; SOL 2026 still building). Lesson: on intraday long-the-dump forms,
  print the top-3-day share in explore too (explore had ex-top3 +31 of +50; confirm +12 of +65): crash days dominate every capitulation test.
+M3 c/d done, M3 closed DEAD (17:1x): trapped small sellers no dose (MDE 51), large sellers below the level were right; volume at the bar's extreme = slight continuation (MDE 11). Pattern across
+ N5, M1, M2, M3: on Binance 2021+ every 'trap / exhaustion / capitulation' footprint read either equals its baseline or reduces to the crash-day liquidation fade. Remaining M-items (M4-M7) should
+ be judged with that prior: test the crash-day share FIRST (top-3-day share and the result with 2021-05-19, 2022-05/06, 2022-11, 2024-04-13, 2024-08-05, 2025-02-03, 2025-10-10 removed).
