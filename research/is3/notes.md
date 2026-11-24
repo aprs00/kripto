@@ -504,3 +504,15 @@ M2 e/f think-through (17:0x, before run). e source opened (wa 18.10.41, Dec 2021
  flow-continuation inside bursts, and the dose must be in x.
 M2 e/f done (is3_m2m.py; data/is3/m2m_explore.txt): engine-lag proxy backwards (clogged bursts reverse -5 bp/60 min, 2021 only; unclogging nothing, MDE 3); exhaustion row backwards and tiny
  (falling count+size +1 bp vs matched, rising count -5). Binance minute data has no 'clog' to read; the FTX-era mechanism is not in this venue's data. Only M2b_long10_w43 remains (confirmT pending SOL).
+
+## M3 mousetrap / absorption / trapped cohorts (think-through 17:05 UTC, before any run)
+Sources re-read (records, video descriptions + transcripts as stored; videos not re-watched this session): tg:168 (tape table: absorption = frequent large market orders failing to overwhelm limits),
+ tg:169-171 (three ES footprint 'Mousetrap' videos: price bases on a level, a bar undercuts it with very heavy volume and small-trade selling, cannot progress, closes back up; enter "as soon as
+ buyers take over right at that spot"; trapped shorts' stops print 1600/1000/683/1013 lots), tg:206 ("simpler version of mousetrap = basics of momentum trading").
+Mechanism: stops and breakout sellers cluster just under an obvious level; a large passive buyer absorbs them; once sellers are exhausted the trapped shorts' stops fuel a fast rally.
+ Prior evidence in this programme: N5 (thin-volume lows ARE undercut, the undercut is a stop-run, price higher later; failed confirms), N3f absorption (daily, failed confirms), M2b (a >= 10x
+ trade-count burst on a slow down bar at the 24 h low rebounds +50 bp vs matched in explore; confirm pending) = the closest thing yet to his mousetrap.
+What he does NOT say: (1) the level must be one that many see (prior-day low, weekly low, a multi-touch base), not any low; (2) entry is AFTER the failed test, on the first bar with positive
+ delta near the level (a confirmation entry, not a resting bid), stop below the trap bar's low (risk known, small); (3) the second test's volume relative to the first is the dose (e).
+Plan: e first (his narrated version, dose = 2nd/1st test volume), then a (level type + small-sell/large-buy split), b (absorption bar on range bars), c, d. Baseline = within-day matched
+ (M1/M2 harness) and undercuts of the same level WITHOUT the volume burst. >= 1-s bars only; entry 1 bar / 5 min late.
