@@ -1485,7 +1485,10 @@
     {
      "id": "d",
      "what": "oscillator-pinned names: keep / never fade (R29)",
-     "status": "planned"
+     "status": "done",
+     "result": "R29 never fade a pinned oscillator, F0 harness, bnall 1d explore: block shorts while RSI14 >= 70: flow dSR +0.07 (70th pct), xsmom -0.05 (26th); >= 80 flow +0.07 (96th of 50, touches 0.6% of weight), xsmom -0.04; block longs while RSI <= 30: flow -0.13, xsmom -0.05; <= 20 flow +0.26 (96th of 50, touches 0.1% of weight), xsmom +0.01. Main variants fail in both books, the two flow 'passes' touch almost nothing and do not replicate on xsmom: the books rarely fade pinned names anyway. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "F1d_flow_noshort_rsi70__explore"
     },
     {
      "id": "e",

@@ -1,0 +1,31 @@
+{
+ "name": "F1d_xsmom_nolong_rsi20",
+ "sample": "explore",
+ "side": 1,
+ "on_share": 0.989,
+ "base": {
+  "sr": 1.1884505026561278,
+  "ann": 0.2553299466480741,
+  "mdd": -0.1890858535335379,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 1.1964221188542912,
+  "ann": 0.2566477958019126,
+  "mdd": -0.18908585353353824,
+  "days": 1095
+ },
+ "dSR": 0.008,
+ "dMDD": -0.0,
+ "p_daily_diff": 0.5262368815592204,
+ "n_random": 50,
+ "pct_dSR_vs_random": 0.9,
+ "random_dSR_q05_q50_q95": [
+  -0.136,
+  -0.054,
+  0.029
+ ],
+ "pct_dMDD_vs_random": 0.5,
+ "note": "block longs while RSI14 <= 20; weight touched 0.0004",
+ "passes": false
+}
