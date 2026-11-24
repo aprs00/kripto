@@ -92,6 +92,7 @@ def coin_events(sym: str, lo: str, hi: str, w: float, form: str = "a") -> pd.Dat
         b = mbars.load(sym, lo, hi)
         r = rbars(b, w)
         vol = (b["buy"].sum(1) + b["sell"].sum(1)).astype(np.float64)
+        del b["buy"], b["sell"]                # the 12-bucket arrays are most of the RAM (OOM at 1.8 GB on 3 years)
     t1 = b["t1"].astype(np.int64)
     bad = {pd.Timestamp(x, tz="UTC").value // 10**6 // 86_400_000 for x in BAD.get(sym, {})}
     coin = sym.replace("USDT", "")
@@ -163,7 +164,8 @@ def explore(form: str = "a") -> None:
         coins, widths = [f"{x}" for x in c[(c.med_qv_m > 0.5) & (c.med_qv_m < 50)].coin], WIDTHS["d"]
     for w in widths:
         for s in coins:
-            e = coin_events(s, a, b, w, form)
+            yrs = [str(y) + "-01-01" for y in range(int(a[:4]), int(b[:4]))] + [b]
+            e = pd.concat([coin_events(s, y0, y1, w, form) for y0, y1 in zip(yrs[:-1], yrs[1:])], ignore_index=True)   # one year at a time (RAM)
             print(s, w, "orders placed", e[(e.kind == "real") & (e.fill == "touch")].shape[0] if len(e) else 0, flush=True)
             E.append(e)
     E = pd.concat(E, ignore_index=True)
