@@ -1,0 +1,56 @@
+{
+ "name": "M4g_pitstop_rb_k8_4h",
+ "sample": "explore",
+ "n": 211,
+ "days": 114,
+ "coins": 3,
+ "mean_bp": -57.5,
+ "median_bp": -63.57,
+ "win": 0.389,
+ "se_bp": 34.87,
+ "ci95_bp": [
+  -129.53,
+  5.03
+ ],
+ "p": 0.09395302348825588,
+ "mde80_bp": 97.64,
+ "mean_ex_top3_bp": -82.44,
+ "top3_share": null,
+ "t_day_mean": -2.51,
+ "by_year": {
+  "2021": [
+   127,
+   -73.73
+  ],
+  "2022": [
+   50,
+   -56.87
+  ],
+  "2023": [
+   34,
+   2.19
+  ]
+ },
+ "by_side": {
+  "1": [
+   211,
+   -57.5
+  ]
+ },
+ "coins_positive": 0.0,
+ "net_bp": {
+  "free": -57.5,
+  "maker_taker": -65.5,
+  "taker": -70.5,
+  "taker_x2": -83.5,
+  "crash": -137.5
+ },
+ "base_n": 1055,
+ "base_bp": -12.55,
+ "vs_base_bp": -44.95,
+ "p_vs_base": 0.06696651674162919,
+ "passes": false,
+ "note": "0.5% range bars, red bar at a 24-h high after a >= 8% 24-h rise -> first green bar within 12 h holding the midpoint; long 4 h; vs green bars in strong moves",
+ "rerun": "",
+ "at": "2026-11-24T18:59:43+00:00"
+}

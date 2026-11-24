@@ -579,3 +579,10 @@ M4 a/e done (is3_m4.py; data/is3/m4a_explore.txt): adaptive 7 groups from 12 bin
 M4 b done: 4-h bars, flat quintile curves, Q1 -48 bp vs matched (MDE 133). Shorter bars do not help.
 M4 c done (is3_m4c.py, bnall half 0, 12 cells): most one-sided selling day of an uptrend's life on a pullback = matched pullbacks or worse, anti-dose in N. Same sign as pass 2 (one-voiced selling continues).
 M4 d done: breadth of one-voiced buying (bnall) = matched market days (+5..+53 bp n.s., not monotone).
+M4 f think-through (19:0x): tg:206, 216-222 (stored descriptions; BTC range bars Apr 5-6 2021): strong rally, a bright-red (all buckets selling) bar at the high = "demand momentum no mo, pitstop";
+ 8 h of red-ish rotation that holds above wVAL; first bar whose buckets turn green -> breakout to a new high. Not said: the rotation must HOLD (no new low below the move's midpoint), the entry is
+ the first all-green bar (a confirmation, taker entry), the stop is the rotation low. Build on 1-h bars (12 x 5-min tsize, adaptive groups from the previous day; his were ~300-pt range bars: coarser,
+ say so), BTC/ETH/SOL 2021-23. Strong = 24-h return >= z sd (z 1.5/2/3); pitstop = all-negative bar making a 24-h high; entry = first all-positive bar within 12 h with the low since the
+ pitstop above the 24-h move's midpoint; forward 4/12/24 h. Baselines: (1) same sequence outside strong moves (z < 1), (2) all-positive bars in strong moves without the pitstop sequence, same coin, z decile.
+M4 f/g done (is3_m4f.py 1-h, is3_m4g.py range bars): pitstop -> first green bar = worse than any green bar in the same strong move (4 h -20/-38/-45 bp at >= 3/5/8% moves, MDE 45-98), null -8+-10.
+M4 CLOSED OPEN (MDE rule missed narrowly, every form <= baseline, strongest cells opposite sign). Lesson: across M1-M4, N5 and pass 2, Binance size-bucket footprints consistently read as continuation.

@@ -1,0 +1,31 @@
+{
+ "name": "F1e2_va70_xsmom",
+ "sample": "explore",
+ "side": null,
+ "on_share": 0.764,
+ "base": {
+  "sr": 1.1884505026561278,
+  "ann": 0.2553299466480741,
+  "mdd": -0.1890858535335379,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": -0.9681226635344077,
+  "ann": -0.13251243764672122,
+  "mdd": -0.392698961475788,
+  "days": 1095
+ },
+ "dSR": -2.157,
+ "dMDD": -0.2036,
+ "p_daily_diff": 0.0004997501249375312,
+ "n_random": 100,
+ "pct_dSR_vs_random": 0.0,
+ "random_dSR_q05_q50_q95": [
+  -1.418,
+  -0.788,
+  -0.229
+ ],
+ "pct_dMDD_vs_random": 0.02,
+ "note": "block positions while close inside VA 70%; touched 0.5938; per-year dSR 2021:-2.33 2022:-1.76 2023:-2.26",
+ "passes": false
+}

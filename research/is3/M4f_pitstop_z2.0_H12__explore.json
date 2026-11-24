@@ -1,0 +1,56 @@
+{
+ "name": "M4f_pitstop_z2.0_H12",
+ "sample": "explore",
+ "n": 17,
+ "days": 17,
+ "coins": 3,
+ "mean_bp": -15.34,
+ "median_bp": 10.71,
+ "win": 0.588,
+ "se_bp": 102.62,
+ "ci95_bp": [
+  -224.23,
+  179.36
+ ],
+ "p": 0.8775612193903048,
+ "mde80_bp": 287.32,
+ "mean_ex_top3_bp": -126.55,
+ "top3_share": null,
+ "t_day_mean": -0.15,
+ "by_year": {
+  "2021": [
+   10,
+   21.51
+  ],
+  "2022": [
+   2,
+   -230.75
+  ],
+  "2023": [
+   5,
+   -2.88
+  ]
+ },
+ "by_side": {
+  "1": [
+   17,
+   -15.34
+  ]
+ },
+ "coins_positive": 0.67,
+ "net_bp": {
+  "free": -15.34,
+  "maker_taker": -23.34,
+  "taker": -28.34,
+  "taker_x2": -41.34,
+  "crash": -95.34
+ },
+ "base_n": 85,
+ "base_bp": 84.87,
+ "vs_base_bp": -100.22,
+ "p_vs_base": 0.4002998500749625,
+ "passes": false,
+ "note": "pitstop (all-neg bar at a 24-h high, z24 >= 2.0) -> first all-green bar within 12 h, rotation held above the move's midpoint; long 12 h; vs green bars in strong moves (coin, z bin)",
+ "rerun": "",
+ "at": "2026-11-24T18:58:22+00:00"
+}

@@ -1276,7 +1276,7 @@
    "group": "B",
    "title": "Capitulation with adaptive buckets and inside a trend",
    "src": "R1, R2; tg:274-284; wa 18.10.55-57",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -1322,14 +1322,29 @@
     {
      "id": "f",
      "what": "pitstop, not top (S2b1: tg:206, 216-222): inside a strong up move (e.g. >= 2 sigma over 12-24 h), an all-negative-bucket bar at a new high is a PAUSE; long on the first later bar whose size buckets are all positive after a rotation that held above value low; vs the same all-negative bar outside a strong move and vs random entries in the rotation; BTC ETH SOL tsize only (say so)",
-     "status": "planned",
-     "added": "2026-11-23"
+     "status": "done",
+     "added": "2026-11-23",
+     "result": "pitstop on 1-h bars (BTC/ETH/SOL 2021-23, adaptive groups from the previous day): all-negative bar at a 24-h high inside a strong move (z24 >= 1.5 / 2 / 3) -> first all-positive bar within 12 h with the rotation held above the move's midpoint, long 4/12/24 h: n 41 / 17 / 0; z >= 1.5 +40 bp at 12 h vs green bars in strong moves (matched) +2 (diff +38, p .54, MDE 156), z >= 2 -15 vs +85 (diff -100, MDE 287): anti-dose; same sequence outside strong moves -30. 9 cells. Too few events on 1-h bars and the sign flips with the dose; his bars were ~0.5% range bars -> form g on range bars. DEAD form (underpowered: say so)",
+     "date": "2026-11-24",
+     "evidence": "M4f_pitstop_z1.5_H12__explore"
+    },
+    {
+     "id": "g",
+     "what": "pitstop on 0.5% range bars (his bar type, M0 micro bars, author7 green/red as in M1): strong move = 24-h return >= 3/5/8%; red bar at a 24-h high -> first green bar within 12 h, low held above the move's midpoint -> long, 4/12 h and one-bar-late; vs green bars in strong moves without the sequence (coin, move bin)",
+     "status": "done",
+     "added": "2026-11-24",
+     "result": "0.5% range bars (M0 micro bars, author7 green/red, BTC/ETH/SOL 2021-23, bad days dropped): red bar at a 24-h high after a >= 3/5/8% 24-h rise -> first green bar within 12 h holding the move's midpoint, long: n 575/390/211; 4 h -19/-32/-58 bp vs green bars in strong moves (matched) diff -20/-38/-45 (p .16/.055/.067, MDE 45-98): ANTI-dose; 12 h diff -24/-32/-46 (n.s.); one bar late 1-5 bp worse; 2022 worst. Null (labels shuffled within day) -8 +- 10 bp. 6 cells. The pitstop sequence is a WORSE long than any green bar in the same move. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "M4g_pitstop_rb_k5_4h__explore"
     }
    ],
    "after": [
     "M0"
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "7 forms (daily adaptive buckets, his literal picture, 4-h bars, R2 on bnall, buying breadth, pitstop on 1-h and on his 0.5% range bars): none beats its matched baseline, no dose anywhere, and the strongest cells have the OPPOSITE sign (R2 anti-dose in lookback, pitstop -38..-45 bp vs green bars at 4 h, p .06). Formally OPEN only because no form reaches the MDE bar (best 45 bp at 4 h vs 26 needed; 101 bp daily vs 100). Mechanism read: one-voiced selling continues on Binance (pass 2), so 'capitulation' footprints mark continuation, not bottoms.",
+   "closed": "2026-11-24"
   },
   {
    "id": "M5",

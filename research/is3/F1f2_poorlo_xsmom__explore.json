@@ -1,0 +1,31 @@
+{
+ "name": "F1f2_poorlo_xsmom",
+ "sample": "explore",
+ "side": 1,
+ "on_share": 0.837,
+ "base": {
+  "sr": 1.1884505026561278,
+  "ann": 0.2553299466480741,
+  "mdd": -0.1890858535335379,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.4229172027098832,
+  "ann": 0.09852012486818333,
+  "mdd": -0.3104883841468101,
+  "days": 1095
+ },
+ "dSR": -0.766,
+ "dMDD": -0.1214,
+ "p_daily_diff": 0.12093953023488256,
+ "n_random": 100,
+ "pct_dSR_vs_random": 0.34,
+ "random_dSR_q05_q50_q95": [
+  -1.027,
+  -0.681,
+  -0.29
+ ],
+ "pct_dMDD_vs_random": 0.04,
+ "note": "block longs whose day low is poor (bottom bin >= 2 hours); touched 0.1734; per-year dSR 2021:-0.85 2022:+0.52 2023:-1.91",
+ "passes": false
+}
