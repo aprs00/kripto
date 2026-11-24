@@ -417,3 +417,5 @@ N3 c/i/j done (is3_n3m.py): delta-flip change of character too rare (48 at 1h); 
  minutes are not faded (the push continues, same as at minutes 25-30). N3 left: a, d, g, h, k.
 N3 k/g done (is3_n3kg.py): non-overlapping impulses carry a little at 1h (+29 bp vs matched, p .06) with an anti-dose in efficiency; his overlap exit adds nothing; the change-of-character bar does not
  reverse. N3 left for next session: a (successive swings), d (weekly/monthly AVWAP distance), h (his AVWAP anchors). Then N4, N5, the M-items (need M0c), F, X, L2 (due 12-05).
+N3 a done (is3_n3a.py): shrinking swings mark a weaker trend (counter-trade +4 vs -10 bp after a strong swing, p .002) but never pay a counter-trade. Same shape as O2 j (failed new high): both are
+ 'trend is tiring' features for F2 (trim trend exposure), neither is a reversal signal. N3 left: d, h.

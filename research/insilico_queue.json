@@ -786,7 +786,10 @@
     {
      "id": "a",
      "what": "successive swings: each up-swing smaller / slower than the last (zigzag 2 x ATR) -> trend weakening?",
-     "status": "planned"
+     "status": "done",
+     "result": "zigzag (2 x ATR14) on COINS10 1h/4h closes 2021-23, at each confirmed swing: fade after a weaker (smaller) last swing vs after a stronger one: 1h 6 bars +4.4 bp vs -10.2 (diff +14.7, p .002, MDE 7.2; smaller AND slower +12.2, p .004), 24 bars +9 (n.s.); slower alone +3.4 (n.s.); 4h +20..+47 (n.s., MDE 30-77). His reading is right in direction (a shrinking swing marks a weaker trend: the counter-trade stops losing) but the counter-trade itself makes +4-6 bp gross: a FEATURE for trend books (with j's failed extension, F2), not a trade",
+     "date": "2026-11-24",
+     "evidence": "N3a__explore"
     },
     {
      "id": "b",

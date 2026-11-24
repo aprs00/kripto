@@ -1,0 +1,110 @@
+{
+ "1h_smaller_f6": {
+  "n_weak": 17724,
+  "weak_bp": 4.43,
+  "n_strong": 17420,
+  "strong_bp": -10.22,
+  "diff_bp": 14.65,
+  "p": 0.001996007984031936,
+  "mde_bp": 7.24
+ },
+ "1h_smaller_f24": {
+  "n_weak": 17724,
+  "weak_bp": 4.31,
+  "n_strong": 17420,
+  "strong_bp": -4.71,
+  "diff_bp": 9.02,
+  "p": 0.2894211576846307,
+  "mde_bp": 14.09
+ },
+ "1h_slower_f6": {
+  "n_weak": 17538,
+  "weak_bp": -1.11,
+  "n_strong": 17606,
+  "strong_bp": -4.55,
+  "diff_bp": 3.44,
+  "p": 0.41317365269461076,
+  "mde_bp": 7.65
+ },
+ "1h_slower_f24": {
+  "n_weak": 17538,
+  "weak_bp": 4.8,
+  "n_strong": 17606,
+  "strong_bp": -5.1,
+  "diff_bp": 9.9,
+  "p": 0.1596806387225549,
+  "mde_bp": 11.69
+ },
+ "1h_both_f6": {
+  "n_weak": 9884,
+  "weak_bp": 5.96,
+  "n_strong": 25260,
+  "strong_bp": -6.27,
+  "diff_bp": 12.23,
+  "p": 0.003992015968063872,
+  "mde_bp": 8.85
+ },
+ "1h_both_f24": {
+  "n_weak": 9884,
+  "weak_bp": 5.22,
+  "n_strong": 25260,
+  "strong_bp": -2.27,
+  "diff_bp": 7.49,
+  "p": 0.3852295409181637,
+  "mde_bp": 17.52
+ },
+ "4h_smaller_f6": {
+  "n_weak": 4315,
+  "weak_bp": 25.63,
+  "n_strong": 4213,
+  "strong_bp": -1.82,
+  "diff_bp": 27.45,
+  "p": 0.3013972055888224,
+  "mde_bp": 30.17
+ },
+ "4h_smaller_f24": {
+  "n_weak": 4315,
+  "weak_bp": 33.27,
+  "n_strong": 4213,
+  "strong_bp": -13.68,
+  "diff_bp": 46.95,
+  "p": 0.20758483033932135,
+  "mde_bp": 54.95
+ },
+ "4h_slower_f6": {
+  "n_weak": 4264,
+  "weak_bp": 26.5,
+  "n_strong": 4264,
+  "strong_bp": -2.37,
+  "diff_bp": 28.87,
+  "p": 0.28542914171656686,
+  "mde_bp": 73.96
+ },
+ "4h_slower_f24": {
+  "n_weak": 4264,
+  "weak_bp": 19.98,
+  "n_strong": 4264,
+  "strong_bp": 0.18,
+  "diff_bp": 19.8,
+  "p": 0.5449101796407185,
+  "mde_bp": 77.38
+ },
+ "4h_both_f6": {
+  "n_weak": 2459,
+  "weak_bp": 26.46,
+  "n_strong": 6069,
+  "strong_bp": 6.23,
+  "diff_bp": 20.22,
+  "p": 0.3652694610778443,
+  "mde_bp": 36.28
+ },
+ "4h_both_f24": {
+  "n_weak": 2459,
+  "weak_bp": 23.43,
+  "n_strong": 6069,
+  "strong_bp": 4.67,
+  "diff_bp": 18.77,
+  "p": 0.5788423153692615,
+  "mde_bp": 77.0
+ }
+}
