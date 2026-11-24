@@ -266,6 +266,41 @@ def form_j() -> dict:
     return res
 
 
+def form_h() -> dict:
+    """h linear-regression channel (tg:77, wa 18.10.43(2)): rolling OLS of log price on time over N = 100 bars, bands = fit at the
+    last bar +- 2 residual sd. First bar whose low (high) reaches the lower (upper) band from inside -> long (short). Placebo bands
+    at 0.63x and 1.37x the width (same construction, wrong distance). Baseline = same coin, same trailing-14-bar return decile."""
+    P = panels()
+    res = {}
+    N = 100
+    for tf in ("1h", "4h", "1d"):
+        h, l, c = P[tf]["h"], P[tf]["l"], P[tf]["c"]
+        y = np.log(c)
+        t = pd.DataFrame(np.arange(len(y), dtype=float)[:, None].repeat(y.shape[1], 1), index=y.index, columns=y.columns)
+        cov = (y * t).rolling(N).mean() - y.rolling(N).mean() * t.rolling(N).mean()
+        vt = t.rolling(N).var(ddof=0)
+        slope = cov / vt
+        fit = y.rolling(N).mean() + slope * (N - 1) / 2
+        rsd = np.sqrt((y.rolling(N).var(ddof=0) - slope ** 2 * vt).clip(lower=0))
+        fr = frame(P[tf])
+        for mult, tag in ((1.0, "real"), (0.63, "inner"), (1.37, "outer")):
+            ub, lb = np.exp(fit.shift(1) + 2 * mult * rsd.shift(1)), np.exp(fit.shift(1) - 2 * mult * rsd.shift(1))
+            lo_t = (l <= lb) & (l.shift(1) > lb.shift(1))
+            hi_t = (h >= ub) & (h.shift(1) < ub.shift(1))
+            for side, m, nm in ((1, lo_t, "lower_long"), (-1, hi_t, "upper_short")):
+                x = ev_from_mask(m, side, f"h_{nm}_{tag}").merge(fr, on=["time", "coin"], how="inner")
+                key = set(zip(x.time, x.coin))
+                pool = fr[[(a, b) not in key for a, b in zip(fr.time, fr.coin)]]
+                base = L.matched(x, pool, k=3)
+                H = f"f{HZ[tf][0]}"
+                x, base = x.dropna(subset=[H]), base.dropna(subset=[H])
+                s_ = L.stats(x.assign(gross=x[H] * side)[["time", "coin", "side", "gross"]], base.assign(side=side, gross=base[H] * side)[["time", "coin", "side", "gross"]], reps=300)
+                res[f"{tf}_{nm}_{tag}"] = {"n": s_["n"], "mean_bp": s_["mean_bp"], "matched_bp": s_["base_bp"], "diff_bp": s_["vs_base_bp"], "p": s_["p_vs_base"], "mde_bp": s_["mde80_bp"], "H": H}
+                print(tf, nm, tag, res[f"{tf}_{nm}_{tag}"])
+    (ROOT / "research/is3/O2h__explore.json").write_text(json.dumps(res, indent=1, default=float))
+    return res
+
+
 if __name__ == "__main__":
     import sys
-    form_j() if sys.argv[1:] == ["j"] else run()
+    {"j": form_j, "h": form_h}.get((sys.argv[1:] or [""])[0], run)()

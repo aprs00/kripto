@@ -653,7 +653,10 @@
     {
      "id": "h",
      "what": "linear-regression channel touches vs hand-drawn-line placebo (tg:77, wa 18.10.43(2))",
-     "status": "planned"
+     "status": "done",
+     "result": "rolling OLS channel of log price (100 bars, +-2 residual sd), first touch of a band from inside, fade; baseline = same coin, same trailing-return decile; placebo channels at 0.63x / 1.37x the width: 1h lower-band long -3.3 bp vs matched (MDE 21), upper short +9.7 (p .13); inner/outer placebos the same size (-4.5..+11.5); 4h/1d n.s. (MDE 54-428) except 1d upper inner band (-231, p .003: price keeps rising, wrong-way). The regression channel is not a level",
+     "date": "2026-11-24",
+     "evidence": "O2h__explore"
     },
     {
      "id": "i",
