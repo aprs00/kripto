@@ -1276,7 +1276,7 @@
    "group": "B",
    "title": "Capitulation with adaptive buckets and inside a trend",
    "src": "R1, R2; tg:274-284; wa 18.10.55-57",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -1313,7 +1313,8 @@
    ],
    "after": [
     "M0"
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "M5",

@@ -560,3 +560,16 @@ Forms: e1 block positions against location (long & close<VAL, short & close>VAH)
  longs above VAH / shorts below VAL; dose VA 50/70/85%. f1 R26: block shorts within 1/2/3% below the next round level (1,2,5 x 10^k); f2 block longs whose prior-day low is poor
  (bottom bin touched by >= 2 hours) and shorts whose high is poor. Pass = F0 rule (dSR > 0, >= 95th pct of random masks) + every explore year + in both books (flow, xsmom).
 Prior: P1-P3 found profile levels = placebo levels on COINS10 minute data, so I expect nothing; the filter question is still separate (does location change the BOOK's P&L).
+
+## M4 capitulation with adaptive buckets (think-through 19:0x UTC, before any run)
+Sources re-read (tg:274-279, 283-284 as stored text/vision descriptions, not re-opened; wa 18.10.55-57 have no stored text, their content is known from S2 b3 which opened them):
+ TSize = 7 size groups, each day's delta per group; "it fixes on close ... trend trading systems is close only"; "each size has its own function ... sometimes it's just stops"; tg:279 participation
+ grew then got "kicked off by size players". His capitulation days = every bucket deeply negative (-3..-21% of its volume) on a day that fell hard, then bottom (S2 b3: retest within 2 d, then rally).
+Prior: T2b (all-negative = 54% of >= -3% days, nothing), pass 2 (abnormal one-voiced selling on big down days CONTINUES -235 bp/3 d vs +26), Bybit literal rule +77 bp n.s. So the
+ sign rule is dead on Binance; the open question is the MAGNITUDE with buckets that ADAPT to the coin's own trade-size distribution (tg:205 'days back for AI levels = 1').
+What he does not say: (1) the buckets are relative (his ladder moved 31k->12k between 2021 and 2022), so a fixed ladder puts most of 2024 BTC flow in one bucket; (2) the signal is
+ 'even the big size sold', i.e. the LARGE groups' negative share is the capitulation, small groups selling is just retail; (3) he enters on a later confirmation (2-5 d window), not the close.
+Build (a): 12 fixed notional bins -> 7 adaptive groups = cut points at the previous day's cumulative-volume septiles (coarse: 12 bins, say so); variant: previous 30 days. Dose = min group
+ delta share and the two largest groups' delta share (continuous, quintiles among >= -3% down days). Long at the day close, 1/3/5 d simple returns; baseline = same coin, same day-return
+ decile down days. BTC/ETH/SOL 2021-23 only (tsize coverage). Change my mind: the most negative quintile beats matched by > 100 bp at 3 d, rising with the dose, every year.
+ Expected from pass 2: the opposite sign (continuation).
