@@ -831,6 +831,12 @@
      "what": "engine-lag proxy (wa 18.10.41): on 1-min klines of all coins, trade count >= 10x normal and STILL rising -> continuation; count falling from its peak ('unclogged') -> reversal; dose 5/10/20x",
      "status": "planned",
      "added": "2026-11-22"
+    },
+    {
+     "id": "f",
+     "what": "exhaustion row of his tape table (wa 18.10.54(3), 18.10.24(3): 'market orders becoming smaller & less frequent as price moves -> exhaustion'): in moves >= 2 sigma over 60 min (1-min klines, all coins), slope of trades/min and of mean trade size (quote volume / trades) over the move's last 20 min; falling-both vs rising-both -> next 60-240 min continuation share and return; matched baseline = same-size moves, other intensity paths; dose = slope tercile",
+     "status": "planned",
+     "added": "2026-11-24"
     }
    ],
    "after": [
@@ -1757,8 +1763,11 @@
     {
      "id": "b7",
      "what": "open EVERY image of batch b7 in research/is3/S2_batches.json (40 other pictures) with the Read tool (paths under data/chat_extract/); per image one line in S2b7__notes.json: what is drawn, entry / exit / level / timing visible, and whether it contradicts the stored description",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "40/40 opened by eye (39 legible: wa 18.10.50(1) long scroll mostly unreadable); 0 contradictions; new form M2f (tape-table exhaustion: market orders smaller and less frequent as price moves); M2a must score 'trend ends' (reversal or consolidation) per wa 18.10.42(2); rest maps to queued forms (L2c, O1e, N4a, N5b, N3h, O2h, C1, C2f, V1a, W1, M4e, P1e/P2g)",
+     "date": "2026-11-24",
+     "evidence": "S2b7__notes"
     },
     {
      "id": "b8",

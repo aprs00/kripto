@@ -178,3 +178,13 @@ course ... just needs order velocity' (X1f), 18.10.35(3) 'liquidations pull orde
 What he does NOT say: in CHoCH the threshold is relative to the coin's OWN routine (z vs its recent distribution), not an absolute delta; check the picture for numbers that fix the scale.
 S2 b6 done (40/40 opened, 38 legible; 0 contradictions). Attitude tweets mostly; every rule claim is already a queued form (C1, V1a, M3b, N3f, X1f, W1). New angle: wa 18.10.35(3) the spring-back
  needs ONE big position liquidated FULLY → needs liq prints (data/bn/liq from 2026-11-17) → backlog L1p, testable from 2027-02-17. CHoCH (wa 18.10.28(1)) = break of the coin's own routine: z-score, no fixed threshold. Next: b7.
+
+## S2 b7 (think-through 2026-11-24 ~04:55 UTC, before opening anything)
+b7 = wa 18.10.35–18.11.01 (tweets 2021–2023), denser in rules than b6. Read closely: 18.10.42(2) Nov 2020 'relative change in trade count by 10 times for rotation = change of order velocity =
+change of character' (X1f/M2e: is the 10x per range bar, i.e. per fixed distance? check the chart), 18.10.41(1) 'need extremes, x10 of normal, never fade during the extreme', 18.10.41 exchange
+latency/overload as a momentum flag (no data: B0), 18.10.38(3) size cohorts with x20 leverage get liquidated before TP (tsize: mid-size clip cohort), 18.10.49 illiquid coins move first (lead-lag:
+testable on bnall: does a thin-coin basket lead BTC at 1h?), 18.10.55 daily all-buckets-negative = local bottom, not symmetric (M4e, already), 18.11.00(1) volume spike into highs = top, 18.11.00
+Sep 24 / Santa Dec 18–23 (C1e), 18.11.01 anchored VWAP from macro lows (anchor at a nearby volume cluster if the extreme is thin), 18.10.59 Monday collar (W1, closed).
+What he does NOT say in the 10x rule: the comparison base (previous rotation? median of last N?) — check the picture's numbers.
+S2 b7 done (40/40 opened, 39 legible; 0 contradictions). New form M2f: the 4th row of his tape table (wa 18.10.54(3)) 'market orders becoming smaller & less frequent as price moves -> exhaustion'
+ had no test. wa 18.10.42(2): his 10x trade-count rule promises 'reversal, or at least consolidation' → M2a scores 'trend ends', not reversal only. Rest maps to queued forms. Next: b8 (5), then v, p.
