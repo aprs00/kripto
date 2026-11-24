@@ -1,0 +1,56 @@
+{
+ "name": "T5e_upspike_z8_b2_h60",
+ "sample": "explore",
+ "n": 994,
+ "days": 428,
+ "coins": 10,
+ "mean_bp": 27.22,
+ "median_bp": 7.44,
+ "win": 0.541,
+ "se_bp": 9.62,
+ "ci95_bp": [
+  9.35,
+  46.57
+ ],
+ "p": 0.005497251374312844,
+ "mde80_bp": 26.94,
+ "mean_ex_top3_bp": 15.56,
+ "top3_share": 0.44,
+ "t_day_mean": -0.0,
+ "by_year": {
+  "2021": [
+   184,
+   22.77
+  ],
+  "2022": [
+   347,
+   30.27
+  ],
+  "2023": [
+   463,
+   26.7
+  ]
+ },
+ "by_side": {
+  "1": [
+   994,
+   27.22
+  ]
+ },
+ "coins_positive": 1.0,
+ "net_bp": {
+  "free": 27.22,
+  "maker_taker": 19.22,
+  "taker": 14.22,
+  "taker_x2": 1.22,
+  "crash": -52.78
+ },
+ "base_n": 2982,
+ "base_bp": -2.17,
+ "vs_base_bp": 29.39,
+ "p_vs_base": 0.0024987506246876563,
+ "passes": true,
+ "note": "long 60 min after a >= 8 sigma up minute with breadth >= 2; base = same-coin 3-5 sigma up moves",
+ "rerun": "",
+ "at": "2026-11-24T05:21:54+00:00"
+}

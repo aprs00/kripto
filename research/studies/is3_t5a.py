@@ -36,10 +36,10 @@ def round_dist(x: np.ndarray) -> np.ndarray:
     return np.abs(cands - x[:, None]).min(axis=1)
 
 
-def one(coin: str) -> pd.DataFrame:
+def one(coin: str, lo: str = LO, hi: str = HI) -> pd.DataFrame:
     k = pd.read_parquet(ROOT / "data/bn/klines_1m" / f"{coin}USDT.parquet")
     k.index = pd.to_datetime(k.t, unit="ms", utc=True)
-    k = k[(k.index >= pd.Timestamp(LO, tz="UTC") - pd.Timedelta("8D")) & (k.index < pd.Timestamp(HI, tz="UTC") + pd.Timedelta("1D"))]
+    k = k[(k.index >= pd.Timestamp(lo, tz="UTC") - pd.Timedelta("8D")) & (k.index < pd.Timestamp(hi, tz="UTC") + pd.Timedelta("1D"))]
     k = k.asfreq("1min")
     c = k.c.ffill().to_numpy(); h = k.h.fillna(k.c.ffill()).to_numpy(); l = k.l.fillna(k.c.ffill()).to_numpy()
     v = k.qv.fillna(0).to_numpy(); n = k.n.fillna(0).to_numpy(); tb = k.tbqv.fillna(0).to_numpy()
@@ -71,15 +71,17 @@ def one(coin: str) -> pd.DataFrame:
                      "rnd": round_dist(np.array([ext]))[0] / sg, "hour": k.index[q].hour, "trend": s * (c[q] / c[q - 1440] - 1),
                      "f15": -s * (c[q + 16] / p - 1), "f60": -s * (c[q + 61] / p - 1), "dirq": s})
     e = pd.DataFrame(rows)
-    return e[(e.time >= LO) & (e.time < HI)]
+    return e[(e.time >= lo) & (e.time < hi)] if len(e) else e
 
 
-def build() -> None:
-    e = pd.concat([one(c) for c in L.COINS10], ignore_index=True)
+def build(coins=None, lo: str = LO, hi: str = HI, out: Path = TAB) -> pd.DataFrame:
+    """breadth = events in the same minute and direction among the coins of THIS build (its universe)."""
+    e = pd.concat([one(c, lo, hi) for c in (coins or L.COINS10)], ignore_index=True)
     key = e.time.dt.floor("min").astype("int64").astype(str) + e.dirq.astype(str)
     e["breadth"] = key.map(key.value_counts())
-    e.to_parquet(TAB)
-    print(len(e), e.groupby("coin").size().to_dict())
+    e.to_parquet(out)
+    print(len(e), e.groupby("coin").size().to_dict() if len(e) < 10**7 else "")
+    return e
 
 
 def curves() -> None:

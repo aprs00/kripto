@@ -1,0 +1,60 @@
+{
+ "name": "T5d_idio_top_h60",
+ "sample": "explore",
+ "n": 10441,
+ "days": 1069,
+ "coins": 9,
+ "mean_bp": 1.27,
+ "median_bp": 10.25,
+ "win": 0.567,
+ "se_bp": 2.01,
+ "ci95_bp": [
+  -2.95,
+  5.22
+ ],
+ "p": 0.519240379810095,
+ "mde80_bp": 5.62,
+ "mean_ex_top3_bp": 0.29,
+ "top3_share": 0.78,
+ "t_day_mean": 4.9,
+ "by_year": {
+  "2021": [
+   4353,
+   -3.24
+  ],
+  "2022": [
+   2669,
+   6.38
+  ],
+  "2023": [
+   3419,
+   3.04
+  ]
+ },
+ "by_side": {
+  "-1": [
+   6668,
+   -3.73
+  ],
+  "1": [
+   3773,
+   10.11
+  ]
+ },
+ "coins_positive": 0.67,
+ "net_bp": {
+  "free": 1.27,
+  "maker_taker": -6.73,
+  "taker": -11.73,
+  "taker_x2": -24.73,
+  "crash": -78.73
+ },
+ "base_n": 31323,
+ "base_bp": 3.6,
+ "vs_base_bp": -2.32,
+ "p_vs_base": 0.2898550724637681,
+ "passes": false,
+ "note": "most idiosyncratic decile of 1-min >= 3 sigma moves, BTC-hedged 60-min fade",
+ "rerun": "",
+ "at": "2026-11-24T05:21:01+00:00"
+}
