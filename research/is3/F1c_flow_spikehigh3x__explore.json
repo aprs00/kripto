@@ -1,0 +1,31 @@
+{
+ "name": "F1c_flow_spikehigh3x",
+ "sample": "explore",
+ "side": 1,
+ "on_share": 0.99,
+ "base": {
+  "sr": 1.582424239123744,
+  "ann": 0.3521987575566836,
+  "mdd": -0.23519443530744344,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 1.0848262161203917,
+  "ann": 0.226279906422109,
+  "mdd": -0.26083804473810457,
+  "days": 1095
+ },
+ "dSR": -0.498,
+ "dMDD": -0.0256,
+ "p_daily_diff": 0.0239880059970015,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.0,
+ "random_dSR_q05_q50_q95": [
+  -0.174,
+  -0.045,
+  0.069
+ ],
+ "pct_dMDD_vs_random": 0.085,
+ "note": "block longs at a 20-day high on volume >= 3x; weight touched 0.0309",
+ "passes": false
+}

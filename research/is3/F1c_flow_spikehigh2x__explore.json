@@ -1,0 +1,31 @@
+{
+ "name": "F1c_flow_spikehigh2x",
+ "sample": "explore",
+ "side": 1,
+ "on_share": 0.985,
+ "base": {
+  "sr": 1.582424239123744,
+  "ann": 0.3521987575566836,
+  "mdd": -0.23519443530744344,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.8861933932663276,
+  "ann": 0.184817859137667,
+  "mdd": -0.26140752977294535,
+  "days": 1095
+ },
+ "dSR": -0.696,
+ "dMDD": -0.0262,
+ "p_daily_diff": 0.01649175412293853,
+ "n_random": 50,
+ "pct_dSR_vs_random": 0.0,
+ "random_dSR_q05_q50_q95": [
+  -0.238,
+  -0.091,
+  0.078
+ ],
+ "pct_dMDD_vs_random": 0.14,
+ "note": "block longs at a 20-day high on volume >= 2x; weight touched 0.0463",
+ "passes": false
+}

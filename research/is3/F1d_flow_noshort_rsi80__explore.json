@@ -1,0 +1,31 @@
+{
+ "name": "F1d_flow_noshort_rsi80",
+ "sample": "explore",
+ "side": -1,
+ "on_share": 0.996,
+ "base": {
+  "sr": 1.582424239123744,
+  "ann": 0.3521987575566836,
+  "mdd": -0.23519443530744344,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 1.6511704382422778,
+  "ann": 0.36726964486393,
+  "mdd": -0.2277519005840738,
+  "days": 1095
+ },
+ "dSR": 0.069,
+ "dMDD": 0.0074,
+ "p_daily_diff": 0.23388305847076463,
+ "n_random": 50,
+ "pct_dSR_vs_random": 0.96,
+ "random_dSR_q05_q50_q95": [
+  -0.053,
+  -0.011,
+  0.061
+ ],
+ "pct_dMDD_vs_random": 0.82,
+ "note": "block shorts while RSI14 >= 80; weight touched 0.0064",
+ "passes": true
+}

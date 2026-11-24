@@ -1,0 +1,31 @@
+{
+ "name": "F1c_xsmom_spikehigh3x",
+ "sample": "explore",
+ "side": 1,
+ "on_share": 0.99,
+ "base": {
+  "sr": 1.1884505026561278,
+  "ann": 0.2553299466480741,
+  "mdd": -0.1890858535335379,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.7019311549939401,
+  "ann": 0.14110095543315304,
+  "mdd": -0.20572347831446824,
+  "days": 1095
+ },
+ "dSR": -0.487,
+ "dMDD": -0.0166,
+ "p_daily_diff": 0.009495252373813094,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.0,
+ "random_dSR_q05_q50_q95": [
+  -0.15,
+  -0.025,
+  0.077
+ ],
+ "pct_dMDD_vs_random": 0.06,
+ "note": "block longs at a 20-day high on volume >= 3x; weight touched 0.0225",
+ "passes": false
+}

@@ -1,0 +1,31 @@
+{
+ "name": "F1d_xsmom_noshort_rsi70",
+ "sample": "explore",
+ "side": -1,
+ "on_share": 0.983,
+ "base": {
+  "sr": 1.1884505026561278,
+  "ann": 0.2553299466480741,
+  "mdd": -0.1890858535335379,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 1.1429951552986888,
+  "ann": 0.24408655024183953,
+  "mdd": -0.1890115121674274,
+  "days": 1095
+ },
+ "dSR": -0.045,
+ "dMDD": 0.0001,
+ "p_daily_diff": 0.4367816091954023,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.255,
+ "random_dSR_q05_q50_q95": [
+  -0.116,
+  0.013,
+  0.142
+ ],
+ "pct_dMDD_vs_random": 0.605,
+ "note": "block shorts while RSI14 >= 70; weight touched 0.0138",
+ "passes": false
+}

@@ -1,0 +1,31 @@
+{
+ "name": "F1b_xsmom_casc5_2d",
+ "sample": "explore",
+ "side": -1,
+ "on_share": 0.787,
+ "base": {
+  "sr": 1.1884505026561278,
+  "ann": 0.2553299466480741,
+  "mdd": -0.1890858535335379,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 1.0644593329279215,
+  "ann": 0.3303537452579825,
+  "mdd": -0.41031192242824077,
+  "days": 1095
+ },
+ "dSR": -0.124,
+ "dMDD": -0.2212,
+ "p_daily_diff": 0.4892553723138431,
+ "n_random": 50,
+ "pct_dSR_vs_random": 0.64,
+ "random_dSR_q05_q50_q95": [
+  -0.649,
+  -0.175,
+  0.254
+ ],
+ "pct_dMDD_vs_random": 0.14,
+ "note": "block shorts 2 d from a cascade day (median coin <= -5%); blocked days 344; weight touched 0.1094",
+ "passes": false
+}

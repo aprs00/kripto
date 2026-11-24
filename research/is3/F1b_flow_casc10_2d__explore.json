@@ -1,0 +1,31 @@
+{
+ "name": "F1b_flow_casc10_2d",
+ "sample": "explore",
+ "side": -1,
+ "on_share": 0.957,
+ "base": {
+  "sr": 1.582424239123744,
+  "ann": 0.3521987575566836,
+  "mdd": -0.23519443530744344,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 1.5113569098633204,
+  "ann": 0.44729682280754945,
+  "mdd": -0.3101103666262467,
+  "days": 1095
+ },
+ "dSR": -0.071,
+ "dMDD": -0.0749,
+ "p_daily_diff": 0.08245877061469266,
+ "n_random": 50,
+ "pct_dSR_vs_random": 0.36,
+ "random_dSR_q05_q50_q95": [
+  -0.325,
+  0.025,
+  0.358
+ ],
+ "pct_dMDD_vs_random": 0.1,
+ "note": "block shorts 2 d from a cascade day (median coin <= -10%); blocked days 79; weight touched 0.0246",
+ "passes": false
+}

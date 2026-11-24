@@ -1477,7 +1477,10 @@
     {
      "id": "c",
      "what": "no new longs in 20-day highs made on a volume spike (R8)",
-     "status": "planned"
+     "status": "done",
+     "result": "F0 harness, bnall 1d explore 2021-23: blocking longs in coins at a 20-day high on volume >= 2/3/5x the 20-day median COSTS both books: flow SR 1.58 -> 0.89/1.08/1.32, xsmom 1.19 -> 0.47/0.70/(5x pending), 0th percentile of random masks, dose monotone (bigger spike threshold = less harm). Volume breakouts are the books' best longs: R8 ('volume spike into highs = ran into sellers') is backwards on Binance alts. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "F1c_flow_spikehigh3x__explore"
     },
     {
      "id": "d",
@@ -1493,6 +1496,12 @@
      "id": "f",
      "what": "round-number and poor-low proximity",
      "status": "planned"
+    },
+    {
+     "id": "g",
+     "what": "cascade-day short block with a 1-day window (seen in b: 1 d +0.56 SR at the 100th pct, 2-3 d nothing): threshold dose -5/-7/-10% at 1 d, per-year dSR, both books; the bounce is the liquidation fade, so this is the book-level version of E1",
+     "status": "planned",
+     "added": "2026-11-24"
     }
    ],
    "after": [
