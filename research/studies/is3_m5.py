@@ -21,6 +21,7 @@ from research.studies.is3_m1 import BAD, COINS, rbars
 FILLS = {"touch": None, "q50k": 5e4, "q250k": 2.5e5, "q1m": 1e6, "through": "t"}
 MK, TK = 2e-4, 6e-4
 H_ORDER, H_POS = 2 * 3.6e6, 3.6e6
+WIDTHS = {"a": (0.002, 0.0043), "d": (0.005, 0.01)}
 
 
 def first(mask: np.ndarray) -> int:
@@ -57,12 +58,41 @@ def trade(xh, xl, vol, t1, p0, lev, w, fill, tgt_off=None, h_order=H_ORDER, h_po
     return g, np.exp(xc - lev) - 1, MK + TK
 
 
+def kline_bars(sym: str, lo: str, hi: str) -> dict:
+    k = pd.read_parquet(L.ROOT / "data/bn/klines_1m" / f"{sym}.parquet", columns=["t", "h", "l", "c", "qv"])
+    t = pd.to_datetime(k["t"], utc=True) if not np.issubdtype(k["t"].dtype, np.integer) else pd.to_datetime(k["t"], unit="ms", utc=True)
+    m = (t >= pd.Timestamp(lo, tz="UTC")) & (t < pd.Timestamp(hi, tz="UTC")) & (k["qv"] > 0)
+    k, t = k[m], t[m]
+    ms = (t.astype("int64") // 10**6 if t.dt.unit == "ns" else t.astype("int64") // {"us": 10**3, "ms": 1, "s": 10**-3}[t.dt.unit]).to_numpy()
+    return {"t1": ms.astype(np.int64) + 60_000, "h": k["h"].to_numpy(np.float64), "l": k["l"].to_numpy(np.float64),
+            "c": k["c"].to_numpy(np.float64), "qv": k["qv"].to_numpy(np.float64)}
+
+
+def rbars_simple(b: dict, width: float) -> dict:
+    """Range bars from minute h/l (a bar closes when its high/low span >= width); end = index of its last minute."""
+    h, l = b["h"], b["l"]
+    ends, H, Lo = [], -np.inf, np.inf
+    for i in range(len(h)):
+        H, Lo = max(H, h[i]), min(Lo, l[i])
+        if H / Lo - 1 >= width:
+            ends.append(i)
+            H, Lo = -np.inf, np.inf
+    e = np.asarray(ends, dtype=np.int64)
+    st = np.concatenate([[0], e[:-1] + 1]).astype(np.int64)
+    return {"end": e, "c": b["c"][e], "h": np.maximum.reduceat(h, st), "l": np.minimum.reduceat(l, st)}
+
+
 def coin_events(sym: str, lo: str, hi: str, w: float, form: str = "a") -> pd.DataFrame:
     """form a: target +1w, order 2 h, position 1 h. form e: target = A (lowest low between breakout close and placement), 6 h / 6 h."""
-    b = mbars.load(sym, lo, hi)
-    r = rbars(b, w)
+    if form == "d":                            # 1-min klines (thin coins): h/l/qv per minute stand in for micro bars
+        b = kline_bars(sym, lo, hi)
+        r = rbars_simple(b, w)
+        vol = b["qv"]
+    else:
+        b = mbars.load(sym, lo, hi)
+        r = rbars(b, w)
+        vol = (b["buy"].sum(1) + b["sell"].sum(1)).astype(np.float64)
     t1 = b["t1"].astype(np.int64)
-    vol = (b["buy"].sum(1) + b["sell"].sum(1)).astype(np.float64)
     bad = {pd.Timestamp(x, tz="UTC").value // 10**6 // 86_400_000 for x in BAD.get(sym, {})}
     coin = sym.replace("USDT", "")
     rows = []
@@ -127,8 +157,12 @@ def coin_events(sym: str, lo: str, hi: str, w: float, form: str = "a") -> pd.Dat
 def explore(form: str = "a") -> None:
     a, b = L.SAMPLES["explore"]
     E = []
-    for w in (0.002, 0.0043):
-        for s in COINS:
+    coins, widths = COINS, WIDTHS["a"]
+    if form == "d":                            # thin = explore-period median daily quote volume < $50M (data/is3/m5d_coins.csv, written before any run)
+        c = pd.read_csv(L.ROOT / "data/is3/m5d_coins.csv")
+        coins, widths = [f"{x}" for x in c[(c.med_qv_m > 0.5) & (c.med_qv_m < 50)].coin], WIDTHS["d"]
+    for w in widths:
+        for s in coins:
             e = coin_events(s, a, b, w, form)
             print(s, w, "orders placed", e[(e.kind == "real") & (e.fill == "touch")].shape[0] if len(e) else 0, flush=True)
             E.append(e)
@@ -138,7 +172,7 @@ def explore(form: str = "a") -> None:
 
 
 def report(E: pd.DataFrame, sample: str, form: str = "a") -> None:
-    for w in (0.002, 0.0043):
+    for w in WIDTHS["d" if form == "d" else "a"]:
         for fname in FILLS:
             x = E[(E.w == w) & (E.fill == fname)]
             line = []

@@ -604,3 +604,6 @@ M5 a run note (22:4x): first unit died at once (EMFILE: mbars.load kept ~1000 la
  widths in the code are 0.2% / 0.43%, not the planned 0.1/0.2%: micro bars step 10 bp, so a 0.1% range bar would be ~1 micro bar (stated deviation, decided before results).
 M5 e plan (before any run): target A = lowest low between the breakout close and placement (the post-breakout consolidation, always above B by construction), order rests 6 h,
  position up to 6 h, stop -2w; same fill ladder and placebo levels (placebo target keeps A's distance above its own level). Require A - B >= 1w so the trade can pay 2 maker fees.
+M5 b/d plan (before runs): b = level is the 10-bar range's approx. value-area high (top-volume 5-bp bins to 70%) or its POC instead of the range high; placebo at 0.63x/1.37x of the
+ placement-to-level distance; skipped when the level is < 2w below placement. d = the same order on thin coins' 1-min klines (h/l/qv stand in for micro bars; fill minute cannot also exit),
+ thin = explore median daily quote volume $0.5-50M (44 coins, data/is3/m5d_coins.csv, chosen before any run), range bars 0.5% / 1% so +1w >> 4 bp maker round trip.
