@@ -348,3 +348,15 @@ e: taker imbalance and return in half-hour h vs the same half-hour yesterday (la
 C2 done (is3_c2.py, C2__explore): kill zones do not continue (NY reverses London -6 bp, n.s.), filler is not given back, the London collar is not a NY-zone target (49%), illiquid-hour moves fade LESS,
  same-clock half-hours reverse by 1 bp (opposite of Heston), no Monday TWAP footprint. Two positive but underpowered drifts: CME break hour +4.6 bp (decays after 2021) and Friday 16–20 NY +21 bp
  (MDE 38) -> belongs to FF1 (friday_follow). Closed OPEN for g only; the kill-zone story itself is dead.
+
+## P3 naked / composite POCs (think-through 11:25 UTC, before any run)
+Sources tg:29, 38, 44–47 (Mar 12 2021: a single-print window failed to fill "because it's harder to break down, sp was left by stops triggering on composite poc"; "slid thru huge volume area ... automatic
+reaction and mechanical longs after price hit the POC of this consolidation area"; "all profile levels very reactive"). Already known: yesterday's POC reacts like a fake level (pass 2), naked POCs are NOT
+destinations after imbalance days (P2c 48.5 vs 53%). What he does NOT say: the reaction should come from resting orders of the people who built the volume (they defend their average price), so it
+should be strongest for OLD, FAT, untouched levels on higher timeframes (weekly / monthly), and at the FIRST touch only. So the fair test is first touch of naked weekly/monthly POCs (d) with a mirror
+placebo, plus the daily ones (a, c) and the 20-day composite as a magnet vs plain mean reversion (b).
+Fixed: a level is evaluated once, at the close of the first day after its period, if untouched that day (naked); forward window 5 d (daily), 10 d (weekly), 20 d (monthly). Touch prob vs mirror level
+(same distance, other side). Reaction at the first touch: 60-min return one bar late signed away from the approach, and +-30 bp first passage; vs the mirror level's first touch and vs the daily open.
+P3 done (is3_p3.py, P3__explore, P3_sidematched__explore): naked POCs are touched less than mirror levels (daily −2.7 pp, monthly −9); not magnets after 2–5 σ either. First touch of a daily naked POC bounces
+ +15 bp (mirror matched on side and distance −1, p .09); the dose runs with distance travelled and AGAINST node fatness, so it is the generic bounce after a long move. Weekly/monthly VAH/VAL 'reactions'
+ were an approach-side artifact (lesson: any level-touch reaction must be compared within the same approach side; touches from above and below have different drifts). Closed DEAD.

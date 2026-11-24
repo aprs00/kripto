@@ -270,30 +270,46 @@
    "group": "A",
    "title": "Composite and naked POCs as magnet and support",
    "src": "R15; tg:29, 38, 44-47",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "naked daily POCs: probability of being touched within 5 days vs mirrored placebo distance",
-     "status": "planned"
+     "status": "done",
+     "result": "explore COINS10 2021-23, naked daily POCs (untouched the day after their day; median 507 bp away) touched within 5 days 54.8% vs 57.6% for the mirror level at the same distance (diff -2.7 pp, CI [-7.5, +1.5], n 3,352). Weekly POC 52.9 vs 53.6%, monthly POC 49.8 vs 59.0% (n 249). Naked POCs are not magnets",
+     "date": "2026-11-24",
+     "evidence": "P3__explore"
     },
     {
      "id": "b",
      "what": "20-day composite POC as magnet: return toward it when price is 2-5 sigma away vs plain mean reversion",
-     "status": "planned"
+     "status": "done",
+     "result": "days 2-5 daily sigmas from the 20-d composite POC (3,410): return toward it 1/3/5 d -37/-88/-91 bp vs days at the same sigma distance from the 20-d mean close (matched) -15/-99/-192; diffs -22/+11/+101 bp (p .34/.79/.09, MDE 59-111). Price moves AWAY from both (trend), the node no less than the mean; no magnet",
+     "date": "2026-11-24",
+     "evidence": "P3__explore"
     },
     {
      "id": "c",
      "what": "first touch of naked POC: bounce vs first touch of the daily open (his explicit comparison) and vs placebo",
-     "status": "planned"
+     "status": "done",
+     "result": "first touch of a naked daily POC, 60-min return one bar late signed away from the approach: +15.2 bp (n 1,834) vs mirror first touches +3.1 (unmatched, p .17), vs side-matched mirror -7.6 (+23, p .02, MDE 19.5), vs side AND distance-quintile matched mirror -0.8 (+16, p .09, MDE 18.5); vs the daily open re-touch +8.5 (p .22). Dose: grows with distance travelled (+4/+10/+28 bp) and waiting time, SHRINKS with node fatness (+43/-4/+1 bp, thin to fat) = the opposite of 'defended volume'. Generic bounce after a long move; absolute +15 bp = one taker round trip. 4 baselines tried, not pre-registered",
+     "date": "2026-11-24",
+     "evidence": "P3_sidematched__explore"
     },
     {
      "id": "d",
      "what": "weekly and monthly naked POC / VAH / VAL, HVN and LVN (his D/W/M overview templates have naked levels on; passes 1-2 only used daily): first touch vs placebo",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "weekly and monthly naked POC/VAH/VAL (n 117-1,043): touch rates = mirror (weekly -0.6..+0.4 pp; monthly -9..-11 pp, n.s.); the large raw reaction gaps (weekly VAH -85, VAL +48, monthly VAL +203 bp) are an approach-side artifact (touches from above bounce up, touches from below keep rising in 2021-23); matched on side: weekly -15 bp (p .32, MDE 35), monthly +44 (p .40, MDE 139). Higher-timeframe levels are not special",
+     "date": "2026-11-24",
+     "evidence": "P3_sidematched__explore"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "4/4 forms, explore COINS10 2021-23. Naked daily/weekly/monthly POCs touched no more (daily -2.7 pp, monthly -9 pp) than mirror levels; 20-d composite POC no magnet vs the mean (price trends away from both); first touch of a daily naked POC +15 bp vs +(-1) for side- and distance-matched mirror touches (p .09, MDE 18.5) with dose growing in distance and SHRINKING in node fatness (generic dip bounce, not defended volume); weekly/monthly VAH/VAL reaction gaps were an approach-side artifact. MDE <= 26 bp in c",
+   "closed": "2026-11-24"
   },
   {
    "id": "W1",

@@ -75,3 +75,4 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * P2 balance laws, session profiles, poor lows, fat nodes: DEAD (12 forms). Real balance/IB edges, naked POCs and single prints are broken or skipped slightly MORE than placebo levels; 80% rule = random walk (pass-2 bias corrected).
 * C1 calendar: OPEN (MDE rule), practically nothing: 0 of 176 cells survive FDR; FOMC / first-of-month / turn-of-month +60..+220 bp/day at p .05-.07 but below their MDEs; lunar flips sign.
 * C2 time of day: OPEN only for the Friday 16–20 NY window (+21 bp, MDE 38, goes to FF1); kill zones, filler give-back, illiquid-hour fades, same-clock persistence, Monday TWAP: dead.
+* P3 naked / composite POCs: DEAD. Not magnets (touched less than mirror levels), no first-touch reaction beyond a generic bounce (+16 bp vs matched mirror, p .09, anti-dose in node fatness).

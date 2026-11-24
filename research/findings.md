@@ -414,3 +414,8 @@ Explore 2021–23, BTC + EW top-30 daily vs other days; FOMC/CPI dates from fede
 Explore COINS10 2021–23, NY clock with DST, placebo windows of the same geometry. London-zone sign → NY zone −6 bp (no continuation); filler not given back; London collar reached 49% (mirror 50);
 illiquid-hour ≥ 2σ moves fade less than liquid ones (−5 vs +12 bp); same half-hour yesterday: 1-bp reversal; Monday US open: nothing. CME 17–18 NY +4.6 bp vs other hours (p .22; 2021 only).
 Friday 16–20 NY +26 vs +5 bp Mon–Thu (p .18, MDE 38): test inside FF1. Script research/studies/is3_c2.py.
+
+### InSilico P3 / R15 naked and composite POCs (2026-11-24) → DEAD
+Explore COINS10 2021–23, mirror levels as placebo. Naked daily POCs touched within 5 d 54.8% vs 57.6% mirror; weekly = mirror; monthly −9 pp. 20-d composite POC no magnet vs the 20-d mean. First touch of a daily
+naked POC +15 bp/60 min vs −1 for mirror touches matched on approach side and distance (p .09, MDE 18.5); larger for far, old and THIN nodes (fat nodes ≈ 0) = generic bounce. Weekly/monthly VAH/VAL 'reactions'
+were an approach-side artifact. Lesson: compare level touches within the same approach side. Script research/studies/is3_p3.py.
