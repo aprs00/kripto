@@ -477,3 +477,17 @@ N2 d added (17:2x, before run): his "spot hedges" are cash-and-carry shorts, whi
  (above the coin's own 30-day median) should continue; rally + perp selling + poor funding = real bears. Tested once, h1/h3, matched same coin same rally bin, and rich-vs-poor as a direct contrast.
 N2 d done, N2 closed OPEN (17:35): carry condition (rich funding) + spot buying + perp selling in a rally +62 bp/1 d vs matched (all explore years +, p .22, n=179, MDE 132), 3 d flips; not pre-registered
  (fails "beats baseline", and a 2024-25 confirm of ~120 events could not see 60 bp). Path to reopen: spot for coins 31-100 (unseen = explore + confirm with 3x the events).
+
+## M2 order velocity x10 (think-through, before any run)
+Sources opened (3 images): wa 18.10.42 and 18.10.41(2) (BTC Nov 2020, ~16-point = 0.1% range footprint, 'Trades count' row: 826 -> 80 on consecutive up rotations at the top next to pdVAH,
+ then a 40-point pullback and a range; 701 vs 100-250 neighbours on the capitulation bar at the low, then a 250-point rally), 18.10.42(2) (Discord 11/13/2020: "relative changes in trade count by 10
+ times for rotation = change in order velocity = change in character ... if not reversal it signals consolidation start at least"). 18.10.29(1) (cat meme, "just needs order velocity") by description only.
+Mechanism: trades per fixed-distance bar = aggressive orders needed to move price one rotation. A 10x jump = a crowd hitting into liquidity (capitulation / chase: effort); a 10x drop = the same
+ distance covered by a handful of orders (vacuum, nobody left on the other side) or the crowd vanished. Either way the regime of the last bars ended: he predicts reversal OR lower volatility.
+What he does NOT say but must be doing: (1) he only looks at it at a reference (pdVAH, day extreme, after a long run): b tests that; (2) the count is relative to the bar's own neighbours, so
+ the dose is the log ratio, both directions; (3) on 2021+ Binance, sub-1-s torn-book bars give fake count drops (one sweep = few aggTrades over 0.1%), so report >= 1-s bars separately and enter
+ one bar / 5 min late; (4) he would fade with a limit order, not chase: test the reversal outcome AND the consolidation outcome (next-hour range vs matched), the latter as a feature for F-items.
+Fixed: BTC ETH SOL micro bars 2021-23 (explore), widths 0.1% (= micro bars, his size), 0.2%, 0.43%; n = aggTrades count (taker orders, closer to 'orders' than raw fills). Event bar = the one AFTER
+ the ratio jump/drop is known (decision at its close). Outcomes: 'reversal' = return against the event bar's direction over 15 min / 1 h / 4 h; 'calm' = next-1h high/low range / previous-1h range.
+Baseline = M1 harness: same coin, same UTC day, same bar side, same prior same-direction run length (m = day_side_pl), non-event bars. Null = trade counts shuffled within each day.
+Change my mind: |log ratio| >= log 10 bars reverse by > 13 bp vs matched at 1 h with a dose in the ratio (5/10/20x), on >= 1-s bars, every explore year.
