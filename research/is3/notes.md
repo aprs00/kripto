@@ -529,3 +529,12 @@ M3 c/d done, M3 closed DEAD (17:1x): trapped small sellers no dose (MDE 51), lar
 Built research/studies/is3_filter.py + tests/test_is3_filter.py (4 known-answer tests pass). Usage: w, panel, slip = F.book(strategy, dataset, params); F.judge(name, w, panel, slip, mask, sample, side=None|+1|-1).
  One judge = 201 backtests (~4.5 min, 0.56 GB on bnall 1d flow): run F1/F2 judges in a unit if more than two. Real-book check: a random 80% mask cut flow's mdd -23.5% -> -16.4% at the 87th percentile
  of random masks (not a pass): every 'it cut the drawdown' claim must be read against that. Random masks' median dSR -0.24: cutting names costs Sharpe, so the bar is relative, not 0.
+
+## F1 filters for the Binance books (think-through 17:2x, before any run)
+Books: flow (lookback 3, cap .05) and xsmom (lookback 28, daily, cap .05) on bnall 1d (clean, survivorship-free), explore <= 2023; harness F0 (200 same-share same-persistence random masks).
+b (L5 / liquidation-fade lesson): after a cascade day the market bounces (liquidation fade, E1/L1, M2b confirm: 85% of a capitulation edge sat on crash days), so a long/short book's SHORTS
+ are what gets squeezed. Cascade day (fixed now): cross-sectional median daily return of the coins with a price that day <= -7%; block shorts for the next 2 days (dose: -5/-10%, 1/3 days).
+ The harness zeroes the blocked shorts (exits them), stronger than 'no new shorts': stated.
+c (R8 "a volume spike into highs = ran into sellers"): block longs in a coin whose close is its 20-day high on volume >= 3x its 20-day median (dose 2x/5x).
+What he does not say: both are about WHO is trapped (late shorts after a flush, breakout chasers at a high); the filters only help if the book actually holds those positions on those days, so
+ report how much weight the mask touches. Pass = dSR > 0 at >= 95th percentile of random masks, and the same sign in each explore year.
