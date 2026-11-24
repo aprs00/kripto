@@ -1,0 +1,125 @@
+{
+ "j_placebo": {
+  "n": 36936,
+  "reject": 0.5155,
+  "r30_bp": 1.23,
+  "by_sess": {
+   "asia": 0.502,
+   "cme": 0.515,
+   "london": 0.531,
+   "preclose": 0.512
+  }
+ },
+ "j_real": {
+  "n": 42621,
+  "reject": 0.4819,
+  "r30_bp": -0.31,
+  "by_sess": {
+   "asia": 0.458,
+   "cme": 0.47,
+   "london": 0.519,
+   "preclose": 0.479
+  }
+ },
+ "j_reject_real_vs_placebo": {
+  "diff_pp": -3.37,
+  "p": 0.0004997501249375312,
+  "mde_pp": 1.0
+ },
+ "j_r30_real_vs_placebo": {
+  "real_bp": -0.35,
+  "placebo_bp": 1.21,
+  "diff_bp": -1.56,
+  "p": 0.047976011994003,
+  "mde_bp": 2.42
+ },
+ "h_by_absRF_quintile": {
+  "0": {
+   "absRF_max": 3,
+   "n": 2147,
+   "next_range_atr": 1.002,
+   "next_ret_with_RF_bp": 11.0
+  },
+  "1": {
+   "absRF_max": 6,
+   "n": 2147,
+   "next_range_atr": 0.992,
+   "next_ret_with_RF_bp": -14.3
+  },
+  "2": {
+   "absRF_max": 10,
+   "n": 2147,
+   "next_range_atr": 1.03,
+   "next_ret_with_RF_bp": 0.8
+  },
+  "3": {
+   "absRF_max": 16,
+   "n": 2147,
+   "next_range_atr": 1.065,
+   "next_ret_with_RF_bp": -3.4
+  },
+  "4": {
+   "absRF_max": 45,
+   "n": 2147,
+   "next_range_atr": 1.145,
+   "next_ret_with_RF_bp": -42.0
+  }
+ },
+ "h_range_controlled": {
+  "tq0": {
+   "aq0": 0.776,
+   "aq1": 0.744,
+   "aq2": 0.766,
+   "aq3": 0.745,
+   "aq4": 0.745
+  },
+  "tq1": {
+   "aq0": 0.946,
+   "aq1": 0.925,
+   "aq2": 0.894,
+   "aq3": 0.899,
+   "aq4": 0.861
+  },
+  "tq2": {
+   "aq0": 1.042,
+   "aq1": 0.945,
+   "aq2": 0.931,
+   "aq3": 0.97,
+   "aq4": 0.938
+  },
+  "tq3": {
+   "aq0": 1.081,
+   "aq1": 1.131,
+   "aq2": 1.128,
+   "aq3": 1.109,
+   "aq4": 1.077
+  },
+  "tq4": {
+   "aq0": 1.387,
+   "aq1": 1.442,
+   "aq2": 1.558,
+   "aq3": 1.497,
+   "aq4": 1.528
+  }
+ },
+ "h_next_ret_with_RF_q0": {
+  "n": 2147,
+  "mean_bp": 11.02,
+  "ci95_bp": [
+   -13.0,
+   34.26
+  ],
+  "p": 0.3523238380809595,
+  "mde_bp": 33.87
+ },
+ "h_next_ret_with_RF_q4": {
+  "n": 2147,
+  "mean_bp": -41.97,
+  "ci95_bp": [
+   -97.88,
+   12.49
+  ],
+  "p": 0.13193403298350825,
+  "mde_bp": 78.71
+ }
+}

@@ -208,8 +208,77 @@ def form_gfi() -> dict:
     return res
 
 
+SESS = [(0, 420, "asia"), (420, 810, "london"), (810, 1155, "cme"), (1155, 1440, "preclose")]
+
+
+def form_jh() -> dict:
+    """j session initial balance (first 60 min) high/low: first later touch in the session; back 0.25 IB-width inside before
+    0.25 beyond (random walk 50%) and 30-min return inward (one bar late), vs placebo levels 0.37 IB-width outside the IB.
+    h daily rotation factor (48 half-hours, +-1 for higher/lower highs and lows): next-day range / ATR and next-day return
+    signed with R/F, by |R/F| quintile, range controlled by today's range quintile."""
+    J, Hh = [], []
+    for coin in L.COINS10:
+        k = P.load(coin, LO, "2024-01-10")
+        h, l, c = k.h.to_numpy(), k.l.to_numpy(), k.c.to_numpy()
+        ix = pd.Series(np.arange(len(k)), index=k.index.floor("D")).groupby(level=0).agg(["min", "max"])
+        ix = ix[(ix["max"] - ix["min"]) == 1439]
+        days = list(ix.index)
+        rf, rng, ret = {}, {}, {}
+        for d in days:
+            a = int(ix.loc[d, "min"])
+            hh = h[a:a + 1440].reshape(48, 30).max(1); ll = l[a:a + 1440].reshape(48, 30).min(1)
+            rf[d] = int(np.sign(np.diff(hh)).sum() + np.sign(np.diff(ll)).sum())
+            rng[d] = hh.max() / ll.min() - 1
+            ret[d] = c[a + 1439] / c[a - 1] - 1 if a > 0 else np.nan
+            if not (pd.Timestamp(LO, tz="UTC") <= d < pd.Timestamp(HI, tz="UTC")):
+                continue
+            for s0, s1, nm in SESS:
+                i0, i1 = a + s0, a + s1 - 1
+                ibh, ibl = h[i0:i0 + 60].max(), l[i0:i0 + 60].min()
+                w = ibh - ibl
+                if w <= 0:
+                    continue
+                for kind, up, dn in (("real", ibh, ibl), ("placebo", ibh + 0.37 * w, ibl - 0.37 * w)):
+                    r = touches(h, l, c, i0 + 60, i1, up, dn, w, i1)
+                    if r is None or r["t"] + 31 > i1 + 60:
+                        continue
+                    t = r["t"]
+                    J.append({"time": k.index[t + 1], "coin": coin, "kind": kind, "sess": nm, "side": -r["edge_side"], "reject": r["reject"],
+                              "r30": -r["edge_side"] * (c[t + 31] / c[t + 1] - 1)})
+        atr = pd.Series(rng).rolling(20).mean().shift(1)
+        for n, d in enumerate(days[:-1]):
+            if not (pd.Timestamp(LO, tz="UTC") <= d < pd.Timestamp(HI, tz="UTC")) or not atr.get(d, np.nan) > 0:
+                continue
+            nx = days[n + 1]
+            Hh.append({"time": d, "coin": coin, "side": int(np.sign(rf[d])) or 1, "rf": rf[d], "trng": rng[d] / atr[d], "nrange": rng[nx] / atr[d],
+                       "nret": (np.sign(rf[d]) or 1) * ret[nx]})
+    res = {}
+    j = pd.DataFrame(J)
+    # the touches() first passage uses 'end' = session end; reject nan = neither reached
+    for kind, x in j.groupby("kind"):
+        y = x.dropna(subset=["reject"])
+        res[f"j_{kind}"] = {"n": int(len(x)), "reject": round(float(y.reject.mean()), 4), "r30_bp": round(float(x.r30.mean() * 1e4), 2),
+                            "by_sess": {s: round(float(z.reject.mean()), 3) for s, z in y.groupby("sess")}}
+    re, pl = j[j.kind == "real"].dropna(subset=["reject"]), j[j.kind == "placebo"].dropna(subset=["reject"])
+    s = L.stats(re.assign(gross=re.reject)[["time", "coin", "side", "gross"]], pl.assign(gross=pl.reject)[["time", "coin", "side", "gross"]], reps=2000)
+    res["j_reject_real_vs_placebo"] = {"diff_pp": round(s["vs_base_bp"] / 100, 2), "p": s["p_vs_base"], "mde_pp": round(s["mde80_bp"] / 100, 2)}
+    s = L.stats(re.assign(gross=re.r30)[["time", "coin", "side", "gross"]], pl.assign(gross=pl.r30)[["time", "coin", "side", "gross"]], reps=2000)
+    res["j_r30_real_vs_placebo"] = {"real_bp": s["mean_bp"], "placebo_bp": s["base_bp"], "diff_bp": s["vs_base_bp"], "p": s["p_vs_base"], "mde_bp": s["mde80_bp"]}
+    hh = pd.DataFrame(Hh)
+    hh["aq"] = pd.qcut(hh.rf.abs().rank(method="first"), 5, labels=False)
+    hh["tq"] = pd.qcut(hh.trng.rank(method="first"), 5, labels=False)
+    res["h_by_absRF_quintile"] = {int(q): {"absRF_max": int(z.rf.abs().max()), "n": int(len(z)), "next_range_atr": round(float(z.nrange.mean()), 3),
+                                           "next_ret_with_RF_bp": round(float(z.nret.mean() * 1e4), 1)} for q, z in hh.groupby("aq")}
+    res["h_range_controlled"] = {f"tq{t}": {f"aq{q}": round(float(zz.nrange.mean()), 3) for q, zz in z.groupby("aq")} for t, z in hh.groupby("tq")}
+    for q in (0, 4):
+        z = hh[hh.aq == q]
+        s = L.stats(z.assign(gross=z.nret)[["time", "coin", "side", "gross"]].assign(side=1), reps=2000)
+        res[f"h_next_ret_with_RF_q{q}"] = {"n": s["n"], "mean_bp": s["mean_bp"], "ci95_bp": s["ci95_bp"], "p": s["p"], "mde_bp": s["mde80_bp"]}
+    return res
+
+
 if __name__ == "__main__":
     f = sys.argv[1]
-    r = {"ab": form_ab, "gfi": form_gfi}[f]()
+    r = {"ab": form_ab, "gfi": form_gfi, "jh": form_jh}[f]()
     print(json.dumps(r, indent=1, default=float))
     (ROOT / f"research/is3/P2{f}__explore.json").write_text(json.dumps(r, indent=1, default=float))

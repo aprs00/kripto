@@ -209,7 +209,10 @@
     {
      "id": "h",
      "what": "rotation factor ~0 sessions (R18): next-session range and direction vs R/F extremes",
-     "status": "planned"
+     "status": "done",
+     "result": "10,735 coin-days, daily rotation factor from 48 half-hours: R/F ~0 days (|RF| <= 3) next-day range 1.00 ATR vs 1.15 for |RF| >= 17, but inside today's range quintiles the |RF| quintiles differ by <= 0.1 ATR with no common slope (range is today's range, not R/F). Direction: next day against strong R/F -42 bp (top quintile, p .13, MDE 79), R/F ~0 +11 (p .35). Balanced (normal) days predict nothing",
+     "date": "2026-11-24",
+     "evidence": "P2jh__explore"
     },
     {
      "id": "i",
@@ -223,8 +226,11 @@
     {
      "id": "j",
      "what": "initial balance (first hour) high/low of each session, first touch later in the session, vs levels offset by 37% of IB width (tg:15)",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "explore COINS10 2021-23, 4 sessions/day, IB = first 60 min: 42,621 first later touches of IBH/IBL: back 0.25 IB-width inside before 0.25 beyond 48.2% vs 51.6% for placebo levels 0.37 IB-width outside the IB (n 36,936): diff -3.4 pp (p < .001, MDE 1.0); 30-min return inward -0.4 vs +1.2 bp (diff -1.6, p .05). IB edges are extended (broken) more often than arbitrary levels, never rejected; tiny either way (2 bp vs 13-bp cost)",
+     "date": "2026-11-24",
+     "evidence": "P2jh__explore"
     },
     {
      "id": "k",
