@@ -259,3 +259,6 @@ T5 a/b/c done (is3_t5a.py, data/is3/t5a.parquet): 116k ordinary 1-min >= 3 sigma
 T5 d done: BTC-hedged residual does not bounce more (top idio decile +1.3 bp, diff −2.3, MDE 5.6).
 T5 e: up-spikes continue, down-spikes bounce (= the side rule seen in T3). Dose in z (+10/+18/+21 bp at z 5/8/12) and breadth (lone +2.5, 2–3 coins +45, 4+ +22). Pre-registered T5e_upspike_z8_b2_h60
  (breadth cut chosen after seeing it: said in the prereg). Explore +27.2 vs −2.2 (p .002), hand-checked (ETH 2023-11-09 14:51, +3.1%). confirmT +39.2 vs +2.5, diff +36.7, p .075, both years +, MDE 59: FAILS p.
+T5 e recorded (10:50 UTC): confirmC passes (p .009), confirmT does not (p .075, MDE 59; top-3 days = 74% of its sum, ex-top-3 +11 bp < 13-bp taker). Not CONFIRMED, vault untouched.
+ Diagnosis: the payoff is a fat right tail (pumps that keep running); a 2-year time sample has too few such days. The idea is not dead; what would settle it is the forward ledger
+ (a shadow book only after Z1). Candidate FEATURE for the ladder: do not offer (resting asks) against an up-spike with breadth >= 2.

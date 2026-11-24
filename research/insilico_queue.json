@@ -1696,8 +1696,11 @@
     {
      "id": "e",
      "what": "up-spikes continue (T1 offers lose at every k, -36 to -82 bp over 60 min, p < .001): buy-stop / momentum after a >= 8-12 sigma up minute, taker costs, breadth dose",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "explore 994 up-minutes z>=8 breadth>=2 (breadth cut seen first, said in prereg), long 60 min one bar late: +27.2 vs base -2.2 (p .002), dose in z (+10/+18/+21 at 5/8/12) and breadth. confirmC 7,030 on 73 coins: +46.9 vs +0.1, p .009, every year +; confirmT 559: +39.2 vs +2.5, diff +36.7, p .075 (MDE 59) -> FAILS the time card, vault not opened. Tail-driven: medians +2..+7 bp, top-3 days 44-74% of the sum, ex-top-3 +11..+23 bp vs 13-bp taker. Verdict: real-looking momentum tail, not confirmed; 4 variants (z 5/8/12, breadth) tried",
+     "date": "2026-11-24",
+     "evidence": "T5e_upspike_z8_b2_h60__confirmT"
     },
     {
      "id": "f",
