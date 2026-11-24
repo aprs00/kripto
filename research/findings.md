@@ -388,3 +388,9 @@ rule); sizing by prediction = sizing by volatility. All below taker cost. Untrie
 ### InSilico T4: exits as decisions instead of a timer, on the live ladder fills (2026-11-24) → OPEN by the MDE rule, practically: keep the timer
 Explore 2021–23, 1,147 one-bar-late T1k30 fills, baseline = market 61 min after the fill (+148 bp): leave when the bounce stalls −94 bp (p < .001), the same after 15 min −63 (p .007), on the first new down-climax −85
 (p < .001), quick exit only on lone fills −3 (p .06). The bounce lasts hours; "take it and run" cuts it. Hindsight best close +385 bp, so exits matter, just not these. Live ladder unchanged.
+
+### InSilico T5: 1-min bounces and continuations by context (2026-11-24) → OPEN (one live idea: up-spike continuation)
+Explore COINS10 2021–23: 116k ordinary >= 3σ minutes fade +2 bp/60 min; level, round number, trend, breadth, taker share, trade size, BTC residual move it < 5 bp (MDE ~5). Effort without result (high volume, small
+range) +2 bp vs +18 for large-range bars: claim reversed. OI split of 1-h moves: puke falls bounce like any fall; OI-up falls continue only in 2022; NL/NS trapped cells too rare at 1 h (MDE > 200).
+Up-spike >= 8σ, breadth >= 2, long 60 min: explore +27 vs −2 (p .002), confirmC +47 vs 0 (73 coins, p .009), confirmT +37 vs +3 (p .075, MDE 59): not CONFIRMED; median +2..7 bp, top-3 days 44–74%. Vault untouched.
+Use: don't rest asks against broad up-spikes (ladder feature idea). Scripts research/studies/is3_t5{a,d,e,f,g}.py.

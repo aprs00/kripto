@@ -1655,7 +1655,7 @@
    "group": "T",
    "title": "1-minute bounces and continuations in general (not only liquidations), by context",
    "src": "tg:226-234, 103-107; minute study 11-10",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -1730,7 +1730,10 @@
      "evidence": "T5g__curves"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "8/8 forms. Ordinary 1-min shocks fade +2 bp and no context (level, round number, breadth, trade size, BTC residual) moves them beyond costs (MDE ~5 bp: well powered, DEAD-grade for those forms). Effort-without-result reversed: large-range climaxes bounce (+17), absorption bars do not (+2). One live idea: up-spikes >= 8 sigma with breadth >= 2 continue (explore +29 vs base p .002, confirmC +47 p .009 on 73 coins, confirmT +37 p .075 MDE 59, tail-driven) -> OPEN, not CONFIRMED. OI splits: puke = any fall; OI-up falls continue in 2022 only; NL/NS trapped cells too rare at 1 h.",
+   "closed": "2026-11-24"
   },
   {
    "id": "E2",
