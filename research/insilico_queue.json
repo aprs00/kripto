@@ -1067,7 +1067,7 @@
    "group": "B",
    "title": "Rotation momentum / exhaustion on range bars (R3 as he trades it)",
    "src": "R3; tg:199-223; wa 18.10.41(1)",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -1096,7 +1096,10 @@
     {
      "id": "d",
      "what": "adaptive size groups: quantiles of the previous day's sizes ('AI levels')",
-     "status": "planned"
+     "status": "done",
+     "result": "adaptive groups (12 bins merged to <=7 holding 1/7 of the PREVIOUS day's taker volume each), .43%: r1 -1.1 vs matched -3.1, diff +2.0 p <.001 MDE 1.1 (same as fixed groups), r2 +0.0, r3 -1.7: anti-dose. Grouping is not the missing piece.",
+     "date": "2026-11-24",
+     "evidence": "M1d_r1_w43__explore"
     },
     {
      "id": "e",
@@ -1110,7 +1113,10 @@
    ],
    "after": [
     "M0"
-   ]
+   ],
+   "verdict": "DEAD",
+   "reason": "5 forms on BTC/ETH/SOL 2021-23 move bars (3 widths, fixed+adaptive groups): riding one-voiced runs earns ~0 (+2 bp vs within-day matched, MDE 1-2 bp, 1/7 of a taker round trip, anti-dose in run length); the exhaustion bar at highs and the thin-fast bar are no better / wrong way; the only large curve (one-voiced bars reverse) is torn-book bounce (sub-1-s bars), gone at 5-min late entry.",
+   "closed": "2026-11-24"
   },
   {
    "id": "M2",

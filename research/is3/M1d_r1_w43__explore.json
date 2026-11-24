@@ -1,0 +1,60 @@
+{
+ "name": "M1d_r1_w43",
+ "sample": "explore",
+ "n": 247127,
+ "days": 1089,
+ "coins": 3,
+ "mean_bp": -1.08,
+ "median_bp": -17.31,
+ "win": 0.402,
+ "se_bp": 0.39,
+ "ci95_bp": [
+  -1.82,
+  -0.31
+ ],
+ "p": 0.00849575212393803,
+ "mde80_bp": 1.09,
+ "mean_ex_top3_bp": -1.42,
+ "top3_share": null,
+ "t_day_mean": -3.66,
+ "by_year": {
+  "2021": [
+   139195,
+   -1.86
+  ],
+  "2022": [
+   68689,
+   -0.79
+  ],
+  "2023": [
+   39243,
+   1.18
+  ]
+ },
+ "by_side": {
+  "-1": [
+   127443,
+   -1.89
+  ],
+  "1": [
+   119684,
+   -0.21
+  ]
+ },
+ "coins_positive": 0.33,
+ "net_bp": {
+  "free": -1.08,
+  "maker_taker": -9.08,
+  "taker": -14.08,
+  "taker_x2": -27.08,
+  "crash": -81.08
+ },
+ "base_n": 1231890,
+ "base_bp": -3.1,
+ "vs_base_bp": 2.03,
+ "p_vs_base": 0.0004997501249375312,
+ "passes": false,
+ "note": "form a with previous-day quantile size groups, 0.43% bars",
+ "rerun": "",
+ "at": "2026-11-24T13:00:05+00:00"
+}

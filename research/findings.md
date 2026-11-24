@@ -442,3 +442,8 @@ he says), painted hour closes, non-overlap impulses (anti-dose in efficiency), c
 ### InSilico N4 / R32–R33 lead-lag, decoupling canary, crash asymmetry (2026-11-24) → DEAD (asymmetry true)
 Explore 2021–23, 107 coins, 5-min baskets by volume tercile: no lead in either direction beyond a 1-bar bounce (corr −0.02..−0.04); alt-BTC correlation drops do not precede larger BTC days; thin-minus-BTC
 divergence predicts BTC the other way (−22 bp/day, p .03). 1-min down/up tail ratio 1.2–2.0 at 8–12σ, rising each year (dumps sharper than pumps) = the ladder's raw material. Script research/studies/is3_n4.py.
+
+### InSilico M1 / R3 rotation momentum on move bars (2026-11-24) → DEAD
+BTC/ETH/SOL 2021–23 aggTrades move bars (.2/.43/.8%), author7 and previous-day-quantile size groups. Riding an all-green run to the first all-red bar: +2 bp vs bars of the same coin-day, side and
+prior up-run (p < .01, MDE 1–2 bp) = 1/7 of a taker round trip, worse with longer runs. All-red bar at a 24 h/7 d high: no better short than any bar at the high. His thin-fast boxed bar: −6 bp vs matched.
+Top-|delta share| bars "reverse" −22 bp/1 h, but 94–100% are sub-1-s torn-book bars; 5-min late entry: +3 vs matched (p .63). Lesson: on range bars, match within day AND on the prior price path (null failed twice before that). Scripts is3_m1*.py.

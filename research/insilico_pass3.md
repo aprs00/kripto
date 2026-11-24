@@ -82,3 +82,4 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * N1 round numbers: DEAD. Hundy roll, overshoot-and-return and first-touch reactions = placebo levels (round levels, if anything, are run through slightly more).
 * N3 tape behaviour: OPEN (as features only). Absorption passed explore and failed both confirms; shrinking swings / failed new highs mark a tiring trend (for F2), never a reversal trade; the rest nothing.
 * N4 lead-lag: DEAD. Thin coins do not lead BTC, decoupling is no canary; dumps are sharper than pumps at >= 8 sigma (true; the ladder's raw material).
+* M1 rotation momentum on move bars (R3): DEAD. One-voiced flow runs (all size groups green) carry +2 bp vs within-day matched bars (1/7 of costs, anti-dose); the strong-looking reversal after one-voiced bars is torn-book bounce.
