@@ -1497,7 +1497,7 @@
    "group": "T",
    "title": "Forensics: reconstruct every dated trade and chart example he posts and find what distinguishes them",
    "src": "tg:165-174, 226-234, 274-284; wa 18.10.18-26, 18.10.39-42, 18.10.55-57; owner 2026-11-22: 'he probably wont give everything on the platter'",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -1538,11 +1538,17 @@
     {
      "id": "e",
      "what": "his (or his template author's) 107 hand-drawn levels of June-Oct 2020 carry a creation time (drawing id = ms epoch, S1d): first touch AFTER creation, reaction 15/60/240 min in the bounce direction, vs placebo levels at the same distance on the other side and vs +-37% shifted levels; by label (naked POC, single print, HVN, composite, SR, tail, plain); hand-labelled SHORT / LONG / BUY separately",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "85 unique dated levels (of 107; 2020-06..2021-04; BTC/ETH/LINK/LTC on Binance perp 1m, data.binance.vision 2020 zips -> data/is3/k1m_2020), 67 touched within 30 d. Bounce after first touch: +60 min -17.7 bp (win 46%) vs all placebos +22.9 (diff -40.6, p 0.021) and vs same-side 0.63x/1.37x placebos +10.8 (diff -28.5, p 0.028; paired per level -24 bp, t -1.9); MDE 42 bp. Resistances worst (-45 bp, n 38: 2020-21 bull run). Magnet view: touch rate 79% = mirror level at the same distance (79%), so no extra pull. Mechanics hand-checked (Range POC 9390.3, 2020-06-17 14:30, +21.8 bp at 15 min). Verdict: his levels neither hold nor attract better than distance-matched lines; n 67, one regime",
+     "date": "2026-11-24",
+     "evidence": "T2e__levels"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "forensics of his own examples: (a) 8 dated tradable examples were good (+3.5% at 1 d, ~80th pct of their month) but are his chosen winners; (b) nothing distinguishes his 4 capitulation days from other >= -3% down days, and 'all TSize buckets negative' is the base rate (54% of such days, no forward difference); (c) 56 unseen analogs = matched down days (+6 bp, MDE 353 bp); (d) one stay-out example only, its analogs did better not worse (n.s.); (e) 85 dated 2020-21 levels: price goes through them more than through distance-matched placebo lines (-28 bp at 60 min, p .03) and they are not touched more often (79% = mirror). Not DEAD: MDEs 353 bp (daily) and 42 bp (60 min) above the rule's 100 / 26 bp. Diagnosis: what his examples carry beyond 'big down day' / 'a line near price' is not visible in candles or TSize; if real it lives in the book (backlog W2) or in his discretion",
+   "closed": "2026-11-24"
   },
   {
    "id": "T3",

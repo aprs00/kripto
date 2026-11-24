@@ -374,3 +374,8 @@ New data: 107 hand-drawn levels of 2020-06..10 (4 coins, plus one 2021) have cre
 253 images (4 unreadable low-res scrolls), 21 video sheets + tape keyframes + 13 transcripts, 140 truncated cited records finished, PDF remainders scanned (keyword greps, not line by line). 0 contradictions with the
 stored descriptions, so forms built from them stand. The pictures still added things the text lacked: his size groups are recomputed from the PREVIOUS DAY (M4a), exhaustion = market orders getting smaller and rarer (M2f),
 mousetrap entry = first bar where buyers take over at the level (M3e), Friday pump after the US cash close (C2g), hourly 'salad' profile (P1g). Two claims need data we do not collect yet: book pulls/lifts (backlog W2) and single big liquidations (L1p).
+
+### InSilico T2: forensics of his own dated examples (2026-11-24) → OPEN (nothing beyond 'big down day' / 'a line near price'; underpowered)
+His capitulation days (M4e) are ordinary >= -3% down days: 'all trade-size buckets negative' happens on 54% of them and changes nothing (next 3 d +0.51% vs +0.55%). 56 unseen analogs: +79 bp vs matched
++74 (MDE 353). His 85 dated 2020–21 levels: after the first touch price goes THROUGH them more than through distance-matched placebo lines (60 min −18 vs +11 bp, p .03) and they are not touched more often.
+Consequence: M4a now scores the size of the negative bucket shares, not the sign. If his edge is real it is in what candles don't show (book: backlog W2) or in his discretion. research/is3/T2*__*.json, studies/is3_t2*.py.

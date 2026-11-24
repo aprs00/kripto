@@ -222,3 +222,11 @@ T2 c think-through (05:06 UTC, before running): explore only (2021–23), BTC/ET
  ret_z, range_atr, qv_z, n_z, taker, avg_trade, dd5, dd20, dd90, clv, peak_min, tsz_min, tsz_large. Events = the 15 nearest pool days (Euclidean) to each of his 4 BTC days, excluding +-5 d of
  any example; long at the day close, gross = simple 3-d return (his 2–5 d window, fixed now). Baseline = 5 matched pool days per event (same coin, same ret decile). Expected from T2b: ≈ baseline.
  Checks: causality = features on data cut at 2022-06-30 equal to full for earlier days; null = 20 coin-toss sign flips of the forward return per day, diff ≈ 0.
+T2 e think-through (05:10 UTC, before downloading or running): 107 levels with creation ms (S1d), 85 BTC (BitMEX/Bybit inverse + Binance), 13 ETH, 6 LINK, 3 LTC; proxy prices = Binance USDT perps
+ (inverse/perp basis a few $: noted, not corrected). Fixed now: side = support if level < close of the creation minute, else resistance; first touch within 30 d after creation (low <= level for
+ support, high >= for resistance); reaction = simple return from the level at +15/60/240 min in the bounce direction; placebo levels = the mirror (same distance on the other side of the creation
+ price, side flipped) and the same side at 0.63x / 1.37x the distance. Diff vs placebo by day-block bootstrap (is3_lib.stats). Dose: none available (labels instead: naked POC/VAH, single print,
+ HVN, plain level). Duplicates (same price within 0.1% on the same symbol) counted once. Data: data.binance.vision monthly 1m zips 2020-06..2021-01 (+ existing 2021 file), separate dir data/is3/k1m_2020.
+ What he does NOT say: the level is a resting order area, so the reaction should appear within minutes of the first touch; later touches are weaker (count first touch only).
+T2 c: analogs = matched down days (diff +6 bp, MDE 353). d: one stay-out example; analogs better, n.s. e: 85 dated levels: price goes through them (−28 bp vs same-side placebo at 60 min, p .03), touch rate = mirror.
+ First null run with 20 coin-toss copies read +67 bp: small-sample noise (400 copies: +15/+2/−2 bp over 3 seeds); is3_t2c now uses 400. T2 CLOSED OPEN (MDE rule). Next per queue.
