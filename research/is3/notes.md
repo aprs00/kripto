@@ -612,3 +612,5 @@ M5 c plan (before run): his literal target = the average 1-min candle (mean ln(h
 M5 d done (23:2x): thin coins = placebo levels at every fill rung (MDE 2-9 bp); the more volume trades through our level before we count a fill, the worse (q250k -40 bp gross,
  same for placebos): queue-position fills on thin coins are pure adverse selection. Touch fills ~0 gross. No level effect to sell, before or after costs.
 M5 a done (23:2x): BTC/ETH/SOL range bars 0.2/0.43%: real old range high = placebo levels (diff -1.5..+0.6 bp, MDE 1-3), touch ~0 gross, queue fills worse with Q. Same as d, same as 11-11 range_retest.
+M5 a dose by wait (placement -> fill, 5/15/40/80/120 min): real = placebo in every bucket (his >40-min retest is not special). Added f (before run): impulse taker-delta share
+ (side-signed, breakout bar -> placement; always > 0, median .25) as the 'abnormal pressure' dose; real - placebo by quintile; pass needs a monotone dose and top quintile > costs.

@@ -1385,6 +1385,12 @@
      "what": "his other target (tg:227 picture): bid the old range high (B), offer the low of the small consolidation made right after the breakout (A), not one average candle; the retest came > 40 min later and after a +9 point run: order must rest until then",
      "status": "planned",
      "added": "2026-11-22"
+    },
+    {
+     "id": "f",
+     "what": "his caveat 'unless abnormal pressure' as a dose: form a's events with the impulse's taker delta share (breakout bar start -> placement, side-signed); real - placebo by delta quintile; also time-to-fill buckets (done on a: flat)",
+     "status": "planned",
+     "added": "2026-11-24"
     }
    ],
    "after": [

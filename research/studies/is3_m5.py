@@ -90,10 +90,12 @@ def coin_events(sym: str, lo: str, hi: str, w: float, form: str = "a") -> pd.Dat
             return pd.DataFrame()
         r = rbars_simple(b, w)
         vol = b["qv"]
+        dlt = np.full(len(vol), np.nan)
     else:
         b = mbars.load(sym, lo, hi)
         r = rbars(b, w)
         vol = (b["buy"].sum(1) + b["sell"].sum(1)).astype(np.float64)
+        dlt = (b["buy"].sum(1) - b["sell"].sum(1)).astype(np.float64)     # taker delta per micro bar (form f dose)
         del b["buy"], b["sell"]                # the 12-bucket arrays are most of the RAM (OOM at 1.8 GB on 3 years)
     t1 = b["t1"].astype(np.int64)
     bad = {pd.Timestamp(x, tz="UTC").value // 10**6 // 86_400_000 for x in BAD.get(sym, {})}
@@ -154,6 +156,8 @@ def coin_events(sym: str, lo: str, hi: str, w: float, form: str = "a") -> pd.Dat
                 if P - R < 2 * w:
                     continue
             d = P - R
+            sb = int(r["end"][i - 1]) + 1             # breakout range bar start .. placement: the impulse
+            dsh = float(side * dlt[sb:p0 + 1].sum() / max(vol[sb:p0 + 1].sum(), 1e-9))
             for kind, lev in (("real", R), ("pl063", P - 0.63 * d), ("pl137", P - 1.37 * d)):
                 for fname, f in FILLS.items():
                     out = trade(xh, xl, vol, t1, p0, lev, w, f, toff, ho, hp, form == "ctk")
@@ -161,7 +165,7 @@ def coin_events(sym: str, lo: str, hi: str, w: float, form: str = "a") -> pd.Dat
                         continue
                     g, ret, fee = out
                     rows.append({"time": pd.Timestamp(int(t1[g]), unit="ms", tz="UTC"), "coin": coin, "side": side, "w": w, "kind": kind,
-                                 "fill": fname, "gross": ret, "cost": fee, "lev": float(np.exp(side * lev)), "placed": pd.Timestamp(int(t1[p0]), unit="ms", tz="UTC")})
+                                 "fill": fname, "gross": ret, "cost": fee, "lev": float(np.exp(side * lev)), "placed": pd.Timestamp(int(t1[p0]), unit="ms", tz="UTC"), "dsh": dsh})
     return pd.DataFrame(rows)
 
 
