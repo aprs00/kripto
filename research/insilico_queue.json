@@ -453,46 +453,71 @@
    "group": "A",
    "title": "Kill zones, CME break hour, illiquid-hour moves, time-of-day flow",
    "src": "R22-R24, R46, R36; tg:66-69; wa 18.11.01(2), 18.10.26(4), 18.10.35",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "kill-zone persistence: trend that leaves London/NY zones -> next zone, vs the same-length window at random hours",
-     "status": "planned"
+     "status": "done",
+     "result": "explore COINS10 2021-23 weekdays, NY clock: sign of the London zone (02-05 NY) x NY zone (07-10 NY) return -6.1 bp vs +1.3 for every 3-h window x the 3-h window 2 h later (diff -7.4, p .18, MDE 13.6). No kill-zone continuation (if anything the NY zone reverses London)",
+     "date": "2026-11-24",
+     "evidence": "C2__explore"
     },
     {
      "id": "b",
      "what": "filler hours given back: move made between zones reverses in the next zone? [S1e tg:69: what it returns to is the previous session's highest-volume price, so target = that POC]",
-     "status": "planned"
+     "status": "done",
+     "result": "filler (05-07 NY) given back in the NY zone: +0.2 bp vs placebo reversal -1.3 (diff +1.5, p .82, MDE 13.7); the London zone's busiest 5-min price reached before the mirror distance in the NY zone 49.0% (n 6,007, CI -2.9..+0.9 pp vs 50). Filler is not filled back toward the session's collar",
+     "date": "2026-11-24",
+     "evidence": "C2__explore"
     },
     {
      "id": "c",
      "what": "CME break hour drift (17-18 NY, t 2.3-3.6 in 2 coins): all 83 coins, year by year [S1e wa 18.11.01(2): his list has TWO windows, 16:15-16:30 NY (old equity-index halt, gone since 2021) and 17:00-18:00 NY; test both, the first only before its end]",
-     "status": "planned"
+     "status": "done",
+     "result": "17-18 NY hour +6.8 bp vs +2.2 for other hours (diff +4.6, p .22, MDE 8.8), all 10 coins positive but the years decay: 2021 +18.5, 2022 +2.1, 2023 -0.3. 16:15-16:30 NY (until the halt ended 2021-06-25): +0.3 bp (n 1,250). The CME-break drift seen on BTC/ETH 2020-26 is not significant on 10 coins 2021-23 and fades after 2021; below costs either way",
+     "date": "2026-11-24",
+     "evidence": "C2__explore"
     },
     {
      "id": "d",
      "what": "pumps in illiquid hours (lowest volume quartile of the week's hours) are faded when volume returns",
-     "status": "planned"
+     "status": "done",
+     "result": "1-h moves >= 2 sigma in the coin's least-liquid quartile of week-hours (2,004), faded until the first liquid hour: -5.5 bp vs +12.4 for same-size moves in liquid hours (diff -18, p .29, MDE 34); 4 h -3.7 vs +26.8 (p .09). Illiquid-hour pumps are faded LESS than liquid-hour ones, not more",
+     "date": "2026-11-24",
+     "evidence": "C2__explore"
     },
     {
      "id": "e",
      "what": "same clock-time flow persistence: taker imbalance in half-hour h predicts half-hour h of the next day (Heston-type)",
-     "status": "planned"
+     "status": "done",
+     "result": "half-hour bars, 524k coin-half-hours: same half-hour yesterday return corr -0.032 vs -0.012 at lags 47/49 (a slight same-clock REVERSAL, not Heston-type continuation); taker imbalance corr 0.028 vs 0.036 (no clock memory). Trade on yesterday's same-half-hour sign -1.2 bp vs -0.3 (diff -1.0, p .007, MDE 0.6): real but 1 bp, the opposite sign, far below costs",
+     "date": "2026-11-24",
+     "evidence": "C2__explore"
     },
     {
      "id": "f",
      "what": "Monday US-open TWAP (wa 18.10.35): drift and taker imbalance Mon 13:30-17:00 UTC vs the same hours Tue-Fri, by trailing regime; does the previous Monday's imbalance predict it ('lose consistency')",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "Monday 13:30-17:00 UTC: -9.6 bp vs -1.3 Tue-Fri same window (diff -8, p .62, MDE 43; 2023 -38); taker imbalance Mon -0.023 = Tue-Fri -0.023; previous Monday's imbalance -> this Monday's imbalance corr 0.15 (imbalance is persistent everywhere), -> return corr 0.03. No Monday TWAP footprint",
+     "date": "2026-11-24",
+     "evidence": "C2__explore"
     },
     {
      "id": "g",
      "what": "Friday post-cash pump (wa 18.11.03, Oct 2021: 'most fridays have nice pump post cash ... friday 23:00 my time [EET = 16:00 NY] ... up only mode'): return Fri 16:00 -> 20:00 NY (DST-aware) vs the same window Mon-Thu (placebo) and vs random 4-h Friday windows, all bn100 coins, year by year; sign share and t on weekly sums; overlaps friday_follow (Fri UTC day -> Sat), so report the residual after friday_follow's own Friday sign",
-     "status": "planned",
-     "added": "2026-11-24"
+     "status": "done",
+     "added": "2026-11-24",
+     "result": "Friday 16-20 NY (DST-aware): +26.3 bp vs +5.0 Mon-Thu same window (diff +21, p .18, MDE 38), 56% of Fridays up; 2021 +44, 2022 -7, 2023 +41. Underpowered, one bad year; overlaps friday_follow (FF1, live idea), so the residual test belongs there, not a separate card",
+     "date": "2026-11-24",
+     "evidence": "C2__explore"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "7/7 forms, explore COINS10 2021-23, NY clock. Dead parts (MDE 9-14 bp): kill-zone continuation (-7 bp vs placebo), filler given back (+1.5), London collar as NY target (49%), same-clock half-hour persistence (reverses 1 bp), Monday US-open TWAP (no drift or imbalance). Illiquid-hour moves fade less than liquid ones. Open only by the MDE rule: Friday 16-20 NY +21 bp vs Mon-Thu (p .18, MDE 38) -> test as a residual inside FF1 friday_follow; CME break hour +4.6 bp (p .22, decays after 2021) is below costs",
+   "closed": "2026-11-24"
   },
   {
    "id": "O1",

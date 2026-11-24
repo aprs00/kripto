@@ -409,3 +409,8 @@ gap only echo today's range. 80% rule = random walk (session −2 pp, daily −1
 Explore 2021–23, BTC + EW top-30 daily vs other days; FOMC/CPI dates from federalreserve.gov / bls.gov. 0 of 176 cells (weekday, turn of month, hour of week) survive 10% FDR. Underpowered positives: FOMC day before / day
 +122 / +218 bp (MDE 173 / 325), first day of month +127 (MDE 176), turn of month +62 (MDE 83). Lunar waxing−waning −780 bp then +413 in 2024–25 (noise). Down Fri/down Mon → bounce, not decline. Tax-loss lows:
 2 usable Decembers, both worse. Expiry weeks, equinox, September, Santa, May–Oct, triple witching: nothing. Script research/studies/is3_c1.py.
+
+### InSilico C2 time of day: kill zones, filler hours, CME break, illiquid hours (2026-11-24) → kill-zone story dead; Friday 16–20 NY open (→ FF1)
+Explore COINS10 2021–23, NY clock with DST, placebo windows of the same geometry. London-zone sign → NY zone −6 bp (no continuation); filler not given back; London collar reached 49% (mirror 50);
+illiquid-hour ≥ 2σ moves fade less than liquid ones (−5 vs +12 bp); same half-hour yesterday: 1-bp reversal; Monday US open: nothing. CME 17–18 NY +4.6 bp vs other hours (p .22; 2021 only).
+Friday 16–20 NY +26 vs +5 bp Mon–Thu (p .18, MDE 38): test inside FF1. Script research/studies/is3_c2.py.

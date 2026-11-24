@@ -333,3 +333,18 @@ Data: bnall 1d (clean universe), EW top-30 by trailing 30-d quote volume (shift 
 C1 done (is3_c1.py, C1{a..i}__explore, dates in C1_dates.json): ~25 calendar tags + 168 hour cells; 0 FDR survivors; no tag's explore effect exceeds its own MDE, so no confirm card was run.
  Largest, all p .05–.07 and underpowered: FOMC day before/day (+122/+218 bp EW30), first day of month (+127), turn of month (+62). Lunar sign flips between eras. Process slip: my print
  functions showed the 2024–25 column for a and g before I had decided they qualified; noted in the form results; neither qualified anyway. Next time print explore only.
+
+## C2 time of day (think-through 11:21 UTC, before any run)
+Sources: tg:66–69 (kill zones = liquidity events; "all jump in ... few hours of action ... low testosterone time until next open, on which we return to high volume collar to continue action of
+previous session; all in between main killzones ... is noise filler that gets filled back before next session"), wa 18.11.01(2) (legacy CME break times: break 23:15–23:30, full stop 00:00–01:00, pre-market
+16:15–16:30 in his EET zone = 16:15–16:30 / 17:00–18:00 NY), wa 18.10.35 (Monday US-open TWAPs; "lose consistency"), wa 18.11.03 ("most fridays have nice pump post cash", Fri 23:00 EET = 16:00 NY),
+wa 18.10.26(4) (moves "during illiquid hrs ... seen this game before"). (wa 18.11.03 (1)/(2) also advocate exploiting weak contracts: ignored, not research.)
+What he does NOT say: the filler move is filled back TOWARD the previous session's busiest price, i.e. the target is a level, not a return sign; kill-zone continuation should depend on the zone's
+volume (a zone without participation is not an event); illiquid-hour pumps are faded only when the book refills (the next liquid hour), so the horizon is "until the next zone".
+Fixed now (explore COINS10 2021–23, NY time with DST): zones London 02:00–05:00 NY, NY 07:00–10:00 NY; filler = 05:00–07:00 NY. a: sign(London zone) x NY-zone return vs every 3-h window x the 3-h window
+starting 2 h after it (placebo, same geometry). b: filler return sign x NY-zone return, and NY zone reaching the London zone's volume POC before the mirror distance. c: 17–18 NY and 16:15–16:30 NY
+(to 2021-06) per coin per year vs other hours. d: 1-h moves >= 2 sigma in the coin's least-liquid quartile of week-hours, fade until the next liquid hour, vs same-size moves in liquid hours.
+e: taker imbalance and return in half-hour h vs the same half-hour yesterday (lag 48) and vs lags 47/49 (placebo). f: Mon 13:30–17:00 UTC drift and imbalance vs Tue–Fri. g: Fri 16–20 NY vs Mon–Thu 16–20 NY.
+C2 done (is3_c2.py, C2__explore): kill zones do not continue (NY reverses London -6 bp, n.s.), filler is not given back, the London collar is not a NY-zone target (49%), illiquid-hour moves fade LESS,
+ same-clock half-hours reverse by 1 bp (opposite of Heston), no Monday TWAP footprint. Two positive but underpowered drifts: CME break hour +4.6 bp (decays after 2021) and Friday 16–20 NY +21 bp
+ (MDE 38) -> belongs to FF1 (friday_follow). Closed OPEN for g only; the kill-zone story itself is dead.

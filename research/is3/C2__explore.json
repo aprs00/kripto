@@ -1,0 +1,158 @@
+{
+ "a_london_zone_sign_x_ny_zone": {
+  "n": 7810,
+  "mean_bp": -6.12,
+  "placebo_bp": 1.3,
+  "diff_bp": -7.41,
+  "p": 0.18081918081918083,
+  "mde_bp": 13.62
+ },
+ "b_filler_given_back_in_ny_zone": {
+  "n": 7810,
+  "mean_bp": 0.21,
+  "placebo_reversal_bp": -1.3,
+  "diff_bp": 1.51,
+  "p": 0.8171828171828172,
+  "mde_bp": 13.69
+ },
+ "b_london_poc_before_mirror_in_ny_zone": {
+  "n": 6007,
+  "hit": 0.4898,
+  "diff_vs_50_pp": -1.02,
+  "ci95_pp": [
+   -2.92,
+   0.85
+  ],
+  "p": 0.3116883116883117
+ },
+ "c_17-18NY": {
+  "n": 7810,
+  "mean_bp": 6.78,
+  "other_hours_bp": 2.23,
+  "diff_bp": 4.55,
+  "p": 0.21578421578421578,
+  "mde_bp": 8.84,
+  "by_year": {
+   "2021": [
+    2610,
+    18.54
+   ],
+   "2022": [
+    2600,
+    2.07
+   ],
+   "2023": [
+    2600,
+    -0.32
+   ]
+  },
+  "coins_positive": 1.0
+ },
+ "c_16:15-16:30NY": {
+  "n": 1250,
+  "mean_bp": 0.3,
+  "other_hours_bp": 6.43,
+  "diff_bp": -6.13,
+  "p": 0.4985014985014985,
+  "mde_bp": 18.79,
+  "by_year": {
+   "2021": [
+    1250,
+    0.3
+   ]
+  },
+  "coins_positive": 0.4
+ },
+ "d_illiquid_hour_moves_fade_until_liquid": {
+  "n": 2004,
+  "mean_bp": -5.49,
+  "liquid_matched_bp": 12.39,
+  "diff_bp": -17.88,
+  "p": 0.2897102897102897,
+  "mde_bp": 34.23
+ },
+ "d_illiquid_hour_moves_fade_4h": {
+  "n": 2004,
+  "mean_bp": -3.73,
+  "liquid_matched_bp": 26.83,
+  "diff_bp": -30.57,
+  "p": 0.08891108891108891,
+  "mde_bp": 42.37
+ },
+ "e_same_halfhour_yesterday": {
+  "r": {
+   "corr_lag47": -0.0106,
+   "corr_lag48": -0.0317,
+   "corr_lag49": -0.0135,
+   "lag48_minus_avg_47_49": -0.0197
+  },
+  "im": {
+   "corr_lag47": 0.0367,
+   "corr_lag48": 0.0278,
+   "corr_lag49": 0.0349,
+   "lag48_minus_avg_47_49": -0.008
+  }
+ },
+ "e_trade_sign_of_same_halfhour_yesterday": {
+  "n": 524040,
+  "mean_bp": -1.23,
+  "lag47_placebo_bp": -0.26,
+  "diff_bp": -0.98,
+  "p": 0.006644518272425249,
+  "mde_bp": 0.59
+ },
+ "f_monday_us_open_drift": {
+  "n": 1557,
+  "mean_bp": -9.61,
+  "tue_fri_bp": -1.34,
+  "diff_bp": -8.27,
+  "p": 0.6193806193806194,
+  "mde_bp": 42.96,
+  "by_year": {
+   "2021": [
+    520,
+    8.39
+   ],
+   "2022": [
+    517,
+    0.36
+   ],
+   "2023": [
+    520,
+    -37.52
+   ]
+  }
+ },
+ "f_monday_imbalance": {
+  "mon": -0.0229,
+  "tue_fri": -0.0226
+ },
+ "f_prev_monday_imbalance_predicts": {
+  "corr_imb": 0.1548,
+  "corr_ret_on_prev_imb": 0.0308,
+  "n": 1547
+ },
+ "g_friday_16_20_ny": {
+  "n": 1570,
+  "mean_bp": 26.34,
+  "mon_thu_bp": 5.01,
+  "diff_bp": 21.33,
+  "p": 0.18281718281718282,
+  "mde_bp": 38.04,
+  "by_year": {
+   "2021": [
+    530,
+    44.38
+   ],
+   "2022": [
+    520,
+    -6.54
+   ],
+   "2023": [
+    520,
+    40.84
+   ]
+  },
+  "sign_share_fri": 0.559
+ }
+}
