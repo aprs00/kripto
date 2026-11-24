@@ -40,6 +40,7 @@ Binance panels: use the clean universe (no stock perps, `config/bn_tradfi.json`)
 * **FEATURE**: real (confirmed) but below costs: goes to F1/F2 as a filter or timing input, not a book.
 * **CONFIRMED**: passes both confirm cards (or the one that exists) and the vault. Then Z1: walk-forward, gates, shadow book.
 * **UNTESTABLE**: no lawful data or no falsifiable statement.
+* Before `L.prereg` (added 2026-11-24, stricter only): every explore year must be positive against the matched baseline (not just the pooled mean). Two daily forms (O1e, N3f) passed pooled explore cards on 2021–22 alone and failed every confirm.
 * Explore as many variants as useful, but write in the form's result how many were tried. At most 2 forms per item go to confirm. At most 8
   walk-forwards in the whole programme, all in Z1. Nothing is promoted to a book outside Z1/E1.
 * Before the first run of an item: 5–10 lines of think-through in its section of `research/is3/notes.md` (who pays, what he does in the cited
