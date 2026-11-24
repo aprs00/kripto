@@ -1,0 +1,31 @@
+{
+ "name": "F1g_xsmom_casc7_1d",
+ "sample": "confirmT",
+ "side": -1,
+ "on_share": 0.938,
+ "base": {
+  "sr": 1.5695419350648576,
+  "ann": 0.32334533678395205,
+  "mdd": -0.14376506653624688,
+  "days": 731
+ },
+ "filtered": {
+  "sr": 1.2506004790039476,
+  "ann": 0.2759584649164788,
+  "mdd": -0.17198491301357777,
+  "days": 731
+ },
+ "dSR": -0.319,
+ "dMDD": -0.0282,
+ "p_daily_diff": 0.3843078460769615,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.22,
+ "random_dSR_q05_q50_q95": [
+  -0.542,
+  -0.138,
+  0.253
+ ],
+ "pct_dMDD_vs_random": 0.43,
+ "note": "pre-registered; cascade days 2024-25 39; weight touched 0.0256",
+ "passes": false
+}

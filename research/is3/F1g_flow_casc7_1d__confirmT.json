@@ -1,0 +1,31 @@
+{
+ "name": "F1g_flow_casc7_1d",
+ "sample": "confirmT",
+ "side": -1,
+ "on_share": 0.938,
+ "base": {
+  "sr": 0.819922966388569,
+  "ann": 0.20105147900303946,
+  "mdd": -0.18402314297085332,
+  "days": 731
+ },
+ "filtered": {
+  "sr": 0.5673749077654793,
+  "ann": 0.14713801395322712,
+  "mdd": -0.2853376152999866,
+  "days": 731
+ },
+ "dSR": -0.253,
+ "dMDD": -0.1013,
+ "p_daily_diff": 0.35932033983008493,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.255,
+ "random_dSR_q05_q50_q95": [
+  -0.491,
+  -0.089,
+  0.263
+ ],
+ "pct_dMDD_vs_random": 0.1,
+ "note": "pre-registered; cascade days 2024-25 39; weight touched 0.0285",
+ "passes": false
+}

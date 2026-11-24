@@ -543,3 +543,6 @@ F1 b/c/d done (is3_f1.py; data/is3/f1_explore.txt, f1d_explore.txt): c backwards
  d nothing (RSI-pin filters touch < 2% of weight, main variants fail); b's pre-set 2-day block fails but a 1-day block wins in both books -> g: thresholds -5/-7/-10% all + in flow, -7% every
  year + in both books (flow +0.86/+0.78/+0.34, xsmom +0.46/+0.49/+0.46; xsmom 99.5th pct of 200, p .009). Pre-registered F1g_{flow,xsmom}_casc7_1d; confirmT 2024-25 running (is3-f1c).
  F.judge now refuses confirm samples without a committed prereg (it had no such guard; test added).
+F1 g confirmT (17:5x): FAILED both books (flow dSR -0.25, xsmom -0.32, every 2024-25 year negative). Next-day bounce after -7% cascade days: 2020-23 mean +61..+291 bp, 2024 -28, 2025 -150 (43% up).
+ Third 2021-23 'bounce after a flush' result that dies in 2024-25 (O1 ladder-by-RSI, N5 thin lows, now F1g); the intraday version (M2b, 60 min) replicated in direction but only on 3 crash days.
+ Honesty note: my diagnosis table printed 2026 too (7 cascade days, next day +228 bp); seen, not used, F1g is failed by its pre-registered confirm. F1 left: a (tsize breadth in flow), e (POC), f (round/poor low).

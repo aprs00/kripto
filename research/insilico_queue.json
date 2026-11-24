@@ -1506,8 +1506,11 @@
     {
      "id": "g",
      "what": "cascade-day short block with a 1-day window (seen in b: 1 d +0.56 SR at the 100th pct, 2-3 d nothing): threshold dose -5/-7/-10% at 1 d, per-year dSR, both books; the bounce is the liquidation fade, so this is the book-level version of E1",
-     "status": "planned",
-     "added": "2026-11-24"
+     "status": "done",
+     "added": "2026-11-24",
+     "result": "1-day short block after a cascade day (median coin <= -7%): explore 2021-23 flow SR 1.58 -> 2.14 (100th pct, p .005), xsmom 1.19 -> 1.62 (99.5th of 200, p .009), every year + in both; -5% also + (flow 97th pct). Pre-registered; confirmT 2024-25 FAILS both: flow 0.82 -> 0.57 (dSR -0.25, 26th pct), xsmom 1.57 -> 1.25 (-0.32, 22nd), every year negative, mdd worse. Diagnosis: the next-day bounce after cascade days was a 2020-23 regime (mean next-day median coin +291/+106/+61/+153 bp) and reversed in 2024-25 (-28/-150 bp, 43-50% up days): cascades kept falling the next day. Vault not opened (the diagnosis table also printed 2026: 7 days, +228 bp; not used)",
+     "date": "2026-11-24",
+     "evidence": "F1g_xsmom_casc7_1d__confirmT"
     }
    ],
    "after": [

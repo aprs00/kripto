@@ -464,3 +464,9 @@ tiny. Survivor: ≥10× burst on a slow down bar at the 24 h low, long 5 min lat
 BTC/ETH/SOL aggTrades range bars 0.2/0.43%, explore 2021–23, entries 5 min late, ≥ 1-s bars. Mousetrap at the prev-day low with a volume surge on the second test = near-level placebo (−13 bp/240 min,
 MDE 43, anti-dose); his small-sell/large-buy split is rare (44) and negative; absorption bars (takers against the bar) = within-day matched (MDE 11; the +71 bp tail is 2021-05-19 / thin-SOL wicks);
 trapped small sellers below a reclaimed level: no dose (MDE 51), but LARGE sellers below it were right (weaker rebound every year); volume at a bar's extreme → slight continuation. Script is3_m3.py.
+
+### InSilico F0 filter harness + F1 filters on flow / xsmom (2026-11-24) → harness built; F1 b c d g dead, a e f open
+research/studies/is3_filter.py: a filter is judged against 200 random masks with the same on-share and persistence (a random 80% mask alone cut flow's mdd −23.5% → −16.4%, 87th pct: not a pass).
+bnall 1d, explore 2021–23. R8 backwards: blocking longs at volume-spike 20-day highs costs 0.5–0.7 SR (volume breakouts are the best longs). RSI-pin filters touch < 2% of weight: nothing.
+No shorts for 1 day after a cascade day (median coin ≤ −7%): explore flow 1.58 → 2.14, xsmom 1.19 → 1.62 (≥ 99.5th pct, every year), pre-registered, confirmT 2024–25 FAILED both (−0.25, −0.32): the
+next-day bounce after cascades (+61..+291 bp 2020–23) reversed in 2024–25 (−28, −150 bp). Lesson: 'bounce after a flush' held 2021–23 and failed 2024–25 three times (O1, N5, F1g).
