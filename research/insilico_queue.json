@@ -1705,8 +1705,11 @@
     {
      "id": "f",
      "what": "effort without result (wa 18.10.24(2), second example: the volume spike had a SMALL body, not a dump): 1-min volume >= 10x median with range <= median at a local low after a decline, then a small-volume opposite bar; vs same volume with a large range",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "explore COINS10 2021-23, 31,856 volume >= 10x 24-h median bars at a 60-min low after a decline (+26,700 mirror at highs), fade one bar late. Claim REVERSED: 60-min long return rises with the bar's range (rho +0.88; rr deciles +2 .. +17 bp; 240 min +4 .. +27). His bar (lowest 2 rr deciles) +1.8 bp vs +17.7 for same-volume large-range bars (p .001, MDE 4.9); with his confirmation (next bar opposite, volume < 0.5x) +0.5 vs +17.3, and confirmation lowers the fade overall (+3.5 vs +8.4). Mirror at highs: shorts lose at every rr. Null 0.0 bp (se 1.0), causal ok. Effort WITH result (climax) bounces; effort without result does not. 3 variants (plain, confirmed, mirror)",
+     "date": "2026-11-24",
+     "evidence": "T5f__curves"
     },
     {
      "id": "g",

@@ -262,3 +262,15 @@ T5 e: up-spikes continue, down-spikes bounce (= the side rule seen in T3). Dose 
 T5 e recorded (10:50 UTC): confirmC passes (p .009), confirmT does not (p .075, MDE 59; top-3 days = 74% of its sum, ex-top-3 +11 bp < 13-bp taker). Not CONFIRMED, vault untouched.
  Diagnosis: the payoff is a fat right tail (pumps that keep running); a 2-year time sample has too few such days. The idea is not dead; what would settle it is the forward ledger
  (a shadow book only after Z1). Candidate FEATURE for the ladder: do not offer (resting asks) against an up-spike with breadth >= 2.
+
+## T5 f (think-through 10:55 UTC, before any run)
+Source wa 18.10.24(2) = tg:173 (23 Mar 21, BTC 1m): "Much efforts... getting GTFO by lil efforts. Issa fade!" Two examples: biggest red volume bar then a green bar on low volume engulfing it;
+the second red bar had a volume spike with a SMALL body. Mechanism (Wyckoff effort vs result): aggressive sellers hit a passive buyer (iceberg/absorption); price does not give way; when
+sellers stop, a little buying lifts it. What he does NOT say: it must be at a low after a decline (where trapped shorts sit), the absorber is a resting limit (so the edge belongs to the
+passive side = our ladder, not a taker chasing the green bar), and he would skip it when the decline is broad (macro selling: breadth). State view, not trigger: among minutes with
+volume >= 10x the 24-h median at a 60-min low after a 60-min decline, the long return (one bar late) as a function of rr = range / 24-h median range (effort without result = small rr).
+Expect: small rr bounces MORE than large rr (his claim). Prior from T1/T5a: large-range dumps (climaxes) bounce; ordinary shocks do not. So the claim is a NEGATIVE slope in rr.
+Variants fixed now: (1) rr deciles, no confirmation, entry c[q+1]; (2) + his confirmation (next bar green, volume < 0.5x the effort bar), entry c[q+2]; (3) mirror at 60-min highs (short).
+Horizons 15/60/240 min. Baseline = same coin, same vm decile, rr in the top half (the stated comparator). Kill: low-rr decile not > baseline, or < 13 bp taker.
+T5 f done (is3_t5f.py, T5f__curves): effort WITHOUT result does not bounce (+1.8 bp at 60 min, well powered, MDE 5); effort WITH result does (+17, the climax fade T1 already trades). His confirmation bar
+ makes it worse. Slope opposite to his claim. Unstated condition I could imagine (absorption at a level) was already flat in T5a (levels do not move ordinary fades). Not added.
