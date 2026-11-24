@@ -607,3 +607,5 @@ M5 e plan (before any run): target A = lowest low between the breakout close and
 M5 b/d plan (before runs): b = level is the 10-bar range's approx. value-area high (top-volume 5-bp bins to 70%) or its POC instead of the range high; placebo at 0.63x/1.37x of the
  placement-to-level distance; skipped when the level is < 2w below placement. d = the same order on thin coins' 1-min klines (h/l/qv stand in for micro bars; fill minute cannot also exit),
  thin = explore median daily quote volume $0.5-50M (44 coins, data/is3/m5d_coins.csv, chosen before any run), range bars 0.5% / 1% so +1w >> 4 bp maker round trip.
+M5 c plan (before run): his literal target = the average 1-min candle (mean ln(h/l) of the 1440 finished klines before placement), first touch only, same queue ladder / stop / 60 min;
+ c = maker exit (1 bp trade-through, 2x2 bp), ctk = taker exit on the first touch (2+6 bp). OOM fix: one year at a time (SOL 2021 alone = 1.3 GB RSS) -> micro-bar forms run serially.

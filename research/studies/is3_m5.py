@@ -28,7 +28,7 @@ def first(mask: np.ndarray) -> int:
     return int(np.argmax(mask)) if mask.any() else -1
 
 
-def trade(xh, xl, vol, t1, p0, lev, w, fill, tgt_off=None, h_order=H_ORDER, h_pos=H_POS):
+def trade(xh, xl, vol, t1, p0, lev, w, fill, tgt_off=None, h_order=H_ORDER, h_pos=H_POS, taker_exit=False):
     """Resting bid at log level `lev` placed after micro bar p0. Returns (fill idx, return, fee) or None."""
     end = int(np.searchsorted(t1, t1[p0] + h_order, side="right"))
     hh, ll, vv = xh[p0 + 1:end], xl[p0 + 1:end], vol[p0 + 1:end]
@@ -48,12 +48,12 @@ def trade(xh, xl, vol, t1, p0, lev, w, fill, tgt_off=None, h_order=H_ORDER, h_po
     if len(h2) == 0:
         return None
     off = w if tgt_off is None else tgt_off
-    tgt, sl = lev + off + 1e-4, lev - 2 * w
+    tgt, sl = lev + off + (0.0 if taker_exit else 1e-4), lev - 2 * w     # taker exit: market sell on the first touch of the target
     it, is_ = first(h2 >= tgt), first(l2 <= sl)
     if is_ >= 0 and (it < 0 or is_ <= it):
         return g, np.exp(sl - lev) - 1, MK + TK
     if it >= 0:
-        return g, np.exp(off) - 1, 2 * MK
+        return g, np.exp(off) - 1, (MK + TK) if taker_exit else 2 * MK
     xc = (h2[-1] + l2[-1]) / 2                 # timeout: mid of the last micro bar (within one 10-bp step)
     return g, np.exp(xc - lev) - 1, MK + TK
 
@@ -86,6 +86,8 @@ def coin_events(sym: str, lo: str, hi: str, w: float, form: str = "a") -> pd.Dat
     """form a: target +1w, order 2 h, position 1 h. form e: target = A (lowest low between breakout close and placement), 6 h / 6 h."""
     if form == "d":                            # 1-min klines (thin coins): h/l/qv per minute stand in for micro bars
         b = kline_bars(sym, lo, hi)
+        if len(b["h"]) < 1440:                 # coin not listed in this year
+            return pd.DataFrame()
         r = rbars_simple(b, w)
         vol = b["qv"]
     else:
@@ -96,6 +98,9 @@ def coin_events(sym: str, lo: str, hi: str, w: float, form: str = "a") -> pd.Dat
     t1 = b["t1"].astype(np.int64)
     bad = {pd.Timestamp(x, tz="UTC").value // 10**6 // 86_400_000 for x in BAD.get(sym, {})}
     coin = sym.replace("USDT", "")
+    if form in ("c", "ctk"):
+        kb = kline_bars(sym, "2020-12-30", hi)
+        kt, krng = kb["t1"], np.log(kb["h"] / kb["l"])          # kline close time: only finished minutes before placement
     rows = []
     for side in (1, -1):
         xh = np.log(b["h"]) if side > 0 else -np.log(b["l"])
@@ -120,6 +125,11 @@ def coin_events(sym: str, lo: str, hi: str, w: float, form: str = "a") -> pd.Dat
                 continue
             P = H + 3 * w
             ho, hp, toff = H_ORDER, H_POS, None
+            if form in ("c", "ctk"):          # his literal target: the average 1-min candle (h/l - 1) of the previous 24 h, from klines
+                j = int(np.searchsorted(kt, t1[p0], side="right"))
+                if j < 1440:
+                    continue
+                toff = float(np.mean(krng[j - 1440:j]))
             if form == "e":
                 toff = float(xl[m0:p0 + 1].min() - H)
                 if toff < w:
@@ -146,7 +156,7 @@ def coin_events(sym: str, lo: str, hi: str, w: float, form: str = "a") -> pd.Dat
             d = P - R
             for kind, lev in (("real", R), ("pl063", P - 0.63 * d), ("pl137", P - 1.37 * d)):
                 for fname, f in FILLS.items():
-                    out = trade(xh, xl, vol, t1, p0, lev, w, f, toff, ho, hp)
+                    out = trade(xh, xl, vol, t1, p0, lev, w, f, toff, ho, hp, form == "ctk")
                     if out is None:
                         continue
                     g, ret, fee = out
@@ -187,7 +197,7 @@ def report(E: pd.DataFrame, sample: str, form: str = "a") -> None:
                 pl = x[x.kind != "real"][["time", "coin", "side", "gross", "cost"]].reset_index(drop=True)
                 if len(real) > 20:
                     L.card(f"M5{form}_w{int(w * 1000)}_{fname}", real, sample, pl,
-                           note=f"form {form}: bid old range high on {w:.1%} range bars after a 3w impulse, fill {fname}, " + ("target +1w maker, stop -2w, 60 min" if form != "e" else "target A = post-breakout low, stop -2w, 6 h") + "; base = placebo levels 0.63x/1.37x")
+                           note=f"form {form}: bid old range high on {w:.1%} range bars after a 3w impulse, fill {fname}, " + {"e": "target A = post-breakout low, stop -2w, 6 h", "c": "target = mean 1-min candle (24 h), maker exit", "ctk": "target = mean 1-min candle (24 h), taker exit on touch"}.get(form, "target +1w maker, stop -2w, 60 min") + "; base = placebo levels 0.63x/1.37x")
         y = E[(E.w == w) & (E.fill == "q250k") & (E.kind == "real")]
         if len(y):
             t = pd.to_datetime(y.time)
