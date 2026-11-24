@@ -430,3 +430,11 @@ do not lead BTC. What he does NOT say: lead at which horizon; any lead must surv
 correlation drop (vs its 30-day mean) and thin-minus-BTC divergence -> next-day BTC |move| and direction. c: 1-min tail asymmetry (down vs up >= 5/8/12 sigma counts) per year.
 N4 done (is3_n4.py): no lead-lag (thin coins do not lead BTC; nothing beyond a 1-bar bounce), correlation drops are no canary, thin-coin divergence points the wrong way (-22 bp, p .03).
  Dumps are sharper than pumps at >= 8 sigma (down/up 1.2-2.0, growing each year) — true, and already what the ladder trades. Closed DEAD for lead-lag.
+
+## N5 empty moves / volume on rallies (think-through 11:58 UTC, before any run)
+Sources wa 18.10.58, 18.11.00(1), 18.10.35(1) ("not much of a squeeze, too little volume, squeeze would be sharp volume candle"), tg:231, 286–287; R6 "a low on thin volume is not a bottom". Pass 2: empty
+5-min moves (low volume) faded +66 bp in 2021–23 but +4 in 2024–26 (unstable). What he does NOT say: 'thin' should be measured by participation (trade count) not notional, because one whale fill
+looks like volume; a drift on falling volume = no sellers (continuation) only if it is a drift (many small bars), not a jump. Fixed: COINS10 1h/4h (and 5-min for a), explore 2021–23, baseline = matched
+(same coin, same move-size bin or same trailing-return decile). d (HL L2 thin-book) waits for L2 history (>= 2026-12-10).
+N5 a/b/c done (is3_n5.py): empty-by-trade-count moves are not refilled; volume on rallies says nothing at 1h/4h; thin-volume lows ARE undercut more (84 vs 75%) but price is higher 24 bars later
+ (+230 vs -3 bp at 4h): the undercut is a stop-run, not a continuation. Candidate idea (not a form yet): buy thin-volume 4h lows with a stop BELOW the likely undercut. N5 d waits for HL L2 history.

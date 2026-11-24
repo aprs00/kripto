@@ -927,29 +927,39 @@
    "group": "A",
    "title": "Empty moves and volume on rallies, remaining forms",
    "src": "R6, R8, R9; wa 18.10.58, 18.11.00(1), 18.10.35(1); tg:231, 286-287",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "empty move measured by trade count per bp instead of volume",
-     "status": "planned"
+     "status": "done",
+     "result": "COINS10 2021-23, 5-min moves >= 4 sigma, 'empty' = trades per bp in the coin's lowest 30-day quintile (5,842): fade 15 min -9.8 bp vs matched normal-participation moves +1.8 (diff -11.6, p .06, MDE 18); 60 min +9.8 vs +9.8. Empty-by-participation moves are not refilled (if anything they continue for 15 min); with pass 2's volume version (unstable) this is the third failed form",
+     "date": "2026-11-24",
+     "evidence": "N5__explore"
     },
     {
      "id": "b",
      "what": "drift up on falling volume (1h/4h, 5-20 bars) keeps going; squeeze without a sharp volume candle fades",
-     "status": "planned"
+     "status": "done",
+     "result": "1h/4h: drift up (10-bar return > 1 sd x sqrt 10) on falling volume vs on rising volume, long 6 bars: 1h +27 vs +23 (diff +4, p .66, MDE 29), 4h +93 vs +97; squeeze bar (>= 2 sd) without a volume candle vs with one, fade 6 bars: 1h -31 vs -31, 4h -122 vs -236 (p .51). Volume on rallies tells nothing at 1h/4h",
+     "date": "2026-11-24",
+     "evidence": "N5__explore"
     },
     {
      "id": "c",
      "what": "low on thin volume in 1h/4h bars is revisited (R6), vs low on heavy volume",
-     "status": "planned"
+     "status": "done",
+     "result": "new 20-bar lows on thin volume (< 24-bar median) vs heavy (>= 2x): undercut within 24 bars 84% vs 75% (1h, p .002), 86% vs 73% (4h, p .002) - R6 descriptively true (a thin low is not THE low) - but the 24-bar return after thin lows is HIGHER: +84 vs +32 bp (1h, p .11), +230 vs -3 (4h, p .03). So 'not a bottom' means a small undercut, not a fall: a long at a thin low has its tight stop hit and still ends up; not matched by the depth of the low (heavy lows are bigger bars), so the undercut gap is partly mechanical",
+     "date": "2026-11-24",
+     "evidence": "N5__explore"
     },
     {
      "id": "d",
      "what": "HL thin-book version with L2 depth (data too short before 2026-12-10: mark and move on)",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "S1",
