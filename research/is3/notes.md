@@ -587,3 +587,16 @@ M4 f think-through (19:0x): tg:206, 216-222 (stored descriptions; BTC range bars
 M4 f/g done (is3_m4f.py 1-h, is3_m4g.py range bars): pitstop -> first green bar = worse than any green bar in the same strong move (4 h -20/-38/-45 bp at >= 3/5/8% moves, MDE 45-98), null -8+-10.
 M4 CLOSED OPEN (MDE rule missed narrowly, every form <= baseline, strongest cells opposite sign). Lesson: across M1-M4, N5 and pass 2, Binance size-bucket footprints consistently read as continuation.
 F1 h done (is3_f1loc.py h): value-location reversal = plain 1-day return reversal (below VAL +4 bp vs return-decile matched, MDE 90). Explains e1's cost (mechanical, not value).
+
+## M5 range -> impulse -> range (think-through 19:0x UTC, before any run)
+Sources re-read (tg:226-234 stored text + vision descriptions, images not re-opened): ETH 1m Apr 2021, range high 2073.9 broken, run to 2082.7, pullback to the old high, bounce "at least one candle";
+ "bid at previous high, ask at average size of that timeframe's candle ... capture spread almost every time"; "1 life, 1 trade"; "works across all rotations, especially range-based ones (tr), from
+ profile levels"; "unless abnormal pressure"; tg:228 the second test wicked THROUGH the level (stop run) before bouncing.
+Mechanism: breakout buyers and stopped shorts leave resting interest at the old range edge; the first retest meets it; the maker earns the bounce + 2 maker fills instead of paying spread.
+What he does NOT say: (1) queue: his bid sits from the breakout on, so he is early in the queue; a fill on a mere touch is plausible only if volume at the level exceeds the queue ahead of him;
+ (2) when the level breaks (tg:228) he holds or stops: unstated -> stop one bar width under, taker; (3) "one attempt" = first touch only; (4) he skips 'abnormal pressure' (crash days).
+Prior: range_retest DEAD on 1-min klines (trade-through fills lose; touch followed by +-1 bp; profile levels = placebo). New here: range bars (his bar type), a queue-volume fill ladder, placebo levels.
+Build (a): micro bars BTC/ETH/SOL 2021-23 -> range bars w = 0.1 / 0.2%. Range = 10 bars inside 3w; breakout close > range high; bid placed when price first reaches range high + 3w (impulse
+ confirmed), lives 2 h, first touch only. Fill ladder: touch / touch + Q notional traded at or below the level (Q = $50k, $250k; pro-rata of each micro bar under the level) / trade-through 1 bp.
+ Exit: maker ask at +1w (one bar), stop at -2w taker, timeout 60 min taker. Fees maker 2 bp, taker 5 bp + 1 bp. Mirror for breakdowns. Placebo levels at 0.63x and 1.37x the distance (same
+ placement time, same fill/exit rules). Change my mind: real - placebo > 0 under the queue fill (Q = $50k) after fees, every year, both sides.

@@ -1352,7 +1352,7 @@
    "group": "B",
    "title": "Range -> impulse -> range on range bars with a real fill model",
    "src": "R19; tg:226-234",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -1383,7 +1383,8 @@
    ],
    "after": [
     "M0"
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "M6",
