@@ -383,3 +383,5 @@ bar at the 30-bar extreme. Camarilla from the prior UTC day (H3/L3 fade, H4/L4 b
 O2 9/13 forms done (is3_o2.py, O2__explore; peak RSS 1.94 GB - at the limit, run alone): none of his indicators beats 'same coin, same past return'. Wrong-way signals: end of an abnormal-selling VZO alert
  is followed by more selling (flow persistence), invalidated exhaustion bars lose at 1h, daily bearish Leledc bars precede rises. Only Hull55 turns at 1h show +9..+20 bp gross (p .03-.11), absent at 4h/1d.
  Bug caught before recording: mixed-side forms with one-sided matched baselines (now asserted in the script). Left: f (Crayons climax labels), g (1-min Fisher), h (regression channel), j (H/W failed extension).
+O2 j done (is3_o2.py j): an H (failed new high in an uptrend) is followed by less upside than ordinary uptrend bars (+28 bp at 6 h, +71 at 24 h on 4h, p .003) but not by a fall: shorts still lose.
+ Feature idea for F2 (trim trend longs after an H), not a trade. O2 left: f, g, h.

@@ -664,8 +664,11 @@
     {
      "id": "j",
      "what": "Crayons H / W (p12-13): failed extension = new n-bar high by the wick, close back below the old high; H at an uptrend high -> fall; W in a downtrend -> continuation, in an uptrend -> only a pause; vs the same wick size away from the extreme (1h, 4h, 1d)",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "Crayons H/W failed extensions (wick to a new 20-bar extreme, close back inside), baseline = same coin, same trend state, same wick-size quintile, not at an extreme: H in an uptrend as a short: 1h -4.0 bp vs matched -31.6 (diff +27.5, p .003, MDE 14), 4h -27 vs -98 (diff +71, p .003), 1d -37 (n.s.). Relative effect real at 1h/4h (a failed new high is followed by LESS upside than an ordinary uptrend bar) but the short itself still loses before costs. W in a downtrend as continuation short: 1h -2.5 diff (n.s.), 24 h +42 (p .04); W in an uptrend (n 86-353) as a pause: long loses vs matched (-67, p .02). Candidate FEATURE only (weaker trend after H) for long books (F2), not a trade",
+     "date": "2026-11-24",
+     "evidence": "O2j__explore"
     },
     {
      "id": "k",

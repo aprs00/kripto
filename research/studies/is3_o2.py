@@ -217,5 +217,55 @@ def run() -> dict:
     return res
 
 
+
+
+def form_j() -> dict:
+    """j Crayons H / W (p12-13): failed extension = the wick makes a new 20-bar high (low) but the close stays below the old high
+    (above the old low). H in an uptrend (ret14 > 0) -> short; W in a downtrend -> short (his 'continuation'); W in an uptrend ->
+    long (his 'only a pause'). Baseline: same coin, bars of the same trend state NOT at a new extreme with the same wick-size
+    quintile (wick / close), same side."""
+    P = panels()
+    res = {}
+    for tf in ("1h", "4h", "1d"):
+        h, l, c = P[tf]["h"], P[tf]["l"], P[tf]["c"]
+        o = c.shift(1)
+        ph, pl = h.shift(1).rolling(20).max(), l.shift(1).rolling(20).min()
+        r14 = c / c.shift(14) - 1
+        uw = (h - np.maximum(c, o)) / c
+        lw = (np.minimum(c, o) - l) / c
+        rows = []
+        for H in HZ[tf]:
+            pass
+        fwd = {H: c.shift(-H) / c - 1 for H in HZ[tf]}
+        def st(mask, wick, side):
+            d = {"ev": mask, "wick": wick, **{f"f{H}": fwd[H] for H in HZ[tf]}}
+            x = pd.concat({k: v.stack(future_stack=True) for k, v in d.items()}, axis=1).reset_index()
+            x.columns = ["time", "coin"] + list(d)
+            return x[(x.time >= LO) & (x.time < HI)].dropna()
+        for nm, ext, wick, trend, side in (("H_uptrend_short", (h > ph) & (c < ph), uw, r14 > 0, -1),
+                                           ("W_downtrend_short", (l < pl) & (c > pl), lw, r14 < 0, -1),
+                                           ("W_uptrend_long", (l < pl) & (c > pl), lw, r14 > 0, 1)):
+            x = st(ext & trend, wick, side)
+            x["ev"] = x.ev.astype(bool)
+            pool_all = st(trend & ~((h > ph) | (l < pl)), wick, side)
+            edges = np.quantile(x.loc[x.ev, "wick"], [0, .2, .4, .6, .8, 1]) if x.ev.sum() > 30 else None
+            if edges is None:
+                res[f"{tf}_{nm}"] = {"n": int(x.ev.sum())}
+                continue
+            edges[-1] += 1; edges[0] = -1
+            ev = x[x.ev].assign(side=side, m=lambda d: pd.cut(d.wick, edges, labels=False))
+            pool = pool_all[pool_all.ev.astype(bool)].assign(side=side, m=lambda d: pd.cut(d.wick, edges, labels=False)).dropna(subset=["m"])
+            base = L.matched(ev, pool, k=3)
+            out = {}
+            for H in HZ[tf]:
+                s = L.stats(ev.assign(gross=ev[f"f{H}"] * side)[["time", "coin", "side", "gross"]], base.assign(gross=base[f"f{H}"] * side)[["time", "coin", "side", "gross"]], reps=300)
+                out[f"f{H}"] = {"n": s["n"], "mean_bp": s["mean_bp"], "matched_bp": s["base_bp"], "diff_bp": s["vs_base_bp"], "p": s["p_vs_base"], "mde_bp": s["mde80_bp"]}
+            res[f"{tf}_{nm}"] = out
+            print(tf, nm, out)
+    (ROOT / "research/is3/O2j__explore.json").write_text(json.dumps(res, indent=1, default=float))
+    return res
+
+
 if __name__ == "__main__":
-    run()
+    import sys
+    form_j() if sys.argv[1:] == ["j"] else run()
