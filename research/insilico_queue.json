@@ -1714,14 +1714,20 @@
     {
      "id": "g",
      "what": "dump with open interest falling (closing / puke) vs rising (new shorts) (wa 18.10.51): 5-min OI change split of all 1-h falls >= 2-4 sigma, 10 coins 2021-12..2023 explore",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "explore 10 coins 2021-12..2023 (BTC 2021-02), 9,355 1-h moves >= 2 sigma, fade 5 min after the hour. Falls by OI change (own 30-d sigma) at 4 h: deciles +20 +15 +7 +4 +4 +6 -1 +10 -20 -39 (falls on falling OI = puke: +17 vs matched +13, diff +4, p .84, MDE 40 -> no extra bounce). Falls on rising OI (top quintile) continue: short 4 h +28.7 vs base -2.6, diff +31 p .15, median -9, ex-top-3 -1.8, 633/984 events and all the gain in 2022 (2021 -46, 2023 +4) -> one regime, not pre-registered. Rises: no OI curve. Null +2.6 bp (se 3.9), causal ok. Variants: 3 features x 2 sides x 3 horizons, quintiles + deciles",
+     "date": "2026-11-24",
+     "evidence": "T5g__curves"
     },
     {
      "id": "h",
      "what": "net longs / net shorts (OI change split by taker sign, his NL / NS panels, 12 templates): price falls while net longs still rise -> trapped longs -> continuation then flush; price rises on net shorts; 10 coins, 5-min OI",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "same 9,355 events, cells sign(dOI) x taker delta toward the move, and 3x3 terciles. His trapped case (fall, OI up, takers buying = against the move) is rare at 1-h scale: 99 events, fade -89 bp at 4 h vs base -11, p .30, MDE 232 -> untestable at this n; terciles (OI up, lowest taker share) -21 bp CI [-78, +49]. Only clear cells: OI up AND takers pushing hard continue at 24 h (falls -102 bp CI [-193, -3], rises -64 [-122, -7]) = aggressive new positions -> 24-h momentum, i.e. the known Binance flow signal, not trapped traders. Verdict: no evidence for trapped-side continuation; NL/NS at 1-h resolution too coarse",
+     "date": "2026-11-24",
+     "evidence": "T5g__curves"
     }
    ],
    "sessions": 1

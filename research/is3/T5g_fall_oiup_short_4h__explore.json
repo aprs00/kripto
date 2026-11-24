@@ -1,0 +1,56 @@
+{
+ "name": "T5g_fall_oiup_short_4h",
+ "sample": "explore",
+ "n": 984,
+ "days": 353,
+ "coins": 10,
+ "mean_bp": 28.73,
+ "median_bp": -9.0,
+ "win": 0.483,
+ "se_bp": 22.39,
+ "ci95_bp": [
+  -16.98,
+  71.0
+ ],
+ "p": 0.20039980009995004,
+ "mde80_bp": 62.68,
+ "mean_ex_top3_bp": -1.8,
+ "top3_share": 1.06,
+ "t_day_mean": -2.02,
+ "by_year": {
+  "2021": [
+   80,
+   -45.75
+  ],
+  "2022": [
+   633,
+   48.53
+  ],
+  "2023": [
+   271,
+   4.46
+  ]
+ },
+ "by_side": {
+  "-1": [
+   984,
+   28.73
+  ]
+ },
+ "coins_positive": 0.8,
+ "net_bp": {
+  "free": 28.73,
+  "maker_taker": 20.73,
+  "taker": 15.73,
+  "taker_x2": 2.73,
+  "crash": -51.27
+ },
+ "base_n": 2952,
+ "base_bp": -2.61,
+ "vs_base_bp": 31.33,
+ "p_vs_base": 0.1504247876061969,
+ "passes": false,
+ "note": "short 4 h after a >= 2 sigma 1-h fall with OI up >= 0.59 sigma; base = same-coin falls with middle OI change",
+ "rerun": "",
+ "at": "2026-11-24T10:53:00+00:00"
+}

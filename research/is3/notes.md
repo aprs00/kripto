@@ -274,3 +274,17 @@ Variants fixed now: (1) rr deciles, no confirmation, entry c[q+1]; (2) + his con
 Horizons 15/60/240 min. Baseline = same coin, same vm decile, rr in the top half (the stated comparator). Kill: low-rr decile not > baseline, or < 13 bp taker.
 T5 f done (is3_t5f.py, T5f__curves): effort WITHOUT result does not bounce (+1.8 bp at 60 min, well powered, MDE 5); effort WITH result does (+17, the climax fade T1 already trades). His confirmation bar
  makes it worse. Slope opposite to his claim. Unstated condition I could imagine (absorption at a level) was already flat in T5a (levels do not move ordinary fades). Not added.
+
+## T5 g/h (think-through 11:00 UTC, before any run)
+Sources: wa 18.10.51 (Jan 21 2022 dump: "almost all selling was closing of positions ... everyone thinks it's too late to short", OI -5.5/-7.7%, "positions placed at the fattest side ...
+puked down for repricing"); tg:199–203 + 12 Exocharts templates with an NL/NS panel (net longs / net shorts = OI change split by taker side); tg:203 "wait for it to rotate ... trapped tards puke
+and u ride the momentum". Mechanism: a fall on FALLING OI = longs leaving (puke: forced sellers done when it stops -> bounce, no fuel left for more); a fall on RISING OI = new shorts (fuel for a
+squeeze later) OR longs adding into the fall (trapped: OI up while takers BUY and price still falls = passive sellers absorb them -> they puke later -> continuation). What he does NOT say:
+which horizon; that the split matters only for LARGE moves; that the trapped side's stops sit just beyond the move (so continuation should show within hours, not days).
+Design fixed now: clock-hour bars from 1-min klines, 10 coins, explore 2021-12..2023 (BTC from 2021-01). Event = |1-h return| >= 2 sigma (30-d hourly sigma, shift 1), both directions, side
+in the FADE direction. Decision 5 min after the hour (OI snapshot lag), simple returns 1/4/24 h. g: curve of the fade by d(OI) over the hour in its own 30-d sigma (dose), plus size dose.
+h: four cells by sign(dOI) x sign(taker delta relative to the move): "trapped" = OI up and takers leaning AGAINST the move (buying a fall); claim: trapped -> continuation (fade loses).
+Baseline: same coin, same move-size bin, other cells (matched). Kill: no monotone dOI curve and no cell differing from its matched baseline by > 13 bp at 4 h.
+T5 g/h done (is3_t5g.py, T5g__curves; explore card T5g_fall_oiup_short_4h, not pre-registered): puke falls (OI down) bounce like any fall. Falls on rising OI continue (-39 bp top decile at 4 h)
+ but only in 2022 and ex-top-3 ≈ 0. Trapped cells (OI up, takers against the move) have 99–339 events at the 1-h scale: MDE > 200 bp. What would make NL/NS work: minute-scale OI (we only have 5-min
+ snapshots) and range bars as on his footprint; the 24-h continuation of 'OI up + takers pushing' is the flow-momentum effect already known.
