@@ -927,7 +927,7 @@
    "group": "A",
    "title": "Empty moves and volume on rallies, remaining forms",
    "src": "R6, R8, R9; wa 18.10.58, 18.11.00(1), 18.10.35(1); tg:231, 286-287",
-   "status": "wip",
+   "status": "todo",
    "forms": [
     {
      "id": "a",
@@ -968,7 +968,9 @@
      "evidence": "N5e_thin_low_long_4h__confirmC"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "due": "2026-12-10T06:00",
+   "defer_why": "form d needs HL L2 history (collector since 2026-11-09; usable from 12-10)"
   },
   {
    "id": "S1",

@@ -440,3 +440,6 @@ N5 a/b/c done (is3_n5.py): empty-by-trade-count moves are not refilled; volume o
  (+230 vs -3 bp at 4h): the undercut is a stop-run, not a continuation. Candidate idea (not a form yet): buy thin-volume 4h lows with a stop BELOW the likely undercut. N5 d waits for HL L2 history.
 N5 e (added, tested once): thin-volume 4h lows passed explore even under the per-year rule (all 3 years positive) and failed both confirms (-24, -9.5 bp). Third 2021-heavy explore that died in confirm today:
  the per-year rule is necessary but not sufficient when one year carries most of the magnitude. Next session: N5 d waits (HL L2 >= 2026-12-10); M-items need M0c; then F0/F1/F2 (two 'trend tiring' features to test as filters), X1, L2 (due 12-05), N2 (spot data landing).
+Units at session end (12:00 UTC): is3-m0 (M0c: BTC 2024-01..2026-10 done 1035/1035, ETH 103, SOL 0; ends ~12:24, restart with the M0 command, --start 2024-01-01 --end 2026-10-31; then rerun
+ is3_m0b to extend mbars_bad_days.json), is3-n2 (spot 1h, 7/30 symbols so far; ends <= 12:33; restart: systemctl --user reset-failed is3-n2; systemd-run --user --unit is3-n2 -p Nice=19 -p MemoryMax=800M
+ -p RuntimeMaxSec=2700 --working-directory=$HOME/kripto .venv/bin/python -m research.studies.is3_n2_download — resumable).
