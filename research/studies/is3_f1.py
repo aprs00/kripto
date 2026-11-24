@@ -30,7 +30,7 @@ def spike_high_mask(p: dict, k: float) -> pd.DataFrame:
 
 def touched(w: pd.DataFrame, mask, side: int, sample: str) -> float:
     ww = F.apply(w, mask, side)
-    a, b = F.cut((w.abs().sum(1)), sample), F.cut(((w - ww).abs().sum(1)), sample)
+    a, b = F.cut(w.abs().sum(axis=1), sample), F.cut((w - ww).abs().sum(axis=1), sample)
     return round(float(b.sum() / a.sum()), 4)
 
 
@@ -49,5 +49,26 @@ def explore() -> None:
                     note=f"block longs at a 20-day high on volume >= {k}x; weight touched {touched(w, m, 1, 'explore')}")
 
 
+def rsi(c: pd.DataFrame, n: int = 14) -> pd.DataFrame:
+    d = c.diff()
+    up, dn = d.clip(lower=0).ewm(alpha=1 / n, adjust=False).mean(), (-d.clip(upper=0)).ewm(alpha=1 / n, adjust=False).mean()
+    return 100 - 100 / (1 + up / dn.replace(0, np.nan))
+
+
+def explore_d() -> None:
+    """R29: an oscillator pinned at an extreme is trend, so never fade it: block shorts while RSI(14) >= hi, block longs while RSI <= lo."""
+    for name, prm in BOOKS.items():
+        w, p, s = F.book(name, "bnall", prm)
+        R = rsi(p["close"])
+        for hi, n in ((70, 200), (80, 50)):
+            m = ~(R >= hi)
+            F.judge(f"F1d_{name}_noshort_rsi{hi}", w, p, s, m, "explore", side=-1, n_random=n,
+                    note=f"block shorts while RSI14 >= {hi}; weight touched {touched(w, m, -1, 'explore')}")
+        for lo, n in ((30, 200), (20, 50)):
+            m = ~(R <= lo)
+            F.judge(f"F1d_{name}_nolong_rsi{lo}", w, p, s, m, "explore", side=1, n_random=n,
+                    note=f"block longs while RSI14 <= {lo}; weight touched {touched(w, m, 1, 'explore')}")
+
+
 if __name__ == "__main__":
-    {"explore": explore}[sys.argv[1]]()
+    {"explore": explore, "d": explore_d}[sys.argv[1]]()

@@ -1055,7 +1055,7 @@
    "group": "B",
    "title": "Data: micro move bars from aggTrades",
    "src": "tg:103-107",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -1076,12 +1076,18 @@
     {
      "id": "c",
      "what": "BTC ETH SOL 2024-01..2026-10",
-     "status": "planned"
+     "status": "done",
+     "result": "BTC ETH SOL 2024-01..2026-10 built (all three 2130 days 2021-01-01..2026-10-31). Reconciled vs 1-min klines (is3_m0b rerun): bad days BTC 18, ETH 20, SOL 32 total; new ones cluster in 2026-05-09..06-08 (13 BTC, 13 ETH, 19 SOL days: archive volume off > 0.1%) plus 2024-10-28, 2025-01-14, 2025-01-29, SOL 2025-07-16 (+72%), 2026-10-27; all in mbars_bad_days.json, dropped by every M-form. Bars/day median 2024/25/26: BTC 749/379/415, ETH 971/1506/826, SOL 1800/1459/929. Note: the vault (2026) loses ~a month of May-June per coin",
+     "date": "2026-11-24",
+     "evidence": "M0b__reconcile"
     }
    ],
    "sessions": 1,
    "due": "2026-11-24T17:30",
-   "defer_why": "M0c SOL 2024-01..2026-10 running in is3-m0 (restarted 16:47), then rerun is3_m0b"
+   "defer_why": "M0c SOL 2024-01..2026-10 running in is3-m0 (restarted 16:47), then rerun is3_m0b",
+   "verdict": "OPEN",
+   "reason": "data item, no hypothesis: micro move bars for BTC ETH SOL 2021-01..2026-10 built and reconciled to 1-min klines; bad-day list complete; confirmT (2024-25) and vault (2026) usable for M-forms",
+   "closed": "2026-11-24"
   },
   {
    "id": "M1",
@@ -1456,7 +1462,7 @@
    "group": "C",
    "title": "Filters and features for flow / xsmom / xsmom_k (Binance)",
    "src": "R1, R8, R13, R29, P5, T6, L5",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -1491,7 +1497,8 @@
    ],
    "after": [
     "F0"
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "F2",

@@ -538,3 +538,4 @@ b (L5 / liquidation-fade lesson): after a cascade day the market bounces (liquid
 c (R8 "a volume spike into highs = ran into sellers"): block longs in a coin whose close is its 20-day high on volume >= 3x its 20-day median (dose 2x/5x).
 What he does not say: both are about WHO is trapped (late shorts after a flush, breakout chasers at a high); the filters only help if the book actually holds those positions on those days, so
  report how much weight the mask touches. Pass = dSR > 0 at >= 95th percentile of random masks, and the same sign in each explore year.
+M0 closed (17:2x): c done, all three coins 2130 days to 2026-10-31; bad days now BTC 18 / ETH 20 / SOL 32, most new ones 2026-05-09..06-08 (archive volume mismatch) -> the vault loses about a month.
