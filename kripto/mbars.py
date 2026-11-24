@@ -89,7 +89,10 @@ def vap(b: dict, bin_bp: float = 10.0) -> tuple[np.ndarray, np.ndarray, np.ndarr
 def load(symbol: str, start: str, end: str) -> dict:
     """Micro bars of all stored days in [start, end), concatenated in time order."""
     fs = [f for f in sorted((DIR / symbol).glob("????-??-??.npz")) if start <= f.stem < end]
-    parts = [np.load(f) for f in fs]
+    parts = []
+    for f in fs:                      # read eagerly: a lazy NpzFile keeps its file open (EMFILE after ~1000 days in a systemd unit)
+        with np.load(f) as z:
+            parts.append({k: z[k] for k in z.files})
     if not parts:
         raise FileNotFoundError(f"no micro bars for {symbol} {start}..{end} in {DIR}")
-    return {k: np.concatenate([z[k] for z in parts]) for k in parts[0].files}
+    return {k: np.concatenate([z[k] for z in parts]) for k in parts[0]}
