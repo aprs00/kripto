@@ -413,3 +413,5 @@ same trailing-14-day return decile (O1 harness). Remaining forms (a, c, d, g–k
 N3 b/e/f done (is3_n3d.py, is3_n3d_card.py): absorption passed explore (+146 bp vs matched over 5 d, dose monotone, 2 of 3 years) and failed both confirms (2024-25 -72, unseen coins +47 p .27).
  Second filter-like idea today that lived on 2021-22 only. Pattern worth keeping in mind: daily explore cards dominated by 2021 rarely survive; ask for every explore year to be positive vs matched before
  pre-registering a daily form (O1e and N3f both had one null/negative explore year). Remaining N3 forms: a, c, d, g, h, i, j, k.
+N3 c/i/j done (is3_n3m.py): delta-flip change of character too rare (48 at 1h); HTF trend filter makes no significant difference to 1-h momentum (+5 bp, MDE 10), as he claims; painted last
+ minutes are not faded (the push continues, same as at minutes 25-30). N3 left: a, d, g, h, k.

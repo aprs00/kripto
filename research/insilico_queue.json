@@ -799,7 +799,10 @@
     {
      "id": "c",
      "what": "change of character: delta flips from stable negative to stable positive (6+6 bars, 1h/4h)",
-     "status": "planned"
+     "status": "done",
+     "result": "COINS10 2021-23, taker delta negative for 6 bars then positive for 6 bars (and mirror): rare (48 events at 1h, 13 at 4h over 10 coins x 3 years); 1h long -9 bp vs matched +27 (p .29, MDE 57), short +21 (MDE 291); 4h n 13. Too few events for a verdict at this strictness; a looser flip (4+4) would be a new form",
+     "date": "2026-11-24",
+     "evidence": "N3m__explore"
     },
     {
      "id": "d",
@@ -838,14 +841,20 @@
     {
      "id": "i",
      "what": "claim 'higher timeframe trend as filter is false' (tg:196): 1h momentum / reversal signals split by daily-trend agreement, vs unsplit; what the claim predicts = no difference",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "1h momentum (sign of 24-h return, held 6 h, non-overlapping, 43,676 decisions): agreeing with the 20-day trend +3.5 bp vs disagreeing -1.7 (diff +5.2, p .31, MDE 9.8); unsplit +1.0 bp. His claim (HTF trend filter does not help) is consistent with the data: no significant difference; 1-h momentum itself is ~0",
+     "date": "2026-11-24",
+     "evidence": "N3m__explore"
     },
     {
      "id": "j",
      "what": "last minutes painted (wa 18.10.50(1)): price push in the last 5 min of an hour (or of the UTC day) on below-median volume AND against that hour's taker delta -> reversal next hour; placebo = the same push at minutes 25-30",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "last 5 minutes of an hour pushed >= 1.5 sd on below-median volume against the hour's taker delta, faded over 60 min: -15.4 bp (n 2,319) vs the same setup at minutes 25-30 -25.3 (n 2,409): diff +9.9, p .44, MDE 20. Both fades lose (the push continues); the hour's end is not special",
+     "date": "2026-11-24",
+     "evidence": "N3m__explore"
     },
     {
      "id": "k",

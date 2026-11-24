@@ -1,0 +1,57 @@
+{
+ "c_1h_up": {
+  "n": 48,
+  "mean_bp": -9.34,
+  "matched_bp": 27.09,
+  "diff_bp": -36.43,
+  "p": 0.28542914171656686,
+  "mde_bp": 57.24
+ },
+ "c_1h_dn": {
+  "n": 48,
+  "mean_bp": -18.86,
+  "matched_bp": -39.42,
+  "diff_bp": 20.55,
+  "p": 0.8263473053892215,
+  "mde_bp": 291.48
+ },
+ "c_4h_up": {
+  "n": 13,
+  "mean_bp": 221.77,
+  "matched_bp": -42.79,
+  "diff_bp": 264.57,
+  "p": 0.2774451097804391,
+  "mde_bp": 640.18
+ },
+ "c_4h_dn": {
+  "n": 13,
+  "mean_bp": -29.66,
+  "matched_bp": 28.69,
+  "diff_bp": -58.35,
+  "p": 0.6966067864271457,
+  "mde_bp": 405.38
+ },
+ "i_1h_momentum_agree_vs_disagree_daily_trend": {
+  "n_agree": 22615,
+  "agree_bp": 3.48,
+  "n_disagree": 21061,
+  "disagree_bp": -1.73,
+  "diff_bp": 5.21,
+  "p": 0.313373253493014,
+  "mde_bp": 9.77
+ },
+ "i_1h_momentum_unsplit": {
+  "n": 43676,
+  "mean_bp": 0.97,
+  "p": 0.6806387225548902
+ },
+ "j_painted_last5_fade_60m": {
+  "n": 2319,
+  "mean_bp": -15.36,
+  "placebo_bp": -25.3,
+  "n_placebo": 2409,
+  "diff_bp": 9.94,
+  "p": 0.4355644355644356,
+  "mde_bp": 19.78
+ }
+}
