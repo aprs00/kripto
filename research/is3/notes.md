@@ -307,3 +307,14 @@ vs mirror; same for the most-traded third (his "slip thru high volume" predicts 
 P1 done (is3_p1.py, is3_p1cg.py): the opposite of gap fill at both scales. Next day / next hour put LESS volume into the prior period's thin third (-0.86 / -0.43 pp vs the same bins mirrored around
  the open) and MORE into its busy third (+2.5 / +1.2 pp); thinnest bins most avoided (dose runs the wrong way). Valleys of bimodal days, LVN first passage (49–50%), delta gaps (= volume once volume
  is controlled) and 'approached but not filled' (n 198, toward not away, p .3) add nothing. Unstated condition tried: valley between humps (his picture), hourly salad (his thread). Closed DEAD.
+
+## P2 balance laws / session profiles (think-through 11:05 UTC, before any run)
+Sources: tg:288 (his "10 laws of market dynamics" table: accept into balance -> other side; edges reject until proven; imbalance seeks an older POC; what doesn't happen matters), tg:52–57
+(Mar 12 2021: "lot of time? lot of volume? leggo" — fat TPO+volume at the lows -> up, at the highs -> down; "always buyers at the top, sellers at bottom, mostly stops blew" = trapped), tg:49–50
+(time and volume POCs disagree -> "fuckery brewing"), tg:15 (session TPOs with IB, R/F), tg:133–134 (tails vs single prints differ), tg:253–254 (R/F 0 = symmetric normal profile).
+What he does NOT say but must be doing: he reads a balance as a multi-day composite (days whose value overlaps), so an "edge" is the composite's extreme, not yesterday's VAH (pass 2 already
+killed yesterday's VAH/VAL/POC as levels); an edge holds while the trapped side's stops are not yet run, so the claim is conditional on how much time built up there (law: time at the edge ->
+break). Distance confound again: compare every level with the same construction from 8 days earlier moved to today's price (pass-2 placebo), and report first-passage odds vs random walk.
+Order (budget): a + b in one harness (3-day overlapping-value composites, first touch of its high/low from inside, reject = back 0.25 width inside before 0.25 beyond, and the build count of
+the 6 prior half-hours near that edge as b's dose), then g (poor vs tailed lows, retest within 5 d, matched by distance), f (close through the 20-d composite POC vs through the 20-d median close),
+j (session IB first touch vs 37% offset), i (TPO POC vs volume POC gap -> next-day range). Explore COINS10 2021–23 only.

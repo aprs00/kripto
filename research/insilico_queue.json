@@ -162,12 +162,18 @@
     {
      "id": "a",
      "what": "edges reject until proven: first touch of a multi-day balance's edge from inside, vs placebo edge",
-     "status": "planned"
+     "status": "done",
+     "result": "explore COINS10 2021-23: 3-day balances (common value band), day 4 opens inside, first touch of the composite high/low (median width 8.1%): back 0.25 w inside before 0.25 w beyond 43.1% (n 1,994; random walk 50%) vs 47.3% for the 8-days-earlier balance moved to today's price (n 2,158): diff -4.2 pp, p .035, MDE 4.2 pp; 60-min return back inside +2.0 bp vs +3.8 (p .68, MDE 15). Edges of a real balance BREAK more often than chance, the opposite of 'edges reject until proven'",
+     "date": "2026-11-24",
+     "evidence": "P2ab__explore"
     },
     {
      "id": "b",
      "what": "time/volume building at an edge -> break: >= 4 of 6 half-hours within 0.15 x width of the edge, then direction of the next move",
-     "status": "planned"
+     "status": "done",
+     "result": "same 1,994 real touches by build (half-hours of the 6 before the touch closing within 0.15 w of the edge): reject 45.6 / 40.4 / 42.0 / 46.3 / 45.8% for build 0/1/2/3/4+ (placebo 47-50% flat): no dose; time building at the edge does not raise the break rate (if anything the most-built edges break least). r60 -8 bp at build 4+ (n 491) within noise",
+     "date": "2026-11-24",
+     "evidence": "P2ab__explore"
     },
     {
      "id": "c",
