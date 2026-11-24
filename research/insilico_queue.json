@@ -904,7 +904,7 @@
    "forms": [
     {
      "id": "a",
-     "what": "daily, adaptive buckets: quantiles of the PREVIOUS DAY's sizes as primary (S2b4: tg:205 'Days back for AI levels = 1'), previous 30 d as the variant",
+     "what": "daily, adaptive buckets: quantiles of the PREVIOUS DAY's sizes as primary (S2b4: tg:205 'Days back for AI levels = 1'), previous 30 d as the variant [T2b: the SIGN rule is the base rate (54% of >= -3% BTC days have all 7 buckets negative, no forward difference), so score the MAGNITUDE: min / large-bucket delta share as dose, not the all-negative flag]",
      "status": "planned"
     },
     {
@@ -1511,8 +1511,11 @@
     {
      "id": "b",
      "what": "feature vector at each example (about 25 features: fall, speed, volume decay, retrace of the first 1/2/3 min, taker share, trade count, location vs prior-day / week / POC, hour, trend, breadth, premium, OI) vs all similar moments: which unstated features are extreme in ALL his examples?",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "daily family (4 M4e capitulation days vs 211 BTC down days <= -3%, 2021-02..2026-10, 15 features incl. author7 TSize): NO feature extreme in all 4 vs down days; vs all days only ret/dd5/dd20 (= 'a down day in a drawdown'). 'All buckets negative' is the norm, not the anomaly: 54% of >= -3% days have 7/7 negative, 77% >= 6; next-3d +0.51% (7/7) vs +0.55% (<7), up 58% vs 59%. Only the MAGNITUDE (min bucket delta share) can carry M4e: extreme only on 2021-11-26 (6th pct). Stay-out day 2021-09-21 had the fewest negative buckets (5, 6th pct) and still rallied. Minute examples (4, 3 different families) not pooled: too few per family. Exploration on full sample, not a test",
+     "date": "2026-11-24",
+     "evidence": "T2b__daily"
     },
     {
      "id": "c",

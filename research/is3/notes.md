@@ -215,3 +215,6 @@ every minute of the same coin-month (placebo distribution, percentile). No verdi
 T2 a done (research/studies/is3_t2a.py, T2a__table.json): 10 examples, 8 tradable with minute data. His winners are good but not freakish: +1 d +3.5% mean, median 79th pct of their month's
  minutes (60 min: 87th). Counterexample: his 'Issa fart, not a bottom' stay-out (2021-09-21) rallied +6.9% next day. The 4 daily M4e days (all buckets negative) +1 d +3.6% mean, 4/4 > 0 at 3 d.
  Next: T2b feature vector (needs taker share / trade count / location per example; 1-min klines have n and tbqv → enough for a first pass on the 4 minute-level examples).
+T2 b done (is3_t2b.py, T2b__daily.json): nothing distinguishes his 4 capitulation days from other >= -3% down days. 'All buckets negative' happens on 54% of such days and adds nothing
+ (next 3 d +0.51% vs +0.55%). M4a reworded: dose = magnitude of the negative bucket shares, not the sign. Minute examples not pooled (3 families, 1–2 each). Next: T2c analogs (daily family: nearest
+ neighbours in feature space on 2021–23 down days excluding his 4, forward 1–5 d vs random down days of the same size).
