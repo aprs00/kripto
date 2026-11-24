@@ -1,0 +1,31 @@
+{
+ "name": "F0_known_oracle_flow",
+ "sample": "explore",
+ "side": null,
+ "on_share": 0.987,
+ "base": {
+  "sr": 1.582424239123744,
+  "ann": 0.3521987575566836,
+  "mdd": -0.23519443530744344,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 21.308309660209407,
+  "ann": 6.664130161307814,
+  "mdd": -0.0028507225173113326,
+  "days": 1095
+ },
+ "dSR": 19.726,
+ "dMDD": 0.2323,
+ "p_daily_diff": 0.0004997501249375312,
+ "n_random": 200,
+ "pct_dSR_vs_random": 1.0,
+ "random_dSR_q05_q50_q95": [
+  -0.606,
+  -0.256,
+  0.088
+ ],
+ "pct_dMDD_vs_random": 1.0,
+ "note": "look-ahead oracle on the real flow book: MUST pass",
+ "passes": true
+}

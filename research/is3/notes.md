@@ -524,3 +524,8 @@ M2 b confirmT (17:1x): +65 bp vs matched (p .047, n=202, both years, every coin 
 M3 c/d done, M3 closed DEAD (17:1x): trapped small sellers no dose (MDE 51), large sellers below the level were right; volume at the bar's extreme = slight continuation (MDE 11). Pattern across
  N5, M1, M2, M3: on Binance 2021+ every 'trap / exhaustion / capitulation' footprint read either equals its baseline or reduces to the crash-day liquidation fade. Remaining M-items (M4-M7) should
  be judged with that prior: test the crash-day share FIRST (top-3-day share and the result with 2021-05-19, 2022-05/06, 2022-11, 2024-04-13, 2024-08-05, 2025-02-03, 2025-10-10 removed).
+
+## F0 filter harness (17:2x)
+Built research/studies/is3_filter.py + tests/test_is3_filter.py (4 known-answer tests pass). Usage: w, panel, slip = F.book(strategy, dataset, params); F.judge(name, w, panel, slip, mask, sample, side=None|+1|-1).
+ One judge = 201 backtests (~4.5 min, 0.56 GB on bnall 1d flow): run F1/F2 judges in a unit if more than two. Real-book check: a random 80% mask cut flow's mdd -23.5% -> -16.4% at the 87th percentile
+ of random masks (not a pass): every 'it cut the drawdown' claim must be read against that. Random masks' median dSR -0.24: cutting names costs Sharpe, so the bar is relative, not 0.

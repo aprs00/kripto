@@ -1427,19 +1427,28 @@
    "group": "C",
    "title": "Filter harness: does a signal improve a book that already works?",
    "src": "design.md §4 (filters)",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "research/studies/is3_filter.py: book daily weights x coin-day or day mask -> SR / mdd / turnover difference with block bootstrap, explore <= 2023, confirm 2024-25; known-answer tests",
-     "status": "planned"
+     "status": "done",
+     "result": "research/studies/is3_filter.py: book weights x coin-day/day mask (side-specific option), re-run through kripto.backtest with its slippage and funding; SR/ann/mdd per sample, paired 20-day block bootstrap of the daily diff. tests/test_is3_filter.py: identity, random-mask invariants, oracle wins / random does not, side masks. Real book (flow, bnall 1d, explore): look-ahead oracle SR 1.58 -> 21.3, 100th pct of random masks, passes",
+     "date": "2026-11-24",
+     "evidence": "F0_known_oracle_flow__explore"
     },
     {
      "id": "b",
      "what": "baseline: 200 random masks with the same on-share and persistence (a filter must beat those)",
-     "status": "planned"
+     "status": "done",
+     "result": "200 random masks per filter, each coin's mask circularly shifted (same on-share and run lengths); pass = dSR > 0 and >= 95th percentile. Real flow book: a random 80%-on mask in 10-day runs cut mdd -23.5% -> -16.4% and SR 1.58 -> 1.62 yet sits at the 87th percentile (p daily diff .82): does not pass. Random masks' median dSR -0.24 (cutting names costs Sharpe). One judge = 201 backtests, ~4.5 min, 0.56 GB on bnall daily",
+     "date": "2026-11-24",
+     "evidence": "F0_known_random_flow__explore"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "tool item, no hypothesis: harness built and verified on known answers (oracle passes, random fails; a random mask alone cut the drawdown by 7 points, which is why every filter is judged against 200 same-share same-persistence masks). Verdicts belong to F1/F2/X1",
+   "closed": "2026-11-24"
   },
   {
    "id": "F1",
