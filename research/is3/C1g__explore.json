@@ -1,0 +1,84 @@
+{
+ "g_down_friday_down_monday": {
+  "explore_BTC_f5": {
+   "n_downfri_downmon": 43,
+   "fwd_bp": 162.75,
+   "vs_matched_two_down_days_bp": -77.54,
+   "diff_bp": 240.29,
+   "p": 0.061938061938061936,
+   "mde_bp": 273.73,
+   "downfri_upmon_fwd_bp": -158.99,
+   "n_downfri_upmon": 34
+  },
+  "explore_BTC_f20": {
+   "n_downfri_downmon": 43,
+   "fwd_bp": 481.6,
+   "vs_matched_two_down_days_bp": 216.9,
+   "diff_bp": 264.69,
+   "p": 0.35764235764235763,
+   "mde_bp": 614.32,
+   "downfri_upmon_fwd_bp": -145.6,
+   "n_downfri_upmon": 34
+  },
+  "later_BTC_f5": {
+   "n_downfri_downmon": 22,
+   "fwd_bp": 95.44,
+   "vs_matched_two_down_days_bp": 172.54,
+   "diff_bp": -77.1,
+   "p": 0.6373626373626373,
+   "mde_bp": 336.48,
+   "downfri_upmon_fwd_bp": -3.31,
+   "n_downfri_upmon": 30
+  },
+  "later_BTC_f20": {
+   "n_downfri_downmon": 22,
+   "fwd_bp": 214.51,
+   "vs_matched_two_down_days_bp": 483.25,
+   "diff_bp": -268.74,
+   "p": 0.4015984015984016,
+   "mde_bp": 721.07,
+   "downfri_upmon_fwd_bp": 297.34,
+   "n_downfri_upmon": 30
+  },
+  "explore_EW30_f5": {
+   "n_downfri_downmon": 33,
+   "fwd_bp": 357.37,
+   "vs_matched_two_down_days_bp": 198.59,
+   "diff_bp": 158.78,
+   "p": 0.5444555444555444,
+   "mde_bp": 504.03,
+   "downfri_upmon_fwd_bp": -132.76,
+   "n_downfri_upmon": 32
+  },
+  "explore_EW30_f20": {
+   "n_downfri_downmon": 33,
+   "fwd_bp": 346.22,
+   "vs_matched_two_down_days_bp": 379.5,
+   "diff_bp": -33.28,
+   "p": 0.954045954045954,
+   "mde_bp": 1126.08,
+   "downfri_upmon_fwd_bp": 326.29,
+   "n_downfri_upmon": 32
+  },
+  "later_EW30_f5": {
+   "n_downfri_downmon": 26,
+   "fwd_bp": 147.37,
+   "vs_matched_two_down_days_bp": -4.08,
+   "diff_bp": 151.45,
+   "p": 0.5704295704295704,
+   "mde_bp": 660.91,
+   "downfri_upmon_fwd_bp": 45.12,
+   "n_downfri_upmon": 27
+  },
+  "later_EW30_f20": {
+   "n_downfri_downmon": 26,
+   "fwd_bp": 243.66,
+   "vs_matched_two_down_days_bp": -177.97,
+   "diff_bp": 421.63,
+   "p": 0.41358641358641357,
+   "mde_bp": 1202.49,
+   "downfri_upmon_fwd_bp": -199.4,
+   "n_downfri_upmon": 27
+  }
+ }
+}

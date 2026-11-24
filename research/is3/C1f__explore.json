@@ -1,0 +1,104 @@
+{
+ "f_pre_us_holiday": {
+  "explore_BTC": {
+   "n_days": 36,
+   "mean_bp": 38.93,
+   "rest_bp": 8.23,
+   "diff_bp": 30.7,
+   "p": 0.5814185814185814,
+   "mde_bp": 155.71
+  },
+  "explore_EW30": {
+   "n_days": 36,
+   "mean_bp": 170.21,
+   "rest_bp": 10.13,
+   "diff_bp": 160.08,
+   "p": 0.07292707292707293,
+   "mde_bp": 244.51
+  },
+  "later_BTC": {
+   "n_days": 24,
+   "mean_bp": -0.57,
+   "rest_bp": 13.53,
+   "diff_bp": -14.1,
+   "p": 0.8281718281718282,
+   "mde_bp": 182.66
+  },
+  "later_EW30": {
+   "n_days": 24,
+   "mean_bp": -118.94,
+   "rest_bp": -12.71,
+   "diff_bp": -106.23,
+   "p": 0.44455544455544455,
+   "mde_bp": 376.29
+  }
+ },
+ "f_triple_witching_week_mon_fri": {
+  "explore_BTC": {
+   "n_days": 60,
+   "mean_bp": -27.32,
+   "rest_bp": 11.36,
+   "diff_bp": -38.68,
+   "p": 0.46153846153846156,
+   "mde_bp": 144.77
+  },
+  "explore_EW30": {
+   "n_days": 60,
+   "mean_bp": -2.87,
+   "rest_bp": 16.45,
+   "diff_bp": -19.32,
+   "p": 0.7712287712287712,
+   "mde_bp": 177.93
+  },
+  "later_BTC": {
+   "n_days": 40,
+   "mean_bp": -5.54,
+   "rest_bp": 14.15,
+   "diff_bp": -19.69,
+   "p": 0.5684315684315684,
+   "mde_bp": 95.83
+  },
+  "later_EW30": {
+   "n_days": 40,
+   "mean_bp": -92.84,
+   "rest_bp": -11.76,
+   "diff_bp": -81.08,
+   "p": 0.24575424575424576,
+   "mde_bp": 191.02
+  }
+ },
+ "f_week_after_triple_witching": {
+  "explore_BTC": {
+   "n_days": 60,
+   "mean_bp": 26.92,
+   "rest_bp": 8.22,
+   "diff_bp": 18.7,
+   "p": 0.7152847152847153,
+   "mde_bp": 134.25
+  },
+  "explore_EW30": {
+   "n_days": 60,
+   "mean_bp": 60.46,
+   "rest_bp": 12.78,
+   "diff_bp": 47.69,
+   "p": 0.5384615384615384,
+   "mde_bp": 214.52
+  },
+  "later_BTC": {
+   "n_days": 40,
+   "mean_bp": -24.85,
+   "rest_bp": 15.26,
+   "diff_bp": -40.11,
+   "p": 0.3676323676323676,
+   "mde_bp": 121.81
+  },
+  "later_EW30": {
+   "n_days": 40,
+   "mean_bp": -8.83,
+   "rest_bp": -16.62,
+   "diff_bp": 7.8,
+   "p": 0.9250749250749251,
+   "mde_bp": 196.17
+  }
+ }
+}

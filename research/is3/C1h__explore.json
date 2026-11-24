@@ -1,0 +1,18 @@
+{
+ "h_tax_loss": {
+  "dec_spreads_bp": {
+   "2022": -604.4,
+   "2025": -1370.6
+  },
+  "dec_mean_bp": -987.5,
+  "other_months_mean_bp": -347.8,
+  "other_months_sd_bp": 989.2,
+  "n_dec": 2,
+  "n_other": 15,
+  "dec_rank_among_all_months_pct": [
+   0.294,
+   0.176
+  ],
+  "mde_bp_for_mean_of_n_dec": 1958.6
+ }
+}

@@ -73,3 +73,4 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * T5 1-min bounces/continuations by context: OPEN. Ordinary shocks are noise (+2 bp, no context helps); absorption bars do not bounce (claim reversed); up-spikes >= 8σ with breadth continue (confirmed on coins p .009, not on time p .075, tail-driven).
 * P1 gap fill: DEAD. The reverse is true: the next day/hour trades more where the prior traded most (+2.5 / +1.2 pp vs mirror) and avoids its thin zones; valleys, LVNs, delta gaps = placebo.
 * P2 balance laws, session profiles, poor lows, fat nodes: DEAD (12 forms). Real balance/IB edges, naked POCs and single prints are broken or skipped slightly MORE than placebo levels; 80% rule = random walk (pass-2 bias corrected).
+* C1 calendar: OPEN (MDE rule), practically nothing: 0 of 176 cells survive FDR; FOMC / first-of-month / turn-of-month +60..+220 bp/day at p .05-.07 but below their MDEs; lunar flips sign.

@@ -1,0 +1,172 @@
+{
+ "e_september": {
+  "explore_BTC": {
+   "n_days": 90,
+   "mean_bp": -2.81,
+   "rest_bp": 10.32,
+   "diff_bp": -13.13,
+   "p": 0.6973026973026973,
+   "mde_bp": 91.78
+  },
+  "explore_EW30": {
+   "n_days": 90,
+   "mean_bp": -2.93,
+   "rest_bp": 17.03,
+   "diff_bp": -19.96,
+   "p": 0.6663336663336663,
+   "mde_bp": 131.22
+  },
+  "later_BTC": {
+   "n_days": 60,
+   "mean_bp": 22.2,
+   "rest_bp": 12.25,
+   "diff_bp": 9.95,
+   "p": 0.7022977022977023,
+   "mde_bp": 63.44
+  },
+  "later_EW30": {
+   "n_days": 60,
+   "mean_bp": 36.24,
+   "rest_bp": -20.88,
+   "diff_bp": 57.13,
+   "p": 0.2177822177822178,
+   "mde_bp": 123.84
+  }
+ },
+ "e_santa_dec25_jan2": {
+  "explore_BTC": {
+   "n_days": 27,
+   "mean_bp": 6.38,
+   "rest_bp": 9.31,
+   "diff_bp": -2.94,
+   "p": 0.951048951048951,
+   "mde_bp": 138.77
+  },
+  "explore_EW30": {
+   "n_days": 27,
+   "mean_bp": 1.15,
+   "rest_bp": 15.75,
+   "diff_bp": -14.6,
+   "p": 0.7812187812187812,
+   "mde_bp": 143.32
+  },
+  "later_BTC": {
+   "n_days": 18,
+   "mean_bp": 25.97,
+   "rest_bp": 12.74,
+   "diff_bp": 13.23,
+   "p": 0.7562437562437563,
+   "mde_bp": 120.09
+  },
+  "later_EW30": {
+   "n_days": 18,
+   "mean_bp": -9.08,
+   "rest_bp": -16.38,
+   "diff_bp": 7.3,
+   "p": 0.945054945054945,
+   "mde_bp": 216.37
+  }
+ },
+ "e_may_to_october": {
+  "explore_BTC": {
+   "n_days": 552,
+   "mean_bp": -1.09,
+   "rest_bp": 19.74,
+   "diff_bp": -20.83,
+   "p": 0.2867132867132867,
+   "mde_bp": 40.71
+  },
+  "explore_EW30": {
+   "n_days": 552,
+   "mean_bp": -4.35,
+   "rest_bp": 35.45,
+   "diff_bp": -39.8,
+   "p": 0.16683316683316685,
+   "mde_bp": 63.28
+  },
+  "later_BTC": {
+   "n_days": 368,
+   "mean_bp": 10.51,
+   "rest_bp": 15.66,
+   "diff_bp": -5.15,
+   "p": 0.8001998001998002,
+   "mde_bp": 31.25
+  },
+  "later_EW30": {
+   "n_days": 368,
+   "mean_bp": -10.84,
+   "rest_bp": -21.63,
+   "diff_bp": 10.79,
+   "p": 0.7572427572427572,
+   "mde_bp": 61.72
+  }
+ },
+ "e_cny_week_before": {
+  "explore_BTC": {
+   "n_days": 21,
+   "mean_bp": 198.95,
+   "rest_bp": 5.53,
+   "diff_bp": 193.42,
+   "p": 0.054945054945054944,
+   "mde_bp": 290.2
+  },
+  "explore_EW30": {
+   "n_days": 21,
+   "mean_bp": 219.37,
+   "rest_bp": 11.4,
+   "diff_bp": 207.97,
+   "p": 0.028971028971028972,
+   "mde_bp": 258.22
+  },
+  "later_BTC": {
+   "n_days": 14,
+   "mean_bp": 30.48,
+   "rest_bp": 12.73,
+   "diff_bp": 17.75,
+   "p": 0.7022977022977023,
+   "mde_bp": 133.06
+  },
+  "later_EW30": {
+   "n_days": 14,
+   "mean_bp": -113.47,
+   "rest_bp": -14.3,
+   "diff_bp": -99.18,
+   "p": 0.2857142857142857,
+   "mde_bp": 256.03
+  }
+ },
+ "e_cny_week_after": {
+  "explore_BTC": {
+   "n_days": 21,
+   "mean_bp": 106.75,
+   "rest_bp": 7.34,
+   "diff_bp": 99.41,
+   "p": 0.14685314685314685,
+   "mde_bp": 192.57
+  },
+  "explore_EW30": {
+   "n_days": 21,
+   "mean_bp": 173.4,
+   "rest_bp": 12.3,
+   "diff_bp": 161.1,
+   "p": 0.07292707292707293,
+   "mde_bp": 248.47
+  },
+  "later_BTC": {
+   "n_days": 14,
+   "mean_bp": 49.79,
+   "rest_bp": 12.35,
+   "diff_bp": 37.44,
+   "p": 0.5734265734265734,
+   "mde_bp": 192.52
+  },
+  "later_EW30": {
+   "n_days": 14,
+   "mean_bp": -13.83,
+   "rest_bp": -16.24,
+   "diff_bp": 2.41,
+   "p": 0.988011988011988,
+   "mde_bp": 449.83
+  }
+ }
+}

@@ -1,0 +1,310 @@
+{
+ "c_table": {
+  "c_dow_Mon": {
+   "explore_BTC": {
+    "n_days": 156,
+    "mean_bp": 6.39,
+    "rest_bp": 9.72,
+    "diff_bp": -3.33,
+    "p": 0.935064935064935,
+    "mde_bp": 98.56
+   },
+   "explore_EW30": {
+    "n_days": 156,
+    "mean_bp": -25.93,
+    "rest_bp": 22.25,
+    "diff_bp": -48.19,
+    "p": 0.32667332667332666,
+    "mde_bp": 130.26
+   },
+   "later_BTC": {
+    "n_days": 105,
+    "mean_bp": 45.21,
+    "rest_bp": 7.68,
+    "diff_bp": 37.54,
+    "p": 0.22577422577422576,
+    "mde_bp": 83.07
+   },
+   "later_EW30": {
+    "n_days": 105,
+    "mean_bp": -18.87,
+    "rest_bp": -15.75,
+    "diff_bp": -3.13,
+    "p": 0.952047952047952,
+    "mde_bp": 140.34
+   }
+  },
+  "c_dow_Tue": {
+   "explore_BTC": {
+    "n_days": 156,
+    "mean_bp": 18.4,
+    "rest_bp": 7.72,
+    "diff_bp": 10.67,
+    "p": 0.6963036963036963,
+    "mde_bp": 72.08
+   },
+   "explore_EW30": {
+    "n_days": 156,
+    "mean_bp": 24.72,
+    "rest_bp": 13.84,
+    "diff_bp": 10.88,
+    "p": 0.7902097902097902,
+    "mde_bp": 95.22
+   },
+   "later_BTC": {
+    "n_days": 105,
+    "mean_bp": -21.22,
+    "rest_bp": 18.82,
+    "diff_bp": -40.05,
+    "p": 0.13786213786213786,
+    "mde_bp": 70.39
+   },
+   "later_EW30": {
+    "n_days": 105,
+    "mean_bp": -82.45,
+    "rest_bp": -5.08,
+    "diff_bp": -77.37,
+    "p": 0.07192807192807193,
+    "mde_bp": 106.54
+   }
+  },
+  "c_dow_Wed": {
+   "explore_BTC": {
+    "n_days": 156,
+    "mean_bp": 33.22,
+    "rest_bp": 5.26,
+    "diff_bp": 27.97,
+    "p": 0.37462537462537465,
+    "mde_bp": 81.25
+   },
+   "explore_EW30": {
+    "n_days": 156,
+    "mean_bp": 41.12,
+    "rest_bp": 11.11,
+    "diff_bp": 30.0,
+    "p": 0.5644355644355644,
+    "mde_bp": 141.77
+   },
+   "later_BTC": {
+    "n_days": 105,
+    "mean_bp": 57.32,
+    "rest_bp": 5.65,
+    "diff_bp": 51.67,
+    "p": 0.06393606393606394,
+    "mde_bp": 75.48
+   },
+   "later_EW30": {
+    "n_days": 105,
+    "mean_bp": 61.56,
+    "rest_bp": -29.24,
+    "diff_bp": 90.8,
+    "p": 0.052947052947052944,
+    "mde_bp": 121.98
+   }
+  },
+  "c_dow_Thu": {
+   "explore_BTC": {
+    "n_days": 156,
+    "mean_bp": -20.1,
+    "rest_bp": 14.12,
+    "diff_bp": -34.21,
+    "p": 0.25674325674325676,
+    "mde_bp": 79.73
+   },
+   "explore_EW30": {
+    "n_days": 156,
+    "mean_bp": -8.72,
+    "rest_bp": 19.39,
+    "diff_bp": -28.11,
+    "p": 0.4995004995004995,
+    "mde_bp": 113.64
+   },
+   "later_BTC": {
+    "n_days": 104,
+    "mean_bp": -14.33,
+    "rest_bp": 17.61,
+    "diff_bp": -31.94,
+    "p": 0.21178821178821178,
+    "mde_bp": 66.05
+   },
+   "later_EW30": {
+    "n_days": 104,
+    "mean_bp": -89.55,
+    "rest_bp": -4.03,
+    "diff_bp": -85.52,
+    "p": 0.059940059940059943,
+    "mde_bp": 117.67
+   }
+  },
+  "c_dow_Fri": {
+   "explore_BTC": {
+    "n_days": 157,
+    "mean_bp": 7.7,
+    "rest_bp": 9.5,
+    "diff_bp": -1.8,
+    "p": 0.952047952047952,
+    "mde_bp": 81.82
+   },
+   "explore_EW30": {
+    "n_days": 157,
+    "mean_bp": 45.45,
+    "rest_bp": 10.36,
+    "diff_bp": 35.1,
+    "p": 0.3936063936063936,
+    "mde_bp": 106.4
+   },
+   "later_BTC": {
+    "n_days": 104,
+    "mean_bp": 1.28,
+    "rest_bp": 15.02,
+    "diff_bp": -13.74,
+    "p": 0.6323676323676324,
+    "mde_bp": 73.23
+   },
+   "later_EW30": {
+    "n_days": 104,
+    "mean_bp": 2.25,
+    "rest_bp": -19.26,
+    "diff_bp": 21.51,
+    "p": 0.7042957042957043,
+    "mde_bp": 148.25
+   }
+  },
+  "c_dow_Sat": {
+   "explore_BTC": {
+    "n_days": 157,
+    "mean_bp": 2.84,
+    "rest_bp": 10.31,
+    "diff_bp": -7.47,
+    "p": 0.6993006993006993,
+    "mde_bp": 43.49
+   },
+   "explore_EW30": {
+    "n_days": 157,
+    "mean_bp": 22.34,
+    "rest_bp": 14.23,
+    "diff_bp": 8.11,
+    "p": 0.8121878121878122,
+    "mde_bp": 72.76
+   },
+   "later_BTC": {
+    "n_days": 104,
+    "mean_bp": 2.98,
+    "rest_bp": 14.74,
+    "diff_bp": -11.76,
+    "p": 0.43456543456543456,
+    "mde_bp": 31.4
+   },
+   "later_EW30": {
+    "n_days": 104,
+    "mean_bp": 15.71,
+    "rest_bp": -21.49,
+    "diff_bp": 37.2,
+    "p": 0.3336663336663337,
+    "mde_bp": 96.19
+   }
+  },
+  "c_dow_Sun": {
+   "explore_BTC": {
+    "n_days": 157,
+    "mean_bp": 16.25,
+    "rest_bp": 8.07,
+    "diff_bp": 8.19,
+    "p": 0.7222777222777222,
+    "mde_bp": 56.28
+   },
+   "explore_EW30": {
+    "n_days": 157,
+    "mean_bp": 8.55,
+    "rest_bp": 16.53,
+    "diff_bp": -7.98,
+    "p": 0.8021978021978022,
+    "mde_bp": 82.1
+   },
+   "later_BTC": {
+    "n_days": 104,
+    "mean_bp": 19.83,
+    "rest_bp": 11.95,
+    "diff_bp": 7.89,
+    "p": 0.7322677322677322,
+    "mde_bp": 61.84
+   },
+   "later_EW30": {
+    "n_days": 104,
+    "mean_bp": -2.11,
+    "rest_bp": -18.53,
+    "diff_bp": 16.42,
+    "p": 0.7022977022977023,
+    "mde_bp": 113.86
+   }
+  },
+  "c_turn_of_month_last_plus_first3": {
+   "explore_BTC": {
+    "n_days": 144,
+    "mean_bp": 30.7,
+    "rest_bp": 5.99,
+    "diff_bp": 24.7,
+    "p": 0.3776223776223776,
+    "mde_bp": 69.98
+   },
+   "explore_EW30": {
+    "n_days": 144,
+    "mean_bp": 68.96,
+    "rest_bp": 7.28,
+    "diff_bp": 61.69,
+    "p": 0.07492507492507493,
+    "mde_bp": 83.13
+   },
+   "later_BTC": {
+    "n_days": 96,
+    "mean_bp": -12.21,
+    "rest_bp": 16.89,
+    "diff_bp": -29.1,
+    "p": 0.3146853146853147,
+    "mde_bp": 76.85
+   },
+   "later_EW30": {
+    "n_days": 96,
+    "mean_bp": -73.88,
+    "rest_bp": -7.48,
+    "diff_bp": -66.4,
+    "p": 0.20679320679320679,
+    "mde_bp": 136.23
+   }
+  }
+ },
+ "c_hour_of_week_top6_by_abs_diff": {
+  "Sat 00h": {
+   "mean_bp": 16.05,
+   "diff_bp": 15.75,
+   "p": 0.009966777408637873
+  },
+  "Thu 03h": {
+   "mean_bp": -15.18,
+   "diff_bp": -15.67,
+   "p": 0.0033222591362126247
+  },
+  "Sun 20h": {
+   "mean_bp": 15.65,
+   "diff_bp": 15.34,
+   "p": 0.029900332225913623
+  },
+  "Mon 02h": {
+   "mean_bp": -14.05,
+   "diff_bp": -14.53,
+   "p": 0.013289036544850499
+  },
+  "Wed 13h": {
+   "mean_bp": 14.54,
+   "diff_bp": 14.23,
+   "p": 0.07308970099667775
+  },
+  "Mon 22h": {
+   "mean_bp": 12.9,
+   "diff_bp": 12.58,
+   "p": 0.04983388704318937
+  }
+ },
+ "c_fdr10_survivors": [],
+ "c_cells_tested": 176
+}

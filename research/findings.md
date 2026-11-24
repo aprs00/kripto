@@ -404,3 +404,8 @@ LVNs approached ≥ 3 times and not filled: price drifts toward, not away (n 198
 Explore COINS10 2021–23, every level vs a placebo (same construction 8 days earlier moved to today's price, or same distance). 3-day balance edges reject 43% vs 47% placebo; IB edges 48 vs 52%; 4-bp single prints
 fill 48 vs 51%; naked POCs reached 48.5 vs 53% (p .02); poor lows = tailed lows (74.6 vs 74.9%); fat-node / deviation breaks = median-level breaks (MDE 20 bp), OI split no help; R/F and TPO-vs-volume POC
 gap only echo today's range. 80% rule = random walk (session −2 pp, daily −1.7 pp) once unresolved trades are excluded (pass-2 '26–30% vs 37%' was that bias). Scripts research/studies/is3_p2.py.
+
+### InSilico C1 calendar claims incl. the Almanac (2026-11-24) → OPEN by the MDE rule, practically nothing
+Explore 2021–23, BTC + EW top-30 daily vs other days; FOMC/CPI dates from federalreserve.gov / bls.gov. 0 of 176 cells (weekday, turn of month, hour of week) survive 10% FDR. Underpowered positives: FOMC day before / day
++122 / +218 bp (MDE 173 / 325), first day of month +127 (MDE 176), turn of month +62 (MDE 83). Lunar waxing−waning −780 bp then +413 in 2024–25 (noise). Down Fri/down Mon → bounce, not decline. Tax-loss lows:
+2 usable Decembers, both worse. Expiry weeks, equinox, September, Santa, May–Oct, triple witching: nothing. Script research/studies/is3_c1.py.

@@ -321,3 +321,15 @@ j (session IB first touch vs 37% offset), i (TPO POC vs volume POC gap -> next-d
 P2 done (is3_p2.py, P2{ab,gfi,jh,del,ck}__explore): 12/12 forms. Every profile level is, if anything, broken/avoided MORE than its placebo: 3-day balance edges reject 43 vs 47%, IB edges 48 vs 52%,
  4-bp single prints fill 48 vs 51%, naked POCs reached 48.5 vs 53%. No dose anywhere (build-up, fatness, R/F, poor lows). 80% rule = random walk once unresolved trades are not counted as misses
  (bug in pass 2, corrected in findings). Unstated conditions tried: multi-day balance instead of yesterday, his 4-bp resolution, OI falling at the break, time vs volume disagreement. Closed DEAD.
+
+## C1 calendar (think-through 11:16 UTC, before any run)
+Sources: tg:98, 181–182 (lunar / equinox remarks), wa 18.10.24(1) ("Moon at fall equinox is not really normal ... check charts for historical data"), 18.10.24 (Chinese New Year effect), 18.10.28(3),
+18.11.00, 18.10.40(1), 18.11.02(1); the Almanac PDF he shared (down Friday / down Monday p120, tax-loss free lunch p175, first day of month p139/p226, triple witching).
+Mechanisms worth a prior: turn of month (salary/DCA inflows, fund rebalancing), option expiry (dealer hedging pins price before, releases after; Deribit monthly = last Friday 08:00 UTC),
+FOMC (risk premium drift before macro announcements, documented in equities). Lunar / September / Santa / CNY: no mechanism I believe; few observations -> effect + MDE only.
+What he does NOT say: calendar effects are filters, not trades (he uses them to stay out or to size). So every result reports the effect on the EW top-30 and BTC, daily returns, explore 2021–23
+then confirmT 2024–25 only for a form whose explore effect beats costs AND has an MDE below it. One table for c with BH-FDR inside it, decided before looking.
+Data: bnall 1d (clean universe), EW top-30 by trailing 30-d quote volume (shift 1); BTC hourly from 1-min klines for the hour-of-week table.
+C1 done (is3_c1.py, C1{a..i}__explore, dates in C1_dates.json): ~25 calendar tags + 168 hour cells; 0 FDR survivors; no tag's explore effect exceeds its own MDE, so no confirm card was run.
+ Largest, all p .05–.07 and underpowered: FOMC day before/day (+122/+218 bp EW30), first day of month (+127), turn of month (+62). Lunar sign flips between eras. Process slip: my print
+ functions showed the 2024–25 column for a and g before I had decided they qualified; noted in the form results; neither qualified anyway. Next time print explore only.

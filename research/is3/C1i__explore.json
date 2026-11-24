@@ -1,0 +1,70 @@
+{
+ "i_first_day_of_month": {
+  "explore_BTC": {
+   "n_days": 36,
+   "mean_bp": 71.01,
+   "rest_bp": 7.14,
+   "diff_bp": 63.87,
+   "p": 0.23676323676323677,
+   "mde_bp": 149.26
+  },
+  "explore_EW30": {
+   "n_days": 36,
+   "mean_bp": 138.25,
+   "rest_bp": 11.21,
+   "diff_bp": 127.04,
+   "p": 0.05194805194805195,
+   "mde_bp": 176.23
+  },
+  "later_BTC": {
+   "n_days": 24,
+   "mean_bp": 5.58,
+   "rest_bp": 13.32,
+   "diff_bp": -7.75,
+   "p": 0.8701298701298701,
+   "mde_bp": 139.03
+  },
+  "later_EW30": {
+   "n_days": 24,
+   "mean_bp": -100.81,
+   "rest_bp": -13.32,
+   "diff_bp": -87.49,
+   "p": 0.35064935064935066,
+   "mde_bp": 256.5
+  }
+ },
+ "i_last_plus_first4": {
+  "explore_BTC": {
+   "n_days": 180,
+   "mean_bp": 28.18,
+   "rest_bp": 5.52,
+   "diff_bp": 22.66,
+   "p": 0.4075924075924076,
+   "mde_bp": 67.46
+  },
+  "explore_EW30": {
+   "n_days": 180,
+   "mean_bp": 69.14,
+   "rest_bp": 4.82,
+   "diff_bp": 64.32,
+   "p": 0.053946053946053944,
+   "mde_bp": 80.16
+  },
+  "later_BTC": {
+   "n_days": 120,
+   "mean_bp": -8.31,
+   "rest_bp": 17.27,
+   "diff_bp": -25.58,
+   "p": 0.33466533466533466,
+   "mde_bp": 69.14
+  },
+  "later_EW30": {
+   "n_days": 120,
+   "mean_bp": -72.37,
+   "rest_bp": -5.16,
+   "diff_bp": -67.21,
+   "p": 0.13686313686313686,
+   "mde_bp": 117.89
+  }
+ }
+}

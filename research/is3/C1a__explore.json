@@ -1,0 +1,44 @@
+{
+ "a_lunar_waxing_minus_waning_per_cycle": {
+  "explore_BTC": {
+   "cycles": 37,
+   "wax_minus_wane_bp": -780.06,
+   "ci95_bp": [
+    -1397.95,
+    -132.53
+   ],
+   "p": 0.014492753623188406,
+   "mde_bp": 910.47
+  },
+  "explore_EW30": {
+   "cycles": 37,
+   "wax_minus_wane_bp": -880.65,
+   "ci95_bp": [
+    -1742.74,
+    -21.34
+   ],
+   "p": 0.04547726136931534,
+   "mde_bp": 1206.5
+  },
+  "later_BTC": {
+   "cycles": 25,
+   "wax_minus_wane_bp": 412.53,
+   "ci95_bp": [
+    -85.91,
+    903.9
+   ],
+   "p": 0.1024487756121939,
+   "mde_bp": 693.71
+  },
+  "later_EW30": {
+   "cycles": 25,
+   "wax_minus_wane_bp": 747.91,
+   "ci95_bp": [
+    48.32,
+    1559.93
+   ],
+   "p": 0.051974012993503245,
+   "mde_bp": 1061.13
+  }
+ }
+}

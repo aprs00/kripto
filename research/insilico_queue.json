@@ -364,57 +364,88 @@
    "group": "A",
    "title": "Calendar claims, including the ones I called untestable",
    "src": "R22-R25; tg:98, 181-182; wa 18.10.24, 18.10.28(3), 18.11.00, 18.10.40(1), 18.11.02(1)",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "lunar phase: new -> full vs full -> new moon returns (about 75 cycles since 2020; BTC and equal-weight top-30)",
-     "status": "planned"
+     "status": "done",
+     "result": "lunar phase, explore 2021-23, 37 cycles: waxing minus waning -780 bp BTC (p .01), -881 EW30 (p .05), MDE 910 / 1,207 bp; the 2024-25 column (computed in the same call, seen) flips sign (+413 / +748). Sign flip between eras + MDE above the effect = noise; cannot be known with ~6 years of cycles",
+     "date": "2026-11-24",
+     "evidence": "C1a__explore"
     },
     {
      "id": "b",
      "what": "quarterly expiry / equinox and monthly option expiry: week before vs after, vs other weeks",
-     "status": "planned"
+     "status": "done",
+     "result": "explore days vs all other days: week before monthly Deribit expiry (last Friday) EW30 -0 bp/day (MDE 90), week after +52 (p .07, MDE 65); quarterly week before -22 (MDE 156), after +13; equinox +-3 d +25 (MDE 217). No pinning-then-release pattern",
+     "date": "2026-11-24",
+     "evidence": "C1b__explore"
     },
     {
      "id": "c",
      "what": "turn of month, day of week, hour of week (one table, FDR inside it)",
-     "status": "planned"
+     "status": "done",
+     "result": "one table, 176 cells (7 weekdays + turn of month on EW30 daily, 168 hours of week on BTC hourly 2021-23), BH-FDR 10%: 0 survivors. Largest: turn of month (last + first 3 days) EW30 +62 bp/day p .07 (MDE 83); best hour cells +-15 bp/h (Sat 00h, Thu 03h) at p .003-.03, expected from 168 tries",
+     "date": "2026-11-24",
+     "evidence": "C1c__explore"
     },
     {
      "id": "d",
      "what": "FOMC and CPI days: drift 24 h before, reaction, reversal next day (dates from federalreserve.gov / bls.gov calendars, typed into the study)",
-     "status": "planned"
+     "status": "done",
+     "result": "dates from federalreserve.gov and bls.gov (research/is3/C1_dates.json), explore: FOMC day before EW30 +122 bp vs other days (p .05, MDE 173), FOMC day +218 (p .06, MDE 325), day after -40; CPI day before -19, day -9, day after +55 (MDE 218-352). 24 FOMC / 36 CPI days: effects of +1-2% would be invisible; nothing significant",
+     "date": "2026-11-24",
+     "evidence": "C1d__explore"
     },
     {
      "id": "e",
      "what": "September / Santa / Chinese New Year / sell in May: effect size and n only; verdict limited to 'cannot be known'",
-     "status": "planned"
+     "status": "done",
+     "result": "explore: September -20 bp/day vs other days (MDE 131), Santa Dec 25-Jan 2 -15 (MDE 143), May-Oct -40 (p .17, MDE 63), CNY week before +208 (p .03, 3 events, MDE 258), week after +161 (p .07). 3 years = 3 observations of each season: cannot be known, as stated in the form",
+     "date": "2026-11-24",
+     "evidence": "C1e__explore"
     },
     {
      "id": "f",
      "what": "Stock Trader's Almanac rules that transfer (pre-holiday, triple-witching week, first days of month): take from the PDF text",
-     "status": "planned"
+     "status": "done",
+     "result": "Almanac transfers, explore: last US trading day before a holiday (incl. Good Friday) EW30 +160 bp (p .07, MDE 245, BTC +31); triple-witching week Mon-Fri -19 (MDE 178); week after triple witching +48 (MDE 215). Nothing beyond noise",
+     "date": "2026-11-24",
+     "evidence": "C1f__explore"
     },
     {
      "id": "g",
      "what": "Almanac p120: a down Friday followed by a down Monday marks an inflection (lower over the next weeks), vs down Friday / up Monday and vs any two down days of equal size; BTC and equal-weight top-30",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "down Friday + down Monday, forward 5 / 20 days vs any two consecutive down days of matched size (quintiles): explore BTC f5 +163 bp, diff +240 (p .06), f20 diff +265 (p .36); EW30 f5 diff +159 (p .54), f20 -33. The Almanac says LOWER after; crypto is, if anything, higher (bounce). Later column (seen in the same print) does not repeat (-77 / +151)",
+     "date": "2026-11-24",
+     "evidence": "C1g__explore"
     },
     {
      "id": "h",
      "what": "Almanac p175 tax-loss 'free lunch': coins within 5% of their 52-week low on Dec 15 -> until Feb 15 vs the rest (cross-section, clean bnall); placebo = the same on the 15th of every other month; only 5-6 Decembers, so report effect and MDE, verdict limited",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "tax-loss 'free lunch' (coins within 5% of their 52-week low on Dec 15, top-100 clean bnall, to Feb 15, minus the rest): only 2 Decembers had >= 3 such coins (2022 -604 bp, 2025 -1,371): near-low coins did WORSE; other months -348 +- 989 bp; MDE for 2 Decembers 1,959 bp. Cannot be known; the 2 observations point the other way",
+     "date": "2026-11-24",
+     "evidence": "C1h__explore"
     },
     {
      "id": "i",
      "what": "Almanac p139, p226: FIRST day of the month (12x an average day) and last + first four days; split C1c into these two exact windows before looking at the table",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "split before looking: first day of month EW30 +127 bp vs other days (p .05, MDE 176; BTC +64 p .24); last + first four days +64 (p .05, MDE 80; BTC +23). Almanac's '12x an average day' not seen with power; both below their MDE",
+     "date": "2026-11-24",
+     "evidence": "C1i__explore"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "9/9 forms, explore 2021-23, BTC and EW top-30. No calendar tag reaches significance after the 176-cell FDR or exceeds its MDE: FOMC day before/day +122/+218 bp (p .05-.06, MDE 173/325), first day of month +127 (MDE 176), turn of month +62 (MDE 83), pre-US-holiday +160 (MDE 245); lunar flips sign between eras; down Fri/down Mon is followed by bounces, not the Almanac's decline; tax-loss lows did worse in the 2 usable Decembers. OPEN by the MDE rule (daily effects of 1-2% on ~30 event days are invisible), practically nothing to trade or filter on",
+   "closed": "2026-11-24"
   },
   {
    "id": "C2",
