@@ -1,0 +1,52 @@
+{
+ "name": "T2d_stayout3d",
+ "sample": "explore",
+ "n": 15,
+ "days": 13,
+ "coins": 3,
+ "mean_bp": 116.16,
+ "median_bp": -19.97,
+ "win": 0.467,
+ "se_bp": 270.61,
+ "ci95_bp": [
+  -382.0,
+  713.49
+ ],
+ "p": 0.6521739130434783,
+ "mde80_bp": 757.7,
+ "mean_ex_top3_bp": -249.35,
+ "top3_share": 2.72,
+ "t_day_mean": 0.67,
+ "by_year": {
+  "2022": [
+   9,
+   -231.68
+  ],
+  "2023": [
+   6,
+   637.93
+  ]
+ },
+ "by_side": {
+  "1": [
+   15,
+   116.16
+  ]
+ },
+ "coins_positive": 0.67,
+ "net_bp": {
+  "free": 116.16,
+  "maker_taker": 108.16,
+  "taker": 103.16,
+  "taker_x2": 90.16,
+  "crash": 36.16
+ },
+ "base_n": 75,
+ "base_bp": -249.91,
+ "vs_base_bp": 366.08,
+ "p_vs_base": 0.25537231384307846,
+ "passes": false,
+ "note": "examples ['2021-09-21'], k=15/example, hold 3 d, BTC/ETH/SOL ret<=-3% pool, null diff +26.7 bp",
+ "rerun": "",
+ "at": "2026-11-24T05:05:47+00:00"
+}

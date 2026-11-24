@@ -218,3 +218,7 @@ T2 a done (research/studies/is3_t2a.py, T2a__table.json): 10 examples, 8 tradabl
 T2 b done (is3_t2b.py, T2b__daily.json): nothing distinguishes his 4 capitulation days from other >= -3% down days. 'All buckets negative' happens on 54% of such days and adds nothing
  (next 3 d +0.51% vs +0.55%). M4a reworded: dose = magnitude of the negative bucket shares, not the sign. Minute examples not pooled (3 families, 1–2 each). Next: T2c analogs (daily family: nearest
  neighbours in feature space on 2021–23 down days excluding his 4, forward 1–5 d vs random down days of the same size).
+T2 c think-through (05:06 UTC, before running): explore only (2021–23), BTC/ETH/SOL (the coins with TSize). Pool = every coin-day with ret <= -3%. Features (standardised per coin over its 2021–23 down days):
+ ret_z, range_atr, qv_z, n_z, taker, avg_trade, dd5, dd20, dd90, clv, peak_min, tsz_min, tsz_large. Events = the 15 nearest pool days (Euclidean) to each of his 4 BTC days, excluding +-5 d of
+ any example; long at the day close, gross = simple 3-d return (his 2–5 d window, fixed now). Baseline = 5 matched pool days per event (same coin, same ret decile). Expected from T2b: ≈ baseline.
+ Checks: causality = features on data cut at 2022-06-30 equal to full for earlier days; null = 20 coin-toss sign flips of the forward return per day, diff ≈ 0.

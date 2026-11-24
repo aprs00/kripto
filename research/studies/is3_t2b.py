@@ -30,8 +30,15 @@ CONTRAST = ["2021-09-21"]          # his 'not a bottom, issa fart' day
 
 
 def daily() -> pd.DataFrame:
-    k = pq.read_table(ROOT / "data/bn/klines_1m/BTCUSDT.parquet", columns=["t", "h", "l", "c", "qv", "n", "tbqv"]).to_pandas()
+    return daily_sym("BTCUSDT")
+
+
+def daily_sym(sym: str, end: str | None = None) -> pd.DataFrame:
+    """Daily features of one perp; `end` (exclusive day) truncates the input, for the causality check."""
+    k = pq.read_table(ROOT / "data/bn/klines_1m" / f"{sym}.parquet", columns=["t", "h", "l", "c", "qv", "n", "tbqv"]).to_pandas()
     k.index = pd.to_datetime(k.t, unit="ms", utc=True)
+    if end:
+        k = k[k.index < pd.Timestamp(end, tz="UTC")]
     d = k.resample("1D").agg({"h": "max", "l": "min", "c": "last", "qv": "sum", "n": "sum", "tbqv": "sum"})
     d["peak_min"] = k.qv.resample("1D").max() / d.qv
     prev = d.shift(1)
@@ -49,7 +56,7 @@ def daily() -> pd.DataFrame:
     for w in (5, 20, 90):
         d[f"dd{w}"] = d.c / d.h.shift(1).rolling(w).max() - 1
     d["clv"] = (d.c - d.l) / rng
-    fr = tsize.frames("BTCUSDT", "author7", "1D")
+    fr = tsize.frames(sym, "author7", "1D")
     if fr is not None:
         dl, vol = fr
         dl.index = pd.to_datetime(dl.index, utc=True)
@@ -58,6 +65,8 @@ def daily() -> pd.DataFrame:
         d["tsz_neg"] = (dl < 0).sum(axis=1).reindex(d.index)
         d["tsz_min"] = share.min(axis=1).reindex(d.index)
         d["tsz_large"] = (dl.iloc[:, -2:].sum(axis=1) / vol.iloc[:, -2:].sum(axis=1)).reindex(d.index)
+        if end:   # TSize days after the cut must not leak in
+            d.loc[d.index >= pd.Timestamp(end, tz="UTC"), ["tsz_neg", "tsz_min", "tsz_large"]] = np.nan
     return d
 
 

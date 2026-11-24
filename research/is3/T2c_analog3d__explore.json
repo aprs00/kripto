@@ -1,0 +1,56 @@
+{
+ "name": "T2c_analog3d",
+ "sample": "explore",
+ "n": 56,
+ "days": 47,
+ "coins": 3,
+ "mean_bp": 79.44,
+ "median_bp": 6.83,
+ "win": 0.5,
+ "se_bp": 126.03,
+ "ci95_bp": [
+  -172.71,
+  329.31
+ ],
+ "p": 0.5207396301849075,
+ "mde80_bp": 352.89,
+ "mean_ex_top3_bp": -53.62,
+ "top3_share": 1.61,
+ "t_day_mean": 0.44,
+ "by_year": {
+  "2021": [
+   15,
+   253.43
+  ],
+  "2022": [
+   33,
+   -12.73
+  ],
+  "2023": [
+   8,
+   133.42
+  ]
+ },
+ "by_side": {
+  "1": [
+   56,
+   79.44
+  ]
+ },
+ "coins_positive": 1.0,
+ "net_bp": {
+  "free": 79.44,
+  "maker_taker": 71.44,
+  "taker": 66.44,
+  "taker_x2": 53.44,
+  "crash": -0.56
+ },
+ "base_n": 280,
+ "base_bp": 73.85,
+ "vs_base_bp": 5.59,
+ "p_vs_base": 0.9800099950024987,
+ "passes": false,
+ "note": "k=15/example, hold 3 d, BTC/ETH/SOL ret<=-3% pool, null diff +15.2 bp",
+ "rerun": "",
+ "at": "2026-11-24T05:05:20+00:00"
+}

@@ -1520,14 +1520,20 @@
     {
      "id": "c",
      "what": "analog test: nearest neighbours of his examples in 2021-23 (never the examples themselves) -> what happened next, vs random moments with the same fall",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "explore 2021-23, BTC/ETH/SOL: 56 analog down days (15 nearest per his 4 capitulation days, 13 features incl. TSize, +-5 d excluded) long 3 d: +79 bp vs matched same-coin same-ret-decile down days +74 bp, diff +6 bp (p 0.98), MDE 353 bp, ex-top3 -54 bp, 2022 -13 bp. Causality ok; null (400 coin-toss copies) +15 bp, sd 142 (first run with 20 copies read +67 bp = small-sample noise, not a bug). Verdict: his days' analogs = any down day of that size; no detectable extra edge (only effects > 3.5% could be seen)",
+     "date": "2026-11-24",
+     "evidence": "T2c_analog3d__explore"
     },
     {
      "id": "d",
      "what": "same for moments he says he would NOT trade",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "explore 2021-23: 15 analog down days of his one stay-out day (2021-09-21 'issa fart, not a bottom'), long 3 d: +116 bp vs matched down days -250 bp, diff +366 bp (p 0.26, MDE 758): opposite sign to his claim but n=15 and only one source day, so uninformative. Only one dated 'would not trade' example exists; no verdict possible",
+     "date": "2026-11-24",
+     "evidence": "T2d_stayout3d__explore"
     },
     {
      "id": "e",
