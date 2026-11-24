@@ -246,3 +246,13 @@ b first new down-climax, c hindsight bounds. All decisions one bar late. T1j/E2c
 because the bounce lasts hours. Kill/keep: an exit is kept only if > base with p < .05 in explore; otherwise the timer stays.
 T4 done/closed OPEN (is3_t4.py, data/is3/t4_exits.parquet): on the live ladder fills every decision exit loses to the 61-min timer (stall −94, stall≥15 min −63, first climax −85 bp, lone-fill quick exit −3).
  Hindsight best close +385 vs +148: timing matters, but not his 'take it and run'. The live book keeps the timer. Untested idea worth a form later: LONGER holds on cascade fills (h240 > h60 in E2c).
+
+## T5 a (think-through 05:19 UTC, before any run)
+tg:226–234 / 103–107: he trades 1-min bounces anywhere, not only after liquidations: bid the previous range high, fade at reactive levels. Question: of all |1-min move| >= 3 sigma (24-h sigma,
+no volume filter), which CONTEXT decides bounce vs continuation? Explore = COINS10 2021–23. Decision one bar late (close of move minute +1); outcome = 15/60-min simple return in the FADE
+direction. Features (all known at decision): z, vm, taker share of the move minute (signed toward the move), trades per bp of move, distance to prior-UTC-day high/low and 7-d high/low in sigma units
+(is the move INTO a level?), distance to the nearest round number (1/2/5 x 10^k), hour, 24-h trend (signed), breadth (other COINS10 with >= 3 sigma same sign in the same minute). Output: fade return
+by decile of each feature with day-block CIs; a feature 'works' only if its curve is monotone and its extreme decile differs from the middle by more than the 13-bp taker cost.
+What he does NOT say: the level matters (into prior high/low), size of the crowd matters (breadth), and he stays out of news minutes (breadth ≥ 5 ≈ macro).
+T5 a/b/c done (is3_t5a.py, data/is3/t5a.parquet): 116k ordinary 1-min >= 3 sigma moves fade +2 bp over 60 min; 11 context features (level, round number, trend, breadth, taker share, trade size, hour)
+ move it by < 5 bp in their middle deciles; two extreme cells (+17 trend, +12 beyond prior-day extreme) are 2 of 110 and not dose-responses. Ordinary shocks are noise; only the deep resting fill (T1) pays.

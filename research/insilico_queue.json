@@ -1655,25 +1655,34 @@
    "group": "T",
    "title": "1-minute bounces and continuations in general (not only liquidations), by context",
    "src": "tg:226-234, 103-107; minute study 11-10",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "all 1-min moves >= 3 sigma, 83 coins: continuation vs reversal by location (prior-day / weekly extremes, POC, round), hour, trend, breadth, taker share, trades per bp",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "explore COINS10 2021-23, 116,417 one-minute moves >= 3 sigma (no volume filter), one per coin per 15 min, decision one bar late: fade +1.4 bp (15 min) / +2.0 bp (60 min) overall. 10 context features x 10 deciles: no curve moves the 60-min fade beyond taker costs; only monotone one = distance to a round number (rho -0.85, but 5 bp end to end); extreme cells: 24-h trend top decile (move with a >7% trend) +17 bp [9, 25] and moves > 23 sigma beyond the prior-day extreme +12 [5, 19], each 1 of 100 cells, no dose-response -> not pre-registered. Bounce vs continuation of ordinary 1-min shocks is not decided by any context we can see",
+     "date": "2026-11-24",
+     "evidence": "T5a__curves"
     },
     {
      "id": "b",
      "what": "who moved it: many small vs few large trades (n, average trade size) as the split between stop runs and informed flow",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "same 116,417 moves: average trade size of the move minute vs its 24-h norm (few large vs many small) rho -0.31 but +4..0 bp across deciles; trades per bp of move rho -0.22, +3..-2 bp. 'Stop run vs informed flow' by trade size does not split bounce from continuation at 60 min (all within +-4 bp, far below 13-bp costs)",
+     "date": "2026-11-24",
+     "evidence": "T5a__curves"
     },
     {
      "id": "c",
      "what": "maker version of whatever shows a dose-response in a or b (resting order, trade-through fill)",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "nothing in a or b has a dose-response worth a maker version (best monotone curve: round-number distance, 5 bp end to end); the maker version of the fade itself already exists and is live (T1/E2 ladder: resting bid 30 sigma below, +148 bp explore). No new maker form",
+     "date": "2026-11-24",
+     "evidence": "T5a__curves"
     },
     {
      "id": "d",
@@ -1705,7 +1714,8 @@
      "status": "planned",
      "added": "2026-11-22"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "E2",
