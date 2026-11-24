@@ -81,3 +81,4 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * O2 his own indicators (VZO, Hull, Leledc, camarilla, Fisher, channels, Crayons H/invalidation): DEAD. None adds to the past return; VZO alert end and invalidations are wrong-way. Feature idea: a failed new high weakens trend continuation (F2).
 * N1 round numbers: DEAD. Hundy roll, overshoot-and-return and first-touch reactions = placebo levels (round levels, if anything, are run through slightly more).
 * N3 tape behaviour: OPEN (as features only). Absorption passed explore and failed both confirms; shrinking swings / failed new highs mark a tiring trend (for F2), never a reversal trade; the rest nothing.
+* N4 lead-lag: DEAD. Thin coins do not lead BTC, decoupling is no canary; dumps are sharper than pumps at >= 8 sigma (true; the ladder's raw material).

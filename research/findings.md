@@ -438,3 +438,7 @@ first daily close 1–2% beyond → back within 5 d 93 vs 92%; 1-min first-touch
 Explore 2021–23. Absorption (3-day taker-imbalance z ≤ −2 while price holds, long 5 d): explore +146 bp vs matched (dose monotone) → confirmT −72, confirmC +47 (p .27): fails (2021–22 regime). Shrinking zigzag
 swings (1h): counter-trade +4 vs −10 bp after strong swings (p .002) — a 'trend tiring' feature like O2 j, not a trade. Nothing: buyer-streak fade, shakeout reclaim, delta flip (rare), HTF filter (no difference, as
 he says), painted hour closes, non-overlap impulses (anti-dose in efficiency), change-of-character bar, AVWAP distance and his 90-day AVWAP anchors (= random anchors). Scripts research/studies/is3_n3*.py.
+
+### InSilico N4 / R32–R33 lead-lag, decoupling canary, crash asymmetry (2026-11-24) → DEAD (asymmetry true)
+Explore 2021–23, 107 coins, 5-min baskets by volume tercile: no lead in either direction beyond a 1-bar bounce (corr −0.02..−0.04); alt-BTC correlation drops do not precede larger BTC days; thin-minus-BTC
+divergence predicts BTC the other way (−22 bp/day, p .03). 1-min down/up tail ratio 1.2–2.0 at 8–12σ, rising each year (dumps sharper than pumps) = the ladder's raw material. Script research/studies/is3_n4.py.

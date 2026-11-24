@@ -421,3 +421,12 @@ N3 a done (is3_n3a.py): shrinking swings mark a weaker trend (counter-trade +4 v
  'trend is tiring' features for F2 (trim trend exposure), neither is a reversal signal. N3 left: d, h.
 N3 d/h done (is3_n3dh.py): weekly/monthly AVWAP distance has no significant curve (regime shapes as he implies, n.s.); his 90-day-extreme AVWAPs react like random-anchor AVWAPs. N3 closed OPEN
  (absorption failed both confirms; shrinking swings and failed new highs are 'trend tiring' features for F2, unconfirmed).
+
+## N4 lead-lag (think-through 11:56 UTC, before any run)
+Sources wa 18.10.49, tg:114–116: illiquid coins move first (insiders / thin books show the move before BTC), and alts decoupling from BTC is a canary for a BTC move. Prior from the literature
+(Lo–MacKinlay; crypto studies): large, liquid assets LEAD small ones (information arrives where liquidity is), so his claim runs against the prior; it could hold for idiosyncratic pumps but those
+do not lead BTC. What he does NOT say: lead at which horizon; any lead must survive asynchronous trading (thin coins' stale prices make them look like they LAG). Fixed: 5-min bars, all coins with
+1-min klines, static volume terciles (mean quote volume 2021–23, descriptive), explore 2021–23. a: cross-correlations thin->BTC vs BTC->thin at 5–60 min, plus a sign trade. b: daily alt-BTC
+correlation drop (vs its 30-day mean) and thin-minus-BTC divergence -> next-day BTC |move| and direction. c: 1-min tail asymmetry (down vs up >= 5/8/12 sigma counts) per year.
+N4 done (is3_n4.py): no lead-lag (thin coins do not lead BTC; nothing beyond a 1-bar bounce), correlation drops are no canary, thin-coin divergence points the wrong way (-22 bp, p .03).
+ Dumps are sharper than pumps at >= 8 sigma (down/up 1.2-2.0, growing each year) — true, and already what the ladder trades. Closed DEAD for lead-lag.

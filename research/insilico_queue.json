@@ -889,24 +889,37 @@
    "group": "A",
    "title": "Lead-lag: illiquid coins move first, decoupling is a canary",
    "src": "R32, R33; wa 18.10.49; tg:114-116",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "volume-tercile baskets: does the thin basket lead BTC at 1-60 min?",
-     "status": "planned"
+     "status": "done",
+     "result": "explore 2021-23, 5-min returns, 107 coins with 1-min klines, static volume terciles (thin = 35 coins): lag-1 corr thin->BTC -0.037 vs BTC->thin -0.016, thick->BTC -0.039 (all small negative = bid-ask bounce / overreaction), lags 2-12 within +-0.011; sign trade BTC next 5 min signed by the thin basket -0.15 bp (p .003, i.e. a tiny reversal), reverse -0.10. Thin coins do not lead BTC; nothing leads at 5-60 min beyond microstructure noise",
+     "date": "2026-11-24",
+     "evidence": "N4__explore"
     },
     {
      "id": "b",
      "what": "drop in the alt-BTC correlation or a thin-basket divergence -> next-day |move| and direction of BTC",
-     "status": "planned"
+     "status": "done",
+     "result": "daily alt-basket vs BTC correlation (5-min returns) z vs its 30-day mean: next-day BTC |return| 209 / 201 / 244 / 235 / 242 bp by quintile (largest drop first: no canary for a bigger move), direction +2 / -12 / -18 / +31 / +36 (no curve); thin-minus-BTC daily divergence as a sign for next-day BTC: -22 bp (p .03, MDE 29, n 1,064 days) = BTC moves AGAINST the thin coins' divergence, the opposite of thin coins leading. One of several tests, small",
+     "date": "2026-11-24",
+     "evidence": "N4__explore"
     },
     {
      "id": "c",
      "what": "dumps sharper than pumps (asymmetry of 1-min cascades), and what it implies for stop placement",
-     "status": "planned"
+     "status": "done",
+     "result": "1-min moves vs 24-h sigma, all coins 2021-23: down/up counts at 5 / 8 / 12 sigma = 0.94-1.12 / 1.15-1.43 / 1.62-1.96 by year, rising each year; 76% / 90% / 92% of coins had more 8-sigma downs than ups in 2021 / 22 / 23. Dumps ARE sharper than pumps at the extremes (true, descriptive). Implication for stops: a long's stop inside 8-12 sigma of the 1-min range is hit by crash wicks about twice as often as a short's; this asymmetry is what the live ladder harvests (resting bids 30 sigma down)",
+     "date": "2026-11-24",
+     "evidence": "N4__explore"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "3/3 forms, explore 2021-23, 107 coins. Thin coins do not lead BTC at 5-60 min (lag-1 correlations -0.02..-0.04 in every direction = microstructure bounce; sign trade -0.15 bp); alt-BTC correlation drops do not precede bigger BTC moves; thin-minus-BTC divergence predicts BTC the other way (-22 bp, p .03, small). True but not a lead-lag edge: 1-min dumps are sharper than pumps at >= 8 sigma (down/up 1.2-2.0, rising 2021->2023), which the live ladder already harvests",
+   "closed": "2026-11-24"
   },
   {
    "id": "N5",
