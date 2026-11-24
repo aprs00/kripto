@@ -539,3 +539,7 @@ c (R8 "a volume spike into highs = ran into sellers"): block longs in a coin who
 What he does not say: both are about WHO is trapped (late shorts after a flush, breakout chasers at a high); the filters only help if the book actually holds those positions on those days, so
  report how much weight the mask touches. Pass = dSR > 0 at >= 95th percentile of random masks, and the same sign in each explore year.
 M0 closed (17:2x): c done, all three coins 2130 days to 2026-10-31; bad days now BTC 18 / ETH 20 / SOL 32, most new ones 2026-05-09..06-08 (archive volume mismatch) -> the vault loses about a month.
+F1 b/c/d done (is3_f1.py; data/is3/f1_explore.txt, f1d_explore.txt): c backwards (blocking longs at volume-spike 20-day highs costs 0.5-0.7 SR, 0th pct: breakouts on volume are the best longs);
+ d nothing (RSI-pin filters touch < 2% of weight, main variants fail); b's pre-set 2-day block fails but a 1-day block wins in both books -> g: thresholds -5/-7/-10% all + in flow, -7% every
+ year + in both books (flow +0.86/+0.78/+0.34, xsmom +0.46/+0.49/+0.46; xsmom 99.5th pct of 200, p .009). Pre-registered F1g_{flow,xsmom}_casc7_1d; confirmT 2024-25 running (is3-f1c).
+ F.judge now refuses confirm samples without a committed prereg (it had no such guard; test added).

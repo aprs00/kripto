@@ -1472,7 +1472,10 @@
     {
      "id": "b",
      "what": "L5: no new shorts for 1-3 days after a cascade day",
-     "status": "planned"
+     "status": "done",
+     "result": "F0 harness, bnall 1d explore 2021-23, block shorts after a cascade day (cross-sectional median day return <= thr): pre-set main variant (-7%, 2 days) flow dSR +0.05 (72nd pct of 200), xsmom +0.09 (73rd): fails. Window dose: 1 day +0.56 / +0.43 (100th pct), 2 days +0.05 / +0.09, 3 days -0.10 / -0.02; -5% / -10% at 2 days negative. The bounce is a one-day effect (median coin +179 bp the next day), day 2 gives it back -> form g added and tested separately",
+     "date": "2026-11-24",
+     "evidence": "F1b_flow_casc7_2d__explore"
     },
     {
      "id": "c",
