@@ -754,7 +754,7 @@
    "group": "A",
    "title": "Spot delta vs perp delta",
    "src": "R13; wa 18.11.00(2), 18.11.02(2)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -773,7 +773,8 @@
     }
    ],
    "due": "2026-11-24T12:45",
-   "defer_why": "spot 1h archive downloading in unit is3-n2"
+   "defer_why": "spot 1h archive downloading in unit is3-n2",
+   "sessions": 1
   },
   {
    "id": "N3",
