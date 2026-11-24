@@ -1,0 +1,112 @@
+{
+ "g_tail_counts": {
+  "poor (tail 0)": 3205,
+  "tail 1-2": 8283,
+  "tail >= 3": 9962
+ },
+ "g_lows": {
+  "n_poor": 1431,
+  "retest_poor": 0.7456,
+  "retest_tailed_matched": 0.7494,
+  "diff_pp": -0.37,
+  "p": 0.8375812093953023,
+  "mde_pp": 4.28,
+  "by_tail": {
+   "0": 0.746,
+   "1": 0.727,
+   "2": 0.717,
+   "3": 0.726,
+   "4": 0.755,
+   "5": 0.657
+  }
+ },
+ "g_highs": {
+  "n_poor": 1774,
+  "retest_poor": 0.7413,
+  "retest_tailed_matched": 0.7401,
+  "diff_pp": 0.11,
+  "p": 0.9395302348825587,
+  "mde_pp": 3.94,
+  "by_tail": {
+   "0": 0.741,
+   "1": 0.746,
+   "2": 0.716,
+   "3": 0.714,
+   "4": 0.726,
+   "5": 0.663
+  }
+ },
+ "f_f1": {
+  "n_node": 1380,
+  "node_bp": 21.06,
+  "n_median": 1277,
+  "median_bp": -15.24,
+  "diff_bp": 36.3,
+  "p": 0.04447776111944028,
+  "mde_bp": 57.62
+ },
+ "f_f3": {
+  "n_node": 1380,
+  "node_bp": 64.1,
+  "n_median": 1277,
+  "median_bp": 27.19,
+  "diff_bp": 36.91,
+  "p": 0.18240879560219891,
+  "mde_bp": 91.07
+ },
+ "f_f5": {
+  "n_node": 1380,
+  "node_bp": 62.01,
+  "n_median": 1277,
+  "median_bp": 11.12,
+  "diff_bp": 50.9,
+  "p": 0.20439780109945027,
+  "mde_bp": 127.74
+ },
+ "i_by_gap_quintile": {
+  "0": {
+   "gap_hi": 0.0,
+   "n": 2145,
+   "next_range_atr": 0.998,
+   "next_ret_toward_volpoc_bp": NaN
+  },
+  "1": {
+   "gap_hi": 0.043,
+   "n": 2145,
+   "next_range_atr": 1.07,
+   "next_ret_toward_volpoc_bp": -1.1
+  },
+  "2": {
+   "gap_hi": 0.083,
+   "n": 2145,
+   "next_range_atr": 1.018,
+   "next_ret_toward_volpoc_bp": -10.0
+  },
+  "3": {
+   "gap_hi": 0.214,
+   "n": 2145,
+   "next_range_atr": 1.033,
+   "next_ret_toward_volpoc_bp": 9.4
+  },
+  "4": {
+   "gap_hi": 2.315,
+   "n": 2145,
+   "next_range_atr": 1.114,
+   "next_ret_toward_volpoc_bp": -2.3
+  }
+ },
+ "i_top_gap_direction": {
+  "n": 2145,
+  "mean_bp": -2.25,
+  "ci95_bp": [
+   -32.76,
+   29.42
+  ],
+  "p": 0.8960519740129935,
+  "mde_bp": 45.67
+ },
+ "i_range_top_vs_bottom_gap": {
+  "diff_atr": 0.12,
+  "p": 0.0004997501249375312
+ }
+}

@@ -193,12 +193,18 @@
     {
      "id": "f",
      "what": "fat-node break (R41): close below the fattest node of a 20-day composite -> continuation vs an ordinary 20-day level break",
-     "status": "planned"
+     "status": "done",
+     "result": "close through the 20-day composite POC (1,380 crossings) vs through the 20-day median close: next day +21 vs -15 bp (diff +36, p .044); but vs the 20-day node of 8 days earlier moved to today's price (n 1,481): +16 vs -22, diff +37 p .14, MDE 58; 3 days -9 bp vs placebo; 2023 negative, ex-top-3 +0.5 bp; dose wrong way (fattest third of nodes -4 bp, thinnest +38). No fat-node break continuation",
+     "date": "2026-11-24",
+     "evidence": "P2gfi__explore"
     },
     {
      "id": "g",
      "what": "poor / empty low (R42): low made in one half-hour with no tail vs with a tail; retest rate within 5 days",
-     "status": "planned"
+     "status": "done",
+     "result": "explore COINS10 2021-23, 21,450 coin-day extremes, tail = bins from the extreme touched by one half-hour only: poor (flat, tail 0) lows retested within 5 days 74.6% vs tailed (>= 3 bins) lows at the same distance (ATR deciles) 74.9%, diff -0.4 pp p .84, MDE 4.3; highs 74.1 vs 74.0%. Retest rate flat by tail length (0-4 bins 72-76%). Poor lows are not special",
+     "date": "2026-11-24",
+     "evidence": "P2gfi__explore"
     },
     {
      "id": "h",
@@ -208,8 +214,11 @@
     {
      "id": "i",
      "what": "time vs volume disagree (tg:49-50 'if its not the same then u have a fuckery brewing'): |TPO POC - volume POC| / value width -> next-day range and direction; placebo = random pair of days' POCs",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "10,725 coin-days, gap = |TPO POC - volume POC| / value width: no direction (top quintile next-day return toward the volume POC -2 bp, CI [-33, +29]); next-day range +0.12 ATR for the top vs bottom gap quintile (p < .001) but most of it is today's range: within today's range quintiles the top-gap days add +0.05/+0.02/-0.03/+0.02/+0.16 ATR (only the widest days). 'Fuckery brewing' = at most a weak volatility hint, no trade",
+     "date": "2026-11-24",
+     "evidence": "P2gfi__explore"
     },
     {
      "id": "j",
