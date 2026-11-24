@@ -457,3 +457,7 @@ M1 null check (13:25): colour labels shuffled within day, 2022, 0.43% bars. Firs
  and the baseline must match the prior price-run length; then still +4 from day composition (green-heavy days are up days). Final baseline = same coin, same DAY, same side, same prior
  up-run length (L.matched m = day_side_pl): null +1.2 / -0.4 / +5 bp (r = 1/2/3). Lesson: on range bars a colour test needs within-day, same-price-path matching.
  Hand-check BTC 2022-03-10 05:52: ride exits at the next all-red bar -50 bp, correct; four 0.43% bars inside one millisecond at 05:54:03.586 (torn book).
+M1 a/b/c/e done (is3_m1.py, is3_m1c.py; data/is3/m1_explore.txt, m1c_explore.txt): riding all-green runs earns ~0 (+1.9 bp vs within-day matched, MDE 1.8, anti-dose in run length), the
+ first all-red bar at a 24h/7d high is no better a short than any bar at the high, his thin-fast boxed bar goes the WRONG way (-6 vs matched). The one strong-looking curve (top |delta share| decile
+ reverses -22 bp/1h) is the torn-book trap: 94-100% sub-1-s bars, gone at 5-min late entry outside 2021/SOL. RAM: is3_m1 explore peaked 3.1 GB (over the 2 GB rule; ran in-session, finished in 2 min);
+ is3_m1c keeps float32 features, 0.83 GB. Next M1 form: d (adaptive size groups) as a variant of a.

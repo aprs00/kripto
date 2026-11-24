@@ -1,0 +1,60 @@
+{
+ "name": "M1a_r1_w43",
+ "sample": "explore",
+ "n": 108888,
+ "days": 1092,
+ "coins": 3,
+ "mean_bp": -0.65,
+ "median_bp": -19.87,
+ "win": 0.407,
+ "se_bp": 0.62,
+ "ci95_bp": [
+  -1.85,
+  0.6
+ ],
+ "p": 0.3003498250874563,
+ "mde80_bp": 1.75,
+ "mean_ex_top3_bp": -1.0,
+ "top3_share": null,
+ "t_day_mean": -3.24,
+ "by_year": {
+  "2021": [
+   55105,
+   -1.12
+  ],
+  "2022": [
+   37232,
+   -0.65
+  ],
+  "2023": [
+   16551,
+   0.92
+  ]
+ },
+ "by_side": {
+  "-1": [
+   57511,
+   -1.6
+  ],
+  "1": [
+   51377,
+   0.42
+  ]
+ },
+ "coins_positive": 0.33,
+ "net_bp": {
+  "free": -0.65,
+  "maker_taker": -8.65,
+  "taker": -13.65,
+  "taker_x2": -26.65,
+  "crash": -80.65
+ },
+ "base_n": 541215,
+ "base_bp": -2.58,
+ "vs_base_bp": 1.93,
+ "p_vs_base": 0.001999000499750125,
+ "passes": false,
+ "note": "ride all-green -> first all-red, 0.43% bars",
+ "rerun": "",
+ "at": "2026-11-24T12:55:39+00:00"
+}

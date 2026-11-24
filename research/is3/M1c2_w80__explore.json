@@ -1,0 +1,60 @@
+{
+ "name": "M1c2_w80",
+ "sample": "explore",
+ "n": 76,
+ "days": 26,
+ "coins": 3,
+ "mean_bp": 10.58,
+ "median_bp": -17.4,
+ "win": 0.487,
+ "se_bp": 54.11,
+ "ci95_bp": [
+  -86.37,
+  124.57
+ ],
+ "p": 0.8460769615192404,
+ "mde80_bp": 151.5,
+ "mean_ex_top3_bp": -63.87,
+ "top3_share": 5.77,
+ "t_day_mean": -0.22,
+ "by_year": {
+  "2021": [
+   70,
+   23.73
+  ],
+  "2022": [
+   4,
+   -165.69
+  ],
+  "2023": [
+   2,
+   -97.08
+  ]
+ },
+ "by_side": {
+  "-1": [
+   43,
+   -107.03
+  ],
+  "1": [
+   33,
+   163.83
+  ]
+ },
+ "coins_positive": 1.0,
+ "net_bp": {
+  "free": 10.58,
+  "maker_taker": 2.58,
+  "taker": -2.42,
+  "taker_x2": -15.42,
+  "crash": -69.42
+ },
+ "base_n": 380,
+ "base_bp": -27.2,
+ "vs_base_bp": 37.78,
+ "p_vs_base": 0.5232383808095952,
+ "passes": false,
+ "note": "fade one-voiced range bar (top |ds| decile), bars >= 1 s, entry 5 min late, 1h hold; base = mid-|ds| bars same coin-day-move tercile-side",
+ "rerun": "",
+ "at": "2026-11-24T12:58:08+00:00"
+}

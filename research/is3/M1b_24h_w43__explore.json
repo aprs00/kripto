@@ -1,0 +1,56 @@
+{
+ "name": "M1b_24h_w43",
+ "sample": "explore",
+ "n": 810,
+ "days": 396,
+ "coins": 3,
+ "mean_bp": -5.35,
+ "median_bp": 4.23,
+ "win": 0.512,
+ "se_bp": 14.7,
+ "ci95_bp": [
+  -34.23,
+  22.43
+ ],
+ "p": 0.7176411794102948,
+ "mde80_bp": 41.16,
+ "mean_ex_top3_bp": -16.7,
+ "top3_share": null,
+ "t_day_mean": 2.29,
+ "by_year": {
+  "2021": [
+   350,
+   -37.14
+  ],
+  "2022": [
+   257,
+   41.72
+  ],
+  "2023": [
+   203,
+   -10.13
+  ]
+ },
+ "by_side": {
+  "-1": [
+   810,
+   -5.35
+  ]
+ },
+ "coins_positive": 0.33,
+ "net_bp": {
+  "free": -5.35,
+  "maker_taker": -13.35,
+  "taker": -18.35,
+  "taker_x2": -31.35,
+  "crash": -85.35
+ },
+ "base_n": 83136,
+ "base_bp": -4.48,
+ "vs_base_bp": -0.87,
+ "p_vs_base": 0.9685157421289355,
+ "passes": false,
+ "note": "short first all-red at 24h high, 8h",
+ "rerun": "",
+ "at": "2026-11-24T12:55:41+00:00"
+}

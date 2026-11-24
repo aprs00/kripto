@@ -1,0 +1,60 @@
+{
+ "name": "M1e_w43",
+ "sample": "explore",
+ "n": 16282,
+ "days": 1042,
+ "coins": 3,
+ "mean_bp": -2.35,
+ "median_bp": -14.85,
+ "win": 0.427,
+ "se_bp": 1.14,
+ "ci95_bp": [
+  -4.6,
+  -0.1
+ ],
+ "p": 0.041979010494752625,
+ "mde80_bp": 3.19,
+ "mean_ex_top3_bp": -2.91,
+ "top3_share": null,
+ "t_day_mean": -6.75,
+ "by_year": {
+  "2021": [
+   7749,
+   -2.56
+  ],
+  "2022": [
+   6330,
+   -1.08
+  ],
+  "2023": [
+   2203,
+   -5.26
+  ]
+ },
+ "by_side": {
+  "-1": [
+   8781,
+   -3.62
+  ],
+  "1": [
+   7501,
+   -0.86
+  ]
+ },
+ "coins_positive": 0.0,
+ "net_bp": {
+  "free": -2.35,
+  "maker_taker": -10.35,
+  "taker": -15.35,
+  "taker_x2": -28.35,
+  "crash": -82.35
+ },
+ "base_n": 78600,
+ "base_bp": 3.8,
+ "vs_base_bp": -6.15,
+ "p_vs_base": 0.0004997501249375312,
+ "passes": false,
+ "note": "thin fast one-voiced bar, 0.43% bars",
+ "rerun": "",
+ "at": "2026-11-24T12:55:41+00:00"
+}
