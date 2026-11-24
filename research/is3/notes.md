@@ -293,3 +293,14 @@ T5 g/h done (is3_t5g.py, T5g__curves; explore card T5g_fall_oiup_short_4h, not p
 a/b done (is3_m0b.py): micro bars match 1-min klines to 1e-7 on volume; 24 bad coin-days listed in research/is3/mbars_bad_days.json (duplicated archive trades ETH/SOL 2022-09-11..13, a +47% bad print
 BTC 2022-09-06 17:12, partial archives). M-forms: load that file and drop those days. Rerun is3_m0b after c to extend the list. c: unit is3-m0 started 10:53 (2024-01..2026-10, ~20 days/min
 -> 3-4 chunks of 45 min; restart with the M0 command, --start 2024-01-01 --end 2026-10-31).
+
+## P1 gap fill (think-through 11:00 UTC, before any run)
+Sources: tg:29–38 (Jan 2021 thread on profiles: "U see gap u fill gap, price wants to be normally distributed"; tg:33 "We slip thru areas composed with high volume. We consolidate in areas of low
+volume", boxes where a later day's bulge sits in an earlier day's thin section "key to hole"); wa 18.10.31(2) salad profile thread ("flow clustering ... location where price sticks / is skipped").
+Earlier: single-print bands fill like placebo bands (is2_profile), so the LEVEL as a target is dead; the open question is the DISTRIBUTION claim: does the next day's volume go to yesterday's thin zone
+more than to an equally distant zone? What he does NOT say: thin zones at the range TAILS are just far away (distance confound) -> placebo = the same bins mirrored around today's open (same distances);
+the thin zone he draws is INSIDE the range between two humps (form f), and he expects it on the days after a trend day (two balance areas), so dose = valley depth and hump separation.
+Fixed now: 1-min klines, volume spread evenly over each bar's range in 10-bp log bins, UTC days, COINS10 2021–23. a: share of today's volume in yesterday's least-traded third of its range bins
+vs mirror; same for the most-traded third (his "slip thru high volume" predicts LV > mirror and HV < mirror). f: bimodal days (two humps each >= 30% of POC, valley <= 50% of the smaller hump,
+>= 15 bins apart): next-day volume share in the valley band vs its mirror band; dose by valley depth. b: nearest interior LVN from the open reached before the same distance the other way
+(random walk 50%) vs a placebo node set 8 days earlier at the same distance. Verdict needs effect beyond the mirror with day-block CIs; trade forms (d) only if a/f show something.

@@ -85,17 +85,23 @@
    "group": "A",
    "title": "Gap fill: next value forms where yesterday traded least",
    "src": "R14; tg:29-38; wa 18.10.31(2)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "overlap of today's value area with yesterday's least-traded third vs a random third of the same width [S1e: see form f, the source picture shows a valley between two humps; keep this form as the literal reading]",
-     "status": "planned"
+     "status": "done",
+     "result": "explore COINS10 2021-23, 10,919 coin-days, 1-min volume spread over 10-bp bins: next-day volume share in yesterday's least-traded third 17.2% vs 18.0% for the same bins mirrored around the next open (diff -0.86 pp, CI [-1.38, -0.35], every year -); most-traded third 26.5% vs 24.0% (+2.5 pp, p < .001, every year +). Dose runs the wrong way: thinnest tenth -0.51 pp, 2nd -0.16, 3rd -0.14. Claim reversed: tomorrow trades where yesterday traded MOST (volume memory), not in its gaps. Volume conservation check 1.0",
+     "date": "2026-11-24",
+     "evidence": "P1__explore"
     },
     {
      "id": "b",
      "what": "nearest low-volume node above/below the open: reached before the same distance the other way? placebo = node set of 8 days earlier",
-     "status": "planned"
+     "status": "done",
+     "result": "7,376 days with an interior LVN (smoothed local min <= 30% POC) near the open: reached before the same distance the other way 49.1% (random walk 50%); vs d-8 node placebo at the same distance 49.5% vs 48.7%, diff +0.8 pp CI [-1.5, +3.2], p .49. LVNs are not targets (as single prints in pass 2)",
+     "date": "2026-11-24",
+     "evidence": "P1__explore"
     },
     {
      "id": "c",
@@ -116,8 +122,11 @@
     {
      "id": "f",
      "what": "the gap in his picture (tg:29) is the VALLEY BETWEEN TWO HUMPS of yesterday's profile (bimodal day), not its thin tails: on bimodal days does next-day POC / value land in the valley, vs the same-width band elsewhere in the range and vs unimodal days; trade = enter at the valley edge, out at the far edge",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "4,692 bimodal days (two humps >= 30% POC, >= 15 bins apart, valley <= 50%): next-day share in the valley band 11.6% vs mirror 11.0%, +0.64 pp CI [-0.5, +1.9], p .29; dose wrong way: deep valleys +0.46 (p .76), shallow +0.65 (p .03). His picture (value forming in the valley between two humps) is not more common than the same-distance band elsewhere",
+     "date": "2026-11-24",
+     "evidence": "P1__explore"
     },
     {
      "id": "g",
@@ -125,7 +134,8 @@
      "status": "planned",
      "added": "2026-11-24"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "P2",
