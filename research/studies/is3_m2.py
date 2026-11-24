@@ -236,5 +236,31 @@ def explore(null: bool = False) -> None:
     table(E, A, "lr", "b within 10 bp of the previous day's VAH / VAL", "near_va")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and sys.argv[1:2] == ["explore"]:
     explore(null="null" in sys.argv)
+
+
+def b_events(E: pd.DataFrame, A: pd.DataFrame) -> pd.DataFrame:
+    """Pre-registered M2b_long10_w43 events (prereg.json): gross = late60 minus the matched cell mean; raw kept in `raw`."""
+    A = A[A.feat == "lr"]
+    g = A.groupby(["coin", "w", "m", "fast", "extreme"])[["s_late60", "n_late60"]].sum()
+    bm = (g.s_late60 / g.n_late60.replace(0, np.nan)).rename("b")
+    E = E.join(bm, on=["coin", "w", "m", "fast", "extreme"])
+    e = E[(E.w == 0.0043) & ~E.fast & E.extreme & (E.side == 1) & (E.lr >= np.log(10))].dropna(subset=["b"]).copy()
+    e["raw"] = e.late60.astype(float)
+    e["gross"] = e.raw - e.b
+    return e
+
+
+def confirm() -> None:
+    E, A = collect("2024-01-01", "2026-01-01")
+    E.to_parquet(L.ROOT / "data/is3/m2_confirmT_events.parquet"); A.to_parquet(L.ROOT / "data/is3/m2_confirmT_base.parquet")
+    e = b_events(E, A)
+    cols = ["time", "coin", "side", "gross"]
+    L.card("M2b_long10_w43", e[cols], "confirmT", note="pre-registered 2026-11-24; diff vs within-day matched")
+    L.card("M2b_long10_w43_raw", e[cols[:3]].assign(gross=e.raw), "confirmT", note="same events, raw late60")
+    print("by coin diff", e.groupby("coin").gross.mean().mul(1e4).round(1).to_dict(), "by year", e.groupby(e.time.dt.year).gross.mean().mul(1e4).round(1).to_dict())
+
+
+if __name__ == "__main__" and sys.argv[1:2] == ["confirmT"]:
+    confirm()
