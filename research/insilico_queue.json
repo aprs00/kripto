@@ -385,6 +385,12 @@
      "what": "Monday US-open TWAP (wa 18.10.35): drift and taker imbalance Mon 13:30-17:00 UTC vs the same hours Tue-Fri, by trailing regime; does the previous Monday's imbalance predict it ('lose consistency')",
      "status": "planned",
      "added": "2026-11-22"
+    },
+    {
+     "id": "g",
+     "what": "Friday post-cash pump (wa 18.11.03, Oct 2021: 'most fridays have nice pump post cash ... friday 23:00 my time [EET = 16:00 NY] ... up only mode'): return Fri 16:00 -> 20:00 NY (DST-aware) vs the same window Mon-Thu (placebo) and vs random 4-h Friday windows, all bn100 coins, year by year; sign share and t on weekly sums; overlaps friday_follow (Fri UTC day -> Sat), so report the residual after friday_follow's own Friday sign",
+     "status": "planned",
+     "added": "2026-11-24"
     }
    ]
   },
@@ -1772,8 +1778,11 @@
     {
      "id": "b8",
      "what": "open EVERY image of batch b8 in research/is3/S2_batches.json (5 other pictures) with the Read tool (paths under data/chat_extract/); per image one line in S2b8__notes.json: what is drawn, entry / exit / level / timing visible, and whether it contradicts the stored description",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "5/5 opened by eye; 0 contradictions; his time zone confirmed EET (regular 16:30-23:15 = 09:30-16:15 NY, wa 18.11.01(2)); new form C2g Friday post-US-cash-close pump (wa 18.11.03), distinct from friday_follow",
+     "date": "2026-11-24",
+     "evidence": "S2b8__notes"
     },
     {
      "id": "v",

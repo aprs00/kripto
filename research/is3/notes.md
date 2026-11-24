@@ -188,3 +188,5 @@ Sep 24 / Santa Dec 18–23 (C1e), 18.11.01 anchored VWAP from macro lows (anchor
 What he does NOT say in the 10x rule: the comparison base (previous rotation? median of last N?) — check the picture's numbers.
 S2 b7 done (40/40 opened, 39 legible; 0 contradictions). New form M2f: the 4th row of his tape table (wa 18.10.54(3)) 'market orders becoming smaller & less frequent as price moves -> exhaustion'
  had no test. wa 18.10.42(2): his 10x trade-count rule promises 'reversal, or at least consolidation' → M2a scores 'trend ends', not reversal only. Rest maps to queued forms. Next: b8 (5), then v, p.
+S2 b8 done (5/5, 0 contradictions). His clock is EET (wa 18.11.01(2): regular 16:30–23:15 = 09:30–16:15 NY) → every time he writes = NY + 7 h. New form C2g: Friday post-US-cash-close pump
+ (wa 18.11.03 'most fridays have nice pump post cash'), not the same as friday_follow (UTC Friday → Saturday). All 8 image batches done: 213 images opened, 0 contradictions. Next: S2 v (videos), p (PDF/truncated records).
