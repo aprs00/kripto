@@ -453,3 +453,9 @@ Binance spot 1h archives (30 coins) vs perp taker flow, daily, explore 2021–23
 cross-sectional rank −6 bp/1 d (MDE 19); spot agreement adds +1 bp to perp flow momentum (perp flow, not spot, carries the information). His case (rally + perp selling + spot buying, + rich funding as the
 carry condition) +62 bp/1 d vs matched, every explore year +, p .22, n=179 (MDE 132); 3 d flips in 2022–23. Not pre-registered. Reopen only with spot for ~100 coins. Lesson: a sign-flip null on any long-only
 daily rule earns +σ²/2 (≈ +57 bp/3 d here) by convexity; run the null on event minus matched. Script research/studies/is3_n2.py.
+
+### InSilico M2 / R7 order velocity ×10 (2026-11-24) → OPEN (rule dead; survivor = crash-day liquidation fade)
+BTC/ETH/SOL aggTrades range bars 0.1/0.2/0.43% + COINS10 1-min, explore 2021–23. 5–20× changes in trades per bar are the norm at his 0.1% size on Binance (63% of SOL 2021 bars); no reversal or
+continuation vs within-day matched from 5 min late (MDE 2–11 bp); count drops are sub-1-s torn-book bars. Engine-lag proxy (clogged bursts continue) and exhaustion row (fading activity) both backwards and
+tiny. Survivor: ≥10× burst on a slow down bar at the 24 h low, long 5 min late for 60 min: +50 bp vs matched explore (n=600), pre-registered, confirmT +65 (p .047) but ex-top-3-days +12 < taker, 85% of it
+2025-10-10 / 2025-02-03 / 2024-04-13 → the liquidation fade (L1/E1), FAILED as a separate edge. Scripts is3_m2.py, is3_m2m.py.

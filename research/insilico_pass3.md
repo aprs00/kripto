@@ -84,3 +84,4 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * N4 lead-lag: DEAD. Thin coins do not lead BTC, decoupling is no canary; dumps are sharper than pumps at >= 8 sigma (true; the ladder's raw material).
 * M1 rotation momentum on move bars (R3): DEAD. One-voiced flow runs (all size groups green) carry +2 bp vs within-day matched bars (1/7 of costs, anti-dose); the strong-looking reversal after one-voiced bars is torn-book bounce.
 * N2 spot vs perp delta (R13): OPEN. Spot-led rallies earn what same-size rallies earn and spot delta adds nothing to perp flow (MDE 19 bp); his narrow "negative perp delta = spot hedges" case points his way (+62 bp/1 d, p .22) on too few events.
+* M2 order velocity x10 (R7): OPEN. Count jumps/drops of 5-20x are everyday noise at his bar size; the one survivor (a burst on a slow down bar at the 24 h low) replicated in direction but 85% of it is three crash days, i.e. the liquidation fade.

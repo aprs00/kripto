@@ -518,3 +518,6 @@ Plan: e first (his narrated version, dose = 2nd/1st test volume), then a (level 
  (M1/M2 harness) and undercuts of the same level WITHOUT the volume burst. >= 1-s bars only; entry 1 bar / 5 min late.
 M3 e done (is3_m3.py explore): prev-day-low mousetrap with a volume surge on the second test = placebo near-level entries (-13 bp/240 min, MDE 43), anti-dose. M3 b done (is3_m3.py b): absorption bars
  (takers against the bar) follow-through = matched (MDE 11); the one +71 bp tail cell is crash-day/thin-SOL wicks (188/597 on 2021-05-19). Next M3: a (level types + size split), c, d.
+M2 b confirmT (17:1x): +65 bp vs matched (p .047, n=202, both years, every coin +) but ex-top-3 +12 < taker -> fails; 85% of the sum from 2025-10-10, 2025-02-03, 2024-04-13. It is the crash-day
+ liquidation fade (L1/E1). M2 closed OPEN. Bad-day list extended to 2026-10 by rerunning is3_m0b (13 new BTC, 13 ETH, 4 SOL days; SOL 2026 still building). Lesson: on intraday long-the-dump forms,
+ print the top-3-day share in explore too (explore had ex-top3 +31 of +50; confirm +12 of +65): crash days dominate every capitulation test.

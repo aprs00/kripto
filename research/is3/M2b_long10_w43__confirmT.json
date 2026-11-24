@@ -1,0 +1,48 @@
+{
+ "name": "M2b_long10_w43",
+ "sample": "confirmT",
+ "n": 202,
+ "days": 91,
+ "coins": 3,
+ "mean_bp": 65.17,
+ "median_bp": 10.0,
+ "win": 0.535,
+ "se_bp": 33.68,
+ "ci95_bp": [
+  6.37,
+  134.63
+ ],
+ "p": 0.047476261869065464,
+ "mde80_bp": 94.3,
+ "mean_ex_top3_bp": 11.56,
+ "top3_share": 0.85,
+ "t_day_mean": 0.99,
+ "by_year": {
+  "2024": [
+   110,
+   45.28
+  ],
+  "2025": [
+   92,
+   88.96
+  ]
+ },
+ "by_side": {
+  "1": [
+   202,
+   65.17
+  ]
+ },
+ "coins_positive": 1.0,
+ "net_bp": {
+  "free": 65.17,
+  "maker_taker": 57.17,
+  "taker": 52.17,
+  "taker_x2": 39.17,
+  "crash": -14.83
+ },
+ "passes": false,
+ "note": "pre-registered 2026-11-24; diff vs within-day matched",
+ "rerun": "",
+ "at": "2026-11-24T17:10:22+00:00"
+}

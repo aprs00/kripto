@@ -1146,7 +1146,7 @@
    "group": "B",
    "title": "Order velocity x10",
    "src": "R7; wa 18.10.41(2), 18.10.42, 18.10.29(1)",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -1159,7 +1159,10 @@
     {
      "id": "b",
      "what": "same at a 1-day high / low only [S1e: his 826 -> 80 example sits at the previous day's value-area high (pdVAH), so test pdVAH/pdVAL as well as 1-day extremes]",
-     "status": "planned"
+     "status": "done",
+     "result": "explore 2021-23: at a 24h extreme (bar within 4 bars of the rolling high/low), >= 1-s 0.43% bars, trade-count jump >= 10x: long side (down burst at the low, his 701 example) +50 bp vs within-day matched at 60 min from 5 min late (n=600, p .001, all years/coins +, dose 27/50/42), short side -14; pdVAH/VAL proximity nothing. ~36 cells searched. Pre-registered M2b_long10_w43; confirmT 2024-25 (bad-day list extended first): +65 vs matched (p .047, n=202, both years and all coins +) but ex-top-3 days +12 < taker cost -> FAILS; raw +36 (p .34); 85% of the sum from 2025-10-10, 2025-02-03, 2024-04-13 = crash-day liquidation fade (L1/E1), not an order-velocity edge. Vault not opened",
+     "date": "2026-11-24",
+     "evidence": "M2b_long10_w43__confirmT"
     },
     {
      "id": "c",
@@ -1198,7 +1201,10 @@
    ],
    "after": [
     "M0"
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "order velocity as he states it is dead with power: 5-20x trade-count changes are the norm at 0.1% bars on Binance 2021+, no reversal or continuation vs within-day matched (MDE 2-11 bp), engine-lag and exhaustion rows backwards; count drops are torn-book bars. Only survivor: a >= 10x burst on a slow down bar at the 24 h low rebounds (explore +50, confirmT +65 vs matched) but 85% of it is three crash days -> it is the liquidation fade (L1/E1), not a new edge. Next-hour range 2-5% lower after bursts (real, tiny; F feature)",
+   "closed": "2026-11-24"
   },
   {
    "id": "M3",
