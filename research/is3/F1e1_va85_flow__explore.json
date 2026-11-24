@@ -1,0 +1,31 @@
+{
+ "name": "F1e1_va85_flow",
+ "sample": "explore",
+ "side": null,
+ "on_share": 0.995,
+ "base": {
+  "sr": 1.582424239123744,
+  "ann": 0.3521987575566836,
+  "mdd": -0.23519443530744344,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.8000206404108042,
+  "ann": 0.19401388494568167,
+  "mdd": -0.4715961026208185,
+  "days": 1095
+ },
+ "dSR": -0.782,
+ "dMDD": -0.2364,
+ "p_daily_diff": 0.09645177411294353,
+ "n_random": 30,
+ "pct_dSR_vs_random": 0.0,
+ "random_dSR_q05_q50_q95": [
+  -0.332,
+  -0.07,
+  0.026
+ ],
+ "pct_dMDD_vs_random": 0.0,
+ "note": "block positions against location (long below VAL, short above VAH), VA 85%; touched 0.1122; per-year dSR 2021:-0.63 2022:-0.90 2023:-0.82",
+ "passes": false
+}

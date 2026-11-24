@@ -1,0 +1,31 @@
+{
+ "name": "F1e2_va85_flow",
+ "sample": "explore",
+ "side": null,
+ "on_share": 0.709,
+ "base": {
+  "sr": 1.582424239123744,
+  "ann": 0.3521987575566836,
+  "mdd": -0.23519443530744344,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": -0.0836383650172758,
+  "ann": -0.010372483332910224,
+  "mdd": -0.2387585031430456,
+  "days": 1095
+ },
+ "dSR": -1.666,
+ "dMDD": -0.0036,
+ "p_daily_diff": 0.0014992503748125937,
+ "n_random": 30,
+ "pct_dSR_vs_random": 0.23333333333333334,
+ "random_dSR_q05_q50_q95": [
+  -1.793,
+  -1.387,
+  -0.568
+ ],
+ "pct_dMDD_vs_random": 0.6,
+ "note": "block positions while close inside VA 85%; touched 0.7655; per-year dSR 2021:-2.04 2022:-0.80 2023:-1.98",
+ "passes": false
+}

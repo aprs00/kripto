@@ -1,0 +1,31 @@
+{
+ "name": "F1e2_va50_flow",
+ "sample": "explore",
+ "side": null,
+ "on_share": 0.824,
+ "base": {
+  "sr": 1.582424239123744,
+  "ann": 0.3521987575566836,
+  "mdd": -0.23519443530744344,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.3059031008930589,
+  "ann": 0.05636369722933291,
+  "mdd": -0.31304056870063257,
+  "days": 1095
+ },
+ "dSR": -1.277,
+ "dMDD": -0.0778,
+ "p_daily_diff": 0.005497251374312844,
+ "n_random": 30,
+ "pct_dSR_vs_random": 0.06666666666666667,
+ "random_dSR_q05_q50_q95": [
+  -1.258,
+  -0.717,
+  -0.082
+ ],
+ "pct_dMDD_vs_random": 0.4666666666666667,
+ "note": "block positions while close inside VA 50%; touched 0.4152; per-year dSR 2021:-0.72 2022:-0.92 2023:-2.19",
+ "passes": false
+}

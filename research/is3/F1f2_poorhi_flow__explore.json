@@ -1,0 +1,31 @@
+{
+ "name": "F1f2_poorhi_flow",
+ "sample": "explore",
+ "side": -1,
+ "on_share": 0.86,
+ "base": {
+  "sr": 1.582424239123744,
+  "ann": 0.3521987575566836,
+  "mdd": -0.23519443530744344,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 1.5097058556506364,
+  "ann": 0.43585403924710453,
+  "mdd": -0.3256683822638382,
+  "days": 1095
+ },
+ "dSR": -0.073,
+ "dMDD": -0.0905,
+ "p_daily_diff": 0.44877561219390305,
+ "n_random": 100,
+ "pct_dSR_vs_random": 0.67,
+ "random_dSR_q05_q50_q95": [
+  -0.367,
+  -0.137,
+  0.109
+ ],
+ "pct_dMDD_vs_random": 0.49,
+ "note": "block shorts whose day high is poor; touched 0.1998; per-year dSR 2021:+0.53 2022:-0.57 2023:+0.04",
+ "passes": false
+}

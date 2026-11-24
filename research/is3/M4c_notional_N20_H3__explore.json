@@ -1,0 +1,56 @@
+{
+ "name": "M4c_notional_N20_H3",
+ "sample": "explore",
+ "n": 724,
+ "days": 307,
+ "coins": 96,
+ "mean_bp": 253.95,
+ "median_bp": 77.47,
+ "win": 0.525,
+ "se_bp": 74.23,
+ "ci95_bp": [
+  108.11,
+  403.05
+ ],
+ "p": 0.0009995002498750624,
+ "mde80_bp": 207.84,
+ "mean_ex_top3_bp": 186.21,
+ "top3_share": 0.3,
+ "t_day_mean": 2.19,
+ "by_year": {
+  "2021": [
+   312,
+   376.71
+  ],
+  "2022": [
+   124,
+   56.79
+  ],
+  "2023": [
+   288,
+   205.84
+  ]
+ },
+ "by_side": {
+  "1": [
+   724,
+   253.95
+  ]
+ },
+ "coins_positive": 0.59,
+ "net_bp": {
+  "free": 253.95,
+  "maker_taker": 245.95,
+  "taker": 240.95,
+  "taker_x2": 227.95,
+  "crash": 173.95
+ },
+ "base_n": 3570,
+ "base_bp": 170.36,
+ "vs_base_bp": 83.59,
+ "p_vs_base": 0.33933033483258374,
+ "passes": false,
+ "note": "uptrend (c >= 1.2 x c[-30], > 50-d mean) pullback day whose taker delta notional is the lowest of 20 d, liquid, half 0; long 3 d",
+ "rerun": "",
+ "at": "2026-11-24T18:56:01+00:00"
+}

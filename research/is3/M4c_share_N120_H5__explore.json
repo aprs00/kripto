@@ -1,0 +1,56 @@
+{
+ "name": "M4c_share_N120_H5",
+ "sample": "explore",
+ "n": 126,
+ "days": 69,
+ "coins": 59,
+ "mean_bp": 148.3,
+ "median_bp": 86.08,
+ "win": 0.524,
+ "se_bp": 175.65,
+ "ci95_bp": [
+  -205.21,
+  480.81
+ ],
+ "p": 0.4002998500749625,
+ "mde80_bp": 491.81,
+ "mean_ex_top3_bp": -14.34,
+ "top3_share": 1.09,
+ "t_day_mean": 1.39,
+ "by_year": {
+  "2021": [
+   76,
+   155.22
+  ],
+  "2022": [
+   16,
+   -613.48
+  ],
+  "2023": [
+   34,
+   491.32
+  ]
+ },
+ "by_side": {
+  "1": [
+   126,
+   148.3
+  ]
+ },
+ "coins_positive": 0.49,
+ "net_bp": {
+  "free": 148.3,
+  "maker_taker": 140.3,
+  "taker": 135.3,
+  "taker_x2": 122.3,
+  "crash": 68.3
+ },
+ "base_n": 630,
+ "base_bp": 450.68,
+ "vs_base_bp": -302.38,
+ "p_vs_base": 0.09895052473763119,
+ "passes": false,
+ "note": "uptrend (c >= 1.2 x c[-30], > 50-d mean) pullback day whose taker delta share is the lowest of 120 d, liquid, half 0; long 5 d",
+ "rerun": "",
+ "at": "2026-11-24T18:56:00+00:00"
+}

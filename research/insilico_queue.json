@@ -1297,7 +1297,10 @@
     {
      "id": "c",
      "what": "R2: largest one-sided delta of the trend's life on a pullback",
-     "status": "planned"
+     "status": "done",
+     "result": "R2 on the whole Binance universe (bnall 1d clean, coin half 0, liquid >= $20M/d, 2021-23): uptrend (c >= 1.2 x c[-30], > 50-d mean) pullback day whose taker delta (share / notional) is the lowest of N = 20/60/120 days, long 3/5 d, vs matched other uptrend pullbacks (same coin, return decile). Share: diff -34/-10/-59 bp at 3 d (n 714/260/126), notional +84 (p .34)/-38/-81; 5 d -44/-36/-302 and +19/-181/-276: ANTI-dose (the most one-sided selling of the trend's life is the worst entry); 2022 negative in most cells. 12 cells, null -1 bp, causal ok, MDE 195-490. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "M4c_share_N60_H3__explore"
     },
     {
      "id": "d",
