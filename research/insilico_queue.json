@@ -757,19 +757,28 @@
     {
      "id": "a",
      "what": "BTC ETH SOL 2021-2023 built on the server (scripts.mbars_build)",
-     "status": "planned"
+     "status": "done",
+     "result": "BTC ETH SOL 2021-01-01..2023-12-31: 1095 day files each, 572 MB; inventory by year in M0b__reconcile (bars/day median BTC 1797/1088/473, ETH 2276/1690/565, SOL 4725/2485/2163 for 2021/22/23)",
+     "date": "2026-11-24",
+     "evidence": "M0b__reconcile"
     },
     {
      "id": "b",
      "what": "reconcile with 1-min klines: volume, taker share, high/low per day within 0.1%; bars per day by year",
-     "status": "planned"
+     "status": "done",
+     "result": "reconciled vs 1-min klines per day: median |volume diff| 3e-8, p99 5e-5..1.4e-4; taker share p99 < 1.3e-5; high/low exact on all but 1 day. 24 coin-days off by > 0.1% -> research/is3/mbars_bad_days.json, every M-form must drop them: ETH/SOL 2022-09-11..13 volume exactly 2x (duplicated archive trades), BTC 2022-09-06 a bad print at 28,368 (+47%, not in klines; all 3 coins short 1.5-4.5% volume that day), BTC 2023-11-10 volume +14%, 2021-02-09 / 05-19 partial (-0.4..-1.1%). Sub-1-s bars 10-30% of bars (median day): the torn-book trap of M0 notes is common, not rare",
+     "date": "2026-11-24",
+     "evidence": "M0b__reconcile"
     },
     {
      "id": "c",
      "what": "BTC ETH SOL 2024-01..2026-10",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1,
+   "due": "2026-11-24T11:40",
+   "defer_why": "M0c building in unit is3-m0 (2024-01..2026-10)"
   },
   {
    "id": "M1",

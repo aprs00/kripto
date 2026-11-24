@@ -288,3 +288,8 @@ Baseline: same coin, same move-size bin, other cells (matched). Kill: no monoton
 T5 g/h done (is3_t5g.py, T5g__curves; explore card T5g_fall_oiup_short_4h, not pre-registered): puke falls (OI down) bounce like any fall. Falls on rising OI continue (-39 bp top decile at 4 h)
  but only in 2022 and ex-top-3 ≈ 0. Trapped cells (OI up, takers against the move) have 99–339 events at the 1-h scale: MDE > 200 bp. What would make NL/NS work: minute-scale OI (we only have 5-min
  snapshots) and range bars as on his footprint; the 24-h continuation of 'OI up + takers pushing' is the flow-momentum effect already known.
+
+## M0 (2026-11-24 10:56 UTC)
+a/b done (is3_m0b.py): micro bars match 1-min klines to 1e-7 on volume; 24 bad coin-days listed in research/is3/mbars_bad_days.json (duplicated archive trades ETH/SOL 2022-09-11..13, a +47% bad print
+BTC 2022-09-06 17:12, partial archives). M-forms: load that file and drop those days. Rerun is3_m0b after c to extend the list. c: unit is3-m0 started 10:53 (2024-01..2026-10, ~20 days/min
+-> 3-4 chunks of 45 min; restart with the M0 command, --start 2024-01-01 --end 2026-10-31).
