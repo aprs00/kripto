@@ -1,0 +1,56 @@
+{
+ "name": "N2b_vs_negperp_nospot_h3",
+ "sample": "explore",
+ "n": 221,
+ "days": 150,
+ "coins": 24,
+ "mean_bp": 183.25,
+ "median_bp": 97.97,
+ "win": 0.538,
+ "se_bp": 79.72,
+ "ci95_bp": [
+  26.78,
+  342.99
+ ],
+ "p": 0.02348825587206397,
+ "mde80_bp": 223.21,
+ "mean_ex_top3_bp": 113.2,
+ "top3_share": 0.4,
+ "t_day_mean": 2.34,
+ "by_year": {
+  "2021": [
+   79,
+   534.41
+  ],
+  "2022": [
+   60,
+   -182.13
+  ],
+  "2023": [
+   82,
+   112.28
+  ]
+ },
+ "by_side": {
+  "1": [
+   221,
+   183.25
+  ]
+ },
+ "coins_positive": 0.58,
+ "net_bp": {
+  "free": 183.25,
+  "maker_taker": 175.25,
+  "taker": 170.25,
+  "taker_x2": 157.25,
+  "crash": 103.25
+ },
+ "base_n": 417,
+ "base_bp": 84.72,
+ "vs_base_bp": 98.52,
+ "p_vs_base": 0.2703648175912044,
+ "passes": false,
+ "note": "baseline = rally, zp<-1, zs<=0 (n=417)",
+ "rerun": "",
+ "at": "2026-11-24T16:49:15+00:00"
+}

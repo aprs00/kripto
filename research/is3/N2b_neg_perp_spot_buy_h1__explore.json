@@ -1,0 +1,56 @@
+{
+ "name": "N2b_neg_perp_spot_buy_h1",
+ "sample": "explore",
+ "n": 221,
+ "days": 150,
+ "coins": 24,
+ "mean_bp": 92.5,
+ "median_bp": 97.09,
+ "win": 0.593,
+ "se_bp": 42.03,
+ "ci95_bp": [
+  8.44,
+  174.48
+ ],
+ "p": 0.028985507246376812,
+ "mde80_bp": 117.69,
+ "mean_ex_top3_bp": 57.92,
+ "top3_share": 0.4,
+ "t_day_mean": 2.02,
+ "by_year": {
+  "2021": [
+   79,
+   139.99
+  ],
+  "2022": [
+   60,
+   -13.11
+  ],
+  "2023": [
+   82,
+   124.03
+  ]
+ },
+ "by_side": {
+  "1": [
+   221,
+   92.5
+  ]
+ },
+ "coins_positive": 0.71,
+ "net_bp": {
+  "free": 92.5,
+  "maker_taker": 84.5,
+  "taker": 79.5,
+  "taker_x2": 66.5,
+  "crash": 12.5
+ },
+ "base_n": 1105,
+ "base_bp": 52.24,
+ "vs_base_bp": 40.27,
+ "p_vs_base": 0.37231384307846077,
+ "passes": false,
+ "note": "rally, zp<-1, zs>0; matched same coin same rally bin",
+ "rerun": "",
+ "at": "2026-11-24T16:49:15+00:00"
+}

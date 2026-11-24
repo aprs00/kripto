@@ -1,0 +1,56 @@
+{
+ "name": "N2a_spotled_h3",
+ "sample": "explore",
+ "n": 1417,
+ "days": 520,
+ "coins": 24,
+ "mean_bp": 128.62,
+ "median_bp": 15.05,
+ "win": 0.507,
+ "se_bp": 45.99,
+ "ci95_bp": [
+  40.29,
+  220.46
+ ],
+ "p": 0.004997501249375313,
+ "mde80_bp": 128.78,
+ "mean_ex_top3_bp": 93.79,
+ "top3_share": 0.28,
+ "t_day_mean": 3.39,
+ "by_year": {
+  "2021": [
+   452,
+   378.65
+  ],
+  "2022": [
+   407,
+   -98.05
+  ],
+  "2023": [
+   558,
+   91.41
+  ]
+ },
+ "by_side": {
+  "1": [
+   1417,
+   128.62
+  ]
+ },
+ "coins_positive": 0.62,
+ "net_bp": {
+  "free": 128.62,
+  "maker_taker": 120.62,
+  "taker": 115.62,
+  "taker_x2": 102.62,
+  "crash": 48.62
+ },
+ "base_n": 7085,
+ "base_bp": 145.79,
+ "vs_base_bp": -17.17,
+ "p_vs_base": 0.6996501749125438,
+ "passes": false,
+ "note": "rally rk>=2/3, D>=q80 (0.89); matched same coin same rally bin",
+ "rerun": "",
+ "at": "2026-11-24T16:49:15+00:00"
+}

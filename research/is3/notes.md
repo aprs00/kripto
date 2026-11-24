@@ -461,3 +461,14 @@ M1 a/b/c/e done (is3_m1.py, is3_m1c.py; data/is3/m1_explore.txt, m1c_explore.txt
  first all-red bar at a 24h/7d high is no better a short than any bar at the high, his thin-fast boxed bar goes the WRONG way (-6 vs matched). The one strong-looking curve (top |delta share| decile
  reverses -22 bp/1h) is the torn-book trap: 94-100% sub-1-s bars, gone at 5-min late entry outside 2021/SOL. RAM: is3_m1 explore peaked 3.1 GB (over the 2 GB rule; ran in-session, finished in 2 min);
  is3_m1c keeps float32 features, 0.83 GB. Next M1 form: d (adaptive size groups) as a variant of a.
+N2 think-through, part 2 (16:58 UTC, before any run). Source re-read and image opened (1 of 2 images; the other, 18.11.02(2), is the CT longs/shorts framework, not about delta): Dec 2021,
+ "huge negative volume deltas in the parabolic leg during the main run to 50k, derivatives red as f ... it's just spot hedges. Seen many bears perish". Claim: in a rally, negative PERP taker delta is
+ hedging by spot holders (or carry), not bearish conviction; bears who read it as bearish are the trapped side. What he does NOT say but must be doing: (1) judging delta relative to normal (perp
+ taker ratio sits near 0.5, spot's has its own level), so each coin's spot and perp imbalance is z-scored vs its own trailing 30 days; (2) the hedge story needs SPOT buying at the same time (else
+ negative perp delta in a rally is just short covering ending); (3) multi-day horizon (a "leg"), so hold 1 and 3 days, decision at the UTC day close, perp prices. Data: perp daily tbqv (bnall files,
+ 30 coins), spot daily = sum of spot 1h; days where spot and perp closes differ > 2% are dropped (LUNA after May 2022 etc.). Only daily resolution exists for perp taker flow on these coins.
+ Samples: explore 2021-23 (30 coins), confirmT 2024-25; confirmC would need spot for coins 31-60, downloaded only after a prereg. Change my mind: spot-led rallies (D = zspot - zperp high)
+ beat same-coin same-rally-size days by > costs over 3 d with a dose in D, every explore year.
+N2 a/b done (is3_n2.py explore|checks): spot-led rallies earn exactly what same-size rallies earn (-17 bp vs matched at 3 d, curve flips by year); his exact case (rally + negative perp delta + spot
+ buying, n=221) = matched (-1 bp), +98 vs negative-perp-without-spot (p .27, MDE 230): too few events. Null: raw sign-flip null is +57 bp for ANY long-only daily rule (simple-return convexity);
+ run the null on event minus matched instead (clean here). Next: c (cross-sectional D rank; D as filter on flow).

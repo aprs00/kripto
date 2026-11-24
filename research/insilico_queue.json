@@ -759,12 +759,18 @@
     {
      "id": "a",
      "what": "build hourly spot klines with taker split for the 30 most liquid coins (data.binance.vision spot archive); rally led by spot vs led by perp -> next 24/72 h",
-     "status": "planned"
+     "status": "done",
+     "result": "explore 2021-23, 30 coins daily: spot-led rallies (D=zspot-zperp top quintile, n=1417) +129 bp/3d vs matched same coin same rally size +146 (diff -17, p .70; h1 -10, p .66); D curve flips sign by year (2021 -379, 2023 +62); perp-led rally short also = matched. 6 explore cards (a/b x h1/h3 + mirror). Null raw +57 bp = long-only convexity, null on diff vs matched clean; causal ok; hand-check AVAX ok. No effect beyond rally size. DEAD form",
+     "date": "2026-11-24",
+     "evidence": "N2a_spotled_h3__explore"
     },
     {
      "id": "b",
      "what": "negative perp delta in a spot-led rally (his exact claim) vs negative perp delta otherwise",
-     "status": "planned"
+     "status": "done",
+     "result": "his exact case (rally, perp z<-1, spot z>0; n=221, MDE 230 bp at 3d): +183 bp/3d vs matched +184 (diff -1, p .99); vs rally with negative perp delta and no spot buying +98 (p .27, 1d +38 p .45); 2022 -182. Direction his way vs no-spot but within noise, too few events. Perp taker z itself predicts the OTHER way (top perp-buying quintile +219 vs +141 bottom at 3d) = known flow momentum. Not shown",
+     "date": "2026-11-24",
+     "evidence": "N2b_vs_negperp_nospot_h3__explore"
     },
     {
      "id": "c",

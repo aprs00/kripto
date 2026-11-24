@@ -1,0 +1,56 @@
+{
+ "name": "N2a_perpled_short_h3",
+ "sample": "explore",
+ "n": 1417,
+ "days": 615,
+ "coins": 24,
+ "mean_bp": -207.29,
+ "median_bp": 36.07,
+ "win": 0.524,
+ "se_bp": 51.16,
+ "ci95_bp": [
+  -308.14,
+  -106.75
+ ],
+ "p": 0.0004997501249375312,
+ "mde80_bp": 143.24,
+ "mean_ex_top3_bp": -225.2,
+ "top3_share": null,
+ "t_day_mean": -4.27,
+ "by_year": {
+  "2021": [
+   388,
+   -799.07
+  ],
+  "2022": [
+   493,
+   79.03
+  ],
+  "2023": [
+   536,
+   -42.26
+  ]
+ },
+ "by_side": {
+  "-1": [
+   1417,
+   -207.29
+  ]
+ },
+ "coins_positive": 0.33,
+ "net_bp": {
+  "free": -207.29,
+  "maker_taker": -215.29,
+  "taker": -220.29,
+  "taker_x2": -233.29,
+  "crash": -287.29
+ },
+ "base_n": 7085,
+ "base_bp": -168.81,
+ "vs_base_bp": -38.48,
+ "p_vs_base": 0.4622688655672164,
+ "passes": false,
+ "note": "rally with D<=q20, short; matched same coin same rally bin",
+ "rerun": "",
+ "at": "2026-11-24T16:49:15+00:00"
+}
