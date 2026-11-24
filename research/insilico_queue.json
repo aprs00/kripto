@@ -1357,7 +1357,10 @@
     {
      "id": "a",
      "what": "previous range high as bid on range bars (0.1 / 0.2%), fill only if volume traded at the level after the order exceeds the queue ahead",
-     "status": "planned"
+     "status": "done",
+     "result": "BTC/ETH/SOL micro bars 2021-23, range bars 0.2/0.43% (0.1% = one 10-bp micro step, not testable): real level - placebo +0.5/+0.6/-1.2/-1.5 bp (p .08-.31, MDE 0.9-3.4) at q250k/through; touch gross +0.2/+0.8 net -5.2/-4.6; queue rungs worse the larger Q (q1m -11/-16 gross, placebos the same); every year and side negative net. Verdict: the old range high is not a level (= placebo), adverse selection decides. Variants: 2 widths x 5 fill rungs x 2 sides",
+     "date": "2026-11-24",
+     "evidence": "M5a_w2_q250k__explore"
     },
     {
      "id": "b",
@@ -1372,7 +1375,10 @@
     {
      "id": "d",
      "what": "thin coins where an average bar is large relative to fees (1-min bars)",
-     "status": "planned"
+     "status": "done",
+     "result": "44 thin coins (median qv 0.5-50M) 1-min klines 2021-23, range bars 0.5/1%: real level = placebo at every fill rung (vs placebo -0.3/-0.5/-1.6/-2.6 bp, p .23-.62, MDE 2-9); touch gross -0.1/+4.0 net -5.6/-1.7; queue fills adversely selected (q250k gross -40/-46, q1m -62/-82, same for placebos); trade-through net -7.8/-4.1. Verdict: no level effect, fills decide and lose. Variants: 2 widths x 5 fill rungs x 2 sides",
+     "date": "2026-11-24",
+     "evidence": "M5d_w5_through__explore"
     },
     {
      "id": "e",
