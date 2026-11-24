@@ -548,3 +548,15 @@ F1 g confirmT (17:5x): FAILED both books (flow dSR -0.25, xsmom -0.32, every 202
  Honesty note: my diagnosis table printed 2026 too (7 cascade days, next day +228 bp); seen, not used, F1g is failed by its pre-registered confirm. F1 left: a (tsize breadth in flow), e (POC), f (round/poor low).
 F1 a done (17:58): tsize breadth on BTC/ETH/SOL inside flow = random masks (dSR -0.05, 58th pct). F1 left: e (prior POC / value area) and f (poor lows) need intraday profiles for the
  whole flow/xsmom universe -> build from bn100 1h (hourly profile per coin-day; RAM: probe first) next session.
+F1 e/f think-through (18:5x UTC, before any run). Sources: P5 (pass2 plan: "do the slow books' entries do better at a prior POC / inside vs outside value?"), R26 tg:119 (Flood's
+ "hundy roll", seen via its stored description, image not re-opened: price trending into a round number is pulled through it and overshoots ~6%), P2g poor lows (unfinished extremes).
+Mechanism: (e) Dalton: a close outside yesterday's value = initiative activity, inside = balance; a momentum book should earn more when it sides with initiative and less in balance.
+ (f) round numbers attract resting orders/stops; R26 says momentum carries THROUGH, so the book's shorts just below a round level are the trapped side; poor (single-print-free)
+ extremes are 'unfinished', so a long whose prior-day low is poor should face a retest.
+What he does not say: the location only matters for NEW entries near the level and when the level is fresh (one day old); the harness masks positions per day (exits them), stated.
+Build: per-coin day profiles from bn100 1h (klines_1h_all, 698 coins, per-coin reads, no wide panel): 30 log bins over the day's range, hour qv spread uniformly over the bins
+ it covers; TPO = hours touching a bin; POC, VA(frac). Day d's profile ends at day d's close = the bar the book trades at: causal. Coins without hourly data: unfiltered (report coverage).
+Forms: e1 block positions against location (long & close<VAL, short & close>VAH), e2 block positions while close inside VA, e3 (Dalton's responsive reading, the opposite) block
+ longs above VAH / shorts below VAL; dose VA 50/70/85%. f1 R26: block shorts within 1/2/3% below the next round level (1,2,5 x 10^k); f2 block longs whose prior-day low is poor
+ (bottom bin touched by >= 2 hours) and shorts whose high is poor. Pass = F0 rule (dSR > 0, >= 95th pct of random masks) + every explore year + in both books (flow, xsmom).
+Prior: P1-P3 found profile levels = placebo levels on COINS10 minute data, so I expect nothing; the filter question is still separate (does location change the BOOK's P&L).
