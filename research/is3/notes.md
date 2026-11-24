@@ -443,3 +443,17 @@ N5 e (added, tested once): thin-volume 4h lows passed explore even under the per
 Units at session end (12:00 UTC): is3-m0 (M0c: BTC 2024-01..2026-10 done 1035/1035, ETH 103, SOL 0; ends ~12:24, restart with the M0 command, --start 2024-01-01 --end 2026-10-31; then rerun
  is3_m0b to extend mbars_bad_days.json), is3-n2 (spot 1h, 7/30 symbols so far; ends <= 12:33; restart: systemctl --user reset-failed is3-n2; systemd-run --user --unit is3-n2 -p Nice=19 -p MemoryMax=800M
  -p RuntimeMaxSec=2700 --working-directory=$HOME/kripto .venv/bin/python -m research.studies.is3_n2_download — resumable).
+
+## M1 rotation momentum on range bars (think-through 13:00 UTC, before any run)
+Sources tg:199–223 (range-500 footprint sequence on XBTUSD, 7 size groups; tg:203 "wait for it to rotate ... trapped tards puke and u ride the momentum"; tg:216 "price go up, ts green, ts
+becomes bright red? its over", sometimes an 8 h bleed, sometimes quick fade), S1e/S2 picture notes (the boxed green bar is THIN and FAST). Mechanism: when every size group lifts offers at once the
+buying is not one actor but a crowd, shorts are being forced out (trapped) and the move feeds on itself until a bar where every group sells. Prior: Binance taker flow persists (flow book), T5f found
+effort-without-result does not bounce at 1 min, so continuation after one-voiced flow is plausible but tiny per range bar. What he does NOT say: he is not paying 13 bp on 10-bp bars: at 0.1% bars any
+edge must beat costs over the whole ride, so the hold (green run -> first all-red) must be many bars; he exits into strength on the red bar = a passive exit is possible; the colour only means something
+relative to price (green with price not rising = absorption, M3). Data: BTC ETH SOL micro bars 2021–23 (explore), groups = tsize author7, a bar is all-green when every non-empty group has delta > 0
+and >= 4 groups are non-empty. Baseline for a = the same exit rule entered after the same number of consecutive UP bars that are NOT all-green (isolates the colour from the price run), m = (width, run, side).
+Change my mind: all-green rides beat plain-up-run rides by > costs with a dose in run length, every explore year. Sub-1-s bars reported separately (M0 trap); entry one micro bar late as the delay stress.
+M1 null check (13:25): colour labels shuffled within day, 2022, 0.43% bars. First baseline (up-run bars not green) FAILED the null (+12 bp): range bars mean-revert, so events must be up bars
+ and the baseline must match the prior price-run length; then still +4 from day composition (green-heavy days are up days). Final baseline = same coin, same DAY, same side, same prior
+ up-run length (L.matched m = day_side_pl): null +1.2 / -0.4 / +5 bp (r = 1/2/3). Lesson: on range bars a colour test needs within-day, same-price-path matching.
+ Hand-check BTC 2022-03-10 05:52: ride exits at the next all-red bar -50 bp, correct; four 0.43% bars inside one millisecond at 05:54:03.586 (torn book).
