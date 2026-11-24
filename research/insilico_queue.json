@@ -1080,8 +1080,8 @@
     }
    ],
    "sessions": 1,
-   "due": "2026-11-24T12:25",
-   "defer_why": "M0c chunk 2 running in is3-m0 (restarted 11:39)"
+   "due": "2026-11-24T17:30",
+   "defer_why": "M0c SOL 2024-01..2026-10 running in is3-m0 (restarted 16:47), then rerun is3_m0b"
   },
   {
    "id": "M1",
@@ -1151,7 +1151,10 @@
     {
      "id": "a",
      "what": "trades per range bar drops or jumps >= 10x vs the previous bar (0.1%, 0.2%): reversal / consolidation?",
-     "status": "planned"
+     "status": "done",
+     "result": "explore 2021-23 BTC ETH SOL, 0.1/0.2/0.43% range bars: trade-count jumps/drops >=5/10/20x are COMMON at his bar size (63% of SOL 2021 0.1% bars change >=5x). Fade from 5 min late vs within-day matched: -3..+4 bp everywhere (MDE few bp); drops' apparent +10-15 bp from the close = 82-100% sub-1-s torn-book bars, gone late and on >=1-s bars. Consolidation: next-hour range -2..-5% vs matched (null 0.00): real, tiny. Null (counts shuffled in day) clean. DEAD as a trade",
+     "date": "2026-11-24",
+     "evidence": "M2b_long10_w43__explore"
     },
     {
      "id": "b",
@@ -1161,12 +1164,18 @@
     {
      "id": "c",
      "what": "seconds per bar (speed) instead of trade count",
-     "status": "planned"
+     "status": "done",
+     "result": "duration ratio (slow/fast bar >=5/10/20x) instead of count: late60 vs matched -2..+4 bp at every width, slow-only 0..+4; no reversal, calm -0.01..-0.05 log. Same as a: nothing tradable",
+     "date": "2026-11-24",
+     "evidence": "M2b_long10_w43__explore"
     },
     {
      "id": "d",
      "what": "5x and 20x as dose-response",
-     "status": "planned"
+     "status": "done",
+     "result": "dose 5/10/20x: no dose anywhere in a/c (flat at ~0 vs matched); only inside b's long side at 0.43% (5x +27, 10x +50, 20x +42 vs matched)",
+     "date": "2026-11-24",
+     "evidence": "M2b_long10_w43__explore"
     },
     {
      "id": "e",

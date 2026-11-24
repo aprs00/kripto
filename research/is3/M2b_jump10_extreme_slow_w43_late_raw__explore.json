@@ -1,0 +1,56 @@
+{
+ "name": "M2b_jump10_extreme_slow_w43_late_raw",
+ "sample": "explore",
+ "n": 999,
+ "days": 446,
+ "coins": 3,
+ "mean_bp": 49.09,
+ "median_bp": 11.95,
+ "win": 0.546,
+ "se_bp": 13.73,
+ "ci95_bp": [
+  22.76,
+  74.83
+ ],
+ "p": 0.0004997501249375312,
+ "mde80_bp": 38.46,
+ "mean_ex_top3_bp": 35.08,
+ "top3_share": 0.33,
+ "t_day_mean": 1.92,
+ "by_year": {
+  "2021": [
+   342,
+   85.29
+  ],
+  "2022": [
+   415,
+   34.88
+  ],
+  "2023": [
+   242,
+   22.3
+  ]
+ },
+ "by_side": {
+  "-1": [
+   399,
+   -22.06
+  ],
+  "1": [
+   600,
+   96.4
+  ]
+ },
+ "coins_positive": 1.0,
+ "net_bp": {
+  "free": 49.09,
+  "maker_taker": 41.09,
+  "taker": 36.09,
+  "taker_x2": 23.09,
+  "crash": -30.91
+ },
+ "passes": true,
+ "note": "same, raw late60 return (cost-ladder reading)",
+ "rerun": "",
+ "at": "2026-11-24T16:57:13+00:00"
+}

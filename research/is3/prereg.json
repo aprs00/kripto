@@ -102,5 +102,26 @@
    "note": "idea arose from N5 c in the same session (chosen after seeing thin vs heavy lows); per-year explore diffs +337/+135/+54 (only 2021 significant); 1h version failed the per-year rule and is not registered; effect below its MDE (236 bp)"
   },
   "at": "2026-11-24T11:58:54+00:00"
+ },
+ "M2b_long10_w43": {
+  "claim": "A >=10x jump in trades per 0.43% range bar on a slow down bar at the 24 h low (capitulation burst, his 701-at-the-low example) is followed by a rebound beyond what the same day, side and price path give: +50 bp vs matched at 60 min from 5 min late in 2021-23 (n=600, every year and coin +). Chosen from ~36 explore cells (3 widths x 3 doses x 2 sides x sub-1s or not); overlaps L1 liquidation fade.",
+  "rule": "research/studies/is3_m2.py collect() on 2024-01-01..2026-01-01 (BTC ETH SOL micro bars, mbars_bad_days dropped); events = w 0.0043 range bars, duration >= 1 s (fast False), extreme True (bar low within the last 4 bars of the rolling 24 h low), side +1 (down bar), lr >= log 10; gross = late60 (buy 5 min after the bar close, sell 60 min later) minus the mean late60 of non-event bars (|lr| < log 2) in the same (coin, w, day_side_pl cell, fast, extreme); card on that diff, plus the raw late60 for the cost ladder. Script: /tmp/m2card.py logic, to be saved as research/studies/is3_m2.py confirm.",
+  "params": {
+   "w": 0.0043,
+   "K": 10,
+   "min_dur_ms": 1000,
+   "extreme_bars": 4,
+   "window": "24h",
+   "side": 1,
+   "delay_min": 5,
+   "hold_min": 60
+  },
+  "at": "2026-11-24T16:59:09+00:00"
+ },
+ "M2b_long10_w43_raw": {
+  "claim": "raw return of the same events (cost ladder reading)",
+  "rule": "same events as M2b_long10_w43, gross = late60",
+  "params": {},
+  "at": "2026-11-24T16:59:09+00:00"
  }
 }

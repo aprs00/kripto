@@ -1,0 +1,52 @@
+{
+ "name": "M2b_long10_w43",
+ "sample": "explore",
+ "n": 600,
+ "days": 247,
+ "coins": 3,
+ "mean_bp": 49.89,
+ "median_bp": 6.9,
+ "win": 0.513,
+ "se_bp": 15.57,
+ "ci95_bp": [
+  20.07,
+  80.48
+ ],
+ "p": 0.0014992503748125937,
+ "mde80_bp": 43.6,
+ "mean_ex_top3_bp": 31.22,
+ "top3_share": 0.42,
+ "t_day_mean": 1.92,
+ "by_year": {
+  "2021": [
+   209,
+   81.83
+  ],
+  "2022": [
+   268,
+   18.77
+  ],
+  "2023": [
+   123,
+   63.4
+  ]
+ },
+ "by_side": {
+  "1": [
+   600,
+   49.89
+  ]
+ },
+ "coins_positive": 1.0,
+ "net_bp": {
+  "free": 49.89,
+  "maker_taker": 41.89,
+  "taker": 36.89,
+  "taker_x2": 23.89,
+  "crash": -30.11
+ },
+ "passes": true,
+ "note": "0.43% range bars >=1 s, down bar at the 24h low (within 4 bars), trades >=10x previous bar; long 5 min after the close, 60 min; gross = minus the within-day matched cell mean (coin, day, side, prior run, slow, at-extreme)",
+ "rerun": "",
+ "at": "2026-11-24T16:58:47+00:00"
+}

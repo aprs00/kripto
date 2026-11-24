@@ -1,0 +1,56 @@
+{
+ "name": "M2b_jump10_extreme_slow_w43_late_diff",
+ "sample": "explore",
+ "n": 999,
+ "days": 446,
+ "coins": 3,
+ "mean_bp": 24.25,
+ "median_bp": -0.32,
+ "win": 0.487,
+ "se_bp": 9.95,
+ "ci95_bp": [
+  4.46,
+  44.03
+ ],
+ "p": 0.015992003998001,
+ "mde80_bp": 27.86,
+ "mean_ex_top3_bp": 12.22,
+ "top3_share": 0.52,
+ "t_day_mean": 0.24,
+ "by_year": {
+  "2021": [
+   342,
+   42.99
+  ],
+  "2022": [
+   415,
+   11.46
+  ],
+  "2023": [
+   242,
+   19.7
+  ]
+ },
+ "by_side": {
+  "-1": [
+   399,
+   -14.3
+  ],
+  "1": [
+   600,
+   49.89
+  ]
+ },
+ "coins_positive": 1.0,
+ "net_bp": {
+  "free": 24.25,
+  "maker_taker": 16.25,
+  "taker": 11.25,
+  "taker_x2": -1.75,
+  "crash": -55.75
+ },
+ "passes": false,
+ "note": ">=1-s 0.43% bars at a 24h extreme with trade count >=10x the previous bar, fade from 5 min late, 60 min; gross = event minus within-day matched cell mean (diff)",
+ "rerun": "",
+ "at": "2026-11-24T16:57:13+00:00"
+}

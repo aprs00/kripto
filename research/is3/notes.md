@@ -491,3 +491,8 @@ Fixed: BTC ETH SOL micro bars 2021-23 (explore), widths 0.1% (= micro bars, his 
  the ratio jump/drop is known (decision at its close). Outcomes: 'reversal' = return against the event bar's direction over 15 min / 1 h / 4 h; 'calm' = next-1h high/low range / previous-1h range.
 Baseline = M1 harness: same coin, same UTC day, same bar side, same prior same-direction run length (m = day_side_pl), non-event bars. Null = trade counts shuffled within each day.
 Change my mind: |log ratio| >= log 10 bars reverse by > 13 bp vs matched at 1 h with a dose in the ratio (5/10/20x), on >= 1-s bars, every explore year.
+M2 a/c/d done (is3_m2.py; data/is3/m2_explore.txt, m2_null.txt): 5-20x count changes are the NORM at 0.1% bars on 2021+ Binance (63% of SOL 2021 bars); no reversal vs within-day matched from
+ 5 min late at any width or dose; drops look like +10-15 bp reversals from the close but are 82-100% sub-1-s torn-book bars. Next-hour range 2-5% lower after events (null 0): real, tiny (F-feature).
+M2 b explore: at a 24 h extreme, >=1-s 0.43% bars, LONG side only (down burst at the low = his 701 example): +50 bp vs matched (p .001, n=600, 2021/22/23 +82/+19/+63, BTC/ETH/SOL +17/+15/+85,
+ dose 27/50/42); raw +96, +16 at crash costs; the same on sub-1-s bars -6; short side (burst at the high) -14. ~36 cells searched; overlaps L1. Pre-registered M2b_long10_w43 (+_raw); confirmT
+ 2024-25 after M0c SOL lands. pdVAH/VAL proximity: nothing (n.s., mixed signs).

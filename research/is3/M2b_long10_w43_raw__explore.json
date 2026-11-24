@@ -1,0 +1,52 @@
+{
+ "name": "M2b_long10_w43_raw",
+ "sample": "explore",
+ "n": 600,
+ "days": 247,
+ "coins": 3,
+ "mean_bp": 96.4,
+ "median_bp": 28.28,
+ "win": 0.593,
+ "se_bp": 20.22,
+ "ci95_bp": [
+  57.36,
+  136.35
+ ],
+ "p": 0.0004997501249375312,
+ "mde80_bp": 56.61,
+ "mean_ex_top3_bp": 77.38,
+ "top3_share": 0.28,
+ "t_day_mean": 3.84,
+ "by_year": {
+  "2021": [
+   209,
+   156.54
+  ],
+  "2022": [
+   268,
+   57.25
+  ],
+  "2023": [
+   123,
+   79.52
+  ]
+ },
+ "by_side": {
+  "1": [
+   600,
+   96.4
+  ]
+ },
+ "coins_positive": 1.0,
+ "net_bp": {
+  "free": 96.4,
+  "maker_taker": 88.4,
+  "taker": 83.4,
+  "taker_x2": 70.4,
+  "crash": 16.4
+ },
+ "passes": true,
+ "note": "same events, raw return (cost ladder)",
+ "rerun": "",
+ "at": "2026-11-24T16:58:47+00:00"
+}
