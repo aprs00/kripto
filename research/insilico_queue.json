@@ -829,8 +829,11 @@
     {
      "id": "g",
      "what": "change of character (wa 18.10.28(1) picture): after an up-run of >= n bars making new highs, the first bar whose body is larger than any opposite body of the run, on a volume spike, vs the same bar size without the run (1h, 4h)",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "after >= 4 new 20-bar highs in 8 bars, the first down bar with the largest body of the run on >= 2x volume, short 6 bars: 1h -20.7 bp vs same-body down bars without the run -30.8 (diff +10, p .64, MDE 52; n 898); 4h -110 vs -48 (diff -61, p .25, MDE 126): the change-of-character bar is followed by MORE upside than an ordinary big red bar, not a reversal",
+     "date": "2026-11-24",
+     "evidence": "N3kg__explore"
     },
     {
      "id": "h",
@@ -859,8 +862,11 @@
     {
      "id": "k",
      "what": "trend lasts until bars overlap (wa 18.10.19(1), R18): ride an impulse whose bars do not overlap (1h/4h), exit on the first bar that overlaps half of the leg; efficiency ratio as dose, vs fixed holding",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "COINS10 2021-23, 3 non-overlapping bars in a row (low above the prior bar's midpoint, close above its high; mirror): 1h up +34 bp over 6 bars vs matched +5 (diff +29, p .06, MDE 39), but the efficiency-ratio dose runs the wrong way (+54 / +27 / +22 low to high ER); his exit (first bar back below the leg midpoint, mean hold 13 bars) +31 vs fixed-6 +34: no better; 1h down +12 diff (MDE 93); 4h n 63-129, n.s. No 'ride until overlap' edge",
+     "date": "2026-11-24",
+     "evidence": "N3kg__explore"
     }
    ],
    "sessions": 1

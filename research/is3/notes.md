@@ -415,3 +415,5 @@ N3 b/e/f done (is3_n3d.py, is3_n3d_card.py): absorption passed explore (+146 bp 
  pre-registering a daily form (O1e and N3f both had one null/negative explore year). Remaining N3 forms: a, c, d, g, h, i, j, k.
 N3 c/i/j done (is3_n3m.py): delta-flip change of character too rare (48 at 1h); HTF trend filter makes no significant difference to 1-h momentum (+5 bp, MDE 10), as he claims; painted last
  minutes are not faded (the push continues, same as at minutes 25-30). N3 left: a, d, g, h, k.
+N3 k/g done (is3_n3kg.py): non-overlapping impulses carry a little at 1h (+29 bp vs matched, p .06) with an anti-dose in efficiency; his overlap exit adds nothing; the change-of-character bar does not
+ reverse. N3 left for next session: a (successive swings), d (weekly/monthly AVWAP distance), h (his AVWAP anchors). Then N4, N5, the M-items (need M0c), F, X, L2 (due 12-05).
