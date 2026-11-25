@@ -1,0 +1,56 @@
+{
+ "name": "m7b_poc_touch_side+1",
+ "sample": "explore",
+ "n": 1276,
+ "days": 715,
+ "coins": 3,
+ "mean_bp": 15.82,
+ "median_bp": 10.05,
+ "win": 0.568,
+ "se_bp": 4.26,
+ "ci95_bp": [
+  7.63,
+  24.37
+ ],
+ "p": 0.0004997501249375312,
+ "mde80_bp": 11.93,
+ "mean_ex_top3_bp": 12.47,
+ "top3_share": 0.21,
+ "t_day_mean": 4.57,
+ "by_year": {
+  "2021": [
+   452,
+   17.81
+  ],
+  "2022": [
+   425,
+   7.21
+  ],
+  "2023": [
+   399,
+   22.73
+  ]
+ },
+ "by_side": {
+  "1": [
+   1276,
+   15.82
+  ]
+ },
+ "coins_positive": 1.0,
+ "net_bp": {
+  "free": 15.82,
+  "maker_taker": 7.82,
+  "taker": 2.82,
+  "taker_x2": -10.18,
+  "crash": -64.18
+ },
+ "base_n": 1342,
+ "base_bp": 7.93,
+ "vs_base_bp": 7.89,
+ "p_vs_base": 0.1934032983508246,
+ "passes": false,
+ "note": "first touch of exact daily POC within 5 d, 60 min, vs mirrored levels approached from the same side",
+ "rerun": "",
+ "at": "2026-11-25T01:08:43+00:00"
+}

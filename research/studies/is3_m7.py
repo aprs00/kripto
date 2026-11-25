@@ -7,7 +7,7 @@ Outcomes: (1) next-day simple return close->close, side-signed; (2) retest: the 
 fill as of +1 s, exit 60 min later. Baselines: (1) matched days: same coin, same day-return decile x close-location tercile; (2) placebo bin: same day, same side
 of the close, |delta| share below the day's median, nearest in distance to the close -> same retest rule.
 
-    nice -n 19 .venv/bin/python -W ignore -m research.studies.is3_m7 explore
+    nice -n 19 .venv/bin/python -W ignore -m research.studies.is3_m7 explore [b]
 """
 from __future__ import annotations
 
@@ -142,5 +142,58 @@ def run(sample):
     L.card("m7a_retest_top", e2[e2.q == 4][["time", "coin", "side", "gross"]], sample, base=p2[["time", "coin", "side", "gross"]], note="top dose quintile")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and len(sys.argv) <= 2:
     run(sys.argv[1] if len(sys.argv) > 1 else "explore")
+
+
+# ---------------------------------------------------------------- b: P3's best form with the exact POC
+def form_b(sample):
+    """First touch within 5 days of a daily POC (exact 10-bp profile), trade toward the approach side (from above -> long), fill as of +1 s,
+    60-min return. Placebo: the POC mirrored around the day's close (C^2 / POC), approached from the other side. Dose: POC distance from the
+    close and the POC bin's volume share (thin / fat node)."""
+    lo, hi = L.SAMPLES[sample]
+    out = []
+    for coin in COINS:
+        b = load(coin, lo, hi)
+        day = b["t1"] // 86_400_000
+        cut = np.flatnonzero(np.diff(day)) + 1
+        st, en = np.concatenate([[0], cut]), np.concatenate([cut, [len(day)]])
+        for a, z in zip(st, en):
+            if z - a < 50 or z >= len(day):
+                continue
+            h, l, c = b["h"][a:z], b["l"][a:z], b["c"][a:z]
+            k = np.floor(np.log(np.sqrt(h * l)) / BIN).astype(np.int64)
+            k0 = k.min()
+            V = np.bincount(k - k0, weights=b["bs"][a:z] + b["ss"][a:z])
+            i = int(V.argmax())
+            C = c[-1]
+            lev_lo, lev_hi = np.exp((k0 + i) * BIN), np.exp((k0 + i + 1) * BIN)
+            mid = np.sqrt(lev_lo * lev_hi)
+            if lev_lo <= C <= lev_hi:
+                continue
+            dist = abs(np.log(mid / C))
+            t_end = b["t1"][z - 1] + 5 * 86_400_000
+            side = 1 if mid < C else -1
+            r = retest(b, z, lev_lo, lev_hi, side, t_end)
+            m_lo, m_hi = C * C / lev_hi, C * C / lev_lo
+            rp = retest(b, z, m_lo, m_hi, -side, t_end)
+            for kind, x, sd in (("real", r, side), ("mirror", rp, -side)):
+                if x is not None:
+                    out.append({"time": pd.Timestamp(x[0], unit="ms", tz="UTC"), "coin": coin, "side": sd, "gross": x[1], "kind": kind,
+                                "dist": dist, "share": V[i] / V.sum()})
+        del b
+    d = pd.DataFrame(out)
+    d = d[d.time < pd.Timestamp(hi, tz="UTC") - pd.Timedelta("2h")]
+    d["dq"] = pd.qcut(d.dist, 4, labels=False)
+    d["sq"] = pd.qcut(d.share, 4, labels=False)
+    print("60-min bp, real vs mirror by side:\n", (d.pivot_table(index="side", columns="kind", values="gross", aggfunc="mean") * 1e4).round(1).to_string())
+    print("by distance quartile:\n", (d.pivot_table(index="dq", columns="kind", values="gross", aggfunc="mean") * 1e4).round(1).to_string())
+    print("by POC volume-share quartile (0 = thin):\n", (d.pivot_table(index="sq", columns="kind", values="gross", aggfunc="mean") * 1e4).round(1).to_string())
+    e, base = d[d.kind == "real"], d[d.kind == "mirror"]
+    for s in (1, -1):
+        L.card(f"m7b_poc_touch_side{s:+d}", e[e.side == s][["time", "coin", "side", "gross"]], sample, base=base[base.side == s][["time", "coin", "side", "gross"]],
+               note="first touch of exact daily POC within 5 d, 60 min, vs mirrored levels approached from the same side")
+
+
+if __name__ == "__main__" and len(sys.argv) > 2 and sys.argv[2] == "b":
+    form_b(sys.argv[1])

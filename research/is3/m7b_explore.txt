@@ -1,0 +1,21 @@
+60-min bp, real vs mirror by side:
+ kind  mirror  real
+side              
+-1     -11.1   0.9
+ 1       7.9  15.8
+by distance quartile:
+ kind  mirror  real
+dq                
+0        1.8  -5.4
+1       -6.3   2.0
+2      -17.4  13.8
+3       16.5  22.1
+by POC volume-share quartile (0 = thin):
+ kind  mirror  real
+sq                
+0       12.2  20.7
+1       -4.0   9.7
+2       -9.3   3.7
+3       -4.7  -1.4
+[m7b_poc_touch_side+1 explore] n=1276 days=715 coins=3 mean +15.8 bp (se 4.3, p 0.000, mde 11.9) median +10.1 win 57% | ex-top3 12.47 | net {'free': 15.82, 'maker_taker': 7.82, 'taker': 2.82, 'taker_x2': -10.18, 'crash': -64.18} | base +7.9, diff +7.9 (p 0.193) | years {2021: [452, 17.81], 2022: [425, 7.21], 2023: [399, 22.73]} | sides {1: [1276, 15.82]} | passes=False first touch of exact daily POC within 5 d, 60 min, vs mirrored levels approached from the same side
+[m7b_poc_touch_side-1 explore] n=1354 days=717 coins=3 mean +0.9 bp (se 3.8, p 0.805, mde 10.5) median +9.6 win 54% | ex-top3 -0.78 | net {'free': 0.92, 'maker_taker': -7.08, 'taker': -12.08, 'taker_x2': -25.08, 'crash': -79.08} | base -11.1, diff +12.0 (p 0.023) | years {2021: [448, -13.76], 2022: [459, 10.33], 2023: [447, 5.98]} | sides {-1: [1354, 0.92]} | passes=False first touch of exact daily POC within 5 d, 60 min, vs mirrored levels approached from the same side

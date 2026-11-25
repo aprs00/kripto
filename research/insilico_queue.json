@@ -1489,7 +1489,10 @@
     {
      "id": "b",
      "what": "repeat P1-P3's best and worst forms with exact volume at price",
-     "status": "planned"
+     "status": "done",
+     "result": "P3's best form with the exact aggTrade POC (BTC/ETH/SOL 2021-23): first touch within 5 d, 60 min: from above +15.8 bp vs mirror +7.9 (diff +7.9, p .19, MDE 12), from below +0.9 vs -11.1 (diff +12, p .023); thin POCs a bit larger, distance not monotone. Replicates P3 (+15 vs -1, p .09): a ~10 bp level effect, below the 13 bp taker round trip (long +2.8 net, short -12); not pre-registered (not positive after costs). P1's volume-memory form not repeated (exact bins cannot change a 10-bp-binned result much)",
+     "date": "2026-11-25",
+     "evidence": "m7b_poc_touch_side-1__explore"
     },
     {
      "id": "c",

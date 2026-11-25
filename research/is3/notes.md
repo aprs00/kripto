@@ -649,3 +649,7 @@ Build (a): BTC/ETH/SOL 2021-23 daily profiles from micro bars (10-bp bins, mbars
  with the exact POC, mirror placebo, approach side matched. Change my mind: a cell with |delta| share in the top quintile and a monotone dose beating matched by > MDE in every year.
 M7 a done (is3_m7.py, research/is3/m7a_explore.txt): outlier delta-at-price cell: next day = matched (+7 bp, MDE 62), no dose in a 30-cell grid; first retest of the cell = a low-delta
  placebo bin on the same side (+8.4 vs +8.5 bp/60 min, MDE 7), the largest cells worse (anti-dose). The generic +8 bp is the dip-touch long drift of 2021-23 (long side +16, short +1).
+M7 b done (is3_m7.py b, m7b_explore.txt): exact POC first touch beats its mirror by ~+10 bp/60 min (long +7.9 p .19, short +12 p .023), as P3 found with kline profiles; below a taker round trip.
+ Two independent profile builds now agree on a small real POC touch effect: a FEATURE-sized timing input at most (entry location for a book already trading that direction).
+M7 c plan (before run): at the exact-POC first touch, the next 5 min: taker delta against the trade (sellers into a long) as a share of that window's volume, and 'held' = price never
+ > 1 bin through the POC. Entry at touch + 5 min + 1 s, 60 min. Absorption = top-tercile opposing delta AND held; compare with held + low delta, and with mirrors under the same condition.
