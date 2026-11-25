@@ -159,8 +159,6 @@ def refresh_data(hl: HL, store: Store) -> list[str]:
     held = held_coins(store, "hl")
     coins = list(dict.fromkeys(coins + sorted(held)))
     data.hl_update_candles(coins, LIVE_INTERVAL, hl, log=lambda m: None)
-    since = (pd.Timestamp.now("UTC") - pd.Timedelta(days=30)).strftime("%Y-%m-%d")  # live needs little; deep backfill is done offline
-    data.hl_update_funding(coins, since, hl, log=lambda m: None)
     # context snapshot (funding/OI/premium) -> research dataset for HL-specific hypotheses
     snap = uni.assign(ts=pd.Timestamp.now("UTC").floor("min"))
     keep = [c for c in ["ts", "name", "funding", "premium", "openInterest", "oraclePx", "markPx", "midPx",
@@ -171,6 +169,14 @@ def refresh_data(hl: HL, store: Store) -> list[str]:
     snap = snap[keep].astype({k: str for k in keep if k not in ("ts", "dayNtlVlm")})
     (pd.concat([pd.read_parquet(p), snap]) if p.exists() else snap).to_parquet(p)
     return coins
+
+
+def refresh_funding(hl: HL, coins: list[str]):
+    """Stored HL funding history (pair books, research). Runs AFTER the HL trades (2026-11-25): one request per coin took ~3.5 min
+    before the fills, and live HL fills ~11 min after the bar close drifted ≈ +10 bp against us (assumptions row 20). No live HL
+    signal reads this hour's funding."""
+    since = (pd.Timestamp.now("UTC") - pd.Timedelta(days=30)).strftime("%Y-%m-%d")  # live needs little; deep backfill is done offline
+    data.hl_update_funding(coins, since, hl, log=lambda m: None)
 
 
 def live_panel(coins: list[str]) -> dict:
@@ -220,10 +226,16 @@ def simulate_fill(hl: HL, coin: str, size: float, cache: dict | None = None) -> 
 
 
 # --------------------------------------------------------------------------- core steps
-def accrue_funding(hl: HL, store: Store, marks: dict[str, float]):
+def hl_held(store: Store) -> list[tuple]:
+    return [tuple(r) for r in store.q("select book, coin, size from positions where size!=0") if book_venue(r[0]) == "hl"]
+
+
+def accrue_funding(hl: HL, store: Store, marks: dict[str, float], held: list[tuple] | None = None, nowms: int | None = None):
+    """Funding since the last accrual on `held` (book, coin, size): the positions held over that period. run_once snapshots
+    them BEFORE trading and accrues after the trades (so the API calls do not delay the fills); default = current positions."""
     last = int(store.get_meta("funding_accrued_ms", int(time.time() * 1000)))
-    nowms = int(time.time() * 1000)
-    held = [r for r in store.q("select book, coin, size from positions where size!=0") if book_venue(r[0]) == "hl"]
+    nowms = int(time.time() * 1000) if nowms is None else nowms
+    held = hl_held(store) if held is None else held
     coins = sorted({c for _, c, _ in held})
     rates = {}
     for c in coins:
@@ -395,7 +407,7 @@ def run_once():
     sz_dec = {c: int(r["szDecimals"]) for c, r in ctx.items()}
     if store.get_meta("funding_accrued_ms") is None:
         store.set_meta("funding_accrued_ms", int(time.time() * 1000))
-    accrue_funding(hl, store, marks)
+    held_before, t_before = hl_held(store), int(time.time() * 1000)   # funding is accrued after the trades, on these
 
     panel = live_panel(coins)
     last_bar = str(panel["close"].index[-1])
@@ -407,6 +419,11 @@ def run_once():
                                               fill=lambda c, d: simulate_fill(hl, c, d, l2))
     with trade_lock():
         books = run_books(store, entries, risk, marks, strat_w, last_bar, "main", reb)
+    store.set_meta("hl_trades_done", now_iso())   # fill-delay audit: trades finished, before funding/BN/pair/collector
+    try:
+        accrue_funding(hl, store, marks, held_before, t_before)
+    except Exception as e:   # retried next run: funding_accrued_ms only moves on success
+        store.event("ERROR", f"hl funding accrual failed: {e!r}")
     for b in books:
         eq, gross = book_equity(store, b, marks)
         store.x("insert into equity values(?,?,?,?,?)", now_iso(), b, eq, gross, len(store.positions(b)))
@@ -419,6 +436,11 @@ def run_once():
         except Exception as e:
             bn_run = None
             store.event("ERROR", f"binance venue failed: {e!r}")
+    try:   # after both venues' trades, before the pair books (their HL legs accrue from these stored prints)
+        refresh_funding(hl, coins)
+    except Exception as e:
+        store.event("WARN", f"hl funding refresh failed: {e!r}")
+    if os.environ.get("KRIPTO_BN", "1") == "1" and any(venue_of(sc) == "bn" for sc in cfg.values()):
         if bn_run and any(venue_of(sc) == "pair" for sc in cfg.values()):
             try:  # two-venue books (X2); needs both venues' marks, never breaks either venue's own books
                 from . import venue_pair

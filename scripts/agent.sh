@@ -41,4 +41,13 @@ if [ -n "$(git status --porcelain -- journal STATUS.md research config)" ]; then
   git commit -qm "agent($MODE): auto-commit session notes (rc=$RC)" && git pull -q --rebase && git push -q
 fi
 if [ $RC -ne 0 ]; then echo "$(date -u +%FT%TZ) $MODE rc=$RC" >> logs/agent-failures.log; fi
+# usage limit hit: one retry of a research/review session 5 min after the reset (2026-11-25; the 11-24 research day was lost).
+# KRIPTO_RETRY marks the retry itself, so it never schedules another. InSilico runs every 2 h anyway: no retry.
+if [ $RC -ne 0 ] && [ -z "${KRIPTO_RETRY:-}" ] && { [ "$MODE" = research ] || [ "$MODE" = review ]; }; then
+  if WHEN="$(.venv/bin/python -m scripts.limit_retry "$LOG")"; then
+    systemd-run --user --unit "kripto-retry-$MODE-$(date -u +%m%d%H%M)" --on-calendar "$WHEN" --setenv KRIPTO_RETRY=1 \
+      -p WorkingDirectory="$PWD" "$PWD/scripts/agent.sh" "$MODE" >> "$LOG" 2>&1 \
+      && echo "$(date -u +%FT%TZ) $MODE: usage limit, retry scheduled for $WHEN" | tee -a "$LOG" >> logs/agent-failures.log
+  fi
+fi
 exit 0

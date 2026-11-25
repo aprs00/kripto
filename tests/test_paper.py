@@ -97,3 +97,24 @@ def test_order_book_is_fetched_once_per_coin_per_run_when_cached(tmp_path, monke
     assert hl.n == 3
     P.simulate_fill(hl, "X", 1.0)                                    # no cache: always fetch
     assert hl.n == 4
+
+
+def test_funding_is_accrued_on_the_positions_held_before_the_trades(tmp_path):
+    """run_once accrues HL funding after trading (2026-11-25, fill delay) on a pre-trade snapshot: the hour's funding belongs to
+    what was held over that hour, not to what the rebalance just bought."""
+    from kripto import paper as P
+    s = Store(tmp_path / "p.db")
+    s.ensure_book("main", 1000.0)
+    s.x("insert into positions values('main','BTC',0.01)")
+    s.set_meta("funding_accrued_ms", 1_000)
+    held, t0 = P.hl_held(s), 5_000
+    s.x("update positions set size=0.03 where book='main' and coin='BTC'")      # the rebalance trades after the snapshot
+
+    class FakeHL:
+        def funding_history(self, coin, start, end):
+            assert (coin, start, end) == ("BTC", 1_001, 5_000)
+            return [{"time": 3_600, "fundingRate": "0.0001"}]
+    P.accrue_funding(FakeHL(), s, {"BTC": 50_000.0}, held, t0)
+    # long 0.01 BTC at 50,000 = $500 notional pays 1 bp = $0.05 (0.03 would have paid $0.15)
+    assert abs(s.cash("main") - (1000.0 - 0.05)) < 1e-9
+    assert int(s.get_meta("funding_accrued_ms")) == 5_000

@@ -19,10 +19,11 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
   are real before costs and dead after them on HL (xsmom_k: 2× costs 0.31; flow-on-HL: +19% gross, 17% costs; funding
   capture: +6–13% funding, 6–36% costs). The next unit of effort belongs to execution (T9), not to another signal.
   Always report gross, costs and turnover separately: "dead" and "dead at taker costs" are different verdicts.
-* **The HL cost model looks ≈ 1.8× too pessimistic for our order sizes (2026-11-10, 2 calm days, 234 fills, median $49).** Live
-  slippage 0.9 bp on both venues vs 5.1 bp modelled on HL (thinnest bucket: 1.5 live vs 9.9 modelled). At live-calibrated costs
-  (×0.56): flow-on-HL 0.23 → 0.54, xsmom HL 0.00 → 0.31, fspread −0.25 → 0.89, tsmom 1.03 → 1.15, blend 1.56 → 1.73. Not a gate
-  number until C1 re-fits the model on ≥ 14 days incl. a volatile one. Every HL "dead at taker costs" verdict is provisional.
+* **C1 cost calibration (2026-11-25, 17 days, 1,727 live fills, scripts/cost_calibration.py) → the model stays; the ×0.56 claim is withdrawn.**
+  Slippage alone (fill vs mid) is below the model on both venues (HL 4.0 vs 6.2 bp, BN 1.1 vs 1.9, notional-weighted), but HL fills also drifted
+  +14 bp from the decision close to the fill (≈ 11 min later). Almost all of it is ONE new listing: XTEN (11-16, listing_short + blends, $2.3k of $29k):
+  slip 39 bp + drift 120 bp = $37 of the $47 HL cost. HL coins with ADV ≥ $5M: slip + drift 4.0 bp vs model ≈ 4–5 bp. Thin new listings cost more
+  than the 25 bp cap. So "dead at taker costs" verdicts stand; listing-day trades are the expensive ones (T2b). Fill delay cut 8 → 3 min (paper.py).
 * **Deciding more often earns more before costs and less after them (2026-11-10, BN-82 5.7 y + HL 2.2 y).** tsmom: daily → 4h →
   1h decisions: before costs +25% → +31% → +31%/yr, turnover 79× → 169× → 281×, net SR 0.92 → 0.78 → 0.58; xsmom 0.45 → 0.22 →
   −0.20. Finer bars with daily decisions: tsmom +0.06–0.16, xsmom ±0.05. Re-test after C1: cheaper costs shift the optimum.
@@ -330,6 +331,12 @@ Binance lists 246 TRADIFI perps since 2026Q1; live drops them (contractType), bn
 Fixed: config/bn_tradfi.json, bars cut at the onboarding day. Same configs, to 10-31, full sample old → clean: xsmom_k 1.23→1.20, flow 1.49→1.43, tsmom 0.92→0.95,
 xsmom 1.34→1.31, blend 1.19→1.18, listing_short 0.42→0.33; **2026 only: flow 0.90→0.45, listing_short +0.36→−0.30, xsmom 1.61→1.35**. Walk-forwards not yet re-run → TF1.
 Sunday fade replication (W3) re-run on clean bn100: +65 bp (t 2.43), ≤ 2023 +28 (t 1.2), ≥ 2024 +92 (t 2.5): still CONFIRMED by its 11-19 rule. FF1 not re-run (OPEN, low prior).
+### TF1 clean-data re-run of the Binance walk-forwards (2026-11-25, bnall 1d, same 11-09 grids, data correction) → all survive; no verdict changes
+Pick / grid average (wf_selection, flow = continuation half) / worst, old → clean: flow 1.42/1.25/0.75 → **1.45/1.36/1.20**; xsmom 1.34/1.43/1.03 → 1.27/1.43/1.27;
+xsmom_k 1.12/1.23/0.94 → 0.99/1.26/0.83; tsmom 0.65/1.19/0.97 → 0.79/1.22/1.08; listing_short 0.86/0.68/0.85 → 0.81/0.64/0.81; blend 1.30/–/0.99 → 1.35/–/1.05;
+blend_nested 1.16/–/0.98 → 1.17/–/0.99. 2026 alone was hit (STATUS 11-22) but 6 years absorb it. $200: flow 1.25, xsmom 1.32, blend 1.03. Grid avg with mixed signs is
+meaningless (flow −15.7 in the result JSON = +1 and −1 configs cancelling): read wf_selection. M1 list re-derived next session by the fixed rule.
+
 ### Live candidate list = research universe? (2026-11-22, research/studies/live_universe.py; row 19) → yes on both venues
 Direct test (recorded live lists on 4 bars 11-17 → 11-22 vs the clean, fully refreshed bnall): live's top-30 contains 29, 30, 30, 30 of the research top-30. HL by proxy 98.8%.
 The Binance 24h-volume proxy said 95.1% (2026: 87%) and a bad blend@bn, but it ignores that held coins stay listed; the direct number wins. No change to live.
