@@ -1497,7 +1497,10 @@
     {
      "id": "c",
      "what": "flow AT the level: prior POC / single print touched with absorption vs without (his real usage)",
-     "status": "planned"
+     "status": "done",
+     "result": "exact-POC first touch (BTC/ETH/SOL 2021-23), 5-min window after the touch: held + top-tercile opposing taker delta ('absorption') then 60 min: +0.9 bp n 326 (MDE 7.5) vs held + least opposing -5.1 (diff +6, p .22) vs mirrors with the same condition +5.6 (diff -4.6, p .36); not monotone in the delta tercile. The ~10 bp POC bounce of b is spent within the first 5 min; flow at the level adds nothing",
+     "date": "2026-11-25",
+     "evidence": "m7c_absorb_vs_mirror__explore"
     },
     {
      "id": "d",

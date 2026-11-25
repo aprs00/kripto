@@ -1,0 +1,19 @@
+60-min bp after the 5-min window, by held x opposing-delta tercile (2 = most opposing):
+kind      mirror  real
+held  oq              
+False 0     -2.8 -17.0
+      1      9.7  17.8
+      2     -0.8   6.4
+True  0     -8.2  -5.1
+      1      3.0   1.0
+      2      5.6   0.9
+kind      mirror  real
+held  oq              
+False 0      272   256
+      1      551   499
+      2      675   511
+True  0      561   663
+      1      325   375
+      2      238   326
+[m7c_absorb_real explore] n=326 days=282 coins=3 mean +0.9 bp (se 2.7, p 0.730, mde 7.5) median +0.0 win 48% | ex-top3 -0.6 | net {'free': 0.93, 'maker_taker': -7.07, 'taker': -12.07, 'taker_x2': -25.07, 'crash': -79.07} | base -5.1, diff +6.0 (p 0.223) | years {2021: [44, 4.62], 2022: [106, 1.38], 2023: [176, -0.26]} | sides {-1: [169, -1.32], 1: [157, 3.36]} | passes=False POC touch, held 5 min against top-tercile opposing delta vs held with the least opposing delta
+[m7c_absorb_vs_mirror explore] n=326 days=282 coins=3 mean +0.9 bp (se 2.8, p 0.741, mde 7.8) median +0.0 win 48% | ex-top3 -0.6 | net {'free': 0.93, 'maker_taker': -7.07, 'taker': -12.07, 'taker_x2': -25.07, 'crash': -79.07} | base +5.6, diff -4.6 (p 0.364) | years {2021: [44, 4.62], 2022: [106, 1.38], 2023: [176, -0.26]} | sides {-1: [169, -1.32], 1: [157, 3.36]} | passes=False same condition at mirrored levels

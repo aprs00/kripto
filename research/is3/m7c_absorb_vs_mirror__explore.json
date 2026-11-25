@@ -1,0 +1,60 @@
+{
+ "name": "m7c_absorb_vs_mirror",
+ "sample": "explore",
+ "n": 326,
+ "days": 282,
+ "coins": 3,
+ "mean_bp": 0.93,
+ "median_bp": 0.0,
+ "win": 0.482,
+ "se_bp": 2.78,
+ "ci95_bp": [
+  -4.57,
+  6.3
+ ],
+ "p": 0.7411294352823589,
+ "mde80_bp": 7.79,
+ "mean_ex_top3_bp": -0.6,
+ "top3_share": 1.64,
+ "t_day_mean": 0.26,
+ "by_year": {
+  "2021": [
+   44,
+   4.62
+  ],
+  "2022": [
+   106,
+   1.38
+  ],
+  "2023": [
+   176,
+   -0.26
+  ]
+ },
+ "by_side": {
+  "-1": [
+   169,
+   -1.32
+  ],
+  "1": [
+   157,
+   3.36
+  ]
+ },
+ "coins_positive": 0.67,
+ "net_bp": {
+  "free": 0.93,
+  "maker_taker": -7.07,
+  "taker": -12.07,
+  "taker_x2": -25.07,
+  "crash": -79.07
+ },
+ "base_n": 238,
+ "base_bp": 5.56,
+ "vs_base_bp": -4.63,
+ "p_vs_base": 0.3638180909545227,
+ "passes": false,
+ "note": "same condition at mirrored levels",
+ "rerun": "",
+ "at": "2026-11-25T01:09:32+00:00"
+}

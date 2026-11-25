@@ -195,5 +195,70 @@ def form_b(sample):
                note="first touch of exact daily POC within 5 d, 60 min, vs mirrored levels approached from the same side")
 
 
-if __name__ == "__main__" and len(sys.argv) > 2 and sys.argv[2] == "b":
-    form_b(sys.argv[1])
+# ---------------------------------------------------------------- c: flow AT the level (absorption at the POC touch)
+W = 5 * 60_000
+
+
+def touch_flow(b, i_from, lo_px, hi_px, side, t_end):
+    """First touch; then the next 5 min: opposing taker delta share and whether price held (never more than one bin through the level).
+    Entry as of touch + 5 min + 1 s, exit 60 min later."""
+    t1 = b["t1"]
+    e = np.searchsorted(t1, t_end, side="right")
+    hit = np.flatnonzero((b["l"][i_from:e] <= hi_px) & (b["h"][i_from:e] >= lo_px))
+    if not len(hit):
+        return None
+    j = i_from + hit[0]
+    w_end = np.searchsorted(t1, t1[j] + W, side="right")
+    bs, ss = b["bs"][j:w_end].sum(), b["ss"][j:w_end].sum()
+    opp = (ss - bs) / max(bs + ss, 1e-9) * side            # > 0 = takers pushing against our trade (sellers into a long)
+    if side == 1:
+        held = b["l"][j:w_end].min() >= lo_px * (1 - BIN)
+    else:
+        held = b["h"][j:w_end].max() <= hi_px * (1 + BIN)
+    te = t1[j] + W + LAT
+    p0, p1 = asof(t1, b["c"], te), asof(t1, b["c"], te + HOLD)
+    return te, side * (p1 / p0 - 1), opp, bool(held), bs + ss
+
+
+def form_c(sample):
+    lo, hi = L.SAMPLES[sample]
+    out = []
+    for coin in COINS:
+        b = load(coin, lo, hi)
+        day = b["t1"] // 86_400_000
+        cut = np.flatnonzero(np.diff(day)) + 1
+        st, en = np.concatenate([[0], cut]), np.concatenate([cut, [len(day)]])
+        for a, z in zip(st, en):
+            if z - a < 50 or z >= len(day):
+                continue
+            h, l, c = b["h"][a:z], b["l"][a:z], b["c"][a:z]
+            k = np.floor(np.log(np.sqrt(h * l)) / BIN).astype(np.int64)
+            k0 = k.min()
+            V = np.bincount(k - k0, weights=b["bs"][a:z] + b["ss"][a:z])
+            i = int(V.argmax())
+            C = c[-1]
+            lev_lo, lev_hi = np.exp((k0 + i) * BIN), np.exp((k0 + i + 1) * BIN)
+            if lev_lo <= C <= lev_hi:
+                continue
+            side = 1 if lev_hi < C else -1
+            t_end = b["t1"][z - 1] + 5 * 86_400_000
+            for kind, (x0, x1), sd in (("real", (lev_lo, lev_hi), side), ("mirror", (C * C / lev_hi, C * C / lev_lo), -side)):
+                x = touch_flow(b, z, x0, x1, sd, t_end)
+                if x is not None:
+                    out.append({"time": pd.Timestamp(x[0], unit="ms", tz="UTC"), "coin": coin, "side": sd, "gross": x[1], "kind": kind, "opp": x[2], "held": x[3]})
+        del b
+    d = pd.DataFrame(out)
+    d = d[d.time < pd.Timestamp(hi, tz="UTC") - pd.Timedelta("2h")]
+    d["oq"] = d.groupby("coin")["opp"].transform(lambda x: pd.qcut(x, 3, labels=False))
+    print("60-min bp after the 5-min window, by held x opposing-delta tercile (2 = most opposing):")
+    print((d.pivot_table(index=["held", "oq"], columns="kind", values="gross", aggfunc="mean") * 1e4).round(1).to_string())
+    print(d.pivot_table(index=["held", "oq"], columns="kind", values="gross", aggfunc="count").to_string())
+    ab = d[(d.kind == "real") & d.held & (d.oq == 2)]
+    L.card("m7c_absorb_real", ab[["time", "coin", "side", "gross"]], sample, base=d[(d.kind == "real") & d.held & (d.oq == 0)][["time", "coin", "side", "gross"]],
+           note="POC touch, held 5 min against top-tercile opposing delta vs held with the least opposing delta")
+    L.card("m7c_absorb_vs_mirror", ab[["time", "coin", "side", "gross"]], sample, base=d[(d.kind == "mirror") & d.held & (d.oq == 2)][["time", "coin", "side", "gross"]],
+           note="same condition at mirrored levels")
+
+
+if __name__ == "__main__" and len(sys.argv) > 2:
+    {"b": form_b, "c": form_c}[sys.argv[2]](sys.argv[1])
