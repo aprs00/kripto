@@ -1679,7 +1679,7 @@
    "group": "C",
    "title": "Confluence: he never trades one signal alone",
    "src": "tg:59-61, 168; wa 18.10.42(1)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -1717,7 +1717,8 @@
     "P1",
     "P2",
     "M3"
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "L2",

@@ -655,3 +655,15 @@ M7 c plan (before run): at the exact-POC first touch, the next 5 min: taker delt
  > 1 bin through the POC. Entry at touch + 5 min + 1 s, 60 min. Absorption = top-tercile opposing delta AND held; compare with held + low delta, and with mirrors under the same condition.
 M7 c done (m7c_explore.txt): absorption at the POC touch (held 5 min vs top-tercile opposing delta) +0.9 bp/60 min = mirrors (+5.6) = low-delta touches; the b bounce is over within 5 min.
 M7 d done: stacked imbalance zones = neutral zones (X7.5 +17 bp n 61, MDE 37, 2021 negative: no prereg). M7 CLOSED DEAD. Sceptic: his rows are ticks, mine 10 bp; the POC result agrees across two builds, so the profile is not the bottleneck.
+
+## X1 confluence (think-through 01:2x UTC 11-25, before any run)
+Sources re-read (tg:59-61, tg:168 text; wa 18.10.42 (1)/(2)/plain as OCR + stored vision, images not re-opened): "climax points when we just sweep it on low liquidity ... doesn't really work as
+ reversals alone, need bit more stuff as confluences"; tg:168 conviction / momentum / absorption / exhaustion vocabulary; "anomalies that stand out".
+Mechanism: a climax sweep is forced flow (stops, liquidations) into a thin book; it reverses more when it runs into resting interest at a level many watch (prior-day / weekly low),
+ because the sweep there also triggers the stops parked under that level and then finds the passive bids that defend it.
+What he does NOT say: (1) which way the level works: a sweep THROUGH yesterday's low (stops taken, then reclaim) vs a bid that fills just ABOVE it; (2) the confluence is a filter on an
+ entry he already has, so the right test conditions the CONFIRMED ladder (T1k30) fills on location, not a new trigger; (3) distance matters only within ~a day's range.
+Build (a): T1k30 one-bar-late fills (data/is3/e2_k-30.parquet, causal top-20 universe), explore 2021-23; fill price = close two minutes back x (1 - depth). Location: log(p / prior UTC
+ day's low) and log(p / prior 7 days' low), in units of the coin's 24-h sigma-based depth too. Outcome h60 (and h240). Bins: through the level by > 2%, 0-2% through, 0-2% above, > 2% above.
+ Baseline: the other fills matched on depth quintile (is3_lib.matched). Change my mind: fills through or at the level beat the rest by > MDE with a monotone dose, every year.
+Prior: P-series levels = placebo; T1 is driven by the depth / violence of the move, not by location. Expect nothing, but the filter use is untested.
