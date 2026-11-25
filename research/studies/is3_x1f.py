@@ -25,13 +25,21 @@ def near(p: np.ndarray, shift: float) -> np.ndarray:
 
 def run(sample):
     lo, hi = L.SAMPLES[sample]
-    E, _ = M.collect(lo, hi)
-    E = E[(E.w > 0.001) & (E.lr >= np.log(5))].copy()        # trade-count jumps only, his range-bar sizes
+    E = []
+    for sym in M.COINS:                                       # per quarter, filtered at once (M.collect keeps every micro-width event: OOM)
+        for y in range(int(lo[:4]), int(hi[:4])):
+            for q in range(4):
+                a = f"{y}-{3 * q + 1:02d}-01"
+                z = f"{y}-{3 * q + 4:02d}-01" if q < 3 else f"{y + 1}-01-01"
+                e, _ = M.coin_events(sym, max(lo, a), min(hi, z))
+                E.append(e[(e.w > 0.001) & (e.lr >= np.log(5))].copy())
+                print(sym, a, len(E[-1]), flush=True)
+    E = pd.concat(E, ignore_index=True)
     # M2 does not store the bar close price: take the micro bar that closed the range bar (its t1 = the event time)
     rows = []
     for coin, g in E.groupby("coin"):
-        from kripto import mbars
-        b = mbars.load(f"{coin}USDT", lo, hi)
+        from research.studies.is3_m6 import load as light
+        b = light(f"{coin}USDT", lo, hi)                     # t1/h/l/c only
         tms = ((g.time - pd.Timestamp("1970-01-01", tz="UTC")) // pd.Timedelta("1ms")).to_numpy(dtype=np.int64)    # unit-safe (pandas 3: us or ms)
         k = np.clip(np.searchsorted(b["t1"], tms, side="right") - 1, 0, len(b["c"]) - 1)
         assert np.all(np.abs(b["t1"][k] - tms) < 1000), "event time does not match a micro bar close"
