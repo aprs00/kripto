@@ -1676,7 +1676,10 @@
     {
      "id": "e",
      "what": "value-area location of trend entries (P5)",
-     "status": "planned"
+     "status": "done",
+     "result": "P5 value location of trend ENTRIES (noadd, day profiles from bn100 1h, F0 harness, bnall explore 2021-23, tsmom + blend, 20 judges): e1 no adding against location (long < VAL / short > VAH) tsmom -0.04..+0.03, blend longs -0.07..-0.18 (0-7th pct: blocks the dip-buy reversal, as F1h); e2 no adding inside value -0.02..-0.25 (<= 90th); e3 no adding WITH initiative: longs -0.08/-0.03, shorts tsmom +0.02 (59th), blend +0.18 (100th) but 2021 -0.09, so fails the every-year rule and is one of 20 cells. DEAD form: location does not change trend-book P&L beyond the plain 1-day reversal",
+     "date": "2026-11-25",
+     "evidence": "F2e3_va70S_blend__explore"
     },
     {
      "id": "f",
