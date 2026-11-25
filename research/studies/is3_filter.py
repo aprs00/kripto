@@ -41,6 +41,37 @@ def apply(w: pd.DataFrame, mask, side: int | None = None) -> pd.DataFrame:
     return w.mask(hit, 0.0)
 
 
+def noadd(w: pd.DataFrame, mask, side: int | None = None) -> pd.DataFrame:
+    """A DELAY, not an exit (F2): on blocked cells a position may not be opened or increased on `side` (None = both sides); it keeps the
+    previous bar's (already filtered) weight on that side or shrinks toward 0. Unblocked cells take the book's target."""
+    W = w.fillna(0.0).to_numpy(dtype=float).copy()
+    if isinstance(mask, pd.DataFrame):
+        M = mask.reindex(index=w.index, columns=w.columns).fillna(True).astype(bool).to_numpy()
+    else:
+        M = np.repeat(mask.reindex(w.index).fillna(True).astype(bool).to_numpy()[:, None], w.shape[1], 1)
+    rows = np.where(~M.all(axis=1))[0]
+    for t in rows:
+        if t == 0:
+            continue
+        prev, cur, b = W[t - 1], W[t], ~M[t]
+        if side in (None, -1):
+            lim = np.minimum(prev, 0.0)
+            hit = b & (cur < lim)
+            cur[hit] = lim[hit]
+        if side in (None, 1):
+            lim = np.maximum(prev, 0.0)
+            hit = b & (cur > lim)
+            cur[hit] = lim[hit]
+    return pd.DataFrame(W, w.index, w.columns)
+
+
+def scale(w: pd.DataFrame, mask, side=None, k: float = 0.0) -> pd.DataFrame:
+    """blocked rows/cells scaled by k (k=0 = flat)."""
+    m = mask.reindex(index=w.index, columns=w.columns).fillna(True).astype(bool) if isinstance(mask, pd.DataFrame) \
+        else pd.DataFrame(np.repeat(mask.reindex(w.index).fillna(True).astype(bool).to_numpy()[:, None], w.shape[1], 1), w.index, w.columns)
+    return w.where(m, w * k)
+
+
 def run(w: pd.DataFrame, panel: dict, slip: pd.DataFrame | None, band: float | None = None) -> pd.Series:
     res = bt.run(w, panel["close"], panel.get("funding"), slip, band=default_band() if band is None else band)
     return res.returns
@@ -92,20 +123,22 @@ def boot_diff(d: pd.Series, reps: int = 2000, block: int = 20, seed: int = 7) ->
 
 
 def judge(name: str, w: pd.DataFrame, panel: dict, slip, mask, sample: str, side: int | None = None, n_random: int = 200,
-          seed: int = 0, note: str = "") -> dict:
+          seed: int = 0, note: str = "", tf=None) -> dict:
     """Base book vs filtered book on `sample`; percentile of ΔSR among n_random same-share same-persistence masks.
-    Confirm / vault samples follow the L.card rules: pre-registered and committed first, one run per name and sample."""
+    Confirm / vault samples follow the L.card rules: pre-registered and committed first, one run per name and sample.
+    tf(w, mask, side) -> filtered weights (default `apply` = exit blocked cells; `noadd` = delay; random masks get the same tf)."""
+    tf = tf or apply
     if sample != "explore":
         if name not in L.committed_prereg():
             raise SystemExit(f"{name}: pre-register (L.prereg) and COMMIT before touching {sample}")
         if (L.OUT / f"{name}__{sample}.json").exists():
             raise SystemExit(f"{name}: {sample} was already used")
     base = cut(run(w, panel, slip), sample)
-    filt = cut(run(apply(w, mask, side), panel, slip), sample)
+    filt = cut(run(tf(w, mask, side), panel, slip), sample)
     sb, sf = stats(base), stats(filt)
     rnd = []
     for mk in random_masks(mask, n_random, seed):
-        sr = stats(cut(run(apply(w, mk, side), panel, slip), sample))
+        sr = stats(cut(run(tf(w, mk, side), panel, slip), sample))
         rnd.append((sr["sr"] - sb["sr"], sr["mdd"] - sb["mdd"]))
     rnd = np.array(rnd) if rnd else np.zeros((0, 2))
     dsr, dmdd = sf["sr"] - sb["sr"], sf["mdd"] - sb["mdd"]

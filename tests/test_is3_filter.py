@@ -66,3 +66,15 @@ def test_confirm_needs_prereg(monkeypatch):
     monkeypatch.setattr(L, "committed_prereg", lambda: {})
     with pytest.raises(SystemExit):
         F.judge("T_x", w, panel, None, pd.DataFrame(True, w.index, w.columns), "confirmT", n_random=2)
+
+
+def test_noadd_delays_new_shorts_only():
+    idx = pd.date_range("2021-01-01", periods=4, freq="1D")
+    w = pd.DataFrame({"A": [-0.1, -0.3, -0.3, -0.3], "B": [0.2, -0.2, -0.2, 0.1], "C": [-0.2, -0.1, -0.1, -0.1]}, idx)
+    m = pd.Series([True, False, True, True], idx)
+    out = F.noadd(w, m, side=-1)
+    assert out["A"].tolist() == [-0.1, -0.1, -0.3, -0.3]        # increase delayed one day, then the target
+    assert out["B"].tolist() == [0.2, 0.0, -0.2, 0.1]           # long -> short flip: short not opened on the blocked day
+    assert out["C"].tolist() == [-0.2, -0.1, -0.1, -0.1]        # shrinking a short is always allowed
+    out2 = F.noadd(w, m, side=1)
+    assert np.allclose(out2.to_numpy(), w.to_numpy())            # nothing to block on the long side here

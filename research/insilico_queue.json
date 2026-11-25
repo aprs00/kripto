@@ -1649,7 +1649,10 @@
     {
      "id": "b",
      "what": "CME break / weekend / kill-zone execution tilt (E2) on live fills and 6 y of hourly bars",
-     "status": "planned"
+     "status": "done",
+     "result": "Execution-hour tilt, tsmom@bn + blend@bn trades 2020-06..2025 on bn100 1h (99% of traded weight covered): the traded amount earns +1..+2 bp per unit in hour 1, +3..+4 at 12 h, +8/+13 at 23 h (delaying COSTS, alpha front-loaded); no hour 1-23 beats 00 UTC by 2 bp in every year (tsmom per-year signs mixed, se 1-4 bp); weekend executions cost the same or more (+2..+9 bp) than weekday. Live-fill part not redone (fill_delay study 11-22: live delay costs HL +5-17 bp). 10 hours x 2 books x weekday split tried. DEAD form: execute at the close, never later",
+     "date": "2026-11-25",
+     "evidence": "F2b__explore"
     },
     {
      "id": "c",

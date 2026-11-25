@@ -676,3 +676,18 @@ M8 closed UNTESTABLE (01:2x): no M1-M6 survivor (M2b failed confirmT); six unsee
 X1 f done (is3_x1f.py, x1f_explore.txt): velocity climax at a round number = placebo grid = no level (deduped, 5-min-late entry, MDE 13). CAVEAT for M2 (closed OPEN, confirm failed anyway):
  its g15/g60/g240 start at the range bar's exact closing print and its events cluster in ms whipsaw (123 in one second on 2022-01-05 19:45:21); raw medians of +30-160 bp/h by year were that
  artifact. late60 + 1 per coin per 30 min gives ~0. X1 CLOSED DEAD. Sceptic: each confluence was built from his own words and the confirmed ladder where possible; the idea, not a translation.
+
+## F2 filters for tsmom / blend / listing shorts / funding pair (think-through 04:5x UTC 11-25, before any run)
+Sources: same rules as F1 (L5 cascade delay, R8 tg:286 "demand up, volume down, price keeps shooting up" / volume spike into highs = sellers, P5 value location, E2 clock tilt, C1 dates).
+Books (bnall 1d, clean, explore <= 2023, F0 harness, 200/100 same-share same-persistence random masks): tsmom@bn (lookbacks 14/28/56, top 12, tv .3), blend@bn (BLEND_COMPONENTS),
+ listing_short (bnall); fspread_hold@pair only where the form makes sense (its history on pair is short: say so).
+Prior from F1: every daily filter on flow/xsmom was random-mask or worse; the one explore pass (1-day short block after cascades) failed 2024-25. Location blocks were mechanical reversal costs.
+What he does NOT say: (1) L5 is a DELAY, not an exit: existing shorts stay, only shorts that would be opened/increased the day after a cascade wait one day (F1 exited them, so a) tests the
+ real delay, with the random comparison using the same delay on random days); (2) trend books hold for weeks, so a 1-day delay costs little if wrong and the trapped side is the NEW short;
+ (3) R8 is about the rally's volume trend, not one spike: c1 = block new longs at a 20-d high on a >=3x spike (F1c's form, backwards there), c2 = keep longs only where the 14-d rally came on
+ FALLING volume (his positive statement) vs rising; (4) macro days: he stays out around news, i.e. flat the book (or halve) on the FOMC/CPI day itself, d; (5) e: the trend entry's location
+ vs yesterday's value (initiative close above VAH for a long = Dalton's go-with), new positions only.
+Change my mind: dSR > 0 at >= 95th pct of random masks, every explore year, in >= 2 of the 3 books. b (execution hour) is a cost question: measure the book's trade-weighted drift from
+ 00 UTC to hour H on bn100 1h (delay cost per hour, weekday vs weekend); a tilt counts only if some H beats 00 by > 2 bp per traded unit in every year.
+F2 b done (is3_f2b.py, f2b_explore.txt): delaying a daily book's trades by 1-23 h forgoes +1..+13 bp per unit traded (blend positive in 4-5 of 5 years at every H >= 8 h); no clock tilt, weekend
+ executions no better. Agrees with fill_delay (11-22): execute at the close. Units is3-f2ad / is3-f2ce running forms a,d / c,e (04:54).

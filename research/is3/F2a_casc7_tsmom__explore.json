@@ -1,0 +1,31 @@
+{
+ "name": "F2a_casc7_tsmom",
+ "sample": "explore",
+ "side": -1,
+ "on_share": 0.938,
+ "base": {
+  "sr": 0.5949477641081959,
+  "ann": 0.1834045285875485,
+  "mdd": -0.5103844896671719,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.6599482168113844,
+  "ann": 0.20436902855395764,
+  "mdd": -0.5156109612238785,
+  "days": 1095
+ },
+ "dSR": 0.065,
+ "dMDD": -0.0052,
+ "p_daily_diff": 0.5677161419290355,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.91,
+ "random_dSR_q05_q50_q95": [
+  -0.152,
+  -0.003,
+  0.082
+ ],
+ "pct_dMDD_vs_random": 0.235,
+ "note": "no new/larger shorts at a cascade day's close (median coin <= -7%); days 109; touched 0.0154; per-year dSR 2021:+0.17 2022:-0.12 2023:+0.17",
+ "passes": false
+}
