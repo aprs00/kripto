@@ -1,0 +1,31 @@
+{
+ "name": "F2d_both_half_listing_short",
+ "sample": "explore",
+ "side": null,
+ "on_share": 0.961,
+ "base": {
+  "sr": 0.1791462001273801,
+  "ann": 0.04467337503010442,
+  "mdd": -0.43178632978273224,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.21118633037728615,
+  "ann": 0.05062278655141591,
+  "mdd": -0.4421155867832234,
+  "days": 1095
+ },
+ "dSR": 0.032,
+ "dMDD": -0.0103,
+ "p_daily_diff": 0.7916041979010495,
+ "n_random": 50,
+ "pct_dSR_vs_random": 0.8,
+ "random_dSR_q05_q50_q95": [
+  -0.14,
+  -0.032,
+  0.067
+ ],
+ "pct_dMDD_vs_random": 0.34,
+ "note": "half size through FOMC+CPI days; touched 0.0263; per-year dSR 2021:-0.08 2022:-0.18 2023:+0.31",
+ "passes": false
+}

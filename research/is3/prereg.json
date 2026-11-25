@@ -156,5 +156,27 @@
    "n_random": 200
   },
   "at": "2026-11-24T17:47:22+00:00"
+ },
+ "F2d_fomc_flat2_blend": {
+  "claim": "Flattening the blend book (bnall 1d, config params) for the day before an FOMC decision and the FOMC UTC day (weights set at the closes of E-2 and E-1 scaled to 0) improves its Sharpe beyond 200 random same-share same-persistence day masks (F0 harness). Mechanism: pre-FOMC risk-premium drift lifts alts (C1: EW30 +122/+218 bp), which hurts the book shorts.",
+  "rule": "confirmT 2024-01..2025-12 once: pass = dSR > 0 AND >= 95th percentile of 200 random masks. Both F2d books must pass for the form to pass. Explore 2021-23: blend +0.13 (98th, every year +), listing_short +0.16 (100th, every year +); tsmom failed (not registered). 15 F2d judges tried in explore. listing_short is a blend component: not independent. C1 (11-23) printed some 2024-25 calendar columns before this test existed; not re-read this session.",
+  "params": {
+   "book": "blend",
+   "dates": "research/is3/C1_dates.json fomc",
+   "rows": "E-2,E-1",
+   "n_random": 200
+  },
+  "at": "2026-11-25T05:20:15+00:00"
+ },
+ "F2d_fomc_flat2_listing_short": {
+  "claim": "Flattening the listing_short book (bnall 1d, config params) for the day before an FOMC decision and the FOMC UTC day (weights set at the closes of E-2 and E-1 scaled to 0) improves its Sharpe beyond 200 random same-share same-persistence day masks (F0 harness). Mechanism: pre-FOMC risk-premium drift lifts alts (C1: EW30 +122/+218 bp), which hurts the book shorts.",
+  "rule": "confirmT 2024-01..2025-12 once: pass = dSR > 0 AND >= 95th percentile of 200 random masks. Both F2d books must pass for the form to pass. Explore 2021-23: blend +0.13 (98th, every year +), listing_short +0.16 (100th, every year +); tsmom failed (not registered). 15 F2d judges tried in explore. listing_short is a blend component: not independent. C1 (11-23) printed some 2024-25 calendar columns before this test existed; not re-read this session.",
+  "params": {
+   "book": "listing_short",
+   "dates": "research/is3/C1_dates.json fomc",
+   "rows": "E-2,E-1",
+   "n_random": 200
+  },
+  "at": "2026-11-25T05:20:15+00:00"
  }
 }

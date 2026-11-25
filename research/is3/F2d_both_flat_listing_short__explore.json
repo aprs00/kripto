@@ -1,0 +1,31 @@
+{
+ "name": "F2d_both_flat_listing_short",
+ "sample": "explore",
+ "side": null,
+ "on_share": 0.961,
+ "base": {
+  "sr": 0.1791462001273801,
+  "ann": 0.04467337503010442,
+  "mdd": -0.43178632978273224,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.14814282975845022,
+  "ann": 0.03606548921794276,
+  "mdd": -0.4900057594901246,
+  "days": 1095
+ },
+ "dSR": -0.031,
+ "dMDD": -0.0582,
+ "p_daily_diff": 0.8145927036481759,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.615,
+ "random_dSR_q05_q50_q95": [
+  -0.292,
+  -0.071,
+  0.133
+ ],
+ "pct_dMDD_vs_random": 0.11,
+ "note": "flat through the both day; days 60; touched 0.0527; per-year dSR 2021:-0.41 2022:-0.18 2023:+0.41",
+ "passes": false
+}
