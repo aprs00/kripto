@@ -1,0 +1,31 @@
+{
+ "name": "F2d_fomc_flat2_blend",
+ "sample": "confirmT",
+ "side": null,
+ "on_share": 0.968,
+ "base": {
+  "sr": 0.9041661887259475,
+  "ann": 0.21925462488558253,
+  "mdd": -0.1679531690912187,
+  "days": 731
+ },
+ "filtered": {
+  "sr": 0.9854323811725815,
+  "ann": 0.23374452969303788,
+  "mdd": -0.1686708119073116,
+  "days": 731
+ },
+ "dSR": 0.081,
+ "dMDD": -0.0007,
+ "p_daily_diff": 0.7086456771614192,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.66,
+ "random_dSR_q05_q50_q95": [
+  -0.131,
+  0.022,
+  0.258
+ ],
+ "pct_dMDD_vs_random": 0.345,
+ "note": "pre-registered; FOMC days in 2024-25 16; per-year dSR 2024:+0.17 2025:-0.03",
+ "passes": false
+}

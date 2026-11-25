@@ -1669,9 +1669,9 @@
      "id": "d",
      "what": "FOMC / CPI day de-risking",
      "status": "done",
-     "result": "Macro days as day masks (F0 harness, bnall explore 2021-23, 3 books x 5 variants = 15 judges): flat through the FOMC day +0.03/+0.04/+0.09 (mixed years); CPI day -0.04/-0.12/-0.10 (CPI hurts); both flat ~0; half size both +0.03/+0.09/+0.03; flat the day before AND the FOMC day: tsmom -0.00 (62nd), blend +0.13 (98th, every year +), listing_short +0.16 (100th, every year +). Mechanism consistent with C1 (alts rise into FOMC: shorts lose). Pre-registered F2d_fomc_flat2_{blend,listing_short}; confirmT below",
+     "result": "Macro days as day masks (F0 harness, bnall explore 2021-23, 3 books x 5 variants = 15 judges): flat through the FOMC day +0.03/+0.04/+0.09 (mixed years); CPI day -0.04/-0.12/-0.10 (CPI hurts); both flat ~0; half size both +0.03/+0.09/+0.03; flat the day before AND the FOMC day: tsmom -0.00 (62nd), blend +0.13 (98th, every year +), listing_short +0.16 (100th, every year +). Mechanism consistent with C1 (alts rise into FOMC: shorts lose). Pre-registered F2d_fomc_flat2_{blend,listing_short}; confirmT below; confirmT 2024-25 FAILED both (blend +0.08 at 66th pct, 2025 -; listing_short -0.14 at 38th, both years -; 16 FOMC days). The 2021-23 pre-FOMC lift did not carry. DEAD form",
      "date": "2026-11-25",
-     "evidence": "F2d_fomc_flat2_blend__explore"
+     "evidence": "F2d_fomc_flat2_blend__confirmT"
     },
     {
      "id": "e",

@@ -1,0 +1,31 @@
+{
+ "name": "F2e1_va50S_blend",
+ "sample": "explore",
+ "side": -1,
+ "on_share": 0.913,
+ "base": {
+  "sr": 0.9988984619947885,
+  "ann": 0.27535240416777634,
+  "mdd": -0.23480806413085542,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 1.0132197192901706,
+  "ann": 0.2756290868334606,
+  "mdd": -0.24055444098707746,
+  "days": 1095
+ },
+ "dSR": 0.014,
+ "dMDD": -0.0057,
+ "p_daily_diff": 0.9910044977511244,
+ "n_random": 30,
+ "pct_dSR_vs_random": 0.4666666666666667,
+ "random_dSR_q05_q50_q95": [
+  -0.054,
+  0.021,
+  0.095
+ ],
+ "pct_dMDD_vs_random": 0.1,
+ "note": "no adding S against location, VA 50%; touched 0.0143; per-year dSR 2021:+0.09 2022:-0.11 2023:+0.08",
+ "passes": false
+}

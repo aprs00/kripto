@@ -1,0 +1,31 @@
+{
+ "name": "F2e1_va85L_blend",
+ "sample": "explore",
+ "side": 1,
+ "on_share": 0.957,
+ "base": {
+  "sr": 0.9988984619947885,
+  "ann": 0.27535240416777634,
+  "mdd": -0.23480806413085542,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.9260682354765134,
+  "ann": 0.2582740706637336,
+  "mdd": -0.24258138180531796,
+  "days": 1095
+ },
+ "dSR": -0.073,
+ "dMDD": -0.0078,
+ "p_daily_diff": 0.23938030984507747,
+ "n_random": 30,
+ "pct_dSR_vs_random": 0.06666666666666667,
+ "random_dSR_q05_q50_q95": [
+  -0.078,
+  -0.035,
+  0.02
+ ],
+ "pct_dMDD_vs_random": 0.36666666666666664,
+ "note": "no adding L against location, VA 85%; touched 0.007; per-year dSR 2021:-0.09 2022:-0.10 2023:-0.02",
+ "passes": false
+}

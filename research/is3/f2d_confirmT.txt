@@ -1,0 +1,2 @@
+[F2d_fomc_flat2_blend confirmT] on 97% | SR 0.90 -> 0.99 (dSR +0.08, pct vs random 0.66, random q05/50/95 [-0.131, 0.022, 0.258]) | mdd -16.8% -> -16.9% | p(daily diff) 0.709 | passes=False pre-registered; FOMC days in 2024-25 16; per-year dSR 2024:+0.17 2025:-0.03
+[F2d_fomc_flat2_listing_short confirmT] on 97% | SR 0.36 -> 0.22 (dSR -0.14, pct vs random 0.375, random q05/50/95 [-0.45, -0.078, 0.284]) | mdd -33.5% -> -35.2% | p(daily diff) 0.410 | passes=False pre-registered; FOMC days in 2024-25 16; per-year dSR 2024:-0.06 2025:-0.18

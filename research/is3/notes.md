@@ -693,3 +693,5 @@ F2 b done (is3_f2b.py, f2b_explore.txt): delaying a daily book's trades by 1-23 
  executions no better. Agrees with fill_delay (11-22): execute at the close. Units is3-f2ad / is3-f2ce running forms a,d / c,e (04:54).
 F2 a done: cascade short-delay passes in blend only (dSR +0.23, every year), tsmom 2022 -, listing_short nothing. Not preregistered: fails my 2-of-3 rule, and F1g's confirm already showed the bounce gone in 2024-25.
 F2 c done: R8 backwards again (spike blocks 0th pct, falling-volume-only adds cost blend 0.45 SR); rising-volume mirror = random masks.
+F2 fspread_hold@pair: 0 invested days in explore (HL funding history starts 2024), so no filter can be explored without spending its confirm sample; left out of F2 (stated).
+F2 d confirmT (05:2x): FAILED both pre-registered books (blend +0.08 at 66th pct, listing_short -0.14 at 38th). Fourth 2021-23 macro/bounce pattern that does not carry into 2024-25.

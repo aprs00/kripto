@@ -1,0 +1,31 @@
+{
+ "name": "F2e3_va70S_blend",
+ "sample": "explore",
+ "side": -1,
+ "on_share": 0.927,
+ "base": {
+  "sr": 0.9988984619947885,
+  "ann": 0.27535240416777634,
+  "mdd": -0.23480806413085542,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 1.1786110538271937,
+  "ann": 0.313063664201358,
+  "mdd": -0.22143930440646864,
+  "days": 1095
+ },
+ "dSR": 0.18,
+ "dMDD": 0.0134,
+ "p_daily_diff": 0.19390304847576212,
+ "n_random": 100,
+ "pct_dSR_vs_random": 1.0,
+ "random_dSR_q05_q50_q95": [
+  -0.065,
+  0.004,
+  0.092
+ ],
+ "pct_dMDD_vs_random": 0.74,
+ "note": "no adding S with initiative (Dalton responsive reading); touched 0.0197; per-year dSR 2021:-0.09 2022:+0.21 2023:+0.39",
+ "passes": true
+}
