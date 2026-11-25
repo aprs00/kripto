@@ -1838,12 +1838,14 @@
    "group": "E",
    "title": "Survivors of M1-M6 on unseen coins",
    "src": "M1-M6",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "micro bars for six never-used coins (picked by volume rank 10-60 on 2023-12-31, fixed before download), confirmC cards",
-     "status": "planned"
+     "status": "skipped",
+     "result": "nothing survived M1-M6: the only pre-registered form, M2b_long10_w43, failed confirmT (n 202, +65 bp p .047 but passes=False; raw +36 p .33; 85% of its explore edge on 3 crash days = the liquidation fade, which T1/E2 already trade); M1/M3/M5/M6 DEAD, M4 no form beat its baseline. Downloading six unseen coins' aggTrades (~hours) to replicate a failed rule would spend a clean sample on nothing",
+     "date": "2026-11-25"
     }
    ],
    "after": [
@@ -1853,7 +1855,11 @@
     "M4",
     "M5",
     "M6"
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "UNTESTABLE",
+   "reason": "no survivor to replicate: every M1-M6 form failed explore or its confirm card (M2b confirmT failed); the unseen-coin sample stays unspent for a future survivor",
+   "closed": "2026-11-25"
   },
   {
    "id": "Z1",
