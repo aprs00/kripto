@@ -109,6 +109,24 @@ def run_e() -> None:
                     J(f"e3_va70{sg}", name, ~withi, side, 100, f"no adding {sg} with initiative (Dalton responsive reading)")
 
 
+def confirm_d() -> None:
+    """pre-registered F2d_fomc_flat2_{blend,listing_short}: flat at the closes of E-2 and E-1 (the day before and the FOMC day), confirmT once."""
+    d = json.load(open("research/is3/C1_dates.json"))
+    for name in ("blend", "listing_short"):
+        w, p, s = get(name)
+        idx = w.index
+        ev = pd.DatetimeIndex(pd.to_datetime(d["fomc"]))
+        ev = ev.tz_localize(idx.tz) if idx.tz is not None else ev
+        rows = set(ev - pd.Timedelta(days=1)) | set(ev - pd.Timedelta(days=2))
+        m = pd.Series(~idx.isin(list(rows)), idx)
+        tf = lambda w, m, s: F.scale(w, m, s, 0.0)
+        ww = tf(w, m, None)
+        b, f = F.cut(F.run(w, p, s), "confirmT"), F.cut(F.run(ww, p, s), "confirmT")
+        yrs = " ".join(f"{y}:{F.stats(f[str(y)])['sr'] - F.stats(b[str(y)])['sr']:+.2f}" for y in (2024, 2025))
+        F.judge(f"F2d_fomc_flat2_{name}", w, p, s, m, "confirmT", side=None, n_random=200, tf=tf,
+                note=f"pre-registered; FOMC days in 2024-25 {int(sum(1 for x in ev if x.year in (2024, 2025)))}; per-year dSR {yrs}")
+
+
 def run_f() -> None:
     """O2 j / N3 a 'trend tiring': a failed new high (day high above the prior 20-d high, close back below it) within the last k days
     blocks new/larger longs; mirror (failed new low) blocks new/larger shorts. k = 1/3/5 (dose)."""
@@ -123,4 +141,4 @@ def run_f() -> None:
 
 
 if __name__ == "__main__":
-    {"a": run_a, "c": run_c, "d": run_d, "e": run_e, "f": run_f}[sys.argv[1]]()
+    {"a": run_a, "c": run_c, "d": run_d, "e": run_e, "f": run_f, "confirmd": confirm_d}[sys.argv[1]]()
