@@ -1,0 +1,61 @@
+{
+ "name": "M5ctk_w2_through",
+ "sample": "explore",
+ "n": 7948,
+ "days": 1047,
+ "coins": 3,
+ "mean_bp": -0.42,
+ "median_bp": 12.38,
+ "win": 0.629,
+ "se_bp": 0.4,
+ "ci95_bp": [
+  -1.2,
+  0.36
+ ],
+ "p": 0.28735632183908044,
+ "mde80_bp": 1.12,
+ "mean_ex_top3_bp": -0.6,
+ "top3_share": null,
+ "t_day_mean": -1.34,
+ "by_year": {
+  "2021": [
+   3930,
+   0.19
+  ],
+  "2022": [
+   2553,
+   -0.93
+  ],
+  "2023": [
+   1465,
+   -1.18
+  ]
+ },
+ "by_side": {
+  "-1": [
+   3954,
+   -0.92
+  ],
+  "1": [
+   3994,
+   0.07
+  ]
+ },
+ "coins_positive": 0.33,
+ "net_bp": {
+  "free": -0.42,
+  "maker_taker": -8.42,
+  "taker": -13.42,
+  "taker_x2": -26.42,
+  "crash": -80.42,
+  "own_cost": -8.42
+ },
+ "base_n": 16098,
+ "base_bp": -0.84,
+ "vs_base_bp": 0.42,
+ "p_vs_base": 0.26786606696651677,
+ "passes": false,
+ "note": "form ctk: bid old range high on 0.2% range bars after a 3w impulse, fill through, target = mean 1-min candle (24 h), taker exit on touch; base = placebo levels 0.63x/1.37x",
+ "rerun": "",
+ "at": "2026-11-25T00:01:08+00:00"
+}

@@ -1370,7 +1370,10 @@
     {
      "id": "c",
      "what": "one attempt only, target = one average bar; maker both sides vs taker exit",
-     "status": "planned"
+     "status": "done",
+     "result": "his literal target = mean 1-min candle of the previous 24 h, first touch only, BTC/ETH/SOL 2021-23 range bars 0.2/0.43%: maker exit (c) real vs placebo +0.3/-0.2 bp at touch, q250k -6.1/-8.0 gross, net -4.4..-16.7 every rung; taker exit on touch (ctk) gross +0.5 bp better but net -6.7..-22.8; every year negative at q250k. Verdict: no level effect, neither exit pays the round trip. Variants: 2 exits x 2 widths x 5 fills",
+     "date": "2026-11-25",
+     "evidence": "M5c_w2_q250k__explore"
     },
     {
      "id": "d",

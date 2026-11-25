@@ -1,0 +1,61 @@
+{
+ "name": "M5bvah_w2_through",
+ "sample": "explore",
+ "n": 7390,
+ "days": 1043,
+ "coins": 3,
+ "mean_bp": -0.94,
+ "median_bp": 20.02,
+ "win": 0.648,
+ "se_bp": 0.37,
+ "ci95_bp": [
+  -1.66,
+  -0.25
+ ],
+ "p": 0.0079960019990005,
+ "mde80_bp": 1.02,
+ "mean_ex_top3_bp": -1.06,
+ "top3_share": null,
+ "t_day_mean": -1.02,
+ "by_year": {
+  "2021": [
+   3691,
+   -0.26
+  ],
+  "2022": [
+   2353,
+   -1.53
+  ],
+  "2023": [
+   1346,
+   -1.76
+  ]
+ },
+ "by_side": {
+  "-1": [
+   3700,
+   -1.38
+  ],
+  "1": [
+   3690,
+   -0.5
+  ]
+ },
+ "coins_positive": 0.0,
+ "net_bp": {
+  "free": -0.94,
+  "maker_taker": -8.94,
+  "taker": -13.94,
+  "taker_x2": -26.94,
+  "crash": -80.94,
+  "own_cost": -6.36
+ },
+ "base_n": 14981,
+ "base_bp": -1.74,
+ "vs_base_bp": 0.79,
+ "p_vs_base": 0.028985507246376812,
+ "passes": false,
+ "note": "form bvah: bid old range high on 0.2% range bars after a 3w impulse, fill through, target +1w maker, stop -2w, 60 min; base = placebo levels 0.63x/1.37x",
+ "rerun": "",
+ "at": "2026-11-24T23:50:51+00:00"
+}

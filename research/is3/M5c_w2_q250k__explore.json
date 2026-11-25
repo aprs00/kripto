@@ -1,0 +1,61 @@
+{
+ "name": "M5c_w2_q250k",
+ "sample": "explore",
+ "n": 7737,
+ "days": 1046,
+ "coins": 3,
+ "mean_bp": -6.12,
+ "median_bp": 8.84,
+ "win": 0.552,
+ "se_bp": 0.41,
+ "ci95_bp": [
+  -6.94,
+  -5.31
+ ],
+ "p": 0.0004997501249375312,
+ "mde80_bp": 1.15,
+ "mean_ex_top3_bp": -6.25,
+ "top3_share": null,
+ "t_day_mean": -12.42,
+ "by_year": {
+  "2021": [
+   3773,
+   -7.23
+  ],
+  "2022": [
+   2524,
+   -4.85
+  ],
+  "2023": [
+   1440,
+   -5.47
+  ]
+ },
+ "by_side": {
+  "-1": [
+   3863,
+   -6.42
+  ],
+  "1": [
+   3874,
+   -5.83
+  ]
+ },
+ "coins_positive": 0.0,
+ "net_bp": {
+  "free": -6.12,
+  "maker_taker": -14.12,
+  "taker": -19.12,
+  "taker_x2": -32.12,
+  "crash": -86.12,
+  "own_cost": -11.92
+ },
+ "base_n": 15652,
+ "base_bp": -6.83,
+ "vs_base_bp": 0.7,
+ "p_vs_base": 0.04597701149425287,
+ "passes": false,
+ "note": "form c: bid old range high on 0.2% range bars after a 3w impulse, fill q250k, target = mean 1-min candle (24 h), maker exit; base = placebo levels 0.63x/1.37x",
+ "rerun": "",
+ "at": "2026-11-24T23:41:40+00:00"
+}
