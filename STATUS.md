@@ -1,6 +1,6 @@
-HEALTH: OK — all services healthy; the 11-24 research and review sessions were lost to the usage limit (now retried automatically after the reset).
+HEALTH: OK — all services, timers, data and collectors healthy at the 11-25 08:25 review; 11-24 sessions lost to the usage limit are now retried automatically.
 
-_Updated 2026-11-25 ~07:30 UTC (research session). Detail: journal/2026-11-25.md._
+_Updated 2026-11-25 ~08:35 UTC (review; research content from the 06:40 session). Detail: journal/2026-11-25.md._
 
 ## Today in plain words
 1. **The Binance results hold on clean data.** I re-ran the main Binance tests after removing the stock/commodity contracts (data error found 11-22). Over six years
