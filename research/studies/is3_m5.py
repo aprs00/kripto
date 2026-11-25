@@ -209,5 +209,26 @@ def report(E: pd.DataFrame, sample: str, form: str = "a") -> None:
                   "by side:", {int(k): round(float(v) * 1e4, 1) for k, v in (y.gross - y.cost).groupby(y.side).mean().items()})
 
 
+def dose(form: str = "f") -> None:
+    """Form f: real - placebo by quintile of the impulse's side-signed taker delta share (cut on real events); card for the top quintile."""
+    E = pd.read_parquet(L.ROOT / f"data/is3/m5{form}_explore.parquet")
+    for w in WIDTHS["a"]:
+        for fname in ("touch", "q250k", "through"):
+            x = E[(E.w == w) & (E.fill == fname)].copy()
+            cuts = np.quantile(x[x.kind == "real"].dsh, [0.2, 0.4, 0.6, 0.8])
+            x["q"] = np.searchsorted(cuts, x.dsh) + 1
+            t = x.assign(net=x.gross - x.cost).groupby(["q", x.kind == "real"]).agg(n=("gross", "size"), g=("gross", "mean"), net=("net", "mean"))
+            rows = []
+            for q in range(1, 6):
+                r, b = t.loc[(q, True)], t.loc[(q, False)]
+                rows.append(f"Q{q} real {r.g * 1e4:+.1f} (net {r.net * 1e4:+.1f}, n{int(r.n)}) pl {b.g * 1e4:+.1f} diff {(r.g - b.g) * 1e4:+.1f}")
+            print(f"w {w:.1%} {fname} dsh cuts {np.round(cuts, 2)}: " + " | ".join(rows), flush=True)
+            if fname == "q250k":
+                top = x[x.q == 5]
+                L.card(f"M5f_w{int(w * 1000)}_q250k_topdelta", top[top.kind == "real"][["time", "coin", "side", "gross", "cost"]].reset_index(drop=True), "explore",
+                       top[top.kind != "real"][["time", "coin", "side", "gross", "cost"]].reset_index(drop=True),
+                       note="form f: M5a events, top quintile of impulse taker delta share ('abnormal pressure'), fill q250k; base = placebo levels")
+
+
 if __name__ == "__main__":
-    {"explore": explore}[sys.argv[1]](*sys.argv[2:])
+    {"explore": explore, "dose": dose}[sys.argv[1]](*sys.argv[2:])
