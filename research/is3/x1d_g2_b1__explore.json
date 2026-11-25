@@ -1,0 +1,60 @@
+{
+ "name": "x1d_g2_b1",
+ "sample": "explore",
+ "n": 83,
+ "days": 47,
+ "coins": 10,
+ "mean_bp": -118.5,
+ "median_bp": 4.89,
+ "win": 0.506,
+ "se_bp": 88.92,
+ "ci95_bp": [
+  -295.2,
+  56.8
+ ],
+ "p": 0.18190904547726136,
+ "mde80_bp": 248.98,
+ "mean_ex_top3_bp": -176.09,
+ "top3_share": null,
+ "t_day_mean": -0.79,
+ "by_year": {
+  "2021": [
+   44,
+   -42.16
+  ],
+  "2022": [
+   16,
+   -278.02
+  ],
+  "2023": [
+   23,
+   -153.59
+  ]
+ },
+ "by_side": {
+  "-1": [
+   64,
+   -53.51
+  ],
+  "1": [
+   19,
+   -337.42
+  ]
+ },
+ "coins_positive": 0.3,
+ "net_bp": {
+  "free": -118.5,
+  "maker_taker": -126.5,
+  "taker": -131.5,
+  "taker_x2": -144.5,
+  "crash": -198.5
+ },
+ "base_n": 107,
+ "base_bp": 33.25,
+ "vs_base_bp": -151.76,
+ "p_vs_base": 0.367816091954023,
+ "passes": false,
+ "note": "Sunday bait away from the collar on falling volume, toward the collar, touch exit or Monday 17:00, vs Tuesday placebo",
+ "rerun": "",
+ "at": "2026-11-25T01:15:26+00:00"
+}

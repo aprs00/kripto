@@ -1,0 +1,8 @@
+touch-exit return toward the collar (bp), n; rows g, cols bait size
+g 1%: b0.5: wk -130 (n 199) pl +10 (n 219) all-wk -15 | b1: wk -122 (n 98) pl +33 (n 117) all-wk -15 | b2: wk -155 (n 28) pl +114 (n 44) all-wk -15
+g 2%: b0.5: wk -141 (n 157) pl +5 (n 190) all-wk -2 | b1: wk -119 (n 83) pl +33 (n 107) all-wk -2 | b2: wk -138 (n 25) pl +113 (n 42) all-wk -2
+g 4%: b0.5: wk -166 (n 101) pl +32 (n 144) all-wk +20 | b1: wk -138 (n 57) pl +61 (n 89) all-wk +20 | b2: wk -133 (n 21) pl +162 (n 37) all-wk +20
+[x1d_g1_b0.5 explore] n=199 days=77 coins=10 mean -129.5 bp (se 71.7, p 0.075, mde 200.8) median +6.1 win 51% | ex-top3 -169.99 | net {'free': -129.53, 'maker_taker': -137.53, 'taker': -142.53, 'taker_x2': -155.53, 'crash': -209.53} | base +10.2, diff -139.7 (p 0.207) | years {2021: [85, -117.13], 2022: [63, -144.87], 2023: [51, -131.26]} | sides {-1: [143, -94.74], 1: [56, -218.39]} | passes=False Sunday bait away from the collar on falling volume, toward the collar, touch exit or Monday 17:00, vs Tuesday placebo
+  vs weekend gaps without the confluence: -130 vs +9 bp; by year {2021: -117, 2022: -145, 2023: -131}
+[x1d_g2_b1 explore] n=83 days=47 coins=10 mean -118.5 bp (se 88.9, p 0.182, mde 249.0) median +4.9 win 51% | ex-top3 -176.09 | net {'free': -118.5, 'maker_taker': -126.5, 'taker': -131.5, 'taker_x2': -144.5, 'crash': -198.5} | base +33.2, diff -151.8 (p 0.368) | years {2021: [44, -42.16], 2022: [16, -278.02], 2023: [23, -153.59]} | sides {-1: [64, -53.51], 1: [19, -337.42]} | passes=False Sunday bait away from the collar on falling volume, toward the collar, touch exit or Monday 17:00, vs Tuesday placebo
+  vs weekend gaps without the confluence: -119 vs +10 bp; by year {2021: -42, 2022: -278, 2023: -154}

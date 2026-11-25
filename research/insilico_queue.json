@@ -1708,7 +1708,10 @@
     {
      "id": "d",
      "what": "Sunday move + falling volume + distance from collar",
-     "status": "planned"
+     "status": "done",
+     "result": "weekend.parquet explore (10 coins 2021-23): Sunday 16-18 NY move >= .5/1/2% on falling volume AWAY from Friday's collar (vwap 14-16 NY), gap >= 1/2/4%, trade toward the collar (touch or Mon 17:00): -119..-166 bp in all 9 cells vs Tuesday placebo +5..+162 and all weekend gaps -15..+20; headline g1 b.5 n 199 -130 (p .075, vs placebo diff -140 p .21, MDE 200, median +6: tail-driven), every year negative. WRONG WAY: the confluence marks continuation, not gravity. Lead for N5 (empty moves continue), not pre-registered (n.s. vs placebo, MDE 200)",
+     "date": "2026-11-25",
+     "evidence": "x1d_g1_b0.5__explore"
     },
     {
      "id": "e",
