@@ -1692,7 +1692,10 @@
     {
      "id": "b",
      "what": "capitulation flow at a prior POC",
-     "status": "planned"
+     "status": "done",
+     "result": "BTC/ETH/SOL 2021-23, one-voiced selling hours (delta share < own 30-d 10th pct, return <= -1 sigma) whose low tags the prior-day exact POC from above, long: 4 h +5.3 bp n 446 vs same hours away from levels matched on return quintile +16.4 (diff -11, p .33, MDE 25); 24 h +9.4 vs +12 (diff -3, MDE 67); mirrored POCs +2.5/+0.9; years mixed. Capitulation at a POC = capitulation anywhere",
+     "date": "2026-11-25",
+     "evidence": "x1b_poc_capit_r4__explore"
     },
     {
      "id": "c",

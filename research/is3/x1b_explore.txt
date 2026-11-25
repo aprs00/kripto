@@ -1,0 +1,11 @@
+selling hours, long next 4 h / 24 h (bp):
+          r4   r24     n
+grp                     
+mirror  -0.3 -11.4   391
+none    14.0  14.5  1535
+real     5.3   9.4   446
+by year: {'mirror': {2021: 110.0, 2022: -131.0, 2023: 8.0}, 'none': {2021: 64.0, 2022: -55.0, 2023: 44.0}, 'real': {2021: 21.0, 2022: -38.0, 2023: 44.0}}
+[x1b_poc_capit_r4 explore] n=446 days=322 coins=3 mean +5.3 bp (se 8.8, p 0.531, mde 24.6) median +17.8 win 56% | ex-top3 -1.38 | net {'free': 5.32, 'maker_taker': -2.68, 'taker': -7.68, 'taker_x2': -20.68, 'crash': -74.68} | base +16.4, diff -11.0 (p 0.326) | years {2021: [164, 0.47], 2022: [143, 1.51], 2023: [139, 14.95]} | sides {1: [446, 5.32]} | passes=False one-voiced selling hour tagging the prior-day exact POC from above, long r4, vs same hours away from levels (ret quintile)
+  r4: mirror n 523 +2.5 bp
+[x1b_poc_capit_r24 explore] n=446 days=322 coins=3 mean +9.4 bp (se 23.9, p 0.695, mde 66.9) median +10.7 win 52% | ex-top3 -8.16 | net {'free': 9.37, 'maker_taker': 1.37, 'taker': -3.63, 'taker_x2': -16.63, 'crash': -70.63} | base +12.0, diff -2.7 (p 0.927) | years {2021: [164, 21.45], 2022: [143, -37.85], 2023: [139, 43.7]} | sides {1: [446, 9.37]} | passes=False one-voiced selling hour tagging the prior-day exact POC from above, long r24, vs same hours away from levels (ret quintile)
+  r24: mirror n 523 +0.9 bp

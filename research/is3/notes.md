@@ -668,3 +668,4 @@ Build (a): T1k30 one-bar-late fills (data/is3/e2_k-30.parquet, causal top-20 uni
  Baseline: the other fills matched on depth quintile (is3_lib.matched). Change my mind: fills through or at the level beat the rest by > MDE with a monotone dose, every year.
 Prior: P-series levels = placebo; T1 is driven by the depth / violence of the move, not by location. Expect nothing, but the filter use is untested.
 X1 a done (is3_x1a.py, x1a_explore.txt): ladder fills at/through prior-day or weekly lows = depth-matched other fills (+38 p .47 / -9); the distance curve is the depth curve. 91% of fills are fresh lows of the day anyway.
+X1 b done (is3_x1b.py): selling-climax hours at the prior exact POC = the same hours away from levels (-11 bp/4 h, -3/24 h), mirrors similar.

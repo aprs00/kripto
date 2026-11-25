@@ -1,0 +1,56 @@
+{
+ "name": "x1b_poc_capit_r4",
+ "sample": "explore",
+ "n": 446,
+ "days": 322,
+ "coins": 3,
+ "mean_bp": 5.32,
+ "median_bp": 17.77,
+ "win": 0.561,
+ "se_bp": 8.77,
+ "ci95_bp": [
+  -12.16,
+  21.87
+ ],
+ "p": 0.5312343828085957,
+ "mde80_bp": 24.55,
+ "mean_ex_top3_bp": -1.38,
+ "top3_share": 1.26,
+ "t_day_mean": 0.22,
+ "by_year": {
+  "2021": [
+   164,
+   0.47
+  ],
+  "2022": [
+   143,
+   1.51
+  ],
+  "2023": [
+   139,
+   14.95
+  ]
+ },
+ "by_side": {
+  "1": [
+   446,
+   5.32
+  ]
+ },
+ "coins_positive": 0.67,
+ "net_bp": {
+  "free": 5.32,
+  "maker_taker": -2.68,
+  "taker": -7.68,
+  "taker_x2": -20.68,
+  "crash": -74.68
+ },
+ "base_n": 2230,
+ "base_bp": 16.35,
+ "vs_base_bp": -11.03,
+ "p_vs_base": 0.3258370814592704,
+ "passes": false,
+ "note": "one-voiced selling hour tagging the prior-day exact POC from above, long r4, vs same hours away from levels (ret quintile)",
+ "rerun": "",
+ "at": "2026-11-25T01:14:20+00:00"
+}
