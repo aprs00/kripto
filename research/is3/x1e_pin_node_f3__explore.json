@@ -1,0 +1,56 @@
+{
+ "name": "x1e_pin_node_f3",
+ "sample": "explore",
+ "n": 22,
+ "days": 20,
+ "coins": 8,
+ "mean_bp": 1164.55,
+ "median_bp": 420.06,
+ "win": 0.682,
+ "se_bp": 457.04,
+ "ci95_bp": [
+  351.28,
+  2140.4
+ ],
+ "p": 0.015492253873063468,
+ "mde80_bp": 1279.71,
+ "mean_ex_top3_bp": 487.74,
+ "top3_share": 0.64,
+ "t_day_mean": 2.32,
+ "by_year": {
+  "2021": [
+   12,
+   1523.41
+  ],
+  "2022": [
+   2,
+   2000.02
+  ],
+  "2023": [
+   8,
+   417.39
+  ]
+ },
+ "by_side": {
+  "1": [
+   22,
+   1164.55
+  ]
+ },
+ "coins_positive": 0.88,
+ "net_bp": {
+  "free": 1164.55,
+  "maker_taker": 1156.55,
+  "taker": 1151.55,
+  "taker_x2": 1138.55,
+  "crash": 1084.55
+ },
+ "base_n": 1,
+ "base_bp": 154.44,
+ "vs_base_bp": 1010.11,
+ "p_vs_base": 0.033483258370814596,
+ "passes": true,
+ "note": "node cross with RSI pinned the same way vs median-close cross with the same pin; node w/o pin +51 bp n 1336",
+ "rerun": "",
+ "at": "2026-11-25T01:16:22+00:00"
+}

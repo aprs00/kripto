@@ -671,3 +671,4 @@ X1 a done (is3_x1a.py, x1a_explore.txt): ladder fills at/through prior-day or we
 X1 b done (is3_x1b.py): selling-climax hours at the prior exact POC = the same hours away from levels (-11 bp/4 h, -3/24 h), mirrors similar.
 X1 c done (is3_x1c.py): single-print fill + absorption -0.3 bp/60 min vs mirrors +20 / no-absorption +18 (n.s.): wrong way if anything.
 X1 d done (is3_x1d.py): Sunday move away from the collar on falling volume CONTINUES (toward-collar -130 bp vs placebo +10, p .21, MDE 200, every year -, median +6). Lead for N5 f/e (due 12-10), not a prereg.
+X1 e done (is3_x1e.py): pinned RSI + fat-node cross = 22 events (2021 alt rallies); all pinned-up days already +552 bp/3 d, so the card's 'pass' (baseline n 1) is void; node adds n.s. on top of the pin.
