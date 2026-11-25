@@ -289,3 +289,22 @@ def test_friday_follow_holds_fridays_movers_for_a_day(friday, utc_hour):
     assert held.index[0] == fri_bar and len(held) == 24
     assert (held["UP"] == 0.1).all() and (held["DOWN"] == -0.1).all() and (held["FLAT"] == 0).all()
     assert st.friday_follow(p, thr=0.10).abs().sum().sum() == 0
+
+
+@pytest.mark.parametrize("sunday,utc_hour", [("2024-01-14", 23), ("2024-07-14", 22)])
+def test_sunday_fade_fades_the_sunday_afternoon_move_for_a_day(sunday, utc_hour):
+    idx = pd.date_range(pd.Timestamp(sunday, tz="UTC") - pd.Timedelta(days=40), periods=24 * 45, freq="1h")
+    bar = pd.Timestamp(sunday, tz="UTC") + pd.Timedelta(hours=utc_hour - 1)          # the hour that closes Sunday 18:00 New York
+    up = pd.Series(100.0, idx)
+    up[idx > bar - pd.Timedelta(hours=3)] = 103.0                                     # +3% inside the 6 h before the cut
+    down = pd.Series(100.0, idx)
+    down[idx > bar - pd.Timedelta(hours=3)] = 97.0
+    early = pd.Series(100.0, idx)
+    early[idx > bar - pd.Timedelta(hours=10)] = 105.0                                 # moved BEFORE the 6 h window: not an event
+    close = pd.DataFrame({"UP": up, "DOWN": down, "EARLY": early})
+    p = {"close": close, "volume": close * 0 + 1e6}
+    w = st.sunday_fade(p, thr=0.01, hold_h=24, top_n=3, max_names=20)
+    held = w[(w != 0).any(axis=1)]
+    assert held.index[0] == bar and len(held) == 24
+    assert (held["UP"] == -0.05).all() and (held["DOWN"] == 0.05).all() and (held["EARLY"] == 0).all()
+    assert st.sunday_fade(p, thr=0.05).abs().sum().sum() == 0

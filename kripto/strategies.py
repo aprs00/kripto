@@ -738,3 +738,29 @@ def friday_follow(panel, thr=0.02, hold_h=24, top_n=30, max_names=10, cuts=(17,)
             if ok.any():
                 W[f:f + hold_h, ok] += np.sign(mv[ok]) / max(int(ok.sum()), max_names) / len(cuts)
     return pd.DataFrame(W, c.index, c.columns)
+
+
+@register
+def sunday_fade(panel, thr=0.01, hold_h=24, top_n=100, max_names=20, cuts=(18,), span_h=6):
+    """W3 (insilico R21 second pass; replicated 2026-11-19 on 616 unseen bn100 coins): fade the Sunday afternoon New York move.
+    At the close of the hour ending Sunday `cut`:00 New York, every coin of the point-in-time top-`top_n` that moved at least
+    `thr` (log) over the previous `span_h` hours is held AGAINST that move for `hold_h` hours, weight 1/max(n, max_names) per
+    tranche (gross <= 1). Several cuts trade as equal tranches (a clock time is a start-day problem). Hourly bars only."""
+    c = panel["close"]
+    w = pd.DataFrame(0.0, c.index, c.columns)
+    step = c.index[1] - c.index[0]
+    if step != pd.Timedelta(hours=1):
+        return w
+    ny = (c.index + step).tz_convert("America/New_York")
+    uni = universe(panel, top_n=top_n, min_days=30).to_numpy()
+    C = c.to_numpy()
+    W = np.zeros(C.shape, dtype=np.float32 if C.dtype == np.float32 else float)
+    for cut in cuts:
+        for f in np.flatnonzero((np.asarray(ny.day_of_week) == 6) & (np.asarray(ny.hour) == cut)):
+            if f < span_h:
+                continue
+            mv = np.log(C[f].astype(float) / C[f - span_h].astype(float))
+            ok = uni[f] & np.isfinite(mv) & (np.abs(mv) >= thr)
+            if ok.any():
+                W[f:f + hold_h, ok] -= np.sign(mv[ok]) / max(int(ok.sum()), max_names) / len(cuts)
+    return pd.DataFrame(W, c.index, c.columns)
