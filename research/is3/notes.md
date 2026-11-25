@@ -617,3 +617,5 @@ M5 a dose by wait (placement -> fill, 5/15/40/80/120 min): real = placebo in eve
 M5 e done (23:3x): his A-target, resting 6 h: 0.2% = placebo (-3.7 vs -3.1); 0.43% n138 +7.6 vs -3.0 (p .07, MDE 15) with placebos straddling it and queue fills negative -> no confirm.
 M5 c done (00:0x): mean-1-min-candle target, maker vs taker exit: real = placebo; taker exit +0.5 bp gross, -2.5 bp net vs maker; all rungs net negative. b (VAH) = placebo too (POC pending).
 M5 b done (00:1x): VAH = placebo, POC slightly worse than placebo; all net negative.
+M5 f done: impulse-delta dose flat at 0.2%; strongest quintile -6 bp vs placebo at 0.43% (his skip rule is real as an avoid). M5 CLOSED DEAD (6 forms, MDE 1-9 bp, every level = placebo,
+ queue fills adversely selected). Sceptic check: tested on his bar type, with his two targets and a queue model, on liquid and thin coins: the idea, not just my translation. Next: M6.

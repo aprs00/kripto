@@ -1352,7 +1352,7 @@
    "group": "B",
    "title": "Range -> impulse -> range on range bars with a real fill model",
    "src": "R19; tg:226-234",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -1398,14 +1398,20 @@
     {
      "id": "f",
      "what": "his caveat 'unless abnormal pressure' as a dose: form a's events with the impulse's taker delta share (breakout bar start -> placement, side-signed); real - placebo by delta quintile; also time-to-fill buckets (done on a: flat)",
-     "status": "planned",
-     "added": "2026-11-24"
+     "status": "done",
+     "added": "2026-11-24",
+     "result": "form a's events by impulse taker-delta share (side-signed, breakout bar -> placement) quintile, 0.2/0.43%: real - placebo +0.0..+1.5 bp at 0.2% (no dose), at 0.43% Q5 (strongest pressure) -6.2/-6.3/-6.4 bp vs placebo (q250k p .009, MDE 7): heavy-pressure retests fail more, consistent with his skip rule, but no quintile is positive net (best -2.7). Wait-time buckets (a): flat. Verdict: the caveat is real as a filter-out, the remaining trade still has no edge. Variants: 5 quintiles x 3 fills x 2 widths",
+     "date": "2026-11-25",
+     "evidence": "M5f_w4_q250k_topdelta__explore"
     }
    ],
    "after": [
     "M0"
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "6 forms, MDE 1-9 bp: the old range high (and the range's VAH/POC, his A target, his average-candle target, thin coins) reacts exactly like placebo levels at every fill rung; queue-position fills lose more the more volume trades through (adverse selection); maker or taker exit, no rung pays its round trip; his 'abnormal pressure' caveat holds only as an avoid (-6 bp), not as an edge",
+   "closed": "2026-11-25"
   },
   {
    "id": "M6",

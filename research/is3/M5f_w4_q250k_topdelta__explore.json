@@ -1,0 +1,61 @@
+{
+ "name": "M5f_w4_q250k_topdelta",
+ "sample": "explore",
+ "n": 528,
+ "days": 303,
+ "coins": 3,
+ "mean_bp": -18.76,
+ "median_bp": 4.32,
+ "win": 0.506,
+ "se_bp": 2.65,
+ "ci95_bp": [
+  -24.09,
+  -13.91
+ ],
+ "p": 0.0004997501249375312,
+ "mde80_bp": 7.43,
+ "mean_ex_top3_bp": -19.84,
+ "top3_share": null,
+ "t_day_mean": -5.51,
+ "by_year": {
+  "2021": [
+   294,
+   -22.1
+  ],
+  "2022": [
+   158,
+   -7.63
+  ],
+  "2023": [
+   76,
+   -29.01
+  ]
+ },
+ "by_side": {
+  "-1": [
+   310,
+   -20.01
+  ],
+  "1": [
+   218,
+   -16.99
+  ]
+ },
+ "coins_positive": 0.0,
+ "net_bp": {
+  "free": -18.76,
+  "maker_taker": -26.76,
+  "taker": -31.76,
+  "taker_x2": -44.76,
+  "crash": -98.76,
+  "own_cost": -24.8
+ },
+ "base_n": 1118,
+ "base_bp": -12.48,
+ "vs_base_bp": -6.29,
+ "p_vs_base": 0.008995502248875561,
+ "passes": false,
+ "note": "form f: M5a events, top quintile of impulse taker delta share ('abnormal pressure'), fill q250k; base = placebo levels",
+ "rerun": "",
+ "at": "2026-11-25T00:19:39+00:00"
+}

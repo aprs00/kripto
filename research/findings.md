@@ -478,3 +478,8 @@ Adaptive 7 size groups (prev-day septiles of 12 bins), BTC/ETH/SOL 2021–23: mo
 R2 on bnall (most one-sided selling day of an uptrend on a pullback): anti-dose. Buying breadth: nothing. Pitstop (red bar at a high → first green bar) on his 0.5% range bars: −38..−45 bp vs green
 bars in the same move (p .06). Binance size-bucket footprints read as continuation, not exhaustion. is3_m4*.py.
 
+### InSilico M5 / R19 range -> impulse -> retest on range bars, queue fills, placebo levels (2026-11-25) -> DEAD
+BTC/ETH/SOL micro bars 0.2/0.43% range bars + 44 thin coins on 1-min klines (0.5/1%), explore 2021-23, 6 forms. Real level - placebo (0.63x/1.37x distance) -1.5..+0.6 bp (MDE 1-9) for the old range
+high, the range's VAH (POC slightly worse), his post-breakout-low target, his average-1-min-candle target (maker or taker exit). Touch fills ~0 gross; the more volume must trade through our bid before
+it fills, the worse (q250k -6..-46 bp gross, placebos the same): adverse selection, not levels, sets the result. Strongest-impulse quintile -6 bp vs placebo (his 'unless abnormal pressure').
+Confirms range_retest (11-11) with his bar type and a queue model. is3_m5.py.
