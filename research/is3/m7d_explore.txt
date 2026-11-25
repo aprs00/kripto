@@ -1,0 +1,16 @@
+60-min bp by imbalance X and side (base = neutral zones same bar, same side, nearest distance):
+side    -1     1
+X               
+0.0   -9.1   0.3
+2.5   -9.6   7.4
+4.0  -12.4   5.1
+7.5    9.5  15.9
+side   -1    1
+X             
+0.0   183  133
+2.5   809  627
+4.0   205  136
+7.5    36   25
+[m7d_stack_X2.5 explore] n=1436 days=727 coins=3 mean -2.2 bp (se 3.7, p 0.548, mde 10.3) median +0.0 win 50% | ex-top3 -4.22 | net {'free': -2.18, 'maker_taker': -10.18, 'taker': -15.18, 'taker_x2': -28.18, 'crash': -82.18} | base -5.1, diff +3.0 (p 0.723) | years {2021: [698, -7.97], 2022: [499, 2.95], 2023: [239, 4.05]} | sides {-1: [809, -9.58], 1: [627, 7.38]} | passes=False first retest of >= 3 stacked diagonal imbalance rows (X 2.5) from a 1-h footprint bar vs neutral 3-row zones
+[m7d_stack_X4 explore] n=341 days=264 coins=3 mean -5.5 bp (se 6.8, p 0.416, mde 19.1) median +0.2 win 51% | ex-top3 -8.09 | net {'free': -5.45, 'maker_taker': -13.45, 'taker': -18.45, 'taker_x2': -31.45, 'crash': -85.45} | base -5.1, diff -0.3 (p 0.977) | years {2021: [146, -25.09], 2022: [139, 10.64], 2023: [56, 5.83]} | sides {-1: [205, -12.45], 1: [136, 5.1]} | passes=False first retest of >= 3 stacked diagonal imbalance rows (X 4.0) from a 1-h footprint bar vs neutral 3-row zones
+[m7d_stack_X7.5 explore] n=61 days=55 coins=3 mean +12.1 bp (se 13.1, p 0.352, mde 36.7) median +0.2 win 51% | ex-top3 0.5 | net {'free': 12.09, 'maker_taker': 4.09, 'taker': -0.91, 'taker_x2': -13.91, 'crash': -67.91} | base -5.1, diff +17.2 (p 0.271) | years {2021: [20, -7.78], 2022: [32, 20.76], 2023: [9, 25.42]} | sides {-1: [36, 9.47], 1: [25, 15.86]} | passes=False first retest of >= 3 stacked diagonal imbalance rows (X 7.5) from a 1-h footprint bar vs neutral 3-row zones

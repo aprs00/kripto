@@ -260,5 +260,87 @@ def form_c(sample):
            note="same condition at mirrored levels")
 
 
+# ---------------------------------------------------------------- d: stacked diagonal footprint imbalances on 1-h footprint bars
+def stacks(ratio_ok: np.ndarray, n: int = 3) -> list[tuple[int, int]]:
+    """(first, last) row of each run of >= n consecutive True rows."""
+    out, k = [], 0
+    for i, v in enumerate(np.append(ratio_ok, False)):
+        if v:
+            k += 1
+        else:
+            if k >= n:
+                out.append((i - k, i - 1))
+            k = 0
+    return out
+
+
+def form_d(sample):
+    """1-h footprint bars, 10-bp rows. Buy diagonal imbalance at row p: taker buys at p >= X * taker sells at p-1 (X = 2.5 / 4 / 7.5), row volume
+    >= 1% of the bar; sell imbalance mirrored. >= 3 stacked rows = zone: buy zone below the bar close -> support (long on first retest within 3 d),
+    sell zone above the close -> resistance (short). Baseline: a 3-row zone in the same bar on the same side of the close, every row's ratio within
+    1/1.5..1.5, nearest in distance. Entry as of touch + 1 s, 60 min."""
+    lo, hi = L.SAMPLES[sample]
+    out = []
+    for coin in COINS:
+        b = load(coin, lo, hi)
+        hr = b["t1"] // 3_600_000
+        cut = np.flatnonzero(np.diff(hr)) + 1
+        st, en = np.concatenate([[0], cut]), np.concatenate([cut, [len(hr)]])
+        for a, z in zip(st, en):
+            if z - a < 20 or z >= len(hr):
+                continue
+            h, l = b["h"][a:z], b["l"][a:z]
+            k = np.floor(np.log(np.sqrt(h * l)) / BIN).astype(np.int64)
+            k0 = k.min()
+            B = np.bincount(k - k0, weights=b["bs"][a:z])
+            S = np.bincount(k - k0, weights=b["ss"][a:z])
+            if len(B) < 5:
+                continue
+            tot = (B + S).sum()
+            C = b["c"][z - 1]
+            vol_ok = (B + S) >= 0.01 * tot
+            rb = B[1:] / np.maximum(S[:-1], 1e-9)          # row p (p >= 1): buys at p vs sells at p-1
+            rs = S[:-1] / np.maximum(B[1:], 1e-9)          # row p-1: sells at p-1 vs buys at p
+            neutral = (rb < 1.5) & (rb > 1 / 1.5) & vol_ok[1:] & vol_ok[:-1]
+            price = lambda r: np.exp((k0 + r) * BIN)
+            t_end = b["t1"][z - 1] + 3 * 86_400_000
+            for X in (2.5, 4.0, 7.5):
+                for kind, ok, side in (("buy", (rb >= X) & vol_ok[1:], 1), ("sell", (rs >= X) & vol_ok[:-1], -1)):
+                    zs = stacks(ok)
+                    for (r0, r1) in zs:
+                        rows = (r0 + 1, r1 + 1) if kind == "buy" else (r0, r1)
+                        zlo, zhi = price(rows[0]), price(rows[1] + 1)
+                        if (side == 1 and zhi >= C) or (side == -1 and zlo <= C):
+                            continue
+                        dist = abs(np.log(np.sqrt(zlo * zhi) / C))
+                        r = retest(b, z, zlo, zhi, side, t_end)
+                        if r is not None:
+                            out.append({"time": pd.Timestamp(r[0], unit="ms", tz="UTC"), "coin": coin, "side": side, "gross": r[1], "kind": "real", "X": X})
+                        if X == 2.5:                          # one baseline zone per real zone (computed once)
+                            nz = stacks(neutral)
+                            cand = []
+                            for (q0, q1) in nz:
+                                for q in range(q0, q1 - 1):
+                                    blo, bhi = price(q + (1 if kind == "buy" else 0)), price(q + 3 + (1 if kind == "buy" else 0))
+                                    if (side == 1 and bhi < C) or (side == -1 and blo > C):
+                                        cand.append((abs(abs(np.log(np.sqrt(blo * bhi) / C)) - dist), blo, bhi))
+                            if cand:
+                                _, blo, bhi = min(cand)
+                                rp = retest(b, z, blo, bhi, side, t_end)
+                                if rp is not None:
+                                    out.append({"time": pd.Timestamp(rp[0], unit="ms", tz="UTC"), "coin": coin, "side": side, "gross": rp[1], "kind": "base", "X": 0})
+        del b
+    d = pd.DataFrame(out)
+    d = d[d.time < pd.Timestamp(hi, tz="UTC") - pd.Timedelta("2h")]
+    base = d[d.kind == "base"]
+    print("60-min bp by imbalance X and side (base = neutral zones same bar, same side, nearest distance):")
+    print((d.pivot_table(index="X", columns="side", values="gross", aggfunc="mean") * 1e4).round(1).to_string())
+    print(d.pivot_table(index="X", columns="side", values="gross", aggfunc="count").to_string())
+    for X in (2.5, 4.0, 7.5):
+        e = d[(d.kind == "real") & (d.X == X)]
+        L.card(f"m7d_stack_X{X:g}", e[["time", "coin", "side", "gross"]], sample, base=base[["time", "coin", "side", "gross"]],
+               note=f"first retest of >= 3 stacked diagonal imbalance rows (X {X}) from a 1-h footprint bar vs neutral 3-row zones")
+
+
 if __name__ == "__main__" and len(sys.argv) > 2:
-    {"b": form_b, "c": form_c}[sys.argv[2]](sys.argv[1])
+    {"b": form_b, "c": form_c, "d": form_d}[sys.argv[2]](sys.argv[1])

@@ -1476,7 +1476,7 @@
    "group": "B",
    "title": "Delta at price and exact volume profiles",
    "src": "R10, R14-R16; tg:59-61",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -1505,15 +1505,21 @@
     {
      "id": "d",
      "what": "footprint imbalance as he sets it: diagonal taker imbalance 250% / 400% / 750%, >= 3 stacked rows -> zone holds on first retest, vs same-size zones without imbalance",
-     "status": "planned",
-     "added": "2026-11-22"
+     "status": "done",
+     "added": "2026-11-22",
+     "result": "1-h footprint bars, 10-bp rows (BTC/ETH/SOL 2021-23), >= 3 stacked diagonal imbalances at X 2.5/4/7.5, first retest within 3 d, 60 min: X2.5 n 1436 -2.2 bp vs neutral same-bar zones -5.1 (diff +3, p .72, MDE 10); X4 n 341 diff -0.3; X7.5 n 61 +12 (diff +17, p .27, MDE 37, 2021 negative); per side X2.5/X4 = base. Coarse rows (10 bp vs his ticks): said; stacked imbalance zones hold no better than neutral ones",
+     "date": "2026-11-25",
+     "evidence": "m7d_stack_X2.5__explore"
     }
    ],
    "after": [
     "M0",
     "P1"
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "4 forms on exact aggTrade profiles, MDE 7-12 bp: the day's outlier delta-at-price cell = matched / placebo (anti-dose); exact-POC first touch +10 bp vs mirror (replicates P3, below taker costs, over within 5 min); absorption at the POC touch = mirrors; stacked diagonal imbalance zones = neutral zones. Exact profiles do not rescue P1-P3",
+   "closed": "2026-11-25"
   },
   {
    "id": "F0",

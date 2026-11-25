@@ -1,0 +1,60 @@
+{
+ "name": "m7d_stack_X2.5",
+ "sample": "explore",
+ "n": 1436,
+ "days": 727,
+ "coins": 3,
+ "mean_bp": -2.18,
+ "median_bp": 0.01,
+ "win": 0.5,
+ "se_bp": 3.69,
+ "ci95_bp": [
+  -9.27,
+  4.93
+ ],
+ "p": 0.5477261369315343,
+ "mde80_bp": 10.33,
+ "mean_ex_top3_bp": -4.22,
+ "top3_share": null,
+ "t_day_mean": 0.19,
+ "by_year": {
+  "2021": [
+   698,
+   -7.97
+  ],
+  "2022": [
+   499,
+   2.95
+  ],
+  "2023": [
+   239,
+   4.05
+  ]
+ },
+ "by_side": {
+  "-1": [
+   809,
+   -9.58
+  ],
+  "1": [
+   627,
+   7.38
+  ]
+ },
+ "coins_positive": 0.33,
+ "net_bp": {
+  "free": -2.18,
+  "maker_taker": -10.18,
+  "taker": -15.18,
+  "taker_x2": -28.18,
+  "crash": -82.18
+ },
+ "base_n": 316,
+ "base_bp": -5.14,
+ "vs_base_bp": 2.96,
+ "p_vs_base": 0.7226386806596702,
+ "passes": false,
+ "note": "first retest of >= 3 stacked diagonal imbalance rows (X 2.5) from a 1-h footprint bar vs neutral 3-row zones",
+ "rerun": "",
+ "at": "2026-11-25T01:10:26+00:00"
+}

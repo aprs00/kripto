@@ -489,3 +489,8 @@ BTC/ETH/SOL micro bars 2021-23, fills as of +1 s, 6 bp/side, baseline = hourly t
 +1..+8 bp/trade gross, +3..+7 bp more than time bars (p .001-.016), every cell net negative (pooled net SR -0.9 or worse); the gain over time bars vanishes at low turnover, where 1-2 month hourly tsmom beats
 P&F (1-2% boxes). Volume bars = time; delta bars worse (intraday delta reverses). Double reversal at a level faded = single swing (-0.1..-0.9 bp), placebo levels worse. Lesson: filling at the deciding
 trade itself fabricated 2,070 flips on 2021-02-22 (ms crash prints); intraday move-bar studies need a latency fill. is3_m6.py, is3_m6c.py.
+
+### InSilico M7 / R10, R14-R16 delta at price and exact volume profiles (2026-11-25) -> DEAD
+BTC/ETH/SOL 2021-23, 10-bp profiles from aggTrades micro bars, fills as of +1 s. Day's outlier delta cell at an extreme -> next day +7 bp vs matched (p .77, MDE 62), no dose; its retest = a low-delta
+placebo bin (+8.4 vs +8.5 bp/60 min), largest cells worse. Exact-POC first touch beats its mirror by ~+10 bp/60 min (p .02-.19; replicates P3 with an independent profile), below a taker round trip and
+spent within 5 min; absorption at the touch (held vs heavy opposing delta) = mirrors. Stacked diagonal imbalances (2.5/4/7.5x, 3 rows, 1-h footprints) = neutral zones. is3_m7.py a/b/c/d.

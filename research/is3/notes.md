@@ -654,3 +654,4 @@ M7 b done (is3_m7.py b, m7b_explore.txt): exact POC first touch beats its mirror
 M7 c plan (before run): at the exact-POC first touch, the next 5 min: taker delta against the trade (sellers into a long) as a share of that window's volume, and 'held' = price never
  > 1 bin through the POC. Entry at touch + 5 min + 1 s, 60 min. Absorption = top-tercile opposing delta AND held; compare with held + low delta, and with mirrors under the same condition.
 M7 c done (m7c_explore.txt): absorption at the POC touch (held 5 min vs top-tercile opposing delta) +0.9 bp/60 min = mirrors (+5.6) = low-delta touches; the b bounce is over within 5 min.
+M7 d done: stacked imbalance zones = neutral zones (X7.5 +17 bp n 61, MDE 37, 2021 negative: no prereg). M7 CLOSED DEAD. Sceptic: his rows are ticks, mine 10 bp; the POC result agrees across two builds, so the profile is not the bottleneck.
