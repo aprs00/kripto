@@ -696,3 +696,4 @@ F2 c done: R8 backwards again (spike blocks 0th pct, falling-volume-only adds co
 F2 fspread_hold@pair: 0 invested days in explore (HL funding history starts 2024), so no filter can be explored without spending its confirm sample; left out of F2 (stated).
 F2 d confirmT (05:2x): FAILED both pre-registered books (blend +0.08 at 66th pct, listing_short -0.14 at 38th). Fourth 2021-23 macro/bounce pattern that does not carry into 2024-25.
 F2 e done: value location of trend entries = random masks or the mechanical reversal cost; e3 blend shorts +0.18 pooled but 2021 negative (1 of 20 cells).
+F2 f done: failed-new-high trim costs (his side); failed-new-low short block passes blend 5 d only (dose reversed at 1 d). F2 CLOSED OPEN: nothing usable; the recurring blend-only 'no new shorts after a flush' lead is the F1g family whose 2024-25 confirm failed. Sceptic: the books tested are the ones that trade; the delay form was his L5, not my exit.

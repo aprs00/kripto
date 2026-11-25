@@ -1639,7 +1639,7 @@
    "group": "C",
    "title": "Filters for tsmom, blend, listing shorts, funding pair",
    "src": "same",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -1684,8 +1684,11 @@
     {
      "id": "f",
      "what": "trend tiring (O2 j / N3 a): no new/larger longs in a coin whose latest 20-d high was a failed new high (high > prior 20-d high, close back below it) within 3 d, mirror for shorts; tsmom + blend, noadd",
-     "status": "planned",
-     "added": "2026-11-25"
+     "status": "done",
+     "added": "2026-11-25",
+     "result": "Trend tiring (O2 j / N3 a) as noadd filters, F0 harness bnall explore 2021-23, tsmom + blend, k 1/3/5 d, 12 judges: his side (no adding longs after a failed 20-d new high) tsmom -0.02/-0.05/-0.06, blend -0.03/-0.03 (8-62nd pct, 2023 strongly -): DEAD. Mirror (no adding shorts after a failed new low) tsmom -0.08/-0.04/+0.03, blend -0.07 (0th) / +0.08 (90th) / +0.24 (98th, every year +): one cell, dose reversed at 1 d, tsmom does not agree; same 'don't add shorts after a flush' family as F2a/F1g (2024-25 confirm failed). Not pre-registered",
+     "date": "2026-11-25",
+     "evidence": "F2f_fnl5d_blend__explore"
     }
    ],
    "after": [
@@ -1693,7 +1696,10 @@
    ],
    "due": "2026-11-25T03:40",
    "defer_why": "needs bnall/bn100 books; nightly data job 01:15-03:30",
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "6 forms on tsmom@bn / blend@bn / listing_short (bnall 1d, F0 random-mask harness, explore 2021-23; funding pair has no explore history): no execution-hour tilt (b: delay costs +1..+13 bp/unit traded), volume-on-rally (c) and value location (e) backwards or random, the failed-new-high trim (f) costs. Only blend-only 'no new shorts after a flush' cells pass explore (a cascade delay +0.23, f failed-new-low +0.24), the same family whose 2024-25 confirm failed in F1g, so not pre-registered; the one pre-registered form (d, flat into FOMC) failed confirmT in both books. OPEN not DEAD because a/f are explore-positive in one book",
+   "closed": "2026-11-25"
   },
   {
    "id": "X1",

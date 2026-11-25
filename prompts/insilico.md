@@ -19,6 +19,8 @@ has nothing due, or the usage limit hits. Commit and push after every form, so a
    is3_lib for every number (null_check + check_causal for every event function, then card with a matched or placebo baseline, dose-response). Simple
    returns, not log. Probe RAM on one coin first; `nice -n 19`; ≤ 2 GB; anything > 10 min → `systemd-run --user --unit is3-<id> -p Nice=19
    -p MemoryMax=1800M -p RuntimeMaxSec=2700 ...` writing to data/is3/, then `defer <id> <YYYY-MM-DDTHH:MM>` to when the unit will be done, and take the next item. Two units at a time at most (RAM).
+   Run studies as `python -m research.studies.<x>` with PYTHONPATH=. (and `-E PYTHONPATH=... -E PYTHONUNBUFFERED=1` in units). Never `pkill -f` / `pgrep -f` (they match
+   your own shell and kill it: happened 11-15, 11-17, 11-25); stop a unit with `systemctl --user stop is3-<id>`, a process by its PID.
 4. A failure gets a reason (no effect before costs / baseline does the same / costs / fills / too few events, quote the MDE / one regime / wrong venue) before you go on.
    A surprise in either direction: first suspect a bug (null check, one hand-checked event printed bar by bar).
 5. After EACH form: `insilico_queue form <id> <form> done "<n, mean vs baseline, p, MDE, verdict in one line, variants tried>" <evidence stem>`, append 2–4 lines

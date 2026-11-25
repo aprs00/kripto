@@ -473,6 +473,12 @@ next-day bounce after cascades (+61..+291 bp 2020–23) reversed in 2024–25 (�
 F1 a/e/f/h (evening): trade-size breadth, value-area location (3 readings, VA from bn100 1h day profiles), round numbers, poor extremes = random masks or worse. Blocking positions AGAINST
 value (long closing below VAL) costs flow 1.3 SR: those are the book's best days because of the plain next-day reversal (standalone: +4 bp vs return-decile matched, MDE 90). is3_f1.py, is3_f1loc.py.
 
+### InSilico F2 filters on tsmom@bn / blend@bn / listing_short (2026-11-25) → OPEN (nothing usable)
+F0 harness with a new DELAY transform (noadd: blocked days may not open/increase, held positions stay), bnall 1d explore 2021–23; fspread_hold@pair has no explore history (left out).
+Execution hour (bn100 1h): a daily book's trades earn +1..+13 bp per unit traded in the 1–23 h after the close: trade at the close, never later; weekend no different. R8 volume (both readings), value
+location of entries, failed-new-high trims: random masks or worse. Flat the day before + FOMC day: explore blend +0.13 / listing_short +0.16 (every year), pre-registered, confirmT FAILED (+0.08 66th, −0.14).
+Blend-only explore passes: no new shorts after a cascade day (+0.23) or a failed new low (+0.24, 5 d; 1 d −0.07): the 'bounce after a flush' family that failed 2024–25 (F1g); not registered. is3_f2.py, is3_f2b.py.
+
 ### InSilico M4 / R1 R2 capitulation with adaptive buckets, in a trend, pitstops (2026-11-24) → OPEN (MDE rule only; every form ≤ baseline)
 Adaptive 7 size groups (prev-day septiles of 12 bins), BTC/ETH/SOL 2021–23: most-negative quintile +130 bp vs matched (p .34, MDE 314), no dose; his literal picture −151; 4-h bars flat.
 R2 on bnall (most one-sided selling day of an uptrend on a pullback): anti-dose. Buying breadth: nothing. Pitstop (red bar at a high → first green bar) on his 0.5% range bars: −38..−45 bp vs green

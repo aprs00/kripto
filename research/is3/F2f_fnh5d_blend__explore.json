@@ -1,0 +1,31 @@
+{
+ "name": "F2f_fnh5d_blend",
+ "sample": "explore",
+ "side": 1,
+ "on_share": 0.943,
+ "base": {
+  "sr": 0.9988984619947885,
+  "ann": 0.27535240416777634,
+  "mdd": -0.23480806413085542,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.8173623877921146,
+  "ann": 0.2280423662746537,
+  "mdd": -0.3073676433233945,
+  "days": 1095
+ },
+ "dSR": -0.182,
+ "dMDD": -0.0726,
+ "p_daily_diff": 0.4097951024487756,
+ "n_random": 50,
+ "pct_dSR_vs_random": 0.06,
+ "random_dSR_q05_q50_q95": [
+  -0.186,
+  -0.06,
+  0.044
+ ],
+ "pct_dMDD_vs_random": 0.0,
+ "note": "no adding longs within 5 d of a failed 20-d new high; events/coin-day 0.009; touched 0.0509; per-year dSR 2021:+0.15 2022:-0.00 2023:-0.70",
+ "passes": false
+}

@@ -1,0 +1,31 @@
+{
+ "name": "F2f_fnl5d_blend",
+ "sample": "explore",
+ "side": -1,
+ "on_share": 0.926,
+ "base": {
+  "sr": 0.9988984619947885,
+  "ann": 0.27535240416777634,
+  "mdd": -0.23480806413085542,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 1.2373636899601164,
+  "ann": 0.31766007204978014,
+  "mdd": -0.20991462139773465,
+  "days": 1095
+ },
+ "dSR": 0.238,
+ "dMDD": 0.0249,
+ "p_daily_diff": 0.303848075962019,
+ "n_random": 50,
+ "pct_dSR_vs_random": 0.98,
+ "random_dSR_q05_q50_q95": [
+  -0.05,
+  0.033,
+  0.146
+ ],
+ "pct_dMDD_vs_random": 0.92,
+ "note": "no adding shorts within 5 d of a failed 20-d new low; touched 0.036; per-year dSR 2021:+0.30 2022:+0.12 2023:+0.28",
+ "passes": true
+}
