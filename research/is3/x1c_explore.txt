@@ -1,0 +1,19 @@
+60-min bp after the 5-min window by held x opposing-delta tercile:
+kind      mirror  real
+held  oq              
+False 0     32.8  -4.5
+      1     29.8   1.1
+      2     -5.7  10.4
+True  0      7.9  18.4
+      1    -10.6   1.7
+      2     20.0  -0.3
+kind      mirror  real
+held  oq              
+False 0       15    11
+      1       53    46
+      2       74    66
+True  0      218   169
+      1      154   158
+      2      122   149
+[x1c_sp_absorb explore] n=149 days=132 coins=3 mean -0.3 bp (se 7.7, p 0.969, mde 21.6) median +8.2 win 56% | ex-top3 -5.97 | net {'free': -0.33, 'maker_taker': -8.33, 'taker': -13.33, 'taker_x2': -26.33, 'crash': -80.33} | base +20.0, diff -20.3 (p 0.178) | years {2021: [57, -4.52], 2022: [51, -2.23], 2023: [41, 7.86]} | sides {-1: [69, -1.27], 1: [80, 0.48]} | passes=False single-print zone first touch, held 5 min vs top-tercile opposing delta, vs mirrored zones under the same condition
+[x1c_sp_absorb_vs_noabs explore] n=149 days=132 coins=3 mean -0.3 bp (se 7.8, p 0.961, mde 21.9) median +8.2 win 56% | ex-top3 -5.97 | net {'free': -0.33, 'maker_taker': -8.33, 'taker': -13.33, 'taker_x2': -26.33, 'crash': -80.33} | base +18.4, diff -18.7 (p 0.141) | years {2021: [57, -4.52], 2022: [51, -2.23], 2023: [41, 7.86]} | sides {-1: [69, -1.27], 1: [80, 0.48]} | passes=False same vs held with the least opposing delta

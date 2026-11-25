@@ -1700,7 +1700,10 @@
     {
      "id": "c",
      "what": "single-print fill + absorption",
-     "status": "planned"
+     "status": "done",
+     "result": "BTC/ETH/SOL 2021-23, single-print zones (>= 3 bins of 10 bp touched by one 30-min period, not tails, exact aggTrade bins), first touch within 3 d, held 5 min against top-tercile opposing delta, then 60 min: -0.3 bp n 149 (MDE 22) vs mirrored zones same condition +20 (p .18) vs held + least opposing delta +18.4 (p .14). Absorption at a single print, if anything, is the wrong-way sign",
+     "date": "2026-11-25",
+     "evidence": "x1c_sp_absorb__explore"
     },
     {
      "id": "d",

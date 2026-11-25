@@ -1,0 +1,60 @@
+{
+ "name": "x1c_sp_absorb",
+ "sample": "explore",
+ "n": 149,
+ "days": 132,
+ "coins": 3,
+ "mean_bp": -0.33,
+ "median_bp": 8.24,
+ "win": 0.557,
+ "se_bp": 7.71,
+ "ci95_bp": [
+  -15.04,
+  14.48
+ ],
+ "p": 0.9685157421289355,
+ "mde80_bp": 21.59,
+ "mean_ex_top3_bp": -5.97,
+ "top3_share": null,
+ "t_day_mean": 0.01,
+ "by_year": {
+  "2021": [
+   57,
+   -4.52
+  ],
+  "2022": [
+   51,
+   -2.23
+  ],
+  "2023": [
+   41,
+   7.86
+  ]
+ },
+ "by_side": {
+  "-1": [
+   69,
+   -1.27
+  ],
+  "1": [
+   80,
+   0.48
+  ]
+ },
+ "coins_positive": 0.67,
+ "net_bp": {
+  "free": -0.33,
+  "maker_taker": -8.33,
+  "taker": -13.33,
+  "taker_x2": -26.33,
+  "crash": -80.33
+ },
+ "base_n": 122,
+ "base_bp": 19.96,
+ "vs_base_bp": -20.29,
+ "p_vs_base": 0.17791104447776113,
+ "passes": false,
+ "note": "single-print zone first touch, held 5 min vs top-tercile opposing delta, vs mirrored zones under the same condition",
+ "rerun": "",
+ "at": "2026-11-25T01:14:57+00:00"
+}

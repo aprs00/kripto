@@ -1,0 +1,60 @@
+{
+ "name": "x1c_sp_absorb_vs_noabs",
+ "sample": "explore",
+ "n": 149,
+ "days": 132,
+ "coins": 3,
+ "mean_bp": -0.33,
+ "median_bp": 8.24,
+ "win": 0.557,
+ "se_bp": 7.83,
+ "ci95_bp": [
+  -15.64,
+  15.51
+ ],
+ "p": 0.960519740129935,
+ "mde80_bp": 21.93,
+ "mean_ex_top3_bp": -5.97,
+ "top3_share": null,
+ "t_day_mean": 0.01,
+ "by_year": {
+  "2021": [
+   57,
+   -4.52
+  ],
+  "2022": [
+   51,
+   -2.23
+  ],
+  "2023": [
+   41,
+   7.86
+  ]
+ },
+ "by_side": {
+  "-1": [
+   69,
+   -1.27
+  ],
+  "1": [
+   80,
+   0.48
+  ]
+ },
+ "coins_positive": 0.67,
+ "net_bp": {
+  "free": -0.33,
+  "maker_taker": -8.33,
+  "taker": -13.33,
+  "taker_x2": -26.33,
+  "crash": -80.33
+ },
+ "base_n": 169,
+ "base_bp": 18.38,
+ "vs_base_bp": -18.71,
+ "p_vs_base": 0.14142928535732133,
+ "passes": false,
+ "note": "same vs held with the least opposing delta",
+ "rerun": "",
+ "at": "2026-11-25T01:14:57+00:00"
+}
