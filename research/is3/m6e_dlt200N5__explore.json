@@ -1,0 +1,60 @@
+{
+ "name": "m6e_dlt200N5",
+ "sample": "explore",
+ "n": 5888,
+ "days": 1043,
+ "coins": 3,
+ "mean_bp": 0.95,
+ "median_bp": -58.4,
+ "win": 0.349,
+ "se_bp": 5.39,
+ "ci95_bp": [
+  -9.12,
+  11.79
+ ],
+ "p": 0.8710644677661169,
+ "mde80_bp": 15.09,
+ "mean_ex_top3_bp": -1.56,
+ "top3_share": 2.64,
+ "t_day_mean": 3.38,
+ "by_year": {
+  "2021": [
+   1915,
+   7.24
+  ],
+  "2022": [
+   1823,
+   -6.42
+  ],
+  "2023": [
+   2150,
+   1.59
+  ]
+ },
+ "by_side": {
+  "-1": [
+   2943,
+   -13.31
+  ],
+  "1": [
+   2945,
+   15.19
+  ]
+ },
+ "coins_positive": 0.67,
+ "net_bp": {
+  "free": 0.95,
+  "maker_taker": -7.05,
+  "taker": -12.05,
+  "taker_x2": -25.05,
+  "crash": -79.05
+ },
+ "base_n": 5579,
+ "base_bp": 7.4,
+ "vs_base_bp": -6.45,
+ "p_vs_base": 0.3713143428285857,
+ "passes": false,
+ "note": "per-trade gross, base = hourly tsmom with matched flips, same coin",
+ "rerun": "",
+ "at": "2026-11-25T00:58:48+00:00"
+}

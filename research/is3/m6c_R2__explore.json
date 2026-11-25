@@ -1,0 +1,60 @@
+{
+ "name": "m6c_R2",
+ "sample": "explore",
+ "n": 6730,
+ "days": 719,
+ "coins": 3,
+ "mean_bp": -6.61,
+ "median_bp": -15.63,
+ "win": 0.455,
+ "se_bp": 2.29,
+ "ci95_bp": [
+  -11.63,
+  -2.5
+ ],
+ "p": 0.01199400299850075,
+ "mde80_bp": 6.41,
+ "mean_ex_top3_bp": -9.77,
+ "top3_share": null,
+ "t_day_mean": -6.3,
+ "by_year": {
+  "2021": [
+   4145,
+   -4.97
+  ],
+  "2022": [
+   2063,
+   -4.32
+  ],
+  "2023": [
+   522,
+   -28.71
+  ]
+ },
+ "by_side": {
+  "-1": [
+   3338,
+   -5.56
+  ],
+  "1": [
+   3392,
+   -7.64
+  ]
+ },
+ "coins_positive": 0.33,
+ "net_bp": {
+  "free": -6.61,
+  "maker_taker": -14.61,
+  "taker": -19.61,
+  "taker_x2": -32.61,
+  "crash": -86.61
+ },
+ "base_n": 6231,
+ "base_bp": -5.93,
+ "vs_base_bp": -0.68,
+ "p_vs_base": 0.8395802098950524,
+ "passes": false,
+ "note": "double reversal level fade vs single-swing fade; placebo printed above",
+ "rerun": "",
+ "at": "2026-11-25T01:01:07+00:00"
+}
