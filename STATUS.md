@@ -13,7 +13,8 @@ _Updated 2026-11-25 ~07:30 UTC (research session). Detail: journal/2026-11-25.md
    and it is mostly one market-wide bet per Sunday.
 4. **First look at our own Hyperliquid order-flow data (13 days).** Neither total buying pressure nor big single traders' persistent buying predicts the next hours. One cell
    (4-hour flow → next day) looks interesting but rests on 12 days; re-check fixed for about 12-23.
-5. PL1 (cutting pumped coins from momentum's long side): see the journal; result below.
+5. **Cutting pumped coins from momentum's long side does not work** (3 new filters + 1 earlier): the pumps are where momentum earns its bull-year money; the overnight crashes are the price of that. The 5%-per-coin cap stays the protection.
+6. **The Binance main book takes less risk than its target.** Mixing three books 1/3 each gives about 18% yearly volatility instead of 25–30%, so it would earn less than the expectation below. Fix to be decided next session (a general rule for all main books, not tuned to results).
 
 ## Books (11-25 06:40 UTC; 16 days of paper P&L is noise)
 | book | $1,000 (shadow $2,000) | $200 twin |

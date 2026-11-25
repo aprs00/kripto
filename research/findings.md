@@ -354,6 +354,11 @@ Block longs when: (a) the 2 best days ≥ the whole 28-d return: dSR +0.11 (100t
 and thin longs are where momentum earns its bull-year return; every filter helps only in 2022. The −42..−48% nights are the price of that tail. Untried (different idea): an intraday
 stop via the live watcher (needs hourly data + LQ1). Risk is controlled by the 5% per-name cap, not by filtering. confirmT not used.
 
+### AL1 how to mix main_bn's books (2026-11-25, library N12, research/studies/al1_mix.py, nested 60-d refits, bnall 1d) → 1/N is enough; the mix is under-risked
+OOS mix SR 1/N / inverse-vol / shrunk min-var: NOW (flow, xsmom, blend) 1.83 / 1.81 / 1.81; ATOMS (+xsmom_k, tsmom, listing_short, no blends) 1.86 / 1.82 / 1.86; RULE set 1.90 / 1.91 / 2.01
+(component configs are hindsight picks: compare rows, don't quote levels). Method differences are noise → keep 1/N. Correlations: xsmom–xsmom_k 0.85 (one bet), flow–tsmom 0.00,
+listing_short −0.16..0.07 (the diversifier). **The 1/N mixes run at 14–18% vol, not the 25–30% steady target**: main_bn takes less risk than its stated expectation assumes.
+
 ### Live candidate list = research universe? (2026-11-22, research/studies/live_universe.py; row 19) → yes on both venues
 Direct test (recorded live lists on 4 bars 11-17 → 11-22 vs the clean, fully refreshed bnall): live's top-30 contains 29, 30, 30, 30 of the research top-30. HL by proxy 98.8%.
 The Binance 24h-volume proxy said 95.1% (2026: 87%) and a bad blend@bn, but it ignores that held coins stay listed; the direct number wins. No change to live.
