@@ -109,5 +109,18 @@ def run_e() -> None:
                     J(f"e3_va70{sg}", name, ~withi, side, 100, f"no adding {sg} with initiative (Dalton responsive reading)")
 
 
+def run_f() -> None:
+    """O2 j / N3 a 'trend tiring': a failed new high (day high above the prior 20-d high, close back below it) within the last k days
+    blocks new/larger longs; mirror (failed new low) blocks new/larger shorts. k = 1/3/5 (dose)."""
+    for name in ("tsmom", "blend"):
+        w, p, s = get(name)
+        h, l, c = p["high"].reindex_like(p["close"]), p["low"].reindex_like(p["close"]), p["close"]
+        ph, pl = h.rolling(20, min_periods=20).max().shift(1), l.rolling(20, min_periods=20).min().shift(1)
+        fh, fl = (h > ph) & (c < ph), (l < pl) & (c > pl)
+        for k, n in ((3, 200), (1, 50), (5, 50)):
+            J(f"f_fnh{k}d", name, ~(fh.rolling(k, min_periods=1).max() > 0), 1, n, f"no adding longs within {k} d of a failed 20-d new high; events/coin-day {float(fh.loc[:'2023'].to_numpy().mean()):.3f}")
+            J(f"f_fnl{k}d", name, ~(fl.rolling(k, min_periods=1).max() > 0), -1, n, f"no adding shorts within {k} d of a failed 20-d new low")
+
+
 if __name__ == "__main__":
-    {"a": run_a, "c": run_c, "d": run_d, "e": run_e}[sys.argv[1]]()
+    {"a": run_a, "c": run_c, "d": run_d, "e": run_e, "f": run_f}[sys.argv[1]]()

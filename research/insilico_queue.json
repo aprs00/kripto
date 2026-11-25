@@ -1639,12 +1639,15 @@
    "group": "C",
    "title": "Filters for tsmom, blend, listing shorts, funding pair",
    "src": "same",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "cascade-day delay",
-     "status": "planned"
+     "status": "done",
+     "result": "L5 as a DELAY (noadd: no new/larger shorts at a cascade day's close, held shorts stay), F0 harness bnall explore 2021-23, 3 books x thresholds -5/-7/-10%: blend dSR +0.27/+0.23/+0.11 (100th pct, -7% every year +, p .04, mdd -23.5 -> -19.6%); tsmom +0.15/+0.07/-0.04 (2022 negative in all); listing_short +0.03/+0.03/+0.04 (touches < 0.4% of weight). Fails the pre-stated rule (>= 2 of 3 books every year); same bounce mechanism as F1g whose 2024-25 confirm failed (next-day after cascades -28/-150 bp there), so the confirm sample is not clean for it: NOT pre-registered. 9 judges. Feature-sized lead for blend only",
+     "date": "2026-11-25",
+     "evidence": "F2a_casc7_blend__explore"
     },
     {
      "id": "b",
@@ -1668,13 +1671,20 @@
      "id": "e",
      "what": "value-area location of trend entries (P5)",
      "status": "planned"
+    },
+    {
+     "id": "f",
+     "what": "trend tiring (O2 j / N3 a): no new/larger longs in a coin whose latest 20-d high was a failed new high (high > prior 20-d high, close back below it) within 3 d, mirror for shorts; tsmom + blend, noadd",
+     "status": "planned",
+     "added": "2026-11-25"
     }
    ],
    "after": [
     "F0"
    ],
    "due": "2026-11-25T03:40",
-   "defer_why": "needs bnall/bn100 books; nightly data job 01:15-03:30"
+   "defer_why": "needs bnall/bn100 books; nightly data job 01:15-03:30",
+   "sessions": 1
   },
   {
    "id": "X1",

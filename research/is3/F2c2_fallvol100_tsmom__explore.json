@@ -1,0 +1,31 @@
+{
+ "name": "F2c2_fallvol100_tsmom",
+ "sample": "explore",
+ "side": 1,
+ "on_share": 0.918,
+ "base": {
+  "sr": 0.5949477641081959,
+  "ann": 0.1834045285875485,
+  "mdd": -0.5103844896671719,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.5543288480066534,
+  "ann": 0.15916251842279375,
+  "mdd": -0.502559376132405,
+  "days": 1095
+ },
+ "dSR": -0.041,
+ "dMDD": 0.0078,
+ "p_daily_diff": 0.809095452273863,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.32,
+ "random_dSR_q05_q50_q95": [
+  -0.146,
+  0.007,
+  0.142
+ ],
+ "pct_dMDD_vs_random": 0.37,
+ "note": "new longs only if the 14-d rally's last-7-d volume < 1.0x the prior 7 d (R8: rising price, falling volume continues); touched 0.1596; per-year dSR 2021:+0.04 2022:+0.30 2023:-0.48",
+ "passes": false
+}

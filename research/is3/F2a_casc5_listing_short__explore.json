@@ -1,0 +1,31 @@
+{
+ "name": "F2a_casc5_listing_short",
+ "sample": "explore",
+ "side": -1,
+ "on_share": 0.884,
+ "base": {
+  "sr": 0.1791462001273801,
+  "ann": 0.04467337503010442,
+  "mdd": -0.43178632978273224,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.2068633395604939,
+  "ann": 0.051419859509119904,
+  "mdd": -0.43529394651547415,
+  "days": 1095
+ },
+ "dSR": 0.028,
+ "dMDD": -0.0035,
+ "p_daily_diff": 0.7926036981509246,
+ "n_random": 100,
+ "pct_dSR_vs_random": 0.73,
+ "random_dSR_q05_q50_q95": [
+  -0.077,
+  -0.008,
+  0.09
+ ],
+ "pct_dMDD_vs_random": 0.5,
+ "note": "no new/larger shorts at a cascade day's close (median coin <= -5%); days 186; touched 0.0035; per-year dSR 2021:+0.14 2022:-0.25 2023:+0.18",
+ "passes": false
+}

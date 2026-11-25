@@ -1,0 +1,31 @@
+{
+ "name": "F2c1_spike2x_tsmom",
+ "sample": "explore",
+ "side": 1,
+ "on_share": 0.985,
+ "base": {
+  "sr": 0.5949477641081959,
+  "ann": 0.1834045285875485,
+  "mdd": -0.5103844896671719,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.4538332468718115,
+  "ann": 0.13686817612158028,
+  "mdd": -0.5545939127242407,
+  "days": 1095
+ },
+ "dSR": -0.141,
+ "dMDD": -0.0442,
+ "p_daily_diff": 0.1874062968515742,
+ "n_random": 50,
+ "pct_dSR_vs_random": 0.0,
+ "random_dSR_q05_q50_q95": [
+  -0.036,
+  -0.007,
+  0.056
+ ],
+ "pct_dMDD_vs_random": 0.0,
+ "note": "no new longs at a 20-d high on volume >= 2x the 20-d median; touched 0.0218; per-year dSR 2021:-0.13 2022:-0.14 2023:-0.13",
+ "passes": false
+}

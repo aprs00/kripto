@@ -1,0 +1,31 @@
+{
+ "name": "F2c1_spike5x_blend",
+ "sample": "explore",
+ "side": 1,
+ "on_share": 0.994,
+ "base": {
+  "sr": 0.9988984619947885,
+  "ann": 0.27535240416777634,
+  "mdd": -0.23480806413085542,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.9470234676255331,
+  "ann": 0.25960260259279594,
+  "mdd": -0.23858916388995777,
+  "days": 1095
+ },
+ "dSR": -0.052,
+ "dMDD": -0.0038,
+ "p_daily_diff": 0.33033483258370816,
+ "n_random": 50,
+ "pct_dSR_vs_random": 0.0,
+ "random_dSR_q05_q50_q95": [
+  -0.016,
+  0.001,
+  0.015
+ ],
+ "pct_dMDD_vs_random": 0.02,
+ "note": "no new longs at a 20-d high on volume >= 5x the 20-d median; touched 0.0031; per-year dSR 2021:-0.06 2022:-0.05 2023:-0.04",
+ "passes": false
+}
