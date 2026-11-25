@@ -1419,7 +1419,7 @@
    "group": "B",
    "title": "Trend systems on move bars instead of time bars",
    "src": "R33; tg:103-107, 195",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -1449,7 +1449,8 @@
    ],
    "after": [
     "M0"
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "M7",

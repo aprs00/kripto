@@ -619,3 +619,16 @@ M5 c done (00:0x): mean-1-min-candle target, maker vs taker exit: real = placebo
 M5 b done (00:1x): VAH = placebo, POC slightly worse than placebo; all net negative.
 M5 f done: impulse-delta dose flat at 0.2%; strongest quintile -6 bp vs placebo at 0.43% (his skip rule is real as an avoid). M5 CLOSED DEAD (6 forms, MDE 1-9 bp, every level = placebo,
  queue fills adversely selected). Sceptic check: tested on his bar type, with his two targets and a queue model, on liquid and thin coins: the idea, not just my translation. Next: M6.
+
+## M6 trend systems on move bars (think-through 00:5x UTC 11-25, before any run)
+Sources re-read (tg:103-107 text + stored vision descriptions of the two menu screenshots, images not re-opened; tg:195 is a forwarded quote, no rule): range / rangeUS (TR = trend-reverse)
+ / P&F / volume / delta bars are "the real noise suppression ... real edge", "time is noise for me ... I care about levels, price points". Menu: TR 44-26 ... 700-420 (reverse ~0.6x trend).
+Mechanism claimed: sampling in price instead of time removes quiet-time noise, so a trend rule sees cleaner swings. Sceptic: a deterministic resampling cannot create drift; any gain must come from
+ (1) volatility-adaptive lookback (a range-bar lookback spans long time when quiet, short when busy) or (2) intrabar reaction (signals fire the moment a distance is covered, not at an hour mark).
+What he does NOT say: he never trades a mechanical trend system on these bars; they are his CHART for levels / footprints, entries are discretionary at levels (M5 = placebo). A TR bar
+ "follow until the reversal bar" is a stop-and-reverse with a fixed retrace = zigzag / Kagi; on a random walk it earns -costs. Turnover: small bars flip often, taker 6 bp/side kills it, so widths >= 0.5%.
+Build (a): BTC/ETH/SOL micro bars 2021-23 -> range bars w 0.5/1/2%; tsmom sign(c_t/c_{t-N}-1), N 5/10/20; P&L on the micro-bar grid (position from the next micro bar), 6 bp per side.
+ Baseline: hourly-bar tsmom with lookback L chosen ONLY to match the range version's flips per year (same coin). Compare daily Sharpe (gross, net) and the day-block bootstrap of the daily
+ difference; trade card (per-trade simple gross) vs time-bar trades. Null: sign-flipped micro bars (gross must be ~0). (b): ATAS-like TR bars, trend X 0.5/1/2/4%, reverse R = 0.6X, always in
+ the last bar's direction; variant: plain zigzag (retrace R from the running extreme). Change my mind: move-bar net Sharpe > matched time-bar net Sharpe in every explore year for most cells.
+Prior: trend on liquid perps is crowded (CLAUDE.md); bar type rarely matters in the literature (Lopez de Prado's bars help statistics, not drift). Expect range = time within noise.
