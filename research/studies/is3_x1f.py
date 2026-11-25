@@ -27,12 +27,14 @@ def run(sample):
     lo, hi = L.SAMPLES[sample]
     E, _ = M.collect(lo, hi)
     E = E[(E.w > 0.001) & (E.lr >= np.log(5))].copy()        # trade-count jumps only, his range-bar sizes
-    # bar close price is not stored by M2: recover from g? no -- recompute from the micro bars at the event time
+    # M2 does not store the bar close price: take the micro bar that closed the range bar (its t1 = the event time)
     rows = []
     for coin, g in E.groupby("coin"):
         from kripto import mbars
         b = mbars.load(f"{coin}USDT", lo, hi)
-        k = np.clip(np.searchsorted(b["t1"], g.time.astype("int64") // 1000, side="right") - 1, 0, len(b["c"]) - 1)
+        tms = ((g.time - pd.Timestamp("1970-01-01", tz="UTC")) // pd.Timedelta("1ms")).to_numpy(dtype=np.int64)    # unit-safe (pandas 3: us or ms)
+        k = np.clip(np.searchsorted(b["t1"], tms, side="right") - 1, 0, len(b["c"]) - 1)
+        assert np.all(np.abs(b["t1"][k] - tms) < 1000), "event time does not match a micro bar close"
         g = g.assign(px=b["c"][k])
         rows.append(g)
         del b
