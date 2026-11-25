@@ -1,0 +1,31 @@
+{
+ "name": "F2d_cpi_flat_blend",
+ "sample": "explore",
+ "side": null,
+ "on_share": 0.977,
+ "base": {
+  "sr": 0.9988984619947885,
+  "ann": 0.27535240416777634,
+  "mdd": -0.23480806413085542,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.8768207587246442,
+  "ann": 0.2299580840522124,
+  "mdd": -0.3026955547223189,
+  "days": 1095
+ },
+ "dSR": -0.122,
+ "dMDD": -0.0679,
+ "p_daily_diff": 0.4547726136931534,
+ "n_random": 100,
+ "pct_dSR_vs_random": 0.32,
+ "random_dSR_q05_q50_q95": [
+  -0.24,
+  -0.062,
+  0.119
+ ],
+ "pct_dMDD_vs_random": 0.0,
+ "note": "flat through the cpi day; days 36; touched 0.0335; per-year dSR 2021:-0.53 2022:-0.08 2023:+0.16",
+ "passes": false
+}

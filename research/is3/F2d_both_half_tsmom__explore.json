@@ -1,0 +1,31 @@
+{
+ "name": "F2d_both_half_tsmom",
+ "sample": "explore",
+ "side": null,
+ "on_share": 0.961,
+ "base": {
+  "sr": 0.5949477641081959,
+  "ann": 0.1834045285875485,
+  "mdd": -0.5103844896671719,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.626728206315213,
+  "ann": 0.1837915055570031,
+  "mdd": -0.4839794847567491,
+  "days": 1095
+ },
+ "dSR": 0.032,
+ "dMDD": 0.0264,
+ "p_daily_diff": 0.9890054972513743,
+ "n_random": 50,
+ "pct_dSR_vs_random": 0.82,
+ "random_dSR_q05_q50_q95": [
+  -0.082,
+  -0.012,
+  0.083
+ ],
+ "pct_dMDD_vs_random": 0.86,
+ "note": "half size through FOMC+CPI days; touched 0.0287; per-year dSR 2021:+0.01 2022:+0.22 2023:-0.12",
+ "passes": false
+}

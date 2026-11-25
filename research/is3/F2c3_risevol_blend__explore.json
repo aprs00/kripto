@@ -1,0 +1,31 @@
+{
+ "name": "F2c3_risevol_blend",
+ "sample": "explore",
+ "side": 1,
+ "on_share": 0.936,
+ "base": {
+  "sr": 0.9988984619947885,
+  "ann": 0.27535240416777634,
+  "mdd": -0.23480806413085542,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.9144094763338209,
+  "ann": 0.25134851721089124,
+  "mdd": -0.23946914863921798,
+  "days": 1095
+ },
+ "dSR": -0.084,
+ "dMDD": -0.0047,
+ "p_daily_diff": 0.28735632183908044,
+ "n_random": 100,
+ "pct_dSR_vs_random": 0.42,
+ "random_dSR_q05_q50_q95": [
+  -0.168,
+  -0.066,
+  0.054
+ ],
+ "pct_dMDD_vs_random": 0.81,
+ "note": "mirror: new longs only on RISING volume; touched 0.0325; per-year dSR 2021:-0.08 2022:-0.04 2023:-0.15",
+ "passes": false
+}

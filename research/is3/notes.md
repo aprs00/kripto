@@ -692,3 +692,4 @@ Change my mind: dSR > 0 at >= 95th pct of random masks, every explore year, in >
 F2 b done (is3_f2b.py, f2b_explore.txt): delaying a daily book's trades by 1-23 h forgoes +1..+13 bp per unit traded (blend positive in 4-5 of 5 years at every H >= 8 h); no clock tilt, weekend
  executions no better. Agrees with fill_delay (11-22): execute at the close. Units is3-f2ad / is3-f2ce running forms a,d / c,e (04:54).
 F2 a done: cascade short-delay passes in blend only (dSR +0.23, every year), tsmom 2022 -, listing_short nothing. Not preregistered: fails my 2-of-3 rule, and F1g's confirm already showed the bounce gone in 2024-25.
+F2 c done: R8 backwards again (spike blocks 0th pct, falling-volume-only adds cost blend 0.45 SR); rising-volume mirror = random masks.

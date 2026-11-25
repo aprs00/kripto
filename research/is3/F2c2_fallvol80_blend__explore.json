@@ -1,0 +1,31 @@
+{
+ "name": "F2c2_fallvol80_blend",
+ "sample": "explore",
+ "side": 1,
+ "on_share": 0.897,
+ "base": {
+  "sr": 0.9988984619947885,
+  "ann": 0.27535240416777634,
+  "mdd": -0.23480806413085542,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.4976421946898053,
+  "ann": 0.1444836620264566,
+  "mdd": -0.33734973156373227,
+  "days": 1095
+ },
+ "dSR": -0.501,
+ "dMDD": -0.1025,
+ "p_daily_diff": 0.2193903048475762,
+ "n_random": 50,
+ "pct_dSR_vs_random": 0.0,
+ "random_dSR_q05_q50_q95": [
+  -0.322,
+  -0.183,
+  -0.017
+ ],
+ "pct_dMDD_vs_random": 0.0,
+ "note": "new longs only if the 14-d rally's last-7-d volume < 0.8x the prior 7 d (R8: rising price, falling volume continues); touched 0.1337; per-year dSR 2021:-0.90 2022:+0.12 2023:-0.95",
+ "passes": false
+}

@@ -1,0 +1,31 @@
+{
+ "name": "F2e2_va70L_tsmom",
+ "sample": "explore",
+ "side": 1,
+ "on_share": 0.764,
+ "base": {
+  "sr": 0.5949477641081959,
+  "ann": 0.1834045285875485,
+  "mdd": -0.5103844896671719,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.5792501597365619,
+  "ann": 0.1708174378425966,
+  "mdd": -0.49181692529732857,
+  "days": 1095
+ },
+ "dSR": -0.016,
+ "dMDD": 0.0186,
+ "p_daily_diff": 0.847576211894053,
+ "n_random": 100,
+ "pct_dSR_vs_random": 0.47,
+ "random_dSR_q05_q50_q95": [
+  -0.161,
+  -0.011,
+  0.151
+ ],
+ "pct_dMDD_vs_random": 0.42,
+ "note": "no adding L while close inside VA 70%; touched 0.1015; per-year dSR 2021:-0.03 2022:+0.24 2023:-0.31",
+ "passes": false
+}

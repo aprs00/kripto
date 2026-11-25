@@ -1,0 +1,31 @@
+{
+ "name": "F2d_fomc_flat2_tsmom",
+ "sample": "explore",
+ "side": null,
+ "on_share": 0.968,
+ "base": {
+  "sr": 0.5949477641081959,
+  "ann": 0.1834045285875485,
+  "mdd": -0.5103844896671719,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.5917728242240331,
+  "ann": 0.17616261488833498,
+  "mdd": -0.48919540265578454,
+  "days": 1095
+ },
+ "dSR": -0.003,
+ "dMDD": 0.0212,
+ "p_daily_diff": 0.8935532233883059,
+ "n_random": 50,
+ "pct_dSR_vs_random": 0.62,
+ "random_dSR_q05_q50_q95": [
+  -0.185,
+  -0.039,
+  0.096
+ ],
+ "pct_dMDD_vs_random": 0.68,
+ "note": "flat the day before AND the FOMC day; touched 0.0475; per-year dSR 2021:-0.04 2022:+0.11 2023:-0.13",
+ "passes": false
+}

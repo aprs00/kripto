@@ -1,0 +1,31 @@
+{
+ "name": "F2d_fomc_flat_blend",
+ "sample": "explore",
+ "side": null,
+ "on_share": 0.984,
+ "base": {
+  "sr": 0.9988984619947885,
+  "ann": 0.27535240416777634,
+  "mdd": -0.23480806413085542,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 1.0428650021248613,
+  "ann": 0.28294462020939054,
+  "mdd": -0.23701104890475377,
+  "days": 1095
+ },
+ "dSR": 0.044,
+ "dMDD": -0.0022,
+ "p_daily_diff": 0.791104447776112,
+ "n_random": 100,
+ "pct_dSR_vs_random": 0.87,
+ "random_dSR_q05_q50_q95": [
+  -0.199,
+  -0.03,
+  0.08
+ ],
+ "pct_dMDD_vs_random": 0.57,
+ "note": "flat through the fomc day; days 24; touched 0.0221; per-year dSR 2021:-0.03 2022:+0.25 2023:-0.12",
+ "passes": false
+}

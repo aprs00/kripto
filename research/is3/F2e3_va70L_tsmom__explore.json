@@ -1,0 +1,31 @@
+{
+ "name": "F2e3_va70L_tsmom",
+ "sample": "explore",
+ "side": 1,
+ "on_share": 0.941,
+ "base": {
+  "sr": 0.5949477641081959,
+  "ann": 0.1834045285875485,
+  "mdd": -0.5103844896671719,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.5165544090974794,
+  "ann": 0.15742211954524346,
+  "mdd": -0.5323053574264063,
+  "days": 1095
+ },
+ "dSR": -0.078,
+ "dMDD": -0.0219,
+ "p_daily_diff": 0.24287856071964017,
+ "n_random": 100,
+ "pct_dSR_vs_random": 0.08,
+ "random_dSR_q05_q50_q95": [
+  -0.081,
+  -0.009,
+  0.064
+ ],
+ "pct_dMDD_vs_random": 0.1,
+ "note": "no adding L with initiative (Dalton responsive reading); touched 0.0296; per-year dSR 2021:-0.07 2022:-0.01 2023:-0.15",
+ "passes": false
+}
