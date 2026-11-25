@@ -391,3 +391,9 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
 * 2026-11-25 insilico: `pkill -f` killed my own shell a third time (logged 11-15, 11-17 in this changelog, which a fresh session does not read at the moment it types the command). The warning now sits in
   prompts/insilico.md step 3, next to the unit command where it is used. F0 harness gained a DELAY transform (`is3_filter.noadd`: blocked days may not open/increase a position) with a known-answer test: L5 had been
   tested as an exit, not as the delay the source describes. Lesson: put a recurring warning at the point of use, not in a history log.
+* 2026-11-25 research: (1) **A whole research day was lost to the usage limit and nobody re-ran it.** 11-24 06:40 research and 08:25 review both died in 3 s ("hit your 5-hour
+  limit · resets 9:40am") after a night of InSilico sessions; the watchdog only logged rc=1. `scripts/agent.sh` now schedules ONE retry of a research/review session 5 min after
+  the printed reset (`scripts/limit_retry.py`, test; a transient `kripto-retry-*` timer, KRIPTO_RETRY stops chains). (2) The hourly trader downloaded 30 days of HL funding per coin and
+  accrued funding per held coin BEFORE trading: HL fills came ~11 min after the close (C1 drift). Trades now come first (3 min); accrual uses the pre-trade snapshot (test).
+  (3) `scripts/cost_calibration.py` (C1, monthly): live slip + drift vs the model per venue and volume bucket. Lesson: an average cost number can be one event (XTEN = 78% of HL cost);
+  always print the cost by bucket and the top contributors before refitting a model.

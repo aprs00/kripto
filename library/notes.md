@@ -67,3 +67,12 @@ no volatility term and no order-size term. For our order sizes (median ~$50, Q/V
 slip_bps (fills) and the hourly HL L2 snapshot spreads (data/hl/l2) against σ_h/√N_h per coin-hour (σ from 1h bars, N = trade count: HL
 candles `n`, HL flow `n` per minute, Binance klines col 8) and compare with the dv-only model; if it wins out of sample (later days), the
 backtest cost model becomes half-spread(σ, N) + a √(Q/V) impact term, which raises costs exactly on volatile days, when x-sec books trade most.
+### N12 Combining strategies: 1/N vs estimated covariances; Kelly on the NET book (maxdama §6.2–6.3; mined 2026-11-25) → backlog AL1
+Claim: allocating across several profitable strategies is a covariance-estimation problem with N×N noisy terms; with short histories the
+spurious-correlation band is wide (|ρ| < 0.14 is noise even at n = 185), so 1/N or shrinkage toward the identity (regularisation) usually beats
+the sample-covariance optimum out of sample; covariances are better estimated from higher-frequency returns ("realized variance"); then treat
+the mix as ONE strategy and size it by (fractional) Kelly on its net P&L, preferring empirical Kelly when the left tail is heavy.
+Mechanical rule to test (descriptive, nested, no new signal): on bnall daily component returns of the M1 candidates (flow, xsmom, xsmom_k, tsmom,
+listing_short), refit every 60 d on an expanding window: (i) 1/N, (ii) inverse-vol, (iii) min-variance with the covariance shrunk 50% to its
+diagonal, (iv) (iii) on 4h returns; compare OOS SR and mdd of the mix, then the empirical-Kelly leverage of the winner vs the 25–30% vol target.
+Our main_bn mixes flow, xsmom and blend (which itself holds xsmom-like legs) at 1/3 each: the overlap is unmeasured. Data: existing.

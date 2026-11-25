@@ -1,0 +1,31 @@
+{
+ "name": "PL1_c_thin",
+ "sample": "explore",
+ "side": 1,
+ "on_share": 0.986,
+ "base": {
+  "sr": 1.1884505026561278,
+  "ann": 0.2553299466480741,
+  "mdd": -0.1890858535335379,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.6080997129967697,
+  "ann": 0.12682367305454037,
+  "mdd": -0.23840227085932342,
+  "days": 1095
+ },
+ "dSR": -0.58,
+ "dMDD": -0.0493,
+ "p_daily_diff": 0.13243378310844578,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.0,
+ "random_dSR_q05_q50_q95": [
+  -0.299,
+  -0.097,
+  0.059
+ ],
+ "pct_dMDD_vs_random": 0.005,
+ "note": "block xsmom longs; weight touched 0.135",
+ "passes": false
+}

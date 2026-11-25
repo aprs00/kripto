@@ -6,14 +6,18 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 
 **Priority order (rewritten 2026-11-10 after H4/T9/X1b; research Tue + Thu, ≤ 6 new walk-forward experiments per session):**
 ## Owner instruction 2026-11-10 ("run everything now"): DONE 2026-11-12 06:40 research (M1, X2, W1 live; forward baseline). Journal 2026-11-12.
-**Next priorities (2026-11-22 retro):** 1. Tue 11-24: TF1 (clean-data re-measure, first) → W3 walk-forward (on clean bn100) → C1 cost re-fit incl. the drift term
-(row 20) → 2. W2/W1 HL flow data (≈ 11-26) → 3. T5b positioning (≈ 11-29) → 4. E1 + LQ1 (≈ 12-01) → 5. T2b (a)/(c)/(d), T2b(e) after C1 →
-6. T6b HL positioning (≈ 12-07) → 7. low prior: PL1, FC1, LV1, LO1. Weekly: T0a with `--since` in the retro.
-- [ ] TF1 **Re-run the Binance walk-forwards on the clean panel** (no stock perps): the same 11-09 v2 grids for flow, xsmom, xsmom_k, tsmom, listing_short,
+**Next priorities (2026-11-25 research):** 1. NEXT research session: re-derive the M1 lists from TF1 by the fixed rule (grid avg > 0.8, pick > 0, worst > 0; BN candidates
+flow, xsmom, xsmom_k, tsmom, blend, blend_nested qualify on bnall; listing_short not) → 2. T5b positioning (≈ 11-29) → 3. E1 + LQ1 (≈ 12-01) → 4. T2b listing-day costs (XTEN: 160 bp
+real vs 25 bp cap; see C1) → 5. fill-delay re-measure ≈ 12-09 (`research.studies.fill_delay`, after the 11-25 reorder) → 6. T6b HL positioning (≈ 12-07) → 7. W2 re-check ≈ 12-23
+(pre-registered cells) → 8. low prior: W3b BTC+ETH-only Sunday fade, FC1, LV1, LO1. C1: re-run `scripts.cost_calibration` monthly (next ≈ 12-25). Weekly: T0a in the retro.
+- [x] TF1 DONE 2026-11-25 (findings: all survive, no verdict changes; M1 re-derivation next session). Was: **Re-run the Binance walk-forwards on the clean panel** (no stock perps): the same 11-09 v2 grids for flow, xsmom, xsmom_k, tsmom, listing_short,
   blend, blend_nested on bnall, tagged as a data correction (no new hypotheses, grids unchanged). Report old and clean pick / grid average / worst; then re-derive the
   M1 lists by the fixed rule (grid average > 0.8, pick > 0, worst > 0) in the following session, not the same one. flow@bn (2026: 0.90 → 0.45) is the one at risk.
 - [x] LU1 DONE 2026-11-22 (4 recorded bars): live top-30 = 29, 30, 30, 30 of the clean research top-30 → leave live as it is.
-- [ ] PL1 **Pump-and-crash tail on the LONG side** (11-22: IDOL, EVAA, AKE −42 to −48% overnight took 4.3% off xsmom@bn): R1 tested filters on shorts only. Think-through first;
+- [ ] AL1 (library N12, maxdama §6; 2026-11-25) **How to mix the M1 candidates in main_bn**: nested 60-d refits on bnall component returns: 1/N vs inverse-vol vs
+  min-variance shrunk 50% to diagonal (daily, and 4h for more points); then empirical Kelly of the mix vs the vol target. Descriptive (no new signal), do it in the session
+  that re-derives the M1 list (blend overlaps xsmom: the 1/3-each mix double-counts momentum). Prior: 1/N or inverse-vol wins; the value is knowing the overlap.
+- [x] PL1 DONE 2026-11-25 → DEAD as entry filter (a/b/c + F1c fail; pumps are momentum's bull-year profit; findings). Untried: intraday stop (R1). Was: **Pump-and-crash tail on the LONG side** (11-22: IDOL, EVAA, AKE −42 to −48% overnight took 4.3% off xsmom@bn): R1 tested filters on shorts only. Think-through first;
   e.g. drop names whose 28-d score is made by ≤ 2 days, or with 7-d volume > 5× the 30-d median. Explore bnall ≤ 2023-06, confirm later, ≤ 3 forms. One night is not evidence.
 - [ ] FC1 funding_contra untried forms (audit 11-22; prior low): (a) only extreme negative funding, long side; (b) conditional on price no longer rising; (c) HL-vs-BN funding
   gap as the crowding measure (= T3). ≤ 6 configs in all.  - [ ] LO1 tsmom long-only untried forms (prior low): excess over vol-matched BTC; BTC-only timing.
@@ -53,7 +57,7 @@ not a funding recommendation. Then X2.
 ~60 coins, aggregated per coin per minute (taker buy / sell notional, trade count) into data/hl/flow/YYYY-MM-DD.parquet; verify
 the taker-side field empirically against the book before trusting it; watchdog check for gaps. Non-backfillable, so build it this
 week. Purpose: flow natively on HL (today only Binance flow exists; it transfers to HL prices before costs).
-0. **C1 cost-model calibration** (2026-11-19: after the re-fit, re-run research/studies/t2b_hyst.py confirm with the new thin-name costs: HL listing churn is 43% of events) (assumptions.md row 1; 2026-11-17: add library N11, spread ∝ σ/√N, as the competing model; T0a: live costs ≤ model except listing_short 0.20% vs 0.13% of equity): live fills cost 5.4 bp on HL vs 9.6 bp modelled (2 days). From 2026-11-24
+0. [x] C1 DONE 2026-11-25 → model kept (scripts/cost_calibration.py; ×0.56 withdrawn; listing-day fills ≫ cap; monthly re-run). Was: **C1 cost-model calibration** (2026-11-19: after the re-fit, re-run research/studies/t2b_hyst.py confirm with the new thin-name costs: HL listing churn is 43% of events) (assumptions.md row 1; 2026-11-17: add library N11, spread ∝ σ/√N, as the competing model; T0a: live costs ≤ model except listing_short 0.20% vs 0.13% of equity): live fills cost 5.4 bp on HL vs 9.6 bp modelled (2 days). From 2026-11-24
 (≥ 14 days of fills, must include a volatile day): fit slippage vs order size / volume from the fills table (and the stored L2
 snapshots), write scripts/cost_calibration.py, change `backtest.slippage_model` with a design.md entry in a session that promotes
 nothing, then re-measure every "dead at taker costs" verdict and the decision-frequency study. Until then quote the ×0.56
@@ -75,7 +79,7 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
 - [x] X1d DONE 2026-11-12 → deployable gross 1.0 (2.0 liquidated on 2025-10-10); findings. Was: **Per-venue account simulation for fspread_hold** (from X1c: one-account mdd −1.7% hides −37%/day per venue account at
   gross 2): simulate two accounts with daily collateral re-split, HL/BN maintenance margin and intraday highs (HL 1d high/low),
   gross ∈ {0.5, 1.0, 2.0} pre-registered; output P(liquidation) and return per gross. Descriptive; decides the deployable size.
-- [ ] W2 **Visible metaorders on HL (library N10, Tóth et al.)**: from ≈ 11-26 (2 weeks of W1 `big` data): persistent same-side net
+- [ ] W2 (2026-11-25: plain taker-flow IC first look done, OPEN too early, re-check ≈ 12-23 on pre-registered cells; the per-address metaorder part is still untested) **Visible metaorders on HL (library N10, Tóth et al.)**: from ≈ 11-26 (2 weeks of W1 `big` data): persistent same-side net
   taking by one address → next 4h/24h return, per coin, volume-scaled; descriptive IC first (kill: |IC| < 0.02 or below costs), then a
   pre-registered ≤ 6-config walk-forward only if it survives. Also plain HL taker-flow imbalance (flow@bn's rule) on HL prices.
 - [ ] FF1 (2026-11-19: (a) DONE → pick 0.78 / grid avg 0.61 on bn100, stays OPEN, no book; P&L = long leg of the 82 survivors. Remaining, prior LOW: market-relative move (coin minus universe) as one pre-registered form; (b) only if something passes) **friday_follow → candidate?** (findings 2026-11-15: WF bn_1h 1.06 cut-averaged, worst 0.78, corr BTC −0.03; the only second-pass
@@ -100,7 +104,7 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
 - [ ] TSZ-HL Trade-size buckets on Hyperliquid (kripto/flow.py `tsz`, per taker address, since 2026-11-12; non-backfillable). After ≥ 8
   weeks (≈ 2027-01-07): R1/R2 event study natively on HL, where one address = one order. Low prior after the Binance result; the data is
   also the input for W2 (large takers). Check at every review that `tsz` is non-empty.
-- [ ] W3 (2026-11-19: REPLICATED on 616 unseen coins, +62 bp simple, t 2.3, both periods +) **NEXT: one pre-registered walk-forward** (Tue 11-24).
+- [x] W3 DONE 2026-11-25 → OPEN weaker (WF pick 0.44 / avg 0.23, a 2024+ market-wide effect; findings). Untried: W3b BTC+ETH-only overlay, prior low. Was: (2026-11-19: REPLICATED on 616 unseen coins, +62 bp simple, t 2.3, both periods +) **NEXT: one pre-registered walk-forward** (Tue 11-24).
   Think-through first: (1) market-wide vs coin-specific: split each event into the universe's Sunday move and the coin's excess; if the market
   part carries it, the book is ONE bet per Sunday (≈ 50/yr: slow evidence) and BTC/ETH-only may be the cleaner form; (2) formulations: raw fade
   (the replicated one) / excess-over-universe fade (market-neutral) / BTC+ETH-only fade; (3) grid ≤ 6 configs (thr 1–2%, hold 12/24 h), tranche the

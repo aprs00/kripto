@@ -313,6 +313,10 @@ positive in both samples but not pre-registered: one confirmation on new coins b
 82, point-in-time top 100: +61.9 bp per event in SIMPLE returns (median +51.5, n 9,398, 343 Sundays, t 2.32 on event-day means), ≤ 2023 +28 bp (t 1.2),
 ≥ 2024 +88 bp (t 2.3), every year + (2023 only +8). Plumbing check reproduces 11-15 on the 82 (+19.7 / +106 bp log). Caveats: most of it may be a
 market-wide Sunday fade (one bet per Sunday, ≈ 50 a year), fades of down moves are skewed (mean 77, median 33 bp). Next: pre-registered WF (backlog W3).
+**W3 walk-forward (2026-11-25, pre-registered raw per-coin fade, bn100 1h 6.1 y, 4 configs, tranches 17/18/19 NY) → OPEN (weaker than thought), no book.**
+Pick 0.44 / grid avg 0.23 / worst 0.30 (2× costs) / $200 −0.86 / mdd −35% / DSR 0.08 (rule needed > 0.8). Before costs SR 0.79; costs 5.1%/yr at 69× turnover. By year:
+2020 +1.37, 2021–23 ≈ 0 (0.06 / 0.09 / −0.32), 2024–26 +1.65 / +0.62 / +0.80: a 2024+ effect. Explore decomposition (≤ 2023, w3_decomp.py): it is ~all market-wide
+(raw +36 bp of which market +33; excess-only +10 bp t 1.0; one market bet t 0.6, median −24 bp). Untried as WF: BTC+ETH-only (cheap overlay), prior low.
 
 ### Unit-price bias (InSilico R28, bnall top-100, 2026-11-15) → DEAD (an alt-season effect)
 Cheapest fifth by price per unit vs the universe: +52 bp/week in 2020–23 (t 2.1), −52 bp/week in 2024–26 (t −1.3); vs the dearest fifth
@@ -336,6 +340,19 @@ Pick / grid average (wf_selection, flow = continuation half) / worst, old → cl
 xsmom_k 1.12/1.23/0.94 → 0.99/1.26/0.83; tsmom 0.65/1.19/0.97 → 0.79/1.22/1.08; listing_short 0.86/0.68/0.85 → 0.81/0.64/0.81; blend 1.30/–/0.99 → 1.35/–/1.05;
 blend_nested 1.16/–/0.98 → 1.17/–/0.99. 2026 alone was hit (STATUS 11-22) but 6 years absorb it. $200: flow 1.25, xsmom 1.32, blend 1.03. Grid avg with mixed signs is
 meaningless (flow −15.7 in the result JSON = +1 and −1 configs cancelling): read wf_selection. M1 list re-derived next session by the fixed rule.
+
+### W2 first look: Hyperliquid taker flow, our websocket data (2026-11-25, 13 days, 90 coins, research/studies/w2_hl_flow.py) → OPEN (too early)
+Cross-sectional rank IC of HL taker imbalance: at 1–4 h horizons nothing (|IC| ≤ 0.02 except 1 h → 1 h −0.017, t −2.1, first half only; Q5–Q1 −6.5 bp, below costs):
+the kill rule holds there. 4 h flow → next 24 h: IC +0.07 (t 2.5, both halves +, Q5–Q1 +99 bp) on only 12 days, one of 12 cells, and the past-return IC is +0.075 in the same cell.
+Pre-registered re-check ≈ 2026-12-23 (6 weeks): cells (4 h, 24 h) and flow@bn's (72 h, 24 h); pass = IC > 0.02 with t > 2 on days after 11-25 only.
+Visible metaorders (w2_metaorders.py; one address taking one side in ≥ 3 minutes of a 4-h window, ≥ $100k; 888 coin-windows): fwd 4 h −0.1 bp, 24 h +31 bp (t 1.1) vs matched
+no-event windows signed by their own move +25 bp (same-size moves +108 bp): no information beyond the move. Bigger (≥ 5 min, ≥ $250k): 4 h −13 bp (t −1.6), a hint of reversal. Same re-check date.
+
+### PL1 pump-and-crash tail on xsmom@bn's LONG side (2026-11-25, F0 harness, bnall 1d explore 2021–23, research/studies/pl1_pump_tail.py) → DEAD as an entry filter (4 forms)
+Block longs when: (a) the 2 best days ≥ the whole 28-d return: dSR +0.11 (100th pct vs random, random median −0.33) but by year −0.07 / +0.77 / −0.23 → fails the per-year rule;
+(b) a ≥ 30% day in 28 d (MAX effect): −0.77; (c) bottom-third liquidity of the universe: −0.58; plus insilico F1c (20-d high on a volume spike): −0.27..−0.72. Diagnosis: pumped
+and thin longs are where momentum earns its bull-year return; every filter helps only in 2022. The −42..−48% nights are the price of that tail. Untried (different idea): an intraday
+stop via the live watcher (needs hourly data + LQ1). Risk is controlled by the 5% per-name cap, not by filtering. confirmT not used.
 
 ### Live candidate list = research universe? (2026-11-22, research/studies/live_universe.py; row 19) → yes on both venues
 Direct test (recorded live lists on 4 bars 11-17 → 11-22 vs the clean, fully refreshed bnall): live's top-30 contains 29, 30, 30, 30 of the research top-30. HL by proxy 98.8%.
