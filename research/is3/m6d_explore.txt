@@ -1,0 +1,23 @@
+coin    cfg  flips_yr  L_h  flips_t_yr   SRg   SRn  SRn_5s  SRg_t  SRn_t  diff_bp_d     p                                  yr_dSR
+ BTC pf0.25      2176    4        2320 -1.25 -3.37   -4.58  -0.77  -3.90      -8.88 0.651  {2021: -0.47, 2022: -0.03, 2023: 3.48}
+ BTC  pf0.5       504   72         483 -1.62 -2.30   -2.39   0.36  -0.37     -41.61 0.011   {2021: -3.67, 2022: -1.1, 2023: 0.09}
+ BTC    pf1       122  768         106 -0.71 -0.92   -0.79   0.76   0.58     -29.38 0.048  {2021: -3.68, 2022: 1.95, 2023: -2.64}
+ BTC    pf2        28 1536          42 -0.08 -0.12   -0.11  -0.29  -0.35       4.59 0.772    {2021: -0.1, 2022: 0.37, 2023: 0.85}
+ ETH pf0.25      3445    2        3314  0.68 -0.20    0.01  -0.64  -2.50     119.06 0.077    {2021: 2.65, 2022: 0.78, 2023: 5.78}
+ ETH  pf0.5       989   16        1016  0.54  0.26    0.38   0.07  -0.55      49.94 0.571   {2021: 1.55, 2022: -1.17, 2023: 1.44}
+ ETH    pf1       317  144         317 -0.41 -0.87    0.12  -0.38  -0.58       9.62 0.762 {2021: -0.17, 2022: -0.26, 2023: -0.53}
+ ETH    pf2        72 1536          72 -0.54 -0.60   -0.63   0.52   0.48     -43.59 0.248  {2021: -2.05, 2022: 1.17, 2023: -0.89}
+ SOL pf0.25      6887    1        4712  1.44 -2.91   -3.62   0.02  -4.05      -6.31 0.879    {2021: 0.77, 2022: -0.55, 2023: 2.3}
+ SOL  pf0.5      1687    6        1726  0.98 -0.21   -0.34  -0.49  -2.03      62.85 0.081     {2021: 2.07, 2022: 3.2, 2023: -0.7}
+ SOL    pf1       420   96         377  0.95  0.61    0.41   1.26   0.93     -11.24 0.716   {2021: 0.68, 2022: 0.46, 2023: -2.92}
+ SOL    pf2       101  768         106  0.78  0.69    0.56   1.74   1.64     -34.46 0.254  {2021: -2.37, 2022: 0.44, 2023: -0.59}
+
+pooled equal-weight 3 coins (net daily):
+  pf0.25   SRn move -3.83  time -4.66  diff +34.66 bp/d p 0.085  by year move/time 2021:-2.77/-3.68 2022:-6.13/-5.95 2023:-4.72/-9.81
+  pf0.5    SRn move -0.55  time -1.46  diff +23.83 bp/d p 0.256  by year move/time 2021:-0.58/-1.77 2022:-0.09/-1.37 2023:-1.37/-1.58
+  pf1      SRn move -0.24  time +0.20  diff -10.12 bp/d p 0.576  by year move/time 2021:-0.30/-0.02 2022:+0.00/-0.80 2023:-0.54/+2.58
+  pf2      SRn move +0.08  time +1.11  diff -24.71 bp/d p 0.136  by year move/time 2021:-0.13/+2.64 2022:-0.99/-1.56 2023:+2.02/+2.29
+[m6d_pf0.25 explore] n=37519 days=1090 coins=3 mean +4.2 bp (se 1.6, p 0.010, mde 4.6) median -30.6 win 40% | ex-top3 2.3 | net {'free': 4.18, 'maker_taker': -3.82, 'taker': -8.82, 'taker_x2': -21.82, 'crash': -75.82} | base +0.2, diff +3.9 (p 0.026) | years {2021: [20678, 7.19], 2022: [11933, 1.23], 2023: [4908, -1.29]} | sides {-1: [18759, 1.05], 1: [18760, 7.32]} | passes=False per-trade gross, base = hourly tsmom with matched flips, same coin
+[m6d_pf0.5 explore] n=9539 days=1025 coins=3 mean +8.8 bp (se 4.6, p 0.062, mde 13.0) median -57.9 win 40% | ex-top3 3.44 | net {'free': 8.79, 'maker_taker': 0.79, 'taker': -4.21, 'taker_x2': -17.21, 'crash': -71.21} | base +6.6, diff +2.1 (p 0.666) | years {2021: [5731, 10.19], 2022: [2645, 11.37], 2023: [1163, -4.0]} | sides {-1: [4770, -3.1], 1: [4769, 20.68]} | passes=False per-trade gross, base = hourly tsmom with matched flips, same coin
+[m6d_pf1 explore] n=2576 days=687 coins=3 mean +12.5 bp (se 14.1, p 0.377, mde 39.4) median -108.5 win 41% | ex-top3 7.52 | net {'free': 12.46, 'maker_taker': 4.46, 'taker': -0.54, 'taker_x2': -13.54, 'crash': -67.54} | base +48.1, diff -35.6 (p 0.062) | years {2021: [1642, 16.11], 2022: [639, 16.83], 2023: [295, -17.36]} | sides {-1: [1287, -29.48], 1: [1289, 54.33]} | passes=False per-trade gross, base = hourly tsmom with matched flips, same coin
+[m6d_pf2 explore] n=602 days=312 coins=3 mean +35.8 bp (se 59.4, p 0.543, mde 166.3) median -240.6 win 39% | ex-top3 -7.74 | net {'free': 35.83, 'maker_taker': 27.83, 'taker': 22.83, 'taker_x2': 9.83, 'crash': -44.17} | base +188.8, diff -153.0 (p 0.153) | years {2021: [377, 36.83], 2022: [165, -45.58], 2023: [60, 253.39]} | sides {-1: [300, -133.14], 1: [302, 203.67]} | passes=False per-trade gross, base = hourly tsmom with matched flips, same coin

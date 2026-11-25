@@ -1419,38 +1419,56 @@
    "group": "B",
    "title": "Trend systems on move bars instead of time bars",
    "src": "R33; tg:103-107, 195",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "time-series momentum on range bars vs time bars with the same number of trades per year",
-     "status": "planned"
+     "status": "done",
+     "result": "BTC/ETH/SOL 2021-23, range bars w .5/1/2% x N 5/10/20 (9 cells), fills as of +1 s: gross +1..+8 bp/trade (pooled SRg ~.8), beats hourly tsmom at matched flips by +3..+7 bp/trade (w1 p .001; w2N5 +7.1 p .012) but EVERY cell net negative at taker 13 bp (pooled net SR -0.9..-7); advantage vanishes at low turnover (w2N20 diff +1.6 bp/d p .87). Null (sign-flipped) gross SR .12+-.52. Verdict: small intraday continuation after a range-bar close, below costs",
+     "date": "2026-11-25",
+     "evidence": "m6a_w1N10__explore"
     },
     {
      "id": "b",
      "what": "trend-reverse (TR) bars: follow until the reversal bar",
-     "status": "planned"
+     "status": "done",
+     "result": "TR bars X .5/1/2/4% R=.6X and zigzag R (8 cells): gross +0.2..+7.6 bp/trade, tr2 +4.7 vs matched hourly (p .016), zz4 +6.4 (p .012); all net negative (best zz4 -5.4 bp at taker, pooled net SR -1.2); tr4 = time (-7.4 vs base). Same small continuation as a, below costs",
+     "date": "2026-11-25",
+     "evidence": "m6b_tr2__explore"
     },
     {
      "id": "c",
      "what": "consecutive reversals at one level = range -> fade its edges",
-     "status": "planned"
+     "status": "done",
+     "result": "zigzag R .5/1/2%: second swing high/low within .25R of the previous = range edge; fade on return (taker, target R, stop .5R, 6 h): -2.0/-3.8/-6.6 bp gross vs single-swing fades -1.0/-3.7/-5.9 (diff -0.9/-0.1/-0.7, MDE .5-6); placebo levels +-.37R worse still (-4..-17). Two reversals at one level add nothing over one; fading swing levels loses before costs",
+     "date": "2026-11-25",
+     "evidence": "m6c_R1__explore"
     },
     {
      "id": "d",
      "what": "point-and-figure double-top / bottom breaks",
-     "status": "planned"
+     "status": "done",
+     "result": "P&F box .25/.5/1/2% 3-box reversal, double-top/bottom breaks: +4..+36 bp/trade gross (pf2 n 602, MDE 166) but matched hourly tsmom (32-64 d lookback) beats it at pf1/pf2 (pooled net SR .08 vs 1.11); pf.25/.5 net negative. P&F = a noisier slow trend rule, no edge over time bars",
+     "date": "2026-11-25",
+     "evidence": "m6d_pf1__explore"
     },
     {
      "id": "e",
      "what": "volume bars and delta bars (50M delta) as the clock",
-     "status": "planned"
+     "status": "done",
+     "result": "volume bars (30-d mean daily notional /48, /192) and delta bars (/200, /800) x N 5/20 + follow-last-delta-bar-sign (10 cfgs x 3 coins): volume bars = time (+0.2..+2.9 bp/trade vs matched); delta bars worse than time (dlt200N20 -30 bp vs base; sign-follow -1.8..-4.4 bp gross: intraday delta reverses). All net negative",
+     "date": "2026-11-25",
+     "evidence": "m6e_vol48N5__explore"
     }
    ],
    "after": [
     "M0"
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "5 forms, MDE 0.5-6 bp/trade: range, trend-reverse, zigzag, P&F, volume and delta bars as the clock of a trend rule earn +1..+8 bp/trade gross, 3-7 bp more than hourly tsmom at matched turnover (microstructure continuation after a fresh w-range breakout), always below the 13 bp taker round trip; the edge over time bars disappears at low turnover; delta bars worse than time; two reversals at one level fade no better than one",
+   "closed": "2026-11-25"
   },
   {
    "id": "M7",

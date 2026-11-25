@@ -483,3 +483,9 @@ BTC/ETH/SOL micro bars 0.2/0.43% range bars + 44 thin coins on 1-min klines (0.5
 high, the range's VAH (POC slightly worse), his post-breakout-low target, his average-1-min-candle target (maker or taker exit). Touch fills ~0 gross; the more volume must trade through our bid before
 it fills, the worse (q250k -6..-46 bp gross, placebos the same): adverse selection, not levels, sets the result. Strongest-impulse quintile -6 bp vs placebo (his 'unless abnormal pressure').
 Confirms range_retest (11-11) with his bar type and a queue model. is3_m5.py.
+
+### InSilico M6 / R33 trend systems on move bars instead of time bars (2026-11-25) -> DEAD
+BTC/ETH/SOL micro bars 2021-23, fills as of +1 s, 6 bp/side, baseline = hourly tsmom with the lookback matched to the same flips/yr. Range bars (0.5-2%), trend-reverse and zigzag (0.5-4%):
++1..+8 bp/trade gross, +3..+7 bp more than time bars (p .001-.016), every cell net negative (pooled net SR -0.9 or worse); the gain over time bars vanishes at low turnover, where 1-2 month hourly tsmom beats
+P&F (1-2% boxes). Volume bars = time; delta bars worse (intraday delta reverses). Double reversal at a level faded = single swing (-0.1..-0.9 bp), placebo levels worse. Lesson: filling at the deciding
+trade itself fabricated 2,070 flips on 2021-02-22 (ms crash prints); intraday move-bar studies need a latency fill. is3_m6.py, is3_m6c.py.
