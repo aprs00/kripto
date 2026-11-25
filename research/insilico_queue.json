@@ -1684,7 +1684,10 @@
     {
      "id": "a",
      "what": "liquidation fade at a prior-day / weekly low",
-     "status": "planned"
+     "status": "done",
+     "result": "T1k30 one-bar-late fills 2021-23 (n 1141, causal top-20): at/through the prior-day low +150 bp h60 vs other fills matched on depth quintile +112 (diff +38, p .47, MDE 101); prior-week low +142 vs +151 (diff -9); years disagree (2023 at-level 49/-3 vs rest 193/125). By distance U-shaped = depth (fills just 0-2% through the level are the shallowest and worst, +56/+31). Location is no confluence for the ladder; violence of the move is",
+     "date": "2026-11-25",
+     "evidence": "x1a_pdl__explore"
     },
     {
      "id": "b",

@@ -667,3 +667,4 @@ Build (a): T1k30 one-bar-late fills (data/is3/e2_k-30.parquet, causal top-20 uni
  day's low) and log(p / prior 7 days' low), in units of the coin's 24-h sigma-based depth too. Outcome h60 (and h240). Bins: through the level by > 2%, 0-2% through, 0-2% above, > 2% above.
  Baseline: the other fills matched on depth quintile (is3_lib.matched). Change my mind: fills through or at the level beat the rest by > MDE with a monotone dose, every year.
 Prior: P-series levels = placebo; T1 is driven by the depth / violence of the move, not by location. Expect nothing, but the filter use is untested.
+X1 a done (is3_x1a.py, x1a_explore.txt): ladder fills at/through prior-day or weekly lows = depth-matched other fills (+38 p .47 / -9); the distance curve is the depth curve. 91% of fills are fresh lows of the day anyway.

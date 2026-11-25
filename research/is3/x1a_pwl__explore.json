@@ -1,0 +1,56 @@
+{
+ "name": "x1a_pwl",
+ "sample": "explore",
+ "n": 529,
+ "days": 145,
+ "coins": 83,
+ "mean_bp": 141.99,
+ "median_bp": 58.1,
+ "win": 0.599,
+ "se_bp": 57.26,
+ "ci95_bp": [
+  44.41,
+  268.67
+ ],
+ "p": 0.013993003498250875,
+ "mde80_bp": 160.34,
+ "mean_ex_top3_bp": 68.25,
+ "top3_share": 0.54,
+ "t_day_mean": 4.98,
+ "by_year": {
+  "2021": [
+   115,
+   524.83
+  ],
+  "2022": [
+   185,
+   83.1
+  ],
+  "2023": [
+   229,
+   -2.68
+  ]
+ },
+ "by_side": {
+  "1": [
+   529,
+   141.99
+  ]
+ },
+ "coins_positive": 0.71,
+ "net_bp": {
+  "free": 141.99,
+  "maker_taker": 133.99,
+  "taker": 128.99,
+  "taker_x2": 115.99,
+  "crash": 61.99
+ },
+ "base_n": 1287,
+ "base_bp": 150.74,
+ "vs_base_bp": -8.74,
+ "p_vs_base": 0.8850574712643678,
+ "passes": false,
+ "note": "T1k30 late fills at/through the prior week low vs other fills matched on depth quintile, h60",
+ "rerun": "",
+ "at": "2026-11-25T01:13:25+00:00"
+}

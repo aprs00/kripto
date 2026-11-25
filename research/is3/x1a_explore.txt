@@ -1,0 +1,22 @@
+
+xd (fill price vs prior day low), bp:
+             n    h15    h60   h240  depth
+xdb                                       
+thru>2%    721  106.0  182.0  238.0  416.0
+thru0-2%   249   28.0   56.0   41.0  229.0
+above0-2%   76  100.0  105.0   87.0  294.0
+above>2%    95  178.0  180.0  218.0  467.0
+
+xw (fill price vs prior 7-day low), bp:
+             n    h15    h60   h240  depth
+xwb                                       
+thru>2%    337   95.0  205.0  316.0  463.0
+thru0-2%   192    8.0   31.0   43.0  258.0
+above0-2%  113   37.0   82.0   72.0  265.0
+above>2%   499  141.0  173.0  172.0  376.0
+
+fresh low of today before the fill (fill below every earlier price today) share: 0.91
+[x1a_pdl explore] n=970 days=231 coins=103 mean +149.9 bp (se 36.0, p 0.000, mde 100.8) median +80.3 win 67% | ex-top3 104.85 | net {'free': 149.94, 'maker_taker': 141.94, 'taker': 136.94, 'taker_x2': 123.94, 'crash': 69.94} | base +112.1, diff +37.9 (p 0.465) | years {2021: [213, 459.98], 2022: [269, 87.54], 2023: [488, 49.01]} | sides {1: [970, 149.94]} | passes=False T1k30 late fills at/through the prior day low vs other fills matched on depth quintile, h60
+  by year at / rest: {2021: (460, 329), 2022: (88, -80), 2023: (49, 193)}
+[x1a_pwl explore] n=529 days=145 coins=83 mean +142.0 bp (se 57.3, p 0.014, mde 160.3) median +58.1 win 60% | ex-top3 68.25 | net {'free': 141.99, 'maker_taker': 133.99, 'taker': 128.99, 'taker_x2': 115.99, 'crash': 61.99} | base +150.7, diff -8.7 (p 0.885) | years {2021: [115, 524.83], 2022: [185, 83.1], 2023: [229, -2.68]} | sides {1: [529, 141.99]} | passes=False T1k30 late fills at/through the prior week low vs other fills matched on depth quintile, h60
+  by year at / rest: {2021: (525, 375), 2022: (83, 41), 2023: (-3, 125)}
