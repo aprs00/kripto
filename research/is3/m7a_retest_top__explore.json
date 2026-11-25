@@ -1,0 +1,60 @@
+{
+ "name": "m7a_retest_top",
+ "sample": "explore",
+ "n": 544,
+ "days": 377,
+ "coins": 3,
+ "mean_bp": -1.71,
+ "median_bp": 0.06,
+ "win": 0.509,
+ "se_bp": 3.88,
+ "ci95_bp": [
+  -9.57,
+  5.83
+ ],
+ "p": 0.656671664167916,
+ "mde80_bp": 10.86,
+ "mean_ex_top3_bp": -4.19,
+ "top3_share": null,
+ "t_day_mean": 0.16,
+ "by_year": {
+  "2021": [
+   97,
+   -22.23
+  ],
+  "2022": [
+   180,
+   1.56
+  ],
+  "2023": [
+   267,
+   3.54
+  ]
+ },
+ "by_side": {
+  "-1": [
+   229,
+   -5.89
+  ],
+  "1": [
+   315,
+   1.33
+  ]
+ },
+ "coins_positive": 0.33,
+ "net_bp": {
+  "free": -1.71,
+  "maker_taker": -9.71,
+  "taker": -14.71,
+  "taker_x2": -27.71,
+  "crash": -81.71
+ },
+ "base_n": 2697,
+ "base_bp": 8.53,
+ "vs_base_bp": -10.24,
+ "p_vs_base": 0.017491254372813594,
+ "passes": false,
+ "note": "top dose quintile",
+ "rerun": "",
+ "at": "2026-11-25T01:08:01+00:00"
+}

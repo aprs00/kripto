@@ -1,0 +1,60 @@
+{
+ "name": "m7a_extreme_absorb",
+ "sample": "explore",
+ "n": 390,
+ "days": 298,
+ "coins": 3,
+ "mean_bp": 8.45,
+ "median_bp": 15.68,
+ "win": 0.536,
+ "se_bp": 22.32,
+ "ci95_bp": [
+  -33.35,
+  53.61
+ ],
+ "p": 0.6901549225387307,
+ "mde80_bp": 62.48,
+ "mean_ex_top3_bp": -7.77,
+ "top3_share": 1.91,
+ "t_day_mean": 0.38,
+ "by_year": {
+  "2021": [
+   59,
+   47.67
+  ],
+  "2022": [
+   137,
+   -15.91
+  ],
+  "2023": [
+   194,
+   13.73
+  ]
+ },
+ "by_side": {
+  "-1": [
+   217,
+   -18.84
+  ],
+  "1": [
+   173,
+   42.69
+  ]
+ },
+ "coins_positive": 0.67,
+ "net_bp": {
+  "free": 8.45,
+  "maker_taker": 0.45,
+  "taker": -4.55,
+  "taker_x2": -17.55,
+  "crash": -71.55
+ },
+ "base_n": 5589,
+ "base_bp": 1.41,
+ "vs_base_bp": 7.05,
+ "p_vs_base": 0.7726136931534233,
+ "passes": false,
+ "note": "top-quintile delta cell at the day's extreme, absorption direction, next day c->c",
+ "rerun": "",
+ "at": "2026-11-25T01:08:01+00:00"
+}

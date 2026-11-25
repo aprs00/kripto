@@ -1,0 +1,60 @@
+{
+ "name": "m7a_retest",
+ "sample": "explore",
+ "n": 2719,
+ "days": 1005,
+ "coins": 3,
+ "mean_bp": 8.38,
+ "median_bp": 9.99,
+ "win": 0.546,
+ "se_bp": 2.56,
+ "ci95_bp": [
+  3.53,
+  13.42
+ ],
+ "p": 0.0009995002498750624,
+ "mde80_bp": 7.16,
+ "mean_ex_top3_bp": 6.86,
+ "top3_share": 0.18,
+ "t_day_mean": 2.8,
+ "by_year": {
+  "2021": [
+   922,
+   9.22
+  ],
+  "2022": [
+   901,
+   6.71
+  ],
+  "2023": [
+   896,
+   9.21
+  ]
+ },
+ "by_side": {
+  "-1": [
+   1393,
+   1.07
+  ],
+  "1": [
+   1326,
+   16.07
+  ]
+ },
+ "coins_positive": 1.0,
+ "net_bp": {
+  "free": 8.38,
+  "maker_taker": 0.38,
+  "taker": -4.62,
+  "taker_x2": -17.62,
+  "crash": -71.62
+ },
+ "base_n": 2697,
+ "base_bp": 8.53,
+ "vs_base_bp": -0.14,
+ "p_vs_base": 0.9265367316341829,
+ "passes": false,
+ "note": "first retest of the day's outlier delta cell, 60 min, vs low-delta placebo bin same side",
+ "rerun": "",
+ "at": "2026-11-25T01:08:01+00:00"
+}

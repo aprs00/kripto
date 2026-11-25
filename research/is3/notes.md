@@ -647,3 +647,5 @@ Build (a): BTC/ETH/SOL 2021-23 daily profiles from micro bars (10-bp bins, mbars
  location in the day's range (bottom / middle / top third) and whether it is the POC bin. Outcome: next-day simple return (close->close, and the first touch of that bin within 3 d: bounce
  60 min). Baseline: matched days, same coin, same day-return decile and same close-location tercile. (b): P3's best form (first touch of a naked daily POC, +15 bp/60 min vs mirror, p .09)
  with the exact POC, mirror placebo, approach side matched. Change my mind: a cell with |delta| share in the top quintile and a monotone dose beating matched by > MDE in every year.
+M7 a done (is3_m7.py, research/is3/m7a_explore.txt): outlier delta-at-price cell: next day = matched (+7 bp, MDE 62), no dose in a 30-cell grid; first retest of the cell = a low-delta
+ placebo bin on the same side (+8.4 vs +8.5 bp/60 min, MDE 7), the largest cells worse (anti-dose). The generic +8 bp is the dip-touch long drift of 2021-23 (long side +16, short +1).

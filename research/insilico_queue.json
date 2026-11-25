@@ -1481,7 +1481,10 @@
     {
      "id": "a",
      "what": "largest positive / negative delta print of the day at an extreme or the POC -> next session",
-     "status": "planned"
+     "status": "done",
+     "result": "BTC/ETH/SOL 2021-23 exact 10-bp profiles (aggTrades micro bars): outlier delta cell at the day's extreme, absorption direction, next day c->c n 390 +8.4 bp vs matched +1.4 (diff +7, p .77, MDE 62); 30-cell kind x location x dose grid = noise, no monotone dose; first retest of the cell within 3 d, 60 min: +8.4 vs low-delta placebo bin same side +8.5 (MDE 7), top dose quintile -10 vs placebo (p .017, anti-dose); POC-cell sell +13 bp n 281 alone. Outlier delta-at-price cells mark nothing",
+     "date": "2026-11-25",
+     "evidence": "m7a_retest__explore"
     },
     {
      "id": "b",

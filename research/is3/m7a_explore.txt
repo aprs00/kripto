@@ -1,0 +1,27 @@
+next-day absorption-signed return (bp) by kind x location tercile x dose quintile; matched = same coin, return decile, close tercile, kind
+q            0     1     2     3     4
+kind loc                              
+buy  0   -59.2 -20.0  13.8 -29.9 -71.4
+     1   -29.1  16.7  -0.9  25.3  15.1
+     2    28.2  28.9  11.8 -40.7   1.4
+sell 0    75.6  -9.9  59.8 -47.8  26.7
+     1     8.2  -8.9 -24.7 -33.6   9.6
+     2    49.6 -68.6 -40.4 -16.9  59.4
+q           0    1    2    3    4
+kind loc                         
+buy  0    107  116  105  112  102
+     1    269  258  292  294  334
+     2    277  277  253  245  217
+sell 0    175  204  186  169  173
+     1    305  272  290  319  329
+     2    173  175  174  163  151
+POC cell:             mean  count
+kind poc               
+buy  False   0.1   3022
+     True   -1.3    236
+sell False  -1.2   2977
+     True   13.2    281
+[m7a_extreme_absorb explore] n=390 days=298 coins=3 mean +8.4 bp (se 22.3, p 0.690, mde 62.5) median +15.7 win 54% | ex-top3 -7.77 | net {'free': 8.45, 'maker_taker': 0.45, 'taker': -4.55, 'taker_x2': -17.55, 'crash': -71.55} | base +1.4, diff +7.0 (p 0.773) | years {2021: [59, 47.67], 2022: [137, -15.91], 2023: [194, 13.73]} | sides {-1: [217, -18.84], 1: [173, 42.69]} | passes=False top-quintile delta cell at the day's extreme, absorption direction, next day c->c
+retest 60 min (bp) by dose quintile real: {0: 19.6, 1: 9.9, 2: 16.1, 3: -2.0, 4: -1.7}  placebo all: 8.5
+[m7a_retest explore] n=2719 days=1005 coins=3 mean +8.4 bp (se 2.6, p 0.001, mde 7.2) median +10.0 win 55% | ex-top3 6.86 | net {'free': 8.38, 'maker_taker': 0.38, 'taker': -4.62, 'taker_x2': -17.62, 'crash': -71.62} | base +8.5, diff -0.1 (p 0.927) | years {2021: [922, 9.22], 2022: [901, 6.71], 2023: [896, 9.21]} | sides {-1: [1393, 1.07], 1: [1326, 16.07]} | passes=False first retest of the day's outlier delta cell, 60 min, vs low-delta placebo bin same side
+[m7a_retest_top explore] n=544 days=377 coins=3 mean -1.7 bp (se 3.9, p 0.657, mde 10.9) median +0.1 win 51% | ex-top3 -4.19 | net {'free': -1.71, 'maker_taker': -9.71, 'taker': -14.71, 'taker_x2': -27.71, 'crash': -81.71} | base +8.5, diff -10.2 (p 0.017) | years {2021: [97, -22.23], 2022: [180, 1.56], 2023: [267, 3.54]} | sides {-1: [229, -5.89], 1: [315, 1.33]} | passes=False top dose quintile
