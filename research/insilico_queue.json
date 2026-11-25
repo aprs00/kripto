@@ -1476,7 +1476,7 @@
    "group": "B",
    "title": "Delta at price and exact volume profiles",
    "src": "R10, R14-R16; tg:59-61",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -1503,7 +1503,8 @@
    "after": [
     "M0",
     "P1"
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "F0",

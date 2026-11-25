@@ -634,3 +634,16 @@ Build (a): BTC/ETH/SOL micro bars 2021-23 -> range bars w 0.5/1/2%; tsmom sign(c
 Prior: trend on liquid perps is crowded (CLAUDE.md); bar type rarely matters in the literature (Lopez de Prado's bars help statistics, not drift). Expect range = time within noise.
 M6 run note (01:1x): first m6a explore run filled at the deciding trade itself; 2021-02-22 14:17 BTC printed +-2 % ms ping-pong trades and the rule "flipped" 2,070 times that day
  (cards m6a_* of 01:0x are that bug; rerun overwrites them). Fix decided before any result was read as evidence: every fill (move AND time bars) at the price as of decision + 1 s, stress 5 s.
+
+## M7 delta at price and exact volume profiles (think-through 01:1x UTC 11-25, before any run)
+Sources re-read (tg:59-61 text + stored vision of the Exocharts TPO/delta screenshot, image not re-opened; R10, R14-R16 rows): per-price delta column beside each session profile (-37M at the prior
+ POC, -14M at the London POC ...); "we don't look at every number, only anomalies that stand out". So: the outlier delta-at-price cell, and WHERE it sits (extreme / POC), is his read.
+Mechanism: a big negative delta at a price that then holds = passive buyers absorbed aggressive sellers there (support); the same at a price that breaks = sellers won. He reads it with location.
+What he does NOT say: (1) the sign of the follow-through (absorption vs initiative) depends on whether the price later held, which is known only after; the tradable part is the location
+ at the close (an outlier sell cell at the day's low that the close is well above = absorbed); (2) "anomaly" is relative to the day's own cells, so scale by day volume; (3) next session, not
+ next minute: he trades the reaction when price returns to that cell.
+Prior: P1-P3 (1-min kline profiles) = placebo levels; M3 absorption = matched; Binance footprints read as continuation (M1, M4). New here: exact 10-bp profiles from aggTrades (micro bars).
+Build (a): BTC/ETH/SOL 2021-23 daily profiles from micro bars (10-bp bins, mbars.vap). Features: the bin with the most negative and most positive delta, its |delta| / day volume (dose), its
+ location in the day's range (bottom / middle / top third) and whether it is the POC bin. Outcome: next-day simple return (close->close, and the first touch of that bin within 3 d: bounce
+ 60 min). Baseline: matched days, same coin, same day-return decile and same close-location tercile. (b): P3's best form (first touch of a naked daily POC, +15 bp/60 min vs mirror, p .09)
+ with the exact POC, mirror placebo, approach side matched. Change my mind: a cell with |delta| share in the top quintile and a monotone dose beating matched by > MDE in every year.
