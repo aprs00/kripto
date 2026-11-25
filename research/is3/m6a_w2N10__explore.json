@@ -1,0 +1,60 @@
+{
+ "name": "m6a_w2N10",
+ "sample": "explore",
+ "n": 13483,
+ "days": 981,
+ "coins": 3,
+ "mean_bp": -78.23,
+ "median_bp": -144.72,
+ "win": 0.257,
+ "se_bp": 29.34,
+ "ci95_bp": [
+  -120.52,
+  -21.3
+ ],
+ "p": 0.0004997501249375312,
+ "mde80_bp": 82.16,
+ "mean_ex_top3_bp": -79.71,
+ "top3_share": null,
+ "t_day_mean": 2.95,
+ "by_year": {
+  "2021": [
+   8716,
+   -96.92
+  ],
+  "2022": [
+   3524,
+   -54.21
+  ],
+  "2023": [
+   1243,
+   -15.31
+  ]
+ },
+ "by_side": {
+  "-1": [
+   6736,
+   -87.76
+  ],
+  "1": [
+   6747,
+   -68.73
+  ]
+ },
+ "coins_positive": 0.0,
+ "net_bp": {
+  "free": -78.23,
+  "maker_taker": -86.23,
+  "taker": -91.23,
+  "taker_x2": -104.23,
+  "crash": -158.23
+ },
+ "base_n": 13059,
+ "base_bp": 4.21,
+ "vs_base_bp": -82.45,
+ "p_vs_base": 0.0004997501249375312,
+ "passes": false,
+ "note": "per-trade gross, base = hourly tsmom with matched flips, same coin",
+ "rerun": "",
+ "at": "2026-11-25T00:51:56+00:00"
+}

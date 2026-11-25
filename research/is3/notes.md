@@ -632,3 +632,5 @@ Build (a): BTC/ETH/SOL micro bars 2021-23 -> range bars w 0.5/1/2%; tsmom sign(c
  difference; trade card (per-trade simple gross) vs time-bar trades. Null: sign-flipped micro bars (gross must be ~0). (b): ATAS-like TR bars, trend X 0.5/1/2/4%, reverse R = 0.6X, always in
  the last bar's direction; variant: plain zigzag (retrace R from the running extreme). Change my mind: move-bar net Sharpe > matched time-bar net Sharpe in every explore year for most cells.
 Prior: trend on liquid perps is crowded (CLAUDE.md); bar type rarely matters in the literature (Lopez de Prado's bars help statistics, not drift). Expect range = time within noise.
+M6 run note (01:1x): first m6a explore run filled at the deciding trade itself; 2021-02-22 14:17 BTC printed +-2 % ms ping-pong trades and the rule "flipped" 2,070 times that day
+ (cards m6a_* of 01:0x are that bug; rerun overwrites them). Fix decided before any result was read as evidence: every fill (move AND time bars) at the price as of decision + 1 s, stress 5 s.
