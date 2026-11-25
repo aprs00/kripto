@@ -49,7 +49,8 @@ def run(sample):
     E = pd.concat(rows)
     E["loc"] = np.where(near(E.px.to_numpy(), 0.0), "round", np.where(near(E.px.to_numpy(), 0.37), "placebo", "none"))
     E["K"] = pd.cut(E.lr, [np.log(5), np.log(10), np.log(20), np.inf], labels=["5-10", "10-20", ">=20"], right=False)
-    t = E.pivot_table(index=["K", "loc"], values=["g15", "g60", "g240"], aggfunc="mean", observed=True) * 1e4
+    E.to_parquet(L.ROOT / "data/is3/x1f_events.parquet")
+    t = E.pivot_table(index=["K", "loc"], values=["g15", "g60", "g240", "late60"], aggfunc="mean", observed=True) * 1e4
     t["n"] = E.groupby(["K", "loc"], observed=True).size()
     print("fade returns after a trade-count jump (bp) by K x location:")
     print(t.round(1).to_string())
@@ -59,5 +60,27 @@ def run(sample):
            note="trade-count jump >= 10x on 0.2/0.43% range bars closing within 10 bp of a round level, faded 60 min, vs placebo levels")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and len(sys.argv) <= 2:
     run(sys.argv[1] if len(sys.argv) > 1 else "explore")
+
+
+def dedup(sample):
+    """Second pass on the stored events: M2's events cluster (up to 123 range-bar 'jumps' inside one second of ms whipsaw prints, 2022-01-05 19:45:21)
+    and its g-columns start at the exact print. Keep the first event per coin per 30 min (jumps >= 10x, w 0.2/0.43%), outcome = late60 (entry 5 min
+    after the event at the then-current micro close, 60 min)."""
+    E = pd.read_parquet(L.ROOT / "data/is3/x1f_events.parquet")
+    E = E[E.lr >= np.log(10)].sort_values("time")
+    E["slot"] = E.time.dt.floor("30min")
+    E = E.groupby(["coin", "slot"]).head(1)
+    E = E[np.isfinite(E.late60)]
+    t = E.groupby("loc").late60.agg(["mean", "median", "count"])
+    print("deduplicated (1 per coin per 30 min), late60 fade (bp):\n", (t.assign(mean=t["mean"] * 1e4, median=t["median"] * 1e4)).round(1).to_string())
+    print("by side:", (E.pivot_table(index="loc", columns="side", values="late60", aggfunc="mean") * 1e4).round(1).to_dict())
+    e = E[E["loc"] == "round"].assign(gross=lambda z: z.late60)
+    for nm, b in (("placebo", E[E["loc"] == "placebo"]), ("none", E[E["loc"] == "none"])):
+        L.card(f"x1f_vel_round_dedup_vs_{nm}", e[["time", "coin", "side", "gross"]], sample, base=b.assign(gross=b.late60)[["time", "coin", "side", "gross"]],
+               note="1 event per coin per 30 min, entry 5 min late, 60 min fade")
+
+
+if __name__ == "__main__" and len(sys.argv) > 2 and sys.argv[2] == "dedup":
+    dedup(sys.argv[1])

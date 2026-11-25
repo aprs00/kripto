@@ -1,0 +1,60 @@
+{
+ "name": "x1f_vel_round",
+ "sample": "explore",
+ "n": 11079,
+ "days": 827,
+ "coins": 3,
+ "mean_bp": 20.65,
+ "median_bp": 11.3,
+ "win": 0.518,
+ "se_bp": 5.61,
+ "ci95_bp": [
+  10.0,
+  31.93
+ ],
+ "p": 0.0004997501249375312,
+ "mde80_bp": 15.72,
+ "mean_ex_top3_bp": 12.78,
+ "top3_share": 0.44,
+ "t_day_mean": 1.12,
+ "by_year": {
+  "2021": [
+   5092,
+   25.02
+  ],
+  "2022": [
+   4103,
+   18.28
+  ],
+  "2023": [
+   1884,
+   13.98
+  ]
+ },
+ "by_side": {
+  "-1": [
+   5632,
+   -83.47
+  ],
+  "1": [
+   5447,
+   128.31
+  ]
+ },
+ "coins_positive": 1.0,
+ "net_bp": {
+  "free": 20.65,
+  "maker_taker": 12.65,
+  "taker": 7.65,
+  "taker_x2": -5.35,
+  "crash": -59.35
+ },
+ "base_n": 10898,
+ "base_bp": 7.58,
+ "vs_base_bp": 13.07,
+ "p_vs_base": 0.11394302848575712,
+ "passes": false,
+ "note": "trade-count jump >= 10x on 0.2/0.43% range bars closing within 10 bp of a round level, faded 60 min, vs placebo levels",
+ "rerun": "",
+ "at": "2026-11-25T01:22:02+00:00"
+}

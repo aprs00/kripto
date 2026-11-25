@@ -3,3 +3,56 @@ BTCUSDT 2021-04-01 13795
 BTCUSDT 2021-07-01 9596
 BTCUSDT 2021-10-01 12172
 BTCUSDT 2022-01-01 10297
+BTCUSDT 2022-04-01 10386
+BTCUSDT 2022-07-01 13712
+BTCUSDT 2022-10-01 8477
+BTCUSDT 2023-01-01 3655
+BTCUSDT 2023-04-01 2259
+BTCUSDT 2023-07-01 1081
+BTCUSDT 2023-10-01 4899
+ETHUSDT 2021-01-01 9305
+ETHUSDT 2021-04-01 8885
+ETHUSDT 2021-07-01 7347
+ETHUSDT 2021-10-01 6897
+ETHUSDT 2022-01-01 7161
+ETHUSDT 2022-04-01 13939
+ETHUSDT 2022-07-01 14847
+ETHUSDT 2022-10-01 15930
+ETHUSDT 2023-01-01 4568
+ETHUSDT 2023-04-01 3076
+ETHUSDT 2023-07-01 1435
+ETHUSDT 2023-10-01 2857
+SOLUSDT 2021-01-01 39345
+SOLUSDT 2021-04-01 19423
+SOLUSDT 2021-07-01 19548
+SOLUSDT 2021-10-01 8694
+SOLUSDT 2022-01-01 6688
+SOLUSDT 2022-04-01 13312
+SOLUSDT 2022-07-01 4570
+SOLUSDT 2022-10-01 48297
+SOLUSDT 2023-01-01 13999
+SOLUSDT 2023-04-01 8229
+SOLUSDT 2023-07-01 6719
+SOLUSDT 2023-10-01 15129
+fade returns after a trade-count jump (bp) by K x location:
+                g15  g240   g60  late60       n
+K     loc                                      
+5-10  none     11.8  17.4  14.7     3.6  188629
+      placebo   4.3   2.6   3.8     1.5   12243
+      round     9.5  23.7  17.3     4.7   12801
+10-20 none     12.9  21.6  17.9     5.6   82560
+      placebo  17.9   8.5  11.3    -4.9    5391
+      round    17.5  19.7  24.3     8.1    5389
+>=20  none     12.1  13.7  12.5     2.7   82743
+      placebo   9.9   5.5   3.9    -6.1    5507
+      round    11.8  16.1  17.1     3.0    5690
+[x1f_vel_round explore] n=11079 days=827 coins=3 mean +20.6 bp (se 5.6, p 0.000, mde 15.7) median +11.3 win 52% | ex-top3 12.78 | net {'free': 20.65, 'maker_taker': 12.65, 'taker': 7.65, 'taker_x2': -5.35, 'crash': -59.35} | base +7.6, diff +13.1 (p 0.114) | years {2021: [5092, 25.02], 2022: [4103, 18.28], 2023: [1884, 13.98]} | sides {-1: [5632, -83.47], 1: [5447, 128.31]} | passes=False trade-count jump >= 10x on 0.2/0.43% range bars closing within 10 bp of a round level, faded 60 min, vs placebo levels
+deduplicated (1 per coin per 30 min), late60 fade (bp):
+          mean  median  count
+loc                         
+none     -2.3    -0.2  18267
+placebo   4.9     0.4   1257
+round    -0.3     1.8   1528
+by side: {-1: {'none': -11.2, 'placebo': 6.1, 'round': -13.7}, 1: {'none': 6.5, 'placebo': 3.7, 'round': 15.1}}
+[x1f_vel_round_dedup_vs_placebo explore] n=1528 days=662 coins=3 mean -0.3 bp (se 4.7, p 0.948, mde 13.2) median +1.8 win 51% | ex-top3 -3.15 | net {'free': -0.32, 'maker_taker': -8.32, 'taker': -13.32, 'taker_x2': -26.32, 'crash': -80.32} | base +4.9, diff -5.2 (p 0.463) | years {2021: [739, -7.43], 2022: [529, 14.54], 2023: [260, -10.34]} | sides {-1: [817, -13.74], 1: [711, 15.11]} | passes=False 1 event per coin per 30 min, entry 5 min late, 60 min fade
+[x1f_vel_round_dedup_vs_none explore] n=1528 days=662 coins=3 mean -0.3 bp (se 4.7, p 0.952, mde 13.1) median +1.8 win 51% | ex-top3 -3.15 | net {'free': -0.32, 'maker_taker': -8.32, 'taker': -13.32, 'taker_x2': -26.32, 'crash': -80.32} | base -2.3, diff +2.0 (p 0.675) | years {2021: [739, -7.43], 2022: [529, 14.54], 2023: [260, -10.34]} | sides {-1: [817, -13.74], 1: [711, 15.11]} | passes=False 1 event per coin per 30 min, entry 5 min late, 60 min fade

@@ -1679,7 +1679,7 @@
    "group": "C",
    "title": "Confluence: he never trades one signal alone",
    "src": "tg:59-61, 168; wa 18.10.42(1)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -1724,7 +1724,10 @@
     {
      "id": "f",
      "what": "order-velocity climax at a round number",
-     "status": "planned"
+     "status": "done",
+     "result": "BTC/ETH/SOL 2021-23, M2 trade-count jumps >= 10x on 0.2/0.43% range bars, faded: raw M2 g-columns are print-based and clustered (123 events inside one second of ms whipsaw, 2022-01-05) -> deduplicated 1 per coin per 30 min, entry 5 min late, 60 min: at a round level (10 bp of BTC 1000s / ETH 100s / SOL 10s,1s) -0.3 bp n 1528 vs placebo grid +4.9 (diff -5, p .46, MDE 13) vs no level -2.3 (diff +2, p .68). Round numbers add nothing to a velocity climax",
+     "date": "2026-11-25",
+     "evidence": "x1f_vel_round_dedup_vs_placebo__explore"
     }
    ],
    "after": [
@@ -1733,7 +1736,10 @@
     "P2",
     "M3"
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "6 confluences, MDE 13-25 bp intraday / 62-200 daily: ladder fills at prior lows = depth-matched fills; capitulation hours at a prior POC = anywhere; single print + absorption wrong-way n.s.; Sunday empty move away from the collar CONTINUES (n.s. vs placebo, lead for N5); pinned RSI + node cross = the pin's own momentum (22 events); velocity climax at round numbers = placebo / no level. Stacking dead signals did not make a live one",
+   "closed": "2026-11-25"
   },
   {
    "id": "L2",

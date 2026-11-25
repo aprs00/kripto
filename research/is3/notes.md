@@ -673,3 +673,6 @@ X1 c done (is3_x1c.py): single-print fill + absorption -0.3 bp/60 min vs mirrors
 X1 d done (is3_x1d.py): Sunday move away from the collar on falling volume CONTINUES (toward-collar -130 bp vs placebo +10, p .21, MDE 200, every year -, median +6). Lead for N5 f/e (due 12-10), not a prereg.
 X1 e done (is3_x1e.py): pinned RSI + fat-node cross = 22 events (2021 alt rallies); all pinned-up days already +552 bp/3 d, so the card's 'pass' (baseline n 1) is void; node adds n.s. on top of the pin.
 M8 closed UNTESTABLE (01:2x): no M1-M6 survivor (M2b failed confirmT); six unseen coins not downloaded, sample kept for a future survivor.
+X1 f done (is3_x1f.py, x1f_explore.txt): velocity climax at a round number = placebo grid = no level (deduped, 5-min-late entry, MDE 13). CAVEAT for M2 (closed OPEN, confirm failed anyway):
+ its g15/g60/g240 start at the range bar's exact closing print and its events cluster in ms whipsaw (123 in one second on 2022-01-05 19:45:21); raw medians of +30-160 bp/h by year were that
+ artifact. late60 + 1 per coin per 30 min gives ~0. X1 CLOSED DEAD. Sceptic: each confluence was built from his own words and the confirmed ladder where possible; the idea, not a translation.

@@ -494,3 +494,9 @@ trade itself fabricated 2,070 flips on 2021-02-22 (ms crash prints); intraday mo
 BTC/ETH/SOL 2021-23, 10-bp profiles from aggTrades micro bars, fills as of +1 s. Day's outlier delta cell at an extreme -> next day +7 bp vs matched (p .77, MDE 62), no dose; its retest = a low-delta
 placebo bin (+8.4 vs +8.5 bp/60 min), largest cells worse. Exact-POC first touch beats its mirror by ~+10 bp/60 min (p .02-.19; replicates P3 with an independent profile), below a taker round trip and
 spent within 5 min; absorption at the touch (held vs heavy opposing delta) = mirrors. Stacked diagonal imbalances (2.5/4/7.5x, 3 rows, 1-h footprints) = neutral zones. is3_m7.py a/b/c/d.
+
+### InSilico X1 confluence: he never trades one signal alone (2026-11-25) -> DEAD
+Six pairs tested against the single signal or placebo levels (explore 2021-23): ladder fills at/through prior-day / weekly lows = depth-matched fills (+38 / -9 bp h60, MDE 101); one-voiced selling hours
+at the prior exact POC = same hours elsewhere (-11 bp/4 h, MDE 25); single print + absorption -0.3 vs mirrors +20 (n.s.); Sunday move away from the collar on falling volume continues (-130 bp toward the
+collar vs placebo +10, p .21, MDE 200: lead for N5); pinned RSI + composite-POC cross = 22 events, the pin alone earns as much; velocity climax at round numbers = placebo (dedup, MDE 13).
+Lesson: M2's raw g-columns start at the exact print and cluster (123 range-bar events in one second of ms whipsaw); any print-based intraday result needs dedup + a late entry. is3_x1a..f.py.

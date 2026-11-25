@@ -1,0 +1,60 @@
+{
+ "name": "x1f_vel_round_dedup_vs_placebo",
+ "sample": "explore",
+ "n": 1528,
+ "days": 662,
+ "coins": 3,
+ "mean_bp": -0.32,
+ "median_bp": 1.84,
+ "win": 0.509,
+ "se_bp": 4.72,
+ "ci95_bp": [
+  -9.81,
+  8.87
+ ],
+ "p": 0.9480259870064968,
+ "mde80_bp": 13.23,
+ "mean_ex_top3_bp": -3.15,
+ "top3_share": null,
+ "t_day_mean": -0.78,
+ "by_year": {
+  "2021": [
+   739,
+   -7.43
+  ],
+  "2022": [
+   529,
+   14.54
+  ],
+  "2023": [
+   260,
+   -10.34
+  ]
+ },
+ "by_side": {
+  "-1": [
+   817,
+   -13.74
+  ],
+  "1": [
+   711,
+   15.11
+  ]
+ },
+ "coins_positive": 0.67,
+ "net_bp": {
+  "free": -0.32,
+  "maker_taker": -8.32,
+  "taker": -13.32,
+  "taker_x2": -26.32,
+  "crash": -80.32
+ },
+ "base_n": 1257,
+ "base_bp": 4.87,
+ "vs_base_bp": -5.19,
+ "p_vs_base": 0.46326836581709147,
+ "passes": false,
+ "note": "1 event per coin per 30 min, entry 5 min late, 60 min fade",
+ "rerun": "",
+ "at": "2026-11-25T01:23:06+00:00"
+}
