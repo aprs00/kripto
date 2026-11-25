@@ -1669,7 +1669,9 @@
    ],
    "after": [
     "F0"
-   ]
+   ],
+   "due": "2026-11-25T03:40",
+   "defer_why": "needs bnall/bn100 books; nightly data job 01:15-03:30"
   },
   {
    "id": "X1",
