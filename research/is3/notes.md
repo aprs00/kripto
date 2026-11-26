@@ -765,3 +765,11 @@ FF2 b done: shorts only hedged -5..-10 bp; unhedged + only via 2022. Unstated co
 FF2 d done (ff2d_explore.json): the MARKET's Friday move continues: universe follow +65 bp/24 h, t 3.06 (MDE 59), Thu +10, Sat -27; mostly up-Fridays (+111). 2020 -3 bp misses my item rule
  (every year > 0) but beats both placebo days every year (pass3 s3). Preregistered FF2d_market_friday_follow (rule + caveats: 2024-26 partly seen by FF1's decomposition) -> one confirm.
 FF2 c/close: confirm (ff2d_confirm.json) +32 bp t 1.2, 2026 +0.6: FAIL. FF2 CLOSED OPEN. Sceptic: tested his weekend-continuation claim in the form that removes the survivor long; the market-level form was found by asking what the excess form left out.
+
+## W3B Sunday fade, BTC+ETH only (think-through 21:5x UTC 11-26, before any run)
+Source: W3 (R21 second pass): fading the Sunday 12->18 NY move for 24 h replicated on unseen coins but the WF was weak (pick 0.44) and ~all market-wide, a 2024+ effect; costs 5.1%/yr at 69x
+ turnover on 100 coins. Mechanism: Sunday afternoon moves happen in the thinnest book of the week (no CME, Asia asleep); Monday's real liquidity reprices them. If it is market-wide,
+ trading it on the two deepest coins keeps the effect and drops most of the cost. Unstated: (1) he fades only moves that look forced (thin volume), so dose by |move|; (2) Monday
+ Asia open is when it reverts: 24 h holds through it; (3) placebo: the same clock on the other six days must not do it.
+PRE-REGISTERED (a, explore 2020-02..2023-12): PASS = Sunday fade, |move| >= 1%, mean per Sunday (BTC+ETH, tranches 17/18/19 averaged) >= +15 bp AND t (per Sunday) >= 2 AND
+ above the median of the six placebo weekdays in >= 3 of 4 years AND mean - 12 bp > 0. Prior low (W3 explore market bet t 0.6).
