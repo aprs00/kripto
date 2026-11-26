@@ -2628,7 +2628,7 @@
    "group": "D",
    "title": "friday_follow without the survivor long: market-relative move, shorts only (FF1 diagnosis)",
    "src": "findings friday_follow FF1(a) 2026-11-19 (P&L = long leg of the hand-picked 82; untried: market-relative, shorts only); backlog FF1",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -2649,7 +2649,10 @@
     {
      "id": "c",
      "what": "only if a or b pass explore: one confirm 2024-01..2026-10 (FF1's decomposition saw 2024-26 for non-82 coins: +0.8 bp, state it); else diagnose",
-     "status": "planned"
+     "status": "done",
+     "result": "a and b failed explore, so no confirm for them; the one confirm went to d (FF2d_market_friday_follow, committed 50d2f43): 2024-01..2026-10 Fri universe follow +31.9 bp/24 h, t 1.2 (MDE 75), years +43/+47/+0.6, Thu +15, Sat +1, BTC alone +0.6: FAIL (t < 2), half the explore size and gone in 2026",
+     "date": "2026-11-26",
+     "evidence": "ff2d_confirm"
     },
     {
      "id": "d",
@@ -2661,7 +2664,10 @@
      "evidence": "ff2d_explore"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "friday_follow has no idiosyncratic part (coin minus universe -3 bp, shorts-only hedged -5..-10): it is the alt universe's Friday move continuing into Saturday (explore +65 bp t 3.1, Thu/Sat placebo negative), mostly up-Fridays; confirm 2024-26 +32 bp t 1.2, 2026 ~0: fading, below the bar. Explains FF1: the 82-survivor long leg was the market's weekend drift on survivors.",
+   "closed": "2026-11-26"
   }
  ]
 }

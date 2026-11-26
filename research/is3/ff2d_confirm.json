@@ -1,0 +1,345 @@
+{
+ "study": "research/studies/is3_ff2.py form_d",
+ "window": [
+  "2024-01-01",
+  "2026-10-31"
+ ],
+ "res": {
+  "Thu universe |move|>=0%": {
+   "cuts": 592,
+   "weeks": 148,
+   "gross_bp": 14.8,
+   "t_week": 0.49,
+   "mde_bp": 85.0,
+   "up_bp": 33.4,
+   "down_bp": 0.1,
+   "years": {
+    "2024": -10.3,
+    "2025": 31.6,
+    "2026": 24.4
+   }
+  },
+  "Thu BTC |move|>=0%": {
+   "cuts": 592,
+   "weeks": 148,
+   "gross_bp": -6.3,
+   "t_week": -0.34,
+   "mde_bp": 51.0,
+   "up_bp": 5.0,
+   "down_bp": -16.2,
+   "years": {
+    "2024": -20.2,
+    "2025": -26.9,
+    "2026": 34.5
+   }
+  },
+  "Thu universe |move|>=1%": {
+   "cuts": 470,
+   "weeks": 144,
+   "gross_bp": 3.7,
+   "t_week": 0.17,
+   "mde_bp": 94.0,
+   "up_bp": 30.2,
+   "down_bp": -16.3,
+   "years": {
+    "2024": -42.9,
+    "2025": 12.6,
+    "2026": 45.8
+   }
+  },
+  "Thu BTC |move|>=1%": {
+   "cuts": 392,
+   "weeks": 129,
+   "gross_bp": -3.1,
+   "t_week": -1.03,
+   "mde_bp": 63.0,
+   "up_bp": 18.8,
+   "down_bp": -20.9,
+   "years": {
+    "2024": -8.5,
+    "2025": -21.4,
+    "2026": 21.4
+   }
+  },
+  "Thu universe |move|>=2%": {
+   "cuts": 344,
+   "weeks": 124,
+   "gross_bp": 9.5,
+   "t_week": -0.32,
+   "mde_bp": 110.0,
+   "up_bp": 30.2,
+   "down_bp": -5.6,
+   "years": {
+    "2024": -60.1,
+    "2025": 26.4,
+    "2026": 73.7
+   }
+  },
+  "Thu BTC |move|>=2%": {
+   "cuts": 230,
+   "weeks": 87,
+   "gross_bp": 10.3,
+   "t_week": -0.76,
+   "mde_bp": 79.0,
+   "up_bp": 22.3,
+   "down_bp": 2.1,
+   "years": {
+    "2024": 37.5,
+    "2025": -20.4,
+    "2026": 11.9
+   }
+  },
+  "Thu universe |move|>=4%": {
+   "cuts": 206,
+   "weeks": 79,
+   "gross_bp": 42.8,
+   "t_week": -0.14,
+   "mde_bp": 139.0,
+   "up_bp": 86.2,
+   "down_bp": 18.0,
+   "years": {
+    "2024": -2.1,
+    "2025": 17.2,
+    "2026": 124.9
+   }
+  },
+  "Thu BTC |move|>=4%": {
+   "cuts": 53,
+   "weeks": 29,
+   "gross_bp": -17.0,
+   "t_week": -0.15,
+   "mde_bp": 148.0,
+   "up_bp": 95.5,
+   "down_bp": -142.9,
+   "years": {
+    "2024": 17.2,
+    "2025": -2.4,
+    "2026": -61.6
+   }
+  },
+  "Fri universe |move|>=0%": {
+   "cuts": 592,
+   "weeks": 148,
+   "gross_bp": 31.9,
+   "t_week": 1.2,
+   "mde_bp": 75.0,
+   "up_bp": 55.7,
+   "down_bp": 8.0,
+   "years": {
+    "2024": 43.0,
+    "2025": 47.3,
+    "2026": 0.6
+   }
+  },
+  "Fri BTC |move|>=0%": {
+   "cuts": 592,
+   "weeks": 148,
+   "gross_bp": 0.6,
+   "t_week": 0.08,
+   "mde_bp": 21.0,
+   "up_bp": 2.2,
+   "down_bp": -1.0,
+   "years": {
+    "2024": 0.9,
+    "2025": -1.5,
+    "2026": 2.7
+   }
+  },
+  "Fri universe |move|>=1%": {
+   "cuts": 482,
+   "weeks": 143,
+   "gross_bp": 38.3,
+   "t_week": 0.93,
+   "mde_bp": 79.0,
+   "up_bp": 63.0,
+   "down_bp": 13.9,
+   "years": {
+    "2024": 58.2,
+    "2025": 44.9,
+    "2026": 5.4
+   }
+  },
+  "Fri BTC |move|>=1%": {
+   "cuts": 385,
+   "weeks": 130,
+   "gross_bp": 0.3,
+   "t_week": -0.13,
+   "mde_bp": 26.0,
+   "up_bp": 2.9,
+   "down_bp": -2.3,
+   "years": {
+    "2024": -0.2,
+    "2025": 5.5,
+    "2026": -6.0
+   }
+  },
+  "Fri universe |move|>=2%": {
+   "cuts": 387,
+   "weeks": 129,
+   "gross_bp": 34.3,
+   "t_week": 0.58,
+   "mde_bp": 88.0,
+   "up_bp": 69.6,
+   "down_bp": -1.6,
+   "years": {
+    "2024": 56.1,
+    "2025": 50.9,
+    "2026": -16.5
+   }
+  },
+  "Fri BTC |move|>=2%": {
+   "cuts": 238,
+   "weeks": 88,
+   "gross_bp": 5.7,
+   "t_week": -0.37,
+   "mde_bp": 37.0,
+   "up_bp": 6.7,
+   "down_bp": 4.8,
+   "years": {
+    "2024": 10.4,
+    "2025": 17.6,
+    "2026": -16.8
+   }
+  },
+  "Fri universe |move|>=4%": {
+   "cuts": 199,
+   "weeks": 86,
+   "gross_bp": 76.7,
+   "t_week": 1.31,
+   "mde_bp": 107.0,
+   "up_bp": 78.5,
+   "down_bp": 74.5,
+   "years": {
+    "2024": 110.6,
+    "2025": 70.7,
+    "2026": 29.1
+   }
+  },
+  "Fri BTC |move|>=4%": {
+   "cuts": 76,
+   "weeks": 32,
+   "gross_bp": 43.7,
+   "t_week": 0.88,
+   "mde_bp": 74.0,
+   "up_bp": 39.2,
+   "down_bp": 53.2,
+   "years": {
+    "2024": 81.8,
+    "2025": 62.6,
+    "2026": -26.2
+   }
+  },
+  "Sat universe |move|>=0%": {
+   "cuts": 588,
+   "weeks": 147,
+   "gross_bp": 0.8,
+   "t_week": 0.03,
+   "mde_bp": 71.0,
+   "up_bp": -8.6,
+   "down_bp": 14.3,
+   "years": {
+    "2024": -6.3,
+    "2025": 1.1,
+    "2026": 9.2
+   }
+  },
+  "Sat BTC |move|>=0%": {
+   "cuts": 588,
+   "weeks": 147,
+   "gross_bp": 6.6,
+   "t_week": 0.6,
+   "mde_bp": 30.0,
+   "up_bp": 14.3,
+   "down_bp": -4.7,
+   "years": {
+    "2024": -3.8,
+    "2025": 28.8,
+    "2026": -7.7
+   }
+  },
+  "Sat universe |move|>=1%": {
+   "cuts": 433,
+   "weeks": 135,
+   "gross_bp": -4.6,
+   "t_week": -0.26,
+   "mde_bp": 82.0,
+   "up_bp": -20.7,
+   "down_bp": 20.8,
+   "years": {
+    "2024": -7.2,
+    "2025": -28.4,
+    "2026": 26.4
+   }
+  },
+  "Sat BTC |move|>=1%": {
+   "cuts": 177,
+   "weeks": 81,
+   "gross_bp": 17.0,
+   "t_week": 0.13,
+   "mde_bp": 55.0,
+   "up_bp": 21.9,
+   "down_bp": 11.7,
+   "years": {
+    "2024": 1.8,
+    "2025": 75.3,
+    "2026": -18.1
+   }
+  },
+  "Sat universe |move|>=2%": {
+   "cuts": 301,
+   "weeks": 108,
+   "gross_bp": -7.9,
+   "t_week": -0.84,
+   "mde_bp": 97.0,
+   "up_bp": -29.8,
+   "down_bp": 24.2,
+   "years": {
+    "2024": -2.2,
+    "2025": -43.5,
+    "2026": 30.8
+   }
+  },
+  "Sat BTC |move|>=2%": {
+   "cuts": 42,
+   "weeks": 25,
+   "gross_bp": 58.0,
+   "t_week": 1.27,
+   "mde_bp": 136.0,
+   "up_bp": 109.2,
+   "down_bp": 19.6,
+   "years": {
+    "2024": 2.7,
+    "2025": 100.0,
+    "2026": 141.7
+   }
+  },
+  "Sat universe |move|>=4%": {
+   "cuts": 129,
+   "weeks": 56,
+   "gross_bp": -3.9,
+   "t_week": -0.31,
+   "mde_bp": 151.0,
+   "up_bp": -70.8,
+   "down_bp": 58.0,
+   "years": {
+    "2024": -9.8,
+    "2025": -58.0,
+    "2026": 87.7
+   }
+  },
+  "Sat BTC |move|>=4%": {
+   "cuts": 11,
+   "weeks": 5,
+   "gross_bp": -48.2,
+   "t_week": -0.57,
+   "mde_bp": 334.0,
+   "up_bp": NaN,
+   "down_bp": -48.2,
+   "years": {
+    "2024": -114.9,
+    "2025": -146.8,
+    "2026": 151.1
+   }
+  }
+ }
+}

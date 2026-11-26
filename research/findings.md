@@ -396,6 +396,8 @@ OPEN (weaker than thought), no book.** WF OOS pick 0.78 / 6.1y, **grid avg 0.61*
 needed min(pick, avg) > 0.8. Decomposition (research/studies/ff1_decomp.py): +42 bp gross per Friday (t 2.7; top-3 weeks 25%), costs ≈ 11 bp/week
 (turnover 82×); the P&L is the long leg of the hand-picked 82 (+1.11 of +1.55); coins outside them +14 bp/week 2020–23 and **+0.8 bp 2024–26**; 2026 −13%.
 Diagnosis: on survivors "follow the move" is partly "be long what later survived". Untried: market-relative move (excess over the universe), shorts only.
+FF2 (insilico 11-26, research/studies/is3_ff2.py, bn100 1h, tranches 12/15/17/20 NY): no coin-specific part (follow the excess over the top-30 universe −3 bp t 0.6; shorts-only hedged −5..−10).
+It is the UNIVERSE's Friday move continuing: explore 2020–23 +65 bp/24 h t 3.1 (Thu +10, Sat −27; up-Fridays +111), preregistered confirm 2024–26 **+32 bp t 1.2 (fail), 2026 ≈ 0**. Fading weekend drift; no book.
 
 ### Weekend fades, second pass (InSilico R21, 82 coins 1h, 2026-11-15) → gap fade DEAD; Sunday-move fade OPEN
 Fading the Friday→Sunday gap: −8 / +33 bp (n.s.), with the first pass's six walk-forward configs that form is dead; fading Friday's own move
