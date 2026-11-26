@@ -109,5 +109,35 @@ def main():
               open(f"research/is3/ff2_{'confirm' if conf else 'explore'}.json", "w"), indent=1, default=str)
 
 
+def form_d():
+    """market level: per cut, U = mean 24-h move of the top-30 universe, Uf = its next-24-h mean; BTC the same. Follow sign(U) if |U| >= thr."""
+    conf = "confirm" in sys.argv
+    lo, hi = ("2024-01-01", "2026-10-31") if conf else ("2020-02-15", "2023-12-31")
+    TT = times(lo, hi)
+    P, adv = load(TT["Thu"].union(TT["Fri"]).union(TT["Sat"]))
+    res = {}
+    for d, T in TT.items():
+        e = events(P, adv, T, 30)
+        g = e.groupby("t").apply(lambda z: pd.Series({"U": z.m.mean(), "Uf": z.f.mean()}))
+        b = P["BTC"]
+        g["B"] = (b.reindex(g.index) / b.reindex(g.index - pd.Timedelta(hours=24)).values - 1).values
+        g["Bf"] = (b.reindex(g.index + pd.Timedelta(hours=24)).values / b.reindex(g.index).values - 1)
+        for thr in (0.0, 0.01, 0.02, 0.04):
+            for lab, x, y in (("universe", "U", "Uf"), ("BTC", "B", "Bf")):
+                m = g[g[x].abs() >= thr]
+                o = np.sign(m[x]) * m[y]
+                wk = o.groupby(o.index.to_period("W")).mean()
+                t = float(wk.mean() / wk.std() * np.sqrt(len(wk))) if len(wk) > 2 else np.nan
+                mde = float(2.8 * wk.std() / np.sqrt(len(wk)) * 1e4) if len(wk) > 2 else np.nan
+                yrs = o.groupby(o.index.year).mean() * 1e4
+                k = f"{d} {lab} |move|>={thr:.0%}"
+                res[k] = {"cuts": int(len(m)), "weeks": int(len(wk)), "gross_bp": round(float(o.mean() * 1e4), 1), "t_week": round(t, 2),
+                          "mde_bp": round(mde, 0), "up_bp": round(float(m[m[x] > 0][y].mean() * 1e4), 1), "down_bp": round(float(-m[m[x] < 0][y].mean() * 1e4), 1),
+                          "years": {int(a): round(float(v), 1) for a, v in yrs.items()}}
+                print(f"{k:28s} {res[k]}", flush=True)
+    json.dump({"study": "research/studies/is3_ff2.py form_d", "window": [lo, hi], "res": res},
+              open(f"research/is3/ff2d_{'confirm' if conf else 'explore'}.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    main()
+    form_d() if "d" in sys.argv[1:] else main()

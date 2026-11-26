@@ -762,3 +762,5 @@ PRE-REGISTERED (a, b; explore 2020-01..2023-12): PASS = thr 2% form gross >= +20
 FF2 a done (is3_ff2.py, ff2_explore.json): excess-move follow on Friday = -3 bp (top30, t .6), dose flat; the same pipeline gives FF1's absolute +54/+73 bp, so Friday follow is the
  universe's weekend continuation, not idiosyncratic news. Thursday excess-follow +30 bp (t 2.1) is a placebo-day surprise, 2022 negative: noted, not chased (not his claim, would be a fresh hypothesis).
 FF2 b done: shorts only hedged -5..-10 bp; unhedged + only via 2022. Unstated condition that would make it work -> d: trade the MARKET's Friday move (index-level timing).
+FF2 d done (ff2d_explore.json): the MARKET's Friday move continues: universe follow +65 bp/24 h, t 3.06 (MDE 59), Thu +10, Sat -27; mostly up-Fridays (+111). 2020 -3 bp misses my item rule
+ (every year > 0) but beats both placebo days every year (pass3 s3). Preregistered FF2d_market_friday_follow (rule + caveats: 2024-26 partly seen by FF1's decomposition) -> one confirm.

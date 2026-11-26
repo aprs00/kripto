@@ -178,5 +178,21 @@
    "n_random": 200
   },
   "at": "2026-11-25T05:20:15+00:00"
+ },
+ "FF2d_market_friday_follow": {
+  "claim": "the equal-weight top-30 universe (bn100, point-in-time) continues its 24-h move from the Friday 12/15/17/20 NY cuts over the next 24 h (follow sign(U), all |U|)",
+  "rule": "confirm 2024-01-01..2026-10-31, ONE look: PASS = Fri universe |U|>=0 follow gross >= +20 bp per cut AND week-clustered t >= 2 AND Fri above both Thu and Sat placebo cuts; per-year signs reported. Caveats stated before the run: explore missed the item rule in 2020 (-3 bp, beats both placebo days every year = pass3 s3 baseline rule); FF1 decomposition already saw 2024-26 for per-coin absolute follow (non-82 coins +0.8 bp), so this confirm is not virgin. A pass leads only to Z1 (walk-forward), not a book.",
+  "params": {
+   "universe": "bn100 top30 by 30-d mean daily qv (shifted 1 d)",
+   "cuts": [
+    12,
+    15,
+    17,
+    20
+   ],
+   "hold_h": 24,
+   "study": "research/studies/is3_ff2.py d confirm"
+  },
+  "at": "2026-11-26T21:49:13+00:00"
  }
 }
