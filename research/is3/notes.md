@@ -740,3 +740,10 @@ E2B a done (is3_e2b.py, e2b_anchor.json): anchors 00..20 UTC SR 1.57-1.87 (16: 1
  (resample offset ignored on tz-aware index: same prices, shifted funding, 5 junk registry lines tagged anchor @04..@20, ~21:45 UTC); fixed by shifting the index, known-answer assert on BTC.
 E2B b done (e2b_defer.json): sells deferred 3 h from the 20 UTC anchor +5.3 bp/unit (t 1.05; 2025 -25, 2026 +5) = placebo deferrals at 08 (+6.5) / 04 (+4.3); deferring buys loses ~-6 (signal decay).
 E2B c: HL 1h starts 2026-04-14 -> testable 2027-04-14. E2B CLOSED OPEN. Sceptic: tested on the book's own trades with the clock that a live book could use; flow@bn (the leg E2 liked most) could not be replayed.
+FC1C think-through (21:5x UTC, before any number on the new window): gap = HL 3-d funding minus Binance 3-d funding on the same coin. Mechanism: HL is the venue where
+ retail levers up without KYC; a coin whose HL longs pay much more than Binance longs is crowded on HL specifically (late, levered retail), and arbitrage capacity between the
+ venues is limited (two margin accounts, X1c), so the gap persists while the crowd is wrong. Unstated: (1) the gap may be mechanical (HL premium sampling, interest floor), so it
+ must beat the BN-funding-rank control cX; (2) the trapped side is HL longs: price should fall over days, not hours (7-d entry); (3) listing-age overlap: young coins carry big gaps
+ (corr listing_short 0.49) -> form b uses it as a listing_short filter.
+ PRE-REGISTERED (a, explore 2023-05-15..2024-07-01): PASS = c3s [entry] net > 0 AND t_price >= 2 AND short price leg higher in deciles 9-10 than in 1-5 (dose) AND c3s entry net
+ > cX entry net. Only then ONE confirm 2025-07..2026-10 (never seen by any FC1 form). Prior low (PC: t 1.1-1.5 over 12 months).
