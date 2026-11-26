@@ -728,3 +728,6 @@ Forms: a = rank weights, short candidates with trailing 7-d mean funding < 0 dro
  b = rank on vol of (r - funding) instead of r. Explore bnall 1d 2020-01..2023-12, gross of trading costs, net of funding, BTC-beta hedged, top-30 and top-100.
  PASS (written now): pooled SR >= 0.5 AND >= 3 of 4 years > 0 AND above the 95th pct of the random-drop placebo (a). Confirm: bnall 2024+ was seen by LV1 (the diagnosis came from it),
  so a pass goes to HL (funding backfilled to 2023-05 by FC1C's fetch) as confirm, stated. Prior low: LV1 2021 -0.9 every form.
+LV2 a done (is3_lv2.py, lv2_explore.txt): dropping f7<0 shorts = random drops (top30 29th pct, top100 76th), FAIL. Surprise, checked sign (w*f1 subtracted, longs pay +funding): in 2020-23 the
+ negative-funding high-vol shorts are the best shorts on PRICE (mirror price-only 0.83/0.88, net 0.26); the crowded-short squeeze of LV1 is a 2024+ phenomenon (memecoin era), so the filter would be shaped on it.
+LV2 b done: funding-adjusted vol ranks = price vol ranks (SR identical): no effect. c (HL) waits for the HL funding backfill (FC1C fetch).

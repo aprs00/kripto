@@ -2545,7 +2545,10 @@
      "what": "as an entry/size tilt inside fspread_hold@pair (the gap is its own signal on a different horizon): does the 7-d gap rank add to the 14-d mean spread rule",
      "status": "todo"
     }
-   ]
+   ],
+   "sessions": 1,
+   "due": "2026-11-26T22:25",
+   "defer_why": "HL funding backfill pre-2024-07 running (unit is3-fc1cfetch)"
   },
   {
    "id": "LV2",
@@ -2558,19 +2561,28 @@
     {
      "id": "a",
      "what": "bnall: lowvol with short candidates excluded when trailing 7-d funding < 0 (shorts paying); explore <=2023, confirm 2024+ (LV1's confirm was viewed once: say so, prefer HL + forward as confirm)",
-     "status": "todo"
+     "status": "done",
+     "result": "bnall explore 2020-23 net of funding gross of costs: drop shorts f7<0 top30 SR -0.13 vs base -0.06 (placebo random drop median 0.02, 95th 0.42, a at 29th pct), top100 0.19 vs 0.02 (76th pct), 2021 negative both; FAIL. Mirror (shorts ONLY f7<0) price-only 0.83/0.88, net 0.26: in explore the crowded shorts are RIGHT on price; Q5 by funding tercile not monotone",
+     "date": "2026-11-26",
+     "evidence": "lv2_explore"
     },
     {
      "id": "b",
      "what": "rank on funding-adjusted vol (price return minus funding paid) instead of price vol",
-     "status": "todo"
+     "status": "done",
+     "result": "rank on vol of (r - funding) = base to 2 decimals (top30 -0.06, top100 0.01): funding too small vs price vol to change ranks; FAIL (no effect before costs)",
+     "date": "2026-11-26",
+     "evidence": "lv2_explore"
     },
     {
      "id": "c",
      "what": "HL check of the HL blend leg: lowvol on HL by year with HL funding, and whether the HL 0.90 survives without its best 10 days (it is in the live HL main book)",
      "status": "todo"
     }
-   ]
+   ],
+   "sessions": 1,
+   "due": "2026-11-26T22:30",
+   "defer_why": "form c needs HL funding pre-2024-07 (is3-fc1cfetch)"
   },
   {
    "id": "E2B",
