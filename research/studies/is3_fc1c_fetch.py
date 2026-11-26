@@ -34,6 +34,7 @@ def main():
             df = pd.DataFrame(rows)[["time", "fundingRate", "premium"]]
             df["fundingRate"] = df["fundingRate"].astype(float); df["premium"] = df["premium"].astype(float)
             df["time"] = df["time"].astype("int64")
+            old = pd.read_parquet(p) if p.exists() else None    # re-read: the hourly trader may have appended rows during the fetch
             if old is not None:
                 df = pd.concat([df, old]).drop_duplicates("time", keep="last")
             df.sort_values("time").reset_index(drop=True).to_parquet(p)
