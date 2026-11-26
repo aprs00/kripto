@@ -82,4 +82,4 @@ Next research session: switch on the monthly risk multiplier (`scripts.main_scal
 (once `scripts.metrics_coverage` shows ≥ 95% per year, ≈ 11-28/29), liquidation prints (≈ 12-01), fill-delay re-measure (≈ 12-09), HL order-flow re-check (≈ 12-23).
 Nested-blend refits (HL and Binance) due 2027-01-02. Forward ledger: first verdicts ≈ 12-09.
 
-InSilico pass 3: 212/229 forms done (3 skipped), 37/43 items closed; best finding still the resting-bid ladder (live as shadow/small:ladder@bn). Latest (11-26): capping open ladder positions only shrinks size; quoting deeper when positions are open helps a little (+0.12 Sharpe out of sample), below the bar, so the live ladder is unchanged.
+InSilico pass 3: 223/245 forms done (4 skipped), 41/49 items closed; best finding still the resting-bid ladder (live as shadow/small:ladder@bn). Latest (11-26 evening): Friday's 'follow the move' is the whole alt market drifting into Saturday, not single coins, and it was half as strong and gone in 2026 out of sample; moving the daily Binance decision to the CME break is free but earns nothing. Older HL funding (2023-05..2024-06) is being downloaded for the funding-gap test.
