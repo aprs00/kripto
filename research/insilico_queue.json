@@ -2481,7 +2481,7 @@
    "group": "D",
    "title": "Ladder flush-batch control: cap of open positions, size re-derivation, inventory skew (from LD1, PC 2026-11-26)",
    "src": "backlog LD1/LD2; library N13 (Gueant 11.2-11.3); findings LD1",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -2498,7 +2498,8 @@
      "what": "book-wide skew k=30(1+0.5 n_open), the only LD1 skew form that beat a size-matched base on explore, alone and with cap 5; fresh confirm only if explore holds on the full universe",
      "status": "todo"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }

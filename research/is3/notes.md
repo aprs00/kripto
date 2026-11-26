@@ -697,3 +697,13 @@ F2 fspread_hold@pair: 0 invested days in explore (HL funding history starts 2024
 F2 d confirmT (05:2x): FAILED both pre-registered books (blend +0.08 at 66th pct, listing_short -0.14 at 38th). Fourth 2021-23 macro/bounce pattern that does not carry into 2024-25.
 F2 e done: value location of trend entries = random masks or the mechanical reversal cost; e3 blend shorts +0.18 pooled but 2021 negative (1 of 20 cells).
 F2 f done: failed-new-high trim costs (his side); failed-new-low short block passes blend 5 d only (dose reversed at 1 d). F2 CLOSED OPEN: nothing usable; the recurring blend-only 'no new shorts after a flush' lead is the F1g family whose 2024-25 confirm failed. Sceptic: the books tested are the ones that trade; the delay form was his L5, not my exit.
+
+## LD2 ladder flush-batch control (think-through 21:2x UTC 11-26, before any run)
+Source: backlog LD1/LD2, library N13 (Gueant §11), findings LD1 (PC, ~80% coverage). No chat records (not an InSilico rule; a ladder control queued here).
+Mechanism: the ladder's tail is one flush minute where up to 17 bids fill at once (E2c: minute-low mark -17% at 5%/order). The 6th+ fill of a batch is the same bet as the first five on a
+ correlated market; a cap bounds the batch so the per-order size can be re-derived (E2d rule: -50% on every fill of the largest possible batch must stay above the 25% kill -> size = 25%/(0.5 cap)).
+What is not said / must be true: (1) a cap is only worth it if the truncated fills earn LESS per unit risk than the kept ones; SR is scale-free, so a size-matched base (same ret/yr) is the
+ comparison for the worst day / worst 5 days; (2) truncation is in volume-rank order, so a second control is RANDOM thinning to the same fill count (200 draws): does WHICH fills are dropped matter?
+ (3) LD1's confirm (2024-26/10) was spent once on cap 3 with 80% coverage: the server's 2024+ is not fresh for this ladder family; any confirm here is a second look, stated as such.
+Pre-registered (a): explore 2021-23 on the server's full top-20; PASS = cap5 SR >= base - 0.1 AND worst5 at matched ret/yr better than scaled base by >= 25% AND cap5 worst5 above the 95th pct
+ of random thinning. Only then one confirm 2024-01..2026-10. (b) size re-derivation reported, no new test. (c) skew A_0.5 alone and with cap 5, same rule.
