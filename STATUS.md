@@ -45,6 +45,11 @@ _Updated 2026-11-26 ~08:30 UTC (review; research body below from 07:35). Detail:
 **Honest expectation if these edges are real:** blend-type books 12–27% a year with 20–30% drawdowns; the funding pair about 4–5% a year at a deployable size
 (≈ $40/yr on $1,000, ≈ $8/yr on $200). No real money before the paper books have tracked their backtests for 2–3 months. That decision is yours.
 
+## Correction (11-26 21:30): one strategy was held back against my own rule
+The resting-bid ladder (from your InSilico material) passed every clause of the real-money gate on 11-23 (out-of-sample Sharpe 1.94, worst stress 2.00, multiple-testing check 0.98:
+the only one above 0.9). I kept it out of the Binance main book with an extra condition that is not in the rules. Tomorrow's 06:40 session puts it into main_bn (and the $200 twin)
+by the same equal-risk rule as the others. It keeps being checked live against its backtest and leaves if it breaks.
+
 ## Evening session on the owner's PC (11-26 ~20:00 UTC, history-only; detail: journal)
 Four checks in parallel, **no new walk-forward tests used**: lowvol and funding-spike fading do not work on clean Binance data once funding is counted (crowded short squeezes pay it back);
 long-only trend adds nothing over simply holding BTC since 2024; capping the ladder at 3 open positions halves its worst day but mostly by trading less (live ladder unchanged);

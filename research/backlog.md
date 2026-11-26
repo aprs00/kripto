@@ -6,6 +6,12 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 
 **Priority order (rewritten 2026-11-10 after H4/T9/X1b; research Tue + Thu, ≤ 6 new walk-forward experiments per session):**
 ## Owner instruction 2026-11-10 ("run everything now"): DONE 2026-11-12 06:40 research (M1, X2, W1 live; forward baseline). Journal 2026-11-12.
+**0. FIRST, 2026-11-27 06:40 research (owner 11-26 21:30: "you are gatekeeping actual profitable strategies"; he is right about this one):** ladder@bn passed EVERY clause of the
+incubation gate on 11-23 (WF OOS 1.94, robust.worst 2.00, 2x cost 2.04, one bar late 2.14, DSR 0.98: the only strategy above the 0.9 DSR bar) and I kept it at candidate / alloc 0 with
+an extra condition ("fill must be proven live first") that is not in design.md §4. The M1 rule (main books trade the gate-passing best estimate) applies to it like to any other.
+Do: set ladder@bn to incubation and give it a sleeve of main_bn and small:main_bn by the equal-risk rule (re-derive flow@bn / blend_nested@bn / ladder@bn allocs, sum ≤ 1); engineering:
+kripto/ladder.py must size a main_bn sleeve = alloc × main_bn equity (it now runs only shadow/small books) with the same 5%/order of the SLEEVE, positions in main_bn's ledger; tests,
+then a real trader + ladder run (rule 6). Live-vs-backtest of its fills stays the monitor (retire per §4 if it breaks), not a precondition. Then the rest below.
 **Next priorities (2026-11-26 research):** 1. NEXT research session: `nice -n 19 .venv/bin/python -m scripts.main_scale --write` (AL2b, design.md 2026-11-26; first application,
 monthly after that via `main_scale_due`) and check main_bn's first days on flow@bn + blend_nested@bn (switched 11-26 08:03) → 2. T5b positioning: backfill is newest-first per coin,
 so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 2024-07): explore only once 2021–23 is complete (≈ 11-29; check per-year coverage of BTC/ETH first)
