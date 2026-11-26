@@ -2590,12 +2590,15 @@
    "group": "D",
    "title": "Execution clock at the CME break for Binance daily books (E2 passed, small and fading)",
    "src": "findings E2 2026-11-26 (research/studies/e2_exec_tilt.py)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "phase check: flow@bn / blend_nested@bn signals decided on the 16:00 and 20:00 UTC bars vs 00:00: does moving the anchor cost signal P&L (walk the existing phase/robustness machinery, no new WF)",
-     "status": "todo"
+     "status": "done",
+     "result": "blend_nested@bn components on bn100 1h -> daily bars anchored 00/04/08/12/16/20 UTC (6 evaluate lines tag anchor; 5 earlier lines from a first run were a BUG: pandas ignores resample offset on tz-aware bins, prices stayed 00): SR 1.68/1.58/1.70/1.57/1.87/1.72; 16 vs 00 +148 bp/yr (corr .69), 20 vs 00 -13 bp/yr; anchor spread +-0.15 SR = phase noise. PASS: moving the decision to 16/20 UTC costs nothing. flow@bn not testable (hourly archive has no taker split)",
+     "date": "2026-11-26",
+     "evidence": "e2b_anchor"
     },
     {
      "id": "b",
@@ -2607,7 +2610,8 @@
      "what": "HL: the same split on HL 1h for the HL main book (blend_nested) once >= 12 months of HL hourly data; if not enough, record the date it will be",
      "status": "todo"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }

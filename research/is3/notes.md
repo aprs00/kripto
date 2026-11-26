@@ -731,3 +731,10 @@ Forms: a = rank weights, short candidates with trailing 7-d mean funding < 0 dro
 LV2 a done (is3_lv2.py, lv2_explore.txt): dropping f7<0 shorts = random drops (top30 29th pct, top100 76th), FAIL. Surprise, checked sign (w*f1 subtracted, longs pay +funding): in 2020-23 the
  negative-funding high-vol shorts are the best shorts on PRICE (mirror price-only 0.83/0.88, net 0.26); the crowded-short squeeze of LV1 is a 2024+ phenomenon (memecoin era), so the filter would be shaped on it.
 LV2 b done: funding-adjusted vol ranks = price vol ranks (SR identical): no effect. c (HL) waits for the HL funding backfill (FC1C fetch).
+
+## E2B execution clock at the CME break (21:4x UTC 11-26)
+Think-through: E2 (PC) found a 1-h net-long drift in the CME break (17-18 NY = 22-23 UTC winter / 21-22 summer), small and fading (7.2 -> 2.1 -> 1.1 bp/unit). To use it a daily book must decide
+ before the break (16/20 UTC anchor) and defer its sells past it. Unstated: (1) the anchor move may cost more signal than the tilt earns (anchor = start-day lottery on one clock),
+ (2) the tilt is a 1-h long of half the turnover, so it is beta, judged against the same 3-h deferral at other hours; (3) the 2026 rate is the honest number, the trend is down.
+E2B a done (is3_e2b.py, e2b_anchor.json): anchors 00..20 UTC SR 1.57-1.87 (16: 1.87, 20: 1.72, 00: 1.68): anchor moves cost nothing beyond +-0.15 SR phase noise. First run was a bug
+ (resample offset ignored on tz-aware index: same prices, shifted funding, 5 junk registry lines tagged anchor @04..@20, ~21:45 UTC); fixed by shifting the index, known-answer assert on BTC.
