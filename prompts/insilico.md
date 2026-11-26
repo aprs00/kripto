@@ -27,7 +27,7 @@ has nothing due, or the usage limit hits. Commit and push after every form, so a
    to research/is3/notes.md, commit and push. If you think of a better formulation, `add-form` it before running it.
 6. Good explore result (beats baseline, dose-response, positive after its costs) → `L.prereg`, commit, then confirmT / confirmC once. Max 2 forms per item.
    Never tune on a confirm sample; never open the vault unless every confirm card passed.
-7. All forms have an outcome → `close <id> <VERDICT> "<diagnosed reason>"` (rules in pass3 §3), one line in pass3 §6, ≤ 5 lines in findings.md. Ask first: would a
+7. All forms have an outcome → `close <id> <VERDICT> "<diagnosed reason>"` (rules in pass3 §3), one line in pass3 §6, ≤ 5 lines in findings.md (then `python -m scripts.findings_index`). Ask first: would a
    sceptical colleague say I tested the idea, or only my translation? Then start the next item (loop to step 1) until the time budget is used.
 8. End: ≤ 6 lines in journal/<today>.md (`## HH:MM UTC insilico`), `pytest -q` if you touched kripto/ or scripts/ (and then run the trader, rule 6), commit, push.
    Update only the line starting `InSilico pass 3:` in STATUS.md (forms done / total, items closed, best finding so far in plain words). Do not touch the rest.

@@ -26,5 +26,5 @@ scheduled, something is broken: `cat state/health.json` tells you what.
    (edit research/insilico_queue.json in the existing format; `tests/test_insilico_queue.py` must pass), commit, push, and confirm `should-run` exits 0.
 4. Apply lifecycle rules ONLY if a gate in docs/design.md §4 is clearly met (e.g. kill-switch, retirement).
 5. If you noticed a process weakness, fix it now if it's quick, or add it to the backlog. Log fixes in the CLAUDE.md
-   Process changelog.
+   process changelog (docs/process_changelog.md).
 6. Overwrite STATUS.md, append a short entry to journal/<today>.md, commit, push.

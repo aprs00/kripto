@@ -2,7 +2,7 @@ Scheduled RESEARCH session (headless, no human present, nobody will answer quest
 Follow CLAUDE.md strictly, especially "YOU OWN THIS" and HARD RULES.
 Time budget: ~90–120 minutes of wall clock. Heavy compute with `nice -n 19`.
 
-0. `git pull --rebase`. Read STATUS.md, research/findings.md, research/backlog.md, the last 2 journal files,
+0. `git pull --rebase`. Read STATUS.md, the Index at the top of research/findings.md (grep the details of anything you touch), research/backlog.md, the last 2 journal files,
    and `.venv/bin/python -m kripto.paper status`. If today (UTC) is **Sunday**, do the WEEKLY RETROSPECTIVE
    below instead of steps 2–4. Research runs Mon–Sat (owner 2026-11-23: faster). The history is fixed, so every extra walk-forward
    experiment raises the DSR bar for all of them (N=49 → SR 1.44, N=500 → 1.76) without adding information.
@@ -61,8 +61,8 @@ Time budget: ~90–120 minutes of wall clock. Heavy compute with `nice -n 19`.
    meet a well-cited free paper (arXiv/SSRN) that beats what's on file, note it in INDEX.md's wishlist.
 5. Self-improvement check (always): what slowed you down, confused you, or could make you fool yourself this
    session? Fix one such thing if feasible (tooling, tests, data, memory files, prompts) and log it in the
-   CLAUDE.md Process changelog.
-6. Update backlog.md (reprioritize; add ideas), overwrite STATUS.md (it must contain the `scripts.held_back` table under "Held back" and the
+   process changelog (docs/process_changelog.md).
+6. Update backlog.md (reprioritize; add ideas; move done items to research/backlog_done.md), run `scripts.findings_index` if findings changed, overwrite STATUS.md (it must contain the `scripts.held_back` table under "Held back" and the
    `scripts.scoreboard` line plus "my mistakes this week" under "Scoreboard"), append to journal/<today>.md, run tests,
    run the trader if you changed kripto/ code, commit, push.
 
@@ -73,7 +73,7 @@ WEEKLY RETROSPECTIVE (Sundays): step back from individual experiments.
   ideas not yet in the backlog (HL-specific structure, data we aren't collecting yet, execution improvements)?
   Rewrite the backlog priorities accordingly.
 * Process: review the past week's journals for repeated problems, wasted effort and missing tooling. Make the
-  highest-leverage process fix and log it in the CLAUDE.md Process changelog.
+  highest-leverage process fix and log it in the process changelog (docs/process_changelog.md).
 * **Assumption audit (docs/assumptions.md).** Auditing your changes is not enough: the worst flaws so far were things that never
   changed (hourly-only monitoring, daily-only data, an uncalibrated cost model), and the owner found them, not you. Take the two
   rows with the weakest or oldest evidence, test or challenge each with data (descriptive studies are free; walk-forwards count
