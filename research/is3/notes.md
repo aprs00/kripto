@@ -775,3 +775,4 @@ PRE-REGISTERED (a, explore 2020-02..2023-12): PASS = Sunday fade, |move| >= 1%, 
  above the median of the six placebo weekdays in >= 3 of 4 years AND mean - 12 bp > 0. Prior low (W3 explore market bet t 0.6).
 W3B a done (w3b_explore.json): Sunday fade on BTC+ETH <= 2023 = 0 or negative at every size; Saturday 12->18 NY fade +43 bp t 1.9 is a placebo-day surprise (with FF2: Fri up, Sat afternoon reverts?), not chased. W3B CLOSED OPEN.
 W3S (data-mined, stated): Saturday 12->18 NY fade on BTC+ETH, +43 bp t 1.9 in W3B explore as a placebo cell (1 of 18, expected max t ~2 by chance). Mechanism = W3's thin-book weekend reversal on another thin afternoon. Pre-registered one confirm (W3S_sat_fade_btceth), frozen cell.
+W3S done: confirm +1.8 bp t 0.07: chance cell. CLOSED OPEN (one form by construction).

@@ -1312,7 +1312,7 @@
     },
     {
      "id": "e",
-     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is \u22123..\u221221% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
+     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
      "status": "done",
      "added": "2026-11-22",
      "result": "his literal picture (every live adaptive bucket -3..-21% of its volume, day <= -7%), long 3 d: n 55, +105 bp vs matched +256 (diff -151, p .50, MDE 494), 2022 -470; 2-way table fall x selling: U-shape (no selling +989 and extreme selling <= -20% +711 on 16-18 events at <= -8%; his -3..-21% range -30..+278), no monotone dose in either direction. DEAD form",
@@ -1526,7 +1526,7 @@
    "prio": 23,
    "group": "C",
    "title": "Filter harness: does a signal improve a book that already works?",
-   "src": "design.md \u00a74 (filters)",
+   "src": "design.md §4 (filters)",
    "status": "closed",
    "forms": [
     {
@@ -2704,14 +2704,21 @@
    "group": "D",
    "title": "Saturday 12->18 NY thin-book move fade on BTC+ETH (data-mined placebo surprise in W3B)",
    "src": "W3B explore 2026-11-26 (Sat |m|>=0.5% +43 bp t 1.9, 1 of 18 placebo cells); W3 mechanism (thin-book weekend moves revert)",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "one pre-registered confirm 2024-01..2026-10, frozen: BTC+ETH, tranches 17/18/19 NY, |m|>=0.5%, fade 24 h; PASS mean >= +15 bp AND t >= 2 AND net of 12 bp > 0. Data-mined: a pass only earns a walk-forward slot in Z1",
-     "status": "planned"
+     "status": "done",
+     "result": "preregistered confirm 2024-01..2026-10 (W3S_sat_fade_btceth): Sat fade +1.8 bp per Saturday, t 0.07, MDE 67, years +15/-2/-12: FAIL, the explore cell was chance (1 of 18). Side note: Sunday (W3's claim) on BTC+ETH 2024-26 +25 bp t 0.9",
+     "date": "2026-11-26",
+     "evidence": "w3b_confirm"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "data-mined placebo cell did not replicate (+1.8 bp t 0.07 vs explore +43 t 1.9): chance; one form only by construction, nothing left to test",
+   "closed": "2026-11-26"
   }
  ]
 }
