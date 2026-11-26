@@ -712,3 +712,19 @@ LD2 a/b/c done (is3_ld2.py, research/is3/ld2_explore.json; server full top-20, 1
  c: skew A_0.5 fails the TAIL rule (+15%, 94th) but is better in SR every year (2.72 vs 2.33; 3.47/0.86/3.56 vs 2.97/0.43/3.00), SR 100th pct of thinning: it picks better-priced fills.
 LD2 d pre-registered (before any 2024+ look at A): confirm 2024-01..2026-10, PASS = A_0.5 SR >= base + 0.2 AND SR >= 90th pct of random thinning. 2024+ already seen for base/cap3 in LD1.
 LD2 d done: confirm A_0.5 SR 2.16 vs 2.04 (FAIL, +0.2 needed); 2024 +0.9, 2025 -0.1, 2026 +0.05; tail +26%/99th pct (not the criterion). LD2 CLOSED OPEN. Sceptic: the cap and skew are the controls the backlog named, on the full universe; the skew's small gain is real-looking but under the bar.
+
+## FC1C HL-BN funding gap (21:3x UTC 11-26)
+Form a needs HL funding before 2024-07: the server has none either (136 coins start 2024-07-01, the download default). Backfill 2023-05..2024-06 from the public /info
+fundingHistory (research/studies/is3_fc1c_fetch.py, 4 s interval, resumable, unit is3-fc1cfetch, oldest HL listings first, 139 coins). Deferred to 22:25; LV2 meanwhile.
+
+## LV2 lowvol minus carry (think-through 21:4x UTC 11-26, before any run)
+Source: LV1 diagnosis (findings lowvol): price-only spread positive (explore 0.17-0.31) but the high-vol short leg pays it back in funding (crowded shorts, RIVER/LAB squeezes). Not an InSilico rule.
+Mechanism: the lottery story says the overpayers are LONGS of high-vol names. Where funding is negative, the crowd is already short: the short leg is not taking the lottery buyer's
+ money, it is joining a crowded short that pays carry and gets squeezed. So the short leg should be the high-vol names where longs pay (funding >= 0), i.e. where the lottery buyer is visible.
+What is not said / must be true: (1) excluding negative-funding shorts must beat RANDOM exclusion of the same share (otherwise it is just a smaller short leg); (2) dose: Q5's hedged
+ return should rise monotonically with trailing funding tercile; (3) funding is persistent day to day, so trailing 7-d funding predicts the next day's funding mechanically: the test
+ must also report price-only, so a 'win' that is only funding carry is named as carry (corr with the carry book).
+Forms: a = rank weights, short candidates with trailing 7-d mean funding < 0 dropped, short leg re-scaled to dollar neutral; placebo = same count dropped at random (100 draws).
+ b = rank on vol of (r - funding) instead of r. Explore bnall 1d 2020-01..2023-12, gross of trading costs, net of funding, BTC-beta hedged, top-30 and top-100.
+ PASS (written now): pooled SR >= 0.5 AND >= 3 of 4 years > 0 AND above the 95th pct of the random-drop placebo (a). Confirm: bnall 2024+ was seen by LV1 (the diagnosis came from it),
+ so a pass goes to HL (funding backfilled to 2023-05 by FC1C's fetch) as confirm, stated. Prior low: LV1 2021 -0.9 every form.
