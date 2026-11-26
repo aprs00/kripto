@@ -4,6 +4,7 @@ written before this ran). bnall 1d, explore 2020-01..2023-12, gross of trading c
     re-scaled to the same gross; placebo: the same number of short candidates dropped at random each day (100 draws).
 (b) rank on the 30-d vol of (r - funding).  Dose: Q5 (high vol) hedged next-day return by trailing-funding tercile.
 usage: nice -n 19 .venv/bin/python -m research.studies.is3_lv2 [--hl]"""
+import json
 import sys
 import numpy as np
 import pandas as pd
@@ -90,7 +91,9 @@ def run(p, a=A, b=B, tops=(30, 100)):
         print("   Q5 (short leg) next-day by trailing funding tercile (shorting earns -hedged):\n" + g.round(1).to_string())
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and "--hlc" in sys.argv:
+    form_c()
+elif __name__ == "__main__":
     if "--hl" in sys.argv:
         p = data.load_panel("hl", "1d")
         print("hl", p["close"].shape)
@@ -99,3 +102,27 @@ if __name__ == "__main__":
         p = data.load_panel("bnall", "1d")
         print("bnall", p["close"].shape, p["close"].index[-1].date())
         run(p)
+
+
+def form_c():
+    """LV2 c: lowvol (defaults, the HL main book's blend leg) on HL 1d via research.evaluate (logged, tag lv2c): SR by year, price vs funding,
+    SR without the best 10 days, and the HL funding coverage (backfilled to 2023-05 by is3_fc1c_fetch)."""
+    from kripto import research
+    p = data.load_panel("hl", "1d")
+    fcov = p["funding"].notna().sum(axis=1)
+    print("HL coins with funding by year (median per day):", fcov.groupby(fcov.index.year).median().to_dict())
+    res, s = research.evaluate("lowvol", p, {}, "hl", tag="lv2c")
+    r = res.returns[res.gross.cumsum() > 0]
+    f = res.funding.reindex(r.index).fillna(0); co = res.costs.reindex(r.index).fillna(0)
+    out = {"sharpe": s.get("sharpe"), "n_days": int(len(r)), "start": str(r.index[0].date())}
+    yrs = {}
+    for y, x in r.groupby(r.index.year):
+        yrs[int(y)] = {"sr": round(sr(x), 2), "ret": round(float(x.sum()), 4), "funding_received": round(float(f[x.index].sum()), 4), "costs": round(float(co[x.index].sum()), 4)}
+    out["years"] = yrs
+    top = r.nlargest(10)
+    out["sr_wo_best10"] = round(sr(r.drop(top.index)), 2)
+    out["best10_share_of_total"] = round(float(top.sum() / r.sum()), 2) if r.sum() != 0 else None
+    out["sr_since_2024_07"] = round(sr(r[r.index >= "2024-07-01"]), 2)
+    out["sr_before_2024_07"] = round(sr(r[r.index < "2024-07-01"]), 2)
+    print(json.dumps(out, indent=1))
+    json.dump({"study": "research/studies/is3_lv2.py --hlc", **out}, open("research/is3/lv2_hlc.json", "w"), indent=1)
