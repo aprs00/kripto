@@ -657,3 +657,5 @@ E2d size rule under cap 5 → 10%/order, explore +20%/yr, worst day −4.7% (rep
 Daily books trade at 04:03 UTC. Literal "buy before 17 NY, sell after 18 NY" at that clock loses to signal decay (xsmom −6, tsmom −10 bp/unit; flow +4.9 t 1.8). Clock moved to the break
 (buy 17 NY, sell 18 NY vs both at 17): confirm 2024–26 flow +3.5 bp/unit t 2.49 (+7.2/+2.1/+1.1 by year), xsmom +3.7, tsmom +6.1; placebo: 17 NY tops all hours for all three books.
 It is a 1-h net long of half the turnover, not a cost cut; ≈ $35/yr upper bound on main_bn at $1,000 (2026 rate ≈ $11). HL 2026 no sign (n 206). Best explore pair = drift beta, failed. → E2b.
+E2B (insilico 11-26, research/studies/is3_e2b.py, bn100 1h → daily anchors): moving blend_nested@bn's decision to 16/20 UTC costs nothing (SR 1.87/1.72 vs 1.68 at 00, anchor spread ±0.15),
+but its sells deferred 3 h over the break earn +5.3 bp/unit (t 1.05, 2025 −25) = 3-h deferrals at other anchors (08 UTC +6.5): the hourly drift does not survive into the book's real trades → not adopted. flow@bn untestable (no hourly taker split); HL 1h ≥ 12 mo on 2027-04-14.

@@ -71,5 +71,63 @@ def main():
               open("research/is3/e2b_anchor.json", "w"), indent=1, default=str)
 
 
+
+
+def hourly(coins):
+    """{coin: Series of prices at the full hour (close of the hourly bar that ends then)}."""
+    out = {}
+    for coin in coins:
+        f = BN100_DIR / f"{coin}USDT.parquet"
+        if not f.exists():
+            continue
+        df = pd.read_parquet(f, columns=["t", "c"])
+        t = df["t"].where(df["t"] < 1e14, df["t"] // 1000)
+        s = pd.Series(df["c"].to_numpy(), pd.to_datetime(t, unit="ms", utc=True) + pd.Timedelta(hours=1))
+        out[coin] = s[~s.index.duplicated()].sort_index()
+    return out
+
+
+def form_b():
+    """Deferred sells: trades decided at the anchor-H close (time T = bar label + 24 h); buys at T, sells (dw < 0) at T + 3 h.
+    Gain of deferring a sell = -dw * r(T -> T+3h) (the sold amount keeps its exposure 3 more hours). Per unit sold, by year.
+    Hypothesis window: H = 20 (T = 20:00, deferral covers the CME break 21-23 UTC). Placebo: the same 3-h sell deferral at the other
+    anchors (00..16). Raw target changes (no band), blend_nested@bn components."""
+    from kripto.strategies import REGISTRY
+    P = panels()
+    res = {}
+    hp = None
+    for h, p in P.items():
+        w = REGISTRY["blend"](p, **COMP).fillna(0.0)
+        dw = w.diff().loc["2020-06-01":"2026-10-31"]
+        dw = dw.loc[:, dw.abs().sum() > 0]
+        if hp is None:
+            hp = hourly(list(P[0]["close"].columns))
+        T = dw.index + pd.Timedelta(hours=24)
+        gain = pd.Series(0.0, dw.index); sold = pd.Series(0.0, dw.index); bgain = pd.Series(0.0, dw.index); bought = pd.Series(0.0, dw.index)
+        for coin in dw.columns:
+            if coin not in hp:
+                continue
+            s = hp[coin]
+            r = (s.reindex(T + pd.Timedelta(hours=3)).to_numpy() / s.reindex(T).to_numpy() - 1)
+            d = dw[coin].to_numpy()
+            ok = np.isfinite(r)
+            sm = ok & (d < 0); bm = ok & (d > 0)
+            gain += np.where(sm, -d * np.nan_to_num(r), 0.0); sold += np.where(sm, -d, 0.0)
+            bgain += np.where(bm, -d * np.nan_to_num(r), 0.0); bought += np.where(bm, d, 0.0)
+        yrs = {}
+        for y in range(2020, 2027):
+            m = gain.index.year == y
+            yrs[y] = round(float(gain[m].sum() / sold[m].sum() * 1e4), 2) if sold[m].sum() > 0 else None
+        daily = gain / sold.replace(0, np.nan)
+        t = float(gain.mean() / gain.std() * np.sqrt(len(gain))) if gain.std() > 0 else np.nan
+        res[h] = {"sell_defer_bp_per_unit": round(float(gain.sum() / sold.sum() * 1e4), 2), "t_daily": round(t, 2), "years": yrs,
+                  "buy_defer_bp_per_unit": round(float(bgain.sum() / bought.sum() * 1e4), 2),
+                  "sold_per_yr": round(float(sold.sum() / (len(sold) / 365)), 1), "gain_bp_per_yr_of_book": round(float(gain.sum() / (len(gain) / 365) * 1e4), 1)}
+        print(f"anchor {h:02d}: defer sells 3h {res[h]['sell_defer_bp_per_unit']:+.2f} bp/unit sold (t {t:.2f}), defer buys {res[h]['buy_defer_bp_per_unit']:+.2f}; "
+              f"book +{res[h]['gain_bp_per_yr_of_book']} bp/yr; by year " + " ".join(f"{y}:{v}" for y, v in yrs.items()), flush=True)
+    json.dump({"study": "research/studies/is3_e2b.py form_b", "what": form_b.__doc__, "anchors": res}, open("research/is3/e2b_defer.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    main()
+    import sys
+    form_b() if "b" in sys.argv[1:] else main()

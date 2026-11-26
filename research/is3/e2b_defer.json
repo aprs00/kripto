@@ -1,0 +1,102 @@
+{
+ "study": "research/studies/is3_e2b.py form_b",
+ "what": "Deferred sells: trades decided at the anchor-H close (time T = bar label + 24 h); buys at T, sells (dw < 0) at T + 3 h.\n    Gain of deferring a sell = -dw * r(T -> T+3h) (the sold amount keeps its exposure 3 more hours). Per unit sold, by year.\n    Hypothesis window: H = 20 (T = 20:00, deferral covers the CME break 21-23 UTC). Placebo: the same 3-h sell deferral at the other\n    anchors (00..16). Raw target changes (no band), blend_nested@bn components.",
+ "anchors": {
+  "0": {
+   "sell_defer_bp_per_unit": -3.96,
+   "t_daily": -1.02,
+   "years": {
+    "2020": 7.0,
+    "2021": -0.14,
+    "2022": -14.13,
+    "2023": -3.58,
+    "2024": -4.87,
+    "2025": -1.18,
+    "2026": -7.33
+   },
+   "buy_defer_bp_per_unit": -1.48,
+   "sold_per_yr": 55.1,
+   "gain_bp_per_yr_of_book": -218.6
+  },
+  "4": {
+   "sell_defer_bp_per_unit": 4.32,
+   "t_daily": 1.19,
+   "years": {
+    "2020": 3.79,
+    "2021": 22.97,
+    "2022": 6.04,
+    "2023": 3.13,
+    "2024": 4.02,
+    "2025": -1.79,
+    "2026": -17.73
+   },
+   "buy_defer_bp_per_unit": -5.46,
+   "sold_per_yr": 55.0,
+   "gain_bp_per_yr_of_book": 237.6
+  },
+  "8": {
+   "sell_defer_bp_per_unit": 6.46,
+   "t_daily": 1.9,
+   "years": {
+    "2020": 21.1,
+    "2021": 10.75,
+    "2022": -3.68,
+    "2023": 4.97,
+    "2024": 2.65,
+    "2025": 7.33,
+    "2026": 13.37
+   },
+   "buy_defer_bp_per_unit": -5.49,
+   "sold_per_yr": 54.8,
+   "gain_bp_per_yr_of_book": 353.5
+  },
+  "12": {
+   "sell_defer_bp_per_unit": -4.74,
+   "t_daily": -1.11,
+   "years": {
+    "2020": 4.31,
+    "2021": -3.01,
+    "2022": -12.15,
+    "2023": 1.48,
+    "2024": -11.39,
+    "2025": -12.25,
+    "2026": 13.04
+   },
+   "buy_defer_bp_per_unit": 7.53,
+   "sold_per_yr": 56.0,
+   "gain_bp_per_yr_of_book": -265.5
+  },
+  "16": {
+   "sell_defer_bp_per_unit": -1.05,
+   "t_daily": -0.28,
+   "years": {
+    "2020": 7.92,
+    "2021": 5.97,
+    "2022": -18.37,
+    "2023": 6.6,
+    "2024": -6.19,
+    "2025": 8.41,
+    "2026": -5.67
+   },
+   "buy_defer_bp_per_unit": 1.37,
+   "sold_per_yr": 55.9,
+   "gain_bp_per_yr_of_book": -58.9
+  },
+  "20": {
+   "sell_defer_bp_per_unit": 5.32,
+   "t_daily": 1.05,
+   "years": {
+    "2020": 18.74,
+    "2021": 9.78,
+    "2022": -7.86,
+    "2023": 10.55,
+    "2024": 22.45,
+    "2025": -25.27,
+    "2026": 5.24
+   },
+   "buy_defer_bp_per_unit": -6.47,
+   "sold_per_yr": 54.7,
+   "gain_bp_per_yr_of_book": 291.0
+  }
+ }
+}

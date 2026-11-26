@@ -2590,7 +2590,7 @@
    "group": "D",
    "title": "Execution clock at the CME break for Binance daily books (E2 passed, small and fading)",
    "src": "findings E2 2026-11-26 (research/studies/e2_exec_tilt.py)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -2603,15 +2603,24 @@
     {
      "id": "b",
      "what": "replay of deferred sells (buy 20:03 UTC, sell 23:03 UTC) on the live main_bn mix incl. carry legs, net of the decay; per year, the 2026 rate as the honest number",
-     "status": "todo"
+     "status": "done",
+     "result": "replay on blend_nested@bn trades (bn100 hourly prices, raw target changes 2020-06..2026-10): defer sells 3h from the 20 UTC anchor (covers the CME break) +5.3 bp/unit sold, t 1.05, years +18.7/+9.8/-7.9/+10.6/+22.5/-25.3/+5.2 (2026 +5); placebo 3-h deferral at other anchors: 08 UTC +6.5 (t 1.9), 04 +4.3, 00 -4.0, 12 -4.7, 16 -1.1: the CME window is not special; deferring buys loses -6.5. FAIL (baseline does the same). flow@bn not replayable (no hourly taker split)",
+     "date": "2026-11-26",
+     "evidence": "e2b_defer"
     },
     {
      "id": "c",
      "what": "HL: the same split on HL 1h for the HL main book (blend_nested) once >= 12 months of HL hourly data; if not enough, record the date it will be",
-     "status": "todo"
+     "status": "done",
+     "result": "not testable yet: HL 1h candles start 2026-04-14 (5000-candle API window, kept since), 12 months = 2027-04-14; prior lowered by b (no CME-specific deferral gain on Binance) and E2's HL 2026 no-sign (n 206)",
+     "date": "2026-11-26",
+     "evidence": "e2b_defer"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "anchor move costs nothing (a) but the deferred-sell gain at the CME break (+5.3 bp/unit, t 1.05) is matched by 3-h deferrals at other anchors (08 UTC +6.5): the E2 hourly drift does not survive translation into blend_nested@bn's real trades; HL untestable until 2027-04-14. Not adopted.",
+   "closed": "2026-11-26"
   }
  ]
 }

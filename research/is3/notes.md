@@ -738,3 +738,5 @@ Think-through: E2 (PC) found a 1-h net-long drift in the CME break (17-18 NY = 2
  (2) the tilt is a 1-h long of half the turnover, so it is beta, judged against the same 3-h deferral at other hours; (3) the 2026 rate is the honest number, the trend is down.
 E2B a done (is3_e2b.py, e2b_anchor.json): anchors 00..20 UTC SR 1.57-1.87 (16: 1.87, 20: 1.72, 00: 1.68): anchor moves cost nothing beyond +-0.15 SR phase noise. First run was a bug
  (resample offset ignored on tz-aware index: same prices, shifted funding, 5 junk registry lines tagged anchor @04..@20, ~21:45 UTC); fixed by shifting the index, known-answer assert on BTC.
+E2B b done (e2b_defer.json): sells deferred 3 h from the 20 UTC anchor +5.3 bp/unit (t 1.05; 2025 -25, 2026 +5) = placebo deferrals at 08 (+6.5) / 04 (+4.3); deferring buys loses ~-6 (signal decay).
+E2B c: HL 1h starts 2026-04-14 -> testable 2027-04-14. E2B CLOSED OPEN. Sceptic: tested on the book's own trades with the clock that a live book could use; flow@bn (the leg E2 liked most) could not be replayed.
