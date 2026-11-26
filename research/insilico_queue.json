@@ -2675,7 +2675,7 @@
    "group": "D",
    "title": "Sunday-move fade as a BTC+ETH-only overlay (W3's one untried form)",
    "src": "findings W3 walk-forward 2026-11-25 (market-wide effect, 2024+; untried BTC+ETH-only, prior low); R21 weekend fades",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -2688,10 +2688,15 @@
     {
      "id": "b",
      "what": "only if a passes: one confirm 2024-01..2026-10 (W3's WF saw 2024+ for all bn100 incl. BTC/ETH in aggregate: state it)",
-     "status": "planned"
+     "status": "skipped",
+     "result": "a failed its pre-registered explore rule; no confirm (pass3 s3)",
+     "date": "2026-11-26"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "BTC+ETH-only Sunday fade has no explore effect (-13 bp, t -0.3, MDE 109): W3's fade lives in alts and in 2024+, so a cheap two-coin overlay cannot be built from explore evidence; 2024+ cannot be its explore without spending it.",
+   "closed": "2026-11-26"
   }
  ]
 }
