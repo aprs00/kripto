@@ -86,6 +86,19 @@ def gather(root: Path = ROOT, db: Path = DB) -> dict:
             elif line.strip() and not line.startswith("=== "):
                 prev = line.strip()
     f["sessions"].sort()
+    # InSilico sessions run every 2 h but only when the queue has an item due. 11-25 05:36 -> 11-26 21:14 the queue held nothing
+    # due (every item waited for data), the slot idled for 40 h, and reviews logged "insilico idle (nothing due)" as healthy.
+    # An empty queue is work to do (refill it from the backlog), not a resting state.
+    try:
+        if not (root / "state" / "insilico.paused").exists():
+            from scripts import insilico_queue as iq
+            if not iq.should_run()[0]:
+                q = json.loads((root / "research" / "insilico_queue.json").read_text())
+                ins = [t for t, mode, _ in f["sessions"] if mode == "insilico"]
+                dues = sorted(it.get("due", "") for it in q["items"] if it["status"] in ("todo", "wip") and it.get("due"))
+                f["insilico_idle"] = {"last_session": ins[-1] if ins else None, "next_due": dues[0] if dues else None}
+    except Exception:
+        pass
     # Always-on services restart themselves in 30 s, faster than any heartbeat check notices: count real crashes instead
     # (kripto-flow was OOM-killed at every 00:00 compaction 11-14..11-16 and the watchdog never said so).
     f["crashes"] = {}
@@ -171,6 +184,12 @@ def assess(f: dict, now: datetime) -> tuple[str, list[str]]:
         dt = parse_ts(f"{due} 00:00" if len(str(due)) == 10 else due)
         if dt is not None and dt <= now:
             warn.append(f"due {due}: {n} {what}"[:80])
+    ii = f.get("insilico_idle")
+    if ii is not None:
+        ih = age(parse_ts(ii.get("last_session"))) if ii.get("last_session") else None
+        if ih is None or ih > 6:
+            warn.append(f"InSilico queue has nothing due (next {ii.get('next_due') or 'none'}), slot idle "
+                        + (f"{ih:.0f}h" if ih is not None else "") + ": refill it from the backlog")
     d = f.get("disk_free_gb")
     if d is not None and d < 5:
         alert.append(f"disk {d:.1f}G free")

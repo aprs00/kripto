@@ -416,3 +416,7 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   CLAUDE.md "interactive on the owner's PC" says what may run there; `[pc]` commit tag + review step so PC code changes get the rule-6 trader run on the server.
   Parallel research agents each got one backlog item, a walk-forward budget share (total ≤ 6) and no write access to the shared memory files (lead integrates), so
   findings/journal edits cannot collide.
+* 2026-11-26 interactive (owner, angry, rightly: "why the fuck this has not run since yesterday morning"): the InSilico queue held nothing due from 11-25 05:36 (every item waited
+  for data), so the 2-hourly sessions skipped for 40 h, and two reviews wrote "insilico idle (nothing due)" as if that were healthy. The owner noticed, not the system.
+  Fix: `scripts/health.py` WARNs when the queue has nothing due and no InSilico session ran for 6 h (test), which starts a review; prompts/review.md step 3b makes that review
+  refill the queue from the backlog in the same session. Lesson: a scheduler that is allowed to skip must treat "nothing to do" as a fault to fix, not a status to report.

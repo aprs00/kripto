@@ -142,3 +142,11 @@ def test_liquidation_stream_without_data_is_a_warning():
     assert level == "WARN" and "no liquidation for 2 h" in why[0]
     f["liq"] = {"ts": iso(seconds=50), "events_total": 900, "last_event": iso(minutes=3), "up_s": 3 * 3600}
     assert health.assess(f, NOW) == ("OK", [])
+
+
+def test_idle_insilico_queue_warns():
+    f = _ok(); f["insilico_idle"] = {"last_session": iso(hours=40), "next_due": "2026-12-05"}
+    level, why = health.assess(f, NOW)
+    assert level == "WARN" and "InSilico queue has nothing due" in why[0] and "refill" in why[0]
+    f = _ok(); f["insilico_idle"] = {"last_session": iso(hours=3), "next_due": "2026-12-05"}
+    assert health.assess(f, NOW)[0] == "OK"                    # a session finished recently: no noise yet

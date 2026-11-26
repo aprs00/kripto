@@ -17,6 +17,11 @@ scheduled, something is broken: `cat state/health.json` tells you what.
    If anything is broken: diagnose, fix, verify (tests + a real trader run), record. Don't just report it.
 3. Sanity: are fills/slippage/fees/funding plausible? Is any book behaving very differently from its backtest
    expectation (see research/findings.md)? Note it. Don't overreact: a few days of paper P&L is mostly noise.
+3b. **InSilico queue empty** (watchdog WARN "InSilico queue has nothing due", or `python -m scripts.insilico_queue should-run` exits 3 without
+   state/insilico.paused): that is NOT a healthy idle state; the 2-hourly sessions do nothing until someone gives them work (11-25 → 11-26: 40 h lost,
+   the owner had to notice). Refill it in THIS session: take the highest-value backlog items that the battery can test now with data on disk
+   (descriptive studies, filters for live books, data-waiting items' forms that need no new data), add each as a queue item with ≥ 3 planned forms
+   (edit research/insilico_queue.json in the existing format; `tests/test_insilico_queue.py` must pass), commit, push, and confirm `should-run` exits 0.
 4. Apply lifecycle rules ONLY if a gate in docs/design.md §4 is clearly met (e.g. kill-switch, retirement).
 5. If you noticed a process weakness, fix it now if it's quick, or add it to the backlog. Log fixes in the CLAUDE.md
    Process changelog.
