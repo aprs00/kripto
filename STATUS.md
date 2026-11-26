@@ -1,6 +1,6 @@
-HEALTH: OK — 08:25 review: trader hourly rc 0, data fresh (last bar 04:00), collectors/websockets live, nightly data + 06:40 research rc 0, disk 72%.
+HEALTH: WARN — ladder@bn passes every gate clause but is not trading yet (engineering + switch-on scheduled first thing 11-27 06:40); everything else OK at the 22:58 review: trader hourly, collectors/websockets live, disk 75%.
 
-_Updated 2026-11-26 ~08:30 UTC (review; research body below from 07:35). Detail: journal/2026-11-26.md._
+_Updated 2026-11-26 ~23:05 UTC (watchdog-triggered review; body from 07:35/08:30 sessions). Detail: journal/2026-11-26.md._
 
 ## Held back (written gate clauses applied by `scripts.held_back`; a strategy that fails nothing must trade)
 | strategy | pick | grid avg | DSR | worst | grid med | other venue | status / alloc | fails (written clauses) |
