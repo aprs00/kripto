@@ -1,6 +1,6 @@
-HEALTH: OK — all services, timers, data and collectors healthy (scripts.health 07:28 UTC); trader ran twice by hand after today's changes, rc 0.
+HEALTH: OK — 08:25 review: trader hourly rc 0, data fresh (last bar 04:00), collectors/websockets live, nightly data + 06:40 research rc 0, disk 72%.
 
-_Updated 2026-11-26 ~07:35 UTC (research). Detail: journal/2026-11-26.md._
+_Updated 2026-11-26 ~08:30 UTC (review; research body below from 07:35). Detail: journal/2026-11-26.md._
 
 ## Today in plain words
 1. **The Binance main book changes, by the fixed rule, not by preference.** A clause of the rule for picking the main book ("of two blends, use the one whose parts
@@ -20,7 +20,7 @@ _Updated 2026-11-26 ~07:35 UTC (research). Detail: journal/2026-11-26.md._
 | book | $1,000 (shadow $2,000) | $200 twin |
 |---|---|---|
 | main (HL, blend_nested) | $1,007 (+0.7%) | $192 (−4.0%): 1 position fits |
-| main_bn (→ flow + blend_nested@bn from 08:03) | $935 (−6.5%) | $200 (+0.1%) |
+| main_bn (flow + blend_nested@bn; switched 08:09, 25 fills) | $932 (−6.9%) | $200 (+0.1%) |
 | funding pair ($2,000) | $2,009 (+0.5%; funding +$20) | $201 (+0.6%) |
 | tsmom / tsmom@bn | +10.9% / +11.5% | +7.2% / +5.6% |
 | blend / blend_nested (HL) | +6.6% / +1.6% | +2.0% / −4.2% |
