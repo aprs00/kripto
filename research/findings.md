@@ -411,6 +411,7 @@ market-wide Sunday fade (one bet per Sunday, ≈ 50 a year), fades of down moves
 Pick 0.44 / grid avg 0.23 / worst 0.30 (2× costs) / $200 −0.86 / mdd −35% / DSR 0.08 (rule needed > 0.8). Before costs SR 0.79; costs 5.1%/yr at 69× turnover. By year:
 2020 +1.37, 2021–23 ≈ 0 (0.06 / 0.09 / −0.32), 2024–26 +1.65 / +0.62 / +0.80: a 2024+ effect. Explore decomposition (≤ 2023, w3_decomp.py): it is ~all market-wide
 (raw +36 bp of which market +33; excess-only +10 bp t 1.0; one market bet t 0.6, median −24 bp). Untried as WF: BTC+ETH-only (cheap overlay), prior low.
+W3B (insilico 11-26, is3_w3b.py): BTC+ETH-only overlay, explore 2020–23: Sunday fade −13 bp per Sunday (t −0.3, MDE 109), no dose → no confirm; the fade is an alt / 2024+ effect.
 
 ### Unit-price bias (InSilico R28, bnall top-100, 2026-11-15) → DEAD (an alt-season effect)
 Cheapest fifth by price per unit vs the universe: +52 bp/week in 2020–23 (t 2.1), −52 bp/week in 2024–26 (t −1.3); vs the dearest fifth

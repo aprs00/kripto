@@ -773,3 +773,4 @@ Source: W3 (R21 second pass): fading the Sunday 12->18 NY move for 24 h replicat
  Asia open is when it reverts: 24 h holds through it; (3) placebo: the same clock on the other six days must not do it.
 PRE-REGISTERED (a, explore 2020-02..2023-12): PASS = Sunday fade, |move| >= 1%, mean per Sunday (BTC+ETH, tranches 17/18/19 averaged) >= +15 bp AND t (per Sunday) >= 2 AND
  above the median of the six placebo weekdays in >= 3 of 4 years AND mean - 12 bp > 0. Prior low (W3 explore market bet t 0.6).
+W3B a done (w3b_explore.json): Sunday fade on BTC+ETH <= 2023 = 0 or negative at every size; Saturday 12->18 NY fade +43 bp t 1.9 is a placebo-day surprise (with FF2: Fri up, Sat afternoon reverts?), not chased. W3B CLOSED OPEN.
