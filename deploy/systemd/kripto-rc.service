@@ -1,0 +1,19 @@
+# Always-on Claude Remote Control server: the owner opens "kripto-server" in the Claude app (Code tab) to run a session here.
+# Runs inside a private tmux (claude remote-control wants a terminal). Attach to look: tmux -L rc attach
+[Unit]
+Description=Claude Remote Control for kripto (phone access)
+After=network-online.target
+
+[Service]
+Type=forking
+WorkingDirectory=/home/kripto/kripto
+Environment=PATH=/home/kripto/.local/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/bin/tmux -L rc new-session -d -s rc -x 200 -y 50 "claude remote-control --name kripto-server --spawn same-dir --capacity 2 --permission-mode default"
+ExecStop=/usr/bin/tmux -L rc kill-server
+Restart=always
+RestartSec=60
+Nice=10
+MemoryMax=1500M
+
+[Install]
+WantedBy=default.target
