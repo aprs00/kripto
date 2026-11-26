@@ -60,3 +60,5 @@ Hyperliquid main book) has no edge on 6 years of Binance; its Hyperliquid number
 Next research session: switch on the monthly risk multiplier (`scripts.main_scale --write`) and check main_bn's first days on its new mix. Then T5b Binance positioning
 (once `scripts.metrics_coverage` shows ≥ 95% per year, ≈ 11-28/29), liquidation prints (≈ 12-01), fill-delay re-measure (≈ 12-09), HL order-flow re-check (≈ 12-23).
 Nested-blend refits (HL and Binance) due 2027-01-02. Forward ledger: first verdicts ≈ 12-09.
+
+InSilico pass 3: 212/229 forms done (3 skipped), 37/43 items closed; best finding still the resting-bid ladder (live as shadow/small:ladder@bn). Latest (11-26): capping open ladder positions only shrinks size; quoting deeper when positions are open helps a little (+0.12 Sharpe out of sample), below the bar, so the live ladder is unchanged.
