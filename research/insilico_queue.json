@@ -2547,8 +2547,8 @@
     }
    ],
    "sessions": 1,
-   "due": "2026-11-26T22:25",
-   "defer_why": "HL funding backfill pre-2024-07 running (unit is3-fc1cfetch)"
+   "due": "2026-11-26T23:00",
+   "defer_why": "HL funding backfill chunk 2 running (34/134 done at 22:17)"
   },
   {
    "id": "LV2",
@@ -2581,8 +2581,8 @@
     }
    ],
    "sessions": 1,
-   "due": "2026-11-26T22:30",
-   "defer_why": "form c needs HL funding pre-2024-07 (is3-fc1cfetch)"
+   "due": "2026-11-26T23:00",
+   "defer_why": "form c needs the HL funding backfill (is3-fc1cfetch)"
   },
   {
    "id": "E2B",
