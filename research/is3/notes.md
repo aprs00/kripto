@@ -747,3 +747,15 @@ FC1C think-through (21:5x UTC, before any number on the new window): gap = HL 3-
  (corr listing_short 0.49) -> form b uses it as a listing_short filter.
  PRE-REGISTERED (a, explore 2023-05-15..2024-07-01): PASS = c3s [entry] net > 0 AND t_price >= 2 AND short price leg higher in deciles 9-10 than in 1-5 (dose) AND c3s entry net
  > cX entry net. Only then ONE confirm 2025-07..2026-10 (never seen by any FC1 form). Prior low (PC: t 1.1-1.5 over 12 months).
+
+## FF2 friday_follow market-relative / shorts only (think-through 21:5x UTC 11-26, before any run)
+Source: findings friday_follow + FF1(a): Friday's >= 2-4% 24-h move continues into Saturday on the 82 survivors; on bn100 (survivorship-free) the WF fell to 0.78/avg 0.61 and the P&L
+ was the long leg of the 82 (+1.11 of +1.55); outside the 82: +14 bp/week 2020-23, +0.8 bp 2024-26. Opposite of InSilico R21 (weekend fade).
+Mechanism (if any): Friday-afternoon NY flow is the last institutional session before a thin weekend; a coin that moved on its own news (idiosyncratic) is not fully priced when
+ desks go home, and weekend liquidity is too thin to finish the move until Saturday. That is about the coin's OWN move, not the market's: the absolute-move rule mixes it with
+ market beta (on a +5% BTC Friday, every alt "moved"). So the excess move over the universe is the purer form; shorts only removes the survivor-long channel entirely.
+Unstated: (1) who is trapped: weekend shorts against a Friday breakout; (2) hold relative to the universe (hedged), else it is a weekend beta bet; (3) Thursday/Saturday cuts must not show it.
+Build: bn100 1h per-coin closes at cut T (hour ending Fri 12/15/17/20 NY, tranches), m = c(T)/c(T-24h)-1, U = mean m over the point-in-time top-30 (and top-100), x = m - U;
+ follow sign(x) if |x| >= thr (2/3/4%), outcome = side * (r(T->T+24h) - U_fwd). Placebo cuts: Thu and Sat same hours. Week-clustered t (mean per cut-week). Simple returns.
+PRE-REGISTERED (a, b; explore 2020-01..2023-12): PASS = thr 2% form gross >= +20 bp/event AND week-clustered t >= 2 AND every explore year > 0 AND above both placebo weekdays
+ AND gross - 14 bp (FF1 cost/event) > 0. Prior low.
