@@ -45,6 +45,12 @@ _Updated 2026-11-26 ~08:30 UTC (review; research body below from 07:35). Detail:
 **Honest expectation if these edges are real:** blend-type books 12–27% a year with 20–30% drawdowns; the funding pair about 4–5% a year at a deployable size
 (≈ $40/yr on $1,000, ≈ $8/yr on $200). No real money before the paper books have tracked their backtests for 2–3 months. That decision is yours.
 
+## Evening session on the owner's PC (11-26 ~20:00 UTC, history-only; detail: journal)
+Four checks in parallel, **no new walk-forward tests used**: lowvol and funding-spike fading do not work on clean Binance data once funding is counted (crowded short squeezes pay it back);
+long-only trend adds nothing over simply holding BTC since 2024; capping the ladder at 3 open positions halves its worst day but mostly by trading less (live ladder unchanged);
+trading the daily books at the CME break would save ≈ 3.5 bp per trade but the effect is fading (about $11/yr on $1,000 at this year's rate). Warning noted: lowvol (part of the
+Hyperliquid main book) has no edge on 6 years of Binance; its Hyperliquid number rests on ~2 years. No book, config or code the trader uses was changed.
+
 ## Next
 Next research session: switch on the monthly risk multiplier (`scripts.main_scale --write`) and check main_bn's first days on its new mix. Then T5b Binance positioning
 (once `scripts.metrics_coverage` shows ≥ 95% per year, ≈ 11-28/29), liquidation prints (≈ 12-01), fill-delay re-measure (≈ 12-09), HL order-flow re-check (≈ 12-23).

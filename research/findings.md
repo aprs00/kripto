@@ -97,9 +97,10 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
 picking badly among the 12 (long-only variants), so the grid median is the fairer number: ~0.6 HL, ~1.0 Binance.
 Old: HL 4h 0.43–0.55, BN-82 1.31 (survivor-biased), bnall 0.97. One day late costs a third (1.06 → 0.71). Fails the gate alone.
 
-### tsmom long-only (2026-11-08) → OPEN (one form, diagnosed as beta; audited 2026-11-22, was DEAD)
-2022 −33%, 2025 −11%: it is BTC beta, not an edge. Audit 2026-11-22: one form (a restriction of tsmom); its grid SR is 0.65–1.0 on bnall, like the L/S book,
-so "beta" was asserted, never measured against holding BTC at equal vol. Untried, prior low: LO1 (excess over vol-matched BTC; BTC-only timing; as blend leg).
+### tsmom long-only (2026-11-08) → OPEN, weaker (LO1 2026-11-26: adds nothing over BTC since 2024; audited 2026-11-22, was DEAD)
+2022 −33%, 2025 −11%. LO1 (PC, bnall 1d, default params, descriptive, research/studies/lv1_lowvol.py --lo1): long-only SR 1.01 vs vol-matched BTC 0.68; excess SR
+explore ≤ 2023 0.67 / confirm 2024+ −0.06; alpha on BTC (β 0.33) 1.19 → 0.16; the excess is 2021 (+1.75), 2024 −1.35. Long-short tsmom keeps alpha (1.42 / 0.71, β −0.02):
+the L/S form is the one with value. Untried, prior low: BTC-only timing. Caveat: default params (live top_n 12 not tested), no cost on the BTC leg.
 
 ### tsmom signal smoothing (EMA 3/7d) and $20M liquidity floor (T1c, 2026-11-09) → DEAD (smoothing) / weak (floor)
 Smoothing halves turnover (63→28/yr) but Sharpe falls more (HL 1.11→0.34, BN 1.00→0.99 at best; lag kills the signal).
@@ -113,7 +114,7 @@ this is not schedule luck. Fails the gate: DSR < 0.9 and negative on HL. Why HL 
 ### carry: short high funding / long low funding, dollar+beta neutral (2026-11-08, re-run 11-09) → DEAD on HL (re-check ~2027-05); ALIVE on Binance (candidate@bn 2026-11-26)
 2026-11-26 clean bnall 1d (survivorship-free, grid unchanged): pick 1.30 / avg 1.31 / worst 1.34, $200 1.06; funding +17%/yr broad (top-10 30%); 2025 −0.10, 2026 −0.75 (squeezes > funding).
 HL OOS −0.89, grid med −0.34 (2/12 >0); BN 1.06 (med 0.72). On HL high-funding names are squeezes that keep rising.
-Concentrated: HL −1.05, BN 0.50. Carry needs breadth and doesn't transfer to HL.
+Concentrated: HL −1.05, BN 0.50. Carry needs breadth and doesn't transfer to HL. Audited 2026-11-26: HL DEAD holds (3 forms: broad, concentrated, trend-conditioned; diagnosed).
 
 ### carry_trend: carry only where trend agrees (T1d, 2026-11-09) → DEAD on HL; ALIVE on Binance (candidate@bn 2026-11-26)
 2026-11-26 clean bnall 1d: pick 1.44 / avg 1.46 / worst 1.29, $200 0.78; price-only SR 1.09 (a trend book with a funding tilt); 2021 = 141% of return, 2024 0.29, 2026 0.00.
@@ -144,15 +145,18 @@ HL OOS −2.66, BN −1.81; 0/6 >0 on both. Turnover makes fees dominate. Audit:
 thresholded BTC-residual reversion = resrev; hourly x-sec reversal = L1; minute extreme-move fades) and the reason is diagnosed: daily residual
 moves CONTINUE (price-only SR −0.72), intraday reversal is real (t ≈ 8) but 2–5 bp vs ≥ 12 bp round trip. Untried, low prior: bnall (T10).
 
-### lowvol: betting against volatility, beta-hedged (2026-11-08, re-run 11-09) → OPEN (one form failed; audited 2026-11-15, was DEAD)
-HL −0.24 (1/6 >0); BN OOS 0.44 but grid med −0.01 (3/6 >0). Not robust. Note 2026-11-10: under harness v2 (tranches, band 0.01) the
-DEFAULT config is HL full-sample 0.90 (bnall 0.22) and H4's selection rule picks it as an HL blend leg; no new WF run, verdict unchanged.
-Audit 2026-11-15: ONE form (total-vol rank, beta-hedged, HL + survivor-biased BN-82 4h) and no diagnosis of why it failed; H4 keeps
-picking it on HL. Untried forms → backlog LV1 (bnall, idiosyncratic vol, high-vol exclusion as a filter for the x-sec books' shorts = R1).
+### lowvol: betting against volatility, beta-hedged (2026-11-08, re-run 11-09) → OPEN, 4 forms failed on Binance with a diagnosis (LV1 2026-11-26); HL blend leg
+HL WF −0.24; BN-82 0.44 (med −0.01); default config HL full-sample 0.90 → picked by blend_nested on HL. LV1 (PC, bnall 1d survivorship-free, explore 2020–23 / confirm 2024+,
+rank-hedged net of funding, before costs; no WF by the pre-written rule): total top-30 −0.06/−0.06, idio vol −0.06/−0.09, top-100 0.02/0.01, idio top-100 0.11/−0.08.
+**Why:** price-only is positive (0.17–0.31 / 0.69–0.92) but the high-vol shorts are crowded (confirm Q5 funding mean −102%/yr, median +9.7%: RIVER, LAB, PIPPIN, MYX), so the
+short leg pays its price gain back in funding; delistings few (9/15 in top-100), not survivorship; 2021 −0.9 every form. Its HL 0.90 rests on ~2 y: a warning for the HL main
+book's blend leg (refit 2027-01-02 decides by rule). Untried: short leg excluding negative-funding names (shaped after confirm: needs HL/forward as its confirm). R1 = (c).
 
-### funding_contra: fade funding spikes vs own history (2026-11-08, re-run 11-09) → OPEN (one form failed; audited 2026-11-22, was DEAD)
-HL −0.81 (0/8 >0); BN −0.42 (med 0.15). Not robust. Audit 2026-11-22: ONE form (z-scored funding jump, cross-sectional, daily); no diagnosis beyond turnover.
-BN grid is mixed, HL clearly negative (squeezes keep rising, as with carry). Untried → backlog FC1 (extreme negatives only, conditional on price, HL-vs-BN funding gap).
+### funding_contra: fade funding spikes vs own history (2026-11-08, re-run 11-09) → DEAD as crowding reversal (FC1 2026-11-26, 4 forms); HL-vs-BN gap OPEN (T3)
+WF HL −0.81, BN −0.42. FC1 (PC, research/studies/fc1_funding_contra.py, bnall top-100 explore 2020–23, rule: price leg t>2 every year, corr carry<0.5; nothing passed → no confirm, no WF):
+(a) long funding < −0.3%/d: price leg t −2.4..0.4; new listings −84..−96 bp/d (hedged supply, = listing_short); seasoned top-30 SR 1.63 is funding (+100 bp/d), top-10 days 104% of net
+(TRB/AXS/BLZ), corr carry 0.46 = carry's long tail. (b) short funding > 0.1%/d after a 1–7 d stall: −35..−60 bp/d whatever the stall; loss = worst 1% (squeezes); the working filter is
+carry_trend's 14–56 d trend. (c) short top-10% HL−BN gap +122..148 bp/7 d, t 1.1–1.5, only 12 mo (local HL funding from 2024-07), corr listing_short 0.49 → re-explore pre-2024-07 on the server.
 
 ### resrev: BTC-defactored residual reversion with entry threshold (library N5/Pole, 2026-11-09, interactive) → DEAD
 New angle vs xsrev (threshold, residuals, low turnover). Still 0/9 >0 on HL 1d (OOS −0.59), bnall 1d (−0.85), BN 4h (−1.13);
@@ -551,3 +555,14 @@ Live XTEN cost ~160 bp/trade vs the 25 bp cap (C1). Extra x bp on all trading in
 The fixed rule's "of two blends, the hindsight-free one" had been applied on HL only; applied on Binance now (blend@bn -> blend_nested@bn = carry_trend, carry, xsmom at the 11-03 refit;
 xsmom@bn not added again as a current component). Live BN panel now carries funding (carry legs). Lesson: re-read the WHOLE rule when re-deriving; a clause applied on one venue only
 went unnoticed for two re-derivations because the result "no change" looked plausible.
+
+### LD1 ladder@bn inventory skew (library N13; 2026-11-26 PC, research/studies/ld1_ladder_skew.py, one-bar-late E2 fills, not registered) → skew OPEN; cap 3 weak PASS
+Local 1-min data covers ~80% of top-20 coin-days (base reproduces server SR 2.12 vs 2.14). Explore 2021–23 (base SR 2.46, worst day −2.28%): book-wide skew k=30(1+0.5·n_open) SR 2.81,
+worst −1.58% (beats a size-matched base); per-coin memory no effect (60-min lock); flush filter worse (the cascade pays, as T1). Pre-registered pick cap 3 open: confirm 2024–26/10 SR 2.02 vs 1.69,
+worst day −1.40 vs −2.39%, ret/yr 3.7 vs 5.9%, trades −41% → PASS by rule, but vs a SIZE-MATCHED base only modestly better (explore: none): fills beyond the 3rd of a batch earn less.
+Skew can't see a batch from a flat book. Lesson: judge tail rules against a size-matched base. Live ladder unchanged; next: cap 5 + size re-derivation on the server's full universe (LD2).
+
+### E2 execution-time tilt: CME break 17–18 NY as buy-first / sell-after (descriptive, BN-82 1h, 2026-11-26 PC, research/studies/e2_exec_tilt.py) → PASS by rule, small and fading
+Daily books trade at 04:03 UTC. Literal "buy before 17 NY, sell after 18 NY" at that clock loses to signal decay (xsmom −6, tsmom −10 bp/unit; flow +4.9 t 1.8). Clock moved to the break
+(buy 17 NY, sell 18 NY vs both at 17): confirm 2024–26 flow +3.5 bp/unit t 2.49 (+7.2/+2.1/+1.1 by year), xsmom +3.7, tsmom +6.1; placebo: 17 NY tops all hours for all three books.
+It is a 1-h net long of half the turnover, not a cost cut; ≈ $35/yr upper bound on main_bn at $1,000 (2026 rate ≈ $11). HL 2026 no sign (n 206). Best explore pair = drift beta, failed. → E2b.

@@ -9,11 +9,17 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 **Next priorities (2026-11-26 research):** 1. NEXT research session: `nice -n 19 .venv/bin/python -m scripts.main_scale --write` (AL2b, design.md 2026-11-26; first application,
 monthly after that via `main_scale_due`) and check main_bn's first days on flow@bn + blend_nested@bn (switched 11-26 08:03) → 2. T5b positioning: backfill is newest-first per coin,
 so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 2024-07): explore only once 2021–23 is complete (≈ 11-29; check per-year coverage of BTC/ETH first)
-→ 3. E1 + LQ1 (≈ 12-01) → 4. fill-delay re-measure ≈ 12-09 → 5. T6b HL positioning (≈ 12-07) → 6. W2 re-check ≈ 12-23 → 7. LD1 ladder inventory skew (library N13; InSilico-style
-battery) → 8. low prior: W3b, FC1, LV1, LO1, FF1 market-relative. C1 monthly (≈ 12-25). Weekly: T0a in the retro. T2b(f) listing-day costs DONE 11-26 (robust; findings).
+→ 3. E1 + LQ1 (≈ 12-01) → 4. fill-delay re-measure ≈ 12-09 → 5. T6b HL positioning (≈ 12-07) → 6. W2 re-check ≈ 12-23 → 7. LD2 ladder cap 5 + size re-derivation (server, full universe, size-matched)
+→ 8. E2b execution clock at the CME break (fading) → 9. low prior: W3b, FC1(c) pre-2024-07 HL funding, LV1 funding-filtered short leg, FF1 market-relative.
+**2026-11-26 PC session (journal):** LD1, LV1, LO1, FC1(a)(b), E2 done descriptively, 0 walk-forwards spent; carry/carry_trend HL audited (DEAD holds). C1 monthly (≈ 12-25). Weekly: T0a in the retro. T2b(f) listing-day costs DONE 11-26 (robust; findings).
 - [x] M1 re-derivation DONE 2026-11-26 → main_bn = flow@bn ½ + blend_nested@bn ½ (the "hindsight-free blend" clause had never been applied on BN); live BN panel carries funding.
 - [x] AL2 DONE 2026-11-26 → form a (daily ex-ante) FAIL (costs), form b (monthly multiplier) PASS → design.md entry; apply next session (scripts/main_scale.py --write).
-- [ ] LD1 (library N13, Guéant §11; 2026-11-26) **ladder@bn inventory skew**: quote deeper when positions are already open (bid = 30σ·(1+λ·n_open)), because fills
+- [ ] LD2 (from LD1, 2026-11-26) **ladder@bn strict cap of 5 open positions** (beat a size-matched base on explore; truncates only the 6th+ fill of a flush batch) and, since a cap
+  bounds the batch, re-derive the per-order size (2.9%, set from the 17-fill batch, E2d) by the same rule. Server only (full top-20 1-min coverage; the PC copy has ~80%); judge against a
+  SIZE-MATCHED base, explore ≤ 2023 / confirm 2024+ (LD1's confirm already used once for cap 3: say so). Prior medium. Book belongs to the InSilico sessions: queue it there if room.
+- [ ] E2b (from E2, 2026-11-26; prior low–medium, effect fading 7.2 → 2.1 → 1.1 bp) **daily BN books decide on the 16:00/20:00 UTC bar, buy at the CME break, defer sells ≥ 1 h**: first the
+  phase/robustness check that moving flow@bn's anchor does not cost signal P&L; only then a shadow variant, judged on forward days. HL re-check at > 12 months of hourly data.
+- [x] LD1 DONE 2026-11-26 (PC) → skew OPEN (explore only), cap 3 weak PASS (mostly a size effect); findings. Was: (library N13, Guéant §11; 2026-11-26) **ladder@bn inventory skew**: quote deeper when positions are already open (bid = 30σ·(1+λ·n_open)), because fills
   cluster in market-wide flushes; descriptive on the E2 event set, explore ≤ 2023 / confirm 2024+, judged on daily P&L and worst day. Prior low–medium. Belongs in an
   InSilico session's queue if one has room (ladder is their book), else here.
 - [x] TF1 DONE 2026-11-25 (findings: all survive, no verdict changes; M1 re-derivation next session). Was: **Re-run the Binance walk-forwards on the clean panel** (no stock perps): the same 11-09 v2 grids for flow, xsmom, xsmom_k, tsmom, listing_short,
@@ -25,15 +31,15 @@ battery) → 8. low prior: W3b, FC1, LV1, LO1, FF1 market-relative. C1 monthly (
   that re-derives the M1 list (blend overlaps xsmom: the 1/3-each mix double-counts momentum). Prior: 1/N or inverse-vol wins; the value is knowing the overlap.
 - [x] PL1 DONE 2026-11-25 → DEAD as entry filter (a/b/c + F1c fail; pumps are momentum's bull-year profit; findings). Untried: intraday stop (R1). Was: **Pump-and-crash tail on the LONG side** (11-22: IDOL, EVAA, AKE −42 to −48% overnight took 4.3% off xsmom@bn): R1 tested filters on shorts only. Think-through first;
   e.g. drop names whose 28-d score is made by ≤ 2 days, or with 7-d volume > 5× the 30-d median. Explore bnall ≤ 2023-06, confirm later, ≤ 3 forms. One night is not evidence.
-- [ ] FC1 funding_contra untried forms (audit 11-22; prior low): (a) only extreme negative funding, long side; (b) conditional on price no longer rising; (c) HL-vs-BN funding
-  gap as the crowding measure (= T3). ≤ 6 configs in all.  - [ ] LO1 tsmom long-only untried forms (prior low): excess over vol-matched BTC; BTC-only timing.
+- [x] FC1 (a)(b) DONE 2026-11-26 (PC) → DEAD as crowding reversal (4 forms); (c) HL−BN gap OPEN: re-explore on the server's HL funding before 2024-07 (if present), confirm 2025-07+ untouched. Was: FC1 funding_contra untried forms (audit 11-22; prior low): (a) only extreme negative funding, long side; (b) conditional on price no longer rising; (c) HL-vs-BN funding
+  gap as the crowding measure (= T3). ≤ 6 configs in all.  - [x] LO1 DONE 2026-11-26 (PC, descriptive) → no excess over vol-matched BTC since 2024 (findings). Was: LO1 tsmom long-only untried forms (prior low): excess over vol-matched BTC; BTC-only timing.
 - [ ] IS3 **Superseded by the third-pass queue (research/insilico_queue.json, its own 12-h sessions: kripto-insilico.timer). Research sessions: do NOT work on it; W3's walk-forward stays here.** Was: what the second pass planned and did not run (audit 2026-11-22, journal). In order, think-through first, explore ≤ 2023 / confirm later, ≤ 6 WF in all:
   (1) **Range bars** (R3, R7; tg:103–107 "real edge", not even cited in the catalogue): build 0.4% move bars with trade count + size buckets from aggTrades (server can
   rebuild, public archive; raw is dropped, so a second pass; ≤ 2 workers, probe RAM first), BTC/ETH/SOL; R3 exhaustion, R7 ×10 velocity; judge against ≈ 13 bp. Prior low-medium:
   the 5-min version had the opposite sign. (2) lshock L6 pessimistic fills, L3 cascade-only on unseen coins, L4 wait for the end, L2 premium; then E1 (LQ1 ≈ 12-01).
   (3) **Filters for the live books** (never tested): P5 entries at prior POC / inside value, L5 no new shorts after a cascade day, T6 breadth inside `flow`. (4) R14 P4 gap fill; R21 with
   the real "collar" price. (5) low prior: FSVZO / Crayons guides (47 pages, no rule was ever written), R13 perp vs spot delta, R18, R26, R29, R30. Confluence: one fixed pair at most.
-- [ ] A1 progress: 11-15 xsrev, lowvol; 11-22 tsmom long-only, funding_contra (both → OPEN, one form). Next: carry (HL), carry_trend.
+- [ ] A1 progress: 11-15 xsrev, lowvol; 11-22 tsmom long-only, funding_contra (both → OPEN, one form); 11-26 carry (HL), carry_trend (HL): DEAD holds (3 forms, diagnosed). Next: resrev, T9 maker execution.
 **Superseded 2026-11-19 list:**  1. Tue 11-24: W3 walk-forward (pre-register formulations first, see W3) + C1 cost re-fit (≥ 14 days of fills
 from 11-24) → 2. W2/W1 HL flow data (≈ 11-26) → 3. T5b positioning on Binance once the metrics backfill is complete (≈ 11-29) → 4. E1 cascade definition
 with LQ1 (≥ 2 weeks, ≈ 12-01) → 5. T2b (a)/(c)/(d), and the T2b(e) re-run after C1 → 6. T6b HL positioning (≈ 12-07). Weekly: T0a in the retro.
@@ -45,7 +51,7 @@ rule, and FF1(a) walk-forward on bn100 (data download unit kripto-bn100-dl start
   the in-sample pick in 6/9 pairs (mean OOS SR 0.95 vs 0.78). `oos_grid_avg` is now in every result. Decide in a research session, with a
   design.md entry whose rationale is general: report both; the gate reads min(pick, grid avg) where the grid is one hypothesis (no mixed signs);
   consider trading the grid average (or top-3) in shadow books. Must not promote anything in the session that adopts it.
-- [ ] LV1 (2026-11-15 dead-list audit; lowvol relabelled OPEN) (c) ANSWERED 2026-11-17 by R1: high-vol shorts are not the losers (median +31–39 bp), no. (a)/(b) untried, prior low. Untried forms, prior low–medium: (a) bnall daily, survivorship-free (BN-82 drops the
+- [ ] LV1 (a)(b) DONE 2026-11-26 (PC) → 4 forms fail net of funding (findings). Left, prior low: short leg without negative-funding names (needs HL/forward as confirm). Was: LV1 (2026-11-15 dead-list audit; lowvol relabelled OPEN) (c) ANSWERED 2026-11-17 by R1: high-vol shorts are not the losers (median +31–39 bp), no. (a)/(b) untried, prior low. Untried forms, prior low–medium: (a) bnall daily, survivorship-free (BN-82 drops the
   delisted high-vol losers that the short leg would have earned on); (b) idiosyncratic (BTC-residual) vol instead of total vol; (c) as a FILTER:
   drop the top-vol decile from the x-sec books' short side (same question as R1: are the high-vol shorts the squeeze losses?). ≤ 6 configs total.
 **Older priorities (2026-11-12):** 1. T0a tracking (≈ 11-16, all books incl. main + pair) → 2. (X1d done: fspread deployable at gross 1.0) → 3. C1 cost calibration (from 11-24) → 4. W1 data analysis once ≥ 2 weeks (HL taker flow

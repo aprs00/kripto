@@ -166,6 +166,7 @@ nice -n 19 .venv/bin/python -m scripts.metrics_coverage     # T5b backfill compl
 systemctl --user list-timers ; journalctl --user -u kripto-trader -n 50
 scripts/dash.sh                                            # phone-width dashboard the owner reads over SSH; keep it working
 .venv/bin/python -m scripts.sql "select * from fills order by ts desc limit 20"   # no sqlite3 CLI on server
+.venv/bin/python -m scripts.data_status                    # last bar + age of every local data source; run first on any non-server copy
 ```
 
 ## Venues
@@ -198,6 +199,11 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   See `prompts/research.md`. Live testing is parallel too: every promising variant can get its own shadow book.
 * **insilico** (every 2 h at :47 except 06:47/08:47, ≤ 105 min, ≤ 220 turns, works through items until time is up): the InSilico third pass from `research/insilico_queue.json`
   (plan research/insilico_pass3.md, battery research/studies/is3_lib.py). Owner's stop switch: `touch state/insilico.paused`. No work due = no tokens.
+* **interactive on the owner's PC** (WSL, `/home/ploutos/kripto`; added 2026-11-26): a copy of the repo with a partial, older data/ (no live ledger,
+  no websocket collections, no bn100; run `scripts.data_status` first and quote data ends in the journal). Do research that needs only history there;
+  leave anything that needs fresh data or live state (main_scale, T5b, live checks, lifecycle changes from live numbers) to the server. No systemd
+  units on the PC: never run the trader there. Tag commits `[pc]`; the server's next review runs the trader once if `[pc]` commits touched kripto/ or config/.
+  HARD RULES 2/4 still apply in spirit (polite rate limits, nice -n 19), RAM there is ~10 GB free, 12 cores.
 * **retro** (Sun 06:40 UTC): the weekly retrospective + forward ledger instead of new experiments (prompts/research.md).
   Don't add sessions back without evidence that session count, not data, is the bottleneck: each walk-forward
   experiment raises the DSR bar (N=49 → SR 1.44, N=500 → 1.76 on 6 y) and costs the owner money.
@@ -405,3 +411,8 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   backfill runs newest-first per coin, so an incomplete early year is a biased subset (BTC started 2024-07 while 2022 held 13k coin-days): `scripts/metrics_coverage.py` (test)
   prints per-year completeness; explore only complete years. (3) The live BN panel now carries funding (venue_bn.funding_panel), so funding strategies can trade on Binance.
   (4) AL2b main-book monthly vol multiplier (design.md 2026-11-26), switched on next session by `scripts.main_scale --write`.
+* 2026-11-26 interactive on the owner's PC (owner: "continue and spread out agents, note that this running on pc rather than on server"): first session off the server.
+  The data copy was 17–27 days stale and missing whole sources, and nothing said so: `scripts/data_status.py` (+ test) prints every source's last bar and age;
+  CLAUDE.md "interactive on the owner's PC" says what may run there; `[pc]` commit tag + review step so PC code changes get the rule-6 trader run on the server.
+  Parallel research agents each got one backlog item, a walk-forward budget share (total ≤ 6) and no write access to the shared memory files (lead integrates), so
+  findings/journal edits cannot collide.

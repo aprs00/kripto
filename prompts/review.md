@@ -8,6 +8,8 @@ scheduled, something is broken: `cat state/health.json` tells you what.
    `.venv/bin/python -m kripto.paper status`, check
    `systemctl --user list-timers`, `systemctl --user --failed`, `journalctl --user -u kripto-trader -u kripto-flow -u kripto-live -u kripto-liq --since -25h | grep -iE 'error|warn|traceback|failed|oom' | grep -vE '"errors": (\[\]|0[,}])' | tail -30`,
    and the latest `logs/agent-*` and `logs/agent-failures.log` if present. Check disk space (`df -h ~`).
+   Code pushed from the owner's PC (commit messages tagged `[pc]`) was never run by this server's trader before it went live:
+   `git log --since=-25h --grep '\[pc\]' --stat -- kripto/ config/` non-empty → `systemctl --user start kripto-trader.service`, confirm it exits 0, record it.
 2. Health: if STATUS.md's first line was written by the watchdog ("not by Claude"), Claude sessions had been failing:
    find out why from logs/agent-*.log and say so in STATUS.md. Did the trader run every hour? Any ERROR/ALERT events? Is data fresh (last_bar within 8h)?
    Is the `collector:` line of `paper status` from the last hour with errors=0? (positions/L2 data can't be backfilled.)
