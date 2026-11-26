@@ -217,3 +217,7 @@ put a lesson into CLAUDE.md "Standing lessons" only if a future session must act
   moved done/superseded backlog items to research/backlog_done.md (backlog 15 KB); `scripts/findings_index.py` (+ test) generates a one-line-per-hypothesis Index at the top of
   findings.md that sessions read instead of the whole file; prompts/insilico_pass2.md archived. HARD RULES section verified byte-identical. Lesson: memory that only grows
   becomes memory nobody reads; give each file a pruning rule at the moment it is written.
+* 2026-11-26 insilico: E2B's first anchored-daily run gave five anchors identical prices (pandas ignores `resample(offset=)` on tz-aware daily bins; only a RuntimeWarning, drowned
+  among others) with shifted funding, and logged five junk `anchor` registry lines (bn100_1d@04..@20, ~21:45 UTC). Caught because five different anchors printed the same SR to 3 decimals.
+  Fixed by shifting the index + a known-answer assert on BTC; repo grep found no other use. Lesson in CLAUDE.md "Verify the plumbing". Also: queue items with no due work were refilled
+  in-session (FF2, W3B) instead of letting the queue run dry.

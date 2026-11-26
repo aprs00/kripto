@@ -223,6 +223,7 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
 Log every process change in `docs/process_changelog.md` (append, newest last). Keep this list to lessons a session must act on while working.
 * **Verify the plumbing.** Timestamp/alignment helpers need known-answer tests; a flat book past its expected trade time is a bug until proven otherwise.
   A tracking tool needs its own known-answer check before its verdicts count. Run every new tool end-to-end once when it is built.
+  pandas silently ignores `resample("1D", offset=...)` on a tz-aware index (only a RuntimeWarning): shift the index instead and assert one bar by hand.
 * **A connection is not data; a heartbeat is not health.** Check that data arrives and that each source's last bar is recent (`scripts.data_status`);
   count restarts of auto-restarting services. A number that is legitimately small early on can hide a pipeline that will never grow it.
 * **"Nothing to do" is a fault.** An idle queue, a skipped session, a book that never trades: fix it in the session that sees it (11-26: InSilico idle 40 h).
