@@ -194,5 +194,14 @@
    "study": "research/studies/is3_ff2.py d confirm"
   },
   "at": "2026-11-26T21:49:13+00:00"
+ },
+ "W3S_sat_fade_btceth": {
+  "claim": "BTC+ETH 12->18 NY Saturday move (|m|>=0.5%) fades over the next 24 h (tranches 17/18/19 NY)",
+  "rule": "confirm 2024-01-01..2026-10-31 ONE look: PASS = mean per Saturday >= +15 bp AND t >= 2 AND mean - 12 bp > 0. DATA-MINED: found as 1 of 18 placebo cells in W3B explore (t 1.9); a pass earns only a Z1 walk-forward slot.",
+  "params": {
+   "study": "research/studies/is3_w3b.py confirm",
+   "cell": "Sat |m|>=0.5%"
+  },
+  "at": "2026-11-26T21:53:09+00:00"
  }
 }
