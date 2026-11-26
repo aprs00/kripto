@@ -74,6 +74,12 @@ targeting, and switch regimes only if evidence supports it.
   writing first; walk-forward only the best one or two on the confirmation sample. Every failure gets a diagnosed reason. A single
   failed formulation is recorded OPEN (one form failed); DEAD requires three failed formulations and the reason.
 
+* **No unwritten hold-backs (2026-11-26).** The gate is sufficient as well as necessary. A strategy that passes every clause below is set to
+  `incubation` and given its equal-risk share of its venue's main book in the session that sees it pass; "more evidence first", "prove it live",
+  "let's wait" are not clauses. Holding back a passer is an error of the same size as promoting a failure. Any extra condition is a gate change
+  (general rationale, changelog, not applied in the session it is made), never a judgement call. `scripts/held_back.py` applies the written
+  clauses mechanically; the watchdog WARNs on a passer that is not trading. Live tracking (incubation → active / retired) is the check after entry.
+
 ### Promotion gates
 | Stage | Requirement |
 |---|---|
@@ -232,3 +238,7 @@ See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits;
   (bnall flow+blend_nested: vol 19 → 26%, SR 1.93 → 2.02, mdd −26 → −32%; old mix 18 → 25%, 1.89 → 1.94; HL main 30 → 26%, 1.24 → 1.22).
   It scales risk and return together and changes no gate number (gates read single strategies' walk-forwards). **Not applied today**:
   the first `scripts.main_scale --write` runs in the next research session (HARD RULE 5 spirit: never adopt and act in one session).
+* 2026-11-26 (interactive, owner present): **No unwritten hold-backs** (§4). General rationale, independent of any one result: the protocol had many guards
+  against promoting a false edge and none against sitting on a real one, and the agent's own caution showed up as conditions that were never written
+  (ladder@bn passed every clause on 11-23 and stayed at alloc 0). A gate that may be tightened silently is not a gate. This adds no clause and removes
+  none; it makes the existing clauses sufficient. Applied from the NEXT session (11-27 06:40), not this one.

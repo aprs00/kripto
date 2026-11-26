@@ -1,0 +1,16 @@
+{
+ "_note": "Field overrides for scripts/held_back.py, one per strategy entry, each with a source. Only for evidence that is not in research/results or a stored field known to be wrong. Never edit a number without a source.",
+ "ladder@bn": {
+  "pick": 1.94,
+  "grid_avg": 2.19,
+  "dsr": 0.98,
+  "worst": 2.0,
+  "grid_med": 1.88,
+  "other": null,
+  "source": "registry.jsonl 2026-11-23T01:57:46Z walk_forward ladder/bntop20_1m (pick 1.939, oos_grid_avg 2.187, grid median 1.88, 18/18 > 0, dsr 0.9787); worst 2.00 = E2b robustness of the frozen k30 h60 (config note)"
+ },
+ "flow@bn": {
+  "grid_avg": 1.36,
+  "source": "journal 2026-11-25 TF1: the stored oos_grid_avg (-15.7) averages sign +1 and -1 configs (two hypotheses); wf_selection continuation half = 1.36"
+ }
+}

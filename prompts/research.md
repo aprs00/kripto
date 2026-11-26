@@ -48,7 +48,10 @@ Time budget: ~90–120 minutes of wall clock. Heavy compute with `nice -n 19`.
    untried forms listed in the backlog; **DEAD** needs at least three materially different formulations that failed AND a
    diagnosed reason. Before writing DEAD ask: would a sceptical colleague say I tested the idea, or only my first translation of it? Remember that every
    extra config raises the deflated-Sharpe bar for everything: test many ideas, not many knobs per idea.
-4. If a strategy passes the incubation gate, set it to `incubation` with a small alloc. Promising but not
+4. Run `.venv/bin/python -m scripts.held_back`. Every row marked HELD BACK WITHOUT A WRITTEN CLAUSE goes to `incubation` with its equal-risk
+   share of the venue's main book in THIS session (design.md §4 "No unwritten hold-backs"); you may not add a condition. Before you leave any strategy out of
+   a main book, write the ADVOCATE's case in the journal: the strongest argument that it should trade now, then the written clause that defeats it. No clause, it trades.
+   If a strategy passes the incubation gate, set it to `incubation` with its equal-risk alloc. Promising but not
    passing → `candidate`. Shadow books are free live tests and run in parallel, so put every genuinely promising
    variant into one (keep ≤ ~10 non-retired books so live API usage stays polite; retire the weakest to make room).
    Write each verdict into research/findings.md.
@@ -59,7 +62,8 @@ Time budget: ~90–120 minutes of wall clock. Heavy compute with `nice -n 19`.
 5. Self-improvement check (always): what slowed you down, confused you, or could make you fool yourself this
    session? Fix one such thing if feasible (tooling, tests, data, memory files, prompts) and log it in the
    CLAUDE.md Process changelog.
-6. Update backlog.md (reprioritize; add ideas), overwrite STATUS.md, append to journal/<today>.md, run tests,
+6. Update backlog.md (reprioritize; add ideas), overwrite STATUS.md (it must contain the `scripts.held_back` table under "Held back" and the
+   `scripts.scoreboard` line plus "my mistakes this week" under "Scoreboard"), append to journal/<today>.md, run tests,
    run the trader if you changed kripto/ code, commit, push.
 
 WEEKLY RETROSPECTIVE (Sundays): step back from individual experiments.

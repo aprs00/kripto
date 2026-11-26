@@ -17,6 +17,8 @@ scheduled, something is broken: `cat state/health.json` tells you what.
    If anything is broken: diagnose, fix, verify (tests + a real trader run), record. Don't just report it.
 3. Sanity: are fills/slippage/fees/funding plausible? Is any book behaving very differently from its backtest
    expectation (see research/findings.md)? Note it. Don't overreact: a few days of paper P&L is mostly noise.
+3a. `.venv/bin/python -m scripts.held_back --check`: exit 2 = a strategy passes every written gate clause and is not trading. Fix it now
+   (incubation + equal-risk main-book share, by the M1 rule), unless it needs code that cannot be tested in this session: then make it item 0 of the backlog.
 3b. **InSilico queue empty** (watchdog WARN "InSilico queue has nothing due", or `python -m scripts.insilico_queue should-run` exits 3 without
    state/insilico.paused): that is NOT a healthy idle state; the 2-hourly sessions do nothing until someone gives them work (11-25 → 11-26: 40 h lost,
    the owner had to notice). Refill it in THIS session: take the highest-value backlog items that the battery can test now with data on disk

@@ -2521,6 +2521,81 @@
    "verdict": "OPEN",
    "reason": "cap of open positions = a size effect on the full server universe (worst5 +8% vs a return-matched base, 74th pct of random thinning); inventory skew k=30(1+0.5 n_open) better SR in 5 of 6 years (explore +0.39, confirm +0.12) but below the pre-set +0.2, and it cannot see the flush batch that makes the worst day. Live ladder unchanged; skew is a real but small refinement, revisit with live ladder fills.",
    "closed": "2026-11-26"
+  },
+  {
+   "id": "FC1C",
+   "prio": 26.1,
+   "group": "D",
+   "title": "HL-vs-Binance funding gap as a crowding measure (FC1 form c; only form with the right price sign)",
+   "src": "findings funding_contra FC1 2026-11-26; backlog FC1/T3",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "re-explore on server HL funding BEFORE 2024-07 (check data/hl/funding start per coin first): short top-10% gap, 7-d entry, price leg and funding sign, by year, day-clustered t; confirm 2025-07+ stays untouched (PC explore used 2024-07..2025-06)",
+     "status": "todo"
+    },
+    {
+     "id": "b",
+     "what": "as a FILTER for listing_short (corr 0.49): skip/size shorts by the gap; F0 harness, matched baseline",
+     "status": "todo"
+    },
+    {
+     "id": "c",
+     "what": "as an entry/size tilt inside fspread_hold@pair (the gap is its own signal on a different horizon): does the 7-d gap rank add to the 14-d mean spread rule",
+     "status": "todo"
+    }
+   ]
+  },
+  {
+   "id": "LV2",
+   "prio": 26.2,
+   "group": "D",
+   "title": "lowvol minus carry: short leg without the crowded negative-funding names (LV1 diagnosis)",
+   "src": "findings lowvol LV1 2026-11-26 (price leg positive, funding eats it)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "bnall: lowvol with short candidates excluded when trailing 7-d funding < 0 (shorts paying); explore <=2023, confirm 2024+ (LV1's confirm was viewed once: say so, prefer HL + forward as confirm)",
+     "status": "todo"
+    },
+    {
+     "id": "b",
+     "what": "rank on funding-adjusted vol (price return minus funding paid) instead of price vol",
+     "status": "todo"
+    },
+    {
+     "id": "c",
+     "what": "HL check of the HL blend leg: lowvol on HL by year with HL funding, and whether the HL 0.90 survives without its best 10 days (it is in the live HL main book)",
+     "status": "todo"
+    }
+   ]
+  },
+  {
+   "id": "E2B",
+   "prio": 26.3,
+   "group": "D",
+   "title": "Execution clock at the CME break for Binance daily books (E2 passed, small and fading)",
+   "src": "findings E2 2026-11-26 (research/studies/e2_exec_tilt.py)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "phase check: flow@bn / blend_nested@bn signals decided on the 16:00 and 20:00 UTC bars vs 00:00: does moving the anchor cost signal P&L (walk the existing phase/robustness machinery, no new WF)",
+     "status": "todo"
+    },
+    {
+     "id": "b",
+     "what": "replay of deferred sells (buy 20:03 UTC, sell 23:03 UTC) on the live main_bn mix incl. carry legs, net of the decay; per year, the 2026 rate as the honest number",
+     "status": "todo"
+    },
+    {
+     "id": "c",
+     "what": "HL: the same split on HL 1h for the HL main book (blend_nested) once >= 12 months of HL hourly data; if not enough, record the date it will be",
+     "status": "todo"
+    }
+   ]
   }
  ]
 }

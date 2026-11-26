@@ -86,6 +86,11 @@ def gather(root: Path = ROOT, db: Path = DB) -> dict:
             elif line.strip() and not line.startswith("=== "):
                 prev = line.strip()
     f["sessions"].sort()
+    try:   # a strategy that passes every written gate clause but does not trade (2026-11-26: ladder@bn sat 3 days like that)
+        from scripts import held_back
+        f["held_back"] = [r["name"] for r in held_back.table(root) if r["held_back_unwritten"]]
+    except Exception:
+        pass
     # InSilico sessions run every 2 h but only when the queue has an item due. 11-25 05:36 -> 11-26 21:14 the queue held nothing
     # due (every item waited for data), the slot idled for 40 h, and reviews logged "insilico idle (nothing due)" as healthy.
     # An empty queue is work to do (refill it from the backlog), not a resting state.
@@ -184,6 +189,8 @@ def assess(f: dict, now: datetime) -> tuple[str, list[str]]:
         dt = parse_ts(f"{due} 00:00" if len(str(due)) == 10 else due)
         if dt is not None and dt <= now:
             warn.append(f"due {due}: {n} {what}"[:80])
+    if f.get("held_back"):
+        warn.append("passes every gate clause but not trading: " + ", ".join(f["held_back"]) + " (scripts.held_back; trade it or cite the clause)")
     ii = f.get("insilico_idle")
     if ii is not None:
         ih = age(parse_ts(ii.get("last_session"))) if ii.get("last_session") else None

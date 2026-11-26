@@ -167,6 +167,8 @@ systemctl --user list-timers ; journalctl --user -u kripto-trader -n 50
 scripts/dash.sh                                            # phone-width dashboard the owner reads over SSH; keep it working
 .venv/bin/python -m scripts.sql "select * from fills order by ts desc limit 20"   # no sqlite3 CLI on server
 .venv/bin/python -m scripts.data_status                    # last bar + age of every local data source; run first on any non-server copy
+.venv/bin/python -m scripts.held_back [--check]            # written gate clauses applied mechanically; who is held back by what (exit 2 = unwritten hold-back)
+.venv/bin/python -m scripts.scoreboard [days]              # facts of the week for STATUS.md (WF count, studies, lifecycle changes, InSilico closes)
 ```
 
 ## Venues
@@ -211,7 +213,8 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
 ## Writing things down
 * `journal/YYYY-MM-DD.md`: append a section per session: `## HH:MM UTC review|research|retro`, then what you
   checked, the numbers, decisions and why.
-* `STATUS.md`: overwrite. Top line is `HEALTH: OK|WARN|ALERT — <one sentence>`. Then the main book's equity and
+* `STATUS.md`: overwrite. Top line is `HEALTH: OK|WARN|ALERT — <one sentence>`. Right under it: **Held back** (the `scripts.held_back` table)
+  and **Scoreboard** (the `scripts.scoreboard` line, paper vs backtest per main book, and "my mistakes this week"). Then the main book's equity and
   return since start, a table of every book, what's in incubation/active, the last research result, next steps.
 * Commit with a clear message and `git push` at the end of every session (pull --rebase first).
 
@@ -420,3 +423,8 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   for data), so the 2-hourly sessions skipped for 40 h, and two reviews wrote "insilico idle (nothing due)" as if that were healthy. The owner noticed, not the system.
   Fix: `scripts/health.py` WARNs when the queue has nothing due and no InSilico session ran for 6 h (test), which starts a review; prompts/review.md step 3b makes that review
   refill the queue from the backlog in the same session. Lesson: a scheduler that is allowed to skip must treat "nothing to do" as a fault to fix, not a status to report.
+* 2026-11-26 interactive (owner: "you are gatekeeping actual profitable strategies", then "the issue is in you, the model"): agreed. My caution added a condition
+  the gate does not have (ladder@bn: every clause passed 11-23, alloc 0 until 11-27), and the protocol I wrote guards only against false positives. Counterweights
+  that do not depend on my judgement: design.md §4 "No unwritten hold-backs" (gate sufficient; extra conditions = gate changes), `scripts/held_back.py` (mechanical
+  table, test; mixed-sign grids judged on the pick's own sign, missing evidence shown as missing), watchdog WARN + review step 3a, an ADVOCATE paragraph in the
+  journal before any strategy is left out, and STATUS.md "Held back" + "Scoreboard" (`scripts/scoreboard.py`) at the top where the owner reads first.
