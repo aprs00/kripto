@@ -221,3 +221,14 @@ See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits;
   (4) Every new walk-forward quotes pick, grid average and robust.worst together (show_result already prints all three).
   This makes the real-money gate harder, never easier. It can make the paper best-estimate list longer or shorter; that list
   governs paper only.
+* 2026-11-26 (research session; backlog AL1/AL2; a sizing rule for paper main books, not a gate). **Main books run at the steady-mode
+  volatility.** General rationale, independent of any strategy's result: the owner's reference account is "steady, 25–30% vol"; every
+  entry is vol-targeted on its own, but a main book that mixes several entries 1/N realises less (diversification between entries;
+  AL1: main_bn's mixes 14–19%), so the paper main book measured roughly two thirds of the risk mode the owner would fund. Rule
+  (pre-registered in research/studies/al2_mix_vol.py, both forms judged by the same written rule): each main book's mix is
+  multiplied by ONE number per calendar month, s = clip(0.25 / realised vol of the current mix's net daily backtest returns over the
+  trailing 365 days, 0.5, 2.0), gross still capped by max_gross (scripts/main_scale.py; risk.json `main_scale`, `main_scale_due`; the
+  watchdog WARNs when due). Form a (daily ex-ante rescaling) was rejected by the rule (doubled costs, ΔSR −0.13/−0.19); form b passed
+  (bnall flow+blend_nested: vol 19 → 26%, SR 1.93 → 2.02, mdd −26 → −32%; old mix 18 → 25%, 1.89 → 1.94; HL main 30 → 26%, 1.24 → 1.22).
+  It scales risk and return together and changes no gate number (gates read single strategies' walk-forwards). **Not applied today**:
+  the first `scripts.main_scale --write` runs in the next research session (HARD RULE 5 spirit: never adopt and act in one session).

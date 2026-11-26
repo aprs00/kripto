@@ -382,7 +382,12 @@ def run_books(store: Store, entries: dict, risk: dict, marks: dict[str, float], 
             saved = {n: pd.Series(json.loads(w)) for n, _, w in store.q("select * from targets")}
             parts = [(sc["alloc"], saved[n]) for n, sc in live.items() if n in saved]
             tgt = pd.concat([a * w for a, w in parts], axis=1).fillna(0.0).sum(axis=1) if parts else pd.Series(dtype=float)
-            alloc_sig = json.dumps({n: sc["alloc"] for n, sc in live.items()}, sort_keys=True)
+            # AL2b (design.md 2026-11-26): one monthly multiplier per main book (scripts.main_scale), so the mix of separately
+            # vol-targeted books runs at the steady-mode vol; the small twin uses its big sibling's number. Absent = 1.
+            scale = float(risk.get("main_scale", {}).get(book.removeprefix("small:"), 1.0))
+            tgt = tgt * scale
+            alloc_sig = json.dumps({**{n: sc["alloc"] for n, sc in live.items()}, **({"_scale": scale} if scale != 1.0 else {})},
+                                   sort_keys=True)
             changed = alloc_sig != store.get_meta(sig_key)
             fresh = any(n in strat_w for n in live)
             due = fresh or changed or (not parts and bool(store.positions(book)))

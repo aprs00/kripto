@@ -110,11 +110,13 @@ $20M/day floor: +0.1–0.5 SR on HL in 3/4 pairs, ≈0 on BN. WF OOS HL 0.57, BN
 It needs ~30 names: impossible at $200 (band 0.05 halved it), executable at $1,000. Start days agree (0.60–0.79 for lb28/3d), so
 this is not schedule luck. Fails the gate: DSR < 0.9 and negative on HL. Why HL differs is open (thinner alts, costs ×2–3).
 
-### carry: short high funding / long low funding, dollar+beta neutral (2026-11-08, re-run 11-09) → DEAD on HL (re-check ~2027-05)
+### carry: short high funding / long low funding, dollar+beta neutral (2026-11-08, re-run 11-09) → DEAD on HL (re-check ~2027-05); ALIVE on Binance (candidate@bn 2026-11-26)
+2026-11-26 clean bnall 1d (survivorship-free, grid unchanged): pick 1.30 / avg 1.31 / worst 1.34, $200 1.06; funding +17%/yr broad (top-10 30%); 2025 −0.10, 2026 −0.75 (squeezes > funding).
 HL OOS −0.89, grid med −0.34 (2/12 >0); BN 1.06 (med 0.72). On HL high-funding names are squeezes that keep rising.
 Concentrated: HL −1.05, BN 0.50. Carry needs breadth and doesn't transfer to HL.
 
-### carry_trend: carry only where trend agrees (T1d, 2026-11-09) → DEAD on HL
+### carry_trend: carry only where trend agrees (T1d, 2026-11-09) → DEAD on HL; ALIVE on Binance (candidate@bn 2026-11-26)
+2026-11-26 clean bnall 1d: pick 1.44 / avg 1.46 / worst 1.29, $200 0.78; price-only SR 1.09 (a trend book with a funding tilt); 2021 = 141% of return, 2024 0.29, 2026 0.00.
 HL OOS −0.88, grid med −0.52 (0/6 >0); BN 0.65 (med 0.88, 6/6). Conditioning on trend doesn't rescue HL carry.
 Funding +2–3%/yr on HL can't pay ~5–8%/yr costs.
 
@@ -535,3 +537,17 @@ Six pairs tested against the single signal or placebo levels (explore 2021-23): 
 at the prior exact POC = same hours elsewhere (-11 bp/4 h, MDE 25); single print + absorption -0.3 vs mirrors +20 (n.s.); Sunday move away from the collar on falling volume continues (-130 bp toward the
 collar vs placebo +10, p .21, MDE 200: lead for N5); pinned RSI + composite-POC cross = 22 events, the pin alone earns as much; velocity climax at round numbers = placebo (dedup, MDE 13).
 Lesson: M2's raw g-columns start at the exact print and cluster (123 range-bar events in one second of ms whipsaw); any print-based intraday result needs dedup + a late entry. is3_x1a..f.py.
+
+### AL2 main-book vol scaling (2026-11-26) -> ADOPTED (sizing rule, form b; applied from the next research session)
+Not a signal: 1/N mixes of separately vol-targeted books realise 14-19 % vs the 25-30 % steady target. Form a (daily ex-ante 60-d cov target on the mix) FAILED the pre-registered
+rule: costs 5.8 -> 10.7 %/yr, dSR -0.19 (bnall flow+blend_nested), -0.13 (old mix). Form b (one monthly multiplier = 0.25 / trailing-365-d realised vol, clip 0.5-2) PASSED all three sets:
+bnall new mix vol 19 -> 26 %, SR 1.93 -> 2.02, mdd -26 -> -32 %; old mix 1.89 -> 1.94; HL main 1.24 -> 1.22 (vol 30 -> 26 %). design.md 2026-11-26; scripts/main_scale.py; al2_mix_vol.py.
+
+### T2b(f) listing-day costs vs listing_short (2026-11-26) -> ROBUST (cost risk noted, no change)
+Live XTEN cost ~160 bp/trade vs the 25 bp cap (C1). Extra x bp on all trading in coins <= 3 d old (9 % of HL turnover, 2.3x equity/yr): HL listing_short SR 1.44 -> 1.31 (+150 bp),
+1.22 (+250); <= 7 d: 1.24 / 1.11. HL main's live blend_nested 1.51 -> 1.43 (+150). Pre-registered bar (>= 0.8x base) met. t2b_listing_cost.py.
+
+### M1 re-derivation on clean data (2026-11-26) -> main_bn = flow@bn 1/2 + blend_nested@bn 1/2
+The fixed rule's "of two blends, the hindsight-free one" had been applied on HL only; applied on Binance now (blend@bn -> blend_nested@bn = carry_trend, carry, xsmom at the 11-03 refit;
+xsmom@bn not added again as a current component). Live BN panel now carries funding (carry legs). Lesson: re-read the WHOLE rule when re-deriving; a clause applied on one venue only
+went unnoticed for two re-derivations because the result "no change" looked plausible.

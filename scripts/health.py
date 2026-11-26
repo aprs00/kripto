@@ -70,6 +70,9 @@ def gather(root: Path = ROOT, db: Path = DB) -> dict:
         cfg = json.loads((root / "config" / "strategies.json").read_text())
         f["due"] = [(n, sc["due"], sc.get("due_what", "")) for n, sc in cfg.items()
                     if sc.get("due") and sc.get("status") != "retired"]
+        risk = json.loads((root / "config" / "risk.json").read_text())   # AL2b monthly main-book scale (scripts.main_scale)
+        if risk.get("main_scale_due"):
+            f["due"].append(("main_scale", risk["main_scale_due"], "run `python -m scripts.main_scale --write`"))
     except Exception:
         f["due"] = []
     for p in sorted((root / "logs").glob("agent-*-*.log"))[-12:]:

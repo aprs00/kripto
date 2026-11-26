@@ -161,6 +161,8 @@ nice -n 19 .venv/bin/python -m scripts.research_run --grids <batch> --datasets b
 #   do this before any run on a new/large dataset; every result JSON also records max_rss_gb. Large runs: systemd-run --user --unit <name>
 #   -p Nice=19 -p MemoryMax=2200M ... (bn100 1h = 1.98 GB peak with --workers 1 since the 11-19 lean paths).
 nice -n 19 .venv/bin/python -m scripts.download metrics    # T5b Binance positioning metrics (5-min OI, top-trader L/S, taker ratio), capped/incremental; also nightly
+nice -n 19 .venv/bin/python -m scripts.main_scale [--write]   # AL2b monthly vol multiplier per main book -> risk.json main_scale (watchdog WARNs when due)
+nice -n 19 .venv/bin/python -m scripts.metrics_coverage     # T5b backfill completeness per year: explore a year only at >= 95 %
 systemctl --user list-timers ; journalctl --user -u kripto-trader -n 50
 scripts/dash.sh                                            # phone-width dashboard the owner reads over SSH; keep it working
 .venv/bin/python -m scripts.sql "select * from fills order by ts desc limit 20"   # no sqlite3 CLI on server
@@ -397,3 +399,9 @@ demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers)
   accrued funding per held coin BEFORE trading: HL fills came ~11 min after the close (C1 drift). Trades now come first (3 min); accrual uses the pre-trade snapshot (test).
   (3) `scripts/cost_calibration.py` (C1, monthly): live slip + drift vs the model per venue and volume bucket. Lesson: an average cost number can be one event (XTEN = 78% of HL cost);
   always print the cost by bucket and the top contributors before refitting a model.
+* 2026-11-26 research: (1) **A clause of a fixed rule was applied on one venue only, twice.** The M1 interpretation "of two blends, the hindsight-free one" replaced blend by
+  blend_nested on HL (11-12) but nobody applied it on Binance (11-12, 11-19); "no change" looked plausible, so nobody re-read the rule. Applied now (main_bn = flow@bn +
+  blend_nested@bn). Lesson: when re-deriving by a rule, walk every clause against every venue in writing, especially when the answer is "no change". (2) The T5b metrics
+  backfill runs newest-first per coin, so an incomplete early year is a biased subset (BTC started 2024-07 while 2022 held 13k coin-days): `scripts/metrics_coverage.py` (test)
+  prints per-year completeness; explore only complete years. (3) The live BN panel now carries funding (venue_bn.funding_panel), so funding strategies can trade on Binance.
+  (4) AL2b main-book monthly vol multiplier (design.md 2026-11-26), switched on next session by `scripts.main_scale --write`.

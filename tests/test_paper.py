@@ -118,3 +118,38 @@ def test_funding_is_accrued_on_the_positions_held_before_the_trades(tmp_path):
     # long 0.01 BTC at 50,000 = $500 notional pays 1 bp = $0.05 (0.03 would have paid $0.15)
     assert abs(s.cash("main") - (1000.0 - 0.05)) < 1e-9
     assert int(s.get_meta("funding_accrued_ms")) == 5_000
+
+
+def test_main_scale_multiplies_main_and_small_main_targets_and_triggers_rebalance(tmp_path):
+    """AL2b (2026-11-26): risk.json main_scale {book: s} multiplies the main book's mix (and its small twin's); absent = 1;
+    a changed scale counts as an allocation change (rebalance on the next run)."""
+    import json
+    import pandas as pd
+    from kripto import paper as P
+    s = Store(tmp_path / "p.db")
+    s.x("insert into targets values(?,?,?)", "a", "bar0", json.dumps({"BTC": 0.2}))
+    got = {}
+
+    def reb(book, tgt, reason):
+        got[book] = dict(tgt)
+    entries = {"a": {"status": "incubation", "alloc": 1.0}}
+    risk = {"start_equity": 1000.0, "shadow_equity": 2000.0, "small_equity": 200.0, "kill_drawdown": 0.5,
+            "max_asset_weight": 1.0, "max_gross": 3.0}
+    P.run_books(s, entries, risk, {"BTC": 100.0}, {}, "bar1", "main", reb)
+    assert abs(got["main"]["BTC"] - 0.2) < 1e-12
+    got.clear()
+    risk["main_scale"] = {"main": 1.5}
+    P.run_books(s, entries, risk, {"BTC": 100.0}, {}, "bar2", "main", reb)
+    assert abs(got["main"]["BTC"] - 0.3) < 1e-12 and abs(got["small:main"]["BTC"] - 0.3) < 1e-12
+
+
+def test_main_scale_known_answer():
+    import numpy as np
+    import pandas as pd
+    from scripts.main_scale import scale_from_returns
+    idx = pd.date_range("2025-01-01", periods=400, freq="D", tz="UTC")
+    r = pd.Series(np.tile([0.01, -0.01], 200), index=idx)          # daily sd 0.01 -> 19.1% a year
+    s, vol = scale_from_returns(r)
+    assert abs(vol - 0.01 * np.sqrt(365) * np.sqrt(365 / 364)) < 1e-3 and abs(s - 0.25 / vol) < 1e-9
+    assert scale_from_returns(r.iloc[:100])[0] == 1.0                                       # < 120 days -> 1
+    assert scale_from_returns(r * 0.1)[0] == 2.0                                            # clipped

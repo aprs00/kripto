@@ -50,3 +50,15 @@ def test_targets_point_in_time():
     t = data.bn_metrics_targets(top=2, since="2021-01-01", panel={"volume": v})
     assert set(t) == {"AUSDT", "BUSDT", "CUSDT"}
     assert "2021-01-10" not in t["BUSDT"] and "2021-02-25" in t["BUSDT"] and t["AUSDT"][0] > t["AUSDT"][-1]
+
+
+def test_metrics_coverage_counts_fetched_and_known_missing(tmp_path, monkeypatch):
+    import json
+    import pandas as pd
+    from kripto import data
+    from scripts.metrics_coverage import coverage
+    monkeypatch.setattr(data, "METRICS_DIR", tmp_path)
+    pd.DataFrame({"t": pd.to_datetime(["2022-01-01 00:00", "2022-01-01 00:05"], utc=True)}).to_parquet(tmp_path / "AUSDT.parquet")
+    (tmp_path / "_missing.json").write_text(json.dumps(["AUSDT/2022-01-02"]))
+    cov = coverage({"AUSDT": ["2022-01-03", "2022-01-02", "2022-01-01"], "BUSDT": ["2023-05-01"]})
+    assert cov == {2022: (2, 3), 2023: (0, 1)}

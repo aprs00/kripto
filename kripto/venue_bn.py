@@ -5,8 +5,10 @@ Same accounting as the HL engine in paper.py. Differences: data and marks come f
 sizes are rounded to the symbol's step size, and the min order is the symbol's MIN_NOTIONAL (mostly $5).
 Books: `main_bn` (config/risk.json start_equity) and `shadow:<entry>@bn` for config entries with "venue": "bn".
 Live panel = 4h klines (closed bars only) incl. taker buy quote volume (`taker_buy`), so `flow` can run live.
-Funding is accrued from /fapi/v1/fundingRate (usually 8-hourly). The panel's `funding` is NaN (no strategy that
-trades on Binance uses it yet), so a funding-based strategy needs that added first.
+Funding is accrued from /fapi/v1/fundingRate (usually 8-hourly). The panel's `funding` (sum of the prints paying for each 4h bar,
+the research loaders' convention) comes from an incremental cache of the same endpoint (FUND_DIR, last FUND_DAYS days, refreshed
+after the trades at most once per closed 4h bar, so targets use prints up to one hour old). Added 2026-11-26 for blend_nested@bn
+(carry, carry_trend). Bars before the cache start are NaN.
 """
 from __future__ import annotations
 
@@ -27,6 +29,9 @@ LIVE_DIR = data.DATA / "bn" / "live_4h"
 INFO_CACHE = data.DATA / "bn" / "live_exchange_info.json"
 UNIVERSE = int(os.environ.get("KRIPTO_BN_UNIVERSE", "60"))
 BAR_MS = 4 * 3600 * 1000
+FUND_DIR = data.DATA / "bn" / "live_funding_bn"   # keyed by Binance coin name (venue_pair's cache is keyed by HL name)
+FUND_DAYS = 60
+DAY_MS = 86_400_000
 
 
 def sym(coin: str) -> str:
@@ -98,6 +103,56 @@ def refresh(bn: BN, filters: dict, held: set[str], history_days: int = P.HISTORY
     return coins
 
 
+def funding_cache_refresh(bn: BN, names: list[str], dirpath, to_symbol=None, now_ms: int | None = None,
+                          days: int = FUND_DAYS) -> None:
+    """Incremental per-coin cache of Binance funding prints (columns time, fundingRate), keeping the last 2*days days.
+    One request per coin once filled. Shared with venue_pair (its cache is keyed by HL coin names)."""
+    to_symbol = to_symbol or sym
+    now_ms = now_ms or int(time.time() * 1000)
+    dirpath.mkdir(parents=True, exist_ok=True)
+    for c in names:
+        f = dirpath / f"{c}.parquet"
+        have = pd.read_parquet(f) if f.exists() else None
+        start = int(have["time"].max()) + 1 if have is not None and len(have) else now_ms - days * DAY_MS
+        rows = []
+        while True:
+            page = bn.funding_rate(to_symbol(c), start, now_ms)
+            rows += page
+            if len(page) < 1000:
+                break
+            start = int(page[-1]["fundingTime"]) + 1
+        if not rows:
+            continue
+        df = pd.DataFrame({"time": [int(r["fundingTime"]) for r in rows],
+                           "fundingRate": [float(r["fundingRate"]) for r in rows]})
+        d = pd.concat(([have] if have is not None else []) + [df]).drop_duplicates("time", keep="last").sort_values("time")
+        d = d[d["time"] >= now_ms - 2 * days * DAY_MS].reset_index(drop=True)
+        tmp = f.with_suffix(".tmp")
+        d.to_parquet(tmp)
+        tmp.replace(f)
+
+
+def funding_panel(coins: list[str], idx: pd.DatetimeIndex, dirpath=None) -> pd.DataFrame:
+    """Per-bar funding (sum of prints; a print at tau pays for the period ending at tau, as in the research loaders) on
+    the 4h grid `idx`; NaN where the cache has no prints yet."""
+    dirpath = dirpath or FUND_DIR
+    out = pd.DataFrame(np.nan, idx, coins)
+    for c in coins:
+        f = dirpath / f"{c}.parquet"
+        if not f.exists():
+            continue
+        pr = pd.read_parquet(f, columns=["time", "fundingRate"])
+        if pr.empty:
+            continue
+        ts = pd.to_datetime(pr["time"].astype("int64") - 1, unit="ms", utc=True).dt.floor("4h")
+        s = pr.groupby(ts)["fundingRate"].sum()
+        first = s.index.min()
+        col = s.reindex(idx)
+        col[(idx >= first) & col.isna()] = 0.0        # covered bars without a print paid nothing
+        out[c] = col.to_numpy()
+    return out
+
+
 def live_panel(coins: list[str], now: pd.Timestamp | None = None) -> dict:
     now = now or pd.Timestamp.now("UTC")
     cols = {"close": "c", "high": "h", "low": "l", "volume": "qv", "taker_buy": "tbqv"}
@@ -114,7 +169,7 @@ def live_panel(coins: list[str], now: pd.Timestamp | None = None) -> dict:
     idx = pd.date_range(p["close"].index.min(), p["close"].index.max(), freq="4h")
     p = {k: v.reindex(idx) for k, v in p.items()}
     p["close"] = p["close"].where(p["volume"] > 0)
-    p["funding"] = pd.DataFrame(np.nan, idx, p["close"].columns)
+    p["funding"] = funding_panel(list(p["close"].columns), idx)
     closed = idx + pd.Timedelta(hours=4) <= now  # bar t is closed only once t + 4h <= now
     cutoff = now - pd.Timedelta(days=P.HISTORY_DAYS)
     return {k: v.loc[closed & (v.index >= cutoff)] for k, v in p.items()}
@@ -198,4 +253,11 @@ def run(store: P.Store, cfg: dict, risk: dict, bn: BN | None = None) -> dict:
         store.x("insert into equity values(?,?,?,?,?)", P.now_iso(), b, eq, gross, len(store.positions(b)))
     store.set_meta("bn_last_run", P.now_iso())
     store.set_meta("bn_last_bar", last_bar)
+    if store.get_meta("bn_funding_cache_bar") != last_bar:      # after the trades: never delays a fill
+        try:
+            live = panel["close"].iloc[-1].dropna().index      # coins still quoted (the panel keeps delisted/dropped columns)
+            funding_cache_refresh(bn, sorted(set(live) | set(P.held_coins(store, "bn"))), FUND_DIR)
+            store.set_meta("bn_funding_cache_bar", last_bar)
+        except Exception as e:                                   # a stale cache only ages the carry signal
+            store.event("WARN", f"bn funding cache refresh failed: {e!r}")
     return {"bn": bn, "coins": coins, "marks": marks, "filters": filters}

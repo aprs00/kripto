@@ -60,6 +60,7 @@ class FakeBN:
 def env(tmp_path, monkeypatch):
     monkeypatch.setattr(V, "LIVE_DIR", tmp_path / "live")
     monkeypatch.setattr(V, "INFO_CACHE", tmp_path / "info.json")
+    monkeypatch.setattr(V, "FUND_DIR", tmp_path / "fund")
     store = P.Store(tmp_path / "paper.db")
     cfg = {"tsmom": {"status": "candidate", "params": {}},  # HL entry: must be ignored by the BN venue
            "tsmom@bn": {"strategy": "tsmom", "venue": "bn", "status": "candidate", "params": {"top_n": 4}}}
@@ -126,3 +127,29 @@ def test_funding_accrues_only_on_bn_positions(env):
 def test_client_refuses_non_whitelisted_endpoints():
     with pytest.raises(ValueError):
         BN().get("/fapi/v1/order", {"symbol": "BTCUSDT"})
+
+
+def test_funding_panel_known_answer(tmp_path):
+    """2026-11-26: the live BN panel carries funding (blend_nested@bn's carry legs). A print at tau pays for the bar ending at tau;
+    covered bars without a print are 0, bars before the cache NaN; uncached coins NaN."""
+    idx = pd.date_range("2026-11-01", periods=6, freq="4h", tz="UTC")
+    ms = lambda t: int(pd.Timestamp(t).timestamp() * 1000)
+    tmp_path.mkdir(exist_ok=True)
+    pd.DataFrame({"time": [ms("2026-11-01 08:00Z"), ms("2026-11-01 16:00Z")], "fundingRate": [1e-4, 2e-4]}).to_parquet(tmp_path / "AAA.parquet")
+    f = V.funding_panel(["AAA", "BBB"], idx, tmp_path)
+    a = f["AAA"].tolist()
+    assert np.isnan(a[0]) and a[1] == 1e-4 and a[2] == 0.0 and a[3] == 2e-4 and a[4] == 0.0 and a[5] == 0.0
+    assert f["BBB"].isna().all()
+
+
+def test_funding_cache_refresh_incremental(tmp_path):
+    class B:
+        def __init__(self): self.calls = []
+        def funding_rate(self, symbol, start_ms, end_ms=None):
+            self.calls.append((symbol, start_ms))
+            return [{"fundingTime": 1_000_000 + i, "fundingRate": "0.0001"} for i in range(3) if 1_000_000 + i >= start_ms]
+    b = B()
+    V.funding_cache_refresh(b, ["AAA"], tmp_path, now_ms=1_000_100, days=1)
+    V.funding_cache_refresh(b, ["AAA"], tmp_path, now_ms=1_000_200, days=1)
+    assert b.calls[0][0] == "AAAUSDT" and b.calls[1][1] == 1_000_003
+    assert len(pd.read_parquet(tmp_path / "AAA.parquet")) == 3

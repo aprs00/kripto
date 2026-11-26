@@ -44,14 +44,14 @@
     "note": "2026-11-09: T2 new-listing short, BTC-beta hedged. HL 1d WF OOS 0.75 (2.95y), grid med 1.11 (9/9>0); cfg(1,60) band0.005 SR 1.57 corr BTC -0.06. bnall WF 1.08 is a band artifact (corr BTC 0.63); at band 0.005 SR 0.44. Fails gate (HL<0.8, DSR). Shadow only; params = current WF choice. | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): HL 1d OOS 0.89 (med 1.34, 9/9, worst 1.33); bnall 0.86 (corr BTC 0.00 at band 0.01: the old band artifact is gone)."
   },
   "xsmom_k": {
-    "status": "candidate",
+    "status": "retired",
     "alloc": 0.0,
     "params": {
       "lookback": 28,
       "k": 3,
       "every_days": 7
     },
-    "note": "2026-11-09 T11: top/bottom-k xsmom (executable at $200). 1d WF OOS HL 0.55 (2.95y, grid med 0.44, 8/8>0), bnall 1.37 (6.1y, med 0.89, 8/8, DSR 0.87). HL costs ~10%/yr, 2x cost SR 0.26 (lb28 k4 e3). Fails HL >0.8. Params = HL WF choice. | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): HL 1d OOS 0.73 but grid med 0.20 and single start days 0.22-0.90; 2x cost 0.31. Runs as 7 daily tranches now."
+    "note": "2026-11-09 T11: top/bottom-k xsmom (executable at $200). 1d WF OOS HL 0.55 (2.95y, grid med 0.44, 8/8>0), bnall 1.37 (6.1y, med 0.89, 8/8, DSR 0.87). HL costs ~10%/yr, 2x cost SR 0.26 (lb28 k4 e3). Fails HL >0.8. Params = HL WF choice. | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): HL 1d OOS 0.73 but grid med 0.20 and single start days 0.22-0.90; 2x cost 0.31. Runs as 7 daily tranches now. | 2026-11-26 retired to keep the shadow-book count (blend_nested@bn added): HL grid avg 0.56 < 0.8, weakest HL book; xsmom_k@bn keeps running."
   },
   "blend": {
     "status": "candidate",
@@ -76,12 +76,12 @@
     "strategy": "flow",
     "venue": "bn",
     "status": "incubation",
-    "alloc": 0.3333,
+    "alloc": 0.5,
     "params": {
       "lookback": 3,
       "cap": 0.05
     },
-    "note": "2026-11-09 interactive: Binance paper venue (B1). Params = latest bnall 1d walk-forward fold choice. bnall WF OOS 1.13 / 6.1y (DSR 0.70), continuation 6/6 >0; corr xsmom 0.43. Not HL-testable. Shadow only. | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): bnall OOS 1.42 (DSR 0.88, worst 0.75 at 2x costs); WF now picks lb3 (daily turnover is high: watch live costs). Params switched before the first trade. | M1 2026-11-12: incubation = main-book best estimate (design.md 2026-11-10 rule: venue OOS > 0.8 and robust.worst > 0; components of an included blend are not added again). Not a funding recommendation. main_bn = flow@bn + xsmom@bn + blend@bn, 1/3 each; xsmom_k@bn subsumed by blend@bn. | 2026-11-17 R1: per-name alt cap 5% (strategies.alt_cap) adopted by the pre-registered rule in research/batches/2026-11-17_r1.json (confirm 2023-07+: xsmom SR 1.61 vs 1.69, mdd -14.4 vs -16.0; flow 1.24 vs 1.19, mdd -21.2 vs -21.8; xsmom_k 1.23 vs 1.37, mdd -10.0 vs -14.8). Risk limit, not edge."
+    "note": "2026-11-09 interactive: Binance paper venue (B1). Params = latest bnall 1d walk-forward fold choice. bnall WF OOS 1.13 / 6.1y (DSR 0.70), continuation 6/6 >0; corr xsmom 0.43. Not HL-testable. Shadow only. | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): bnall OOS 1.42 (DSR 0.88, worst 0.75 at 2x costs); WF now picks lb3 (daily turnover is high: watch live costs). Params switched before the first trade. | M1 2026-11-12: incubation = main-book best estimate (design.md 2026-11-10 rule: venue OOS > 0.8 and robust.worst > 0; components of an included blend are not added again). Not a funding recommendation. main_bn = flow@bn + xsmom@bn + blend@bn, 1/3 each; xsmom_k@bn subsumed by blend@bn. | 2026-11-17 R1: per-name alt cap 5% (strategies.alt_cap) adopted by the pre-registered rule in research/batches/2026-11-17_r1.json (confirm 2023-07+: xsmom SR 1.61 vs 1.69, mdd -14.4 vs -16.0; flow 1.24 vs 1.19, mdd -21.2 vs -21.8; xsmom_k 1.23 vs 1.37, mdd -10.0 vs -14.8). Risk limit, not edge. | M1 re-derivation 2026-11-26 (clean TF1 numbers, fixed rule design.md 2026-11-12/11-17): bnall qualifiers flow 1.45/1.36/1.20, xsmom 1.27/1.43/1.27, blend 1.35/1.05, blend_nested 1.17/0.99 (pick/avg/worst); tsmom, xsmom_k = blend components. The rule's 'of two blends the hindsight-free one is used' had been applied on HL (11-12) but not on Binance; applied now: blend@bn -> blend_nested@bn, and xsmom is one of blend_nested@bn's current components, so xsmom@bn is not added again. main_bn = flow@bn 1/2 + blend_nested@bn 1/2. Not a funding recommendation."
   },
   "tsmom@bn": {
     "strategy": "tsmom",
@@ -103,22 +103,22 @@
   "xsmom@bn": {
     "strategy": "xsmom",
     "venue": "bn",
-    "status": "incubation",
-    "alloc": 0.3333,
+    "status": "candidate",
+    "alloc": 0.0,
     "params": {
       "lookback": 28,
       "every_days": 1,
       "cap": 0.05
     },
-    "note": "2026-11-09 v2: broad x-sec momentum needs ~30 names, impossible at $200, executable at $1,000 (min order 1% of equity). bnall 1d WF OOS 1.34 / 6.1y (DSR 0.85, grid med 1.15, 12/12 >0; worst 1.03 = one day late). Fails: DSR < 0.9 and HL is negative (-0.09). Shadow only. | M1 2026-11-12: incubation = main-book best estimate (design.md 2026-11-10 rule: venue OOS > 0.8 and robust.worst > 0; components of an included blend are not added again). Not a funding recommendation. main_bn = flow@bn + xsmom@bn + blend@bn, 1/3 each; xsmom_k@bn subsumed by blend@bn. | 2026-11-17 R1: per-name alt cap 5% (strategies.alt_cap) adopted by the pre-registered rule in research/batches/2026-11-17_r1.json (confirm 2023-07+: xsmom SR 1.61 vs 1.69, mdd -14.4 vs -16.0; flow 1.24 vs 1.19, mdd -21.2 vs -21.8; xsmom_k 1.23 vs 1.37, mdd -10.0 vs -14.8). Risk limit, not edge."
+    "note": "2026-11-09 v2: broad x-sec momentum needs ~30 names, impossible at $200, executable at $1,000 (min order 1% of equity). bnall 1d WF OOS 1.34 / 6.1y (DSR 0.85, grid med 1.15, 12/12 >0; worst 1.03 = one day late). Fails: DSR < 0.9 and HL is negative (-0.09). Shadow only. | M1 2026-11-12: incubation = main-book best estimate (design.md 2026-11-10 rule: venue OOS > 0.8 and robust.worst > 0; components of an included blend are not added again). Not a funding recommendation. main_bn = flow@bn + xsmom@bn + blend@bn, 1/3 each; xsmom_k@bn subsumed by blend@bn. | 2026-11-17 R1: per-name alt cap 5% (strategies.alt_cap) adopted by the pre-registered rule in research/batches/2026-11-17_r1.json (confirm 2023-07+: xsmom SR 1.61 vs 1.69, mdd -14.4 vs -16.0; flow 1.24 vs 1.19, mdd -21.2 vs -21.8; xsmom_k 1.23 vs 1.37, mdd -10.0 vs -14.8). Risk limit, not edge. | M1 re-derivation 2026-11-26 (clean TF1 numbers, fixed rule design.md 2026-11-12/11-17): bnall qualifiers flow 1.45/1.36/1.20, xsmom 1.27/1.43/1.27, blend 1.35/1.05, blend_nested 1.17/0.99 (pick/avg/worst); tsmom, xsmom_k = blend components. The rule's 'of two blends the hindsight-free one is used' had been applied on HL (11-12) but not on Binance; applied now: blend@bn -> blend_nested@bn, and xsmom is one of blend_nested@bn's current components, so xsmom@bn is not added again. main_bn = flow@bn 1/2 + blend_nested@bn 1/2. Not a funding recommendation. -> candidate (shadow book continues)."
   },
   "blend@bn": {
     "strategy": "blend",
     "venue": "bn",
-    "status": "incubation",
-    "alloc": 0.3333,
+    "status": "retired",
+    "alloc": 0.0,
     "params": {},
-    "note": "2026-11-09 v2: same pre-registered blend on Binance. bnall 1d WF OOS 1.30 / 6.1y (DSR 0.81, worst 0.99, corr BTC 0.07). Fails the DSR clause only. Shadow only. | M1 2026-11-12: incubation = main-book best estimate (design.md 2026-11-10 rule: venue OOS > 0.8 and robust.worst > 0; components of an included blend are not added again). Not a funding recommendation. main_bn = flow@bn + xsmom@bn + blend@bn, 1/3 each; xsmom_k@bn subsumed by blend@bn."
+    "note": "2026-11-09 v2: same pre-registered blend on Binance. bnall 1d WF OOS 1.30 / 6.1y (DSR 0.81, worst 0.99, corr BTC 0.07). Fails the DSR clause only. Shadow only. | M1 2026-11-12: incubation = main-book best estimate (design.md 2026-11-10 rule: venue OOS > 0.8 and robust.worst > 0; components of an included blend are not added again). Not a funding recommendation. main_bn = flow@bn + xsmom@bn + blend@bn, 1/3 each; xsmom_k@bn subsumed by blend@bn. | M1 re-derivation 2026-11-26 (clean TF1 numbers, fixed rule design.md 2026-11-12/11-17): bnall qualifiers flow 1.45/1.36/1.20, xsmom 1.27/1.43/1.27, blend 1.35/1.05, blend_nested 1.17/0.99 (pick/avg/worst); tsmom, xsmom_k = blend components. The rule's 'of two blends the hindsight-free one is used' had been applied on HL (11-12) but not on Binance; applied now: blend@bn -> blend_nested@bn, and xsmom is one of blend_nested@bn's current components, so xsmom@bn is not added again. main_bn = flow@bn 1/2 + blend_nested@bn 1/2. Not a funding recommendation. -> candidate (shadow book continues). | 2026-11-26 retired: superseded by blend_nested@bn in main_bn; room for carry@bn / carry_trend@bn shadow books (its components tsmom@bn, xsmom_k@bn keep their own)."
   },
   "blend_nested": {
     "strategy": "blend",
@@ -159,5 +159,43 @@
       "universe": "top-20 by 30-d mean volume (bnall)"
     },
     "note": "InSilico T1 CONFIRMED (2026-11-22); E2a WF OOS SR 1.94 (pick < grid avg: trade the frozen rule), E2b gate on Binance backtest: frozen k30 h60 s5 SR 2.14, 2x cost 2.04, one-bar-late 2.14, robust.worst 2.00, DSR .98. Live since 2026-11-23 as kripto-ladder.service (kripto/ladder.py, one-bar-late quotes, fills 30 bp through, 2 bp maker in / taker depth-walk out). Not in main_bn: the fill must be proven live first (max(limit, close) entries 2026 p .18). Intraday mark risk -34% at 10%/order on 2025-10-10 (size here 5%)."
+  },
+  "blend_nested@bn": {
+    "strategy": "blend",
+    "venue": "bn",
+    "status": "incubation",
+    "alloc": 0.5,
+    "params": {
+      "components": {
+        "carry_trend": {},
+        "carry": {},
+        "xsmom": {}
+      }
+    },
+    "due": "2027-01-02",
+    "due_what": "refit: run `python -m scripts.nested_choice bnall`, update components + due",
+    "note": "2026-11-26: H4 nested blend on Binance = `blend` with the rule's CURRENT bnall choice (scripts.nested_choice bnall, refit 2026-11-03: carry_trend 1.46, carry 1.33, xsmom 1.24 expanding SR), defaults. bnall 1d WF (clean, TF1 11-25) 1.17, worst 0.99. Live BN panel carries funding since 2026-11-26 (venue_bn.funding_panel, 60-day cache): carry legs need it. | M1 re-derivation 2026-11-26 (clean TF1 numbers, fixed rule design.md 2026-11-12/11-17): bnall qualifiers flow 1.45/1.36/1.20, xsmom 1.27/1.43/1.27, blend 1.35/1.05, blend_nested 1.17/0.99 (pick/avg/worst); tsmom, xsmom_k = blend components. The rule's 'of two blends the hindsight-free one is used' had been applied on HL (11-12) but not on Binance; applied now: blend@bn -> blend_nested@bn, and xsmom is one of blend_nested@bn's current components, so xsmom@bn is not added again. main_bn = flow@bn 1/2 + blend_nested@bn 1/2. Not a funding recommendation."
+  },
+  "carry@bn": {
+    "strategy": "carry",
+    "venue": "bn",
+    "status": "candidate",
+    "alloc": 0.0,
+    "params": {
+      "lookback": 1,
+      "every_days": 7
+    },
+    "note": "2026-11-26: funding carry (short high-funding, long low-funding, dollar+beta neutral) on clean survivorship-free bnall 1d, 11-09 grid unchanged (research/batches/2026-11-26_carry_bnall.json): pick 1.30 / grid avg 1.31 / worst 1.34 (2x costs), DSR 0.77, $200 1.06, corr BTC 0.04; funding +17%/yr (top-10 names 30% of it), price-only SR 0.77. By year 2.4/3.4/-0.1/1.7/2.9/-0.1/-0.75 (2020..2026): the last two years lose on price (squeezes) more than funding pays. Single weekly start days 0.08-1.52 (runs as 7 tranches). Shadow only; also a blend_nested@bn component (not added to main_bn again)."
+  },
+  "carry_trend@bn": {
+    "strategy": "carry_trend",
+    "venue": "bn",
+    "status": "candidate",
+    "alloc": 0.0,
+    "params": {
+      "lookback": 7,
+      "every_days": 3
+    },
+    "note": "2026-11-26: trend-conditioned carry on clean bnall 1d, 11-09 grid unchanged: pick 1.44 / grid avg 1.46 / worst 1.29, DSR 0.87, $200 0.78, corr BTC 0.12; funding +11%/yr, price-only SR 1.09 (mostly a trend book). By year 1.5/4.1/1.0/1.6/0.3/1.2/0.0: 2021 = 141% of return. Shadow only; blend_nested@bn component."
   }
 }

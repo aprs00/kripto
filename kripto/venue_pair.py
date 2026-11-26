@@ -41,28 +41,7 @@ def leg(col: str) -> tuple[str, str]:
 
 def bn_funding_refresh(bn, coins: list[str], now_ms: int | None = None) -> None:
     """Incremental cache of Binance funding prints per HL coin name (one request per coin once filled)."""
-    now_ms = now_ms or int(time.time() * 1000)
-    BN_FUND_DIR.mkdir(parents=True, exist_ok=True)
-    for c in coins:
-        f = BN_FUND_DIR / f"{c}.parquet"
-        have = pd.read_parquet(f) if f.exists() else None
-        start = int(have["time"].max()) + 1 if have is not None and len(have) else now_ms - FUND_DAYS * DAY_MS
-        rows = []
-        while True:
-            page = bn.funding_rate(V.sym(data.hl_to_bn(c)), start, now_ms)
-            rows += page
-            if len(page) < 1000:
-                break
-            start = int(page[-1]["fundingTime"]) + 1
-        if not rows:
-            continue
-        df = pd.DataFrame({"time": [int(r["fundingTime"]) for r in rows],
-                           "fundingRate": [float(r["fundingRate"]) for r in rows]})
-        d = pd.concat(([have] if have is not None else []) + [df]).drop_duplicates("time", keep="last").sort_values("time")
-        d = d[d["time"] >= now_ms - 2 * FUND_DAYS * DAY_MS].reset_index(drop=True)
-        tmp = f.with_suffix(".tmp")
-        d.to_parquet(tmp)
-        tmp.replace(f)
+    V.funding_cache_refresh(bn, coins, BN_FUND_DIR, lambda c: V.sym(data.hl_to_bn(c)), now_ms, FUND_DAYS)
 
 
 def _prints(path) -> pd.DataFrame:

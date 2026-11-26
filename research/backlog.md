@@ -6,10 +6,16 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 
 **Priority order (rewritten 2026-11-10 after H4/T9/X1b; research Tue + Thu, ≤ 6 new walk-forward experiments per session):**
 ## Owner instruction 2026-11-10 ("run everything now"): DONE 2026-11-12 06:40 research (M1, X2, W1 live; forward baseline). Journal 2026-11-12.
-**Next priorities (2026-11-25 research):** 1. NEXT research session: re-derive the M1 lists from TF1 by the fixed rule (grid avg > 0.8, pick > 0, worst > 0; BN candidates
-flow, xsmom, xsmom_k, tsmom, blend, blend_nested qualify on bnall; listing_short not) → 2. T5b positioning (≈ 11-29) → 3. E1 + LQ1 (≈ 12-01) → 4. T2b listing-day costs (XTEN: 160 bp
-real vs 25 bp cap; see C1) → 5. fill-delay re-measure ≈ 12-09 (`research.studies.fill_delay`, after the 11-25 reorder) → 6. T6b HL positioning (≈ 12-07) → 7. W2 re-check ≈ 12-23
-(pre-registered cells) → 8. low prior: W3b BTC+ETH-only Sunday fade, FC1, LV1, LO1. C1: re-run `scripts.cost_calibration` monthly (next ≈ 12-25). Weekly: T0a in the retro.
+**Next priorities (2026-11-26 research):** 1. NEXT research session: `nice -n 19 .venv/bin/python -m scripts.main_scale --write` (AL2b, design.md 2026-11-26; first application,
+monthly after that via `main_scale_due`) and check main_bn's first days on flow@bn + blend_nested@bn (switched 11-26 08:03) → 2. T5b positioning: backfill is newest-first per coin,
+so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 2024-07): explore only once 2021–23 is complete (≈ 11-29; check per-year coverage of BTC/ETH first)
+→ 3. E1 + LQ1 (≈ 12-01) → 4. fill-delay re-measure ≈ 12-09 → 5. T6b HL positioning (≈ 12-07) → 6. W2 re-check ≈ 12-23 → 7. LD1 ladder inventory skew (library N13; InSilico-style
+battery) → 8. low prior: W3b, FC1, LV1, LO1, FF1 market-relative. C1 monthly (≈ 12-25). Weekly: T0a in the retro. T2b(f) listing-day costs DONE 11-26 (robust; findings).
+- [x] M1 re-derivation DONE 2026-11-26 → main_bn = flow@bn ½ + blend_nested@bn ½ (the "hindsight-free blend" clause had never been applied on BN); live BN panel carries funding.
+- [x] AL2 DONE 2026-11-26 → form a (daily ex-ante) FAIL (costs), form b (monthly multiplier) PASS → design.md entry; apply next session (scripts/main_scale.py --write).
+- [ ] LD1 (library N13, Guéant §11; 2026-11-26) **ladder@bn inventory skew**: quote deeper when positions are already open (bid = 30σ·(1+λ·n_open)), because fills
+  cluster in market-wide flushes; descriptive on the E2 event set, explore ≤ 2023 / confirm 2024+, judged on daily P&L and worst day. Prior low–medium. Belongs in an
+  InSilico session's queue if one has room (ladder is their book), else here.
 - [x] TF1 DONE 2026-11-25 (findings: all survive, no verdict changes; M1 re-derivation next session). Was: **Re-run the Binance walk-forwards on the clean panel** (no stock perps): the same 11-09 v2 grids for flow, xsmom, xsmom_k, tsmom, listing_short,
   blend, blend_nested on bnall, tagged as a data correction (no new hypotheses, grids unchanged). Report old and clean pick / grid average / worst; then re-derive the
   M1 lists by the fixed rule (grid average > 0.8, pick > 0, worst > 0) in the following session, not the same one. flow@bn (2026: 0.90 → 0.45) is the one at risk.

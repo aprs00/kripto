@@ -76,3 +76,11 @@ Mechanical rule to test (descriptive, nested, no new signal): on bnall daily com
 listing_short), refit every 60 d on an expanding window: (i) 1/N, (ii) inverse-vol, (iii) min-variance with the covariance shrunk 50% to its
 diagonal, (iv) (iii) on 4h returns; compare OOS SR and mdd of the mix, then the empirical-Kelly leverage of the winner vs the 25–30% vol target.
 Our main_bn mixes flow, xsmom and blend (which itself holds xsmom-like legs) at 1/3 each: the overlap is unmeasured. Data: existing.
+
+### N13 Market-maker quotes: distance ∝ σ, inventory shifts both quotes in parallel (gueant-2016 §11.2–11.3, Thm 11.2, eqs 11.17–11.19; mined 2026-11-26) → backlog LD1
+Claim (Avellaneda–Stoikov / Guéant–Lehalle–Fernandez-Tapia closed forms): with fill intensity A·e^(−κδ), the optimal quote distance = a static term
+(1/γ)·ln(1+γ/κ) (set by how fast fill probability decays with depth) + an inventory term ≈ (2q+1)/2 · σ·√(γ/(2κA))·(1+γ/κ)^(1+κ/γ): quotes move in PARALLEL
+and roughly linearly with inventory q, scaled by σ; the spread itself barely depends on q. Our ladder@bn already scales depth by σ (30σ) but ignores inventory:
+it takes up to 5 fills at once, and fills cluster in market-wide flushes (correlated inventory). Mechanical rule to test (descriptive, on the E2 event set,
+explore ≤ 2023 / confirm later, the is3 battery): bid depth = 30σ·(1 + λ·n_open) with λ ∈ {0.1, 0.25} (one pre-registered pick), vs the base; judge P&L per day
+and the worst day (tail), not per-fill mean. Second form: per-coin κ (empirical fill rate vs depth) sets the static term. Data: existing (bnm/bn 1m).
