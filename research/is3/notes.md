@@ -777,3 +777,5 @@ W3B a done (w3b_explore.json): Sunday fade on BTC+ETH <= 2023 = 0 or negative at
 W3S (data-mined, stated): Saturday 12->18 NY fade on BTC+ETH, +43 bp t 1.9 in W3B explore as a placebo cell (1 of 18, expected max t ~2 by chance). Mechanism = W3's thin-book weekend reversal on another thin afternoon. Pre-registered one confirm (W3S_sat_fade_btceth), frozen cell.
 W3S done: confirm +1.8 bp t 0.07: chance cell. CLOSED OPEN (one form by construction).
 FC1C data note (22:2x): HL paid funding 8-hourly until ~2023-06 (3 prints/day, per-print ~5-8x the hourly-era size = 8-h rates), hourly after; the panel's daily SUM of prints is right in both eras. 34/134 coins after chunk 1 (oldest listings, ~19 pages each); chunk 2 to ~22:58; files checked: monotone, no duplicate times.
+FC1C fetch after chunk 2 (22:57): 77/134 coins. Remaining coins are 2023-Q4..2024-Q2 listings (short histories, est. ~40 min): one more chunk, same unit command as above
+ (systemd-run --user --unit is3-fc1cfetch ... -m research.studies.is3_fc1c_fetch 42; reset-failed first), then FC1C a (is3_fc1c.py) and LV2 c (is3_lv2 --hlc).

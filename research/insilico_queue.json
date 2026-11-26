@@ -2547,8 +2547,8 @@
     }
    ],
    "sessions": 1,
-   "due": "2026-11-26T23:00",
-   "defer_why": "HL funding backfill chunk 2 running (34/134 done at 22:17)"
+   "due": "2026-11-26T23:30",
+   "defer_why": "fetch 77/134 done; next session: one more chunk (systemctl --user reset-failed is3-fc1cfetch; unit command in notes FC1C), then form a (is3_fc1c.py, rule committed)"
   },
   {
    "id": "LV2",
@@ -2581,8 +2581,8 @@
     }
    ],
    "sessions": 1,
-   "due": "2026-11-26T23:00",
-   "defer_why": "form c needs the HL funding backfill (is3-fc1cfetch)"
+   "due": "2026-11-26T23:30",
+   "defer_why": "form c after the HL funding backfill completes (python -m research.studies.is3_lv2 --hlc)"
   },
   {
    "id": "E2B",
