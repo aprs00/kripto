@@ -759,3 +759,6 @@ Build: bn100 1h per-coin closes at cut T (hour ending Fri 12/15/17/20 NY, tranch
  follow sign(x) if |x| >= thr (2/3/4%), outcome = side * (r(T->T+24h) - U_fwd). Placebo cuts: Thu and Sat same hours. Week-clustered t (mean per cut-week). Simple returns.
 PRE-REGISTERED (a, b; explore 2020-01..2023-12): PASS = thr 2% form gross >= +20 bp/event AND week-clustered t >= 2 AND every explore year > 0 AND above both placebo weekdays
  AND gross - 14 bp (FF1 cost/event) > 0. Prior low.
+FF2 a done (is3_ff2.py, ff2_explore.json): excess-move follow on Friday = -3 bp (top30, t .6), dose flat; the same pipeline gives FF1's absolute +54/+73 bp, so Friday follow is the
+ universe's weekend continuation, not idiosyncratic news. Thursday excess-follow +30 bp (t 2.1) is a placebo-day surprise, 2022 negative: noted, not chased (not his claim, would be a fresh hypothesis).
+FF2 b done: shorts only hedged -5..-10 bp; unhedged + only via 2022. Unstated condition that would make it work -> d: trade the MARKET's Friday move (index-level timing).
