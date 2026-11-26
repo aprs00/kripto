@@ -111,6 +111,20 @@ def confirm(nm):
     print("PASS" if ok else "FAIL", json.dumps({k: v["by_year"] for k, v in res.items()}, default=str))
 
 
+
+def confirm_sr(nm="A_0.5"):
+    """LD2 d: SR confirm of the skew (pre-registered in notes.md before any 2024+ look at it)."""
+    p = OUT / "ld2d_confirm.json"
+    if p.exists():
+        raise SystemExit(f"confirm already spent: {p}")
+    res = run(L.SPLIT, L.HI, ["base", nm])
+    s, b = res[nm], res["base"]
+    ok = s["sr"] >= b["sr"] + 0.2 and s["thinning"]["sr_pct"] >= 0.90
+    p.write_text(json.dumps({"form": nm, "pass": ok, **res}, indent=1, default=str))
+    print("PASS" if ok else "FAIL", json.dumps({k: [v["sr"], v["ret_yr"], v["worst"], v["n"], v["by_year"]] for k, v in res.items()}, default=str))
+
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
-    {"explore": explore, "confirm": lambda: confirm(a[1])}[a[0]]()
+    {"explore": explore, "confirm": lambda: confirm(a[1]), "confirm_sr": lambda: confirm_sr()}[a[0]]()
