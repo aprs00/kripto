@@ -20,7 +20,7 @@ so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 202
 **2026-11-26 PC session (journal):** LD1, LV1, LO1, FC1(a)(b), E2 done descriptively, 0 walk-forwards spent; carry/carry_trend HL audited (DEAD holds). C1 monthly (≈ 12-25). Weekly: T0a in the retro. T2b(f) listing-day costs DONE 11-26 (robust; findings).
 - [x] M1 re-derivation DONE 2026-11-26 → main_bn = flow@bn ½ + blend_nested@bn ½ (the "hindsight-free blend" clause had never been applied on BN); live BN panel carries funding.
 - [x] AL2 DONE 2026-11-26 → form a (daily ex-ante) FAIL (costs), form b (monthly multiplier) PASS → design.md entry; apply next session (scripts/main_scale.py --write).
-- [ ] LD2 (from LD1, 2026-11-26) **ladder@bn strict cap of 5 open positions** (beat a size-matched base on explore; truncates only the 6th+ fill of a flush batch) and, since a cap
+- [x] LD2 DONE 2026-11-26 insilico → OPEN (cap = size effect; skew +0.12 SR on confirm, below +0.2); findings. Was: (from LD1, 2026-11-26) **ladder@bn strict cap of 5 open positions** (beat a size-matched base on explore; truncates only the 6th+ fill of a flush batch) and, since a cap
   bounds the batch, re-derive the per-order size (2.9%, set from the 17-fill batch, E2d) by the same rule. Server only (full top-20 1-min coverage; the PC copy has ~80%); judge against a
   SIZE-MATCHED base, explore ≤ 2023 / confirm 2024+ (LD1's confirm already used once for cap 3: say so). Prior medium. Queued 2026-11-26 as InSilico item LD2 (sessions were idle until 12-05).
 - [ ] E2b (from E2, 2026-11-26; prior low–medium, effect fading 7.2 → 2.1 → 1.1 bp) **daily BN books decide on the 16:00/20:00 UTC bar, buy at the CME break, defer sells ≥ 1 h**: first the

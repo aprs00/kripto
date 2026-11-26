@@ -711,3 +711,4 @@ LD2 a/b/c done (is3_ld2.py, research/is3/ld2_explore.json; server full top-20, 1
  scaled base, 74th pct of random thinning; cap3 +14%, cap8 +9%): FAIL, no confirm. b: E2d-rule size under cap5 = 10%/order -> +20% /yr, worst day -4.7% (explore), reported only.
  c: skew A_0.5 fails the TAIL rule (+15%, 94th) but is better in SR every year (2.72 vs 2.33; 3.47/0.86/3.56 vs 2.97/0.43/3.00), SR 100th pct of thinning: it picks better-priced fills.
 LD2 d pre-registered (before any 2024+ look at A): confirm 2024-01..2026-10, PASS = A_0.5 SR >= base + 0.2 AND SR >= 90th pct of random thinning. 2024+ already seen for base/cap3 in LD1.
+LD2 d done: confirm A_0.5 SR 2.16 vs 2.04 (FAIL, +0.2 needed); 2024 +0.9, 2025 -0.1, 2026 +0.05; tail +26%/99th pct (not the criterion). LD2 CLOSED OPEN. Sceptic: the cap and skew are the controls the backlog named, on the full universe; the skew's small gain is real-looking but under the bar.

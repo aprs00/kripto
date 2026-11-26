@@ -2481,7 +2481,7 @@
    "group": "D",
    "title": "Ladder flush-batch control: cap of open positions, size re-derivation, inventory skew (from LD1, PC 2026-11-26)",
    "src": "backlog LD1/LD2; library N13 (Gueant 11.2-11.3); findings LD1",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -2510,11 +2510,17 @@
     {
      "id": "d",
      "what": "skew A_0.5 SR confirm 2024-01..2026-10 (pre-registered after explore c, before any 2024+ look at A): PASS = SR >= base + 0.2 AND SR >= 90th pct of random thinning to the same fill count. Second look at 2024+ (LD1 cap3 spent it on base/cap3, never on A).",
-     "status": "planned",
-     "added": "2026-11-26"
+     "status": "done",
+     "added": "2026-11-26",
+     "result": "confirm 2024-01..2026-10 (1385 cand, 127 coins): A_0.5 SR 2.16 vs base 2.04 (+0.12 < +0.2), thinning SR 94th pct -> FAIL. By year 2.95/1.41/4.34 vs 2.05/1.50/4.29; worst day 2025-10-10 -4.6% unchanged (batch from a flat book). Tail improved +26% / 99th pct but that was not the confirm criterion (explore tail failed): not claimed.",
+     "date": "2026-11-26",
+     "evidence": "ld2d_confirm"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "cap of open positions = a size effect on the full server universe (worst5 +8% vs a return-matched base, 74th pct of random thinning); inventory skew k=30(1+0.5 n_open) better SR in 5 of 6 years (explore +0.39, confirm +0.12) but below the pre-set +0.2, and it cannot see the flush batch that makes the worst day. Live ladder unchanged; skew is a real but small refinement, revisit with live ladder fills.",
+   "closed": "2026-11-26"
   }
  ]
 }

@@ -562,6 +562,11 @@ worst −1.58% (beats a size-matched base); per-coin memory no effect (60-min lo
 worst day −1.40 vs −2.39%, ret/yr 3.7 vs 5.9%, trades −41% → PASS by rule, but vs a SIZE-MATCHED base only modestly better (explore: none): fills beyond the 3rd of a batch earn less.
 Skew can't see a batch from a flat book. Lesson: judge tail rules against a size-matched base. Live ladder unchanged; next: cap 5 + size re-derivation on the server's full universe (LD2).
 
+### LD2 ladder@bn cap / size / skew on the server's full top-20 (2026-11-26 insilico, research/studies/is3_ld2.py, not registered) → OPEN
+Full universe (base explore SR 2.33). Cap 5: worst-5-day only +8% better than a return-matched base, 74th pct of random thinning: a SIZE effect (cap 3/8 the same), no confirm spent.
+E2d size rule under cap 5 → 10%/order, explore +20%/yr, worst day −4.7% (reported, not adopted). Skew A_0.5: SR better every explore year (2.72 vs 2.33) but confirm 2024–26/10
+2.16 vs 2.04 (+0.12 < pre-set +0.2) → FAIL; 2025-10-10 (−4.6%) unchanged, a batch from a flat book. Live ladder unchanged; re-check skew on live ladder fills.
+
 ### E2 execution-time tilt: CME break 17–18 NY as buy-first / sell-after (descriptive, BN-82 1h, 2026-11-26 PC, research/studies/e2_exec_tilt.py) → PASS by rule, small and fading
 Daily books trade at 04:03 UTC. Literal "buy before 17 NY, sell after 18 NY" at that clock loses to signal decay (xsmom −6, tsmom −10 bp/unit; flow +4.9 t 1.8). Clock moved to the break
 (buy 17 NY, sell 18 NY vs both at 17): confirm 2024–26 flow +3.5 bp/unit t 2.49 (+7.2/+2.1/+1.1 by year), xsmom +3.7, tsmom +6.1; placebo: 17 NY tops all hours for all three books.
