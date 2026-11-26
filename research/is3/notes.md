@@ -707,3 +707,7 @@ What is not said / must be true: (1) a cap is only worth it if the truncated fil
  (3) LD1's confirm (2024-26/10) was spent once on cap 3 with 80% coverage: the server's 2024+ is not fresh for this ladder family; any confirm here is a second look, stated as such.
 Pre-registered (a): explore 2021-23 on the server's full top-20; PASS = cap5 SR >= base - 0.1 AND worst5 at matched ret/yr better than scaled base by >= 25% AND cap5 worst5 above the 95th pct
  of random thinning. Only then one confirm 2024-01..2026-10. (b) size re-derivation reported, no new test. (c) skew A_0.5 alone and with cap 5, same rule.
+LD2 a/b/c done (is3_ld2.py, research/is3/ld2_explore.json; server full top-20, 1852 cand / 107 coins, base SR 2.33 vs PC 2.46): cap 5 = size effect (worst5 only +8% better than a ret-matched
+ scaled base, 74th pct of random thinning; cap3 +14%, cap8 +9%): FAIL, no confirm. b: E2d-rule size under cap5 = 10%/order -> +20% /yr, worst day -4.7% (explore), reported only.
+ c: skew A_0.5 fails the TAIL rule (+15%, 94th) but is better in SR every year (2.72 vs 2.33; 3.47/0.86/3.56 vs 2.97/0.43/3.00), SR 100th pct of thinning: it picks better-priced fills.
+LD2 d pre-registered (before any 2024+ look at A): confirm 2024-01..2026-10, PASS = A_0.5 SR >= base + 0.2 AND SR >= 90th pct of random thinning. 2024+ already seen for base/cap3 in LD1.

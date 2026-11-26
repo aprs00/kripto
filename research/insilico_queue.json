@@ -2486,17 +2486,32 @@
     {
      "id": "a",
      "what": "strict cap 5 open positions vs a SIZE-MATCHED base (base scaled to the same trade count / gross), explore 2021-23 then confirm 2024+ on the full top-20 1-min universe (LD1 ran on ~80% coverage on the PC; its confirm was spent once on cap 3, say so)",
-     "status": "todo"
+     "status": "done",
+     "result": "server full top-20 (1852 cand, 107 coins) explore 2021-23: cap5 SR 2.25 vs base 2.33, worst5 at matched ret/yr only +8% better than scaled base, 74th pct of random thinning -> FAIL prereg, a size effect (cap3 +14%/88th, cap8 +9%). No confirm spent.",
+     "date": "2026-11-26",
+     "evidence": "ld2_explore"
     },
     {
      "id": "b",
      "what": "under the cap, re-derive per-order size by the E2d rule (size set from the worst batch); report ret/yr, worst day, worst 5 days vs live 2.9%",
-     "status": "todo"
+     "status": "done",
+     "result": "E2d rule size=25%/(0.5 cap): cap5 10%/order ret/yr +20.3% worst day -4.7% worst5 -13.6% (explore); live 2.9% uncapped +7.6%/-1.4%/-5.5%; cap3 16.7% +24.9%/-5.0%. Not adopted: cap5 failed a; the -50%/fill bound is not the realised tail. Reported only.",
+     "date": "2026-11-26",
+     "evidence": "ld2_explore"
     },
     {
      "id": "c",
      "what": "book-wide skew k=30(1+0.5 n_open), the only LD1 skew form that beat a size-matched base on explore, alone and with cap 5; fresh confirm only if explore holds on the full universe",
-     "status": "todo"
+     "status": "done",
+     "result": "skew A_0.5: SR 2.72 vs 2.33, every year better (3.47/2.97, 0.86/0.43, 3.56/3.00), SR 100th pct of thinning, top3 0.18 vs 0.25; tail impr5 +15% / 94th pct -> FAIL tail rule. A_0.5+cap5 SR 2.87, impr5 +22%, 94th -> FAIL narrowly. Return quality, not tail: add-form d (SR confirm).",
+     "date": "2026-11-26",
+     "evidence": "ld2_explore"
+    },
+    {
+     "id": "d",
+     "what": "skew A_0.5 SR confirm 2024-01..2026-10 (pre-registered after explore c, before any 2024+ look at A): PASS = SR >= base + 0.2 AND SR >= 90th pct of random thinning to the same fill count. Second look at 2024+ (LD1 cap3 spent it on base/cap3, never on A).",
+     "status": "planned",
+     "added": "2026-11-26"
     }
    ],
    "sessions": 1
