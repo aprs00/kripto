@@ -1312,7 +1312,7 @@
     },
     {
      "id": "e",
-     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
+     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is \u22123..\u221221% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
      "status": "done",
      "added": "2026-11-22",
      "result": "his literal picture (every live adaptive bucket -3..-21% of its volume, day <= -7%), long 3 d: n 55, +105 bp vs matched +256 (diff -151, p .50, MDE 494), 2022 -470; 2-way table fall x selling: U-shape (no selling +989 and extreme selling <= -20% +711 on 16-18 events at <= -8%; his -3..-21% range -30..+278), no monotone dose in either direction. DEAD form",
@@ -1526,7 +1526,7 @@
    "prio": 23,
    "group": "C",
    "title": "Filter harness: does a signal improve a book that already works?",
-   "src": "design.md §4 (filters)",
+   "src": "design.md \u00a74 (filters)",
    "status": "closed",
    "forms": [
     {
@@ -2621,6 +2621,31 @@
    "verdict": "OPEN",
    "reason": "anchor move costs nothing (a) but the deferred-sell gain at the CME break (+5.3 bp/unit, t 1.05) is matched by 3-h deferrals at other anchors (08 UTC +6.5): the E2 hourly drift does not survive translation into blend_nested@bn's real trades; HL untestable until 2027-04-14. Not adopted.",
    "closed": "2026-11-26"
+  },
+  {
+   "id": "FF2",
+   "prio": 26.4,
+   "group": "D",
+   "title": "friday_follow without the survivor long: market-relative move, shorts only (FF1 diagnosis)",
+   "src": "findings friday_follow FF1(a) 2026-11-19 (P&L = long leg of the hand-picked 82; untried: market-relative, shorts only); backlog FF1",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "bn100 1h (survivorship-free), Friday 17:00 NY cut as 4 tranches 12/15/17/20: coin's 24-h move MINUS the equal-weight top-30 universe move >= thr -> hold the relative position 24 h hedged with the universe; explore 2020-23, Saturday/Thursday cuts as placebo weekdays, dose by excess-move size",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "shorts only (follow Friday down-moves) on bn100, same cuts and placebo weekdays: is any part of the effect not 'long what later survived'",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "only if a or b pass explore: one confirm 2024-01..2026-10 (FF1's decomposition saw 2024-26 for non-82 coins: +0.8 bp, state it); else diagnose",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
