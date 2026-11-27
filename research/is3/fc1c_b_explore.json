@@ -1,0 +1,66 @@
+{
+ "name": "FC1Cb_gap_filter_listing_short",
+ "sample": "explore",
+ "side": -1,
+ "on_share": 0.886,
+ "base": {
+  "sr": 0.25915879719397045,
+  "ann": 0.06295991917026157,
+  "mdd": -0.2789509893132679,
+  "days": 413
+ },
+ "filtered": {
+  "sr": 0.12735819614707508,
+  "ann": 0.027354210310357695,
+  "mdd": -0.2569402994761042,
+  "days": 413
+ },
+ "dSR": -0.132,
+ "dMDD": 0.022,
+ "p_daily_diff": 0.7886056971514243,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.28,
+ "random_dSR_q05_q50_q95": [
+  -0.423,
+  0.034,
+  0.421
+ ],
+ "pct_dMDD_vs_random": 0.505,
+ "note": "gap<=0 shorts exited; HL 2023-05..2024-06",
+ "passes": false,
+ "years": {
+  "2023": {
+   "base_sr": -0.18,
+   "filt_sr": -0.71,
+   "days": 231
+  },
+  "2024": {
+   "base_sr": 0.81,
+   "filt_sr": 1.18,
+   "days": 182
+  }
+ },
+ "short_days": 3464,
+ "gap_defined": 2353,
+ "blocked": 1138,
+ "dose": [
+  {
+   "q": "low",
+   "size": 785.0,
+   "mean": -0.5,
+   "median": 27.3
+  },
+  {
+   "q": "mid",
+   "size": 784.0,
+   "mean": -0.6,
+   "median": 31.6
+  },
+  {
+   "q": "high",
+   "size": 784.0,
+   "mean": -105.7,
+   "median": 5.0
+  }
+ ]
+}

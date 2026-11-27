@@ -203,5 +203,20 @@
    "cell": "Sat |m|>=0.5%"
   },
   "at": "2026-11-26T21:53:09+00:00"
+ },
+ "FC1Cd_block_high_gap_shorts": {
+  "claim": "listing_short on HL: exiting shorts whose 3-d HL-minus-Binance funding gap > 0.000477/day (explore top-tercile edge, frozen) improves the book (HL-crowded young coins keep rising short-term)",
+  "rule": "confirm 2025-07-01..2026-11-01 HL 1d, F0 judge side=-1 exit, 200 random masks: PASS = dSR > 0 AND pct vs random >= 0.95. One run. Data-mined from FC1C b explore dose (stated); explore passed 0.26->1.00, 99.5th pct, robust to 1-2 day lag.",
+  "params": {
+   "edge": 0.000477,
+   "book": "listing_short",
+   "dataset": "hl",
+   "interval": "1d",
+   "window": [
+    "2025-07-01",
+    "2026-11-01"
+   ]
+  },
+  "at": "2026-11-27T01:16:05+00:00"
  }
 }

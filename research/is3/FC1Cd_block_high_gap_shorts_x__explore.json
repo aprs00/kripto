@@ -1,0 +1,31 @@
+{
+ "name": "FC1Cd_block_high_gap_shorts_x",
+ "sample": "explore",
+ "side": -1,
+ "on_share": 0.961,
+ "base": {
+  "sr": 0.25915879719397045,
+  "ann": 0.06295991917026157,
+  "mdd": -0.2789509893132679,
+  "days": 413
+ },
+ "filtered": {
+  "sr": 1.0039646171727743,
+  "ann": 0.22058085959736806,
+  "mdd": -0.15588054032495158,
+  "days": 413
+ },
+ "dSR": 0.745,
+ "dMDD": 0.1231,
+ "p_daily_diff": 0.08545727136431784,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.995,
+ "random_dSR_q05_q50_q95": [
+  -0.226,
+  0.06,
+  0.356
+ ],
+ "pct_dMDD_vs_random": 1.0,
+ "note": "edge 0.000477",
+ "passes": true
+}

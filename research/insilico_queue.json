@@ -2541,12 +2541,21 @@
     {
      "id": "b",
      "what": "as a FILTER for listing_short (corr 0.49): skip/size shorts by the gap; F0 harness, matched baseline",
-     "status": "todo"
+     "status": "done",
+     "result": "listing_short HL 1d explore 2023-05..2024-07, exit shorts with 3-d gap<=0 (33% of short days, gap defined on 68%): SR 0.26->0.13, dSR -0.13 at 28th pct of 200 random masks; 2023 -0.18->-0.71, 2024 0.81->1.18. FAIL. Dose reversed: high-gap shorts next day -106 bp mean (median +5) vs low/mid -0.5 (median +27/+32)",
+     "date": "2026-11-27",
+     "evidence": "fc1c_b_explore"
     },
     {
      "id": "c",
      "what": "as an entry/size tilt inside fspread_hold@pair (the gap is its own signal on a different horizon): does the 7-d gap rank add to the 14-d mean spread rule",
      "status": "todo"
+    },
+    {
+     "id": "d",
+     "what": "data-mined from b's dose (stated): block listing_short shorts in the TOP gap tercile (HL-crowded longs keep winning short-term); F0 judge on explore, and only if it passes there: pre-registered frozen confirm 2025-07..2026-10",
+     "status": "planned",
+     "added": "2026-11-27"
     }
    ],
    "sessions": 2,

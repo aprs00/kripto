@@ -792,3 +792,8 @@ FC1C b think-through: as a FILTER, the gap only has to separate GOOD from BAD sh
  beta to new-listing decay. Unstated: (1) many young HL coins are not on Binance yet: gap undefined, the filter keeps them (report touched share); (2) a filter must beat random masks
  of the same share/persistence (F0), cutting names alone costs SR; (3) exit vs delay: use exit (apply) first. Explore = 2023-05-15..2024-07-01 (F0 'explore' re-pointed, stated),
  book listing_short HL 1d defaults. PASS = dSR > 0 at >= 95th pct of 200 random masks AND dSR > 0 in 2023 and 2024 halves. Prior low (a failed; filter is a weaker claim).
+FC1C b done (is3_fc1c_b.py, fc1c_b_explore.json): exiting gap<=0 shorts in listing_short HL: dSR -0.13 (28th pct of random masks), FAIL. Dose REVERSED: shorts in the top gap tercile
+ lose 106 bp next day (median +5) vs ~0 (median +27/+32) in low/mid: the HL-crowded young coin keeps rising short-term (the levered crowd is right for a while, or the gap marks a squeeze in progress).
+FC1C d (added, data-mined from b's dose, stated): block shorts in the TOP gap tercile (edge fixed from the explore short-day gaps); F0 on explore first; confirm 2025-07..2026-10 only if explore passes.
+FC1C d explore (fc1c_d_explore.json): SR 0.26 -> 1.00, dSR +0.74 at 99.5th pct of random masks, mdd -27.9% -> -15.6%, 2023 -0.18 -> 0.84, 2024 0.81 -> 1.19. Bug check: gap lagged 1 / 2 days
+ still 0.88 / 0.82 (not look-ahead; funding day D = prints during D, weight at D pays D+1). Data-mined on the same sample -> pre-registered FC1Cd_block_high_gap_shorts, one confirm 2025-07..2026-10.
