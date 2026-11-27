@@ -218,5 +218,21 @@
    ]
   },
   "at": "2026-11-27T01:16:05+00:00"
+ },
+ "T5c_flow": {
+  "claim": "OI building into 3-day winners predicts a fade (explore 2023 IC -0.048): blocking those longs improves the Binance book",
+  "rule": "mask[d, c] = False (block LONG weight) iff c is in the point-in-time top 60, close[d]/close[d-3]-1 > 0, and log(oi_d / oi_{d-3}) (Binance metrics, last 5-min row of UTC day d) is in the top tercile among such names that day; else True. Applied with is3_filter.apply(side=+1) to flow@bn {lookback 3, cap .05} and xsmom@bn {lookback 28, every_days 1, cap .05}, bnall 1d. Sample confirm24 (2024-01-01..2026-11-22), one run each. Pass: dSR >= +0.1 AND pct vs 200 same-share random masks >= 0.90 AND dropped-long next-day mean < kept-long mean in >= 2 of 2024/2025/2026.",
+  "params": {
+   "book": "flow"
+  },
+  "at": "2026-11-27T07:19:21+00:00"
+ },
+ "T5c_xsmom": {
+  "claim": "OI building into 3-day winners predicts a fade (explore 2023 IC -0.048): blocking those longs improves the Binance book",
+  "rule": "mask[d, c] = False (block LONG weight) iff c is in the point-in-time top 60, close[d]/close[d-3]-1 > 0, and log(oi_d / oi_{d-3}) (Binance metrics, last 5-min row of UTC day d) is in the top tercile among such names that day; else True. Applied with is3_filter.apply(side=+1) to flow@bn {lookback 3, cap .05} and xsmom@bn {lookback 28, every_days 1, cap .05}, bnall 1d. Sample confirm24 (2024-01-01..2026-11-22), one run each. Pass: dSR >= +0.1 AND pct vs 200 same-share random masks >= 0.90 AND dropped-long next-day mean < kept-long mean in >= 2 of 2024/2025/2026.",
+  "params": {
+   "book": "xsmom"
+  },
+  "at": "2026-11-27T07:19:21+00:00"
  }
 }

@@ -31,7 +31,8 @@ ROOT = Path(__file__).resolve().parent.parent.parent
 OUT = ROOT / "research" / "is3"
 COINS10 = "BTC ETH SOL XRP DOGE BNB ADA AVAX LINK LTC".split()
 SAMPLES = {"explore": ("2021-01-01", "2024-01-01"), "confirmT": ("2024-01-01", "2026-01-01"),
-           "confirmC": ("2021-01-01", "2026-01-01"), "vault": ("2026-01-01", "2026-11-01")}
+           "confirmC": ("2021-01-01", "2026-01-01"), "vault": ("2026-01-01", "2026-11-01"),
+           "confirm24": ("2024-01-01", "2026-11-22")}   # T5c (research 2026-11-27): positioning metrics exist from 2023-03; explore was 2023
 LADDER = {"free": 0.0, "maker_taker": 8.0, "taker": 13.0, "taker_x2": 26.0, "crash": 80.0}    # round trip, bp
 
 
