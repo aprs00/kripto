@@ -1,0 +1,136 @@
+{
+ "n_months": {
+  "carry": 70,
+  "carry_trend": 70,
+  "main_bn": 70,
+  "pair": 42
+ },
+ "corr_state_vs_next": {
+  "carry": {
+   "s_med->inc_next": -0.48,
+   "s_med->net_next": 0.1,
+   "s_p90->inc_next": -0.23,
+   "s_p90->net_next": 0.01,
+   "s_share_hot->inc_next": 0.18,
+   "s_share_hot->net_next": 0.0
+  },
+  "carry_trend": {
+   "s_med->inc_next": -0.44,
+   "s_med->net_next": 0.08,
+   "s_p90->inc_next": -0.11,
+   "s_p90->net_next": 0.05,
+   "s_share_hot->inc_next": 0.22,
+   "s_share_hot->net_next": 0.01
+  },
+  "main_bn": {
+   "s_med->inc_next": -0.42,
+   "s_med->net_next": 0.14,
+   "s_p90->inc_next": -0.11,
+   "s_p90->net_next": 0.09,
+   "s_share_hot->inc_next": 0.29,
+   "s_share_hot->net_next": 0.09
+  },
+  "pair": {
+   "s_med->inc_next": 0.61,
+   "s_med->net_next": 0.45,
+   "s_p90->inc_next": -0.03,
+   "s_p90->net_next": -0.11,
+   "s_share_hot->inc_next": -0.36,
+   "s_share_hot->net_next": -0.36
+  }
+ },
+ "ar1": {
+  "carry": {
+   "income": 0.57
+  },
+  "carry_trend": {
+   "income": 0.66
+  },
+  "main_bn": {
+   "income": 0.61
+  },
+  "pair": {
+   "income": 0.5
+  }
+ },
+ "terciles_next_month": {
+  "carry": {
+   "low": {
+    "inc_pct": 2.32,
+    "net_pct": 2.27,
+    "n": 24
+   },
+   "mid": {
+    "inc_pct": 1.61,
+    "net_pct": 1.54,
+    "n": 23
+   },
+   "high": {
+    "inc_pct": 0.8,
+    "net_pct": 2.57,
+    "n": 23
+   }
+  },
+  "carry_trend": {
+   "low": {
+    "inc_pct": 1.92,
+    "net_pct": 2.17,
+    "n": 24
+   },
+   "mid": {
+    "inc_pct": 1.02,
+    "net_pct": 0.99,
+    "n": 23
+   },
+   "high": {
+    "inc_pct": 0.35,
+    "net_pct": 3.24,
+    "n": 23
+   }
+  },
+  "main_bn": {
+   "low": {
+    "inc_pct": 2.63,
+    "net_pct": 3.96,
+    "n": 24
+   },
+   "mid": {
+    "inc_pct": 1.49,
+    "net_pct": 1.69,
+    "n": 23
+   },
+   "high": {
+    "inc_pct": 0.65,
+    "net_pct": 5.03,
+    "n": 23
+   }
+  },
+  "pair": {
+   "low": {
+    "inc_pct": 0.36,
+    "net_pct": 0.26,
+    "n": 14
+   },
+   "mid": {
+    "inc_pct": 0.55,
+    "net_pct": 0.42,
+    "n": 14
+   },
+   "high": {
+    "inc_pct": 1.13,
+    "net_pct": 0.95,
+    "n": 14
+   }
+  }
+ },
+ "state_now": {
+  "med": 6e-05,
+  "p90": 0.00058,
+  "share_hot": 0.19
+ },
+ "state_pctile_now_vs_2021_26": {
+  "med": 0.24,
+  "p90": 0.74,
+  "share_hot": 0.73
+ }
+}

@@ -1149,3 +1149,11 @@ SQZ a done (sqz_a.json): off_low (how far above its post-listing low) top quinti
 PRE-STATED (b): block (exit / no entry) listing_short shorts whose off_low >= 0.433 (explore pooled 80th pct), F0 'apply', bnall explore 2021-23, 200 random masks;
  PASS = dSR > 0 at >= 95th pct AND dSR > 0 in 2021, 2022, 2023.
 SQZ b done (sqz_b.json, unit is3-sqzb): off_low block dSR +.32 vs random median +.25 (60th pct): FAIL; c skipped. CLOSED OPEN; LSB2 parked.
+
+## FRG funding regime vs the carry-earning books (think-through 19:4x UTC 11-27, before any run)
+Source: BNB, CRB, VRT. Mechanism: carry income needs crowding (leveraged longs paying, or crowded shorts paying); crowding is a market regime (bull euphoria, meme seasons) that persists
+ for months. If the state persists and the books' income follows it, their forward expectation should be quoted per regime, and a dry regime explains a weak live month without a bug.
+Unstated: monthly sampling = few independent points (~70 months bnall, ~42 pair): descriptive, rank correlations, no rule. The state must be known at the month start.
+Change my mind: rank corr(state_m, carry income_{m+1}) > .5 and AR(1) of income > .5 -> regime table goes to STATUS; else note.
+FRG a/b/c done (is3_frg.py, frg_ab.json): next-month funding income vs market median funding: BN carry books rho -.42..-.48 (crowded shorts pay in low regimes), pair +.61; AR(1) .5-.66;
+ BN net not forecastable. State now low (24th pct) -> pair book income ~.36 %/month. CLOSED OPEN.
