@@ -6,11 +6,16 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 
 **2026-11-27 research DONE:** ladder@bn → incubation as an overlay sleeve of main_bn (+ $200 twin); X1e → fspread_hold@pair incubation in the new two-account book main@pair
 (alloc 0.5); main_scale written (main 0.87, main_bn 1.16; next 12-01); LV2c (nested choice still picks lowvol). Detail: journal 2026-11-27.
-**Next priorities (2026-11-27):** 1. X1f (below) at ≥ 30 live days of main@pair / the pair shadow → 2. T5b positioning once `scripts.metrics_coverage` shows 2021–22 ≥ 95% (11-27: 72% / 76%)
+**Next priorities (2026-11-27):** 1. X1f (below) at ≥ 30 live days of main@pair / the pair shadow → 2. T5c (frozen OI-build long filter, confirm 2024+, F0 harness); 2021–22 metrics for a second explore once ≥ 95% (11-27: 72% / 76%)
 → 3. E1 + LQ1 (≈ 12-01) → 4. ladder sleeve check: first main_bn sleeve fills vs the shadow's (same minute, size = 2.9% × main_bn equity) → 5. fill-delay re-measure ≈ 12-09 → 6. T6b HL positioning (≈ 12-07)
 → 7. W2 re-check ≈ 12-23 → 8. E2b CME-break execution (fading) → 9. low prior: W3b, FC1(c), LV1 short leg, FF1 market-relative.
 - [ ] HLL1 (2026-11-27) ladder rule on HL minute bars: `nice -n 19 .venv/bin/python -m research.studies.hl_ladder --confirm` at ≥ 60 days of flow data (≈ 2027-01-15); explore had 7 fills
   (findings). Kill if HL-only fills < ⅓ or confirm median ≤ 0. NOTE for every study on data/hl/flow (W2, TSZ-HL): coins drop out of the collected top-60 for days; split at gaps, never ffill across them.
+- [ ] T5c (2026-11-27, PRE-REGISTERED, rule frozen before any confirm look) **OI-build filter on the Binance books' long side**: on each decision day, among universe names with a positive
+  3-day return, drop LONG weights of names whose 3-day log OI change (Binance metrics, last 5-min row of the day) is in the top tercile; renormalise nothing (the book just holds less).
+  Test with the F0 harness (apply transform) on flow@bn and xsmom@bn, bnall 1d, **confirm window 2024-01-01..2026-11 only** (explore 2023 done: findings T5b). Pass = SR up ≥ +0.1 AND the dropped
+  longs' next-day mean < kept longs' in ≥ 2 of 3 confirm years, against random drops of the same count (≥ 90th pct). One shot; no knob changes. Also, untried T5b forms (prior low): F1 as a
+  short-side filter, positioning on 4h bars, HL positioning (T6b) as the HL analogue.
 - [ ] X1f (2026-11-27) **fspread_hold live vol vs backtest.** Live price-P&L vol 3.2%/yr (gross ~1.2, 15 d) vs backtest 1.4% (gross 1.9, synchronised 00:00 closes); the 11-10 WF had vol 6.5% on
   dates where today's data gives ≈ 1.1% (no code change found; the HL funding/candle files were rebuilt by the FC1C backfill). Do: (a) `scripts.ledger_decomp shadow:fspread_hold@pair` and main@pair
   at ≥ 30 days; (b) replay the backtest on the live days and compare day by day (live_vs_backtest does not support pair books: extend it); (c) test whether HL markPx vs Binance markPrice
