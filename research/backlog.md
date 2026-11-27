@@ -108,7 +108,7 @@ so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 202
   liq size; entry after the prints stop; target = price before the first print; placebo = same-size taker bursts without liq prints. L1 (closed OPEN) had no print data.
 - [ ] T3 HL-vs-Binance funding spread as a crowding signal (HL retail flow is distinct; HL hourly vs BN 8h funding).
 - [ ] T7 Liquidation-cluster proximity as risk filter for trend positions (positions data now collected, T6b).
-- [ ] T8 Regime filter: trend/carry vs BTC vol regime or funding level (≤ 2 regime params; beware overfitting).
+- [x] T8 Regime filter → DEAD 2026-11-27 (insilico T8R: 6 states × 3 BN books, = random masks; findings).
 
 ## Done
 Completed and superseded items (with their original text) are in `research/backlog_done.md` (moved 2026-11-26). Move an item there when it is done; keep this file to open work.

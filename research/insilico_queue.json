@@ -2871,7 +2871,7 @@
    "group": "T",
    "title": "Market regime (BTC vol, market funding) -> return distribution of the live BN books; exposure filter vs random masks",
    "src": "backlog T8; F0 harness (research/studies/is3_filter.py)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -2892,10 +2892,16 @@
     {
      "id": "c",
      "what": "the one state rule the explore table points to (<= 2 params, written before the run) as a day-level F0 filter (halve or zero the book in the bad state) vs 200 random masks of equal share/persistence; PASS = >= 95th pct and every explore year; then ONE pre-registered confirmT 2024-25",
-     "status": "planned"
+     "status": "done",
+     "result": "pre-registered rule (closest a/b cell): halve flow@bn when BTC 30-d vol (lag 1) > 2/3 quantile of its trailing 365 d; on 71% of days: SR 1.58 -> 1.58 (dSR -0.00, 66th pct of 200 random masks, random q05/95 -0.35/+0.26), mdd -23.5 -> -24.6%, dSR by year +.18/-.27/+.19: FAIL, no confirm spent.",
+     "date": "2026-11-27",
+     "evidence": "t8r_c"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "6 market states (BTC 30-d vol, market funding, BTC vs MA50, BTC 30-d return, breadth, dispersion) x 3 live BN books (flow, blend, xsmom), bnall 1d 2021-23: pooled terciles are year dummies; within-year doses (flow weaker in high BTC vol / after rallies) flip sign by year; the strongest one as a causal halving filter = random masks (66th pct, dSR 0.00). Filter MDE: random-mask q05-q95 +-0.3 SR. Hot funding is good for blend (carry), not a risk state. The books are already vol-targeted: regime timing adds nothing.",
+   "closed": "2026-11-27"
   },
   {
    "id": "L6V",

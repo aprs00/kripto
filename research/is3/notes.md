@@ -894,3 +894,4 @@ L6V b done (l6v_b_explore.json): ewm20 variances cut quarterly vol tracking erro
  PRE-REGISTERED L6V_ewm20_vt_xsmom (confirmT one run, TE cut >= 20% and SR loss <= .1); blend/tsmom reported descriptively on the same run.
 L6V c confirm (l6v_b_confirmT.json): xsmom TE -12% (needed -20), SR 1.31 -> 1.10: FAIL. Same run: blend TE -22% (SR +.08), tsmom -12% (SR +.04). ewm20 tracks better in 6/6 cells, SR mixed. L6V CLOSED OPEN.
  Sceptic: tested the estimator where it is used (vol_target diagonal), on 3 books, out-of-sample; HAR as N6 says forecasts better by QLIKE but over-forecasts, which hurts a vol target.
+T8R c done (t8r_c.json): halving flow in high BTC vol = random masks (dSR 0.00, 66th pct; 2022 -0.27). T8R CLOSED DEAD (6 states x 3 books; year dummies; vol targeting already does the job).
