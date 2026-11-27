@@ -3720,7 +3720,10 @@
     {
      "id": "b",
      "what": "concentration and capacity: top-10 coins' share of funding and of price loss in 2025-26; the 7-d ADV of the names held and the live order sizes at main_bn $1,000 (fills table) vs ADV; worst 10 days and what drove them",
-     "status": "planned"
+     "status": "done",
+     "result": "2025-26: top-10 names give 38 % (carry) / 48 % (carry_trend) of the funding: RIVER, LAB, PIPPIN, FUN, MYX... (2025 small caps with deeply negative funding, held long); price total -43 % / -19 % vs funding +55 / +45 % (unit weights); MYX alone -13 % price. Capacity no issue: held names' 7-d ADV median $278-296M (p10 $68-73M) vs $10-50 orders. Worst days 2025-09-08 -6.5 %, 2026-11-08 -7.6 % (carry_trend), 2025-12-31, 2026-10-01: squeezes of the crowded-short longs' reversal",
+     "date": "2026-11-27",
+     "evidence": "crb_b"
     },
     {
      "id": "c",

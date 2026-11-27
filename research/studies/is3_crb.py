@@ -47,5 +47,30 @@ def run_a():
     json.dump(out, open("research/is3/crb_a.json", "w"), indent=1)
 
 
+
+
+def run_b():
+    p = data.load_panel("bnall", "1d")
+    c = p["close"]
+    ret = (c / c.shift(1) - 1).replace([np.inf, -np.inf], np.nan).fillna(0.0)
+    fund = p["funding"].reindex(index=c.index, columns=c.columns).fillna(0.0)
+    dv = S.dollar_volume(p)
+    out = {}
+    for name in ("carry", "carry_trend"):
+        wl = S.REGISTRY[name](p).ffill().fillna(0.0).shift(1).fillna(0.0).loc["2025":]
+        pr, fu = (wl * ret.loc[wl.index]).sum(), (-wl * fund.loc[wl.index]).sum()
+        top_f = fu.sort_values(ascending=False).head(10)
+        top_p = pr.sort_values().head(10)
+        held = wl != 0
+        adv = dv.loc[wl.index].where(held)
+        r = (wl * ret.loc[wl.index]).sum(axis=1) - (wl * fund.loc[wl.index]).sum(axis=1)
+        out[name] = {"funding_total": round(float(fu.sum()), 3), "top10_funding_share": round(float(top_f.sum() / fu.sum()), 2), "top10_funding": {k: round(float(v), 3) for k, v in top_f.items()},
+                     "price_total": round(float(pr.sum()), 3), "top10_price_loss": {k: round(float(v), 3) for k, v in top_p.items()},
+                     "held_adv_median_musd": round(float(np.nanmedian(adv.to_numpy()) / 1e6), 1), "held_adv_p10_musd": round(float(np.nanquantile(adv.to_numpy(), .1) / 1e6), 1),
+                     "worst10_days": {str(k.date()): round(float(v), 4) for k, v in r.nsmallest(10).items()}}
+        print(name, json.dumps(out[name]), flush=True)
+    json.dump(out, open("research/is3/crb_b.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    {"a": run_a}[sys.argv[1]]()
+    {"a": run_a, "b": run_b}[sys.argv[1]]()
