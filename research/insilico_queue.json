@@ -3253,24 +3253,37 @@
    "group": "T",
    "title": "Why fspread_hold@pair's live price-P&L vol is ~3x the backtest (mark definitions, leg timing, or real)",
    "src": "backlog X1f (b)(c); strategies.json fspread_hold@pair note (live 4.2%/yr vs backtest 1.4%)",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "`scripts.ledger_decomp shadow:fspread_hold@pair` and main@pair on all live days so far: daily funding / fees / price P&L, live vol per leg and of the hedged sum; same days replayed in the backtest (pair 1d panel) day by day: which component and which days carry the excess vol",
-     "status": "planned"
+     "status": "done",
+     "result": "10 live days 11-12..21 (pair panel ends 11-21): live price vol 3.14%/yr; LIVE positions replayed on research 00:00 closes 2.84% (corr .875); the backtest's OWN returns on the same days 3.1% vs its 2026 avg 1.17%: the window is the 98th pct of the backtest's 10-d vol (median 1.03). Excess vol = regime (Nov sell-off), seen by the backtest too. Holdings differ: 4.2 of 7.4 live pairs overlap the backtest's (live universe = both live top-60, path from 60-d history)",
+     "date": "2026-11-27",
+     "evidence": "x1v_a"
     },
     {
      "id": "b",
      "what": "re-mark both legs of the live positions at the same minute from trade prices (HL data/hl/flow minute bars, BN data/bn/klines_1m or 1m klines on disk) instead of HL markPx / BN markPrice: does the hedged daily vol fall to the backtest's? (mark-definition noise = no economic risk)",
-     "status": "planned"
+     "status": "done",
+     "result": "proxy, stated: Nov BN 1m klines not on disk, so no minute re-mark; replay at 00:00 last-trade closes of both venues leaves a residual (live - replay) std $1.6/day vs replay $2.98 (~1.5%/yr if independent): mark definition + timing are at most ~25% of the variance, not the 3x",
+     "date": "2026-11-27",
+     "evidence": "x1v_a"
     },
     {
      "id": "c",
      "what": "leg-timing: from fills, the time gap between the HL and BN legs of each rebalance and the basis move over it; and the backtest at 00:00 closes vs closes 1 min apart / at the live decision minute: does unsynchronised timing explain the gap? Verdict: explained (which) or real (then recompute DSR with live vol, write to STATUS)",
-     "status": "planned"
+     "status": "done",
+     "result": "fills: the two legs of 53 pair trades are 2 s apart (median, max 3 s), at 00:13 vs the backtest's 00:00 closes; notional-weighted slip 1.7 bp; 26 one-leg size trims leave <2% hedge mismatch (~$2-3 net delta per pair): timing cannot carry the gap; it sits inside the $1.6/day residual of b. Verdict EXPLAINED: regime (98th-pct vol window, backtest same 3.1%), not live-vs-backtest; no DSR recompute",
+     "date": "2026-11-27",
+     "evidence": "x1v_a"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "explained: live 10-d vol 3.1% = the backtest's own vol on the same days (98th pct window, Nov sell-off); marks+timing <= ~25% of variance; but live holds different pairs (4.2/7.4 overlap: live universe = both live top-60 + 60-d path) - track live-vs-backtest on the live universe",
+   "closed": "2026-11-27"
   },
   {
    "id": "BNH",

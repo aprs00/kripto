@@ -1,0 +1,289 @@
+{
+ "n_days": 10,
+ "panel_end": "2026-11-21",
+ "vol_live_price_pct": 3.14,
+ "vol_replay_live_pos_pct": 2.84,
+ "vol_bt_ret_pct_same_days": 3.1,
+ "vol_bt_ret_pct_2026": 1.17,
+ "corr_live_vs_replay": 0.875,
+ "mean_overlap_pairs": 4.2,
+ "mean_live_pairs": 7.4,
+ "mean_bt_pairs": 5.8,
+ "days": [
+  {
+   "day": "2026-11-12",
+   "live_price": 4.99,
+   "replay_live_pos_research_close": 1.55,
+   "bt_ret_bp": 18.1,
+   "live_ret_bp": 25.0,
+   "missing": [],
+   "live_hold": [
+    "ARB",
+    "TAO",
+    "UNI",
+    "WLD",
+    "XMR",
+    "ZEC",
+    "ZRO",
+    "kPEPE"
+   ],
+   "bt_hold": [
+    "PUMP",
+    "TAO",
+    "VVV",
+    "WLD",
+    "XMR",
+    "ZEC",
+    "kPEPE"
+   ],
+   "overlap": 5
+  },
+  {
+   "day": "2026-11-13",
+   "live_price": 4.42,
+   "replay_live_pos_research_close": 4.53,
+   "bt_ret_bp": -8.0,
+   "live_ret_bp": 56.8,
+   "missing": [],
+   "live_hold": [
+    "ARB",
+    "INIT",
+    "TAO",
+    "UNI",
+    "WLD",
+    "XMR",
+    "ZEC",
+    "ZRO",
+    "kPEPE"
+   ],
+   "bt_hold": [
+    "INIT",
+    "PUMP",
+    "TAO",
+    "VVV",
+    "XMR",
+    "ZEC"
+   ],
+   "overlap": 4
+  },
+  {
+   "day": "2026-11-14",
+   "live_price": -4.97,
+   "replay_live_pos_research_close": -3.17,
+   "bt_ret_bp": 1.8,
+   "live_ret_bp": -12.0,
+   "missing": [],
+   "live_hold": [
+    "ARB",
+    "INIT",
+    "PUMP",
+    "TAO",
+    "UNI",
+    "XMR",
+    "ZEC",
+    "ZRO"
+   ],
+   "bt_hold": [
+    "GRAM",
+    "INIT",
+    "TAO",
+    "VVV",
+    "XMR",
+    "ZEC"
+   ],
+   "overlap": 4
+  },
+  {
+   "day": "2026-11-15",
+   "live_price": 0.18,
+   "replay_live_pos_research_close": -1.86,
+   "bt_ret_bp": 19.7,
+   "live_ret_bp": 30.0,
+   "missing": [],
+   "live_hold": [
+    "ARB",
+    "INIT",
+    "TAO",
+    "UNI",
+    "XMR",
+    "ZEC",
+    "ZRO"
+   ],
+   "bt_hold": [
+    "GRAM",
+    "INIT",
+    "TAO",
+    "VVV",
+    "XMR",
+    "ZEC"
+   ],
+   "overlap": 4
+  },
+  {
+   "day": "2026-11-16",
+   "live_price": -2.9,
+   "replay_live_pos_research_close": -2.02,
+   "bt_ret_bp": 0.7,
+   "live_ret_bp": -2.5,
+   "missing": [],
+   "live_hold": [
+    "ARB",
+    "INIT",
+    "TAO",
+    "XMR",
+    "ZEC",
+    "ZRO"
+   ],
+   "bt_hold": [
+    "GRAM",
+    "INIT",
+    "TAO",
+    "VVV",
+    "XMR",
+    "ZEC"
+   ],
+   "overlap": 4
+  },
+  {
+   "day": "2026-11-17",
+   "live_price": 1.16,
+   "replay_live_pos_research_close": 0.99,
+   "bt_ret_bp": 14.4,
+   "live_ret_bp": 16.6,
+   "missing": [],
+   "live_hold": [
+    "ARB",
+    "INIT",
+    "TAO",
+    "XMR",
+    "ZEC",
+    "ZRO"
+   ],
+   "bt_hold": [
+    "GRAM",
+    "INIT",
+    "TAO",
+    "VVV",
+    "XMR",
+    "ZEC"
+   ],
+   "overlap": 4
+  },
+  {
+   "day": "2026-11-18",
+   "live_price": -2.6,
+   "replay_live_pos_research_close": -3.61,
+   "bt_ret_bp": -27.6,
+   "live_ret_bp": -23.8,
+   "missing": [],
+   "live_hold": [
+    "ARB",
+    "GRAM",
+    "INIT",
+    "TAO",
+    "XMR",
+    "ZEC",
+    "ZRO"
+   ],
+   "bt_hold": [
+    "GRAM",
+    "INIT",
+    "TAO",
+    "VVV",
+    "XMR",
+    "ZEC"
+   ],
+   "overlap": 5
+  },
+  {
+   "day": "2026-11-19",
+   "live_price": 2.26,
+   "replay_live_pos_research_close": 3.74,
+   "bt_ret_bp": 20.1,
+   "live_ret_bp": 12.5,
+   "missing": [],
+   "live_hold": [
+    "ARB",
+    "GRAM",
+    "INIT",
+    "TAO",
+    "XMR",
+    "ZEC",
+    "ZRO"
+   ],
+   "bt_hold": [
+    "GRAM",
+    "INIT",
+    "TAO",
+    "VVV",
+    "XMR",
+    "ZEC"
+   ],
+   "overlap": 5
+  },
+  {
+   "day": "2026-11-20",
+   "live_price": -2.57,
+   "replay_live_pos_research_close": -3.51,
+   "bt_ret_bp": -15.1,
+   "live_ret_bp": -9.0,
+   "missing": [],
+   "live_hold": [
+    "ARB",
+    "GRAM",
+    "INIT",
+    "STRK",
+    "TAO",
+    "XMR",
+    "ZEC",
+    "ZRO"
+   ],
+   "bt_hold": [
+    "GRAM",
+    "TAO",
+    "VVV",
+    "XMR",
+    "ZEC"
+   ],
+   "overlap": 4
+  },
+  {
+   "day": "2026-11-21",
+   "live_price": -0.19,
+   "replay_live_pos_research_close": -0.69,
+   "bt_ret_bp": -4.9,
+   "live_ret_bp": -6.7,
+   "missing": [],
+   "live_hold": [
+    "ARB",
+    "GRAM",
+    "INIT",
+    "STRK",
+    "TAO",
+    "XMR",
+    "ZEC",
+    "ZRO"
+   ],
+   "bt_hold": [
+    "GRAM",
+    "VVV",
+    "XMR",
+    "ZEC"
+   ],
+   "overlap": 3
+  }
+ ],
+ "a2": {
+  "bt_vol_by_year_pct": {
+   "2023": 1.83,
+   "2024": 1.64,
+   "2025": 1.1,
+   "2026": 1.17
+  },
+  "bt_10d_vol_at_live_window_end_pct": 3.1,
+  "pctile_of_all_10d_windows": 0.98,
+  "bt_10d_vol_median_pct": 1.03,
+  "resid_live_minus_replay_usd_std": 1.6,
+  "replay_usd_std": 2.98
+ }
+}

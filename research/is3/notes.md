@@ -975,3 +975,11 @@ PRE-STATED (b): PASS = dSR > 0 at >= 95th pct of 200 random masks AND dSR > 0 in
 HLU1 a done (is3_hlu1.py, hlu1_a.json): REVERSED for the momentum/flow books: BN-only coins (16-20% of short exposure) are their BEST shorts in 2023-24 (+83..+135 %/unit-yr price, funding received);
  the lowvol tail (LVH) is a lowvol-specific selection (high-vol BN-only names, 2025-26). b/d run for the record in unit is3-hlu1 (expected to fail).
 HLU1 b/d done (hlu1b.json, hlu1d.json): blocking BN-only shorts costs SR (-.31..-.69, = random), funding-extreme block (f7 < -.5) random (-.02..+.05). c skipped. HLU1 CLOSED DEAD (lowvol-specific tail).
+
+## X1V fspread_hold@pair live vol vs backtest (think-through 18:4x UTC 11-27, before any run)
+Source: backlog X1f, strategies.json note (live 4.2%/yr equity vol in 15 d vs backtest 1.4%). No chat records.
+Three explanations: (i) mark noise (HL markPx vs BN markPrice: no economic risk), (ii) leg timing (legs traded at different times, basis moves between), (iii) real: the live days
+ were volatile for the hedged book OR live holds different pairs. Test: replay the LIVE positions on research 00:00 closes (trade prices, both venues same instant): if replay vol ~ live,
+ (i)/(ii) are out; then compare with the backtest's own returns on the same days and its 10-d vol distribution. Change my mind: replay vol < half live -> marks/timing.
+X1V a/b/c done (is3_x1v.py, x1v_a.json, 10 days to panel end 11-21): live 3.14%/yr, replay of live positions 2.84 (corr .88), backtest's own 3.1 on the same days = 98th pct of its 10-d vol
+ (median 1.0). Legs filled 2 s apart; residual live-replay $1.6/d. EXPLAINED by regime; no DSR recompute. Side fact: only 4.2 of 7.4 live pairs are the backtest's (live universe/path).
