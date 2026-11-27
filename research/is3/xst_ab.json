@@ -1,0 +1,101 @@
+{
+ "btc_worst20_weeks": {
+  "xsmom": 0.0008,
+  "tsmom": 0.0241
+ },
+ "btc_best20_weeks": {
+  "xsmom": 0.0009,
+  "tsmom": 0.0413
+ },
+ "carry_worst20_days": {
+  "carry": -0.0295,
+  "xsmom": -0.0042,
+  "tsmom": 0.0068
+ },
+ "corr_with_carry_by_year": {
+  "2021": {
+   "xsmom": 0.21,
+   "tsmom": 0.28
+  },
+  "2022": {
+   "xsmom": 0.36,
+   "tsmom": 0.03
+  },
+  "2023": {
+   "xsmom": 0.43,
+   "tsmom": 0.28
+  },
+  "2024": {
+   "xsmom": 0.25,
+   "tsmom": 0.28
+  },
+  "2025": {
+   "xsmom": 0.5,
+   "tsmom": 0.18
+  },
+  "2026": {
+   "xsmom": 0.15,
+   "tsmom": 0.07
+  }
+ },
+ "blend_by_year": {
+  "2023": {
+   "xsmom": {
+    "sr": 1.97,
+    "mdd": -0.152,
+    "worst_month": -0.057
+   },
+   "tsmom": {
+    "sr": 2.22,
+    "mdd": -0.172,
+    "worst_month": -0.06
+   }
+  },
+  "2024": {
+   "xsmom": {
+    "sr": 1.7,
+    "mdd": -0.119,
+    "worst_month": -0.051
+   },
+   "tsmom": {
+    "sr": 1.39,
+    "mdd": -0.159,
+    "worst_month": -0.107
+   }
+  },
+  "2025": {
+   "xsmom": {
+    "sr": 0.45,
+    "mdd": -0.13,
+    "worst_month": -0.066
+   },
+   "tsmom": {
+    "sr": 0.55,
+    "mdd": -0.191,
+    "worst_month": -0.083
+   }
+  },
+  "2026": {
+   "xsmom": {
+    "sr": 1.03,
+    "mdd": -0.167,
+    "worst_month": -0.105
+   },
+   "tsmom": {
+    "sr": 1.38,
+    "mdd": -0.199,
+    "worst_month": -0.117
+   }
+  }
+ },
+ "blend_2023_26": {
+  "xsmom": {
+   "sr": 1.28,
+   "mdd": -0.167
+  },
+  "tsmom": {
+   "sr": 1.4,
+   "mdd": -0.199
+  }
+ }
+}

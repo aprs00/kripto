@@ -815,6 +815,7 @@ TFF (is3_tff.py, hlu_explore): tsmom's longs in the top HL-funding quintile (~95
 bnall 1d, legs at their mix share: mix SR 1.83 (2021 4.6 / 2022 .0 / 2023 2.7 / 2024 2.1 / 2025 .6 / 2026 1.2, in-sample choice years included); 2024–26 P&L flow 45 % / blend 55 %, leg corr .16–.52.
 2025–26: price ~0 in flow (−0.3 / +2.0 %) and −9.6 / −15.7 % in blend_nested@bn, funding +10 / +9 and +16 / +23 %: both earn carry, price alpha gone. Not convex (BTC worst 20 weeks +0.7 %/wk).
 Nested bnall pool 11-21: carry_trend 1.33, carry 1.31, xsmom 1.25, tsmom 1.17 (3rd slot may swap at the refit).
+XST (is3_xst.py): if swapped, tsmom is the more convex 3rd leg (BTC worst 20 weeks +2.4 %/wk vs xsmom +0.1; +0.7 % on carry's worst days), blend SR 1.40 / mdd −19.9 % vs 1.28 / −16.7 % (2023–26). No override.
 
 ### FLD flow@bn: is the taker-flow signal still there? (2026-11-27 insilico, research/studies/is3_fld.py, not registered) → OPEN (decayed; flagged for the §4 live check)
 Rank IC of the live signal (3-d imbalance, top-30) vs next-day market-relative return, bnall: 2021 .034 (t 2.4), 2022 .005, 2023 −.009, 2024 .015, 2025 −.019 (t −1.75), 2026 .010;

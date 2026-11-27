@@ -1200,3 +1200,8 @@ Source: HLI. Our HL universe comes from metaAndAssetCtxs = the main perp dex. If
 HLD a done (inline, hld_a.json): no coverage gap (179 main-dex coins all have files); main-dex listings 54/59/51/8 per year (2026: 8, 7 reached $1M): the main-dex drought is real. b (builder dexes) next session.
 HLD b plan: public HL info endpoint only, kripto.hl.HL (min_interval 3 s): perpDexs once, then metaAndAssetCtxs per builder dex (dex=<name>); count perps and 24-h notional volume. Read-only, no keys.
 HLD b/c done (is3_hld.py, hld_b.json, 11 public info calls): builder dexes = stock/index perps (xyz $4.1B/day), no new crypto tokens: the HL crypto listing drought is real. CLOSED OPEN.
+
+## XST blend_nested@bn 3rd slot: xsmom vs tsmom (think-through 19:5x UTC 11-27, before any run)
+Source: BNB c (pool 11-21: xsmom 1.25, tsmom 1.17), TSH (tsmom convex on HL). Descriptive only: the nested rule decides the refit. Question: what changes in main_bn's risk if the rule swaps
+ them: tsmom (directional trend, convex) vs xsmom (market-neutral momentum). Change my mind: n/a (verdict note only).
+XST a/b/c done (is3_xst.py, xst_ab.json): tsmom convex (BTC worst weeks +2.4 %/wk) and hedges carry's worst days; blend with tsmom SR 1.40 / mdd -19.9 vs xsmom 1.28 / -16.7 (2023-26). CLOSED OPEN.

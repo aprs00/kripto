@@ -4236,24 +4236,37 @@
    "group": "T",
    "title": "blend_nested@bn's 3rd slot: xsmom (1.25) vs tsmom (1.17) on bnall - convexity and fit with the carry legs (the refit may swap them)",
    "src": "BNB c (nested pool 11-21), TSH (tsmom on HL is convex)",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "bnall 2021-26: xsmom and tsmom (defaults) in BTC's 20 worst / best weeks, on the carry legs' 20 worst days, and their correlation with carry + carry_trend by year",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall 2021-26: tsmom convex (BTC worst 20 weeks +2.4 %/wk, best +4.1), xsmom flat (+0.1 / +0.1); on carry's 20 worst days (-3.0 %) tsmom +0.7 %, xsmom -0.4 %; corr with carry by year xsmom .21-.50 (2025 .50), tsmom .03-.28: tsmom hedges the carry legs better",
+     "date": "2026-11-27",
+     "evidence": "xst_ab"
     },
     {
      "id": "b",
      "what": "blend(carry_trend, carry, X) for X in {xsmom, tsmom}: SR, mdd and worst month by year 2023-26 (descriptive, the rule decides the refit)",
-     "status": "planned"
+     "status": "done",
+     "result": "blend(carry_trend, carry, X), 2023-26: X = tsmom SR 1.40 / mdd -19.9 % vs xsmom 1.28 / -16.7 %; by year tsmom 2.22 / 1.39 / .55 / 1.38 vs xsmom 1.97 / 1.70 / .45 / 1.03; worst month tsmom up to -11.7 % vs -10.5 %. Higher return and deeper drawdowns with tsmom",
+     "date": "2026-11-27",
+     "evidence": "xst_ab"
     },
     {
      "id": "c",
      "what": "verdict note for the 2027-01-02 refit (what changes in risk if the rule swaps them); no live change",
-     "status": "planned"
+     "status": "done",
+     "result": "refit note (rule decides, no live change): if the 2027-01-02 nested refit swaps xsmom for tsmom, main_bn's blend leg becomes more convex (hedges carry's squeeze days) with ~+.1 SR and ~3 pts deeper drawdown in the backtest; either is acceptable, no reason to override the rule",
+     "date": "2026-11-27",
+     "evidence": "xst_ab"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "tsmom would be the more convex 3rd leg for blend_nested@bn (hedges carry's worst days, corr with carry lower) at slightly deeper drawdowns; the nested rule decides at the refit, no override",
+   "closed": "2026-11-27"
   }
  ]
 }
