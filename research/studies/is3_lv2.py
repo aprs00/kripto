@@ -91,19 +91,6 @@ def run(p, a=A, b=B, tops=(30, 100)):
         print("   Q5 (short leg) next-day by trailing funding tercile (shorting earns -hedged):\n" + g.round(1).to_string())
 
 
-if __name__ == "__main__" and "--hlc" in sys.argv:
-    form_c()
-elif __name__ == "__main__":
-    if "--hl" in sys.argv:
-        p = data.load_panel("hl", "1d")
-        print("hl", p["close"].shape)
-        run(p, "2023-05-15", "2100-01-01", tops=(30,))
-    else:
-        p = data.load_panel("bnall", "1d")
-        print("bnall", p["close"].shape, p["close"].index[-1].date())
-        run(p)
-
-
 def form_c():
     """LV2 c: lowvol (defaults, the HL main book's blend leg) on HL 1d via research.evaluate (logged, tag lv2c): SR by year, price vs funding,
     SR without the best 10 days, and the HL funding coverage (backfilled to 2023-05 by is3_fc1c_fetch)."""
@@ -126,3 +113,16 @@ def form_c():
     out["sr_before_2024_07"] = round(sr(r[r.index < "2024-07-01"]), 2)
     print(json.dumps(out, indent=1))
     json.dump({"study": "research/studies/is3_lv2.py --hlc", **out}, open("research/is3/lv2_hlc.json", "w"), indent=1)
+
+
+if __name__ == "__main__" and "--hlc" in sys.argv:
+    form_c()
+elif __name__ == "__main__":
+    if "--hl" in sys.argv:
+        p = data.load_panel("hl", "1d")
+        print("hl", p["close"].shape)
+        run(p, "2023-05-15", "2100-01-01", tops=(30,))
+    else:
+        p = data.load_panel("bnall", "1d")
+        print("bnall", p["close"].shape, p["close"].index[-1].date())
+        run(p)

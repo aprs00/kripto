@@ -779,3 +779,9 @@ W3S done: confirm +1.8 bp t 0.07: chance cell. CLOSED OPEN (one form by construc
 FC1C data note (22:2x): HL paid funding 8-hourly until ~2023-06 (3 prints/day, per-print ~5-8x the hourly-era size = 8-h rates), hourly after; the panel's daily SUM of prints is right in both eras. 34/134 coins after chunk 1 (oldest listings, ~19 pages each); chunk 2 to ~22:58; files checked: monotone, no duplicate times.
 FC1C fetch after chunk 2 (22:57): 77/134 coins. Remaining coins are 2023-Q4..2024-Q2 listings (short histories, est. ~40 min): one more chunk, same unit command as above
  (systemd-run --user --unit is3-fc1cfetch ... -m research.studies.is3_fc1c_fetch 42; reset-failed first), then FC1C a (is3_fc1c.py) and LV2 c (is3_lv2 --hlc).
+
+## 00:4x UTC 11-27 insilico
+FC1C fetch chunk 3 started 00:47 (deadline 24 min, to finish before the 01:15 nightly window). bnall 1d snapshot -> data/is3/fc1c_bnall_1d.pkl (00:48, last bar 11-21) so FC1C a
+ can run inside the window without loading bnall. is3_lv2.py: the --hlc main block ran before form_c was defined (NameError); moved to the end.
+LV2 c pre-stated (before the run): lowvol defaults on HL 1d through research.evaluate. FRAGILE if SR without the best 10 days < 0.3 OR SR before 2024-07 (the backfilled-funding
+ window, unseen by the HL WF which started 2024-07) < 0; otherwise the HL blend leg stands. Insilico does not change lifecycle: a FRAGILE verdict goes to findings + backlog for research.

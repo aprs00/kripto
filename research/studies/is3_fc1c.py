@@ -3,7 +3,7 @@ Same forms and outcome machinery as fc1_funding_contra (c): 3-d mean gap, short 
 net of funding and a taker round trip. Explore = 2023-05-15 .. 2024-07-01 (fresh: the PC explore used 2024-07..2025-06). Confirm 2025-07+ untouched.
 Dose: 7-d entry price leg by gap-rank decile. Coverage printed (coins with HL funding per day).
     PYTHONPATH=. nice -n 19 .venv/bin/python -m research.studies.is3_fc1c"""
-import json, sys
+import json, pickle, sys
 import numpy as np
 import pandas as pd
 from kripto import data
@@ -13,7 +13,8 @@ LO, HI = "2023-05-15", "2024-07-01"
 
 
 def main():
-    p = data.load_panel("bnall", "1d")
+    snap = data.DATA / "is3" / "fc1c_bnall_1d.pkl"   # snapshot taken 11-27 00:48 UTC, before the nightly refresh window (bnall must not be loaded 01:15-03:30)
+    p = pickle.load(open(snap, "rb")) if snap.exists() else data.load_panel("bnall", "1d")
     h = data.load_panel("hl", "1d")
     forms, sub, rc = F.gap_forms(h, p)
     out = F.Outcomes(sub)
