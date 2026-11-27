@@ -853,3 +853,13 @@ T9B a/b done (is3_t9b.py, t9b_a.json): BN 2020-26 decay curves FLAT: 1 h late co
  (tsmom +7/+10, xsmom +5/+10). HL and live-BN windows (7 months) too short (CI +-6 bp at +1h). xsmom first-hour alpha 2.4 (2021) -> 0.1 (2026). Late runs are harmless; T9-timing closed.
  Bug caught by the 4h known-answer check: fillna(0) on hold-NaN targets made fake changes (first run, numbers discarded).
 T9B c done (t9b_c.json): live fills 11-13 min after the close; notional drift BN -3 / HL +11 bp but by side it is market direction (side-balanced -0.3 / +2.1 bp). T9B CLOSED DEAD (late runs cost ~nothing).
+
+## X1C fspread_hold@pair robustness (think-through 11:0x UTC 11-27, before any run)
+Source: backlog X1c + X1f; findings fspread_hold (X1b/X1c/X1d/X1e). No chat records. Book: lb 14, enter 0.1, max_pair .1, gross 2 (paper) / main@pair alloc 0.5 (gross 1.0, two accounts).
+Mechanism: HL longs pay more funding than BN longs for the same coin; short HL / long BN collects the gap, plus ~1/3 from premium convergence. Who pays: levered HL retail longs.
+Risks the backtest hides: (1) two accounts: each venue holds one direction, so a squeeze on a held alt drains the HL account while BN gains (11-12: -37% 1 d at gross 2);
+ (2) basis excursions (HL mark vs BN mark) are small on average but a single listing/squeeze day can be large; (3) the edge is decaying (21 -> 1.9 %/yr net 2023 -> 2026):
+ where is what is left? If it is only in BN 8h-interval coins (where BN funding is sticky and HL's hourly funding diverges) or in a few names, the book is a shrinking niche.
+Unstated: margin need = the worst k-day adverse move of one account's legs before a transfer; at alloc 0.5 everything scales by 0.5 of the 11-12 numbers at gross 2 only if the
+ book is the same; the 2023-05..2024-06 history (backfilled) adds the worst alt squeezes of 2024-Q1. Change my mind (b): if 2025-26 net is positive only in one interval bucket,
+ the live book should be restricted to it (a research decision, written as a backlog line, not done here). Form c needs >= 30 live days (live since 11-12: 15) -> defer to 12-12.
