@@ -797,3 +797,4 @@ FC1C b done (is3_fc1c_b.py, fc1c_b_explore.json): exiting gap<=0 shorts in listi
 FC1C d (added, data-mined from b's dose, stated): block shorts in the TOP gap tercile (edge fixed from the explore short-day gaps); F0 on explore first; confirm 2025-07..2026-10 only if explore passes.
 FC1C d explore (fc1c_d_explore.json): SR 0.26 -> 1.00, dSR +0.74 at 99.5th pct of random masks, mdd -27.9% -> -15.6%, 2023 -0.18 -> 0.84, 2024 0.81 -> 1.19. Bug check: gap lagged 1 / 2 days
  still 0.88 / 0.82 (not look-ahead; funding day D = prints during D, weight at D pays D+1). Data-mined on the same sample -> pre-registered FC1Cd_block_high_gap_shorts, one confirm 2025-07..2026-10.
+FC1C d confirm (fc1c_d_confirm.json): SR 1.34 -> 1.42, dSR +0.08 at 92nd pct (needs 95), mdd unchanged: FAIL. Same sign, a fraction of the explore effect (explore was the sample it was mined on).
