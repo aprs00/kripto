@@ -3220,6 +3220,32 @@
    "verdict": "DEAD",
    "reason": "HL-listing as a short-side universe filter for the BN books is wrong-signed: BN-only names are the momentum/flow books' best shorts in 2023-24 (+83..+135 %/unit-yr), blocking them = random masks or worse (dSR -.31..-.69); the funding-extreme alternative (f7 < -50 %/yr) is random too (dSR -.02..+.05, <= 86th pct). The LVH tail is lowvol-specific (it shorts high-vol BN-only names). 3 forms done, diagnosed; filter MDE = random-mask q05-q95 ~ +-0.1..0.3 SR.",
    "closed": "2026-11-27"
+  },
+  {
+   "id": "T5D",
+   "prio": 2.2,
+   "group": "T",
+   "title": "T5b F3 (OI built against the 3-day move) as a SHORT-side filter, explored on 2021-22 once metrics coverage >= 95%",
+   "src": "backlog T5d; findings T5b/T5c (long-side filter failed confirm, sign flipped after 2024)",
+   "status": "todo",
+   "due": "2026-11-29T06:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "first `scripts.metrics_coverage`: 2021 and 2022 must be >= 95% (else defer 2 days). State -> distribution on 2021-22 (a NEW regime, never looked at): next-day hedged return of the books' short candidates by OI-change-against-price tercile; dose; both years",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "if a shows losers with rising OI bounce (+ in both years): block flow@bn / xsmom shorts in the top OI-build-on-a-fall tercile, F0 vs 200 random masks on 2021-22; PASS >= 95th pct and both years",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "confirm on 2023 (the T5b explore year, seen only for the long side and stand-alone IC: stated) AND the sign check 2024-26; a pass needs both regimes (T5c lesson)",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
