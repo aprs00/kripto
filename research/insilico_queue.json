@@ -3367,7 +3367,7 @@
    "group": "T",
    "title": "fspread_hold@pair on the LIVE universe and a cold start: does the live book earn what research claims? (X1V: only 4 of 7 live pairs = backtest's)",
    "src": "X1V side fact; kripto/venue_pair.py (universe = both venues' live top-60 + held; panel from <= 60 d of Binance funding)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -3388,10 +3388,16 @@
     {
      "id": "c",
      "what": "replay the live book exactly: live-universe rule + cold start on 2026-11-11 on the research panel, compare its holdings with the fills table day by day (should match most legs; mismatches = live/research input differences to fix); verdict: live variant's expected net %/yr for STATUS/strategies.json note",
-     "status": "planned"
+     "status": "done",
+     "result": "replay of the live book (live-universe proxy + BN funding cache from 2026-09-13 = path from 09-27) matches 70 % of live's pairs per day 11-12..21 (continuous research path 54 %): the path explains most (ARB, UNI open; VVV not). Funding inputs live vs research IDENTICAL (ZRO, STRK, GRAM, 28 days, both legs, s to the bp). Residual (ZRO, GRAM, STRK, INIT): borderline open ranks (INIT 20-29 vs top-20) and per-coin cache starts in live, not data errors. Verdict: the live variant's expectation = research's (2025-26 4.2 %/yr at gross 1.9; ~2 %/yr at the deployable gross 1.0), a restart costs ~0.3 % once",
+     "date": "2026-11-27",
+     "evidence": "x1u_c"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "explained, no action: live universe = research when held legs are kept (4.2 vs 4.1 %/yr 2025-26); the live/backtest pair mismatch is the path (BN funding cache started 09-13, a cold start converges in ~60 d at ~0.3 % one-off cost); funding inputs identical; residual = borderline ranks",
+   "closed": "2026-11-27"
   }
  ]
 }

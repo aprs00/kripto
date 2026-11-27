@@ -1,0 +1,568 @@
+{
+ "variants": {
+  "cold_2026-09-27": {
+   "mean_match_share_of_live": 0.7,
+   "rows": [
+    {
+     "bar": "2026-11-12",
+     "live": [
+      "ARB",
+      "INIT",
+      "TAO",
+      "UNI",
+      "WLD",
+      "XMR",
+      "ZEC",
+      "ZRO",
+      "kPEPE"
+     ],
+     "replay": [
+      "ARB",
+      "TAO",
+      "UNI",
+      "WLD",
+      "XMR",
+      "XPL",
+      "ZEC",
+      "kPEPE"
+     ],
+     "both": 7,
+     "only_live": [
+      "INIT",
+      "ZRO"
+     ],
+     "only_replay": [
+      "XPL"
+     ]
+    },
+    {
+     "bar": "2026-11-13",
+     "live": [
+      "ARB",
+      "INIT",
+      "PUMP",
+      "TAO",
+      "UNI",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "ARB",
+      "INIT",
+      "TAO",
+      "UNI",
+      "XMR",
+      "XPL",
+      "ZEC"
+     ],
+     "both": 6,
+     "only_live": [
+      "PUMP",
+      "ZRO"
+     ],
+     "only_replay": [
+      "XPL"
+     ]
+    },
+    {
+     "bar": "2026-11-14",
+     "live": [
+      "ARB",
+      "INIT",
+      "TAO",
+      "UNI",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "ARB",
+      "INIT",
+      "TAO",
+      "UNI",
+      "XMR",
+      "ZEC"
+     ],
+     "both": 6,
+     "only_live": [
+      "ZRO"
+     ],
+     "only_replay": []
+    },
+    {
+     "bar": "2026-11-15",
+     "live": [
+      "ARB",
+      "INIT",
+      "TAO",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "ARB",
+      "INIT",
+      "TAO",
+      "XMR",
+      "ZEC"
+     ],
+     "both": 5,
+     "only_live": [
+      "ZRO"
+     ],
+     "only_replay": []
+    },
+    {
+     "bar": "2026-11-16",
+     "live": [
+      "ARB",
+      "INIT",
+      "TAO",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "ARB",
+      "INIT",
+      "TAO",
+      "XMR",
+      "ZEC"
+     ],
+     "both": 5,
+     "only_live": [
+      "ZRO"
+     ],
+     "only_replay": []
+    },
+    {
+     "bar": "2026-11-17",
+     "live": [
+      "ARB",
+      "GRAM",
+      "INIT",
+      "TAO",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "ARB",
+      "INIT",
+      "TAO",
+      "XMR",
+      "ZEC"
+     ],
+     "both": 5,
+     "only_live": [
+      "GRAM",
+      "ZRO"
+     ],
+     "only_replay": []
+    },
+    {
+     "bar": "2026-11-18",
+     "live": [
+      "ARB",
+      "GRAM",
+      "INIT",
+      "TAO",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "ARB",
+      "INIT",
+      "TAO",
+      "XMR",
+      "ZEC"
+     ],
+     "both": 5,
+     "only_live": [
+      "GRAM",
+      "ZRO"
+     ],
+     "only_replay": []
+    },
+    {
+     "bar": "2026-11-19",
+     "live": [
+      "ARB",
+      "GRAM",
+      "INIT",
+      "STRK",
+      "TAO",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "ARB",
+      "INIT",
+      "TAO",
+      "XMR",
+      "ZEC"
+     ],
+     "both": 5,
+     "only_live": [
+      "GRAM",
+      "STRK",
+      "ZRO"
+     ],
+     "only_replay": []
+    },
+    {
+     "bar": "2026-11-20",
+     "live": [
+      "ARB",
+      "GRAM",
+      "INIT",
+      "STRK",
+      "TAO",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "ARB",
+      "TAO",
+      "XMR",
+      "ZEC"
+     ],
+     "both": 4,
+     "only_live": [
+      "GRAM",
+      "INIT",
+      "STRK",
+      "ZRO"
+     ],
+     "only_replay": []
+    },
+    {
+     "bar": "2026-11-21",
+     "live": [
+      "ARB",
+      "GRAM",
+      "INIT",
+      "STRK",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "ARB",
+      "XMR",
+      "ZEC"
+     ],
+     "both": 3,
+     "only_live": [
+      "GRAM",
+      "INIT",
+      "STRK",
+      "ZRO"
+     ],
+     "only_replay": []
+    }
+   ]
+  },
+  "continuous": {
+   "mean_match_share_of_live": 0.54,
+   "rows": [
+    {
+     "bar": "2026-11-12",
+     "live": [
+      "ARB",
+      "INIT",
+      "TAO",
+      "UNI",
+      "WLD",
+      "XMR",
+      "ZEC",
+      "ZRO",
+      "kPEPE"
+     ],
+     "replay": [
+      "ENA",
+      "PUMP",
+      "TAO",
+      "VVV",
+      "WLD",
+      "XMR",
+      "ZEC",
+      "kPEPE"
+     ],
+     "both": 5,
+     "only_live": [
+      "ARB",
+      "INIT",
+      "UNI",
+      "ZRO"
+     ],
+     "only_replay": [
+      "ENA",
+      "PUMP",
+      "VVV"
+     ]
+    },
+    {
+     "bar": "2026-11-13",
+     "live": [
+      "ARB",
+      "INIT",
+      "PUMP",
+      "TAO",
+      "UNI",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "ENA",
+      "INIT",
+      "PUMP",
+      "TAO",
+      "VVV",
+      "XMR",
+      "ZEC"
+     ],
+     "both": 5,
+     "only_live": [
+      "ARB",
+      "UNI",
+      "ZRO"
+     ],
+     "only_replay": [
+      "ENA",
+      "VVV"
+     ]
+    },
+    {
+     "bar": "2026-11-14",
+     "live": [
+      "ARB",
+      "INIT",
+      "TAO",
+      "UNI",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "INIT",
+      "TAO",
+      "VVV",
+      "XMR",
+      "ZEC"
+     ],
+     "both": 4,
+     "only_live": [
+      "ARB",
+      "UNI",
+      "ZRO"
+     ],
+     "only_replay": [
+      "VVV"
+     ]
+    },
+    {
+     "bar": "2026-11-15",
+     "live": [
+      "ARB",
+      "INIT",
+      "TAO",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "INIT",
+      "TAO",
+      "VVV",
+      "XMR",
+      "ZEC"
+     ],
+     "both": 4,
+     "only_live": [
+      "ARB",
+      "ZRO"
+     ],
+     "only_replay": [
+      "VVV"
+     ]
+    },
+    {
+     "bar": "2026-11-16",
+     "live": [
+      "ARB",
+      "INIT",
+      "TAO",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "INIT",
+      "TAO",
+      "VVV",
+      "XMR",
+      "ZEC"
+     ],
+     "both": 4,
+     "only_live": [
+      "ARB",
+      "ZRO"
+     ],
+     "only_replay": [
+      "VVV"
+     ]
+    },
+    {
+     "bar": "2026-11-17",
+     "live": [
+      "ARB",
+      "GRAM",
+      "INIT",
+      "TAO",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "INIT",
+      "TAO",
+      "VVV",
+      "XMR",
+      "ZEC"
+     ],
+     "both": 4,
+     "only_live": [
+      "ARB",
+      "GRAM",
+      "ZRO"
+     ],
+     "only_replay": [
+      "VVV"
+     ]
+    },
+    {
+     "bar": "2026-11-18",
+     "live": [
+      "ARB",
+      "GRAM",
+      "INIT",
+      "TAO",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "INIT",
+      "TAO",
+      "VVV",
+      "XMR",
+      "ZEC"
+     ],
+     "both": 4,
+     "only_live": [
+      "ARB",
+      "GRAM",
+      "ZRO"
+     ],
+     "only_replay": [
+      "VVV"
+     ]
+    },
+    {
+     "bar": "2026-11-19",
+     "live": [
+      "ARB",
+      "GRAM",
+      "INIT",
+      "STRK",
+      "TAO",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "INIT",
+      "TAO",
+      "VVV",
+      "XMR",
+      "ZEC"
+     ],
+     "both": 4,
+     "only_live": [
+      "ARB",
+      "GRAM",
+      "STRK",
+      "ZRO"
+     ],
+     "only_replay": [
+      "VVV"
+     ]
+    },
+    {
+     "bar": "2026-11-20",
+     "live": [
+      "ARB",
+      "GRAM",
+      "INIT",
+      "STRK",
+      "TAO",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "TAO",
+      "VVV",
+      "XMR",
+      "ZEC"
+     ],
+     "both": 3,
+     "only_live": [
+      "ARB",
+      "GRAM",
+      "INIT",
+      "STRK",
+      "ZRO"
+     ],
+     "only_replay": [
+      "VVV"
+     ]
+    },
+    {
+     "bar": "2026-11-21",
+     "live": [
+      "ARB",
+      "GRAM",
+      "INIT",
+      "STRK",
+      "XMR",
+      "ZEC",
+      "ZRO"
+     ],
+     "replay": [
+      "VVV",
+      "XMR",
+      "ZEC"
+     ],
+     "both": 2,
+     "only_live": [
+      "ARB",
+      "GRAM",
+      "INIT",
+      "STRK",
+      "ZRO"
+     ],
+     "only_replay": [
+      "VVV"
+     ]
+    }
+   ]
+  }
+ }
+}

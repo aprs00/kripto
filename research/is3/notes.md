@@ -1011,3 +1011,5 @@ Two differences: (i) UNIVERSE: live cannot see mid-cap pairs outside either top-
  the eligible set, so the live set is a stricter, more liquid subset; (ii) PATH: a cold start picks the |s| leaders of the day; the continuous run still holds older pairs whose spread is smaller
  but same-signed (hysteresis). Unstated: the carry of the pairs only research holds is the question; costs of the restart; whether holdings converge.
 Change my mind: live-universe net %/yr within 1 %/yr of research in 2025-26 and paths converge in < 60 d -> no action; else the live book's expectation in STATUS/notes is the live-universe number.
+X1U a/b/c done (is3_x1u.py, x1u_a/b/c.json): live-universe proxy (held legs kept) = research (4.2 vs 4.1 %/yr 2025-26, overlap 92-99 %); forcing exits on list drops would cost 1.8 %/yr (live doesn't).
+ 20 cold starts: overlap 50 % d0 -> 90 % d60, -0.3 % net once. Live replay from the 09-27 cache start matches 70 % of live pairs (continuous 54 %); funding inputs identical to the bp. CLOSED OPEN (explained).

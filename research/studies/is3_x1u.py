@@ -157,5 +157,33 @@ def run_b():
     json.dump(out, open("research/is3/x1u_b.json", "w"), indent=1, default=str)
 
 
+def run_c():
+    from kripto import paper as P
+    from research.studies.is3_x1v import live_positions
+    p = data.load_panel("pair", "1d")
+    u = live_universe(p)
+    pos = live_positions(P.Store())
+    out = {"variants": {}}
+    for lab, st in (("cold_2026-09-27", pd.Timestamp("2026-09-27", tz="UTC")), ("continuous", None)):
+        q = cold(p, st) if st is not None else p
+        w = fsh_u(q, u).ffill().fillna(0)
+        rows = []
+        for d in pos.index:
+            if d not in w.index:
+                continue
+            # live trades at D+1 00:13 on bar D's targets: the holding after day D+1's fills = target of bar D
+            nxt = d + pd.Timedelta(days=1)
+            if nxt not in pos.index:
+                continue
+            lv = {c[:-3] for c, v in pos.loc[nxt].items() if c.endswith("@hl") and v != 0}
+            bt_ = {c[:-3] for c in w.columns if c.endswith("@hl") and w.at[d, c] != 0}
+            rows.append({"bar": str(d.date()), "live": sorted(lv), "replay": sorted(bt_), "both": len(lv & bt_), "only_live": sorted(lv - bt_), "only_replay": sorted(bt_ - lv)})
+        out["variants"][lab] = {"mean_match_share_of_live": round(float(np.mean([r["both"] / max(1, len(r["live"])) for r in rows])), 2), "rows": rows}
+        print(lab, out["variants"][lab]["mean_match_share_of_live"])
+        for r in rows:
+            print("  ", r["bar"], "both", r["both"], "only_live", r["only_live"], "only_replay", r["only_replay"])
+    json.dump(out, open("research/is3/x1u_c.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    {"a": run_a, "b": run_b}[sys.argv[1]]()
+    {"a": run_a, "b": run_b, "c": run_c}[sys.argv[1]]()
