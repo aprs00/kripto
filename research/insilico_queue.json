@@ -3380,7 +3380,10 @@
     {
      "id": "b",
      "what": "path dependence: start the hysteresis flat on 20 random dates (cold start with 60 d of history, as live did on 11-12) and track each path's holdings and net P&L vs the continuous run for 90 d; how long until holdings converge, cost of the restart (extra turnover) and whether cold-start pairs earn less carry",
-     "status": "planned"
+     "status": "done",
+     "result": "20 random cold starts 2023-09..2026-08 (BN funding NaN before start-14 d, P&L on true funding, live-universe rule): holdings overlap with the continuous path median 50 % at d0, 70 % d15, 80 % d30, 90 % d60-89. 90-d net cold 2.96 % vs continuous 3.26 % (mean diff -0.30 %, median -0.25, cold better in 6/20): opening cost +0.07, carry -0.07, d31-90 -0.17. A restart costs ~0.3 % once and converges in ~2 months: not a reason for action",
+     "date": "2026-11-27",
+     "evidence": "x1u_b"
     },
     {
      "id": "c",

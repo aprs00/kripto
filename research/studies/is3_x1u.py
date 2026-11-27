@@ -106,5 +106,56 @@ def run_a():
     json.dump(out, open("research/is3/x1u_a.json", "w"), indent=1)
 
 
+def cold(p, start):
+    """The panel as live sees it after a cold start at `start`: Binance funding only from start - 14 d (the cache), so the signal exists from `start`."""
+    q = dict(p)
+    f = p["funding"].copy()
+    bnc = [c for c in f.columns if c.endswith("@bn")]
+    f.loc[f.index < start - pd.Timedelta(days=14), bnc] = np.nan
+    q["funding"] = f
+    return q
+
+
+def run_b():
+    p = data.load_panel("pair", "1d")
+    u = live_universe(p)
+    w0 = fsh_u(p, u)
+    r0 = bt_run(p, w0)
+    a = w0.ffill().fillna(0)
+    hlc = [c for c in a.columns if c.endswith("@hl")]
+    rng = np.random.default_rng(11)
+    days = p["close"].loc["2023-09-01":"2026-08-20"].index
+    starts = sorted(rng.choice(days, 20, replace=False))
+    rows = []
+    for st in starts:
+        st = pd.Timestamp(st)
+        q = cold(p, st)
+        w1 = fsh_u(q, u)
+        r1 = bt.run(w1, p["close"], p["funding"], bt.slippage_model(p["volume"], 1), band=default_band())   # P&L on the TRUE funding
+        b = w1.ffill().fillna(0)
+        win = slice(st, st + pd.Timedelta(days=89))
+        ov = {}
+        for d in (0, 15, 30, 60, 89):
+            t = st + pd.Timedelta(days=d)
+            h0, h1 = set(np.array(hlc)[(a.loc[t, hlc] != 0).to_numpy()]), set(np.array(hlc)[(b.loc[t, hlc] != 0).to_numpy()])
+            ov[d] = round(len(h0 & h1) / max(1, len(h0)), 2)
+        rows.append({"start": str(st.date()), "overlap": ov, "net90_cont": round(float(r0.returns[win].sum()), 4), "net90_cold": round(float(r1.returns[win].sum()), 4),
+                     "fund90_cont": round(float(r0.funding[win].sum()), 4), "fund90_cold": round(float(r1.funding[win].sum()), 4),
+                     "cost90_cont": round(float(r0.costs[win].sum()), 4), "cost90_cold": round(float(r1.costs[win].sum()), 4),
+                     "net_d31_90_cont": round(float(r0.returns[st + pd.Timedelta(days=30):st + pd.Timedelta(days=89)].sum()), 4),
+                     "net_d31_90_cold": round(float(r1.returns[st + pd.Timedelta(days=30):st + pd.Timedelta(days=89)].sum()), 4)})
+        print(rows[-1], flush=True)
+    df = pd.DataFrame(rows)
+    out = {"n": len(df), "overlap_median": {d: float(np.median([r["overlap"][d] for r in rows])) for d in (0, 15, 30, 60, 89)},
+           "net90_cont_mean": round(float(df.net90_cont.mean()), 4), "net90_cold_mean": round(float(df.net90_cold.mean()), 4),
+           "fund90_cont_mean": round(float(df.fund90_cont.mean()), 4), "fund90_cold_mean": round(float(df.fund90_cold.mean()), 4),
+           "cost90_cont_mean": round(float(df.cost90_cont.mean()), 4), "cost90_cold_mean": round(float(df.cost90_cold.mean()), 4),
+           "cold_minus_cont_net90": {"mean": round(float((df.net90_cold - df.net90_cont).mean()), 4), "median": round(float((df.net90_cold - df.net90_cont).median()), 4),
+                                     "share_cold_better": round(float((df.net90_cold > df.net90_cont).mean()), 2)},
+           "cold_minus_cont_d31_90": round(float((df.net_d31_90_cold - df.net_d31_90_cont).mean()), 4), "rows": rows}
+    print({k: v for k, v in out.items() if k != "rows"})
+    json.dump(out, open("research/is3/x1u_b.json", "w"), indent=1, default=str)
+
+
 if __name__ == "__main__":
-    {"a": run_a}[sys.argv[1]]()
+    {"a": run_a, "b": run_b}[sys.argv[1]]()
