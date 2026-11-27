@@ -1,0 +1,51 @@
+{
+ "coverage_share_of_gross": 0.98,
+ "by_year": {
+  "2023": {
+   "recv_always_hl_pct": -15.83,
+   "recv_always_bn_pct": -5.62,
+   "recv_routed_pct": -0.14,
+   "share_on_bn": 0.64,
+   "switch_notional_x": 14.1,
+   "days": 231
+  },
+  "2024": {
+   "recv_always_hl_pct": -6.19,
+   "recv_always_bn_pct": -1.22,
+   "recv_routed_pct": 3.38,
+   "share_on_bn": 0.68,
+   "switch_notional_x": 19.8,
+   "days": 366
+  },
+  "2025": {
+   "recv_always_hl_pct": -9.73,
+   "recv_always_bn_pct": -8.92,
+   "recv_routed_pct": -5.95,
+   "share_on_bn": 0.68,
+   "switch_notional_x": 18.5,
+   "days": 365
+  },
+  "2026": {
+   "recv_always_hl_pct": -11.58,
+   "recv_always_bn_pct": -11.74,
+   "recv_routed_pct": -9.64,
+   "share_on_bn": 0.59,
+   "switch_notional_x": 29.8,
+   "days": 325
+  }
+ },
+ "per_year_avg": {
+  "always_hl": -12.29,
+  "always_bn": -7.8,
+  "routed": -3.5,
+  "switch_notional_x_per_yr": 23.3
+ },
+ "long_recv_hl_vs_bn_pct_yr": [
+  -9.42,
+  -4.58
+ ],
+ "short_recv_hl_vs_bn_pct_yr": [
+  -2.87,
+  -3.22
+ ]
+}

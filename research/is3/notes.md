@@ -1106,3 +1106,11 @@ Mechanism claimed: split metaorders keep coming (continuation). Decay candidates
 Change my mind: IC (next-day, market-relative) ~0 in 2025 AND 2026 in all terciles -> flag for the §4 retirement check; IC alive but P&L ~0 -> costs/sizing; one year only -> regime.
 FLD a/b/c done (is3_fld.py, fld_ab.json): flow IC1 2021 .034 (t 2.4), then .005/-.009/.015/-.019/.010; liquid tercile +.04-.05 in 2022/24 only; longs paid in bull years only.
  Recent return = funding. Flagged for §4 live check. 3-d IC sign oddity in 2023 unresolved (not used). CLOSED OPEN.
+
+## VRT venue routing of directional legs by funding (think-through 19:3x UTC 11-27, before any run)
+Source: fspread_hold (HL short leg on 95 % of pair-days: HL longs pay more), TSH (HL tsmom longs pay 3.5-12 %/yr). Mechanism: HL retail is net long and pays more funding than Binance;
+ a directional book that is long a coin can hold that long on Binance and its shorts on HL (where shorts receive more): same price exposure, better carry. Who pays: HL's crowded longs.
+Unstated: (1) only coins on both venues can be routed (coverage); (2) the choice must be made from trailing funding (known), scored on realised; (3) costs: BN fee 5 vs HL 4.5 bp, basis at
+ trade, extra trades when the best venue flips, and two accounts with no netting (margin, per-account drawdowns as in X1C); (4) the price series differ slightly (basis drift) - ignore in a,
+ measure in b. Change my mind: routed saving >= 1 %/yr net of b's costs on the HL main book -> design backlog item.
+VRT a/b/c done (is3_vrt.py, vrt_a.json): HL book funding -12.3 %/yr on HL vs -7.8 all-BN vs -3.5 routed; net of venue-switch costs +14 / +7.2 / +1.6 / -1.6 %/yr (2023..26): the gap closed. CLOSED OPEN.
