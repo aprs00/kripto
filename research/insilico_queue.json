@@ -2837,7 +2837,7 @@
    "group": "T",
    "title": "fspread_hold@pair robustness: basis excursions, funding-interval mix, live-vs-backtest vol (X1c + X1f b/c)",
    "src": "backlog X1c, X1f",
-   "status": "wip",
+   "status": "todo",
    "forms": [
     {
      "id": "a",
@@ -2861,7 +2861,9 @@
      "status": "planned"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "due": "2026-12-12T06:00",
+   "defer_why": "form c needs >= 30 live days of shadow:fspread_hold@pair / main@pair (live since 11-12; X1f)"
   }
  ]
 }
