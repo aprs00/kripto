@@ -802,3 +802,18 @@ LV2 c done (lv2_hlc.json): HL lowvol SR 0.70 (2023-03..), 2023 -0.01 / 2024 0.50
  pre-stated clauses). Note 2023 funding coverage median 28 coins (partial). LV2 CLOSED OPEN; backlog line for research (nested selection with the longer funding history).
 FC1C c (fspread tilt) needs the pair panel (loads Binance files) -> deferred to 03:35 (nightly window).
 Next session (FC1C c, due 03:35): first one fetch chunk for the 19 remaining coins (reset-failed is3-fc1cfetch; same unit, deadline 15), then form c: 7-d gap rank as an entry/size tilt in fspread_hold@pair (pair panel, 1d).
+
+## 04:5x UTC 11-27 insilico: FC1C c think-through (before any run)
+Source: FC1 (findings funding_contra) form c = the HL-vs-BN gap is the only FC1 form with the right price sign; a/b/d failed as a standalone short and as a listing_short filter.
+Here the gap is the SAME quantity fspread_hold@pair trades (14-d mean HL-BN funding spread, open at |s| > 0.1 ann., hold until it flips), so the only new information a 7-d gap can add
+ is the SLOPE: is crowding building (|7d| >= |14d|, same sign) or fading (|7d| < |14d|) when a pair opens. Mechanism: a widening spread = HL longs still piling in -> funding keeps
+ paying for the hold, and the premium convergence (~1/3 of fspread P&L) has not started; a fading spread = we arrive late, the pair flips soon, we pay 4 legs of costs for little carry.
+Unstated: (1) entries only (exits stay the sign-flip rule, else it is a different book); (2) the gate must beat random entry gates of the same share/persistence (cutting entries alone
+ changes the book); (3) a late entry may still earn the convergence leg, so the price and funding legs per trip are reported separately.
+Explore = 2023-05-15..2024-07-01 (pair panel with the backfilled HL funding; fspread's WF never saw it). Book = fspread_hold@pair config params (lookback 14, enter 0.1), local copy
+ with a gate hook, checked identical to the registered function. PRE-REGISTERED (c1 widening gate): PASS = dSR > 0 at >= 95th pct of 200 circular-shift random gates AND dSR > 0
+ in 2023 and in 2024 AND trips opened in the top tercile of |7d|/|14d| earn more per trip than the bottom tercile. Then ONE confirm 2025-07..2026-10. Prior low (gap ~ s, slope noisy).
+FC1C c done (is3_fc1c_c.py, fc1c_c_explore.json; local fsh copy asserted identical to the registered fspread_hold): widening gate SR 14.20 -> 14.65 (dSR +0.45, 97th pct of random gates)
+ but ann 26.6 -> 25.0%, 2024 half down (11.49 -> 11.01), per-trip dose reversed (mid tercile best): FAIL. Surprise check: base SR 14 on 2023-05..2024-06 is real carry, the WF's in-sample folds were 7-10 too
+ (OOS 1.26 = one -2.55 fold, 2025-10 crash); slots are full (9.7/10), trips 62-73 days, price legs cancel, so the slope cannot add carry, only shuffle slots. FC1C closing OPEN.
+ Side fact for research: fspread_hold on the never-seen 2023-05..2024-06 window = 26.6%/yr net at gross 2.0, mdd -0.6% (replication of the X1b edge on unseen history, one-account margin).

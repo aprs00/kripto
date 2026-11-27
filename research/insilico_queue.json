@@ -2549,7 +2549,10 @@
     {
      "id": "c",
      "what": "as an entry/size tilt inside fspread_hold@pair (the gap is its own signal on a different horizon): does the 7-d gap rank add to the 14-d mean spread rule",
-     "status": "todo"
+     "status": "done",
+     "result": "fspread_hold@pair (lookback 14, enter 0.1) explore 2023-05-15..2024-07-01 (backfilled HL funding, 134/134 coins), entry gate 7d spread same sign and |7d|>=|14d| (82% of cells on): SR 14.20->14.65, dSR +0.45 at 97th pct of 200 random gates, but ann net 26.6%->25.0% (gain = lower vol), 2024 half 11.49->11.01, per-trip dose reversed (66 trips; high-slope tercile +0.42% vs low +0.52%, mid +0.69%): FAIL 2 of 3 pre-registered clauses. Book is slot-bound (9.7/10 pairs open) and per-trip P&L is all funding (price legs ~0), so the slope only reshuffles which pairs fill slots",
+     "date": "2026-11-27",
+     "evidence": "fc1c_c_explore"
     },
     {
      "id": "d",
