@@ -76,4 +76,4 @@ at a deployable size. None of the main books has tracked its backtest long enoug
 Next research session: first main_bn ladder fills vs its shadow; LD3 (ladder fills in liquidity holes vs heavy-volume flushes, library N14); E1 + LQ1 liquidation prints (≈ 12-01);
 main_scale re-check 12-01. X1f (funding pair live vol vs backtest) at 30 live days (≈ 12-12). Fill-delay re-measure ≈ 12-09; HL order-flow re-check ≈ 12-23; HL ladder ≈ 2027-01-15.
 Nested-blend refits (HL and Binance) 2027-01-02. Forward ledger: first verdicts ≈ 12-09.
-InSilico pass 3: 228/246 forms done, 43/49 items closed; the remaining 6 wait for data still being collected (first due 12-05).
+InSilico pass 3: 262/285 forms done, 54/61 items closed (11-27 midday: 10 items). Best findings so far are about RISK and COSTS, not new edges: the low-vol idea only works on HL-listed coins (Binance-only small caps are squeeze shorts), listing_short survives full funding (SR 1.36), late or maker execution saves nothing. Next due: T5D 11-29.
