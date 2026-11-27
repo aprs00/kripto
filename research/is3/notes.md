@@ -1173,3 +1173,4 @@ CRS a done (crs_a.json): only 'funding fading' (f3/f7 bottom quintile) is same-s
  anyway (as in SQZ) because b takes the best feature from a by design; F0 + 2024-26 are the line.
 PRE-STATED (b): block carry LONGS in the top |7-d funding| decile when f3/f7 < 0.443 (explore 20th pct), side +1, carry on bnall explore 2021-23, 200 random masks (circular shifts of the
  mask per coin: on-share kept, but shifted blocks may land outside the decile: a weaker null, stated). PASS = dSR > 0 at >= 95th pct AND dSR > 0 in 2021, 2022, 2023.
+CRS b done (crs_b.json, unit is3-crsb): dSR -.01, 36th pct: FAIL; c skipped. CLOSED OPEN.

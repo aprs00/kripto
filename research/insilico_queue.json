@@ -4049,7 +4049,7 @@
    "group": "T",
    "title": "Carry's extreme-decile longs (crowded-short coins paying 1-2 %/day): which of them keep falling? (state -> distribution, a control for blend_nested@bn)",
    "src": "CRB (d10 longs: 2026 funding +177 bp/unit-day vs price -118; dropping the decile = worse than random), SQZ method",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -4062,15 +4062,23 @@
     {
      "id": "b",
      "what": "best monotone feature (stated from a) as a no-entry / exit rule for those longs only: F0 vs 200 random masks restricted to the same decile, explore; PASS = 95th pct and every explore year",
-     "status": "planned"
+     "status": "done",
+     "result": "pre-stated F0 (block top-decile carry longs with f3/f7 < .443), bnall explore 2021-23: SR 1.56 -> 1.55 (dSR -.01), 36th pct of 200 masks (q05/50/95 -.07/-.00/+.04), by year +.06 / +.08 / -.32: FAIL. The event-level -3 % is too small and too rare (blocked cells ~1 % of exposure) to move the book",
+     "date": "2026-11-27",
+     "evidence": "crs_b"
     },
     {
      "id": "c",
      "what": "if b passes: L.prereg, ONE run 2024-26 on blend_nested@bn (the live book), report the change in funding income vs price; else note",
-     "status": "planned"
+     "status": "skipped",
+     "result": "b failed; 2024-26 not spent",
+     "date": "2026-11-27"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "fading funding marks the carry longs that keep falling (-3 %/7 d, same sign every explore year), but blocking them does not change the carry book (dSR -.01, 36th pct of random): too small and rare; no control",
+   "closed": "2026-11-27"
   }
  ]
 }

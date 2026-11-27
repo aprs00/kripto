@@ -131,4 +131,5 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * SQZ squeeze predictors for listing shorts: OPEN. Listings that already trade far above their post-listing low are twice as likely to squeeze, but skipping them does no better than skipping random shorts.
 * FRG funding regime: OPEN. When the market's typical funding rate is low (as now) the pair book earns less and the Binance carry book collects more funding next month, but the Binance book's net return does not follow.
 * KSA the pair book's two accounts: OPEN. Held in two separate accounts with no transfers, one of them would almost surely lose half its money within two years (the other gains the same); moving money between them whenever one falls below 70 % of the other (about 14 times a year) keeps the worst account at -29 %.
+* CRS carry's crowded-short longs: OPEN. The ones whose funding is fading tend to keep falling a little, but skipping them changes nothing at the book level.
 * FLQ flow on the 10 most liquid coins: OPEN. Worse than the live 30-coin version (Sharpe 0.67 vs 1.58 in 2021-23); flow@bn stays flagged.

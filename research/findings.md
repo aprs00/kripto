@@ -826,6 +826,7 @@ HL blend 2023-05..2026-11 (98 % of gross on coins on both venues): funding −12
 bnall carry / carry_trend: the funding comes from the long leg's top |7-d funding| decile (crowded shorts): 2026 +177 / +205 bp per unit-day funding vs −118 / −132 price; d1–5 earn ~0 funding.
 Price loss ~0.7–1× the funding at d10, no clean dose by year. 2025–26: top-10 names (RIVER, LAB, PIPPIN, FUN, MYX…) = 38–48 % of funding; held ADV median $280M (no capacity issue).
 Pre-stated F0 (drop the top decile) on 2021–23: carry dSR −.38 (1st pct of random), carry_trend −.15 (16th): FAIL. Carry is paid for holding the squeeze risk; no filter.
+CRS (is3_crs.py): among those longs, fading funding (f3/f7 bottom quintile) precedes −3 %/7 d every explore year, but blocking it moves the book by −.01 SR (36th pct of random): no control.
 
 ### LSB new-listing shorts on Binance by year, HL-listed vs BN-only (2026-11-27 insilico, research/studies/is3_lsb.py, not registered) → OPEN (alive in the median; backlog LSB2)
 bnall listings reaching $1M 7-d volume, short-vs-BTC d2→d61 incl. funding: per month 7 / 5 / 3 / 8 / 11 / 20 / 5.7 (2020–26); median +36 / +22 / +24 / +35 / +41 / +35 / +23 %, win 69–85 %

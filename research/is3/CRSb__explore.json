@@ -1,0 +1,31 @@
+{
+ "name": "CRSb",
+ "sample": "explore",
+ "side": 1,
+ "on_share": 0.999,
+ "base": {
+  "sr": 1.562125418840411,
+  "ann": 0.32527001126383986,
+  "mdd": -0.25151387260301505,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 1.5481734226109722,
+  "ann": 0.31373310917763025,
+  "mdd": -0.26925377429214603,
+  "days": 1095
+ },
+ "dSR": -0.014,
+ "dMDD": -0.0177,
+ "p_daily_diff": 0.7456271864067966,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.36,
+ "random_dSR_q05_q50_q95": [
+  -0.065,
+  -0.002,
+  0.043
+ ],
+ "pct_dMDD_vs_random": 0.025,
+ "note": "block top-decile carry longs with fading funding (f3/f7 < .443)",
+ "passes": false
+}
