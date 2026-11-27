@@ -221,3 +221,8 @@ put a lesson into CLAUDE.md "Standing lessons" only if a future session must act
   among others) with shifted funding, and logged five junk `anchor` registry lines (bn100_1d@04..@20, ~21:45 UTC). Caught because five different anchors printed the same SR to 3 decimals.
   Fixed by shifting the index + a known-answer assert on BTC; repo grep found no other use. Lesson in CLAUDE.md "Verify the plumbing". Also: queue items with no due work were refilled
   in-session (FF2, W3B) instead of letting the queue run dry.
+* 2026-11-27 research: (1) A structural hold-back: a strategy type with no main book (pair) could pass the gate and have nowhere to trade; held_back.py flagged it,
+  which is how it was found. Fixed with `main@pair` (design.md 2026-11-27) rather than by leaving it out. Lesson: when adding a new book TYPE (venue, overlay), give it
+  a path into a main book in the same change. (2) The ladder needed main-book plumbing for 4 days after passing; the `sleeve` table now lets any overlay strategy share
+  a main book's ledger without the hourly rebalance netting it. (3) `scripts/ledger_decomp.py <book>` (+ test): daily funding / fees / price split and live vol from the
+  ledger alone, for books scripts.live_vs_backtest cannot replay (pair, sleeves). Built because today's DSR pass of fspread_hold rested on a backtest vol 3× below live.

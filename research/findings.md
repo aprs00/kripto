@@ -27,7 +27,7 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
 - fspread: HL-vs-Binance funding capture, same coin long on one venue and short on the other (X1, dataset pair, 2026-11-09) → DEAD at taker costs (funding leg real)
 - blend_nested: blend with component SELECTION out-of-sample (H4, 2026-11-10) → ALIVE (candidate, shadow blend_nested)
 - T9 passive (maker) execution for the daily books (2026-11-10, exec_study r1+r2, config-level) → DEAD as a general fix
-- fspread_hold: funding capture with hysteresis (X1b, 2026-11-10) → ALIVE (candidate; needs a two-venue book, X2)
+- fspread_hold: funding capture with hysteresis (X1b, 2026-11-10) → ALIVE (incubation 2026-11-27, main@pair; edge decaying)
 - L1 hourly horizon: Binance → HL lead-lag and 1h reversal (library N4; descriptive kill test, no backtest, 2026-11-10) → DEAD at taker costs
 - Minute-bar ideas from the library: flow, absorption, sweeps, BTC leader-lag, breadth, activity spikes, extreme-move fades (event study, 2026-11-10) → DEAD at taker costs
 - weekend_revert: fade the weekend move back to Friday's CME close (InSilico R21, bn 1h BTC+ETH, 2026-11-11) → DEAD (see second pass: three fade formulations)
@@ -57,7 +57,7 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
 - T0a live-vs-backtest tracking: 10 single-entry shadow books, 7–8 live days (scripts/live_vs_backtest.py, 2026-11-17) → live = backtest on HL
 - R1 squeeze tail of the Binance x-sec books + LV1(c) high-vol shorts (bnall 1d; explore ≤ 2023-06, confirm 2023-07+; 2026-11-17) → small fix adopted
 - T2b(e) listing_short liquidity hysteresis (cost fix after live XTEN churn; fixed configs, tag t2be, 2026-11-19) → rejected (pre-registered rule failed on HL)
-- InSilico T1 resting bids 30 σ below the last price, causal top-20 coins, exit 60 min (2026-11-22, is3_ladtop.py) → CONFIRMED by card, not yet a book
+- InSilico T1 resting bids 30 σ below the last price, causal top-20 coins, exit 60 min (2026-11-22, is3_ladtop.py) → CONFIRMED; incubation 2026-11-27 (overlay sleeve of ma…
 - InSilico S1: sources re-read against the rules as coded (2026-11-22) → no verdict, but several older DEADs were verdicts on my translation
 - InSilico S2: every picture and video opened by eye (2026-11-23/24) → no verdict, the stored descriptions hold
 - InSilico T2: forensics of his own dated examples (2026-11-24) → OPEN (nothing beyond 'big down day' / 'a line near price'; underpowered)
@@ -237,7 +237,7 @@ rank-hedged net of funding, before costs; no WF by the pre-written rule): total 
 **Why:** price-only is positive (0.17–0.31 / 0.69–0.92) but the high-vol shorts are crowded (confirm Q5 funding mean −102%/yr, median +9.7%: RIVER, LAB, PIPPIN, MYX), so the
 short leg pays its price gain back in funding; delistings few (9/15 in top-100), not survivorship; 2021 −0.9 every form. Its HL 0.90 rests on ~2 y: a warning for the HL main
 book's blend leg (refit 2027-01-02 decides by rule). Untried: short leg excluding negative-funding names (shaped after confirm: needs HL/forward as its confirm). R1 = (c).
-LV2 (2026-11-27, is3_lv2.py): dropping negative-funding shorts = random drops (2020-23), funding-adjusted vol ranks = price ranks. HL leg check (funding backfilled to 2023-05): SR 0.70, 2023 −0.01 / 2024 0.50 / **2025 2.36** / 2026 −0.11, without its best 10 days 0.23, pays 4–5 %/yr funding every year: **FRAGILE**, the HL main book's lowvol leg is one year deep (input for the 2027-01-02 refit and the next research session).
+LV2 (2026-11-27, is3_lv2.py): dropping negative-funding shorts = random drops (2020-23), funding-adjusted vol ranks = price ranks. HL leg check (funding backfilled to 2023-05): SR 0.70, 2023 −0.01 / 2024 0.50 / **2025 2.36** / 2026 −0.11, without its best 10 days 0.23, pays 4–5 %/yr funding every year: **FRAGILE**, the HL main book's lowvol leg is one year deep (input for the 2027-01-02 refit and the next research session). **Research 11-27:** the HL panel already holds that funding; nested_choice hl still picks lowvol at every 2026 refit (expanding SR 0.73): no change by rule.
 
 ### funding_contra: fade funding spikes vs own history (2026-11-08, re-run 11-09) → DEAD as crowding reversal (FC1 2026-11-26, 4 forms); HL-vs-BN gap OPEN (T3)
 FC1C (2026-11-27, HL funding backfilled to 2023-05, is3_fc1c*.py): gap top-10% short 2023-05..2024-06 +39 bp net, t_price 1.4, 2023 −175 / 2024 +189, U-shaped dose: FAIL. As a listing_short filter (exit gap≤0 shorts) dSR −0.13; the
@@ -281,7 +281,10 @@ Model: limit at the decision close, filled on a 5 bp trade-through within 4 h (h
 (tsmom 0.88→0.83, xsmom 0.65→0.58, xsmom_k 0.51→0.46; 20 bp trade-through 0.44/−0.01). By year, post-only gained only in 2025–26,
 which is why HL's 7-month window looks good (tsmom 1.76→1.93, flow-on-HL 1.59→1.72). Fails the pre-registered rule. Revisit only
 for non-directional books (fspread) or once HL 1h history (kept nightly; HL serves only 5000 bars) covers ≥ 18 months.
-### fspread_hold: funding capture with hysteresis (X1b, 2026-11-10) → ALIVE (candidate; needs a two-venue book, X2)
+### fspread_hold: funding capture with hysteresis (X1b, 2026-11-10) → ALIVE (incubation 2026-11-27, main@pair; edge decaying)
+**X1e 2026-11-27 (same 6-config grid, pair 1d --since 2023-05-12): WF OOS 5.66 / 2.85 y, grid avg 5.66, DSR 1.00, worst 5.08, 2× cost 5.61, $200 7.09 → passes every clause.** But net by year
+21% / 19% / 6% / 1.9% (2023–26 YTD, gross ~1.9; funding 22 / 20 / 9.5 / 6.6%): the HL−BN gap is closing. Live 15 d: price-P&L vol 3.2%/yr at gross ~1.2 vs backtest 1.4% at 1.9, and the 11-10 WF had vol 6.5%
+on overlapping dates (cause unknown, X1f): the DSR pass rests on the backtest's low vol; at live-like vol SR ≈ 1.5–2. Trades in the new two-account book main@pair at alloc 0.5 (gross 1.0, X1c): ≈ 1–4%/yr.
 New angle vs X1: fixed 10% legs, open at |14d mean HL−BN spread| > enter, HOLD until it flips. **pair 1d WF OOS 1.26 / 1.66y (cagr 8.4%,
 mdd −1.7%), grid med 2.22, 6/6 >0, worst 1.43 (2× costs), corr BTC −0.03.** Turnover 10–50× (X1: 70–410×): funding +3–10%/yr vs costs
 1–4%/yr. 40–52 pairs, top coin ≈ 20% of P&L, every year +; short the HL leg 95% of pair-days (HL longs pay). ~⅓ of P&L is premium
@@ -485,7 +488,8 @@ SR 0.38 → 0.37, cost 1.37 → 1.22%/yr; **HL: re-entries 43% of events (!), co
 low-volume exit is also a squeeze filter (thin dying coins, volume returning on pumps). Entry floor 2× loses signal. Re-check the same rule after C1
 (threshold names cost ≈ 3× the model live). research/studies/t2b_hyst.py.
 
-### InSilico T1 resting bids 30 σ below the last price, causal top-20 coins, exit 60 min (2026-11-22, is3_ladtop.py) → CONFIRMED by card, not yet a book
+### InSilico T1 resting bids 30 σ below the last price, causal top-20 coins, exit 60 min (2026-11-22, is3_ladtop.py) → CONFIRMED; incubation 2026-11-27 (overlay sleeve of main_bn)
+2026-11-27: incubation, alloc 1.0 as an overlay sleeve of main_bn + small:main_bn (design.md 'Overlay sleeves'; `sleeve` table); held back 11-23..27 by an unwritten clause (my error).
 Explore 2021–23 +187 bp/fill (n 644, 215 d, every year +), pre-registered 2024–25 +259 (n 356, p .001, two lottery fills 35% of it), 2026 vault once +203 (n 142, p .006, ex-top3 +150).
 Account 10% × 5 slots: SR 2.3 / 1.9 / 2.8, cagr 35–38%, worst booked day −8%; 5% size halves everything. Any-coin version refuted (60 fresh coins +13 bp), so the narrowing to liquid coins was post hoc before the vault.
 Not yet real: entry at max(limit, minute close) +115 / +150 / +84 (2026 p .18), so the edge is the resting fill; 2025-10-10 marks −34% inside the hour at 10% size (booked −8%). Stops, calm filters and "don't quote when BTC falls" all make it worse

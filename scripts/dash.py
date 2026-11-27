@@ -130,7 +130,7 @@ def books() -> None:
         reb = q("select max(bar) from rebalances where book=?", name)[0][0]
         retc = green if ret > 0 else red if ret < 0 else str
         tag = {"candidate": "", "incubation": "ⁱ", "active": "ᵃ"}.get(st, "")
-        print(f"{(short + tag)[:12]:13s}{eq:9.2f}{retc(f'{ret:+8.2%}')}{n:4d} "
+        print(f"{(short[:12 - len(tag)] + tag):13s}{eq:9.2f}{retc(f'{ret:+8.2%}')}{n:4d} "
               f"{(reb[5:13] + 'h') if reb else 'never':>9s}" + (red(" HALT") if halted else ""))
     ev = q("select ts,level,msg from events where level!='INFO' and ts > ? order by ts desc limit 3",
            now().strftime("%Y-%m-%d"))

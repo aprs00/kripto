@@ -138,3 +138,21 @@ def test_funding_accrues_per_leg_from_stored_prints(env):
     # HL: 3 hourly prints of 1e-4 on a short of 10 x $10 -> receives 3 * 0.01; Binance rate 0 -> 0
     assert store.cash("shadow:x@pair") - cash0 == pytest.approx(0.03)
     assert store.cash("shadow:tsmom") == 2000.0
+
+
+def test_incubation_entry_trades_the_two_account_main_book_at_its_alloc(env):
+    store, cfg, risk, bn_run = env
+    cfg["fspread_hold@pair"].update(status="incubation", alloc=0.5)
+    _run(env)
+    books = {b for (b,) in store.q("select name from books")}
+    assert {"main@pair", "small:main@pair"} <= books
+    assert P.book_venue("main@pair") == "pair" and P.book_venue("small:main@pair") == "pair"
+    pos = store.positions("main@pair")
+    assert pos["AAA@hl"] < 0 < pos["AAA@bn"]
+    assert abs(pos["AAA@hl"] * PX["AAA"]) == pytest.approx(0.5 * 0.1 * 1000, rel=0.02)   # alloc x 10% leg x $1,000
+    n = len(store.q("select * from fills where book='main@pair'"))
+    _run(env, NOW + pd.Timedelta(hours=1))
+    assert len(store.q("select * from fills where book='main@pair'")) == n
+    cfg["fspread_hold@pair"].update(status="retired", alloc=0.0)                      # leaving: main book closes out at the next day
+    _run(env, NOW + pd.Timedelta(days=1))
+    assert not store.positions("main@pair")

@@ -1,0 +1,272 @@
+{
+ "strategy": "fspread_hold",
+ "dataset": "pair_1d",
+ "n_configs": 6,
+ "grid_median_sharpe": 7.174,
+ "grid_frac_positive": 1.0,
+ "oos": {
+  "start": "2024-01-16",
+  "end": "2026-11-21",
+  "years": 2.85,
+  "cagr": 0.0762,
+  "vol": 0.013,
+  "sharpe": 5.662,
+  "sortino": 8.431,
+  "max_dd": -0.0079,
+  "calmar": 9.588,
+  "psr0": 1.0,
+  "dsr": 1.0,
+  "n_trials": 88,
+  "pos_months": 0.829
+ },
+ "oos_grid_avg": 5.664,
+ "folds": [
+  {
+   "from": "2024-01-16",
+   "params": {
+    "lookback": 7,
+    "enter": 0.4
+   },
+   "is_sharpe": 17.65,
+   "oos_sharpe": 15.97
+  },
+  {
+   "from": "2024-03-16",
+   "params": {
+    "lookback": 7,
+    "enter": 0.4
+   },
+   "is_sharpe": 17.32,
+   "oos_sharpe": 9.01
+  },
+  {
+   "from": "2024-05-15",
+   "params": {
+    "lookback": 7,
+    "enter": 0.4
+   },
+   "is_sharpe": 15.8,
+   "oos_sharpe": 8.98
+  },
+  {
+   "from": "2024-07-14",
+   "params": {
+    "lookback": 7,
+    "enter": 0.4
+   },
+   "is_sharpe": 14.55,
+   "oos_sharpe": 0.79
+  },
+  {
+   "from": "2024-09-12",
+   "params": {
+    "lookback": 7,
+    "enter": 0.2
+   },
+   "is_sharpe": 13.24,
+   "oos_sharpe": 10.53
+  },
+  {
+   "from": "2024-11-11",
+   "params": {
+    "lookback": 14,
+    "enter": 0.2
+   },
+   "is_sharpe": 12.87,
+   "oos_sharpe": 14.26
+  },
+  {
+   "from": "2025-01-10",
+   "params": {
+    "lookback": 14,
+    "enter": 0.2
+   },
+   "is_sharpe": 13.01,
+   "oos_sharpe": 4.8
+  },
+  {
+   "from": "2025-03-11",
+   "params": {
+    "lookback": 14,
+    "enter": 0.2
+   },
+   "is_sharpe": 12.3,
+   "oos_sharpe": 0.21
+  },
+  {
+   "from": "2025-05-10",
+   "params": {
+    "lookback": 14,
+    "enter": 0.1
+   },
+   "is_sharpe": 11.55,
+   "oos_sharpe": 6.03
+  },
+  {
+   "from": "2025-07-09",
+   "params": {
+    "lookback": 14,
+    "enter": 0.1
+   },
+   "is_sharpe": 11.15,
+   "oos_sharpe": 8.46
+  },
+  {
+   "from": "2025-09-07",
+   "params": {
+    "lookback": 14,
+    "enter": 0.1
+   },
+   "is_sharpe": 10.96,
+   "oos_sharpe": 3.57
+  },
+  {
+   "from": "2025-11-06",
+   "params": {
+    "lookback": 14,
+    "enter": 0.1
+   },
+   "is_sharpe": 10.52,
+   "oos_sharpe": 2.45
+  },
+  {
+   "from": "2026-01-05",
+   "params": {
+    "lookback": 14,
+    "enter": 0.1
+   },
+   "is_sharpe": 10.11,
+   "oos_sharpe": -1.9
+  },
+  {
+   "from": "2026-03-06",
+   "params": {
+    "lookback": 14,
+    "enter": 0.1
+   },
+   "is_sharpe": 9.55,
+   "oos_sharpe": 5.58
+  },
+  {
+   "from": "2026-05-05",
+   "params": {
+    "lookback": 14,
+    "enter": 0.1
+   },
+   "is_sharpe": 9.33,
+   "oos_sharpe": 1.27
+  },
+  {
+   "from": "2026-07-04",
+   "params": {
+    "lookback": 14,
+    "enter": 0.1
+   },
+   "is_sharpe": 8.84,
+   "oos_sharpe": 4.44
+  },
+  {
+   "from": "2026-09-02",
+   "params": {
+    "lookback": 14,
+    "enter": 0.1
+   },
+   "is_sharpe": 8.65,
+   "oos_sharpe": 2.81
+  },
+  {
+   "from": "2026-11-01",
+   "params": {
+    "lookback": 14,
+    "enter": 0.1
+   },
+   "is_sharpe": 8.43,
+   "oos_sharpe": 1.16
+  }
+ ],
+ "grid": [
+  {
+   "i": 3,
+   "lookback": 14,
+   "enter": 0.1,
+   "sharpe": 8.316,
+   "cagr": 0.1353,
+   "max_dd": -0.0079,
+   "turnover_yr": 37.8,
+   "cost_yr": 0.0344,
+   "funding_yr": 0.1661
+  },
+  {
+   "i": 0,
+   "lookback": 7,
+   "enter": 0.1,
+   "sharpe": 7.531,
+   "cagr": 0.1361,
+   "max_dd": -0.0089,
+   "turnover_yr": 53.3,
+   "cost_yr": 0.0475,
+   "funding_yr": 0.1761
+  },
+  {
+   "i": 2,
+   "lookback": 7,
+   "enter": 0.4,
+   "sharpe": 7.428,
+   "cagr": 0.1142,
+   "max_dd": -0.008,
+   "turnover_yr": 26.9,
+   "cost_yr": 0.0265,
+   "funding_yr": 0.1426
+  },
+  {
+   "i": 4,
+   "lookback": 14,
+   "enter": 0.2,
+   "sharpe": 6.92,
+   "cagr": 0.1233,
+   "max_dd": -0.0201,
+   "turnover_yr": 30.3,
+   "cost_yr": 0.028,
+   "funding_yr": 0.1536
+  },
+  {
+   "i": 1,
+   "lookback": 7,
+   "enter": 0.2,
+   "sharpe": 6.896,
+   "cagr": 0.1286,
+   "max_dd": -0.0184,
+   "turnover_yr": 42.7,
+   "cost_yr": 0.0391,
+   "funding_yr": 0.1637
+  },
+  {
+   "i": 5,
+   "lookback": 14,
+   "enter": 0.4,
+   "sharpe": 6.792,
+   "cagr": 0.1122,
+   "max_dd": -0.007,
+   "turnover_yr": 19.6,
+   "cost_yr": 0.0189,
+   "funding_yr": 0.1251
+  }
+ ],
+ "robust": {
+  "params": {
+   "lookback": 14,
+   "enter": 0.1
+  },
+  "base": 8.316,
+  "cost_x2": 5.613,
+  "delay_1bar": 8.07,
+  "band_tiny": 7.831,
+  "small_acct": 7.089,
+  "skip_first_6m": 6.928,
+  "skip_first_12m": 5.077,
+  "corr_btc": 0.032,
+  "worst": 5.077
+ },
+ "seconds": 24.7,
+ "max_rss_gb": 0.45
+}

@@ -4,13 +4,17 @@ Also read research/findings.md before picking: it records what is already DEAD a
 
 Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done: `- [x] ... → <one-line result, link to journal>`
 
-**0. FIRST, 2026-11-27 06:40 research (owner 11-26 21:30: "you are gatekeeping actual profitable strategies"; the owner is right about this one):** ladder@bn passed EVERY clause of the
-incubation gate on 11-23 (WF OOS 1.94, robust.worst 2.00, 2x cost 2.04, one bar late 2.14, DSR 0.98: the only strategy above the 0.9 DSR bar) and I kept it at candidate / alloc 0 with
-an extra condition ("fill must be proven live first") that is not in design.md §4. The M1 rule (main books trade the gate-passing best estimate) applies to it like to any other.
-Do: set ladder@bn to incubation and give it a sleeve of main_bn and small:main_bn by the equal-risk rule (re-derive flow@bn / blend_nested@bn / ladder@bn allocs, sum ≤ 1); engineering:
-kripto/ladder.py must size a main_bn sleeve = alloc × main_bn equity (it now runs only shadow/small books) with the same 5%/order of the SLEEVE, positions in main_bn's ledger; tests,
-then a real trader + ladder run (rule 6). Live-vs-backtest of its fills stays the monitor (retire per §4 if it breaks), not a precondition. Then the rest below.
-**Next priorities (2026-11-26 research):** 1. NEXT research session: `nice -n 19 .venv/bin/python -m scripts.main_scale --write` (AL2b, design.md 2026-11-26; first application,
+**2026-11-27 research DONE:** ladder@bn → incubation as an overlay sleeve of main_bn (+ $200 twin); X1e → fspread_hold@pair incubation in the new two-account book main@pair
+(alloc 0.5); main_scale written (main 0.87, main_bn 1.16; next 12-01); LV2c (nested choice still picks lowvol). Detail: journal 2026-11-27.
+**Next priorities (2026-11-27):** 1. X1f (below) at ≥ 30 live days of main@pair / the pair shadow → 2. T5b positioning once `scripts.metrics_coverage` shows 2021–22 ≥ 95% (11-27: 72% / 76%)
+→ 3. E1 + LQ1 (≈ 12-01) → 4. ladder sleeve check: first main_bn sleeve fills vs the shadow's (same minute, size = 2.9% × main_bn equity) → 5. fill-delay re-measure ≈ 12-09 → 6. T6b HL positioning (≈ 12-07)
+→ 7. W2 re-check ≈ 12-23 → 8. E2b CME-break execution (fading) → 9. low prior: W3b, FC1(c), LV1 short leg, FF1 market-relative.
+- [ ] X1f (2026-11-27) **fspread_hold live vol vs backtest.** Live price-P&L vol 3.2%/yr (gross ~1.2, 15 d) vs backtest 1.4% (gross 1.9, synchronised 00:00 closes); the 11-10 WF had vol 6.5% on
+  dates where today's data gives ≈ 1.1% (no code change found; the HL funding/candle files were rebuilt by the FC1C backfill). Do: (a) `scripts.ledger_decomp shadow:fspread_hold@pair` and main@pair
+  at ≥ 30 days; (b) replay the backtest on the live days and compare day by day (live_vs_backtest does not support pair books: extend it); (c) test whether HL markPx vs Binance markPrice
+  definitions explain the noise (mark both legs from the same-minute trade prices). If live vol stays ≥ 3× backtest, recompute the DSR with live-like vol and say so in STATUS (the incubation
+  → active check needs that band anyway). Also watch the yearly decay (2026 YTD 1.9% net at gross 1.9): retire per §4 if live 60-day Sharpe < 0.
+**Older priorities (2026-11-26 research, superseded above):** 1. DONE 11-27: `scripts.main_scale --write` (AL2b, design.md 2026-11-26; first application,
 monthly after that via `main_scale_due`) and check main_bn's first days on flow@bn + blend_nested@bn (switched 11-26 08:03) → 2. T5b positioning: backfill is newest-first per coin,
 so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 2024-07): explore only once 2021–23 is complete (≈ 11-29; check per-year coverage of BTC/ETH first)
 → 3. E1 + LQ1 (≈ 12-01) → 4. fill-delay re-measure ≈ 12-09 → 5. T6b HL positioning (≈ 12-07) → 6. W2 re-check ≈ 12-23 → 7. LD2 ladder cap 5 + size re-derivation (server, full universe, size-matched)
@@ -48,7 +52,6 @@ so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 202
 - [ ] D1 One-voiced buying at a 1-day high (+6 bp / 1 h held-out) as an entry-timing feature for `flow` / breakouts: low value, only with TSZ-HL.
 - [ ] R3/R7 Range ("rotation") bars with trade count and size-bucket delta: second aggTrades pass (scripts/aggtrades.py keeps 5-min bars
   only). Low prior now that R1 and R4 are dead on time bars; do only together with LQ1 or if TSZ-HL shows something.
-- [ ] X1e fspread_hold unseen-history evidence (FC1C c, 2026-11-27): the frozen live config (lb14/enter 0.1) on the never-seen 2023-05-15..2024-06 pair window (HL funding backfilled) = SR 14.2, 26.6%/yr net at gross 2.0, mdd −0.6%. Its DSR fail was 1.66 y of OOS: re-run the pair WF on the longer panel (pair now starts with HL funding 2023-05) and walk the incubation gate clause by clause (two-account margin = gross 1.0, X1c). Research session, not insilico.
 - [ ] X1c fspread_hold robustness (descriptive, no new WF unless a new rule): per-pair basis excursions (worst daily |basis|),
   funding-interval mix on BN (1h/4h/8h coins), and a re-run when HL funding backfill reaches all coins (pair has 84 → more).
 - [ ] T5b (2026-11-19: DATA JOB BUILT: `scripts.download metrics` (also inside the nightly `all`, 15k files/night) → data/bn/metrics_full/<SYM>.parquet, cols oi, oiv, top_acct_ls, top_pos_ls, all_acct_ls, taker_ls, 5-min; target = every coin-day in the point-in-time top 60 since 2021 (290 coins, 128k files) ≈ 9 nights → analysis from ≈ 11-29. Explore 2021–23, confirm 2024+) (2026-11-17: data/bn/metrics holds OI only, 10 coins, 2021–23; the long/short ratios need one daily archive file per coin-day ≈ 100k+ files: build a capped nightly download job first, e.g. current top-60 from 2022, ≈ 2k files/night) **Positioning hypotheses NOW on Binance history** (added 2026-11-09, owner wants results fast; don't wait months

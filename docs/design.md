@@ -242,3 +242,19 @@ See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits;
   against promoting a false edge and none against sitting on a real one, and the agent's own caution showed up as conditions that were never written
   (ladder@bn passed every clause on 11-23 and stayed at alloc 0). A gate that may be tightened silently is not a gate. This adds no clause and removes
   none; it makes the existing clauses sufficient. Applied from the NEXT session (11-27 06:40), not this one.
+* 2026-11-27 (research session; a sizing rule for paper main books, not a gate). **Overlay sleeves.** The equal-risk share assumes a book that
+  holds capital all the time. A strategy that is flat most of the time (an order book of resting limits, e.g. ladder@bn: flat ~97% of minutes) and whose
+  per-order size is capped by a written risk rule (E2d: a -50% move on the largest historical same-minute batch must stay above the kill switch) does
+  not carve capital out of the account: in one margin account it uses margin only while a position is open. Such a strategy runs as an **overlay** on the
+  venue's main book and its $200 twin: orders of (frozen per-order size × alloc × the main book's whole equity), positions in the same ledger, kept apart
+  from the hourly rebalance by the `sleeve` table; its alloc is a fraction of that cap and does not count in sum(alloc) ≤ 1. It may never exceed the cap,
+  and it is used only while its risk at the cap is at or below its equal-risk share (ladder: ≈ 4%/yr vol at 2.9%/order vs ≈ 19%/yr for main_bn's daily mix).
+  General rationale: carving a 1/3 capital slice for a book that is flat 97% of the time would cut the always-invested books by a third to leave cash idle,
+  and would push the $200 twin's orders below the $5 minimum. First applied today because the gate result (11-23) and the no-hold-back rule (11-26) predate it.
+* 2026-11-27 (research session; architecture/sizing, not a gate). **Two-account main book `main@pair`.** A strategy whose positions are legs on two venues
+  (fspread_hold@pair) cannot live in `main` (HL) or `main_bn` (Binance), and "its venue's main book" did not exist, so a pair strategy passing the gate
+  had nowhere to trade (an unwritten hold-back by construction). `main@pair` (+ `small:main@pair`) is the third alternative home for the reference $1,000:
+  one HL and one Binance account, the equity split by the book's own legs. Incubation/active pair entries with alloc > 0 trade it by the usual alloc
+  blend. alloc is capped by the deployable gross in two separately-margined accounts (X1c: gross 1.0 survives 2025-10-10, 2.0 does not); with one pair
+  entry its equal-risk share is the whole book, so alloc = that cap (0.5 of the shadow's gross 2.0). Not vol-scaled by main_scale (a hedged book at
+  1–5%/yr vol cannot be levered to the steady-mode 25–30% in real accounts).

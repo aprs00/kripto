@@ -50,6 +50,7 @@ create table if not exists meta(k text primary key, v text);
 create table if not exists rebalances(book text, bar text, primary key(book, bar));
 create table if not exists targets(strategy text primary key, bar text, weights text);
 create table if not exists universe(venue text, bar text, coins text, primary key(venue, bar));
+create table if not exists sleeve(book text, coin text, size real, t0 integer, primary key(book, coin));
 """
 
 
@@ -250,6 +251,11 @@ def accrue_funding(hl: HL, store: Store, marks: dict[str, float], held: list[tup
     store.set_meta("funding_accrued_ms", nowms)
 
 
+def sleeve(store: Store, book: str) -> dict[str, float]:
+    """coin -> size an overlay sleeve (the ladder) holds inside `book`; the rest of the position belongs to the book's rebalance."""
+    return {c: s for c, s in store.q("select coin, size from sleeve where book=? and size!=0", book)}
+
+
 def book_equity(store: Store, book: str, marks: dict[str, float]) -> tuple[float, float]:
     pos = store.positions(book)
     eq = store.cash(book) + sum(s * marks.get(c, 0.0) for c, s in pos.items())
@@ -275,6 +281,14 @@ def rebalance(hl: HL, store: Store, book: str, target_w: pd.Series, marks: dict[
     min_notional = min_notional or (lambda c: MIN_NOTIONAL)
     eq, _ = book_equity(store, book, marks)
     pos = store.positions(book)
+    # Overlay sleeves (kripto/ladder.py trading inside a main book, same account): the part of a position the sleeve owns is
+    # not this rebalance's to net. A kill switch or retirement closes everything, sleeve included, and drops the sleeve rows.
+    sl = sleeve(store, book)
+    if reason in ("kill_switch", "retired"):
+        if sl:
+            store.x("delete from sleeve where book=?", book)
+    else:
+        pos = {c: s - sl.get(c, 0.0) for c, s in pos.items()}
     coins = sorted(set(pos) | set(target_w[target_w != 0].index))
     for c in coins:
         if c not in marks:
@@ -282,7 +296,7 @@ def rebalance(hl: HL, store: Store, book: str, target_w: pd.Series, marks: dict[
         tgt_sz = float(target_w.get(c, 0.0)) * eq / marks[c]
         d = tgt_sz - pos.get(c, 0.0)
         d = round_size(c, d)
-        closing = abs(tgt_sz) < 1e-12 and abs(pos.get(c, 0.0)) > 0
+        closing = abs(tgt_sz) < 1e-12 and abs(pos.get(c, 0.0)) > 1e-12
         if closing:
             d = -pos.get(c, 0.0)
         if d == 0 or (abs(d) * marks[c] < min_notional(c) and not closing):

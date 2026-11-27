@@ -1,7 +1,9 @@
 """Two-venue paper books (backlog X2, 2026-11-12): one book holds a coin on Hyperliquid AND on Binance at the same time.
 
 First user: `fspread_hold@pair` (funding capture: short the venue whose longs pay more funding, long the other, hold until
-the spread flips). Config entries with "venue": "pair" get `shadow:<entry>` and `small:<entry>` books (no main book).
+the spread flips). Config entries with "venue": "pair" get `shadow:<entry>` and `small:<entry>` books; incubation/active pair entries with alloc > 0
+form the two-account main book `main@pair` (+ `small:main@pair`): the third alternative home for the reference $1,000, one HL and one
+Binance account (design.md 2026-11-27).
 Positions are keyed `<COIN>@hl` / `<COIN>@bn` with the HL coin name on both legs (the Binance symbol is data.hl_to_bn(coin):
 kPEPE -> 1000PEPE), exactly the column names of the research dataset "pair" (data.load_pair_panel), so the same strategy
 function runs in research and live.
@@ -115,6 +117,16 @@ def pair_marks(hl_marks: dict[str, float], bn_marks: dict[str, float], coins) ->
     return out
 
 
+MAIN = "main@pair"
+
+
+def main_live(store: P.Store, entries: dict) -> bool:
+    """The two-account main book (design.md 2026-11-27) runs once a pair entry is incubation/active with alloc > 0, and keeps
+    running (to close out / follow alloc changes) once it exists."""
+    return any(sc.get("status") in ("incubation", "active") and sc.get("alloc", 0) > 0 for sc in entries.values()) \
+        or bool(store.q("select 1 from books where name=?", MAIN))
+
+
 def run(store: P.Store, cfg: dict, risk: dict, hl, bn_run: dict, hl_marks: dict, sz_dec: dict, hl_coins: list[str],
         now: pd.Timestamp | None = None):
     """One hourly step for the two-venue books. Funding is accrued every hour; trading happens once per closed day."""
@@ -127,6 +139,8 @@ def run(store: P.Store, cfg: dict, risk: dict, hl, bn_run: dict, hl_marks: dict,
     now = now or pd.Timestamp.now("UTC")
     day = str((now - pd.Timedelta(days=1)).floor("1D"))          # the latest closed day
     live_books = [f"{p}{n}" for n, sc in entries.items() if sc.get("status") != "retired" for p in ("shadow:", "small:")]
+    if any(sc.get("status") in ("incubation", "active") and sc.get("alloc", 0) > 0 for sc in entries.values()):
+        live_books += [MAIN, f"small:{MAIN}"]
     due = any(not store.q("select 1 from rebalances where book=? and bar=?", b, day) for b in live_books)
     now_ms = int(now.timestamp() * 1000)
     bn_funding_refresh(bn, sorted(coins if due else held), now_ms)
@@ -162,7 +176,7 @@ def run(store: P.Store, cfg: dict, risk: dict, hl, bn_run: dict, hl_marks: dict,
                     min_notional=min_notional, fee_rate=lambda col: TAKER_FEE if col.endswith("@hl") else V.TAKER_FEE_BN)
 
     with P.trade_lock():   # every hour: kill switch + retired close-out; trades only when strat_w has the new day
-        books = P.run_books(store, entries, risk, marks, strat_w, last_bar, None, reb)
+        books = P.run_books(store, entries, risk, marks, strat_w, last_bar, MAIN if main_live(store, entries) else None, reb)
     for b in books:
         eq, gross = P.book_equity(store, b, marks)
         store.x("insert into equity values(?,?,?,?,?)", P.now_iso(), b, eq, gross, len(store.positions(b)))

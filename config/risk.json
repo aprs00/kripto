@@ -4,5 +4,10 @@
   "small_equity": 200.0,
   "max_gross": 3.0,
   "max_asset_weight": 0.35,
-  "kill_drawdown": 0.25
+  "kill_drawdown": 0.25,
+  "main_scale": {
+    "main": 0.871,
+    "main_bn": 1.156
+  },
+  "main_scale_due": "2026-12-01"
 }

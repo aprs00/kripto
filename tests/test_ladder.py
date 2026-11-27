@@ -28,6 +28,11 @@ class FakeBN:
             out.append([o, "0", "0", str(self.low[c][i]), str(self.close[c][i]), "0", o + M - 1])
         return out
 
+    def premium_index(self):
+        i = (self.now - T0) // M - 1
+        return [{"symbol": "SOLUSDT", "markPrice": str(self.close["SOL"][i])}, {"symbol": "BTCUSDT", "markPrice": str(self.close["BTC"][i])},
+                {"symbol": "ETHUSDT", "markPrice": "3000"}]
+
     def depth(self, symbol, limit=20):
         c = symbol.removesuffix("USDT")
         i = (self.now - T0) // M - 1
@@ -131,3 +136,62 @@ def test_halted_book_does_not_trade(lad):
     bn.low["SOL"][i] = q * 0.99
     tick(L, bn)
     assert {r[0] for r in store.q("select book from fills")} == {"shadow:ladder@bn"}
+
+
+def _hit(L, bn, coin="SOL"):
+    i = (bn.now - T0) // M
+    q = [x for x in L.quotes[coin] if x[0] <= T0 + i * M][-1][1]
+    bn.low[coin][i] = q * 0.99
+    return q
+
+
+def test_main_book_sleeve_and_hourly_rebalance_leave_each_other_alone(lad):
+    """ladder@bn in incubation: overlay sleeve of main_bn (same ledger); the hourly rebalance must not net the ladder's
+    position, the ladder exit must take only its own part, and a kill switch closes everything and clears the sleeve."""
+    import pandas as pd
+    L, bn, store = lad
+    L.cfg = {"ladder@bn": {"status": "incubation", "alloc": 1.0}}
+    store.ensure_book("main_bn", 1000.0)
+    store.ensure_book("small:main_bn", 200.0)
+    store.x("insert into positions values('main_bn','ETH',0.1)")          # a daily-book holding outside the ladder universe
+    store.x("update books set cash=cash-300 where name='main_bn'")
+    L.step()
+    tick(L, bn)
+    q = _hit(L, bn)
+    out = tick(L, bn)
+    assert out["fills"] == 4 and not out["errors"]                         # shadow, small, main_bn, small:main_bn
+    sz = store.positions("main_bn")["SOL"]
+    assert sz == pytest.approx(np.floor(LD.SIZE * 1000.0 / q / 0.01) * 0.01)   # equity 700 cash + 0.1 ETH x 3000
+    assert P.sleeve(store, "main_bn") == {"SOL": sz}
+    marks = {"SOL": q, "ETH": 3000.0}
+    fills = []
+    fake_fill = lambda c, d: (fills.append((c, d)) or (marks[c], marks[c], 0.0))
+    P.rebalance(None, store, "main_bn", pd.Series({"ETH": 0.3}), marks, {}, "bar x", round_size=lambda c, d: round(d, 6),
+                fill=fake_fill, min_notional=lambda c: 5.0)
+    assert [c for c, _ in fills] == []                                     # ETH already at 0.3 x 1000 / 3000 = 0.1; SOL untouched
+    eq = P.book_equity(store, "main_bn", marks)[0]
+    P.rebalance(None, store, "main_bn", pd.Series({"ETH": 0.3, "SOL": 0.1}), marks, {}, "bar y", round_size=lambda c, d: round(d, 6),
+                fill=fake_fill, min_notional=lambda c: 5.0)
+    assert fills[-1][0] == "SOL" and fills[-1][1] == pytest.approx(round(0.1 * eq / q, 6))
+    daily = fills[-1][1]
+    assert sum(tick(L, bn)["exits"] for _ in range(60)) == 4
+    assert store.positions("main_bn")["SOL"] == pytest.approx(daily) and P.sleeve(store, "main_bn") == {}
+    # kill switch: everything, sleeve included
+    tick(L, bn)
+    _hit(L, bn)
+    tick(L, bn)
+    assert P.sleeve(store, "main_bn")
+    P.rebalance(None, store, "main_bn", pd.Series(dtype=float), {**marks, "SOL": bn.close["SOL"][-1]}, {}, "kill_switch",
+                round_size=lambda c, d: round(d, 6), fill=fake_fill, min_notional=lambda c: 5.0)
+    assert not store.positions("main_bn") and P.sleeve(store, "main_bn") == {}
+
+
+def test_candidate_ladder_does_not_touch_main_book(lad):
+    L, bn, store = lad
+    L.cfg = {"ladder@bn": {"status": "candidate", "alloc": 0.0}}
+    store.ensure_book("main_bn", 1000.0)
+    L.step()
+    tick(L, bn)
+    _hit(L, bn)
+    assert tick(L, bn)["fills"] == 2
+    assert not store.positions("main_bn")

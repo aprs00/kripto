@@ -118,10 +118,10 @@ kripto/paper.py       paper engine (hourly timer)     config/strategies.json  st
 kripto/bn.py          public Binance fapi client      kripto/venue_bn.py   Binance paper venue (main_bn, shadow:<x>@bn)
 kripto/live.py        always-on watcher: marks every 20 s, kill switch, live equity, heartbeat (kripto-live.service)
 kripto/collect.py     hourly non-backfillable HL data (top-account positions, L2) -> data/hl/positions, data/hl/l2
-kripto/venue_pair.py  two-venue books (`<entry>@pair`, legs <COIN>@hl/<COIN>@bn; fspread_hold@pair), daily, inside the hourly step
+kripto/venue_pair.py  two-venue books (`<entry>@pair`, legs <COIN>@hl/<COIN>@bn; fspread_hold@pair) + two-account main book `main@pair`, daily, inside the hourly step
 kripto/flow.py        always-on HL trade-flow websocket collector (kripto-flow.service) -> data/hl/flow (per coin per minute)
 kripto/liq.py         always-on Binance liquidation-print websocket collector (kripto-liq.service, /market/ws path) -> data/bn/liq
-kripto/ladder.py      always-on resting-ladder paper book on Binance (kripto-ladder.service; books shadow:/small:ladder@bn; heartbeat meta.ladder_tick)
+kripto/ladder.py      always-on resting-ladder paper book on Binance (kripto-ladder.service; books shadow:/small:ladder@bn + overlay sleeve of main_bn via the `sleeve` table; heartbeat meta.ladder_tick)
 kripto/events.py      intraday ORDER strategies (limits, targets, stops; conservative fills) -> daily BTResult; research.evaluate dispatches on EVENTS
 kripto/tsize.py       trade-size buckets of taker flow (Binance aggTrades via scripts/aggtrades.py -> data/bn/tsize; HL: `tsz` in kripto/flow.py)
 scripts/insilico_study.py  tables for the InSilico rules (calendar, tsize, decomp <strategy>, replicate); research/insilico_rules.md = the catalogue
@@ -135,6 +135,7 @@ deploy/systemd/       timer/service units (copy to ~/.config/systemd/user, then 
 scripts/health.py     hourly deterministic watchdog (no Claude) -> state/health.json; starts a review on a new problem
 scripts/live_vs_backtest.py  T0a: each shadow book's live days vs a backtest replay (point-in-time universe from the `universe` table)
 scripts/forward_score.py  forward ledger (frozen configs, post-registration bars only) -> research/forward.json
+scripts/ledger_decomp.py  one book's daily live P&L -> funding / fees / price + live vol (any book type: pair, overlay sleeves)
 scripts/guard.py      agent.sh uses it to put the HARD RULES section back if a headless session edited it
 state/paper.db        sqlite paper ledger (gitignored) data/  parquet market data (gitignored)
 ```
@@ -183,7 +184,7 @@ HL $10; Binance $5 (BTC $50, ETH $20). Taker fee: HL 4.5 bp, Binance 5 bp (VIP0)
 `candidate` → `incubation` → `active` → `retired`. Each non-retired strategy automatically runs in its
 own shadow paper book (`shadow:<name>`, `shadow_equity` in config/risk.json, currently $2,000 so the $10 min
 order doesn't distort signal measurement). Only `incubation`/`active` strategies with `alloc > 0` trade in the
-`main` book ($1,000 = the reference account size; `main` and `main_bn` are alternative homes for it). Every
+`main` book ($1,000 = the reference account size; `main`, `main_bn` and the two-account `main@pair` are alternative homes for it). Every
 book also has a `small:` twin at $200 that gets the same targets (what the same thing does in a $200 account); it is created,
 retired and closed together with its big sibling. Keep `sum(alloc)` ≤ 1.0 per venue (main and main_bn are separate allocations). Since M1 (2026-11-12) `incubation` = the
 main book's best estimate (design.md 2026-11-10 rule), so allocs are the equal-risk mix, not a 0.25 toe-in. Promotion and

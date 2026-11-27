@@ -125,3 +125,6 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
   cost over the live fills so far and over 6 y of hourly bars? research/studies/. A cost saving is worth as much as a signal.
 - [x] DONE 2026-11-26 (M1 re-derivation: blend@bn → blend_nested@bn). Was: blend@bn → nested choice? H4 on bnall picks carry+carry_trend+xsmom (1.16), not the hindsight trio (1.30). Needs Binance
   funding in the live BN panel (carry). Do with X2's BN funding collector.
+
+- [x] 2026-11-27 backlog 0 (ladder@bn into main_bn) → overlay sleeve, incubation alloc 1.0 (journal 2026-11-27).
+- [x] X1e fspread_hold unseen-history evidence (FC1C c, 2026-11-27): the frozen live config (lb14/enter 0.1) on the never-seen 2023-05-15..2024-06 pair window (HL funding backfilled) = SR 14.2, 26.6%/yr net at gross 2.0, mdd −0.6%. Its DSR fail was 1.66 y of OOS: re-run the pair WF on the longer panel (pair now starts with HL funding 2023-05) and walk the incubation gate clause by clause (two-account margin = gross 1.0, X1c). Research session, not insilico. → DONE 2026-11-27: WF OOS 5.66 / 2.85 y, DSR 1.00 → incubation, main@pair (journal 2026-11-27).
