@@ -1,0 +1,40 @@
+{
+ "name": "LSF_b_exit_hot_funding_shorts",
+ "sample": "explore",
+ "side": -1,
+ "on_share": 0.978,
+ "base": {
+  "sr": 0.1791462001273801,
+  "ann": 0.04467337503010442,
+  "mdd": -0.43178632978273224,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.1999893784216537,
+  "ann": 0.047582793890881825,
+  "mdd": -0.4512556536581276,
+  "days": 1095
+ },
+ "dSR": 0.021,
+ "dMDD": -0.0195,
+ "p_daily_diff": 0.9665167416291854,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.535,
+ "random_dSR_q05_q50_q95": [
+  -0.074,
+  0.017,
+  0.155
+ ],
+ "pct_dMDD_vs_random": 0.08,
+ "note": "exit listing_short shorts when trailing 3-d funding >= 0.0035 (bnall)",
+ "passes": false,
+ "dSR_by_year": {
+  "2020": 0.056,
+  "2021": 0.0,
+  "2022": -0.109,
+  "2023": 0.101,
+  "2024": 0.469,
+  "2025": 0.135,
+  "2026": 0.231
+ }
+}

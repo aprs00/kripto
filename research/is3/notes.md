@@ -932,3 +932,15 @@ LSF a done (is3_lsf.py, lsf_a.json, bnall 2021-23): REVERSED. Shorts paying heav
 PRE-REGISTERED (b, written before the run; data-mined from a, stated): EXIT listing_short shorts on days when the coin's trailing 3-d funding sum (known at the close) >= 0.0035 (explore
  80th pct, rounded), F0 'apply' transform side -1, bnall 1d explore 2021-23 vs 200 random masks. PASS = dSR > 0 at >= 95th pct AND dSR > 0 in 2021, 2022, 2023. Then c = ONE frozen run on HL
  listing_short (2023-05..2026-11, the live venue, never used to choose). FC1C d (block HL high-gap shorts) passed explore and failed confirm: prior low.
+
+## FSM fspread_hold@pair with maker legs (think-through 11:2x UTC 11-27, before any run)
+Source: findings T9 (maker DEAD for directional daily books: unfilled orders chase drift; "revisit for non-directional books (fspread)"), X1C b (2026: costs ~1.9% vs gross ~4%).
+Mechanism: fspread's legs are opened for carry, not for direction: a pair entered a few hours later earns almost the same carry (trips last ~60-70 days), so the adverse selection
+ that killed T9 (a resting order fills when price moves against the signal) should be small: the pair's price legs cancel. Who pays: nobody new; it is a cost cut.
+Unstated: (1) fills are judged per leg on its own venue's hourly OHLC (5 bp trade-through, kripto.execution.maker_fills, the T9 model), maker fee 2 bp (BN; HL 1.5) vs taker 4.5;
+ (2) a leg that fills while the other does not leaves a one-venue position for up to k hours: its drift is charged by the T9 fallback (drift to +k h + taker), so the unhedged
+ interval is in the cost; (3) only 2026-04-15..2026-10-31 has hourly data on both venues (HL 1h since 04-14, bn100 1h to 10-31): ~6.5 months, few trips: descriptive, state n.
+Change my mind: maker+fallback cuts fspread's 2026 cost by >= 30% at k = 4 h without a drift cost eating it -> backlog line for research (execution change for the pair venue).
+LSF b done: exit shorts with hot funding (>= .0035/3d) = random masks (dSR +.02, 53rd pct; 2022 -.11). c skipped (HL held-out kept clean). LSF CLOSED OPEN (MDE 149 bp/7d).
+FSM a/b/c done (is3_fsm.py, fsm_abc.json, fsm_b.json; 2026-04..10, ~35 events): maker legs for fspread lose: both-maker+fallback cost 3.4-3.6 vs taker 2.5 %/yr (unfilled legs drift 130-340 bp),
+ maker-one-leg + hedge on fill -9..-11 bp per event: the move that fills one leg is against the other (same asset). FSM CLOSED DEAD.

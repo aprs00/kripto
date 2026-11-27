@@ -1,0 +1,123 @@
+{
+ "study": "research/studies/is3_fsm.py",
+ "window": [
+  "2026-04-16",
+  "2026-10-30"
+ ],
+ "taker": {
+  "ret_yr": 0.0275,
+  "cost_yr": 0.0249,
+  "turnover_yr": 28.89
+ },
+ "H1": {
+  "fill_rates_n_rate": {
+   "hl_entry": [
+    18,
+    1.0
+   ],
+   "hl_exit/resize": [
+    19,
+    0.947
+   ],
+   "bn_entry": [
+    18,
+    0.944
+   ],
+   "bn_exit/resize": [
+    19,
+    0.895
+   ]
+  },
+  "unfilled_signed_drift_bp_mean_median": [
+   130.1,
+   85.6,
+   7920
+  ],
+  "fallback": {
+   "ret_yr": 0.0232,
+   "cost_yr": 0.0339,
+   "turnover_yr": 28.78,
+   "d_ret_yr_vs_taker": -0.0043
+  },
+  "post_only": {
+   "ret_yr": 0.0238,
+   "cost_yr": 0.0103,
+   "turnover_yr": 28.6,
+   "d_ret_yr_vs_taker": -0.0037
+  }
+ },
+ "H4": {
+  "fill_rates_n_rate": {
+   "hl_entry": [
+    18,
+    1.0
+   ],
+   "hl_exit/resize": [
+    19,
+    0.947
+   ],
+   "bn_entry": [
+    18,
+    1.0
+   ],
+   "bn_exit/resize": [
+    19,
+    0.947
+   ]
+  },
+  "unfilled_signed_drift_bp_mean_median": [
+   254.0,
+   254.0,
+   7920
+  ],
+  "fallback": {
+   "ret_yr": 0.0322,
+   "cost_yr": 0.0357,
+   "turnover_yr": 28.71,
+   "d_ret_yr_vs_taker": 0.0047
+  },
+  "post_only": {
+   "ret_yr": 0.0182,
+   "cost_yr": 0.0104,
+   "turnover_yr": 28.71,
+   "d_ret_yr_vs_taker": -0.0093
+  }
+ },
+ "H12": {
+  "fill_rates_n_rate": {
+   "hl_entry": [
+    18,
+    1.0
+   ],
+   "hl_exit/resize": [
+    19,
+    1.0
+   ],
+   "bn_entry": [
+    18,
+    1.0
+   ],
+   "bn_exit/resize": [
+    19,
+    0.947
+   ]
+  },
+  "unfilled_signed_drift_bp_mean_median": [
+   337.9,
+   337.9,
+   7920
+  ],
+  "fallback": {
+   "ret_yr": 0.0322,
+   "cost_yr": 0.0325,
+   "turnover_yr": 29.0,
+   "d_ret_yr_vs_taker": 0.0047
+  },
+  "post_only": {
+   "ret_yr": 0.037,
+   "cost_yr": 0.0104,
+   "turnover_yr": 28.69,
+   "d_ret_yr_vs_taker": 0.0095
+  }
+ }
+}

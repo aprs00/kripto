@@ -73,5 +73,30 @@ def run_a():
     json.dump({"study": "research/studies/is3_lsf.py a", **out}, open(L.OUT / "lsf_a.json", "w"), indent=1, default=str)
 
 
+
+
+THR = 0.0035
+
+
+def run_b(sample="explore", ds="bnall"):
+    from research.studies import is3_filter as F
+    w, panel, slip = F.book("listing_short", ds, {})
+    f3 = panel["funding"].fillna(0.0).rolling(3, min_periods=3).sum()
+    mask = ~(f3 >= THR)
+    name = "LSF_b_exit_hot_funding_shorts" if ds == "bnall" else "LSF_c_exit_hot_funding_shorts_HL"
+    out = F.judge(name, w, panel, slip, mask, sample if ds == "bnall" else "explore", side=-1,
+                  note=f"exit listing_short shorts when trailing 3-d funding >= {THR} ({ds})")
+    base = F.run(w, panel, slip)
+    filt = F.run(F.apply(w, mask, -1), panel, slip)
+    yrs = {}
+    for y in sorted(set(base.index.year)):
+        b, f = base[base.index.year == y], filt[filt.index.year == y]
+        if b.std() > 0 and (b != 0).sum() > 30:
+            yrs[int(y)] = round(float(f.mean() / f.std() * np.sqrt(365) - b.mean() / b.std() * np.sqrt(365)), 3)
+    out["dSR_by_year"] = yrs
+    print("dSR by year", yrs, flush=True)
+    json.dump(out, open(L.OUT / f"{name.lower()}.json", "w"), indent=1, default=float)
+
+
 if __name__ == "__main__":
-    {"a": run_a}[sys.argv[1]]()
+    {"a": run_a, "b": run_b, "c": lambda: run_b("explore", "hl")}[sys.argv[1]]()

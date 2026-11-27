@@ -3023,7 +3023,7 @@
    "group": "T",
    "title": "listing_short: exit the squeezed tail (short paying heavy funding) - state -> remaining decay, filter vs random masks, Binance as held-out venue",
    "src": "LS1 b (median listing pays the short, a squeezed minority costs the mean; 2026 cohort -15% funding by d90); findings listing_short",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -3036,15 +3036,23 @@
     {
      "id": "b",
      "what": "the rule a points to (<= 2 params, written first) as an F0 filter on listing_short bnall 1d explore 2021-23 (DELAY/exit transform) vs 200 random masks; PASS >= 95th pct and every explore year",
-     "status": "planned"
+     "status": "done",
+     "result": "pre-registered (data-mined from a): exit listing_short shorts when trailing 3-d funding >= .0035, bnall 1d explore 2021-23, F0 apply side -1: SR .18 -> .20 (dSR +.02, 53rd pct of 200 random masks, q05/95 -.07/+.16), mdd -43.2 -> -45.1%, dSR by year 2021 .00 / 2022 -.11 / 2023 +.10: FAIL. The pump tail in a is a few 2021 coins; as a rule it is random.",
+     "date": "2026-11-27",
+     "evidence": "lsf_b_exit_hot_funding_shorts"
     },
     {
      "id": "c",
      "what": "frozen rule, ONE held-out run on HL listing_short 2023-05..2026-11 (venue never used to choose it; F0 judge, random masks) - the HL book is the live one",
-     "status": "planned"
+     "status": "skipped",
+     "result": "b failed: the HL held-out run is not spent (HL stays clean for a better-motivated rule).",
+     "date": "2026-11-27"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "Hypothesis (exit the squeezed shorts that pay heavy funding) REVERSED on bnall 2021-23: paying shorts do fine afterwards (+157 bp/7d), shorts receiving high funding (crowded longs, pumps) lose in the mean (-157..-328 bp/7d) but not the median, mostly 2021; the reversed exit rule = random masks (dSR +.02, 53rd pct). MDE 149 bp/7d (> 100): OPEN, not DEAD. listing_short needs no funding exit.",
+   "closed": "2026-11-27"
   },
   {
    "id": "FSM",
@@ -3052,24 +3060,37 @@
    "group": "T",
    "title": "fspread_hold@pair with maker legs (T9's revisit condition: non-directional book; 2026 costs ~half of gross)",
    "src": "findings T9 (revisit for fspread), X1C b (2026 costs 1.9% vs gross ~4%), fspread_hold",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "pair-leg trades of fspread_hold (lb14, enter .1) 2026-04..11 (HL 1h exists): per leg, would a limit at the decision close fill within 1/4/12 h on that venue (5 bp trade-through, hourly OHLC)? fill rates per venue, by entry vs exit",
-     "status": "planned"
+     "status": "done",
+     "result": "fspread_hold lb14/enter .1, 2026-04-16..10-30 (both venues hourly; 36/40 traded leg columns), T9 fill model (limit at the decision close, 5 bp trade-through): fill rates HL entry 18/18, exits 18/19; BN entries 17-18/18 at 1/4 h; but the few unfilled legs drift 130 (1h) / 254 (4h) / 338 (12h) bp against us. Taker: cost 2.49%/yr at turnover 28.9 (8.6 bp/unit). Maker both + taker fallback: cost 3.39/3.57/3.25%/yr (1/4/12 h) = WORSE than taker; post-only 1.03% but leaves unhedged pairs (ret -0.4/-0.9/+0.95 %/yr vs taker = noise of one-legged positions). n ~37 trades per venue.",
+     "date": "2026-11-27",
+     "evidence": "fsm_abc"
     },
     {
      "id": "b",
      "what": "cost per trip: taker both legs (model) vs maker both with taker fallback at +k h vs maker on the thinner venue only; include the unhedged-interval P&L when one leg fills first (signed, by trip), and the funding missed by entering late",
-     "status": "planned"
+     "status": "done",
+     "result": "maker on ONE leg (the costlier to take; HL in 33/33), hedge leg taken at the close of the fill hour, both-taker fallback at +H: 33 pair events, fill 97-100%, cost vs taker-both 18.4 bp -> 27.9/29.0/29.5 bp (H 1/4/12), saving -9.4/-10.5/-11.0 bp (median +4.7/+1.8/-1.4): the price move that fills the maker leg is a move against the hedge leg (same asset on two venues), and it is larger than the fee saving (taker+slip - maker ~ 6 bp). Structural adverse selection; MDE ~14 bp.",
+     "date": "2026-11-27",
+     "evidence": "fsm_b"
     },
     {
      "id": "c",
      "what": "%/yr at gross 2 and at alloc 0.5 for the best policy vs taker; does it change the 2026 decay picture (1.9% net)? descriptive, 7 months: state the n; no lifecycle change from here",
-     "status": "planned"
+     "status": "done",
+     "result": "%/yr: no maker policy beats taker for fspread (fallback -0.4..+0.5 %/yr with higher costs, one-leg-hedge -10 bp per event x ~70 events/yr x 0.1 legs ~ -0.07 %/yr at gross 2); the theoretical maximum saving (all legs maker at the decision price) is ~1.9%/yr and unreachable because fills are adversely selected. The 2026 decay (1.9% net) is not fixable by execution. 6.5 months, ~35 events: descriptive.",
+     "date": "2026-11-27",
+     "evidence": "fsm_b"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "Maker legs cannot cut fspread_hold's costs: for a same-asset two-venue pair, the move that fills one leg's limit is a move against the other leg, so both-maker (fallback) costs more than taker (3.4-3.6 vs 2.5 %/yr), post-only leaves unhedged pairs, and maker-one-leg + taker hedge loses 9-11 bp per event (33 events, 2026-04..10, MDE ~14 bp). T9's adverse selection holds for non-directional pairs too.",
+   "closed": "2026-11-27"
   }
  ]
 }
