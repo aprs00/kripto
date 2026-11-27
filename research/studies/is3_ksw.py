@@ -75,5 +75,25 @@ def run_ab():
     json.dump(out, open("research/is3/ksw_ab.json", "w"), indent=1)
 
 
+def run_c():
+    """Thresholds as multiples of the book's annual vol (k x vol): false alarm (real edge) vs power (zero edge) at 2 y, for the two directional main books."""
+    global KILL
+    out = {}
+    for name, r in book_returns().items():
+        if name == "main@pair":
+            continue
+        r = r.dropna()
+        vol = float(r.std() * np.sqrt(365))
+        o = {"vol": round(vol, 3)}
+        for k in (0.8, 1.0, 1.25, 1.5):
+            KILL = k * vol
+            o[f"k{k}"] = {"threshold": round(KILL, 3), "real_730d": p_kill(r, 730, n=2000)[0], "zero_730d": p_kill(r - r.mean(), 730, n=2000)[0],
+                          "real_365d": p_kill(r, 365, n=2000)[0], "zero_365d": p_kill(r - r.mean(), 365, n=2000)[0]}
+        out[name] = o
+        print(name, o, flush=True)
+    KILL = 0.25
+    json.dump(out, open("research/is3/ksw_c.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    {"ab": run_ab}[sys.argv[1]]()
+    {"ab": run_ab, "c": run_c}[sys.argv[1]]()

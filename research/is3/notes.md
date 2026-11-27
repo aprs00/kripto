@@ -1042,3 +1042,5 @@ Question: at each main book's live sizing, how often does -25 % fire if the back
 Unstated: (1) daily closes under-state intraday troughs (the live watcher marks every 20 s): report daily and add the worst intraday/close gap where the bn 1h panel allows; (2) block bootstrap
  (30-d blocks) keeps vol clustering; (3) main_bn = 0.5 flow@bn + 0.5 blend_nested@bn x main_scale 1.156, main = blend x .871, main@pair = fspread_hold x .5; the ladder sleeve is ignored.
 Change my mind: P(kill | real edge, 2 y) > 10 % or P(kill | zero edge, 2 y) < 30 % -> the threshold is mis-set for its job -> backlog proposal (vol-scaled). Else keep and write the numbers.
+KSW a/b/c done (is3_ksw.py, ksw_ab/c.json): -25 % kill: 2-y P(kill) real edge 11-13 %, zero edge 72-81 %, -0.5 SR 90-92 %; k x vol: 1.0 15/75-84, 1.25 4/50-65. Pair book: never (vol .8 %),
+ its risk is per account. Backlog KS1 (vol-scaled kill 1.25 x target + per-account guard for main@pair), design change for a research session. CLOSED OPEN (measured).

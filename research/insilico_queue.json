@@ -3480,7 +3480,7 @@
    "group": "T",
    "title": "Kill switch (-25 % from peak, every book): false-alarm rate on a real edge vs power to stop a dead one, per main book",
    "src": "config/risk.json kill_drawdown 0.25; docs/design.md kill switch; owner reference account (steady mode 25-30 % vol)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -3501,10 +3501,16 @@
     {
      "id": "c",
      "what": "verdict by a general rule (not a book's result): a stop that fires on a real edge more often than on a dead one is mis-set; if so, propose a vol-scaled threshold (k x annual vol) in the backlog for a research session (design change needs its own session); else keep -25 % and write the numbers in design.md's rationale",
-     "status": "planned"
+     "status": "done",
+     "result": "threshold as k x book vol (2 y, real vs zero edge): k .8 38/91-95 %, k 1.0 (= today's 25 %) 15/75-84 %, k 1.25 (~30 %) 4/50-65 %, k 1.5 0.6-0.9/30-46 %. By my pre-stated bar (false alarm > 10 % in 2 y) the fixed 25 % is slightly mis-set, and it is mis-SCALED: at the steady mode's 30 % vol target the same 25 % is k .83 (~35 % false alarms in 2 y). General rule proposed for a research session (design change, not applied here): kill = 1.25 x the book's vol target (31 % at 25 %), plus a per-venue-account guard for main@pair (book-level vol 0.8 % hides -27..-46 % 7-d account swings)",
+     "date": "2026-11-27",
+     "evidence": "ksw_c"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "measured: the -25 % switch fires on a real edge 11-15 % of the time in 2 y vs 72-84 % on a zero edge (power ~6x); it is a fixed number that should scale with vol (k 1.25 x vol: 4 % false / 50-65 % power); pair book needs a per-account guard. Proposal to backlog for a research session (design.md change rules)",
+   "closed": "2026-11-27"
   },
   {
    "id": "PBT",

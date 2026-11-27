@@ -9,6 +9,10 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 **Next priorities (2026-11-27):** 1. X1f (below) at ≥ 30 live days of main@pair / the pair shadow → 2. T5d (low prior; T5c failed 11-27) 2021–22 metrics explore once ≥ 95% (11-27: 72% / 76%)
 → 3. E1 + LQ1 (≈ 12-01) → 4. ladder sleeve check: first main_bn sleeve fills vs the shadow's (same minute, size = 2.9% × main_bn equity) → 5. fill-delay re-measure ≈ 12-09 → 6. T6b HL positioning (≈ 12-07)
 → 7. W2 re-check ≈ 12-23 → 8. E2b CME-break execution (fading) → 9. low prior: W3b, FC1(c), LV1 short leg, FF1 market-relative.
+- [ ] KS1 (insilico KSW 2026-11-27; design change, research session; general rationale, not a book's result) **kill switch scaled to vol**: today −25 % fixed for every book =
+  1.0× the directional main books' vol (24 %): 2-y false-alarm 11–15 % on the backtest edge vs 72–84 % on a zero edge; at the steady mode's 30 % target the same −25 % is 0.83× vol (~35 % false).
+  Proposal: kill = 1.25 × the book's vol target (4 % false / 50–65 % power on 2 y; research/is3/ksw_c.json); plus a per-venue-account drawdown guard for main@pair (book vol 0.8 % hides
+  −27…−46 % 7-day swings of each account, X1C a). Record in design.md changelog; apply from the next session (HARD RULE 5).
 - [ ] HLL1 (2026-11-27) ladder rule on HL minute bars: `nice -n 19 .venv/bin/python -m research.studies.hl_ladder --confirm` at ≥ 60 days of flow data (≈ 2027-01-15); explore had 7 fills
   (findings). Kill if HL-only fills < ⅓ or confirm median ≤ 0. NOTE for every study on data/hl/flow (W2, TSZ-HL): coins drop out of the collected top-60 for days; split at gaps, never ffill across them.
 - [x] HLU1 → DEAD 2026-11-27 (insilico: BN-only shorts are the momentum books' best; findings).
