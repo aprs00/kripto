@@ -1,0 +1,90 @@
+{
+ "years": {
+  "2023": {
+   "long": {
+    "price": 0.2843,
+    "funding": -0.0561
+   },
+   "short": {
+    "price": 0.3241,
+    "funding": -0.0869
+   },
+   "majors_price": 0.0236,
+   "alts_price": 0.5848,
+   "net_exposure_mean": -0.1,
+   "gross_mean": 0.85,
+   "net": 0.2804
+  },
+  "2024": {
+   "long": {
+    "price": 0.267,
+    "funding": -0.1227
+   },
+   "short": {
+    "price": -0.098,
+    "funding": 0.0252
+   },
+   "majors_price": 0.0448,
+   "alts_price": 0.1242,
+   "net_exposure_mean": 0.1,
+   "gross_mean": 0.61,
+   "net": -0.0219
+  },
+  "2025": {
+   "long": {
+    "price": -0.1034,
+    "funding": -0.0391
+   },
+   "short": {
+    "price": 0.1458,
+    "funding": 0.0141
+   },
+   "majors_price": 0.0176,
+   "alts_price": 0.0248,
+   "net_exposure_mean": -0.02,
+   "gross_mean": 0.58,
+   "net": -0.0308
+  },
+  "2026": {
+   "long": {
+    "price": 0.3349,
+    "funding": -0.0346
+   },
+   "short": {
+    "price": 0.1582,
+    "funding": 0.0058
+   },
+   "majors_price": 0.1206,
+   "alts_price": 0.3725,
+   "net_exposure_mean": -0.05,
+   "gross_mean": 0.85,
+   "net": 0.3423
+  }
+ },
+ "corr_net_exposure_vs_btc30": 0.67,
+ "timing_share_of_gross_pnl": 0.19,
+ "btc_worst20_weeks": {
+  "btc": -0.0928,
+  "tsmom": 0.0313,
+  "blend": 0.0182
+ },
+ "btc_best20_weeks": {
+  "btc": 0.1242,
+  "tsmom": 0.0186,
+  "blend": 0.0135
+ },
+ "btc_other_weeks": {
+  "tsmom": -0.0029
+ },
+ "listing_short_worst20_days": {
+  "listing_short": -0.047,
+  "tsmom": 0.0052,
+  "corr_all_days": 0.06
+ },
+ "tsmom_sr_by_year": {
+  "2023": 1.25,
+  "2024": -0.07,
+  "2025": -0.11,
+  "2026": 1.13
+ }
+}

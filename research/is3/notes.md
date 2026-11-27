@@ -1066,3 +1066,11 @@ Unstated: (1) whether the full rescale is right (equal-risk would leave listing_
 Change my mind: idle-day SR of the blend < 0.5 AND idle share rising in 2026 -> STATUS must quote the idle-spell expectation; cash-on-idle better than rescale -> backlog proposal.
 HLI a/b/c done (is3_hli.py, hli_a/b.json): listing_short idle 21 % of 2026 days; qualifying HL listings 69/64/57/10 per year (2026 to Sep); $1M floor drops only 21 weaker events.
  Idle-day blend SR -1.8 (n.s.); cash-on-idle 1.39 vs 1.34 -> backlog HLI2. CLOSED OPEN (explained).
+
+## TSH tsmom leg of the HL main book (think-through 19:2x UTC 11-27, before any run)
+Source: BNH (tsmom +50 % of the HL blend's P&L, yearly .21/.05/.00/.24 attributed), nested log (tsmom kept at expanding SR .39, the 3rd pick). No chat records.
+What it is: per-coin trend (7-56 d blend), top-20 by volume, NOT market-neutral: net exposure = the sum of the coins' trend signs, i.e. mostly a market-timing bet with alt beta.
+Who pays: late trend-followers / forced sellers in crashes (crisis alpha) - if real it should pay in BTC's worst weeks (convexity) and hedge listing_short's squeeze days (alt rallies).
+Unstated: (1) since HL listing flow fell (HLI), tsmom is half the HL book in idle spells; (2) a refit could drop it (3rd pick at .39): which strategy is 4th matters for the 2027-01-02 refit.
+Change my mind: tsmom earns its P&L in BTC's worst/best weeks (convex) and is negatively correlated with listing_short on its worst days -> keep is well-motivated; if its P&L is net-long beta
+ in bull months only, it is an alt-beta leg the book could get cheaper.

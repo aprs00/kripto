@@ -3594,24 +3594,31 @@
    "group": "T",
    "title": "tsmom leg of the HL main book: what it is (beta timing? few coins? funding?) and whether the 2027-01-02 refit keeps it",
    "src": "BNH (tsmom +50 % of HL blend P&L; yearly 2023 .21 / 2024 .05 / 2025 .00 / 2026 .24); nested choice log (tsmom picked at expanding SR .39, the lowest of the three)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "tsmom HL decomposition 2023-03..2026-11: long vs short legs, BTC/ETH vs alts, price vs funding, by year; net exposure (sum of weights) over time and its correlation with BTC's 30-d trend: is it mostly market timing?",
-     "status": "planned"
+     "status": "done",
+     "result": "tsmom HL 2023-03..2026-11 (SR by year 1.25 / -.07 / -.11 / 1.13): not market timing - net exposure mean -0.1..+0.1 (corr with BTC 30-d trend .67) and the net x market part is 19 % of gross price P&L; alts carry it (alts price +58/+12/+2/+37 %, majors +2..+12); both legs earn in trend years (2023 long +28, short +32 %; 2026 +33 / +16); longs pay funding 3.5-12 %/yr",
+     "date": "2026-11-27",
+     "evidence": "tsh_ab"
     },
     {
      "id": "b",
      "what": "crisis behaviour: tsmom and the blend in the worst 20 BTC weeks and the best 20 (convexity); does tsmom hedge listing_short's squeeze days (correlation on listing_short's worst 20 days)?",
-     "status": "planned"
+     "status": "done",
+     "result": "convex: in BTC's 20 worst weeks (mean -9.3 %) tsmom +3.1 %/wk, in the 20 best (+12.4 %) +1.9 %/wk, other weeks -0.29 %/wk (the bleed of 2024-25); on listing_short's 20 worst days (-4.7 %) tsmom +0.5 %, daily corr .06; the blend +1.8 % / +1.4 % in those weeks. A crisis-alpha leg that hedges the book's squeeze days: well-motivated to keep",
+     "date": "2026-11-27",
+     "evidence": "tsh_ab"
     },
     {
      "id": "c",
      "what": "refit preview: nested_selection's expanding SR path of every pool strategy to 11-27 and the gap between the 3rd pick (tsmom .39) and the 4th; which strategy would replace it if tsmom fell below; verdict only (no live change before 2027-01-02, M1 rule)",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }
