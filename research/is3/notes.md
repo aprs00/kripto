@@ -917,3 +917,18 @@ PRE-STATED (a, explore 2021-01..2023-12, bnall 1d, top-30 and top-100, rank weig
  AND 3/3 years > 0 AND > total-vol ranking's SR on the same universe, in at least one universe. Prior low (LV1: 2021 -0.9 every form).
 LV3 a/b/c done (is3_lv3.py, lv3_ab.json): idio vol = total vol (rho .93); idio ranking SR -.32/-.04, double sort -.81/-.32, low-idio long leg = average coin. High-vol coins lose in the MEDIAN (-90 bp/d) not
  the MEAN (+11): pops pay the short back. LV3 CLOSED DEAD (7 forms with LV1).
+
+## LSF listing_short squeezed-tail exit (think-through 11:2x UTC 11-27, before any run)
+Source: LS1 b (HL: median listing pays the short +2.2% by d90, mean -2.0%: a squeezed minority; 2026 cohort -15%). No chat records. Book: listing_short (HL main blend leg).
+Mechanism: a new coin whose perp funding goes deeply negative has a crowded short side (everyone shorts the new listing); spot holders/market makers squeeze it and funding
+ transfers money to longs every 8 h / 1 h. Two readings: (1) squeeze in progress -> the short keeps losing price AND paying funding: exit; (2) funding extreme = capitulation of
+ the longs is over, the crowd short is the peak -> holding pays the decay later. The state -> distribution view decides between them.
+Unstated: (1) state at the close (trailing 3-d funding received by the short, known), outcome = next 7-d short P&L (price vs BTC + funding); (2) control for the past 3-d price move
+ (a squeeze shows in both); (3) exits cost a round trip and the short may be re-entered later: the filter (b) is judged with the DELAY/exit transform vs random masks;
+ (4) form a uses bnall 2021-23 ONLY: HL is kept clean as the held-out venue for c (I have seen only LS1's per-cohort means on HL, not this state view).
+Change my mind: the lowest-funding quintile's next-7-d short P&L is below the others by > 100 bp with a monotone dose in every explore year -> exit rule; else hold everything.
+LSF a done (is3_lsf.py, lsf_a.json, bnall 2021-23): REVERSED. Shorts paying heavy funding do fine afterwards (q0 +157 bp/7d); shorts RECEIVING high funding (crowded longs, pump in progress)
+ lose on price (q3/q4 -328/-157 bp/7d, -1069/-2425 /30d) but in the MEAN only (medians +371/+415): a few pumps, mostly 2021 (2022 opposite). Same as FC1C b on HL (high-gap shorts lose next day).
+PRE-REGISTERED (b, written before the run; data-mined from a, stated): EXIT listing_short shorts on days when the coin's trailing 3-d funding sum (known at the close) >= 0.0035 (explore
+ 80th pct, rounded), F0 'apply' transform side -1, bnall 1d explore 2021-23 vs 200 random masks. PASS = dSR > 0 at >= 95th pct AND dSR > 0 in 2021, 2022, 2023. Then c = ONE frozen run on HL
+ listing_short (2023-05..2026-11, the live venue, never used to choose). FC1C d (block HL high-gap shorts) passed explore and failed confirm: prior low.

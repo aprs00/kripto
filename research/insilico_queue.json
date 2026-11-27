@@ -3023,12 +3023,15 @@
    "group": "T",
    "title": "listing_short: exit the squeezed tail (short paying heavy funding) - state -> remaining decay, filter vs random masks, Binance as held-out venue",
    "src": "LS1 b (median listing pays the short, a squeezed minority costs the mean; 2026 cohort -15% funding by d90); findings listing_short",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "state -> distribution, HL listings 2023-05+ (and bnall listings 2021-23 as a second sample): at each day k of a held short, trailing 3-d funding received (and price vs entry) -> the short's NEXT 7/30-d abnormal return + funding; dose by funding tercile/quintile; is a heavily-paying short a squeeze that keeps going (exit) or a peak (hold)?",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall 1d explore 2021-23 only (HL kept for c), 10.2k listing_short coin-days / 193 coins. By trailing-3d funding received by the short (q0 = short PAID most): next-7d short net mean +157/+86/+199/-328/-157 bp (median +349/+334/+441/+371/+415); 30d +598/+869/+605/-1069/-2425 (median +1109..+1504). Exiting the paying shorts (my hypothesis) would cut GOOD shorts: exit value -204 bp/7d vs the rest (p .001), -1090/30d. REVERSED: the bad shorts RECEIVE high funding (crowded longs = pump in progress; px leg -394/-322 bp), means driven by a few pumps (medians all positive), by year q4 7d -239/+68/+28 (2021 only), 30d -3690/+1134/+390. Holds within past-3d price terciles. 2 horizons x 5 quintiles x 3 px terciles.",
+     "date": "2026-11-27",
+     "evidence": "lsf_a"
     },
     {
      "id": "b",
@@ -3040,7 +3043,8 @@
      "what": "frozen rule, ONE held-out run on HL listing_short 2023-05..2026-11 (venue never used to choose it; F0 judge, random masks) - the HL book is the live one",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "FSM",

@@ -1,0 +1,56 @@
+{
+ "name": "LSF_a_low_funding_H7",
+ "sample": "explore",
+ "n": 2043,
+ "days": 796,
+ "coins": 143,
+ "mean_bp": -157.46,
+ "median_bp": -349.07,
+ "win": 0.37,
+ "se_bp": 53.07,
+ "ci95_bp": [
+  -259.98,
+  -49.97
+ ],
+ "p": 0.0029985007496251873,
+ "mde80_bp": 148.6,
+ "mean_ex_top3_bp": -193.44,
+ "top3_share": null,
+ "t_day_mean": -1.73,
+ "by_year": {
+  "2021": [
+   475,
+   -26.63
+  ],
+  "2022": [
+   768,
+   -74.6
+  ],
+  "2023": [
+   800,
+   -314.68
+  ]
+ },
+ "by_side": {
+  "-1": [
+   2043,
+   -157.46
+  ]
+ },
+ "coins_positive": 0.36,
+ "net_bp": {
+  "free": -157.46,
+  "maker_taker": -165.46,
+  "taker": -170.46,
+  "taker_x2": -183.46,
+  "crash": -237.46
+ },
+ "base_n": 8168,
+ "base_bp": 46.4,
+ "vs_base_bp": -203.86,
+ "p_vs_base": 0.0009995002498750624,
+ "passes": false,
+ "note": "EXIT value: minus the short's next-H P&L in the lowest trailing-funding quintile vs the rest",
+ "rerun": "",
+ "at": "2026-11-27T11:18:16+00:00"
+}
