@@ -1,0 +1,594 @@
+{
+ "carry": {
+  "2021": {
+   "long_d1-5": {
+    "unit_days": 89.7,
+    "price_bp_per_unit_day": 87.3,
+    "funding_bp_per_unit_day": -7.9,
+    "net_bp": 79.4
+   },
+   "long_d6-8": {
+    "unit_days": 4.0,
+    "price_bp_per_unit_day": 230.7,
+    "funding_bp_per_unit_day": -0.5,
+    "net_bp": 230.2
+   },
+   "long_d9": {
+    "unit_days": 4.4,
+    "price_bp_per_unit_day": 104.1,
+    "funding_bp_per_unit_day": 5.4,
+    "net_bp": 109.5
+   },
+   "long_d10": {
+    "unit_days": 16.5,
+    "price_bp_per_unit_day": 70.9,
+    "funding_bp_per_unit_day": 17.4,
+    "net_bp": 88.3
+   },
+   "short_d1-5": {
+    "unit_days": 9.0,
+    "price_bp_per_unit_day": -163.0,
+    "funding_bp_per_unit_day": 4.9,
+    "net_bp": -158.2
+   },
+   "short_d6-8": {
+    "unit_days": 51.0,
+    "price_bp_per_unit_day": -21.7,
+    "funding_bp_per_unit_day": 10.5,
+    "net_bp": -11.2
+   },
+   "short_d9": {
+    "unit_days": 31.0,
+    "price_bp_per_unit_day": -41.7,
+    "funding_bp_per_unit_day": 13.2,
+    "net_bp": -28.6
+   },
+   "short_d10": {
+    "unit_days": 24.6,
+    "price_bp_per_unit_day": -5.5,
+    "funding_bp_per_unit_day": 21.4,
+    "net_bp": 15.9
+   }
+  },
+  "2022": {
+   "long_d1-5": {
+    "unit_days": 37.3,
+    "price_bp_per_unit_day": -65.4,
+    "funding_bp_per_unit_day": 0.8,
+    "net_bp": -64.6
+   },
+   "long_d6-8": {
+    "unit_days": 31.1,
+    "price_bp_per_unit_day": -17.8,
+    "funding_bp_per_unit_day": 3.6,
+    "net_bp": -14.2
+   },
+   "long_d9": {
+    "unit_days": 29.1,
+    "price_bp_per_unit_day": -38.0,
+    "funding_bp_per_unit_day": 8.5,
+    "net_bp": -29.4
+   },
+   "long_d10": {
+    "unit_days": 50.1,
+    "price_bp_per_unit_day": -52.8,
+    "funding_bp_per_unit_day": 20.3,
+    "net_bp": -32.5
+   },
+   "short_d1-5": {
+    "unit_days": 79.4,
+    "price_bp_per_unit_day": -9.7,
+    "funding_bp_per_unit_day": 0.6,
+    "net_bp": -9.1
+   },
+   "short_d6-8": {
+    "unit_days": 65.8,
+    "price_bp_per_unit_day": 65.0,
+    "funding_bp_per_unit_day": 1.7,
+    "net_bp": 66.7
+   },
+   "short_d9": {
+    "unit_days": 15.7,
+    "price_bp_per_unit_day": 58.9,
+    "funding_bp_per_unit_day": 2.4,
+    "net_bp": 61.3
+   },
+   "short_d10": {
+    "unit_days": 3.0,
+    "price_bp_per_unit_day": 41.8,
+    "funding_bp_per_unit_day": 3.1,
+    "net_bp": 44.9
+   }
+  },
+  "2023": {
+   "long_d1-5": {
+    "unit_days": 101.9,
+    "price_bp_per_unit_day": 28.8,
+    "funding_bp_per_unit_day": -1.4,
+    "net_bp": 27.5
+   },
+   "long_d6-8": {
+    "unit_days": 14.6,
+    "price_bp_per_unit_day": 53.2,
+    "funding_bp_per_unit_day": 2.0,
+    "net_bp": 55.2
+   },
+   "long_d9": {
+    "unit_days": 18.1,
+    "price_bp_per_unit_day": 44.9,
+    "funding_bp_per_unit_day": 9.8,
+    "net_bp": 54.6
+   },
+   "long_d10": {
+    "unit_days": 46.0,
+    "price_bp_per_unit_day": 11.9,
+    "funding_bp_per_unit_day": 45.0,
+    "net_bp": 56.9
+   },
+   "short_d1-5": {
+    "unit_days": 35.5,
+    "price_bp_per_unit_day": -38.2,
+    "funding_bp_per_unit_day": 1.4,
+    "net_bp": -36.8
+   },
+   "short_d6-8": {
+    "unit_days": 91.6,
+    "price_bp_per_unit_day": -25.7,
+    "funding_bp_per_unit_day": 2.7,
+    "net_bp": -23.0
+   },
+   "short_d9": {
+    "unit_days": 34.7,
+    "price_bp_per_unit_day": 36.9,
+    "funding_bp_per_unit_day": 3.7,
+    "net_bp": 40.7
+   },
+   "short_d10": {
+    "unit_days": 13.8,
+    "price_bp_per_unit_day": -17.0,
+    "funding_bp_per_unit_day": 7.2,
+    "net_bp": -9.8
+   }
+  },
+  "2024": {
+   "long_d1-5": {
+    "unit_days": 115.6,
+    "price_bp_per_unit_day": 26.5,
+    "funding_bp_per_unit_day": -3.0,
+    "net_bp": 23.5
+   },
+   "long_d6-8": {
+    "unit_days": 10.3,
+    "price_bp_per_unit_day": 71.1,
+    "funding_bp_per_unit_day": 0.4,
+    "net_bp": 71.5
+   },
+   "long_d9": {
+    "unit_days": 8.1,
+    "price_bp_per_unit_day": -3.9,
+    "funding_bp_per_unit_day": 3.4,
+    "net_bp": -0.5
+   },
+   "long_d10": {
+    "unit_days": 26.4,
+    "price_bp_per_unit_day": -16.5,
+    "funding_bp_per_unit_day": 14.5,
+    "net_bp": -2.0
+   },
+   "short_d1-5": {
+    "unit_days": 8.4,
+    "price_bp_per_unit_day": -51.1,
+    "funding_bp_per_unit_day": 1.6,
+    "net_bp": -49.5
+   },
+   "short_d6-8": {
+    "unit_days": 66.1,
+    "price_bp_per_unit_day": 12.8,
+    "funding_bp_per_unit_day": 3.8,
+    "net_bp": 16.6
+   },
+   "short_d9": {
+    "unit_days": 32.2,
+    "price_bp_per_unit_day": -10.7,
+    "funding_bp_per_unit_day": 5.6,
+    "net_bp": -5.1
+   },
+   "short_d10": {
+    "unit_days": 20.7,
+    "price_bp_per_unit_day": 38.1,
+    "funding_bp_per_unit_day": 10.9,
+    "net_bp": 49.0
+   }
+  },
+  "2025": {
+   "long_d1-5": {
+    "unit_days": 45.1,
+    "price_bp_per_unit_day": -13.4,
+    "funding_bp_per_unit_day": 0.3,
+    "net_bp": -13.1
+   },
+   "long_d6-8": {
+    "unit_days": 17.3,
+    "price_bp_per_unit_day": -7.2,
+    "funding_bp_per_unit_day": 2.5,
+    "net_bp": -4.7
+   },
+   "long_d9": {
+    "unit_days": 11.9,
+    "price_bp_per_unit_day": -53.1,
+    "funding_bp_per_unit_day": 14.0,
+    "net_bp": -39.0
+   },
+   "long_d10": {
+    "unit_days": 23.6,
+    "price_bp_per_unit_day": -84.1,
+    "funding_bp_per_unit_day": 82.6,
+    "net_bp": -1.5
+   },
+   "short_d1-5": {
+    "unit_days": 22.0,
+    "price_bp_per_unit_day": -25.4,
+    "funding_bp_per_unit_day": 1.2,
+    "net_bp": -24.1
+   },
+   "short_d6-8": {
+    "unit_days": 44.9,
+    "price_bp_per_unit_day": 12.9,
+    "funding_bp_per_unit_day": 2.1,
+    "net_bp": 15.0
+   },
+   "short_d9": {
+    "unit_days": 12.2,
+    "price_bp_per_unit_day": 57.6,
+    "funding_bp_per_unit_day": 1.4,
+    "net_bp": 59.0
+   },
+   "short_d10": {
+    "unit_days": 3.5,
+    "price_bp_per_unit_day": -157.1,
+    "funding_bp_per_unit_day": 7.7,
+    "net_bp": -149.4
+   }
+  },
+  "2026": {
+   "long_d1-5": {
+    "unit_days": 19.9,
+    "price_bp_per_unit_day": -13.2,
+    "funding_bp_per_unit_day": -0.0,
+    "net_bp": -13.2
+   },
+   "long_d6-8": {
+    "unit_days": 13.8,
+    "price_bp_per_unit_day": 26.8,
+    "funding_bp_per_unit_day": 5.3,
+    "net_bp": 32.1
+   },
+   "long_d9": {
+    "unit_days": 7.6,
+    "price_bp_per_unit_day": -36.9,
+    "funding_bp_per_unit_day": 42.5,
+    "net_bp": 5.5
+   },
+   "long_d10": {
+    "unit_days": 14.5,
+    "price_bp_per_unit_day": -117.7,
+    "funding_bp_per_unit_day": 176.7,
+    "net_bp": 58.9
+   },
+   "short_d1-5": {
+    "unit_days": 17.9,
+    "price_bp_per_unit_day": 5.5,
+    "funding_bp_per_unit_day": 0.6,
+    "net_bp": 6.1
+   },
+   "short_d6-8": {
+    "unit_days": 23.8,
+    "price_bp_per_unit_day": 4.7,
+    "funding_bp_per_unit_day": 2.9,
+    "net_bp": 7.7
+   },
+   "short_d9": {
+    "unit_days": 8.1,
+    "price_bp_per_unit_day": -2.4,
+    "funding_bp_per_unit_day": 8.7,
+    "net_bp": 6.4
+   },
+   "short_d10": {
+    "unit_days": 3.0,
+    "price_bp_per_unit_day": 178.1,
+    "funding_bp_per_unit_day": 14.0,
+    "net_bp": 192.2
+   }
+  }
+ },
+ "carry_trend": {
+  "2021": {
+   "long_d1-5": {
+    "unit_days": 96.9,
+    "price_bp_per_unit_day": 95.3,
+    "funding_bp_per_unit_day": -8.7,
+    "net_bp": 86.6
+   },
+   "long_d6-8": {
+    "unit_days": 7.7,
+    "price_bp_per_unit_day": 155.9,
+    "funding_bp_per_unit_day": -1.7,
+    "net_bp": 154.2
+   },
+   "long_d9": {
+    "unit_days": 3.4,
+    "price_bp_per_unit_day": 108.5,
+    "funding_bp_per_unit_day": 1.5,
+    "net_bp": 110.0
+   },
+   "long_d10": {
+    "unit_days": 7.3,
+    "price_bp_per_unit_day": 18.4,
+    "funding_bp_per_unit_day": 27.1,
+    "net_bp": 45.6
+   },
+   "short_d1-5": {
+    "unit_days": 59.0,
+    "price_bp_per_unit_day": -36.8,
+    "funding_bp_per_unit_day": 9.1,
+    "net_bp": -27.7
+   },
+   "short_d6-8": {
+    "unit_days": 34.4,
+    "price_bp_per_unit_day": 32.4,
+    "funding_bp_per_unit_day": 7.7,
+    "net_bp": 40.1
+   },
+   "short_d9": {
+    "unit_days": 10.3,
+    "price_bp_per_unit_day": -22.0,
+    "funding_bp_per_unit_day": 6.0,
+    "net_bp": -16.0
+   },
+   "short_d10": {
+    "unit_days": 3.1,
+    "price_bp_per_unit_day": -105.9,
+    "funding_bp_per_unit_day": 11.1,
+    "net_bp": -94.8
+   }
+  },
+  "2022": {
+   "long_d1-5": {
+    "unit_days": 113.1,
+    "price_bp_per_unit_day": -29.7,
+    "funding_bp_per_unit_day": -0.6,
+    "net_bp": -30.4
+   },
+   "long_d6-8": {
+    "unit_days": 34.0,
+    "price_bp_per_unit_day": 3.4,
+    "funding_bp_per_unit_day": -0.0,
+    "net_bp": 3.3
+   },
+   "long_d9": {
+    "unit_days": 8.3,
+    "price_bp_per_unit_day": -21.8,
+    "funding_bp_per_unit_day": 3.6,
+    "net_bp": -18.3
+   },
+   "long_d10": {
+    "unit_days": 16.8,
+    "price_bp_per_unit_day": -5.5,
+    "funding_bp_per_unit_day": 13.4,
+    "net_bp": 7.9
+   },
+   "short_d1-5": {
+    "unit_days": 97.0,
+    "price_bp_per_unit_day": 17.8,
+    "funding_bp_per_unit_day": 0.4,
+    "net_bp": 18.2
+   },
+   "short_d6-8": {
+    "unit_days": 48.2,
+    "price_bp_per_unit_day": 50.2,
+    "funding_bp_per_unit_day": 1.8,
+    "net_bp": 52.0
+   },
+   "short_d9": {
+    "unit_days": 7.7,
+    "price_bp_per_unit_day": 136.5,
+    "funding_bp_per_unit_day": 2.3,
+    "net_bp": 138.8
+   }
+  },
+  "2023": {
+   "long_d1-5": {
+    "unit_days": 111.7,
+    "price_bp_per_unit_day": 41.4,
+    "funding_bp_per_unit_day": -1.7,
+    "net_bp": 39.7
+   },
+   "long_d6-8": {
+    "unit_days": 16.8,
+    "price_bp_per_unit_day": 34.1,
+    "funding_bp_per_unit_day": -0.0,
+    "net_bp": 34.1
+   },
+   "long_d9": {
+    "unit_days": 11.0,
+    "price_bp_per_unit_day": 28.6,
+    "funding_bp_per_unit_day": 12.6,
+    "net_bp": 41.3
+   },
+   "long_d10": {
+    "unit_days": 34.5,
+    "price_bp_per_unit_day": -6.7,
+    "funding_bp_per_unit_day": 53.5,
+    "net_bp": 46.8
+   },
+   "short_d1-5": {
+    "unit_days": 105.9,
+    "price_bp_per_unit_day": -18.5,
+    "funding_bp_per_unit_day": 2.4,
+    "net_bp": -16.1
+   },
+   "short_d6-8": {
+    "unit_days": 58.9,
+    "price_bp_per_unit_day": -23.2,
+    "funding_bp_per_unit_day": 2.0,
+    "net_bp": -21.1
+   },
+   "short_d9": {
+    "unit_days": 10.5,
+    "price_bp_per_unit_day": 9.1,
+    "funding_bp_per_unit_day": 2.9,
+    "net_bp": 12.0
+   },
+   "short_d10": {
+    "unit_days": 1.2,
+    "price_bp_per_unit_day": -81.8,
+    "funding_bp_per_unit_day": 5.0,
+    "net_bp": -76.8
+   }
+  },
+  "2024": {
+   "long_d1-5": {
+    "unit_days": 116.0,
+    "price_bp_per_unit_day": 25.4,
+    "funding_bp_per_unit_day": -3.2,
+    "net_bp": 22.2
+   },
+   "long_d6-8": {
+    "unit_days": 15.7,
+    "price_bp_per_unit_day": 49.2,
+    "funding_bp_per_unit_day": -1.0,
+    "net_bp": 48.2
+   },
+   "long_d9": {
+    "unit_days": 9.5,
+    "price_bp_per_unit_day": -26.0,
+    "funding_bp_per_unit_day": 0.5,
+    "net_bp": -25.4
+   },
+   "long_d10": {
+    "unit_days": 15.8,
+    "price_bp_per_unit_day": -45.9,
+    "funding_bp_per_unit_day": 18.8,
+    "net_bp": -27.1
+   },
+   "short_d1-5": {
+    "unit_days": 78.6,
+    "price_bp_per_unit_day": -24.5,
+    "funding_bp_per_unit_day": 3.9,
+    "net_bp": -20.6
+   },
+   "short_d6-8": {
+    "unit_days": 53.2,
+    "price_bp_per_unit_day": -7.4,
+    "funding_bp_per_unit_day": 2.8,
+    "net_bp": -4.6
+   },
+   "short_d9": {
+    "unit_days": 13.4,
+    "price_bp_per_unit_day": -16.4,
+    "funding_bp_per_unit_day": 4.0,
+    "net_bp": -12.4
+   },
+   "short_d10": {
+    "unit_days": 6.3,
+    "price_bp_per_unit_day": 113.5,
+    "funding_bp_per_unit_day": 7.9,
+    "net_bp": 121.4
+   }
+  },
+  "2025": {
+   "long_d1-5": {
+    "unit_days": 83.9,
+    "price_bp_per_unit_day": -12.9,
+    "funding_bp_per_unit_day": -0.7,
+    "net_bp": -13.6
+   },
+   "long_d6-8": {
+    "unit_days": 23.6,
+    "price_bp_per_unit_day": -34.0,
+    "funding_bp_per_unit_day": 1.2,
+    "net_bp": -32.8
+   },
+   "long_d9": {
+    "unit_days": 7.4,
+    "price_bp_per_unit_day": -41.7,
+    "funding_bp_per_unit_day": 18.1,
+    "net_bp": -23.6
+   },
+   "long_d10": {
+    "unit_days": 12.9,
+    "price_bp_per_unit_day": -0.4,
+    "funding_bp_per_unit_day": 105.3,
+    "net_bp": 105.0
+   },
+   "short_d1-5": {
+    "unit_days": 62.5,
+    "price_bp_per_unit_day": 2.9,
+    "funding_bp_per_unit_day": 1.2,
+    "net_bp": 4.1
+   },
+   "short_d6-8": {
+    "unit_days": 46.2,
+    "price_bp_per_unit_day": 38.8,
+    "funding_bp_per_unit_day": 1.9,
+    "net_bp": 40.8
+   },
+   "short_d9": {
+    "unit_days": 5.7,
+    "price_bp_per_unit_day": 42.3,
+    "funding_bp_per_unit_day": 0.9,
+    "net_bp": 43.2
+   }
+  },
+  "2026": {
+   "long_d1-5": {
+    "unit_days": 37.4,
+    "price_bp_per_unit_day": -8.7,
+    "funding_bp_per_unit_day": -0.2,
+    "net_bp": -8.9
+   },
+   "long_d6-8": {
+    "unit_days": 14.7,
+    "price_bp_per_unit_day": 48.0,
+    "funding_bp_per_unit_day": 3.1,
+    "net_bp": 51.1
+   },
+   "long_d9": {
+    "unit_days": 5.1,
+    "price_bp_per_unit_day": -2.5,
+    "funding_bp_per_unit_day": 63.7,
+    "net_bp": 61.1
+   },
+   "long_d10": {
+    "unit_days": 11.5,
+    "price_bp_per_unit_day": -131.9,
+    "funding_bp_per_unit_day": 205.1,
+    "net_bp": 73.2
+   },
+   "short_d1-5": {
+    "unit_days": 37.9,
+    "price_bp_per_unit_day": 2.3,
+    "funding_bp_per_unit_day": 0.7,
+    "net_bp": 3.0
+   },
+   "short_d6-8": {
+    "unit_days": 19.3,
+    "price_bp_per_unit_day": 3.2,
+    "funding_bp_per_unit_day": 3.7,
+    "net_bp": 6.9
+   },
+   "short_d9": {
+    "unit_days": 4.5,
+    "price_bp_per_unit_day": -143.3,
+    "funding_bp_per_unit_day": 12.0,
+    "net_bp": -131.2
+   },
+   "short_d10": {
+    "unit_days": 1.7,
+    "price_bp_per_unit_day": -279.9,
+    "funding_bp_per_unit_day": 18.6,
+    "net_bp": -261.4
+   }
+  }
+ }
+}

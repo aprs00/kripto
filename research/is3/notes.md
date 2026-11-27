@@ -1091,3 +1091,10 @@ Unstated: bnall 2021-23 is also where both legs were chosen (in-sample; flow par
 Change my mind: if one leg carries > 80 % of 2024-26 P&L and the other is ~0 net of costs, STATUS should say main_bn is effectively one strategy.
 BNB a/b/c done (is3_bnb.py, bnb_ab/c.json): main_bn mix SR 1.83 (2025 .59, 2026 1.16); legs 45/55 % of 2024-26 P&L; 2025-26 price ~0 (flow) / -10..-16 % (blend), funding +9..+23 % carries both.
  Nested bnall pool 11-21: carry_trend 1.33, carry 1.31, xsmom 1.25, tsmom 1.17. CLOSED OPEN. (bnall is refreshed weekly: ends 11-21, not a fault.)
+
+## CRB carry legs of blend_nested@bn: funding received vs price lost (think-through 19:2x UTC 11-27, before any run)
+Source: BNB b. Mechanism: carry shorts names whose longs pay most and longs names whose shorts pay; the payers are crowded for a reason (trend, squeeze, listing hype), so price moves
+ against the carry book: it is paid to warehouse crowding risk. At the extremes (deeply negative funding = a crowded short being squeezed, or a runaway long) the price risk may exceed the carry.
+Unstated: (1) funding is known (7-d trailing); the price loss is the cost; dose by |funding| decile per side; (2) the extreme decile may be where most funding comes from (removing it costs carry);
+ (3) explore 2021-23 only for the filter (c), pre-stated now: drop coin-days in the top |7-d funding| decile of the top-30 universe, F0 'apply', 200 masks, dSR > 0 >= 95th pct and per year.
+Change my mind: a clear dose (price loss/funding ratio > 1 in the top decile, < 1 elsewhere) in every year -> c is motivated; flat -> carry's price cost is uniform, no filter.
