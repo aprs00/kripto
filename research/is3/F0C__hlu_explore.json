@@ -1,0 +1,31 @@
+{
+ "name": "F0C",
+ "sample": "hlu_explore",
+ "side": null,
+ "on_share": 0.535,
+ "base": {
+  "sr": 0.8219551557127978,
+  "ann": 0.23505638982153876,
+  "mdd": -0.22293431522776164,
+  "days": 641
+ },
+ "filtered": {
+  "sr": 0.8866741739800343,
+  "ann": 0.2528969779332743,
+  "mdd": -0.19333056488146627,
+  "days": 641
+ },
+ "dSR": 0.065,
+ "dMDD": 0.0296,
+ "p_daily_diff": 0.35732133933033483,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.545,
+ "random_dSR_q05_q50_q95": [
+  -0.125,
+  0.041,
+  0.207
+ ],
+ "pct_dMDD_vs_random": 0.55,
+ "note": "mask = listing_short holds >= 1 name; blocked (idle) rows x 2/3",
+ "passes": false
+}

@@ -1082,3 +1082,4 @@ Source: HLI a. Mechanism: when listing_short is empty, the vol target re-inflate
  drift lowers return; on a book whose idle days are bad it helps: the F0 question is whether THOSE days are worse than random days. Idle days are clustered (spells), so circular shifts keep runs.
 Unstated: on explore 2023-24 only ~48 idle days (low power: say so); the full-sample number was seen in HLI a.
 PRE-STATED: PASS = dSR > 0 at >= 95th pct of 200 random masks (explore), then one confirm run on hlu_confirm after L.prereg.
+F0C a done (F0C__hlu_explore.json): cash-on-idle dSR +.06 = 54th pct of random day masks: exposure effect. b skipped, HLI2 closed. CLOSED OPEN.
