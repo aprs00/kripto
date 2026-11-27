@@ -303,5 +303,13 @@
    "sample": "hlu_explore"
   },
   "at": "2026-11-27T11:30:11+00:00"
+ },
+ "F0C": {
+  "claim": "HL blend: listing_shorts third in cash (x2/3) on days it holds nothing beats random day masks of the same on-share and runs",
+  "rule": "PASS = dSR > 0 at >= 95th pct of 200 circular-shift masks; hlu_explore then ONE hlu_confirm run (full-sample number seen in HLI a: weak confirm)",
+  "params": {
+   "k": 0.6666666666666666
+  },
+  "at": "2026-11-27T19:24:44+00:00"
  }
 }
