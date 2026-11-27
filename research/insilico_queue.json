@@ -3304,7 +3304,10 @@
     {
      "id": "b",
      "what": "lowvol HL decomposition: long leg vs short leg, funding vs price, per year; is 2025 one leg / a few coins (top-5 coin share)?",
-     "status": "planned"
+     "status": "done",
+     "result": "lowvol HL legs (unit weights, gross long .52 / short .27-.38): long price +30/+49/-3/-15 %, short price -21/-35/+45/+18 % (2023/24/25/26); funding small (-1..-12 %). Net +4/+11/+38/-2 %. It is a majors-vs-alts spread: long legs carry bull years, shorts the 2025 alt bleed. 2025 is diffuse (top-5 coins 41% of it: GOAT, VIRTUAL, XPL...), not a few coins: a regime bet, not luck in names",
+     "date": "2026-11-27",
+     "evidence": "bnh_b"
     },
     {
      "id": "c",
