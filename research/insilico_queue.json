@@ -1312,7 +1312,7 @@
     },
     {
      "id": "e",
-     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
+     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is \u22123..\u221221% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
      "status": "done",
      "added": "2026-11-22",
      "result": "his literal picture (every live adaptive bucket -3..-21% of its volume, day <= -7%), long 3 d: n 55, +105 bp vs matched +256 (diff -151, p .50, MDE 494), 2022 -470; 2-way table fall x selling: U-shape (no selling +989 and extreme selling <= -20% +711 on 16-18 events at <= -8%; his -3..-21% range -30..+278), no monotone dose in either direction. DEAD form",
@@ -1526,7 +1526,7 @@
    "prio": 23,
    "group": "C",
    "title": "Filter harness: does a signal improve a book that already works?",
-   "src": "design.md §4 (filters)",
+   "src": "design.md \u00a74 (filters)",
    "status": "closed",
    "forms": [
     {
@@ -3492,9 +3492,9 @@
     },
     {
      "id": "b",
-     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md §4 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
+     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md \u00a74 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
      "status": "done",
-     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design §4 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
+     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design \u00a74 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
      "date": "2026-11-27",
      "evidence": "ksw_ab"
     },
@@ -3625,6 +3625,56 @@
    "verdict": "OPEN",
    "reason": "kept, well-motivated: tsmom is a convex alt-trend leg (BTC's worst 20 weeks +3.1 %/wk, best +1.9, other weeks -0.3: 2024-25 bleed), hedges listing_short's squeeze days (+0.5 % vs -4.7 %), not market timing (19 % of gross); 3rd nested pick at .50 vs the 4th .30",
    "closed": "2026-11-27"
+  },
+  {
+   "id": "F0C",
+   "prio": 1.0,
+   "group": "T",
+   "title": "HLI2 precheck: is 'listing_short's third in cash when idle' more than less exposure? (F0 random day-masks)",
+   "src": "HLI a (cash-on-idle SR 1.39 vs 1.34, every year >=); backlog HLI2; research/studies/is3_filter.py",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "F0 on hlu_explore (2023-04..2024-12): HL blend, day mask = listing_short holds >= 1 name (decided at t-1), tf = scale k 2/3 on blocked days; 200 circular-shift random day masks with the same on-share and run lengths; PASS = dSR > 0 at >= 95th pct",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "same on hlu_confirm (2025-01..2026-11-22) as ONE run after L.prereg (the full-sample HLI a number has been seen, stated: weak confirm); report pct and dSR by year",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict for HLI2: pass both -> HLI2 stays for a research WF with the F0 numbers; fail -> HLI2 closed (exposure effect), backlog line updated",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "BNB",
+   "prio": 1.1,
+   "group": "T",
+   "title": "main_bn (0.5 flow@bn + 0.5 blend_nested@bn): which leg carries it, by year, convexity, and 2025-26 weakness of flow",
+   "src": "L3S c (flow@bn 2025-26 SR .49, blend_nested@bn .73 at model costs); KSW (main_bn bnall SR 2.02 in-sample 2020-); BNH method",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "bnall 1d 2021-01..2026-10: main_bn mix vs each leg alone, SR and net by year; attribution of the mix's P&L to the legs (the mix's own scale); correlation of the legs by year",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "convexity and stress: the mix and legs in BTC's 20 worst / best weeks and on 2025-10-10; funding vs price vs costs per leg by year (is flow's 2025-26 fade costs, funding or price?)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "nested choice preview for blend_nested@bn (pool expanding SR on 11-27 vs the 11-03 choice carry_trend / carry / xsmom) and whether flow@bn would be picked by the same rule if it were in the pool; verdict only (no live change before the refit)",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
