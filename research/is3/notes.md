@@ -994,3 +994,10 @@ Unstated: (1) the blend vol-targets the SUM, so a leg's contribution is not its 
 Change my mind: lowvol share of blend P&L <= its 1/3 risk share outside 2025 AND the blend without it loses >= .3 SR in >= 2 years -> keep, not luck. Otherwise flag luck-driven.
 BNH a/b/c done (is3_bnh.py, bnh_a/b/c.json): HL blend 1.34 with lowvol vs 1.30 without (listing_short carries: +102% of +178% P&L, tsmom +50, lowvol +26 of which +24 in 2025).
  lowvol = long majors / short alts (2023-24 longs pay, 2025 shorts pay, diffuse: top-5 coins 41%). Picked at the 2025-01-12 refit on prior-data SR .43 -> 2025 was OOS. KEEP; no dependence.
+
+## L3S backtest slippage model vs live paper book walks (think-through 19:0x UTC 11-27, before any run)
+Source: backlog L3 (library N3: impact ~ sqrt(size/ADV)). No chat records. kripto/backtest.slippage_model = 3*sqrt(50e6/ADV7) bp, clip 1.5..25, SIZE-INDEPENDENT, + taker fee.
+Live paper fills walk the venue's live L2 (top 20 levels) at fill time: slip_bps = |px - mid|/mid (half-spread + depth). ~2,360 taker fills 11-09..11-27, $5-$400 orders.
+Who pays: nobody; this is measurement. Unstated: (1) the walk is itself a model (snapshot, no latency, no queue), but at $10-400 the half-spread dominates and the snapshot is real;
+ (2) the model's ADV is the panel's trailing 7-d USD volume at D-1 (what a backtest would use for day D); (3) ladder/maker fills and 'retired' liquidations are excluded/split.
+Change my mind: median ratio model/walk within 0.5..2 in every venue x liquidity tier -> model OK; a tier where the model is > 2x off -> c quantifies the cost-line error.

@@ -1,0 +1,238 @@
+{
+ "window": [
+  "2026-11-09 04:32:36+00:00",
+  "2026-11-27 08:09:30+00:00"
+ ],
+ "all": {
+  "bn": {
+   "n": 1518,
+   "walk_med": 0.75,
+   "walk_mean": 1.27,
+   "walk_p90": 3.04,
+   "model_med": 1.61,
+   "model_mean": 2.04,
+   "ratio_med_model_over_walk": 2.5,
+   "usd_weighted_walk": 1.11,
+   "usd_weighted_model": 2.03,
+   "usd_med": 12.2
+  },
+  "hl": {
+   "n": 845,
+   "walk_med": 0.7,
+   "walk_mean": 1.77,
+   "walk_p90": 3.09,
+   "model_med": 4.81,
+   "model_mean": 5.8,
+   "ratio_med_model_over_walk": 6.55,
+   "usd_weighted_walk": 3.88,
+   "usd_weighted_model": 6.47,
+   "usd_med": 20.6
+  }
+ },
+ "by_tier": {
+  "bn": {
+   "<20M": {
+    "n": 45,
+    "walk_med": 2.2,
+    "walk_mean": 2.48,
+    "walk_p90": 3.64,
+    "model_med": 7.18,
+    "model_mean": 6.59,
+    "ratio_med_model_over_walk": 2.76,
+    "usd_weighted_walk": 2.57,
+    "usd_weighted_model": 6.62,
+    "usd_med": 10.2
+   },
+   "20-100M": {
+    "n": 433,
+    "walk_med": 1.44,
+    "walk_mean": 1.89,
+    "walk_p90": 5.13,
+    "model_med": 2.55,
+    "model_mean": 2.62,
+    "ratio_med_model_over_walk": 1.97,
+    "usd_weighted_walk": 1.66,
+    "usd_weighted_model": 2.68,
+    "usd_med": 13.1
+   },
+   "100M-1B": {
+    "n": 872,
+    "walk_med": 0.72,
+    "walk_mean": 1.1,
+    "walk_p90": 2.69,
+    "model_med": 1.5,
+    "model_mean": 1.61,
+    "ratio_med_model_over_walk": 2.41,
+    "usd_weighted_walk": 1.1,
+    "usd_weighted_model": 1.62,
+    "usd_med": 11.6
+   },
+   ">1B": {
+    "n": 168,
+    "walk_med": 0.06,
+    "walk_mean": 0.28,
+    "walk_p90": 0.7,
+    "model_med": 1.5,
+    "model_mean": 1.5,
+    "ratio_med_model_over_walk": 23.1,
+    "usd_weighted_walk": 0.12,
+    "usd_weighted_model": 1.5,
+    "usd_med": 13.8
+   }
+  },
+  "hl": {
+   "<20M": {
+    "n": 428,
+    "walk_med": 1.41,
+    "walk_mean": 2.96,
+    "walk_p90": 3.73,
+    "model_med": 7.93,
+    "model_mean": 9.09,
+    "ratio_med_model_over_walk": 5.67,
+    "usd_weighted_walk": 7.28,
+    "usd_weighted_model": 10.75,
+    "usd_med": 22.6
+   },
+   "20-100M": {
+    "n": 216,
+    "walk_med": 0.73,
+    "walk_mean": 0.89,
+    "walk_p90": 1.87,
+    "model_med": 3.22,
+    "model_mean": 3.27,
+    "ratio_med_model_over_walk": 4.45,
+    "usd_weighted_walk": 1.04,
+    "usd_weighted_model": 3.31,
+    "usd_med": 18.3
+   },
+   "100M-1B": {
+    "n": 105,
+    "walk_med": 0.07,
+    "walk_mean": 0.23,
+    "walk_p90": 0.46,
+    "model_med": 1.5,
+    "model_mean": 1.5,
+    "ratio_med_model_over_walk": 20.72,
+    "usd_weighted_walk": 0.22,
+    "usd_weighted_model": 1.5,
+    "usd_med": 21.1
+   },
+   ">1B": {
+    "n": 96,
+    "walk_med": 0.08,
+    "walk_mean": 0.12,
+    "walk_p90": 0.27,
+    "model_med": 1.5,
+    "model_mean": 1.5,
+    "ratio_med_model_over_walk": 18.46,
+    "usd_weighted_walk": 0.14,
+    "usd_weighted_model": 1.5,
+    "usd_med": 23.4
+   }
+  }
+ },
+ "by_size": {
+  "bn": {
+   "<25": {
+    "n": 1211,
+    "walk_med": 0.77,
+    "walk_mean": 1.3,
+    "walk_p90": 3.04,
+    "model_med": 1.61,
+    "model_mean": 2.03,
+    "ratio_med_model_over_walk": 2.39,
+    "usd_weighted_walk": 1.3,
+    "usd_weighted_model": 2.02,
+    "usd_med": 10.0
+   },
+   "25-100": {
+    "n": 264,
+    "walk_med": 0.71,
+    "walk_mean": 1.24,
+    "walk_p90": 3.26,
+    "model_med": 1.69,
+    "model_mean": 2.07,
+    "ratio_med_model_over_walk": 2.88,
+    "usd_weighted_walk": 1.21,
+    "usd_weighted_model": 2.06,
+    "usd_med": 40.7
+   },
+   "100-300": {
+    "n": 41,
+    "walk_med": 0.58,
+    "walk_mean": 0.77,
+    "walk_p90": 1.69,
+    "model_med": 1.5,
+    "model_mean": 2.03,
+    "ratio_med_model_over_walk": 3.27,
+    "usd_weighted_walk": 0.81,
+    "usd_weighted_model": 2.07,
+    "usd_med": 197.4
+   }
+  },
+  "hl": {
+   "<25": {
+    "n": 473,
+    "walk_med": 0.54,
+    "walk_mean": 1.06,
+    "walk_p90": 2.77,
+    "model_med": 4.23,
+    "model_mean": 5.38,
+    "ratio_med_model_over_walk": 7.58,
+    "usd_weighted_walk": 1.05,
+    "usd_weighted_model": 5.27,
+    "usd_med": 13.6
+   },
+   "25-100": {
+    "n": 293,
+    "walk_med": 0.93,
+    "walk_mean": 2.03,
+    "walk_p90": 3.28,
+    "model_med": 5.78,
+    "model_mean": 6.26,
+    "ratio_med_model_over_walk": 6.57,
+    "usd_weighted_walk": 1.76,
+    "usd_weighted_model": 6.1,
+    "usd_med": 41.2
+   },
+   "100-300": {
+    "n": 71,
+    "walk_med": 0.86,
+    "walk_mean": 3.31,
+    "walk_p90": 4.53,
+    "model_med": 3.7,
+    "model_mean": 5.94,
+    "ratio_med_model_over_walk": 4.76,
+    "usd_weighted_walk": 3.8,
+    "usd_weighted_model": 6.27,
+    "usd_med": 182.8
+   }
+  }
+ },
+ "retired": {
+  "bn": {
+   "n": 31,
+   "walk_med": 0.88,
+   "walk_mean": 1.33,
+   "walk_p90": 2.57,
+   "model_med": 1.5,
+   "model_mean": 2.04,
+   "ratio_med_model_over_walk": 2.13,
+   "usd_weighted_walk": 1.14,
+   "usd_weighted_model": 1.8,
+   "usd_med": 33.8
+  },
+  "hl": {
+   "n": 48,
+   "walk_med": 0.56,
+   "walk_mean": 0.9,
+   "walk_p90": 1.99,
+   "model_med": 5.78,
+   "model_mean": 5.68,
+   "ratio_med_model_over_walk": 9.09,
+   "usd_weighted_walk": 0.89,
+   "usd_weighted_model": 5.28,
+   "usd_med": 73.6
+  }
+ }
+}
