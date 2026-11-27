@@ -2903,7 +2903,7 @@
    "group": "T",
    "title": "Range / HAR vol forecasts for the books' vol targeting (risk, not alpha)",
    "src": "backlog L6; library N6 (bencik-2014)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -2924,10 +2924,16 @@
     {
      "id": "c",
      "what": "if b cuts tracking error >= 20% without SR loss > 0.1: ONE pre-registered confirmT 2024-25; else diagnose (e.g. the covariance, not the variance, is what misses in crashes) and test that once",
-     "status": "planned"
+     "status": "done",
+     "result": "CONFIRM FAIL (confirmT 2024-25, one run, pre-registered L6V_ewm20_vt_xsmom): xsmom TE .260 -> .230 (-12%, needed -20%), SR 1.31 -> 1.10 (-0.21 > .1 allowed); its realized vol sits below target (0.20 vs 0.25) with either estimator, so most of its TE is level bias, not tracking. Descriptive on the same run: blend TE .166 -> .130 (-22%, SR 1.05 -> 1.13), tsmom .130 -> .114 (-12%, SR .36 -> .40); HAR worse for blend (.215). ewm20 tracks better in 6/6 book x sample cells (9-23%), SR effect mixed (-0.21..+0.15).",
+     "date": "2026-11-27",
+     "evidence": "l6v_b_confirmT"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "ewm20 per-coin variances (correlations from 60 d) forecast next-week vol 10% better (QLIKE) than the 60-d sample used by vol_target and track the books' vol target 9-23% better in all 6 book x sample cells, but the pre-registered xsmom confirm failed (TE -12%, SR -0.21) and the SR effect is mixed: a small, consistent risk improvement, not established at the bar. HAR-Parkinson over-forecasts (worse tracking for blend). Design-level change left to research (backlog L6).",
+   "closed": "2026-11-27"
   }
  ]
 }

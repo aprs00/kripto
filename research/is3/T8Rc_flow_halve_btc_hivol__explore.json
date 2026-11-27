@@ -1,0 +1,31 @@
+{
+ "name": "T8Rc_flow_halve_btc_hivol",
+ "sample": "explore",
+ "side": null,
+ "on_share": 0.71,
+ "base": {
+  "sr": 1.582424239123744,
+  "ann": 0.3521987575566836,
+  "mdd": -0.23519443530744344,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 1.5811362935119762,
+  "ann": 0.31280820461907977,
+  "mdd": -0.24612855800738276,
+  "days": 1095
+ },
+ "dSR": -0.001,
+ "dMDD": -0.0109,
+ "p_daily_diff": 0.20539730134932535,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.66,
+ "random_dSR_q05_q50_q95": [
+  -0.346,
+  -0.072,
+  0.259
+ ],
+ "pct_dMDD_vs_random": 0.185,
+ "note": "halve flow@bn when BTC 30-d vol > trailing-365 2/3 quantile",
+ "passes": false
+}

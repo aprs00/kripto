@@ -892,3 +892,5 @@ L6V a done (is3_l6v.py, l6v_a.json): 2023 OOS QLIKE HAR-Parkinson .524 / ewm20 .
  Pass the pre-stated 10% bar (QLIKE) -> b: vol_target with ewm20 (and HAR) variances, correlations from 60 d.
 L6V b done (l6v_b_explore.json): ewm20 variances cut quarterly vol tracking error vs cc60 by 23% (xsmom), 18% (tsmom), 9% (blend), SR same or better; HAR over-forecasts. Bar met by xsmom only ->
  PRE-REGISTERED L6V_ewm20_vt_xsmom (confirmT one run, TE cut >= 20% and SR loss <= .1); blend/tsmom reported descriptively on the same run.
+L6V c confirm (l6v_b_confirmT.json): xsmom TE -12% (needed -20), SR 1.31 -> 1.10: FAIL. Same run: blend TE -22% (SR +.08), tsmom -12% (SR +.04). ewm20 tracks better in 6/6 cells, SR mixed. L6V CLOSED OPEN.
+ Sceptic: tested the estimator where it is used (vol_target diagonal), on 3 books, out-of-sample; HAR as N6 says forecasts better by QLIKE but over-forecasts, which hurts a vol target.
