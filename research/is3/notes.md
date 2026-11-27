@@ -1164,3 +1164,12 @@ Source: KSW, X1C a. The pair book is hedged across two accounts that cannot net:
  between venues take time and cost; the guard must not fire on ordinary alt rallies too often. Change my mind: P(account DD <= -50 % in 2 y) >= 5 % without transfers -> a transfer rule is
  required before funding main@pair; write it to KS1.
 KSA a/b/c done (is3_ksa.py, ksa_abc.json): pair accounts without transfers: P(-50 % in 2 y) >= 90 %, historical path liquidates one; 'rebalance at 70 %' -> worst -29 %, 14 transfers/yr. KS1 updated. CLOSED OPEN.
+
+## CRS carry's extreme-decile longs (think-through 19:4x UTC 11-27, before any run)
+Source: CRB. These are coins whose shorts pay 1-2 %/day: a crowded short in a falling coin. The carry long collects the funding; it loses when the coin keeps falling (shorts were right:
+ unlock/insider selling) and wins when shorts capitulate (squeeze). Unstated: the losers should be coins still in a fresh downtrend (close near the 30-d low, falling volume = no buyers),
+ the winners those already off the lows with rising volume. Change my mind: a feature whose worst quintile has a next-7-d mean below -5 % with a dose in every explore year -> b.
+CRS a done (crs_a.json): only 'funding fading' (f3/f7 bottom quintile) is same-signed every year (-5.2/-2.8/-2.6 % next 7 d vs ~+1 % others); my -5 % bar missed. Deviation, stated: b runs once
+ anyway (as in SQZ) because b takes the best feature from a by design; F0 + 2024-26 are the line.
+PRE-STATED (b): block carry LONGS in the top |7-d funding| decile when f3/f7 < 0.443 (explore 20th pct), side +1, carry on bnall explore 2021-23, 200 random masks (circular shifts of the
+ mask per coin: on-share kept, but shifted blocks may land outside the decile: a weaker null, stated). PASS = dSR > 0 at >= 95th pct AND dSR > 0 in 2021, 2022, 2023.
