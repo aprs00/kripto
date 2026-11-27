@@ -895,3 +895,12 @@ L6V b done (l6v_b_explore.json): ewm20 variances cut quarterly vol tracking erro
 L6V c confirm (l6v_b_confirmT.json): xsmom TE -12% (needed -20), SR 1.31 -> 1.10: FAIL. Same run: blend TE -22% (SR +.08), tsmom -12% (SR +.04). ewm20 tracks better in 6/6 cells, SR mixed. L6V CLOSED OPEN.
  Sceptic: tested the estimator where it is used (vol_target diagonal), on 3 books, out-of-sample; HAR as N6 says forecasts better by QLIKE but over-forecasts, which hurts a vol target.
 T8R c done (t8r_c.json): halving flow in high BTC vol = random masks (dSR 0.00, 66th pct; 2022 -0.27). T8R CLOSED DEAD (6 states x 3 books; year dummies; vol targeting already does the job).
+
+## LS1 listing_short on HL with the backfilled funding (think-through 11:1x UTC 11-27, before any run)
+Source: backlog T2b(a), findings listing_short (HL OOS 0.89, "funding known for only 28% of HL short exposure"). No chat records. Book = HL main blend leg (listing_short defaults, HL 1d).
+Mechanism: new perps are over-priced at listing (airdrop/unlock supply, retail hype) and decay ~linearly to d120 (T2b b). Who pays: the late long buyers. Risk: the SHORTS of a hyped
+ new coin are the crowded side early on: if HL longs are short-squeezed and funding turns negative, the short PAYS funding, possibly as much as the decay earns in the first weeks.
+Unstated: (1) the 2023-05..2024-06 window is new to HL funding (backfilled 11-26): the old WF counted zero funding there, so the comparison 'masked vs full funding' on the same
+ weights isolates the funding hole exactly; (2) 8-hourly vs hourly funding era (pre/post 2023-06) is handled by the daily sums (FC1C note); (3) coins listed after 2024-07 always had funding.
+PRE-STATED (a): FRAGILE if, with full funding, SR without the best 10 days < 0.3 OR SR before 2024-07 < 0 (the LV2c rule). Report funding paid %/yr by year next to price P&L.
+Form c (fetch the missing coins): the fetch is already complete (134/134 coins with HL candles before 2024-06); c is a coverage check only.

@@ -2947,12 +2947,15 @@
    "group": "T",
    "title": "listing_short on HL with the backfilled HL funding (the 28% funding-coverage hole, T2b a)",
    "src": "backlog T2b(a); findings listing_short; FC1C backfill (data/hl/funding 2023-05+)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "coverage of listing_short HL short exposure by HL funding before (2024-07+) vs now; HL 1d listing_short defaults through the backtest: net SR, funding paid %/yr, by year; FRAGILE rule written first (as LV2c): SR w/o best 10 days < 0.3 OR SR before 2024-07 < 0",
-     "status": "planned"
+     "status": "done",
+     "result": "HL 1d listing_short defaults via research.evaluate (tags ls1_*): short exposure with HL funding 56% -> 95% (2023 0 -> 86%, 2024 45 -> 97%). Full funding: SR 1.36 (masked-as-before 1.44); by year SR .63/1.14/2.06/1.35, funding received -10.3/+2.3/-8.4/-7.4 %/yr vs price +26.5/+32.1/+68.2/+41.4% and costs 4.9/4.1/2.5/1.9%: the shorts PAY funding in 3 of 4 years (crowded short side), 2023 SR halves (1.18 -> .63). Pre-stated FRAGILE rule: SR w/o best 10 days .82 (>= .3), SR before 2024-07 .78 (>= 0) -> NOT fragile. Funding hole closed: costs ~1/6 of price P&L, edge survives.",
+     "date": "2026-11-27",
+     "evidence": "ls1_a"
     },
     {
      "id": "b",
@@ -2964,7 +2967,8 @@
      "what": "fetch the ~19 coins still without HL funding (2024-02+ listings; is3_fc1c_fetch unit) and re-run a at full coverage; if coverage was the hole, the verdict must not change by more than the FRAGILE margins",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "LV3",
