@@ -944,3 +944,13 @@ Change my mind: maker+fallback cuts fspread's 2026 cost by >= 30% at k = 4 h wit
 LSF b done: exit shorts with hot funding (>= .0035/3d) = random masks (dSR +.02, 53rd pct; 2022 -.11). c skipped (HL held-out kept clean). LSF CLOSED OPEN (MDE 149 bp/7d).
 FSM a/b/c done (is3_fsm.py, fsm_abc.json, fsm_b.json; 2026-04..10, ~35 events): maker legs for fspread lose: both-maker+fallback cost 3.4-3.6 vs taker 2.5 %/yr (unfilled legs drift 130-340 bp),
  maker-one-leg + hedge on fill -9..-11 bp per event: the move that fills one leg is against the other (same asset). FSM CLOSED DEAD.
+
+## X1H fspread_hold churn / exit band (think-through 11:2x UTC 11-27, before any run)
+Source: X1C b (2026: 4h-interval coins +0.25% net after 1.3% costs, churn 2x 8h coins), findings fspread_hold (trips ~60-70 d). No chat records.
+Mechanism: the exit is 'the 14-d mean spread changes sign'. When the spread hovers near 0 (gap closing, 2025-26), a pair flips in and out: every flip = 4 taker legs (~35 bp of leg
+ notional) for little carry. A wider exit band (hold until the spread is clearly the other way, -x) cuts flips, at the price of holding pairs that pay a small negative carry.
+Unstated: (1) entry stays at |s| > .1; (2) the band changes WHEN slots free up, so it can block better new pairs: report slots used; (3) the costs are taker + volume-scaled slip on both venues.
+PRE-STATED (b): variants x in {0.05, 0.10} (exit when s crosses -x in the trade's direction), explore 2023-05-15..2024-12-31; pick = higher net %/yr if it beats the live rule by >= 0.5 %/yr at
+ gross 2 with SR not lower; then c = ONE run 2025-01..2026-11 (seen by the X1e WF: a second look, stated). Prior medium (cost arithmetic), but 2023-24 had a wide gap and little churn.
+X1H a done (is3_x1h.py, x1h_a.json): trips < 14 d grew 7/6 -> 22/14 (2025/26) and lose .65/.76 %; median trip 90 -> 37 d; 4h-interval coins churn (median 16 d in 2025).
+X1H b done (x1h_b.json): exit band on 2023-05..2024-12: cost 3.6 -> 2.9 %/yr but net 22.3 -> 21.0/21.7 (carry lost): FAIL; that window had no churn. d added: ONE second-look run of x .05/.10 on 2025-01..2026-11 (stated).
