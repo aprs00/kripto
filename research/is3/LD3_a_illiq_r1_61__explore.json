@@ -1,0 +1,57 @@
+{
+ "name": "LD3_a_illiq_r1_61",
+ "sample": "explore",
+ "n": 523,
+ "days": 140,
+ "coins": 92,
+ "mean_bp": 150.4,
+ "median_bp": 84.29,
+ "win": 0.706,
+ "se_bp": 30.77,
+ "ci95_bp": [
+  93.71,
+  215.41
+ ],
+ "p": 0.0004997501249375312,
+ "mde80_bp": 86.17,
+ "mean_ex_top3_bp": 116.32,
+ "top3_share": 0.28,
+ "t_day_mean": 3.85,
+ "by_year": {
+  "2021": [
+   90,
+   368.83
+  ],
+  "2022": [
+   151,
+   67.47
+  ],
+  "2023": [
+   282,
+   125.09
+  ]
+ },
+ "by_side": {
+  "1": [
+   523,
+   150.4
+  ]
+ },
+ "coins_positive": 0.83,
+ "net_bp": {
+  "free": 150.4,
+  "maker_taker": 142.4,
+  "taker": 137.4,
+  "taker_x2": 124.4,
+  "crash": 70.4,
+  "own_cost": 141.79
+ },
+ "base_n": 524,
+ "base_bp": 65.97,
+ "vs_base_bp": 84.43,
+ "p_vs_base": 0.0024987506246876563,
+ "passes": true,
+ "note": "illiq top half vs other half, thr 0.9077",
+ "rerun": "",
+ "at": "2026-11-27T10:53:05+00:00"
+}

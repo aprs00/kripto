@@ -1,0 +1,57 @@
+{
+ "name": "LD3_b_relvol_r1_61",
+ "sample": "explore",
+ "n": 524,
+ "days": 162,
+ "coins": 94,
+ "mean_bp": 115.24,
+ "median_bp": 55.07,
+ "win": 0.687,
+ "se_bp": 24.65,
+ "ci95_bp": [
+  70.28,
+  170.79
+ ],
+ "p": 0.0004997501249375312,
+ "mde80_bp": 69.02,
+ "mean_ex_top3_bp": 85.91,
+ "top3_share": 0.28,
+ "t_day_mean": 4.01,
+ "by_year": {
+  "2021": [
+   106,
+   298.91
+  ],
+  "2022": [
+   174,
+   49.37
+  ],
+  "2023": [
+   244,
+   82.42
+  ]
+ },
+ "by_side": {
+  "1": [
+   524,
+   115.24
+  ]
+ },
+ "coins_positive": 0.8,
+ "net_bp": {
+  "free": 115.24,
+  "maker_taker": 107.24,
+  "taker": 102.24,
+  "taker_x2": 89.24,
+  "crash": 35.24,
+  "own_cost": 106.63
+ },
+ "base_n": 523,
+ "base_bp": 101.03,
+ "vs_base_bp": 14.21,
+ "p_vs_base": 0.5582208895552224,
+ "passes": false,
+ "note": "relvol bottom half vs other half, thr 63.26",
+ "rerun": "",
+ "at": "2026-11-27T10:53:06+00:00"
+}

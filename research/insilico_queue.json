@@ -2753,7 +2753,7 @@
    "group": "T",
    "title": "Ladder fills in liquidity holes vs heavy-volume flushes (does a thin-book fill bounce more?)",
    "src": "backlog LD3; library N14; E2/LD1 ladder fill set (research/studies/ld1_ladder_skew.py)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -2770,7 +2770,8 @@
      "what": "as a FILTER for ladder@bn: skip fills in the low-illiquidity half vs size-matched random skips (100 placebo draws); only if a or b shows an explore gap: one pre-registered confirm 2024+",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "T9B",

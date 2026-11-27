@@ -817,3 +817,18 @@ FC1C c done (is3_fc1c_c.py, fc1c_c_explore.json; local fsh copy asserted identic
  but ann 26.6 -> 25.0%, 2024 half down (11.49 -> 11.01), per-trip dose reversed (mid tercile best): FAIL. Surprise check: base SR 14 on 2023-05..2024-06 is real carry, the WF's in-sample folds were 7-10 too
  (OOS 1.26 = one -2.55 fold, 2025-10 crash); slots are full (9.7/10), trips 62-73 days, price legs cancel, so the slope cannot add carry, only shuffle slots. FC1C closing OPEN.
  Side fact for research: fspread_hold on the never-seen 2023-05..2024-06 window = 26.6%/yr net at gross 2.0, mdd -0.6% (replication of the X1b edge on unseen history, one-account margin).
+
+## LD3 ladder fills: liquidity holes vs heavy-volume flushes (think-through 10:5x UTC 11-27, before any run)
+Source: library N14 (Bouchaud-Farmer-Lillo 2008 §8.1-8.2), backlog LD3; no chat records (not an InSilico rule). Fill set = LD1 candidate table (k30 one-bar-late crossings, server top-20).
+Mechanism: a jump is set by the gap next to the best quote, not by order size; a deep wick on LITTLE volume is a hole (transient), a deep move on HEAVY one-sided volume is a metaorder
+ or forced flow (more permanent). Who pays: in a hole, whoever's market order walked an empty book; in a flush, the liquidated side keeps selling for longer -> our bid is early.
+What is not said / must be true: (1) Amihud rises with |move| by construction and deeper fills bounce more (they are bought cheaper): split WITHIN move-depth (kreach) terciles,
+ and also by relative volume alone (qv / coin's trailing 30-d median), else the "hole" effect is just depth. (2) The fill minute's volume is known only AFTER the fill: a skip rule is
+ not live-implementable; the live form is an EXIT rule (flush fill -> sell at close of t+1, taker) or a second taker entry on holes at c[t+1]; so the decisive number is the
+ return from c[t+1] to the exit, not from our quote. Form c re-stated accordingly (early exit vs random early exits of the same share). (3) Flushes are market-wide (many coins
+ at once), holes idiosyncratic: report per-day clustering and the share of fills in multi-coin minutes. (4) Thin coins have more holes: control rank tercile.
+Change my mind: hole half beats flush half from c[t+1] to t+61 by > 13 bp within each kreach tercile and every explore year, with a monotone quintile dose; else depth or nothing.
+PRE-REGISTERED (a, explore 2021-01..2023-12, events = LD1 candidates with a 60-min per-coin lock, no slot rule; also the base-simulated taken fills reported):
+ split by illiq = Amihud(fill minute, |ln(l/c_prev)|/qv) / coin's trailing 30-d median minute Amihud (daily medians, lagged 1 d). PASS = hole half minus flush half, simple return
+ c[t+1] -> c[t+61], >= +13 bp AND day-clustered bootstrap p < 0.05 AND > 0 in 2021, 2022, 2023 AND > 0 in >= 2 of 3 kreach terciles AND quintile means rank-corr >= 0.6. Also
+ reported: from the quote to t+61/241/1441, mean AND median, worst day. Prior medium-low (T1: the cascade is what pays the ladder, flushes may be exactly the good fills).

@@ -1,0 +1,57 @@
+{
+ "name": "LD3_b_sell_r1_61",
+ "sample": "explore",
+ "n": 524,
+ "days": 197,
+ "coins": 77,
+ "mean_bp": 91.98,
+ "median_bp": 50.98,
+ "win": 0.693,
+ "se_bp": 19.2,
+ "ci95_bp": [
+  54.51,
+  131.84
+ ],
+ "p": 0.0004997501249375312,
+ "mde80_bp": 53.76,
+ "mean_ex_top3_bp": 71.99,
+ "top3_share": 0.23,
+ "t_day_mean": 4.36,
+ "by_year": {
+  "2021": [
+   62,
+   251.09
+  ],
+  "2022": [
+   155,
+   63.81
+  ],
+  "2023": [
+   307,
+   74.07
+  ]
+ },
+ "by_side": {
+  "1": [
+   524,
+   91.98
+  ]
+ },
+ "coins_positive": 0.79,
+ "net_bp": {
+  "free": 91.98,
+  "maker_taker": 83.98,
+  "taker": 78.98,
+  "taker_x2": 65.98,
+  "crash": 11.98,
+  "own_cost": 83.39
+ },
+ "base_n": 523,
+ "base_bp": 124.34,
+ "vs_base_bp": -32.36,
+ "p_vs_base": 0.1794102948525737,
+ "passes": false,
+ "note": "sell bottom half vs other half, thr 0.6626",
+ "rerun": "",
+ "at": "2026-11-27T10:53:06+00:00"
+}
