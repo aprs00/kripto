@@ -1,6 +1,6 @@
-HEALTH: OK — trader, ladder, collectors and websockets running; ladder@bn and the funding pair now trade in main books; no strategy is held back without a written clause.
+HEALTH: OK — trader hourly, ladder, collectors (errors 0), websockets, nightly data and the 06:40 research session all fine; InSilico queue had run dry and was refilled (3 new items).
 
-_Updated 2026-11-27 ~07:30 UTC (research session). Detail: journal/2026-11-27.md._
+_Updated 2026-11-27 08:40 UTC (review; books and research below from the 07:30 research session). Review: trader ran every hour, data last bar 04:00 (fresh), disk 41 GB free, no failed units; the InSilico queue had nothing due after 04:47, so I added LD3 (ladder fills in liquidity holes), T9B (alpha decay of the live books' trades), X1C (funding-pair robustness) and made InSilico sessions refill an empty queue themselves. Detail: journal/2026-11-27.md._
 
 ## Held back (written gate clauses applied by `scripts.held_back`; a strategy that fails nothing must trade)
 | strategy | pick | grid avg | DSR | worst | grid med | other venue | status / alloc | fails (written clauses) |

@@ -1,6 +1,6 @@
 Scheduled INSILICO session (headless, every 2 h, up to ~105 min, nobody will answer). Follow CLAUDE.md (HARD RULES). Owner 2026-11-23: "you are too slow,
 speed things up". Keep working: when an item closes or has to wait, take the next one; stop only when ~95 minutes have passed (check `date -u`), the queue
-has nothing due, or the usage limit hits. Commit and push after every form, so a cut-off session loses nothing. Do NOT read STATUS.md, findings.md, backlog.md or old journals in full; grep what you need.
+has nothing due AFTER you refilled it, or the usage limit hits. Queue empty mid-session (`should-run` exits 3, not paused) = refill it before stopping: add the 2–3 highest-value backlog items the battery can test now with data on disk, each with ≥ 3 forms (prompts/review.md 3b), run tests/test_insilico_queue.py, commit, then work on them (11-27: a session stopped on an empty queue). Commit and push after every form, so a cut-off session loses nothing. Do NOT read STATUS.md, findings.md, backlog.md or old journals in full; grep what you need.
 
 0. The nightly data job runs 01:15–03:30 UTC: in that window do not load bnall / bn100 or rebuild a universe (half-refreshed files gave false ranks on 11-22); use files already built in
    data/is3, or work on items that need only minute data or reading. Keep RAM under 1.5 GB then. Outside that window this does not apply.

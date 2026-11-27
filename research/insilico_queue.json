@@ -2746,6 +2746,81 @@
    "verdict": "OPEN",
    "reason": "data-mined placebo cell did not replicate (+1.8 bp t 0.07 vs explore +43 t 1.9): chance; one form only by construction, nothing left to test",
    "closed": "2026-11-26"
+  },
+  {
+   "id": "LD3",
+   "prio": 1.0,
+   "group": "T",
+   "title": "Ladder fills in liquidity holes vs heavy-volume flushes (does a thin-book fill bounce more?)",
+   "src": "backlog LD3; library N14; E2/LD1 ladder fill set (research/studies/ld1_ladder_skew.py)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "E2 ladder fill set (BN minute bars, one-bar-late fills) split by the fill minute's Amihud ratio (|ret|/quote vol) vs the coin's trailing 30-day median: top half vs bottom half, 1/4/24 h simple-return mean AND median after the fill, per-day P&L, worst day; explore <= 2023 only",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "same split by the fill minute's trade count / taker-sell share instead of Amihud (a flush = many trades, one-sided; a hole = few trades, big move); explore <= 2023",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "as a FILTER for ladder@bn: skip fills in the low-illiquidity half vs size-matched random skips (100 placebo draws); only if a or b shows an explore gap: one pre-registered confirm 2024+",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "T9B",
+   "prio": 1.1,
+   "group": "T",
+   "title": "Alpha-decay curve of the live books' trades (cost of a late run, best execution hour)",
+   "src": "backlog T9b; library N8 (maxdama s.7)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "for each main-book strategy (blend_nested HL, flow@bn, blend_nested@bn, tsmom both venues) reconstruct the target changes on 1h data, signed return of each change from decision bar to +1/4/12/24 h; table per strategy, bootstrap CI by day",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "same, by year (2021..2026): is decay speeding up (crowding)? and the cost in bp of executing 1, 2, 4 h late vs on the bar",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "live check: actual paper fills of those books (state/paper.db fills) vs the decision bar close: realised delay and its cost; compare with (a)'s curve",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "X1C",
+   "prio": 1.2,
+   "group": "T",
+   "title": "fspread_hold@pair robustness: basis excursions, funding-interval mix, live-vs-backtest vol (X1c + X1f b/c)",
+   "src": "backlog X1c, X1f",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "per pair: daily |basis| (HL mark vs BN mark at the same close) distribution, worst days, and the margin each leg would need on those days at alloc 0.5 in two accounts",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "split the backtest P&L by Binance funding interval (1h/4h/8h coins) and by year: where is the decaying edge left?",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "replay the backtest on the live days (11-12..) day by day vs the shadow book's ledger (scripts.ledger_decomp): which leg/coins carry the 3x excess vol; test marking both legs from same-minute data/hl/flow vs BN klines",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }

@@ -230,3 +230,8 @@ put a lesson into CLAUDE.md "Standing lessons" only if a future session must act
   top-60), and the study forward-filled closes across them. Caught because the fills clustered at :27/:28 every 6 h (the collector's universe refresh) and WIF −25% had
   not happened. Lesson for any per-coin minute series from our collectors: split at gaps before rolling statistics; a time-of-day cluster in "events" is a plumbing smell.
   Recorded in the W2/TSZ-HL backlog line; covered by the "Verify the plumbing" standing lesson.
+
+## 2026-11-27 review
+* InSilico queue ran dry inside the 04:47 session, which then stopped ("nothing due"); the watchdog only WARNs after 6 h idle. prompts/insilico.md now tells the
+  session to refill the queue from the backlog (≥ 3 forms per item) before stopping. This review refilled it: LD3 (ladder fills in liquidity holes), T9B (alpha decay
+  of the live books' trades), X1C (fspread_hold basis/funding-interval/live-vol robustness).
