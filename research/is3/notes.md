@@ -1157,3 +1157,10 @@ Unstated: monthly sampling = few independent points (~70 months bnall, ~42 pair)
 Change my mind: rank corr(state_m, carry income_{m+1}) > .5 and AR(1) of income > .5 -> regime table goes to STATUS; else note.
 FRG a/b/c done (is3_frg.py, frg_ab.json): next-month funding income vs market median funding: BN carry books rho -.42..-.48 (crowded shorts pay in low regimes), pair +.61; AR(1) .5-.66;
  BN net not forecastable. State now low (24th pct) -> pair book income ~.36 %/month. CLOSED OPEN.
+
+## KSA per-venue-account drawdowns of main@pair (think-through 19:4x UTC 11-27, before any run)
+Source: KSW, X1C a. The pair book is hedged across two accounts that cannot net: a rally loses on the HL short leg's account while the BN long leg's account gains; the losing account can hit
+ margin trouble although the book is flat. The book-level -25 % kill never sees it. Unstated: account equity = half the capital each (alloc .5 -> 1.0x leverage per account); real transfers
+ between venues take time and cost; the guard must not fire on ordinary alt rallies too often. Change my mind: P(account DD <= -50 % in 2 y) >= 5 % without transfers -> a transfer rule is
+ required before funding main@pair; write it to KS1.
+KSA a/b/c done (is3_ksa.py, ksa_abc.json): pair accounts without transfers: P(-50 % in 2 y) >= 90 %, historical path liquidates one; 'rebalance at 70 %' -> worst -29 %, 14 transfers/yr. KS1 updated. CLOSED OPEN.
