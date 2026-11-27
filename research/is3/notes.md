@@ -879,3 +879,14 @@ T8R a/b done (is3_t8r.py, t8r_ab.json): pooled terciles are year dummies; within
 PRE-REGISTERED (c, written before the run): the strongest dose = flow@bn x BTC 30-d vol. Causal rule: HALVE flow@bn (k 0.5) on days when BTC 30-d realized vol (lagged 1 d) is above the
  2/3 quantile of its own trailing 365 days. F0 judge, explore 2021-23, 200 random same-share same-persistence masks with the same halving. PASS = dSR > 0 at >= 95th pct AND dSR > 0 in
  2021, 2022 and 2023. Only then ONE confirmT. Prior low (a/b missed the bar; this is the closest cell, so selection is acknowledged).
+
+## L6V range/HAR vol forecasts for vol targeting (think-through 11:0x UTC 11-27, before any run)
+Source: library N6 (bencik-2014: Parkinson/GK ~5x more efficient than close-to-close; HAR on realized range forecasts best), backlog L6. No chat records. Not alpha: risk.
+Mechanism: the books size by trailing close-to-close covariance (vol_target, 60 d) and per-coin ewm std; a noisy or slow vol estimate makes the book over-levered right after
+ calm spells (when vol jumps) and under-levered after spikes. A better forecast = realized vol closer to the 25% target, smaller worst months, same SR.
+Unstated / must be true: (1) Parkinson needs clean highs/lows: Binance wicks (one-tick liquidation spikes) inflate it on thin coins: report by liquidity tercile;
+ (2) Parkinson is biased low vs close-to-close with drift/jumps: compare with and without a constant scale fitted on 2021-22; (3) the portfolio error in crashes is mostly the
+ CORRELATION jump, which no per-coin variance fixes: form b measures exactly that (realized vs target); (4) HAR fitted pooled on 2021-22, scored on 2023 only (no in-sample scoring).
+Change my mind: range/HAR beat cc60 QLIKE by >= 10% out-of-sample on the liquid two-thirds of coins -> form b; else the estimator is not the problem.
+L6V a done (is3_l6v.py, l6v_a.json): 2023 OOS QLIKE HAR-Parkinson .524 / ewm20 .539 / cc60 .603 (what vol_target uses); HAR over-forecasts (log error .495 vs .459), ewm20 wins both metrics every year.
+ Pass the pre-stated 10% bar (QLIKE) -> b: vol_target with ewm20 (and HAR) variances, correlations from 60 d.

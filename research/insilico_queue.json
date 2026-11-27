@@ -2903,12 +2903,15 @@
    "group": "T",
    "title": "Range / HAR vol forecasts for the books' vol targeting (risk, not alpha)",
    "src": "backlog L6; library N6 (bencik-2014)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "forecast accuracy per coin, bnall 1d explore 2021-23: next-7-d realized vol from close-to-close 20/60 d, EWMA hl 20, Parkinson 20 d, HAR on Parkinson (1/5/22 d, fit on <= 2022, scored 2023); QLIKE and log-error, by coin liquidity tercile",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall 1d, point-in-time top-100, next-7-d close-to-close realized variance. HAR on Parkinson (log, d/w/m, fit pooled 2021-22: beta .14/.29/.22) scored 2023: QLIKE .524 vs cc60 .603 (-13%; liquid terciles -11%/-16%), ewm20 .539 (-10%), pk20 .572, pk5 .672, cc20 .712. But |log vol error| HAR .495 vs cc60 .459 / ewm20 .447: HAR over-forecasts (mean-unbiased in variance), QLIKE rewards that. ewm20 better than cc60 on BOTH metrics, every year (2021 .51 vs .58, 2022 .73 vs .78). Constant median scaling hurts all (wrong scale for QLIKE): ignore. 6 estimators x 2 scalings x 3 years x 4 liquidity cuts.",
+     "date": "2026-11-27",
+     "evidence": "l6v_a"
     },
     {
      "id": "b",
@@ -2920,7 +2923,8 @@
      "what": "if b cuts tracking error >= 20% without SR loss > 0.1: ONE pre-registered confirmT 2024-25; else diagnose (e.g. the covariance, not the variance, is what misses in crashes) and test that once",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }
