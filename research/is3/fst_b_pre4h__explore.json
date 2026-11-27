@@ -1,0 +1,60 @@
+{
+ "name": "fst_b_pre4h",
+ "sample": "explore",
+ "n": 38250,
+ "days": 1095,
+ "coins": 45,
+ "mean_bp": 0.31,
+ "median_bp": 2.61,
+ "win": 0.512,
+ "se_bp": 0.94,
+ "ci95_bp": [
+  -1.56,
+  2.08
+ ],
+ "p": 0.7486256871564217,
+ "mde80_bp": 2.63,
+ "mean_ex_top3_bp": -0.14,
+ "top3_share": 1.46,
+ "t_day_mean": -1.01,
+ "by_year": {
+  "2021": [
+   11412,
+   -1.65
+  ],
+  "2022": [
+   14274,
+   1.91
+  ],
+  "2023": [
+   12564,
+   0.27
+  ]
+ },
+ "by_side": {
+  "-1": [
+   22453,
+   -0.73
+  ],
+  "1": [
+   15797,
+   1.78
+  ]
+ },
+ "coins_positive": 0.56,
+ "net_bp": {
+  "free": 0.31,
+  "maker_taker": -7.69,
+  "taker": -12.69,
+  "taker_x2": -25.69,
+  "crash": -79.69
+ },
+ "base_n": 38246,
+ "base_bp": 2.19,
+ "vs_base_bp": -1.88,
+ "p_vs_base": 0.20389805097451275,
+ "passes": false,
+ "note": "xs extremes of the previous print, against the payer; base = window 4 h earlier",
+ "rerun": "",
+ "at": "2026-11-27T19:11:17+00:00"
+}

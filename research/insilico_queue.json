@@ -3455,7 +3455,10 @@
     {
      "id": "b",
      "what": "cross-section at settlement: coins with the most positive vs most negative funding, return from -2 h to +2 h around settlement minus the market; does the paying side unwind before (pre-settlement drop for high-funding longs) and re-enter after?",
-     "status": "planned"
+     "status": "done",
+     "result": "cross-section at each settlement (top/bottom 20 % and 10 % of the previous print, 45 coins, 38k events), against the payer, market-relative, vs the same window 4 h earlier: pre 2 h +0.6 vs +0.4 (diff +0.2, p .84, MDE 1.9), post 2 h +0.8 vs -0.3 (+1.1, p .26; 2021 -1.5), pre 4 h +0.3 vs +2.2 (-1.9), q10 pre 2 h +0.2 vs +0.8. 4 variants, none, no year pattern. Null/causal ok",
+     "date": "2026-11-27",
+     "evidence": "fst_b"
     },
     {
      "id": "c",

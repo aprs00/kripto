@@ -1,0 +1,242 @@
+{
+ "pre2h": {
+  "name": "fst_b_pre2h",
+  "sample": "explore",
+  "n": 38251,
+  "days": 1095,
+  "coins": 45,
+  "mean_bp": 0.6,
+  "median_bp": 2.3,
+  "win": 0.514,
+  "se_bp": 0.68,
+  "ci95_bp": [
+   -0.76,
+   1.96
+  ],
+  "p": 0.37631184407796103,
+  "mde80_bp": 1.91,
+  "mean_ex_top3_bp": 0.31,
+  "top3_share": 0.48,
+  "t_day_mean": 0.05,
+  "by_year": {
+   "2021": [
+    11412,
+    -0.35
+   ],
+   "2022": [
+    14275,
+    1.36
+   ],
+   "2023": [
+    12564,
+    0.6
+   ]
+  },
+  "by_side": {
+   "-1": [
+    22454,
+    0.49
+   ],
+   "1": [
+    15797,
+    0.76
+   ]
+  },
+  "coins_positive": 0.53,
+  "net_bp": {
+   "free": 0.6,
+   "maker_taker": -7.4,
+   "taker": -12.4,
+   "taker_x2": -25.4,
+   "crash": -79.4
+  },
+  "base_n": 38249,
+  "base_bp": 0.39,
+  "vs_base_bp": 0.21,
+  "p_vs_base": 0.8360819590204898,
+  "passes": false,
+  "note": "xs extremes of the previous print, against the payer; base = window 4 h earlier",
+  "rerun": "",
+  "at": "2026-11-27T19:11:16+00:00"
+ },
+ "post2h": {
+  "name": "fst_b_post2h",
+  "sample": "explore",
+  "n": 38254,
+  "days": 1095,
+  "coins": 45,
+  "mean_bp": 0.77,
+  "median_bp": 3.27,
+  "win": 0.52,
+  "se_bp": 0.73,
+  "ci95_bp": [
+   -0.6,
+   2.26
+  ],
+  "p": 0.30634682658670664,
+  "mde80_bp": 2.05,
+  "mean_ex_top3_bp": 0.5,
+  "top3_share": 0.35,
+  "t_day_mean": 0.49,
+  "by_year": {
+   "2021": [
+    11419,
+    -1.47
+   ],
+   "2022": [
+    14250,
+    1.6
+   ],
+   "2023": [
+    12585,
+    1.86
+   ]
+  },
+  "by_side": {
+   "-1": [
+    22457,
+    0.43
+   ],
+   "1": [
+    15797,
+    1.25
+   ]
+  },
+  "coins_positive": 0.6,
+  "net_bp": {
+   "free": 0.77,
+   "maker_taker": -7.23,
+   "taker": -12.23,
+   "taker_x2": -25.23,
+   "crash": -79.23
+  },
+  "base_n": 38250,
+  "base_bp": -0.29,
+  "vs_base_bp": 1.06,
+  "p_vs_base": 0.26286856571714146,
+  "passes": false,
+  "note": "xs extremes of the previous print, against the payer; base = window 4 h earlier",
+  "rerun": "",
+  "at": "2026-11-27T19:11:16+00:00"
+ },
+ "pre4h": {
+  "name": "fst_b_pre4h",
+  "sample": "explore",
+  "n": 38250,
+  "days": 1095,
+  "coins": 45,
+  "mean_bp": 0.31,
+  "median_bp": 2.61,
+  "win": 0.512,
+  "se_bp": 0.94,
+  "ci95_bp": [
+   -1.56,
+   2.08
+  ],
+  "p": 0.7486256871564217,
+  "mde80_bp": 2.63,
+  "mean_ex_top3_bp": -0.14,
+  "top3_share": 1.46,
+  "t_day_mean": -1.01,
+  "by_year": {
+   "2021": [
+    11412,
+    -1.65
+   ],
+   "2022": [
+    14274,
+    1.91
+   ],
+   "2023": [
+    12564,
+    0.27
+   ]
+  },
+  "by_side": {
+   "-1": [
+    22453,
+    -0.73
+   ],
+   "1": [
+    15797,
+    1.78
+   ]
+  },
+  "coins_positive": 0.56,
+  "net_bp": {
+   "free": 0.31,
+   "maker_taker": -7.69,
+   "taker": -12.69,
+   "taker_x2": -25.69,
+   "crash": -79.69
+  },
+  "base_n": 38246,
+  "base_bp": 2.19,
+  "vs_base_bp": -1.88,
+  "p_vs_base": 0.20389805097451275,
+  "passes": false,
+  "note": "xs extremes of the previous print, against the payer; base = window 4 h earlier",
+  "rerun": "",
+  "at": "2026-11-27T19:11:17+00:00"
+ },
+ "pre2h_q10": {
+  "name": "fst_b_pre2h_q10",
+  "sample": "explore",
+  "n": 16784,
+  "days": 1095,
+  "coins": 45,
+  "mean_bp": 0.23,
+  "median_bp": 0.41,
+  "win": 0.502,
+  "se_bp": 1.28,
+  "ci95_bp": [
+   -2.31,
+   2.57
+  ],
+  "p": 0.8665667166416792,
+  "mde80_bp": 3.57,
+  "mean_ex_top3_bp": -0.49,
+  "top3_share": 3.14,
+  "t_day_mean": 0.04,
+  "by_year": {
+   "2021": [
+    5652,
+    -1.66
+   ],
+   "2022": [
+    5817,
+    1.91
+   ],
+   "2023": [
+    5315,
+    0.39
+   ]
+  },
+  "by_side": {
+   "-1": [
+    7806,
+    -1.63
+   ],
+   "1": [
+    8978,
+    1.84
+   ]
+  },
+  "coins_positive": 0.51,
+  "net_bp": {
+   "free": 0.23,
+   "maker_taker": -7.77,
+   "taker": -12.77,
+   "taker_x2": -25.77,
+   "crash": -79.77
+  },
+  "base_n": 16784,
+  "base_bp": 0.85,
+  "vs_base_bp": -0.62,
+  "p_vs_base": 0.7651174412793603,
+  "passes": false,
+  "note": "xs extremes of the previous print, against the payer; base = window 4 h earlier",
+  "rerun": "",
+  "at": "2026-11-27T19:11:17+00:00"
+ }
+}

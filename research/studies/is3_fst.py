@@ -100,5 +100,42 @@ def run_a():
     json.dump(out, open("research/is3/fst_a.json", "w"), indent=1, default=float)
 
 
+def xs_events(panel, k=2, q=0.2, placebo=0, post=False):
+    """Cross-section at each settlement: coins in the top / bottom q of the previous print (among coins on the 8-h schedule that day); side = against the payer;
+    gross = side * market-relative return over the k hours before S (or after, post=True); placebo shifts the window."""
+    c = panel["close"]
+    r = c / c.shift(1) - 1
+    r = r.where(np.isfinite(r))
+    rel = r.sub(r.mean(axis=1), axis=0)
+    win = rel.rolling(k, min_periods=k).sum()        # bar L: sum of bars L-k+1..L
+    rate, prev, skip = settlements(panel)
+    sig = prev.where(~skip.astype(bool))
+    rk = sig.rank(axis=1, pct=True)
+    end = (k - 1 if post else -1) + placebo          # window ending at bar S-1 (pre) or S+k-1 (post)
+    out = []
+    for coin in c.columns:
+        m = (rk[coin] >= 1 - q) | (rk[coin] <= q)
+        t = sig.index[m.fillna(False).to_numpy()]
+        v = win[coin].reindex(t + pd.Timedelta(hours=end)).to_numpy()
+        side = -np.sign(sig[coin].reindex(t).to_numpy())
+        ok = np.isfinite(v) & (side != 0)
+        out.append(pd.DataFrame({"time": t[ok] + pd.Timedelta(hours=end), "coin": coin, "side": side[ok].astype(int), "gross": side[ok] * v[ok]}))
+    return pd.concat(out, ignore_index=True).sort_values("time").reset_index(drop=True)
+
+
+def run_b():
+    p = data.load_panel("bn", "1h")
+    p = {k: p[k] for k in ("close", "funding", "high", "low", "volume")}
+    ex = sub(p, "2020-12-25", "2023-12-31 23:00")
+    print("null:", L.null_check(lambda q: xs_events(q), ex, n=10))
+    print("causal:", L.check_causal(lambda q: xs_events(q), ex, "2022-06-01"))
+    clip = lambda e: e[(e.time >= "2021-01-01") & (e.time < "2024-01-01")]
+    out = {}
+    for lab, kw in (("pre2h", {}), ("post2h", {"post": True}), ("pre4h", {"k": 4}), ("pre2h_q10", {"q": 0.1})):
+        e, b = clip(xs_events(ex, **kw)), clip(xs_events(ex, placebo=-4, **kw))
+        out[lab] = L.card(f"fst_b_{lab}", e, "explore", base=b, note="xs extremes of the previous print, against the payer; base = window 4 h earlier")
+    json.dump(out, open("research/is3/fst_b.json", "w"), indent=1, default=float)
+
+
 if __name__ == "__main__":
-    {"a": run_a}[sys.argv[1]]()
+    {"a": run_a, "b": run_b}[sys.argv[1]]()
