@@ -1,0 +1,31 @@
+{
+ "name": "CRBc_carry_trend",
+ "sample": "explore",
+ "side": null,
+ "on_share": 0.996,
+ "base": {
+  "sr": 2.1881168513380342,
+  "ann": 0.4609135819924007,
+  "mdd": -0.21237180979734316,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 2.0333057513407047,
+  "ann": 0.40169939595786575,
+  "mdd": -0.20142373581625617,
+  "days": 1095
+ },
+ "dSR": -0.155,
+ "dMDD": 0.0109,
+ "p_daily_diff": 0.37381309345327335,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.16,
+ "random_dSR_q05_q50_q95": [
+  -0.231,
+  -0.051,
+  0.064
+ ],
+ "pct_dMDD_vs_random": 0.855,
+ "note": "drop top |7-d funding| decile of the top-30 universe",
+ "passes": false
+}

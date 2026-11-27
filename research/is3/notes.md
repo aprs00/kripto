@@ -1114,3 +1114,4 @@ Unstated: (1) only coins on both venues can be routed (coverage); (2) the choice
  trade, extra trades when the best venue flips, and two accounts with no netting (margin, per-account drawdowns as in X1C); (4) the price series differ slightly (basis drift) - ignore in a,
  measure in b. Change my mind: routed saving >= 1 %/yr net of b's costs on the HL main book -> design backlog item.
 VRT a/b/c done (is3_vrt.py, vrt_a.json): HL book funding -12.3 %/yr on HL vs -7.8 all-BN vs -3.5 routed; net of venue-switch costs +14 / +7.2 / +1.6 / -1.6 %/yr (2023..26): the gap closed. CLOSED OPEN.
+CRB c done (crb_c.json, unit is3-crbc): dropping the top |funding| decile: carry dSR -.38 (1st pct of random), carry_trend -.15 (16th): FAIL. CLOSED OPEN: the extreme decile is the edge.

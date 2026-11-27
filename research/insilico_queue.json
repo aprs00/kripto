@@ -3707,7 +3707,7 @@
    "group": "T",
    "title": "blend_nested@bn's carry legs: funding received vs price lost by funding level (2025-26: +16..23 % funding, -10..-16 % price)",
    "src": "BNB b; carry / carry_trend on bnall (top-30, xs rank of 7-d funding)",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -3728,12 +3728,18 @@
     {
      "id": "c",
      "what": "pre-stated filter (written before b's numbers are used): drop coin-days in the top |funding| decile of the universe from carry's legs; F0 vs 200 random masks on bnall explore 2021-23 (per year dSR > 0), then ONE confirm on 2024-26 after L.prereg",
-     "status": "planned"
+     "status": "done",
+     "result": "pre-stated F0 (drop top |7-d funding| decile of the top-30 universe), bnall explore 2021-23, 200 random masks each: carry SR 1.56 -> 1.18 (dSR -.38, 1st pct; mdd -25 -> -15 % = exposure), by year -.67 / +.75 / -1.26; carry_trend 2.19 -> 2.03 (-.15, 16th pct), +.01 / +.00 / -.74: FAIL both, worse than random for carry: the extreme decile IS the carry edge",
+     "date": "2026-11-27",
+     "evidence": "crb_c"
     }
    ],
    "sessions": 1,
    "due": "2026-11-27T20:05",
-   "defer_why": "form c F0 run in unit is3-crbc (400 carry backtests on bnall), output research/is3/crb_c.json"
+   "defer_why": "form c F0 run in unit is3-crbc (400 carry backtests on bnall), output research/is3/crb_c.json",
+   "verdict": "OPEN",
+   "reason": "carry's funding comes from the extreme decile (longs in deeply negative-funding names: 2026 +177 bp/unit-day funding vs -118 price); price loss ~0.7-1x the funding there, no clean dose; dropping that decile is worse than random (carry dSR -.38, 1st pct). Carry is paid to hold the squeeze risk; keep as is; concentrated in ~10 small caps a year",
+   "closed": "2026-11-27"
   },
   {
    "id": "FLD",
