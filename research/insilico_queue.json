@@ -2758,12 +2758,18 @@
     {
      "id": "a",
      "what": "E2 ladder fill set (BN minute bars, one-bar-late fills) split by the fill minute's Amihud ratio (|ret|/quote vol) vs the coin's trailing 30-day median: top half vs bottom half, 1/4/24 h simple-return mean AND median after the fill, per-day P&L, worst day; explore <= 2023 only",
-     "status": "planned"
+     "status": "done",
+     "result": "n 1047 ladder events <=2023 (102 coins). Hole half (fill-minute Amihud/coin 30-d median > 0.91) vs flush half, c[t+1]->t+61: +150 vs +66 bp (diff +84, day-boot p 0.002, MDE 86), every year + (224/45/62), kreach terciles 52/57/119, quintile dose 35/95/71/133/208 (rank-corr 0.9), random-half placebo 5-95% +-33: PRE-REG PASS. Not depth: OLS with entry depth d1 and kreach, illiq coef +166 bp (se 49); within d1 terciles +129/+77/-6. Delay: entry t+2 +73, t+5 +36. From OUR QUOTE no gap (q61 +8, p 0.78; q241 +1; q1441 +23): holes trade 72 bp lower at c[t+1] and come back to the same level, so the resting ladder gains nothing from it; the live form is a taker ADD-ON at c[t+1]. 5 return windows tried.",
+     "date": "2026-11-27",
+     "evidence": "ld3_explore"
     },
     {
      "id": "b",
      "what": "same split by the fill minute's trade count / taker-sell share instead of Amihud (a flush = many trades, one-sided; a hole = few trades, big move); explore <= 2023",
-     "status": "planned"
+     "status": "done",
+     "result": "same split by relative volume / trade count / mean trade size / taker-sell share (low = hole), c[t+1]->t+61: relvol diff +14 (p .56), reln +25 (p .27), avgtr +24 (p .31), all same sign as a with dose but weaker, 2023 negative for relvol/reln; sell share REVERSED (more taker selling = better bounce, -32, rank-corr -0.9: one-sided flushes are the forced sellers that pay, T1). FAIL each; volume alone is not the hole, the price move per unit volume is. 4 variants.",
+     "date": "2026-11-27",
+     "evidence": "ld3_explore"
     },
     {
      "id": "c",

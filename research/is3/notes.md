@@ -832,3 +832,7 @@ PRE-REGISTERED (a, explore 2021-01..2023-12, events = LD1 candidates with a 60-m
  split by illiq = Amihud(fill minute, |ln(l/c_prev)|/qv) / coin's trailing 30-d median minute Amihud (daily medians, lagged 1 d). PASS = hole half minus flush half, simple return
  c[t+1] -> c[t+61], >= +13 bp AND day-clustered bootstrap p < 0.05 AND > 0 in 2021, 2022, 2023 AND > 0 in >= 2 of 3 kreach terciles AND quintile means rank-corr >= 0.6. Also
  reported: from the quote to t+61/241/1441, mean AND median, worst day. Prior medium-low (T1: the cascade is what pays the ladder, flushes may be exactly the good fills).
+LD3 a done (is3_ld3.py, ld3_explore.json; 1047 events <=2023): hole half c[t+1]->t+61 +150 vs flush +66 bp (diff +84, p .002, dose rank-corr .9, every year +): PRE-REG PASS. Not entry depth (OLS illiq +166 bp se 49
+ with d1/kreach). But from our QUOTE no gap (q61 +8): holes sit 72 bp lower at t+1 and return to the same level -> the resting ladder gains nothing; live form = a taker add-on at c[t+1]. Delay t+2 +73, t+5 +36.
+LD3 b done: relvol/trade count/trade size weaker same sign (p .27-.56, 2023 <0); taker-sell share reversed (one-sided selling bounces MORE: the forced sellers pay, T1). FAIL.
+LD3 c restated (form c "skip fills" is not live-implementable: the fill minute's volume is known after the fill): d = taker add-on at c[t+1] on hole fills (frozen threshold 0.9077), confirmT 2024-25, base = flush fills' add-on.
