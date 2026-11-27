@@ -3329,7 +3329,7 @@
    "group": "T",
    "title": "Backtest slippage model vs the live paper fills' L2 book walks (costs are the binding constraint)",
    "src": "backlog L3 (library N3 square-root impact); fills table (~2,300 taker fills with mid and slip_bps from HL L2 / BN depth walks, 11-09..)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -3350,10 +3350,16 @@
     {
      "id": "c",
      "what": "consequence: re-cost the main books' backtests (blend_nested HL, blend_nested@bn / flow@bn, fspread_hold pair) with the fill-fitted model instead of the default for 2025-26: change in cost %/yr and SR; verdict: model OK / under-states (then a backlog line to change the cost model, judged on its general rationale) / over-states",
-     "status": "planned"
+     "status": "done",
+     "result": "re-cost 2025-26 with the fill-fitted model (coef 1.9 BN / 1.1 HL usd-weighted, floor .1 bp): HL blend cost 6.2 -> 4.0 %/yr (SR 1.85 -> 1.93), blend_nested@bn 3.8 -> 3.2 (.73 -> .75), flow@bn 7.7 -> 6.5 (.49 -> .54), fspread pair 3.4 -> 2.5 (3.6 -> 4.5). Verdict: model OVER-states slippage, never under; keep it (conservative margin ~1-2 %/yr covers what a snapshot walk cannot see: latency, real-account queue, larger HL orders where the size slope bites); no gate is decided by it",
+     "date": "2026-11-27",
+     "evidence": "l3s_c"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "measured: the backtest slippage model has the right shape (slope -.5 on log ADV) but ~2x the level of 2,363 live L2 book walks; it never under-states; costs in every backtest are conservative by 0.6-2.2 %/yr (HL most). Kept as is (margin for what a snapshot walk misses)",
+   "closed": "2026-11-27"
   },
   {
    "id": "X1U",

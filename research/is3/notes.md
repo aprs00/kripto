@@ -1001,3 +1001,5 @@ Live paper fills walk the venue's live L2 (top 20 levels) at fill time: slip_bps
 Who pays: nobody; this is measurement. Unstated: (1) the walk is itself a model (snapshot, no latency, no queue), but at $10-400 the half-spread dominates and the snapshot is real;
  (2) the model's ADV is the panel's trailing 7-d USD volume at D-1 (what a backtest would use for day D); (3) ladder/maker fills and 'retired' liquidations are excluded/split.
 Change my mind: median ratio model/walk within 0.5..2 in every venue x liquidity tier -> model OK; a tier where the model is > 2x off -> c quantifies the cost-line error.
+L3S a/b/c done (is3_l3s.py, l3s_a/b/c.json, data/is3/l3s_fills.parquet): 2,363 live taker fills, walk median .7-.75 bp vs model 1.6 (BN) / 4.8 (HL). Shape matches (ADV slope -.58/-.46 vs -.5),
+ level ~2x high; HL size slope +.2. Re-costed 2025-26: costs drop .65-2.2 %/yr (HL blend most, SR +.08). Model kept (conservative, never under-states). CLOSED OPEN (measured).

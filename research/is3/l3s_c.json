@@ -1,0 +1,66 @@
+{
+ "HL main blend": {
+  "model": {
+   "net_yr": 0.5144,
+   "sr": 1.85,
+   "cost_yr": 0.0616,
+   "turnover_yr": 62.4
+  },
+  "fitted": {
+   "net_yr": 0.537,
+   "sr": 1.93,
+   "cost_yr": 0.0399,
+   "turnover_yr": 62.4
+  },
+  "d_cost_yr": 0.0217,
+  "d_sr": 0.08
+ },
+ "BN blend_nested@bn": {
+  "model": {
+   "net_yr": 0.181,
+   "sr": 0.73,
+   "cost_yr": 0.0382,
+   "turnover_yr": 60.9
+  },
+  "fitted": {
+   "net_yr": 0.1875,
+   "sr": 0.75,
+   "cost_yr": 0.0317,
+   "turnover_yr": 60.9
+  },
+  "d_cost_yr": 0.0065,
+  "d_sr": 0.02
+ },
+ "BN flow@bn": {
+  "model": {
+   "net_yr": 0.1275,
+   "sr": 0.49,
+   "cost_yr": 0.0771,
+   "turnover_yr": 123.1
+  },
+  "fitted": {
+   "net_yr": 0.14,
+   "sr": 0.54,
+   "cost_yr": 0.0652,
+   "turnover_yr": 123.0
+  },
+  "d_cost_yr": 0.0119,
+  "d_sr": 0.05
+ },
+ "pair fspread_hold": {
+  "model": {
+   "net_yr": 0.0408,
+   "sr": 3.59,
+   "cost_yr": 0.0335,
+   "turnover_yr": 40.6
+  },
+  "fitted": {
+   "net_yr": 0.0509,
+   "sr": 4.48,
+   "cost_yr": 0.0245,
+   "turnover_yr": 40.5
+  },
+  "d_cost_yr": 0.009,
+  "d_sr": 0.89
+ }
+}

@@ -126,5 +126,42 @@ def run_b():
     json.dump(out, open("research/is3/l3s_b.json", "w"), indent=1)
 
 
+
+
+FIT = {"bn": 1.9, "hl": 1.1}     # usd-weighted coefficient on sqrt(50e6/ADV) from b (conservative vs the medians 1.6 / 0.6)
+
+
+def fitted_cost(volume, venue_of_col):
+    dv = volume.rolling(7, min_periods=1).mean().clip(lower=1e4)
+    base = np.sqrt(50e6 / dv)
+    k = pd.Series({c: FIT[venue_of_col(c)] for c in volume.columns})
+    return (base * k).clip(0.1, 25.0) / 1e4
+
+
+def run_c():
+    from kripto import strategies as S
+    from kripto.research import default_band
+    books = [("HL main blend", "hl", "blend", {"components": {"listing_short": {}, "lowvol": {}, "tsmom": {}}}, lambda c: "hl"),
+             ("BN blend_nested@bn", "bnall", "blend", {"components": {"carry_trend": {}, "carry": {}, "xsmom": {}}}, lambda c: "bn"),
+             ("BN flow@bn", "bnall", "flow", {"lookback": 3, "cap": 0.05}, lambda c: "bn"),
+             ("pair fspread_hold", "pair", "fspread_hold", {"lookback": 14, "enter": 0.1}, lambda c: c[-2:])]
+    out = {}
+    for lab, ds, fn, prm, vo in books:
+        p = data.load_panel(ds, "1d")
+        w = S.REGISTRY[fn](p, **prm)
+        res = {}
+        for mlab, cost in (("model", bt.slippage_model(p["volume"], 1)), ("fitted", fitted_cost(p["volume"], vo))):
+            r = bt.run(w, p["close"], p.get("funding"), cost, band=default_band())
+            x = r.returns.loc["2025":]
+            res[mlab] = {"net_yr": round(float(x.sum() / (len(x) / 365)), 4), "sr": round(float(x.mean() / x.std() * np.sqrt(365)), 2),
+                         "cost_yr": round(float(r.costs.loc["2025":].sum() / (len(x) / 365)), 4), "turnover_yr": round(float(r.turnover.loc["2025":].sum() / (len(x) / 365)), 1)}
+        res["d_cost_yr"] = round(res["model"]["cost_yr"] - res["fitted"]["cost_yr"], 4)
+        res["d_sr"] = round(res["fitted"]["sr"] - res["model"]["sr"], 2)
+        out[lab] = res
+        print(lab, res, flush=True)
+        del p, w
+    json.dump(out, open("research/is3/l3s_c.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    {"a": run_a, "b": run_b}[sys.argv[1]]()
+    {"a": run_a, "b": run_b, "c": run_c}[sys.argv[1]]()
