@@ -3246,6 +3246,56 @@
      "status": "planned"
     }
    ]
+  },
+  {
+   "id": "X1V",
+   "prio": 1.1,
+   "group": "T",
+   "title": "Why fspread_hold@pair's live price-P&L vol is ~3x the backtest (mark definitions, leg timing, or real)",
+   "src": "backlog X1f (b)(c); strategies.json fspread_hold@pair note (live 4.2%/yr vs backtest 1.4%)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "`scripts.ledger_decomp shadow:fspread_hold@pair` and main@pair on all live days so far: daily funding / fees / price P&L, live vol per leg and of the hedged sum; same days replayed in the backtest (pair 1d panel) day by day: which component and which days carry the excess vol",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "re-mark both legs of the live positions at the same minute from trade prices (HL data/hl/flow minute bars, BN data/bn/klines_1m or 1m klines on disk) instead of HL markPx / BN markPrice: does the hedged daily vol fall to the backtest's? (mark-definition noise = no economic risk)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "leg-timing: from fills, the time gap between the HL and BN legs of each rebalance and the basis move over it; and the backtest at 00:00 closes vs closes 1 min apart / at the live decision minute: does unsynchronised timing explain the gap? Verdict: explained (which) or real (then recompute DSR with live vol, write to STATUS)",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "BNH",
+   "prio": 1.2,
+   "group": "T",
+   "title": "HL main book (blend_nested) dependence on its fragile lowvol leg (LV2c: HL lowvol SR 0.70, 2025 only)",
+   "src": "backlog LV2c; queue LV2 form c",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "blend_nested HL live components (listing_short, lowvol, tsmom) via research.evaluate, by year 2023-05..2026 with backfilled HL funding: full blend vs leave-one-leg-out; share of the blend's P&L and of its best 10 days that comes from lowvol",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "lowvol HL decomposition: long leg vs short leg, funding vs price, per year; is 2025 one leg / a few coins (top-5 coin share)?",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "hindsight check of the nested choice: rerun scripts.nested_choice-style selection with 2025 removed from the expanding window (or ending 2024-12-31): would lowvol still be picked? Verdict for the 2027-01-02 refit: keep / flag as luck-driven (no live change before the refit, by the M1 rule)",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }

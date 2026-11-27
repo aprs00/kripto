@@ -64,6 +64,17 @@ def test_dead_agent_is_an_alert_that_does_not_ask_the_agent_to_fix_itself():
     assert health.assess(f, NOW)[0] == "WARN"                         # one failed session is not a dead agent
 
 
+def test_login_expiry_is_warned_ahead_and_does_not_start_a_review():
+    f = _ok(); f["login_ends"] = "2026-11-17"
+    level, why = health.assess(f, NOW)
+    assert level == "WARN" and why[0].startswith("agent:") and "2026-11-17" in why[0]
+    assert not health.should_trigger(level, why, {}, NOW)            # only the owner can renew it
+    f["login_ends"] = "2026-11-11"
+    assert health.assess(f, NOW)[0] == "ALERT"
+    f["login_ends"] = "2026-12-31"
+    assert health.assess(f, NOW) == ("OK", [])
+
+
 def test_review_is_triggered_once_per_problem_and_again_after_12h():
     why = ["trader has not run for 3.0h"]
     assert health.should_trigger("ALERT", why, {}, NOW)

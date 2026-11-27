@@ -235,3 +235,7 @@ put a lesson into CLAUDE.md "Standing lessons" only if a future session must act
 * InSilico queue ran dry inside the 04:47 session, which then stopped ("nothing due"); the watchdog only WARNs after 6 h idle. prompts/insilico.md now tells the
   session to refill the queue from the backlog (≥ 3 forms per item) before stopping. This review refilled it: LD3 (ladder fills in liquidity holes), T9B (alpha decay
   of the live books' trades), X1C (fspread_hold basis/funding-interval/live-vol robustness).
+
+## 2026-11-27 18:40 UTC (watchdog-triggered review)
+* InSilico refill rule: at least one refilled item must be due now (prompts/insilico.md). The 10:47 session "refilled" with T5D due 11-29 only; 12:47–16:47 slots idled. Queue refilled with X1V, BNH.
+* Watchdog now reads the CLI's "sign-in ends between" warning from agent logs: WARN < 10 days, ALERT < 2 days, prefixed `agent:` so it reaches STATUS but never starts a review (only the owner can renew). Test in tests/test_ops.py.

@@ -85,6 +85,9 @@ def gather(root: Path = ROOT, db: Path = DB) -> dict:
                     f.setdefault("session_why", {})[m.group(1)] = prev[:60]
             elif line.strip() and not line.startswith("=== "):
                 prev = line.strip()
+            m = re.search(r"sign-in ends between (\d{4}-\d{2}-\d{2})", line)
+            if m:   # the CLI prints this a week ahead; only the owner can renew (2026-11-27: it sat in the logs unseen)
+                f["login_ends"] = m.group(1)
     f["sessions"].sort()
     try:   # a strategy that passes every written gate clause but does not trade (2026-11-26: ladder@bn sat 3 days like that)
         from scripts import held_back
@@ -212,6 +215,11 @@ def assess(f: dict, now: datetime) -> tuple[str, list[str]]:
         elif s[-1][2] != 0:
             why = (f.get("session_why") or {}).get(s[-1][0])
             warn.append(f"agent: last {s[-1][1]} session ended rc={s[-1][2]}" + (f" ({why})" if why else ""))
+    le = parse_ts(f"{f['login_ends']} 00:00") if f.get("login_ends") else None
+    if le is not None and (le - now).days < 10:
+        msg = (f"agent: Claude login expires from {f['login_ends']}; owner: as kripto run `claude auth login` "
+               "(or `claude setup-token` for unattended jobs)")
+        (alert if (le - now).total_seconds() < 2 * 86400 else warn).append(msg)
     # de-duplicate, keep order
     alert, warn = list(dict.fromkeys(alert)), list(dict.fromkeys(warn))
     return ("ALERT" if alert else "WARN" if warn else "OK"), alert + warn
