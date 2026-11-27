@@ -865,3 +865,12 @@ Unstated: margin need = the worst k-day adverse move of one account's legs befor
  the live book should be restricted to it (a research decision, written as a backlog line, not done here). Form c needs >= 30 live days (live since 11-12: 15) -> defer to 12-12.
 X1C a done (is3_x1cp.py, x1cp_ab.json): at alloc 0.5 (1x per account) worst account HL -18/-27/-46% (1/3/7 d, 2024-11), BN -27/-39/-42% (2025-10-10); basis p99 32 bp, max 527 (TON). Daily re-split needed, weekly is not safe.
 X1C b done: 2026 YTD the edge is in BN 8h-interval coins (+2.3% vs 4h +0.25%: 4h churns 2x and loses on price), but 2025 the 4h bucket was better (+3.5 vs +2.4): no restriction. Form c deferred to 12-12 (30 live days, X1f).
+
+## T8R market regime -> live BN books (think-through 11:1x UTC 11-27, before any run)
+Source: backlog T8 (trend/carry vs BTC vol regime or funding level); no chat records. Books: flow@bn (lb3 cap .05), blend@bn (carry_trend, carry, xsmom), xsmom; bnall 1d, explore 2021-23.
+Mechanism: cross-sectional books earn from dispersion and persistent flows; in high-vol, one-factor markets (BTC crash/squeeze) correlations go to 1, dispersion is noise and the
+ books pay costs for nothing; hot aggregate funding = crowded longs -> momentum longs are the crowd (crash risk), carry pays. Who pays: late momentum chasers / levered longs.
+Unstated / must be true: (1) the state must be known at the close before trading (lag 1 d); (2) a state that only cuts exposure must beat random masks of the same share and
+ persistence (F0), regime masks are very persistent, so the random masks are too; (3) the books are vol-targeted already: high-vol days get smaller weights, so the state view must
+ be per unit of risk (SR per state), not raw return; (4) 2021-23 has 3 regimes only (bull, bear, chop): a state rule is close to a year dummy, so every year must agree.
+Change my mind: SR in the worst state tercile <= 0 in all 3 explore years for a book with a dose (middle state between) -> one filter; anything else -> regimes are noise for these books.

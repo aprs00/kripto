@@ -2871,24 +2871,31 @@
    "group": "T",
    "title": "Market regime (BTC vol, market funding) -> return distribution of the live BN books; exposure filter vs random masks",
    "src": "backlog T8; F0 harness (research/studies/is3_filter.py)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "state -> distribution, bnall 1d explore 2021-23: daily return of flow@bn (lb3 cap .05), blend@bn (carry_trend/carry/xsmom) and xsmom by tercile/quintile of BTC 30-d realized vol and of universe mean 7-d funding (causal, lagged 1 d); mean, median, SR, worst day per state, every year; dose",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall 1d 2021-23, books flow@bn / blend@bn / xsmom, daily SR by tercile of state lagged 1 d. Pooled terciles = year dummies (low-vol tercile has no 2021). Within-year terciles: BTC 30-d vol flow 2.58/1.76/0.33 (high-vol years 1.1/1.3/-2.1), xsmom 0.70/2.21/-0.27, blend 2.06/1.81/2.47 (none); market 7-d funding: no monotone pattern (flow 3.0/-0.5/2.3, blend 1.9/1.0/3.4: hot funding is GOOD for blend, carry). Pre-stated bar (worst state SR <= 0 in all 3 years with a dose) not met by any book x state. 2 states x 3 books x 2 cuts.",
+     "date": "2026-11-27",
+     "evidence": "t8r_ab"
     },
     {
      "id": "b",
      "what": "a different regime axis: BTC trend state (close vs 50-d MA, and 30-d return sign) x book, same table; plus breadth (share of coins above their 20-d MA)",
-     "status": "planned"
+     "status": "done",
+     "result": "trend/breadth/dispersion states, same cuts: BTC vs 50-d MA flow 2.38/2.01/0.43 (top-tercile yrs 1.3/-0.2/-0.1), xsmom 1.40/1.15/0.31; BTC 30-d return top tercile flow 0.67, xsmom 0.24 (yrs .7/.4/-.5): the books are weaker after strong BTC rallies (short legs squeezed) but no year-consistent sign; breadth: higher breadth better for flow/blend (no bad state); dispersion: none. Bar not met. 4 states x 3 books.",
+     "date": "2026-11-27",
+     "evidence": "t8r_ab"
     },
     {
      "id": "c",
      "what": "the one state rule the explore table points to (<= 2 params, written before the run) as a day-level F0 filter (halve or zero the book in the bad state) vs 200 random masks of equal share/persistence; PASS = >= 95th pct and every explore year; then ONE pre-registered confirmT 2024-25",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "L6V",
