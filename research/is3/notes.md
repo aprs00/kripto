@@ -1076,3 +1076,9 @@ Change my mind: tsmom earns its P&L in BTC's worst/best weeks (convex) and is ne
  in bull months only, it is an alt-beta leg the book could get cheaper.
 TSH a/b/c done (is3_tsh.py, tsh_ab/c.json): tsmom HL = convex alt-trend (BTC worst-20 weeks +3.1 %/wk, best +1.9, others -0.3), alts carry it, net exposure ~0, hedges listing_short's
  worst days (+0.5 vs -4.7 %). Nested pool 11-27: ls 1.36, lowvol .71, tsmom .50, xsmom_k .30. CLOSED OPEN (kept).
+
+## F0C cash-on-idle vs random day masks (think-through 19:2x UTC 11-27, before any run)
+Source: HLI a. Mechanism: when listing_short is empty, the vol target re-inflates lowvol + tsmom; leaving the third in cash keeps their risk constant. Any exposure cut on a book with a positive
+ drift lowers return; on a book whose idle days are bad it helps: the F0 question is whether THOSE days are worse than random days. Idle days are clustered (spells), so circular shifts keep runs.
+Unstated: on explore 2023-24 only ~48 idle days (low power: say so); the full-sample number was seen in HLI a.
+PRE-STATED: PASS = dSR > 0 at >= 95th pct of 200 random masks (explore), then one confirm run on hlu_confirm after L.prereg.
