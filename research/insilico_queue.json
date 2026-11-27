@@ -3405,7 +3405,7 @@
    "group": "T",
    "title": "listing_short sizing: is a new coin's vol under-estimated by the vol target (pre-listing returns = 0), and does a per-name vol floor help?",
    "src": "backlog T2b (c); BNH (listing_short = +102 % of the HL main book's P&L)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -3426,10 +3426,15 @@
     {
      "id": "c",
      "what": "if b passes: ONE frozen run of the winner on HL 2023-05..2026-11 (the live venue) and bnall 2024-26; else diagnose (is the vol error real but harmless because the vol target is book-level?)",
-     "status": "planned"
+     "status": "skipped",
+     "result": "b failed its pre-stated rule; HL held-out kept clean",
+     "date": "2026-11-27"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "bias real (4x per name at age < 8 d, book vol 1.25-1.35x target) but the fix fails: a 150 % floor puts vol on target and cuts the worst days yet lowers SR (young names carry the decay); main_scale already corrects book vol monthly. No change",
+   "closed": "2026-11-27"
   },
   {
    "id": "FST",
@@ -3437,7 +3442,7 @@
    "group": "T",
    "title": "Binance 8-h funding settlement: price drift into / out of 00/08/16 UTC conditional on funding size (longs exit before paying?)",
    "src": "backlog T13 (intraday seasonality of funding settlement); execution timing of the BN daily books (E2/E2B)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -3454,7 +3459,8 @@
      "what": "usable form: execution tilt for the BN daily books (buy high-funding names after settlement, sell before) measured in bp/unit of their real trades 2024-26 confirm, vs the E2B decay bar; or below costs -> FEATURE / DEAD with MDE",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }

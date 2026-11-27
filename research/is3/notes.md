@@ -1021,3 +1021,5 @@ Source: backlog T2b (c); BNH (listing_short = the HL main book's edge). No chat 
 Unstated: (1) if max_gross binds nearly always, the vol target is inert and the 'fix' is a gross choice (then it is a sizing parameter, judged by realised vol, not SR); (2) a floor changes
  WHICH days are big (more gross when names are older), which could cut the squeeze tail; (3) explore bnall 2021-23 only; HL is the held-out venue.
 Change my mind: realised book vol >= 1.5x target or gross at the cap > 50 % of days -> the estimate is broken and b's floors are worth testing; else the bias is harmless.
+LSV a/b done (is3_lsv.py, lsv_a/b.json): zero-filled vol under-estimates new coins 4x (age 1-7 d) -> 0.9x (31-61); book vol 25-27 % vs 20 target, cap never binds. Floors on bnall 2021-23:
+ fixed 150 % vol on target, worst-10 -4.7 -> -3.6 % but SR .18 -> -.01; own-days SR .35 but worse worst days: both FAIL. c skipped. CLOSED OPEN (harmless: main_scale fixes book vol).
