@@ -1051,3 +1051,7 @@ Who pays: whoever pushed one venue's price away (HL retail longs chasing, paying
 Unstated: (1) signed basis relative to the coin's own 30-d median (structural offsets: index definitions, kPEPE units); (2) daily closes at 00:00 vs live fills at 00:13: a basis that closes within
  minutes is not capturable: report d+1 and d+3 separately; (3) waiting costs carry (~1.6 bp/day per pair in 2026) and slots; (4) explore = entries 2023-05-15..2024-12-31.
 Change my mind: trip price P&L rises monotonically with signed entry basis and the top-vs-bottom quintile gap > 20 bp per trip -> b; else DEAD-ish (basis too small vs carry).
+PBT a done (pbt_a.json): 89 explore trips, signed entry basis quintiles -> trip price P&L -19.6 .. +11.0 bp/leg unit (Spearman .53; q4-q0 +36/+29 by year); half of it reverts on day 1.
+ Reality check on 40 live pair trades: fill-minute basis vs the 00:00 close basis Spearman .57, median |diff| 4.0 bp = the median |basis| (4.5): the daily signal is only partly capturable.
+PRE-STATED (b, unchanged from the queue): open an eligible pair only when sb >= 0 (signed basis >= its 30-d median) or after waiting k in {2, 5} days; explore 2023-05-15..2024-12-31;
+ PASS = net >= live + 0.5 %/yr at gross 2, SR not lower, better in 2023 AND 2024. Upper bound (fills at the close basis).
