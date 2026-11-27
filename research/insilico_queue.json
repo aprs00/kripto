@@ -3669,7 +3669,7 @@
    "group": "T",
    "title": "main_bn (0.5 flow@bn + 0.5 blend_nested@bn): which leg carries it, by year, convexity, and 2025-26 weakness of flow",
    "src": "L3S c (flow@bn 2025-26 SR .49, blend_nested@bn .73 at model costs); KSW (main_bn bnall SR 2.02 in-sample 2020-); BNH method",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -3690,10 +3690,16 @@
     {
      "id": "c",
      "what": "nested choice preview for blend_nested@bn (pool expanding SR on 11-27 vs the 11-03 choice carry_trend / carry / xsmom) and whether flow@bn would be picked by the same rule if it were in the pool; verdict only (no live change before the refit)",
-     "status": "planned"
+     "status": "done",
+     "result": "nested pool on bnall reproduces 11-03 (carry_trend 1.46 / carry 1.33 / xsmom 1.24); on 11-21 (bnall end, weekly refresh) 1.33 / 1.31 / 1.25, then tsmom 1.17, flow (defaults, not in the pool) 1.10, xsmom_k 1.07: the 3rd slot is close (xsmom vs tsmom .08) and could swap at the 2027-01-02 refit; flow would rank 5th by the same rule. Verdict only",
+     "date": "2026-11-27",
+     "evidence": "bnb_c"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "main_bn is balanced (2024-26 P&L flow 45 % / blend_nested@bn 55 %) but in 2025-26 both legs earn only funding (price ~0 / -10..-16 % in the carry-heavy blend): it has become a funding-carry book; not convex; nested 3rd slot xsmom vs tsmom within .08",
+   "closed": "2026-11-27"
   }
  ]
 }

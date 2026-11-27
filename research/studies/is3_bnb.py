@@ -53,5 +53,37 @@ def run_ab():
     json.dump(out, open("research/is3/bnb_ab.json", "w"), indent=1)
 
 
+
+
+def run_c():
+    p = data.load_panel("bnall", "1d")
+    c = p["close"]
+    out = {"panel_end": str(c.index[-1].date())}
+    pool = list(S.NESTED_POOL) + ["flow"]
+    rets = {}
+    for name in pool:
+        try:
+            _, r = S._component_returns(p, name)
+        except Exception as e:
+            out.setdefault("errors", {})[name] = repr(e)[:120]
+            continue
+        rets[name] = r
+    for d in ("2026-11-03", str(c.index[-1].date())):
+        i = c.index.get_loc(pd.Timestamp(d, tz="UTC"))
+        cur = {}
+        for name, r in rets.items():
+            ri = r.iloc[: i + 1]
+            inv = ri.ne(0).to_numpy()
+            if not inv.any():
+                continue
+            ri = ri.iloc[int(inv.argmax()):]
+            if len(ri) < 240 or ri.std() == 0:
+                continue
+            cur[name] = round(float(ri.mean() / ri.std() * np.sqrt(365)), 2)
+        out[d] = dict(sorted(cur.items(), key=lambda x: -x[1]))
+        print(d, out[d], flush=True)
+    json.dump(out, open("research/is3/bnb_c.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    {"ab": run_ab}[sys.argv[1]]()
+    {"ab": run_ab, "c": run_c}[sys.argv[1]]()

@@ -1,0 +1,29 @@
+{
+ "panel_end": "2026-11-21",
+ "2026-11-03": {
+  "carry_trend": 1.46,
+  "carry": 1.33,
+  "xsmom": 1.24,
+  "tsmom": 1.11,
+  "flow": 1.11,
+  "xsmom_k": 1.04,
+  "listing_short": 0.34,
+  "lowvol": 0.18,
+  "funding_contra": -0.5,
+  "resrev": -1.47,
+  "xsrev": -1.98
+ },
+ "2026-11-21": {
+  "carry_trend": 1.33,
+  "carry": 1.31,
+  "xsmom": 1.25,
+  "tsmom": 1.17,
+  "flow": 1.1,
+  "xsmom_k": 1.07,
+  "listing_short": 0.31,
+  "lowvol": 0.17,
+  "funding_contra": -0.43,
+  "resrev": -1.43,
+  "xsrev": -1.99
+ }
+}

@@ -1089,3 +1089,5 @@ Source: L3S c (flow@bn 2025-26 SR .49, blend_nested@bn .73), KSW (mix SR 2.02 in
  a leg's contribution is linear (0.5 x 1.156 x its weights). Question as BNH: which leg carries the alternative home of the $1,000, in which years; is flow's fade costs, funding or price?
 Unstated: bnall 2021-23 is also where both legs were chosen (in-sample; flow params = WF fold choice): the by-year view is descriptive only; the 2025-26 numbers are the closest to forward.
 Change my mind: if one leg carries > 80 % of 2024-26 P&L and the other is ~0 net of costs, STATUS should say main_bn is effectively one strategy.
+BNB a/b/c done (is3_bnb.py, bnb_ab/c.json): main_bn mix SR 1.83 (2025 .59, 2026 1.16); legs 45/55 % of 2024-26 P&L; 2025-26 price ~0 (flow) / -10..-16 % (blend), funding +9..+23 % carries both.
+ Nested bnall pool 11-21: carry_trend 1.33, carry 1.31, xsmom 1.25, tsmom 1.17. CLOSED OPEN. (bnall is refreshed weekly: ends 11-21, not a fault.)
