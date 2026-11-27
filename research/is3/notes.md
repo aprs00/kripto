@@ -965,3 +965,10 @@ Plan: a = HL decomposition (legs, price vs funding, coins, years); b = the SAME 
  c = if universe: which names; if period: the regime state reading. Descriptive (not registered); nothing changes the live book from here (the nested refit decides).
 LVH a/b/c done (is3_lvh.py, lvh_ab.json, lvh_c.json): it is the UNIVERSE: same function same dates bnall SR .05, bnall restricted to HL-listed coins .90, HL .73. BN-only coins (17% of exposure,
  mostly shorts) lose -12.4 %/yr and pay -92 %/yr funding per unit as shorts (vs -6 % HL-listed). LVH CLOSED OPEN (explained); backlog: HL-listed universe filter for BN books' shorts.
+
+## HLU1 HL-listed universe filter for BN books' shorts (think-through 11:3x UTC 11-27, before any run)
+Source: LVH c. Mechanism: Binance lists many small caps HL does not; their perps are where crowded shorts get squeezed (thin float, -92 %/yr funding to shorts). HL's listing choice is a
+ point-in-time quality screen. Who pays: the short side of BN-only names pays the longs (funding) and the squeezes. The BN books (flow, xsmom, blend) short the weakest names, which are
+ disproportionately these. Unstated: (1) the filter must beat random masks blocking the same share of short exposure (F0); (2) HL listings are known that day (HL panel close notna);
+ (3) HL panel starts 2023-03 -> explore 2023-04..2024-12, confirm 2025-01..2026-11 (new samples hlu_* in is3_lib); (4) flow and xsmom on bnall are survivor-free.
+PRE-STATED (b): PASS = dSR > 0 at >= 95th pct of 200 random masks AND dSR > 0 in 2023 and 2024 (explore halves). At most 2 books to one confirm (c).

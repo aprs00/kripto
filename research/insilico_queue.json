@@ -3175,6 +3175,37 @@
    "verdict": "OPEN",
    "reason": "Explained: lowvol works on HL (SR .73) and on bnall restricted to HL-listed coins (SR .90) but not on full bnall (SR .05) over the same dates, because Binance-only small caps (17% of exposure, mostly shorts) pay -92 % /yr funding per unit and get squeezed (-12.4 %/yr, worst 2025-26). The HL main book's leg is safe from that tail by its universe; it remains FRAGILE in time (2025 = most of it). New research question: an HL-listed (or funding-extreme) universe filter for the BN books' short legs (backlog).",
    "closed": "2026-11-27"
+  },
+  {
+   "id": "HLU1",
+   "prio": 2.1,
+   "group": "T",
+   "title": "HL-listed universe filter for the Binance books' short legs (BN-only small caps = squeeze shorts)",
+   "src": "LVH c (BN-only lowvol shorts: -92 %/yr funding per unit, -12 %/yr); backlog HLU1",
+   "status": "wip",
+   "forms": [
+    {
+     "id": "a",
+     "what": "descriptive, explore 2023-04..2024-12: per book (flow@bn lb3 cap .05, xsmom, blend@bn) on bnall 1d, share of SHORT exposure in coins not listed on HL that day and its price/funding P&L per unit exposure vs HL-listed shorts, by year",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "F0 filter: block shorts in BN-only coins (apply, side -1) vs 200 random same-share masks, explore 2023-04..2024-12; PASS = >= 95th pct AND dSR > 0 in 2023 and 2024",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "ONE pre-registered confirm 2025-01..2026-11 for at most 2 books that pass b",
+     "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "alternative form without HL: block shorts whose trailing 7-d funding < -0.5 ann. (extreme crowded shorts; LV2a's f7<0 was random in 2020-23), same F0 explore",
+     "status": "planned"
+    }
+   ],
+   "sessions": 1
   }
  ]
 }
