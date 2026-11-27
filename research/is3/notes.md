@@ -955,3 +955,13 @@ PRE-STATED (b): variants x in {0.05, 0.10} (exit when s crosses -x in the trade'
 X1H a done (is3_x1h.py, x1h_a.json): trips < 14 d grew 7/6 -> 22/14 (2025/26) and lose .65/.76 %; median trip 90 -> 37 d; 4h-interval coins churn (median 16 d in 2025).
 X1H b done (x1h_b.json): exit band on 2023-05..2024-12: cost 3.6 -> 2.9 %/yr but net 22.3 -> 21.0/21.7 (carry lost): FAIL; that window had no churn. d added: ONE second-look run of x .05/.10 on 2025-01..2026-11 (stated).
 X1H d done (x1h_d.json): 2025-26 band x .05 +0.34 %/yr (SR 3.6 -> 4.3, costs 3.35 -> 1.95) < +0.5 bar: FAIL narrowly. X1H CLOSED OPEN; forward re-run of frozen x .05 on 2026-12..2027-05 noted.
+
+## LVH lowvol: HL vs bnall (think-through 11:2x UTC 11-27, before any run)
+Source: LV2c (HL lowvol SR .70 2023-03.., 2025 2.36, w/o best 10 days .23: FRAGILE), LV1/LV3 (bnall dead, 7 forms), the HL main book holds lowvol via the nested choice.
+Question: the same rule (top-30 by volume, 30-d vol rank, beta-hedged, weekly tranches, 20% vol) works on HL and not on bnall. Either (i) the PERIOD (2023-26 vs bnall's 2020-23 explore),
+ (ii) the UNIVERSE (HL's top-30 = HL-listed coins incl. HL-only memecoins/k-prefix, a different cross-section), or (iii) the VENUE's prices/funding (HL funding on the short leg).
+Unstated: the strategy function itself (weekly tranches, vol target), not LV1's daily rank proxy, must be what is compared; the HL universe at each date = coins with an HL close that day.
+Plan: a = HL decomposition (legs, price vs funding, coins, years); b = the SAME function on bnall 2023-03..2026-11 (full) and on bnall restricted point-in-time to HL-listed coins;
+ c = if universe: which names; if period: the regime state reading. Descriptive (not registered); nothing changes the live book from here (the nested refit decides).
+LVH a/b/c done (is3_lvh.py, lvh_ab.json, lvh_c.json): it is the UNIVERSE: same function same dates bnall SR .05, bnall restricted to HL-listed coins .90, HL .73. BN-only coins (17% of exposure,
+ mostly shorts) lose -12.4 %/yr and pay -92 %/yr funding per unit as shorts (vs -6 % HL-listed). LVH CLOSED OPEN (explained); backlog: HL-listed universe filter for BN books' shorts.

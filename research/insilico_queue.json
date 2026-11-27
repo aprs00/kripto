@@ -3144,24 +3144,37 @@
    "group": "T",
    "title": "Why does lowvol work on HL (main book leg, SR .70) when it is dead on bnall (LV1/LV3)?",
    "src": "LV2c (HL lowvol FRAGILE, 2025 = most of it), LV1/LV3 (bnall dead), blend_nested HL",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "HL lowvol 2023-03..2026-11 decomposition: long leg vs short leg (hedged), price vs funding, top-10 coins' share, by year",
-     "status": "planned"
+     "status": "done",
+     "result": "HL lowvol (registered function, defaults) 2023-04..2026-11: SR .73, net 13.5 %/yr, costs 2.5; long leg price +15.7 / funding -5.9 %/yr, short leg price +3.1 / funding +1.5; by year SR .01/.53/2.36/-.06 (2025 = short leg +44.7%, 2023-24 short leg -18/-35% carried by longs +27/+49%); w/o best 10 days .26; BTC (hedge) is the largest coin contributor, worst WIF/POPCAT/ZEC.",
+     "date": "2026-11-27",
+     "evidence": "lvh_ab"
     },
     {
      "id": "b",
      "what": "same rule on bnall restricted to (i) the same dates and (ii) the coins listed on HL at each date (point-in-time HL universe): is it the venue's universe or the period?",
-     "status": "planned"
+     "status": "done",
+     "result": "SAME function, same dates: bnall full SR .05 (net .8 %/yr; short-leg funding -10.2 %/yr; 2026 -1.84), bnall restricted point-in-time to HL-listed coins SR .90 (net 16.1 %/yr, short funding -2.3; by year .69/1.10/2.42/-.47) ~ HL itself (.73). It is the UNIVERSE (which coins), not HL's prices or the period alone; 2025 is the big year in both HL-universe versions (period second).",
+     "date": "2026-11-27",
+     "evidence": "lvh_ab"
     },
     {
      "id": "c",
      "what": "if b says universe: which coins (HL-only listings, memecoins with k-prefix, etc.) carry it; if period: 2025 regime (alt bear: short high-vol works in a falling alt market) - test the regime reading with BTC-dominance / alt-index trend as the state (state -> distribution)",
-     "status": "planned"
+     "status": "done",
+     "result": "which names: in the full bnall run, BN-only coins are 17% of exposure (almost all short) and lose -12.4 %/yr (2023 +1.9, 2024 -5.3, 2025 -22.9, 2026 -18.9 %); as shorts they pay funding at -92.5 % per unit exposure-year vs -6.2 % for HL-listed shorts (SIREN, MYX, AKE, BLZ...): Binance-only small caps are squeeze/crowded-short names. HL's listing set excludes them. Explains LV1/LV3 failures on bnall (their short legs) and the 2025-26 timing.",
+     "date": "2026-11-27",
+     "evidence": "lvh_c"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "Explained: lowvol works on HL (SR .73) and on bnall restricted to HL-listed coins (SR .90) but not on full bnall (SR .05) over the same dates, because Binance-only small caps (17% of exposure, mostly shorts) pay -92 % /yr funding per unit and get squeezed (-12.4 %/yr, worst 2025-26). The HL main book's leg is safe from that tail by its universe; it remains FRAGILE in time (2025 = most of it). New research question: an HL-listed (or funding-extreme) universe filter for the BN books' short legs (backlog).",
+   "closed": "2026-11-27"
   }
  ]
 }
