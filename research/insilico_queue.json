@@ -1312,7 +1312,7 @@
     },
     {
      "id": "e",
-     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
+     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is \u22123..\u221221% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
      "status": "done",
      "added": "2026-11-22",
      "result": "his literal picture (every live adaptive bucket -3..-21% of its volume, day <= -7%), long 3 d: n 55, +105 bp vs matched +256 (diff -151, p .50, MDE 494), 2022 -470; 2-way table fall x selling: U-shape (no selling +989 and extreme selling <= -20% +711 on 16-18 events at <= -8%; his -3..-21% range -30..+278), no monotone dose in either direction. DEAD form",
@@ -1526,7 +1526,7 @@
    "prio": 23,
    "group": "C",
    "title": "Filter harness: does a signal improve a book that already works?",
-   "src": "design.md §4 (filters)",
+   "src": "design.md \u00a74 (filters)",
    "status": "closed",
    "forms": [
     {
@@ -3473,6 +3473,56 @@
    "verdict": "DEAD",
    "reason": "no settlement-hour price effect: 105k coin-settlements, against-the-payer pre/post hour = placebo (MDE 0.5 bp), no dose in |rate| up to >= 10 bp/8h, cross-section extremes 2-4 h windows = placebo (MDE 2-3.6 bp); arbitraged. The only use, a mechanical deferral of payer-side opens past 08:00, saves 0.1-0.2 %/yr and fades",
    "closed": "2026-11-27"
+  },
+  {
+   "id": "KSW",
+   "prio": 1.0,
+   "group": "T",
+   "title": "Kill switch (-25 % from peak, every book): false-alarm rate on a real edge vs power to stop a dead one, per main book",
+   "src": "config/risk.json kill_drawdown 0.25; docs/design.md kill switch; owner reference account (steady mode 25-30 % vol)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "per main book (HL blend, main_bn = flow@bn + blend_nested@bn, main@pair) at its live sizing (main_scale, alloc): 30-day-block bootstrap of the backtest's daily returns 2023-26 -> P(peak-to-trough <= -25 % within 1 and 2 years) = false-alarm rate if the edge is what the backtest says",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md \u00a74 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict by a general rule (not a book's result): a stop that fires on a real edge more often than on a dead one is mis-set; if so, propose a vol-scaled threshold (k x annual vol) in the backlog for a research session (design change needs its own session); else keep -25 % and write the numbers in design.md's rationale",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "PBT",
+   "prio": 1.1,
+   "group": "T",
+   "title": "fspread_hold@pair entry timing by the HL-BN price basis (open when the rich venue is the one shorted)",
+   "src": "X1C a (|basis| on held pair-days p50 5 bp, p99 32, max 527); CLAUDE.md: a filter for a book that works; owner: a cost saving is worth a signal",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "descriptive, pair 1d 2023-05..2024-12 explore: at each pair opening, the basis signed by the trade (+ = the shorted venue is rich) vs the trip's hedged PRICE P&L (excluding funding) and the next 1/3/7-d basis change; dose by basis quintile; does basis mean-revert inside a trip?",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "pre-stated rule (written before the run): an eligible new pair opens only when its signed basis >= its 30-d median basis, waiting at most k in {2, 5} days (else opens anyway); explore 2023-05..2024-12: net %/yr, SR, carry lost by waiting; PASS = net +0.5 %/yr at gross 2 with SR not lower, in both explore years",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "if b passes: ONE run of the frozen pick on 2025-01..2026-11 (second look: the X1e WF saw these dates, stated); else diagnose (basis too small vs carry? already converged by the daily close?)",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
