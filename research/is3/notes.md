@@ -801,3 +801,4 @@ FC1C d confirm (fc1c_d_confirm.json): SR 1.34 -> 1.42, dSR +0.08 at 92nd pct (ne
 LV2 c done (lv2_hlc.json): HL lowvol SR 0.70 (2023-03..), 2023 -0.01 / 2024 0.50 / 2025 2.36 / 2026 -0.11, w/o best 10 days 0.23 (69% of P&L), pre-2024-07 -0.04, pays funding 4-5%/yr: FRAGILE (both
  pre-stated clauses). Note 2023 funding coverage median 28 coins (partial). LV2 CLOSED OPEN; backlog line for research (nested selection with the longer funding history).
 FC1C c (fspread tilt) needs the pair panel (loads Binance files) -> deferred to 03:35 (nightly window).
+Next session (FC1C c, due 03:35): first one fetch chunk for the 19 remaining coins (reset-failed is3-fc1cfetch; same unit, deadline 15), then form c: 7-d gap rank as an entry/size tilt in fspread_hold@pair (pair panel, 1d).
