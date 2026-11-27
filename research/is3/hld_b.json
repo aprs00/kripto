@@ -1,0 +1,279 @@
+{
+ "n_dexes_raw": 11,
+ "dexes": [
+  {
+   "name": "xyz",
+   "full_name": "XYZ",
+   "n_perps": 150,
+   "day_ntl_vlm_total": 4102960253.0,
+   "n_perps_over_1m_24h": 80,
+   "top5": [
+    [
+     "xyz:XYZ100",
+     502082687.0
+    ],
+    [
+     "xyz:SKHX",
+     453402019.0
+    ],
+    [
+     "xyz:SP500",
+     363257966.0
+    ],
+    [
+     "xyz:SOXL",
+     351554522.0
+    ],
+    [
+     "xyz:ANT",
+     339601047.0
+    ]
+   ]
+  },
+  {
+   "name": "flx",
+   "full_name": "Felix Exchange",
+   "n_perps": 16,
+   "day_ntl_vlm_total": 0.0,
+   "n_perps_over_1m_24h": 0,
+   "top5": [
+    [
+     "flx:TSLA",
+     0.0
+    ],
+    [
+     "flx:NVDA",
+     0.0
+    ],
+    [
+     "flx:CRCL",
+     0.0
+    ],
+    [
+     "flx:COIN",
+     0.0
+    ],
+    [
+     "flx:XMR",
+     0.0
+    ]
+   ]
+  },
+  {
+   "name": "vntl",
+   "full_name": "Ventuals",
+   "n_perps": 15,
+   "day_ntl_vlm_total": 0.0,
+   "n_perps_over_1m_24h": 0,
+   "top5": [
+    [
+     "vntl:SPACEX",
+     0.0
+    ],
+    [
+     "vntl:OPENAI",
+     0.0
+    ],
+    [
+     "vntl:ANTHROPIC",
+     0.0
+    ],
+    [
+     "vntl:MAG7",
+     0.0
+    ],
+    [
+     "vntl:SEMIS",
+     0.0
+    ]
+   ]
+  },
+  {
+   "name": "hyna",
+   "full_name": "HyENA",
+   "n_perps": 25,
+   "day_ntl_vlm_total": 0.0,
+   "n_perps_over_1m_24h": 0,
+   "top5": [
+    [
+     "hyna:BTC",
+     0.0
+    ],
+    [
+     "hyna:ETH",
+     0.0
+    ],
+    [
+     "hyna:HYPE",
+     0.0
+    ],
+    [
+     "hyna:SOL",
+     0.0
+    ],
+    [
+     "hyna:LIT",
+     0.0
+    ]
+   ]
+  },
+  {
+   "name": "km",
+   "full_name": "Markets by Kinetiq",
+   "n_perps": 23,
+   "day_ntl_vlm_total": 0.0,
+   "n_perps_over_1m_24h": 0,
+   "top5": [
+    [
+     "km:US500",
+     0.0
+    ],
+    [
+     "km:BABA",
+     0.0
+    ],
+    [
+     "km:EUR",
+     0.0
+    ],
+    [
+     "km:USBOND",
+     0.0
+    ],
+    [
+     "km:SMALL2000",
+     0.0
+    ]
+   ]
+  },
+  {
+   "name": "abcd",
+   "full_name": "ABCDEx",
+   "n_perps": 1,
+   "day_ntl_vlm_total": 0.0,
+   "n_perps_over_1m_24h": 0,
+   "top5": [
+    [
+     "abcd:USA500",
+     0.0
+    ]
+   ]
+  },
+  {
+   "name": "cash",
+   "full_name": "dreamcash",
+   "n_perps": 17,
+   "day_ntl_vlm_total": 0.0,
+   "n_perps_over_1m_24h": 0,
+   "top5": [
+    [
+     "cash:USA500",
+     0.0
+    ],
+    [
+     "cash:TSLA",
+     0.0
+    ],
+    [
+     "cash:NVDA",
+     0.0
+    ],
+    [
+     "cash:HOOD",
+     0.0
+    ],
+    [
+     "cash:GOOGL",
+     0.0
+    ]
+   ]
+  },
+  {
+   "name": "para",
+   "full_name": "Paragon",
+   "n_perps": 41,
+   "day_ntl_vlm_total": 5807941.0,
+   "n_perps_over_1m_24h": 1,
+   "top5": [
+    [
+     "para:UNITREE",
+     1395175.0
+    ],
+    [
+     "para:MELI",
+     545005.0
+    ],
+    [
+     "para:OTHERS",
+     492085.0
+    ],
+    [
+     "para:TOTAL2",
+     474113.0
+    ],
+    [
+     "para:COHR",
+     317819.0
+    ]
+   ]
+  },
+  {
+   "name": "mkts",
+   "full_name": "Markets By Kinetiq",
+   "n_perps": 24,
+   "day_ntl_vlm_total": 68140.0,
+   "n_perps_over_1m_24h": 0,
+   "top5": [
+    [
+     "mkts:BVIV",
+     68140.0
+    ],
+    [
+     "mkts:US500",
+     0.0
+    ],
+    [
+     "mkts:BABA",
+     0.0
+    ],
+    [
+     "mkts:EUR",
+     0.0
+    ],
+    [
+     "mkts:USBOND",
+     0.0
+    ]
+   ]
+  },
+  {
+   "name": "io",
+   "full_name": "EntropyIO",
+   "n_perps": 26,
+   "day_ntl_vlm_total": 62592308.0,
+   "n_perps_over_1m_24h": 8,
+   "top5": [
+    [
+     "io:NVDA",
+     17626764.0
+    ],
+    [
+     "io:ANTH",
+     17547832.0
+    ],
+    [
+     "io:SNDK",
+     6951403.0
+    ],
+    [
+     "io:SKHX",
+     5675751.0
+    ],
+    [
+     "io:PRL",
+     3570111.0
+    ]
+   ]
+  }
+ ]
+}

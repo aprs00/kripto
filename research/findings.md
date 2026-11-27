@@ -803,6 +803,7 @@ equity, so ~1–1.5 bp of equity per improved trip; live fills see the 00:00 bas
 listing_short held nothing on 3 / 10 / 0 / 21 % of days (2023/24/25/26); 11-27 live and research both empty (not a pipeline fault). Cause: HL's qualifying listings 69 / 64 / 57 / 10 (2026 to
 ~09-26), ~1 a month in 2026 vs ~5 in 2025; the $1M floor drops only 21 weaker events ever. Idle-day blend SR −1.8 (114 d, n.s.); the book is then lowvol + tsmom at full vol (SR ~1.06).
 Cash-on-idle SR 1.39 vs 1.34 (≥ every year) but F0C: = random day masks (54th pct, hlu_explore) → an exposure effect, HLI2 closed. The forward HL expectation is below the headline while listings stay scarce.
+HLD (is3_hld.py): no data gap; HL main-dex listings 54 / 59 / 51 / 8 per year (2023–26); HL's builder dexes (HIP-3) carry stock/index perps (xyz $4.1B/day), not crypto tokens: the drought is real.
 
 ### TSH tsmom leg of the HL main book (2026-11-27 insilico, research/studies/is3_tsh.py, not registered) → OPEN (kept, well-motivated)
 HL 2023-03..2026-11, SR by year 1.25 / −.07 / −.11 / 1.13: alts carry it (both legs in trend years), net exposure ~0 (market timing 19 % of gross); longs pay 3.5–12 %/yr funding.

@@ -1198,3 +1198,5 @@ Source: HLI. Our HL universe comes from metaAndAssetCtxs = the main perp dex. If
  never reached $1M, listing_short is blind or starved, not facing a dry market. (a) uses only files on disk; (b) needs a few public info calls. Change my mind: main-dex listings per month
  fell like the qualifying ones -> drought on the main dex; builder dexes with >= $1M coins -> blind spot.
 HLD a done (inline, hld_a.json): no coverage gap (179 main-dex coins all have files); main-dex listings 54/59/51/8 per year (2026: 8, 7 reached $1M): the main-dex drought is real. b (builder dexes) next session.
+HLD b plan: public HL info endpoint only, kripto.hl.HL (min_interval 3 s): perpDexs once, then metaAndAssetCtxs per builder dex (dex=<name>); count perps and 24-h notional volume. Read-only, no keys.
+HLD b/c done (is3_hld.py, hld_b.json, 11 public info calls): builder dexes = stock/index perps (xyz $4.1B/day), no new crypto tokens: the HL crypto listing drought is real. CLOSED OPEN.

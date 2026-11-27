@@ -135,4 +135,5 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * TFF HL trend longs with expensive funding: OPEN. Even the trend longs paying ~95 %/yr funding earned more than that in price in 2023-24: no filter.
 * PAC live pair accounts: OPEN. In its first two weeks the live pair book's Binance side lost 27 % and its Hyperliquid side gained 28 % (about half that at the real-account size): normal for the backtest, and a money transfer between the accounts would already have been needed.
 * OVL the three main books together: OPEN. They are nearly uncorrelated (0.05-0.08) and do not share their worst days; holding the HL and Binance books side by side would have roughly halved the drawdown in the backtest.
+* HLD HL listing drought: OPEN (explained). Hyperliquid listed 51 new crypto perps in 2025 and 8 in 2026; its growth went to stock and index perps on builder exchanges, which this project does not trade. Our data is complete.
 * FLQ flow on the 10 most liquid coins: OPEN. Worse than the live 30-coin version (Sharpe 0.67 vs 1.58 in 2021-23); flow@bn stays flagged.
