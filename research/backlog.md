@@ -11,9 +11,8 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 → 7. W2 re-check ≈ 12-23 → 8. E2b CME-break execution (fading) → 9. low prior: W3b, FC1(c), LV1 short leg, FF1 market-relative.
 - [ ] HLL1 (2026-11-27) ladder rule on HL minute bars: `nice -n 19 .venv/bin/python -m research.studies.hl_ladder --confirm` at ≥ 60 days of flow data (≈ 2027-01-15); explore had 7 fills
   (findings). Kill if HL-only fills < ⅓ or confirm median ≤ 0. NOTE for every study on data/hl/flow (W2, TSZ-HL): coins drop out of the collected top-60 for days; split at gaps, never ffill across them.
-- [ ] HLU1 (2026-11-27, from insilico LVH, prior medium) **HL-listed universe filter for the Binance books' SHORT legs**: BN-only small caps paid −92 %/yr funding per unit as lowvol shorts and lost
-  −12 %/yr (2025–26). Test on flow@bn / xsmom / blend@bn: block shorts in coins not listed on HL that day (point-in-time from the HL panel, k↔1000 name map in is3_lvh.py), F0 vs random masks of equal share;
-  explore 2023-04..2024-12, confirm 2025-01+ (pre-register first). Alternative form: block shorts with trailing 7-d funding < −50 %/yr ann. (LV2a: f7<0 was random in 2020–23, so state the difference).
+- [ ] HLU1 (2026-11-27, insilico; see findings LVH/HLU1) HL-listed universe filter for BN books' shorts: REVERSED for flow/xsmom/blend (BN-only names are their BEST shorts 2023-24);
+  only relevant to a lowvol-type short leg (high-vol BN-only names squeezed 2025-26). No action for the live BN books.
 - [ ] T5d (2026-11-27, prior LOW after T5c) untried T5b forms: F3 losers' side as a SHORT-side filter (rising OI on a 3-day fall → bounce; explore 2023 IC +0.032), the 2021–22 explore
   for a regime check once `scripts.metrics_coverage` ≥ 95%, and HL positioning (T6b) as the HL analogue. F1/F2 failed explore. Any confirm must span ≥ 2 regimes (T5c flipped sign after 2024).
 - [ ] LD3 (2026-11-27, library N14, prior medium; insilico/research, descriptive first) **ladder fills in liquidity holes vs heavy-volume flushes**: split the E2 ladder fill set by the fill
