@@ -3016,6 +3016,56 @@
    "verdict": "DEAD",
    "reason": "idio vol = total vol in alts (rho .93); ranking on it, on idio beyond total (double sort), and the low-idio long leg alone all fail on bnall 2021-23 (SR -0.81..-0.04, pre-stated bar .5). Diagnosed: high-vol coins lose in the MEDIAN (-69..-90 bp/day hedged) but not in the MEAN (+11..+12): right-tail pops pay the short back. With LV1's 4 forms: 7 forms. MDE: daily book SR se ~.6 over 3 y; the dose table's per-quintile mean se ~3-5 bp/day.",
    "closed": "2026-11-27"
+  },
+  {
+   "id": "LSF",
+   "prio": 1.7,
+   "group": "T",
+   "title": "listing_short: exit the squeezed tail (short paying heavy funding) - state -> remaining decay, filter vs random masks, Binance as held-out venue",
+   "src": "LS1 b (median listing pays the short, a squeezed minority costs the mean; 2026 cohort -15% funding by d90); findings listing_short",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "state -> distribution, HL listings 2023-05+ (and bnall listings 2021-23 as a second sample): at each day k of a held short, trailing 3-d funding received (and price vs entry) -> the short's NEXT 7/30-d abnormal return + funding; dose by funding tercile/quintile; is a heavily-paying short a squeeze that keeps going (exit) or a peak (hold)?",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "the rule a points to (<= 2 params, written first) as an F0 filter on listing_short bnall 1d explore 2021-23 (DELAY/exit transform) vs 200 random masks; PASS >= 95th pct and every explore year",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "frozen rule, ONE held-out run on HL listing_short 2023-05..2026-11 (venue never used to choose it; F0 judge, random masks) - the HL book is the live one",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "FSM",
+   "prio": 1.8,
+   "group": "T",
+   "title": "fspread_hold@pair with maker legs (T9's revisit condition: non-directional book; 2026 costs ~half of gross)",
+   "src": "findings T9 (revisit for fspread), X1C b (2026 costs 1.9% vs gross ~4%), fspread_hold",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "pair-leg trades of fspread_hold (lb14, enter .1) 2026-04..11 (HL 1h exists): per leg, would a limit at the decision close fill within 1/4/12 h on that venue (5 bp trade-through, hourly OHLC)? fill rates per venue, by entry vs exit",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "cost per trip: taker both legs (model) vs maker both with taker fallback at +k h vs maker on the thinner venue only; include the unhedged-interval P&L when one leg fills first (signed, by trip), and the funding missed by entering late",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "%/yr at gross 2 and at alloc 0.5 for the best policy vs taker; does it change the 2026 decay picture (1.9% net)? descriptive, 7 months: state the n; no lifecycle change from here",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
