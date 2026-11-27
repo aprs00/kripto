@@ -829,6 +829,8 @@ Pre-stated F0 (drop the top decile) on 2021–23: carry dSR −.38 (1st pct of r
 bnall listings reaching $1M 7-d volume, short-vs-BTC d2→d61 incl. funding: per month 7 / 5 / 3 / 8 / 11 / 20 / 5.7 (2020–26); median +36 / +22 / +24 / +35 / +41 / +35 / +23 %, win 69–85 %
 every year; mean +38 / −79 / +7 / +14 / +25 / +4 / +9 % (a squeezed minority; month-clustered t ≤ 3.1). Shorts pay 6–7 % funding per event in 2025–26. HL-listed vs BN-only flips sign by year.
 Binance still lists ~5× HL's 2026 rate: a candidate to refill the listing leg (LSB2).
+LSP precheck (is3_lsp.py): as an equal-weight book (bnall, band .005) SR .18, by year −1.64 / .42 / 1.49 / 1.22 / −.40 / −.33; alt shorts −44 / +41 / +9 / −12 / −7 / +2 %, the 2023–24 profit is
+the BTC hedge leg; worst days are single-name squeezes (MARSCOIN −11 % of equity 2026-09-03); w/o worst 10 days .66. The median event's decay does not survive equal weighting: LSB2 needs a squeeze control.
 
 ### E2 execution-time tilt: CME break 17–18 NY as buy-first / sell-after (descriptive, BN-82 1h, 2026-11-26 PC, research/studies/e2_exec_tilt.py) → PASS by rule, small and fading
 Daily books trade at 04:03 UTC. Literal "buy before 17 NY, sell after 18 NY" at that clock loses to signal decay (xsmom −6, tsmom −10 bp/unit; flow +4.9 t 1.8). Clock moved to the break

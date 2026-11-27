@@ -1129,3 +1129,11 @@ Source: FLD (liquid-tercile IC +.04/+.05 in 2022/2024, thin ~0). Mechanism: meta
  retail noise and pumps. Unstated: top-10 by volume ~ BTC/ETH/SOL/XRP/DOGE...: fewer names = more concentrated book (vol target scales up), beta hedge matters more; I saw the tercile ICs of
  2024-26 in FLD, so b is a weak confirm (stated). PRE-STATED (a): top_n 10 vs 30, lookback 3, cap .05, bnall 2021-23: PASS = SR higher pooled AND in 2 of 3 years.
 FLQ a done (flq_a.json): flow top-10 SR .67 vs top-30 1.58 on 2021-23: FAIL. b skipped. CLOSED OPEN.
+
+## LSP listing_short as a book on bnall (think-through 19:3x UTC 11-27, before any run)
+Source: LSB; the 11-09 note (bnall WF 1.08 was BTC-leg P&L, corr BTC .63; SR .44 at band .005). Mechanism as LSB; the book shorts every qualifying listing equally and hedges with long BTC
+ (beta 1 assumed for coins younger than 20 d). If new listings' beta > 1 and they fall with the market, the hedge leg's P&L carries the book in bull years: an artifact, not the decay.
+Unstated: the split shorts vs BTC leg is the test; the squeeze tail (LSB: means crushed by a minority) shows as worst days; the 1/3-risk add to main_bn is descriptive only.
+Change my mind: 2024-26 shorts-leg P&L > 0 every year net of costs and corr BTC < .3 -> LSB2 go; else LSB2 note why not.
+LSP a/b/c done (is3_lsp.py, lsp_abc.json): bnall listing_short book SR .18 (2025 -.40, 2026 -.33); alt shorts lose in 2024-25, the BTC leg made 2023-24; squeezes (MARSCOIN) set the tail.
+ LSB2 needs a squeeze control first. CLOSED OPEN.
