@@ -1312,7 +1312,7 @@
     },
     {
      "id": "e",
-     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is \u22123..\u221221% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
+     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
      "status": "done",
      "added": "2026-11-22",
      "result": "his literal picture (every live adaptive bucket -3..-21% of its volume, day <= -7%), long 3 d: n 55, +105 bp vs matched +256 (diff -151, p .50, MDE 494), 2022 -470; 2-way table fall x selling: U-shape (no selling +989 and extreme selling <= -20% +711 on 16-18 events at <= -8%; his -3..-21% range -30..+278), no monotone dose in either direction. DEAD form",
@@ -1526,7 +1526,7 @@
    "prio": 23,
    "group": "C",
    "title": "Filter harness: does a signal improve a book that already works?",
-   "src": "design.md \u00a74 (filters)",
+   "src": "design.md §4 (filters)",
    "status": "closed",
    "forms": [
     {
@@ -3492,9 +3492,9 @@
     },
     {
      "id": "b",
-     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md \u00a74 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
+     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md §4 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
      "status": "done",
-     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design \u00a74 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
+     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design §4 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
      "date": "2026-11-27",
      "evidence": "ksw_ab"
     },
@@ -3767,16 +3767,16 @@
     },
     {
      "id": "c",
-     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the \u00a74 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
+     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the §4 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
      "status": "done",
-     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design \u00a74 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
+     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design §4 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
      "date": "2026-11-27",
      "evidence": "fld_ab"
     }
    ],
    "sessions": 1,
    "verdict": "OPEN",
-   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the \u00a74 live check; not DEAD (one formulation, IC MDE not met in single years)",
+   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the §4 live check; not DEAD (one formulation, IC MDE not met in single years)",
    "closed": "2026-11-27"
   },
   {
@@ -3880,9 +3880,9 @@
     },
     {
      "id": "c",
-     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the \u00a74 live-check flag",
+     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the §4 live-check flag",
      "status": "done",
-     "result": "verdict: no liquid-only variant; flow@bn keeps the FLD flag (signal ~0 since 2022, recent return = funding) for the design \u00a74 live check",
+     "result": "verdict: no liquid-only variant; flow@bn keeps the FLD flag (signal ~0 since 2022, recent return = funding) for the design §4 live check",
      "date": "2026-11-27",
      "evidence": "flq_a"
     }
@@ -3936,12 +3936,15 @@
    "group": "T",
    "title": "What predicts the squeeze of a new-listing short? (state -> left-tail distribution; LSB2's missing squeeze control)",
    "src": "LSB / LSP (median event decays +22..+41 %, the equal-weight book loses to single-name squeezes); LSF (hot funding = random as an exit)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "bnall 2021-23 explore, every listing_short coin-day (age 2-61 d, >= \\$1M): next-7-d short P&L (price + funding) left tail P(loss > 20 %) and mean, by quintile of features known at the close: 7-d return, volume growth (3-d / 14-d), age, 7-d funding, distance from the post-listing low, dollar volume rank; dose curves, explore years separately",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall 2021-23, 9,483 listing_short coin-days, next-7-d short P&L (price vs BTC + funding), base mean ~0, P(loss > 20 %) 9.4 %. By feature quintile (P(loss>20 %)): off_low (price vs post-listing low) top quintile 17.1 % vs 6.6-9.5 % (mean -4.7 % vs +0.2..+2.9 %), each year 28 / 15 / 10.7 % vs bottom 16 / 8.6 / 5.7 (1.7-1.9x; U-shape, middle quintiles ~4-10 %); ret7 top 14.5 % (weaker), dv_rank top (most liquid listings!) 14 %, fund7 non-monotone (= LSF), age and volgrowth flat-ish. Pre-stated 2x-vs-bottom bar narrowly missed (1.7-1.9x); off_low top quintile vs the rest is 2-2.5x every year",
+     "date": "2026-11-27",
+     "evidence": "sqz_a"
     },
     {
      "id": "b",
@@ -3953,7 +3956,8 @@
      "what": "if b passes: L.prereg, ONE run on 2024-26 bnall and ONE on HL listing_short 2023-05..2026-11 (held-out venue); then LSB2 can be pre-registered with the control",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }

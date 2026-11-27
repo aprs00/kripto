@@ -1137,3 +1137,14 @@ Unstated: the split shorts vs BTC leg is the test; the squeeze tail (LSB: means 
 Change my mind: 2024-26 shorts-leg P&L > 0 every year net of costs and corr BTC < .3 -> LSB2 go; else LSB2 note why not.
 LSP a/b/c done (is3_lsp.py, lsp_abc.json): bnall listing_short book SR .18 (2025 -.40, 2026 -.33); alt shorts lose in 2024-25, the BTC leg made 2023-24; squeezes (MARSCOIN) set the tail.
  LSB2 needs a squeeze control first. CLOSED OPEN.
+
+## SQZ what predicts a listing short's squeeze (think-through 19:4x UTC 11-27, before any run)
+Source: LSB/LSP. Who squeezes a new listing: a thin float (most supply locked), crowded shorts (perp opened before spot liquidity), and a narrative bid; market makers lift the book.
+What should precede it: rising volume into a rising price (fuel), a price far above its post-listing low (momentum already turned), shorts paying (negative funding, but LSF: funding as an exit
+ = random), young age (float thinnest), small dollar volume rank. State -> distribution: the next-7-d left tail of the short's P&L by feature quintile, dose curves, by explore year.
+Unstated: equal-weight daily book: an exit on a squeeze signal costs the round trip and the decay of names that do NOT squeeze; judge in b against random masks.
+Change my mind: a feature with a monotone left-tail dose (top quintile P(loss > 20 %) >= 2x bottom) in all 3 explore years -> b. Else SQZ OPEN, LSB2 stays parked.
+SQZ a done (sqz_a.json): off_low (how far above its post-listing low) top quintile = the squeeze state: P(loss>20 %/7 d) 17 % vs 7-10 %, every explore year (1.7-1.9x the bottom, 2-2.5x the rest).
+ Deviation, stated: my 2x-vs-bottom bar is missed narrowly (U-shape); I run b anyway because b was designed to take the best feature from a, and F0 + the held-out 2024-26/HL runs are the line.
+PRE-STATED (b): block (exit / no entry) listing_short shorts whose off_low >= 0.433 (explore pooled 80th pct), F0 'apply', bnall explore 2021-23, 200 random masks;
+ PASS = dSR > 0 at >= 95th pct AND dSR > 0 in 2021, 2022, 2023.
