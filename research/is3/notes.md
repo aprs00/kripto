@@ -1192,3 +1192,9 @@ Source: KSW, BNB, BNH. If the owner funds more than one home, what matters is wh
  short weak alts and both hold carry; main@pair is hedged. Unstated: backtest correlations understate crash co-movement (look at the worst days); coin overlap by same-sign gross.
 Change my mind: corr(main, main_bn) > .5 or most of the worst days shared -> say in STATUS that two homes are one bet.
 OVL a/b/c done (is3_ovl.py, ovl_ab.json): main / main_bn / pair corr .05-.08, worst days not shared; main+main_bn SR 2.07 mdd -10.5 % vs alone 1.28/-19.8, 1.74/-13.4. CLOSED OPEN.
+
+## HLD HL listing drought vs a data blind spot (think-through 19:5x UTC 11-27, before any run)
+Source: HLI. Our HL universe comes from metaAndAssetCtxs = the main perp dex. If HL's new listings in 2026 went to builder-deployed dexes (HIP-3) or the main dex listed many coins that
+ never reached $1M, listing_short is blind or starved, not facing a dry market. (a) uses only files on disk; (b) needs a few public info calls. Change my mind: main-dex listings per month
+ fell like the qualifying ones -> drought on the main dex; builder dexes with >= $1M coins -> blind spot.
+HLD a done (inline, hld_a.json): no coverage gap (179 main-dex coins all have files); main-dex listings 54/59/51/8 per year (2026: 8, 7 reached $1M): the main-dex drought is real. b (builder dexes) next session.
