@@ -1123,3 +1123,8 @@ Binance lists far more perps; if the decay holds there in 2025-26 it can replace
  clustered by listing month. Change my mind: 2025-26 BN events mean > 0 AND median > 0 with funding -> backlog WF item.
 LSB a/b/c done (is3_lsb.py, lsb_ab.json): BN listings 5.7/month in 2026 (HL ~1); event median +22..+41 % every year, mean squeezed (2021 -79 %, 2025 +4, 2026 +9 %); HL-listed vs BN-only no stable sign.
  Backlog LSB2 (research WF in main_bn). CLOSED OPEN.
+
+## FLQ flow@bn on the most liquid names (think-through 19:3x UTC 11-27, before any run)
+Source: FLD (liquid-tercile IC +.04/+.05 in 2022/2024, thin ~0). Mechanism: metaorder splitting by funds/algos is visible in the liquid majors' taker flow; in thin names taker flow is
+ retail noise and pumps. Unstated: top-10 by volume ~ BTC/ETH/SOL/XRP/DOGE...: fewer names = more concentrated book (vol target scales up), beta hedge matters more; I saw the tercile ICs of
+ 2024-26 in FLD, so b is a weak confirm (stated). PRE-STATED (a): top_n 10 vs 30, lookback 3, cap .05, bnall 2021-23: PASS = SR higher pooled AND in 2 of 3 years.

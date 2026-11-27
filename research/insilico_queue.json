@@ -3861,7 +3861,7 @@
    "group": "T",
    "title": "flow@bn on the most liquid names only (FLD: liquid-tercile IC +.04/+.05 in 2022/2024, ~0 elsewhere)",
    "src": "FLD a (tercile ICs by year SEEN for 2021-26: a weak confirm, stated)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -3878,7 +3878,8 @@
      "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the §4 live-check flag",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }
