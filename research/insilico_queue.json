@@ -3367,12 +3367,15 @@
    "group": "T",
    "title": "fspread_hold@pair on the LIVE universe and a cold start: does the live book earn what research claims? (X1V: only 4 of 7 live pairs = backtest's)",
    "src": "X1V side fact; kripto/venue_pair.py (universe = both venues' live top-60 + held; panel from <= 60 d of Binance funding)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "research rule restricted point-in-time to coins in BOTH venues' top-60 by trailing daily volume (pair 1d panel, proxy of the live lists; check against the universe table on its live days): net %/yr, SR, costs by year 2023-05..2026-11 vs the unrestricted research run",
-     "status": "planned"
+     "status": "done",
+     "result": "live-universe proxy (HL top-60 AND BN top-60 by prior-day volume, ~40 common coins; new pairs open only inside, held legs kept as live does): 2025-26 net 4.2 %/yr SR 3.65 vs research 4.1 / 3.59, 2023-05.. 12.7 vs 12.5; holdings overlap 92-99 % by year. The universe is NOT the cause of the live/backtest pair mismatch. Variant tried (stated): forcing exits when a coin leaves the lists costs 1.8 %/yr (turnover 57 vs 41) - live correctly keeps held legs",
+     "date": "2026-11-27",
+     "evidence": "x1u_a"
     },
     {
      "id": "b",
@@ -3384,7 +3387,8 @@
      "what": "replay the live book exactly: live-universe rule + cold start on 2026-11-11 on the research panel, compare its holdings with the fills table day by day (should match most legs; mismatches = live/research input differences to fix); verdict: live variant's expected net %/yr for STATUS/strategies.json note",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }

@@ -1,0 +1,83 @@
+{
+ "uni_size_median_by_year": {
+  "2023": 40.0,
+  "2024": 43.0,
+  "2025": 41.0,
+  "2026": 38.0
+ },
+ "research": {
+  "2023-05..": {
+   "net_yr": 0.1254,
+   "sr": 8.22,
+   "cost_yr": 0.0346,
+   "funding_yr": 0.1647,
+   "turnover_yr": 38.0,
+   "gross_mean": 1.91,
+   "by_year": {
+    "2023": 0.1914,
+    "2024": 0.1737,
+    "2025": 0.0582,
+    "2026": 0.0189
+   }
+  },
+  "2025..": {
+   "net_yr": 0.0408,
+   "sr": 3.59,
+   "cost_yr": 0.0335,
+   "funding_yr": 0.0852,
+   "turnover_yr": 40.6,
+   "gross_mean": 1.88,
+   "by_year": {
+    "2025": 0.0582,
+    "2026": 0.0189
+   }
+  },
+  "pairs_mean": 9.36
+ },
+ "live_universe": {
+  "2023-05..": {
+   "net_yr": 0.1267,
+   "sr": 8.32,
+   "cost_yr": 0.0355,
+   "funding_yr": 0.1643,
+   "turnover_yr": 38.9,
+   "gross_mean": 1.93,
+   "by_year": {
+    "2023": 0.1935,
+    "2024": 0.174,
+    "2025": 0.0568,
+    "2026": 0.0224
+   }
+  },
+  "2025..": {
+   "net_yr": 0.0419,
+   "sr": 3.65,
+   "cost_yr": 0.0362,
+   "funding_yr": 0.0859,
+   "turnover_yr": 43.0,
+   "gross_mean": 1.91,
+   "by_year": {
+    "2025": 0.0568,
+    "2026": 0.0224
+   }
+  },
+  "pairs_mean": 9.48
+ },
+ "overlap_share_of_research_pairs_by_year": {
+  "2023": 0.99,
+  "2024": 0.96,
+  "2025": 0.96,
+  "2026": 0.92
+ },
+ "research_pair_days_outside_live_universe_2025_26": 0.11,
+ "top_outside_coins_2025_26": {
+  "VVV": 158,
+  "ZRO": 75,
+  "XMR": 66,
+  "POPCAT": 47,
+  "SPX": 45,
+  "FARTCOIN": 44,
+  "kBONK": 34,
+  "SEI": 29
+ }
+}

@@ -1003,3 +1003,11 @@ Who pays: nobody; this is measurement. Unstated: (1) the walk is itself a model 
 Change my mind: median ratio model/walk within 0.5..2 in every venue x liquidity tier -> model OK; a tier where the model is > 2x off -> c quantifies the cost-line error.
 L3S a/b/c done (is3_l3s.py, l3s_a/b/c.json, data/is3/l3s_fills.parquet): 2,363 live taker fills, walk median .7-.75 bp vs model 1.6 (BN) / 4.8 (HL). Shape matches (ADV slope -.58/-.46 vs -.5),
  level ~2x high; HL size slope +.2. Re-costed 2025-26: costs drop .65-2.2 %/yr (HL blend most, SR +.08). Model kept (conservative, never under-states). CLOSED OPEN (measured).
+
+## X1U fspread_hold@pair on the live universe and a cold start (think-through 19:0x UTC 11-27, before any run)
+Source: X1V side fact (4.2 of 7.4 live pairs = the backtest's). Live (kripto/venue_pair.py): universe = HL top-60 by 24-h notional AND BN top-60 (+ held), Binance funding from a cache
+ that started 2026-09-13 (60 d before the first fetch, then grows), so the hysteresis path started ~09-27 and new coins start later. Research: every coin with funding on both, path since 2023.
+Two differences: (i) UNIVERSE: live cannot see mid-cap pairs outside either top-60 (e.g. VVV: research's longest holding, not in live); research's top-20-by-volume filter is computed within
+ the eligible set, so the live set is a stricter, more liquid subset; (ii) PATH: a cold start picks the |s| leaders of the day; the continuous run still holds older pairs whose spread is smaller
+ but same-signed (hysteresis). Unstated: the carry of the pairs only research holds is the question; costs of the restart; whether holdings converge.
+Change my mind: live-universe net %/yr within 1 %/yr of research in 2025-26 and paths converge in < 60 d -> no action; else the live book's expectation in STATUS/notes is the live-universe number.
