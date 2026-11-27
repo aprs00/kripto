@@ -2864,6 +2864,56 @@
    "sessions": 1,
    "due": "2026-12-12T06:00",
    "defer_why": "form c needs >= 30 live days of shadow:fspread_hold@pair / main@pair (live since 11-12; X1f)"
+  },
+  {
+   "id": "T8R",
+   "prio": 1.3,
+   "group": "T",
+   "title": "Market regime (BTC vol, market funding) -> return distribution of the live BN books; exposure filter vs random masks",
+   "src": "backlog T8; F0 harness (research/studies/is3_filter.py)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "state -> distribution, bnall 1d explore 2021-23: daily return of flow@bn (lb3 cap .05), blend@bn (carry_trend/carry/xsmom) and xsmom by tercile/quintile of BTC 30-d realized vol and of universe mean 7-d funding (causal, lagged 1 d); mean, median, SR, worst day per state, every year; dose",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "a different regime axis: BTC trend state (close vs 50-d MA, and 30-d return sign) x book, same table; plus breadth (share of coins above their 20-d MA)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "the one state rule the explore table points to (<= 2 params, written before the run) as a day-level F0 filter (halve or zero the book in the bad state) vs 200 random masks of equal share/persistence; PASS = >= 95th pct and every explore year; then ONE pre-registered confirmT 2024-25",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "L6V",
+   "prio": 1.4,
+   "group": "T",
+   "title": "Range / HAR vol forecasts for the books' vol targeting (risk, not alpha)",
+   "src": "backlog L6; library N6 (bencik-2014)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "forecast accuracy per coin, bnall 1d explore 2021-23: next-7-d realized vol from close-to-close 20/60 d, EWMA hl 20, Parkinson 20 d, HAR on Parkinson (1/5/22 d, fit on <= 2022, scored 2023); QLIKE and log-error, by coin liquidity tercile",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "portfolio level: blend@bn and tsmom@bn with the vol_target covariance's variances replaced by the best estimator from a (correlations unchanged): realized vol vs the 25% target per quarter (tracking error), worst month, SR, turnover; explore 2021-23",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "if b cuts tracking error >= 20% without SR loss > 0.1: ONE pre-registered confirmT 2024-25; else diagnose (e.g. the covariance, not the variance, is what misses in crashes) and test that once",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
