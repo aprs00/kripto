@@ -3187,7 +3187,10 @@
     {
      "id": "a",
      "what": "descriptive, explore 2023-04..2024-12: per book (flow@bn lb3 cap .05, xsmom, blend@bn) on bnall 1d, share of SHORT exposure in coins not listed on HL that day and its price/funding P&L per unit exposure vs HL-listed shorts, by year",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall 1d 2023-04..2024-12 (hlu_explore): BN-only coins = 16-20% of the books' short exposure and are their BEST shorts: price per unit exposure-year flow +135% / xsmom +86% / blend +83%, funding received +6/+11/+12%; HL-listed shorts price -13/-31/-25% (funding +10..14%). By year BN-only short P&L 2023 +16/+7/+10%, 2024 +9/+7/+7% of equity. Opposite of lowvol (LVH: high-vol BN-only names squeezed in 2025-26): momentum/flow short DYING BN-only small caps, lowvol shorts HIGH-VOL ones. The filter would remove the books' best shorts.",
+     "date": "2026-11-27",
+     "evidence": "hlu1_a"
     },
     {
      "id": "b",

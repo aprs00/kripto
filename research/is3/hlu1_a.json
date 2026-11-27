@@ -1,0 +1,63 @@
+{
+ "study": "research/studies/is3_hlu1.py a",
+ "flow": {
+  "HL_listed": {
+   "short_exposure_share": 0.799,
+   "price_per_unit_yr": -0.133,
+   "funding_per_unit_yr": 0.114,
+   "by_year_pnl": {
+    "2023": -0.0749,
+    "2024": 0.0617
+   }
+  },
+  "BN_only": {
+   "short_exposure_share": 0.201,
+   "price_per_unit_yr": 1.347,
+   "funding_per_unit_yr": 0.065,
+   "by_year_pnl": {
+    "2023": 0.1579,
+    "2024": 0.0923
+   }
+  }
+ },
+ "xsmom": {
+  "HL_listed": {
+   "short_exposure_share": 0.84,
+   "price_per_unit_yr": -0.308,
+   "funding_per_unit_yr": 0.099,
+   "by_year_pnl": {
+    "2023": -0.1287,
+    "2024": -0.0282
+   }
+  },
+  "BN_only": {
+   "short_exposure_share": 0.16,
+   "price_per_unit_yr": 0.858,
+   "funding_per_unit_yr": 0.111,
+   "by_year_pnl": {
+    "2023": 0.0728,
+    "2024": 0.0661
+   }
+  }
+ },
+ "blend": {
+  "HL_listed": {
+   "short_exposure_share": 0.803,
+   "price_per_unit_yr": -0.245,
+   "funding_per_unit_yr": 0.14,
+   "by_year_pnl": {
+    "2023": -0.1521,
+    "2024": 0.0766
+   }
+  },
+  "BN_only": {
+   "short_exposure_share": 0.197,
+   "price_per_unit_yr": 0.829,
+   "funding_per_unit_yr": 0.118,
+   "by_year_pnl": {
+    "2023": 0.0962,
+    "2024": 0.0699
+   }
+  }
+ }
+}
