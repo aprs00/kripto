@@ -1044,3 +1044,10 @@ Unstated: (1) daily closes under-state intraday troughs (the live watcher marks 
 Change my mind: P(kill | real edge, 2 y) > 10 % or P(kill | zero edge, 2 y) < 30 % -> the threshold is mis-set for its job -> backlog proposal (vol-scaled). Else keep and write the numbers.
 KSW a/b/c done (is3_ksw.py, ksw_ab/c.json): -25 % kill: 2-y P(kill) real edge 11-13 %, zero edge 72-81 %, -0.5 SR 90-92 %; k x vol: 1.0 15/75-84, 1.25 4/50-65. Pair book: never (vol .8 %),
  its risk is per account. Backlog KS1 (vol-scaled kill 1.25 x target + per-account guard for main@pair), design change for a research session. CLOSED OPEN (measured).
+
+## PBT fspread_hold@pair entry timing by the HL-BN basis (think-through 19:1x UTC 11-27, before any run)
+Source: X1C a (|basis| on held pair-days p50 5 bp, p99 32). No chat records. A pair short HL / long BN (O = +1) gains price P&L if HL is rich at entry and the basis closes: P&L ~ -O x d(basis).
+Who pays: whoever pushed one venue's price away (HL retail longs chasing, paying the funding that made s > 0): the same crowd that creates the carry may also make HL rich.
+Unstated: (1) signed basis relative to the coin's own 30-d median (structural offsets: index definitions, kPEPE units); (2) daily closes at 00:00 vs live fills at 00:13: a basis that closes within
+ minutes is not capturable: report d+1 and d+3 separately; (3) waiting costs carry (~1.6 bp/day per pair in 2026) and slots; (4) explore = entries 2023-05-15..2024-12-31.
+Change my mind: trip price P&L rises monotonically with signed entry basis and the top-vs-bottom quintile gap > 20 bp per trip -> b; else DEAD-ish (basis too small vs carry).

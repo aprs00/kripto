@@ -1,0 +1,72 @@
+{
+ "n_trips_explore": 89,
+ "by_quintile": [
+  {
+   "q": 0,
+   "n": 18,
+   "sb_med": -9.86,
+   "trip_price_mean": -19.63,
+   "trip_price_med": -10.72,
+   "db1": -9.31,
+   "db3": -7.15,
+   "db7": -12.89,
+   "days_med": 32.5
+  },
+  {
+   "q": 1,
+   "n": 18,
+   "sb_med": -2.82,
+   "trip_price_mean": 1.24,
+   "trip_price_med": 0.97,
+   "db1": -4.34,
+   "db3": -2.86,
+   "db7": -4.0,
+   "days_med": 81.0
+  },
+  {
+   "q": 2,
+   "n": 17,
+   "sb_med": -0.07,
+   "trip_price_mean": -2.0,
+   "trip_price_med": 0.41,
+   "db1": -3.0,
+   "db3": -6.49,
+   "db7": -2.02,
+   "days_med": 65.0
+  },
+  {
+   "q": 3,
+   "n": 18,
+   "sb_med": 2.76,
+   "trip_price_mean": 4.16,
+   "trip_price_med": 8.67,
+   "db1": -1.21,
+   "db3": 1.35,
+   "db7": 1.78,
+   "days_med": 40.5
+  },
+  {
+   "q": 4,
+   "n": 18,
+   "sb_med": 10.04,
+   "trip_price_mean": 10.95,
+   "trip_price_med": 9.09,
+   "db1": 8.09,
+   "db3": 7.45,
+   "db7": 15.89,
+   "days_med": 25.0
+  }
+ ],
+ "corr_sb_trip_price": 0.529,
+ "abs_sb_med": 4.75,
+ "by_year": {
+  "2023": {
+   "n": 36,
+   "q4_minus_q0_trip": 36.5
+  },
+  "2024": {
+   "n": 53,
+   "q4_minus_q0_trip": 28.7
+  }
+ }
+}
