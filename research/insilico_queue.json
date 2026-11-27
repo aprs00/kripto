@@ -3447,7 +3447,10 @@
     {
      "id": "a",
      "what": "BN-82 1h 2021-23 explore: mean simple return of the hour before and the hour after each settlement vs the same coin's other hours, conditional on the predicted funding rate quintile (sign and size, dose-response); day-clustered t; placebo = hours 4 h away",
-     "status": "planned"
+     "status": "done",
+     "result": "BN-82 1h explore 2021-23 half 0 (45 coins, 105k coin-settlements at 00/08/16, 4-h-interval coin-days dropped), side against the payer by the PREVIOUS print, market-relative: pre-settlement hour +0.2 bp vs placebo (same coin 4 h earlier) +0.5, diff -0.2 (p .47, MDE 0.5 bp); post +0.3 vs +0.3. No dose: |rate| >= 10 bp/8h pre -0.0 vs base +1.75, post -1.3 vs +2.8. Current print +2.0 bp = placebo +1.95 (premium tracks price all day, not the settlement). Null .13 bp ok, causal ok. No settlement effect at a 0.5-bp MDE",
+     "date": "2026-11-27",
+     "evidence": "fst_a"
     },
     {
      "id": "b",
@@ -3460,7 +3463,7 @@
      "status": "planned"
     }
    ],
-   "sessions": 1
+   "sessions": 2
   }
  ]
 }

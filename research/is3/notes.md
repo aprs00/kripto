@@ -1023,3 +1023,12 @@ Unstated: (1) if max_gross binds nearly always, the vol target is inert and the 
 Change my mind: realised book vol >= 1.5x target or gross at the cap > 50 % of days -> the estimate is broken and b's floors are worth testing; else the bias is harmless.
 LSV a/b done (is3_lsv.py, lsv_a/b.json): zero-filled vol under-estimates new coins 4x (age 1-7 d) -> 0.9x (31-61); book vol 25-27 % vs 20 target, cap never binds. Floors on bnall 2021-23:
  fixed 150 % vol on target, worst-10 -4.7 -> -3.6 % but SR .18 -> -.01; own-days SR .35 but worse worst days: both FAIL. c skipped. CLOSED OPEN (harmless: main_scale fixes book vol).
+
+## FST Binance 8-h funding settlement drift (think-through 19:1x UTC 11-27, before any run)
+Source: backlog T13 (funding settlement seasonality); E2/E2B (execution clock of the BN daily books). No chat records.
+Mechanism: funding is paid only by positions open AT 00/08/16 UTC. When the rate is large, the paying side (longs if positive) can close just before and reopen just after: price pressure
+ against the payer in the last hour(s), reversal after. Arbitrageurs (basis traders) do the opposite, so any effect should scale with |rate| and shrink over the years.
+Unstated: (1) the rate is mostly known before settlement (premium average): use the PREVIOUS print as the causal signal, the current print only as a check; (2) market-relative returns
+ (minus the 82-coin equal-weight hour return) to remove clock effects; (3) placebo = the same coin's hour 4 h earlier (no settlement for 8-h coins); (4) only 0/8/16 settlements, coins on 4-h
+ intervals that day excluded; (5) explore = 2021-23, coin half 0; at 1 h holding no taker trade survives (26 bp ladder): the only use is an execution tilt (c) or a maker timing rule.
+Change my mind: pre-settlement return against the payer > placebo with a dose in |rate| in every explore year -> b/c; else DEAD/FEATURE with MDE.

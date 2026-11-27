@@ -1,0 +1,60 @@
+{
+ "name": "fst_pre",
+ "sample": "explore",
+ "n": 105211,
+ "days": 1095,
+ "coins": 45,
+ "mean_bp": 0.23,
+ "median_bp": 2.84,
+ "win": 0.528,
+ "se_bp": 0.18,
+ "ci95_bp": [
+  -0.12,
+  0.6
+ ],
+ "p": 0.21739130434782608,
+ "mde80_bp": 0.52,
+ "mean_ex_top3_bp": 0.14,
+ "top3_share": 0.41,
+ "t_day_mean": 1.53,
+ "by_year": {
+  "2021": [
+   38650,
+   -0.34
+  ],
+  "2022": [
+   29537,
+   1.14
+  ],
+  "2023": [
+   37024,
+   0.11
+  ]
+ },
+ "by_side": {
+  "-1": [
+   89361,
+   0.11
+  ],
+  "1": [
+   15850,
+   0.93
+  ]
+ },
+ "coins_positive": 0.42,
+ "net_bp": {
+  "free": 0.23,
+  "maker_taker": -7.77,
+  "taker": -12.77,
+  "taker_x2": -25.77,
+  "crash": -79.77
+ },
+ "base_n": 105207,
+ "base_bp": 0.45,
+ "vs_base_bp": -0.22,
+ "p_vs_base": 0.46526736631684157,
+ "passes": false,
+ "note": "side = against the payer (prev print); base = same coin 4 h earlier",
+ "rerun": "",
+ "at": "2026-11-27T19:10:42+00:00"
+}
