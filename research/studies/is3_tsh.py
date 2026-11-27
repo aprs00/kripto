@@ -75,13 +75,31 @@ def run_ab():
 
 
 def run_c():
+    """Expanding Sharpe of EVERY nested-pool strategy at the last refit dates (same computation as kripto.strategies.nested_selection) and the margin of the 3rd pick."""
     p = data.load_panel("hl", "1d")
-    import inspect
-    src = inspect.signature(S.nested_selection)
-    res = S.nested_selection(p)
-    _, sel, log = res
-    out = {"signature": str(src), "last_log": [[str(t.date()), ch] for t, ch in log[-3:]]}
-    print(json.dumps(out, indent=1))
+    c = p["close"]
+    rets = {}
+    for name in S.NESTED_POOL:
+        try:
+            _, r = S._component_returns(p, name)
+        except KeyError:
+            continue
+        rets[name] = r
+    out = {}
+    for d in ("2026-09-04", "2026-11-03", str(c.index[-1].date())):
+        i = c.index.get_loc(pd.Timestamp(d, tz="UTC"))
+        cur = {}
+        for name, r in rets.items():
+            ri = r.iloc[: i + 1]
+            inv = ri.ne(0).to_numpy()
+            if not inv.any():
+                continue
+            ri = ri.iloc[int(inv.argmax()):]
+            if len(ri) < 240 or ri.std() == 0:
+                continue
+            cur[name] = round(float(ri.mean() / ri.std() * np.sqrt(365)), 2)
+        out[d] = dict(sorted(cur.items(), key=lambda x: -x[1]))
+        print(d, out[d], flush=True)
     json.dump(out, open("research/is3/tsh_c.json", "w"), indent=1)
 
 

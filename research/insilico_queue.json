@@ -3594,7 +3594,7 @@
    "group": "T",
    "title": "tsmom leg of the HL main book: what it is (beta timing? few coins? funding?) and whether the 2027-01-02 refit keeps it",
    "src": "BNH (tsmom +50 % of HL blend P&L; yearly 2023 .21 / 2024 .05 / 2025 .00 / 2026 .24); nested choice log (tsmom picked at expanding SR .39, the lowest of the three)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -3615,10 +3615,16 @@
     {
      "id": "c",
      "what": "refit preview: nested_selection's expanding SR path of every pool strategy to 11-27 and the gap between the 3rd pick (tsmom .39) and the 4th; which strategy would replace it if tsmom fell below; verdict only (no live change before 2027-01-02, M1 rule)",
-     "status": "planned"
+     "status": "done",
+     "result": "expanding SR of the whole nested pool (reproduces the log: 11-03 listing_short 1.39 / lowvol .73 / tsmom .39): on 11-27 listing_short 1.36, lowvol .71, tsmom .50, 4th xsmom_k .30, xsmom .01, the rest < 0. tsmom's margin over the 4th is .20 SR with 5 weeks to the 2027-01-02 refit: expected KEPT; if it fell, xsmom_k (a cross-sectional momentum, less convex) would replace it",
+     "date": "2026-11-27",
+     "evidence": "tsh_c"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "kept, well-motivated: tsmom is a convex alt-trend leg (BTC's worst 20 weeks +3.1 %/wk, best +1.9, other weeks -0.3: 2024-25 bleed), hedges listing_short's squeeze days (+0.5 % vs -4.7 %), not market timing (19 % of gross); 3rd nested pick at .50 vs the 4th .30",
+   "closed": "2026-11-27"
   }
  ]
 }

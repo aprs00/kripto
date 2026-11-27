@@ -1074,3 +1074,5 @@ Who pays: late trend-followers / forced sellers in crashes (crisis alpha) - if r
 Unstated: (1) since HL listing flow fell (HLI), tsmom is half the HL book in idle spells; (2) a refit could drop it (3rd pick at .39): which strategy is 4th matters for the 2027-01-02 refit.
 Change my mind: tsmom earns its P&L in BTC's worst/best weeks (convex) and is negatively correlated with listing_short on its worst days -> keep is well-motivated; if its P&L is net-long beta
  in bull months only, it is an alt-beta leg the book could get cheaper.
+TSH a/b/c done (is3_tsh.py, tsh_ab/c.json): tsmom HL = convex alt-trend (BTC worst-20 weeks +3.1 %/wk, best +1.9, others -0.3), alts carry it, net exposure ~0, hedges listing_short's
+ worst days (+0.5 vs -4.7 %). Nested pool 11-27: ls 1.36, lowvol .71, tsmom .50, xsmom_k .30. CLOSED OPEN (kept).

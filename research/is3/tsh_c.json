@@ -1,0 +1,38 @@
+{
+ "2026-09-04": {
+  "listing_short": 1.35,
+  "lowvol": 0.62,
+  "tsmom": 0.42,
+  "xsmom_k": 0.27,
+  "xsmom": 0.11,
+  "resrev": -0.3,
+  "carry": -0.59,
+  "carry_trend": -0.64,
+  "funding_contra": -1.4,
+  "xsrev": -2.83
+ },
+ "2026-11-03": {
+  "listing_short": 1.39,
+  "lowvol": 0.73,
+  "tsmom": 0.39,
+  "xsmom_k": 0.29,
+  "xsmom": 0.04,
+  "resrev": -0.2,
+  "carry": -0.51,
+  "carry_trend": -0.69,
+  "funding_contra": -1.32,
+  "xsrev": -2.84
+ },
+ "2026-11-27": {
+  "listing_short": 1.36,
+  "lowvol": 0.71,
+  "tsmom": 0.5,
+  "xsmom_k": 0.3,
+  "xsmom": 0.01,
+  "resrev": -0.22,
+  "carry": -0.42,
+  "carry_trend": -0.69,
+  "funding_contra": -1.37,
+  "xsrev": -2.84
+ }
+}
