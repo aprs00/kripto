@@ -1,5 +1,7 @@
 HEALTH: WARN — Claude login expires from 2026-12-04: owner, as kripto run `claude auth login` (or `claude setup-token`) before then, or every Claude session stops; everything else OK.
 
+_20:00 UTC review (watchdog): false alarm. A still-running InSilico session was counted as idle; health.py fixed to count running sessions. All checks OK; LSW due for the 20:47 slot._
+
 _18:40 UTC review (watchdog): the InSilico queue had nothing due again (refilled with only a future item at 10:47); added X1V and BNH, now due. Watchdog now warns about the login expiry. Detail: journal/2026-11-27.md._
 
 _Updated 2026-11-27 08:40 UTC (review; books and research below from the 07:30 research session). Review: trader ran every hour, data last bar 04:00 (fresh), disk 41 GB free, no failed units; the InSilico queue had nothing due after 04:47, so I added LD3 (ladder fills in liquidity holes), T9B (alpha decay of the live books' trades), X1C (funding-pair robustness) and made InSilico sessions refill an empty queue themselves. Detail: journal/2026-11-27.md._

@@ -78,6 +78,9 @@ def gather(root: Path = ROOT, db: Path = DB) -> dict:
     for p in sorted((root / "logs").glob("agent-*-*.log"))[-12:]:
         prev = ""
         for line in p.read_text(errors="replace").splitlines():
+            m0 = re.match(r"=== (\S+) start (\w+)", line)
+            if m0:   # a running session has a start and no end yet (11-27 19:35: a busy session was reported as "idle 8h")
+                f.setdefault("starts", []).append((m0.group(1), m0.group(2)))
             m = re.match(r"=== (\S+) end (\w+) rc=(\d+)", line)
             if m:
                 f["sessions"].append((m.group(1), m.group(2), int(m.group(3))))
@@ -102,7 +105,8 @@ def gather(root: Path = ROOT, db: Path = DB) -> dict:
             from scripts import insilico_queue as iq
             if not iq.should_run()[0]:
                 q = json.loads((root / "research" / "insilico_queue.json").read_text())
-                ins = [t for t, mode, _ in f["sessions"] if mode == "insilico"]
+                ins = sorted([t for t, mode, _ in f["sessions"] if mode == "insilico"]
+                             + [t for t, mode in f.get("starts", []) if mode == "insilico"])
                 dues = sorted(it.get("due", "") for it in q["items"] if it["status"] in ("todo", "wip") and it.get("due"))
                 f["insilico_idle"] = {"last_session": ins[-1] if ins else None, "next_due": dues[0] if dues else None}
     except Exception:
