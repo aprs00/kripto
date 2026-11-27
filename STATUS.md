@@ -1,6 +1,6 @@
 HEALTH: OK — trader, ladder, collectors and websockets running; ladder@bn and the funding pair now trade in main books; no strategy is held back without a written clause.
 
-_Updated 2026-11-27 ~07:25 UTC (research session). Detail: journal/2026-11-27.md._
+_Updated 2026-11-27 ~07:30 UTC (research session). Detail: journal/2026-11-27.md._
 
 ## Held back (written gate clauses applied by `scripts.held_back`; a strategy that fails nothing must trade)
 | strategy | pick | grid avg | DSR | worst | grid med | other venue | status / alloc | fails (written clauses) |
@@ -40,7 +40,10 @@ clause applied on HL only for two weeks; a research day lost to the usage limit 
    low risk, little money.
 3. **The main books now run at your chosen risk level.** Monthly multiplier switched on: Hyperliquid ×0.87, Binance ×1.16 (next check 12-01).
 4. Checked: the Hyperliquid main book's rule still picks lowvol even with the longer funding history, so nothing changes there before the 2027-01-02 refit.
-5. First look at the ladder on Hyperliquid's own minute data: only 7 fills in 15 days, and no sign yet that Hyperliquid's thinner order books drop further than Binance's. Re-check mid-January.
+5. **Binance positioning data (who is long/short, open interest): first real test, nothing usable.** On 2023 data, "open interest piling into coins that just rose" predicted a fall the next day.
+   Checked once on 2024–2026, untouched until then: the effect reversed (those coins kept rising), and as a filter it made the Binance books worse (momentum Sharpe 1.42 → 1.21).
+   Retail and top-trader long/short ratios showed nothing even on 2023. Remaining variants have a low prior.
+6. First look at the ladder on Hyperliquid's own minute data: only 7 fills in 15 days, and no sign yet that Hyperliquid's thinner order books drop further than Binance's. Re-check mid-January.
 
 ## Books (11-27 07:20 UTC; 18 days of paper P&L is noise)
 | book | $1,000 (shadow $2,000) | $200 twin |
@@ -70,7 +73,7 @@ clause applied on HL only for two weeks; a research day lost to the usage limit 
 at a deployable size. None of the main books has tracked its backtest long enough yet (the gate wants 60+ days). No real money before that. That decision is yours.
 
 ## Next
-Next research session: T5b Binance positioning once 2021–22 coverage ≥ 95% (today 72% / 76%); first main_bn ladder fills vs its shadow; E1 + LQ1 liquidation prints (≈ 12-01);
+Next research session: first main_bn ladder fills vs its shadow; LD3 (ladder fills in liquidity holes vs heavy-volume flushes, library N14); E1 + LQ1 liquidation prints (≈ 12-01);
 main_scale re-check 12-01. X1f (funding pair live vol vs backtest) at 30 live days (≈ 12-12). Fill-delay re-measure ≈ 12-09; HL order-flow re-check ≈ 12-23; HL ladder ≈ 2027-01-15.
 Nested-blend refits (HL and Binance) 2027-01-02. Forward ledger: first verdicts ≈ 12-09.
 InSilico pass 3: 228/246 forms done, 43/49 items closed; the remaining 6 wait for data still being collected (first due 12-05).

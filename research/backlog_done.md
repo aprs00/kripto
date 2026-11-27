@@ -128,3 +128,8 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
 
 - [x] 2026-11-27 backlog 0 (ladder@bn into main_bn) → overlay sleeve, incubation alloc 1.0 (journal 2026-11-27).
 - [x] X1e fspread_hold unseen-history evidence (FC1C c, 2026-11-27): the frozen live config (lb14/enter 0.1) on the never-seen 2023-05-15..2024-06 pair window (HL funding backfilled) = SR 14.2, 26.6%/yr net at gross 2.0, mdd −0.6%. Its DSR fail was 1.66 y of OOS: re-run the pair WF on the longer panel (pair now starts with HL funding 2023-05) and walk the incubation gate clause by clause (two-account margin = gross 1.0, X1c). Research session, not insilico. → DONE 2026-11-27: WF OOS 5.66 / 2.85 y, DSR 1.00 → incubation, main@pair (journal 2026-11-27).
+- [x] T5c (2026-11-27, PRE-REGISTERED, rule frozen before any confirm look) **OI-build filter on the Binance books' long side**: on each decision day, among universe names with a positive
+  3-day return, drop LONG weights of names whose 3-day log OI change (Binance metrics, last 5-min row of the day) is in the top tercile; renormalise nothing (the book just holds less).
+  Test with the F0 harness (apply transform) on flow@bn and xsmom@bn, bnall 1d, **confirm window 2024-01-01..2026-11 only** (explore 2023 done: findings T5b). Pass = SR up ≥ +0.1 AND the dropped
+  longs' next-day mean < kept longs' in ≥ 2 of 3 confirm years, against random drops of the same count (≥ 90th pct). One shot; no knob changes. Also, untried T5b forms (prior low): F1 as a
+  short-side filter, positioning on 4h bars, HL positioning (T6b) as the HL analogue. → FAIL 2026-11-27 (flow dSR −0.04, xsmom −0.22; sign flips after 2024; findings T5b).

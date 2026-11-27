@@ -84,3 +84,12 @@ and roughly linearly with inventory q, scaled by σ; the spread itself barely de
 it takes up to 5 fills at once, and fills cluster in market-wide flushes (correlated inventory). Mechanical rule to test (descriptive, on the E2 event set,
 explore ≤ 2023 / confirm later, the is3 battery): bid depth = 30σ·(1 + λ·n_open) with λ ∈ {0.1, 0.25} (one pre-registered pick), vs the base; judge P&L per day
 and the worst day (tail), not per-fill mean. Second form: per-coin κ (empirical fill rate vs depth) sets the static term. Data: existing (bnm/bn 1m).
+
+### N14 Large moves are liquidity holes, not big orders; liquidity-driven moves are transient (bouchaud-farmer-lillo-2008 §8.1–8.2; mined 2026-11-27) → backlog LD3
+Claim (own words): at the trade scale, price jumps are set by GAPS in the limit order book next to the best quote (97% of impactful LSE trades moved the price exactly
+by the first gap), and their size is nearly independent of the order's volume; gap size has long memory (thin books stay thin). So a deep wick on LOW volume is a
+liquidity hole (transient, mean-reverting), while a deep move on HEAVY volume is someone with information or a forced metaorder (more permanent).
+Mechanical rule for our ladder (descriptive, on the existing E2 fill set, top-20 Binance 1m): split ladder fills by the fill minute's Amihud ratio
+|log(low/open)| / quote volume, relative to that coin's trailing 30-day median; predict higher 60-min net return for the high-illiquidity half (holes) than for the
+low-illiquidity half (heavy selling). Explore ≤ 2023, confirm 2024+; judge per-day P&L and the worst day, size-matched (the LD1 lesson). If it holds, the form is a
+skip-rule for heavy-volume flushes or a larger size on holes. Data: existing bnm/klines_1m (volume present). §8.2 (volatility ≈ impact, news part small) adds nothing testable.

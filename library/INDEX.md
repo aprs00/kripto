@@ -12,7 +12,7 @@ Status: `unread` → `skimmed` → `mined` (testable ideas extracted into librar
 ## Tier A: rigorous, directly useful
 | slug | what it is | what to take from it | feeds | status |
 |---|---|---|---|---|
-| bouchaud-farmer-lillo-2008-how-markets-slowly-digest | CFM/Santa Fe review (109 p) | order flow has long memory (metaorders split over days); impact ∝ √(Q/V)·σ; impact is mostly transient | L2 flow signal, L3 cost model | §5, §7.3, §8 mined 2026-11-17 (N11); rest skimmed |
+| bouchaud-farmer-lillo-2008-how-markets-slowly-digest | CFM/Santa Fe review (109 p) | order flow has long memory (metaorders split over days); impact ∝ √(Q/V)·σ; impact is mostly transient | L2 flow signal, L3 cost model | §5, §7.3, §8 mined 2026-11-17 (N11); rest skimmed; §8.1–8.2 mined 2026-11-27 (N14) |
 | toth-palit-lillo-farmer-2015-order-flow-persistence | paper (37 p) | the persistence comes from order splitting, not herding, so flow imbalance predicts future flow, while price stays ~efficient | L2, W2 | mined 2026-11-12 (N10) |
 | alexander-heck-2020-price-discovery-bitcoin | paper (34 p) | big offshore perps lead BTC price discovery (minute data); the leaders absorb information faster | L1 HL–BN lead-lag | skimmed |
 | maxdama-2011-automated-trading | practitioner notes (57 p) | §5 backtesting pitfalls, §6 Kelly/multi-strategy allocation, §7 execution, impact, capacity | T4 blend sizing, T9, process | §7 mined 2026-11-10 (N8); §6 mined 2026-11-25 (N12); rest skimmed |
