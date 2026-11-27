@@ -2940,6 +2940,56 @@
    "verdict": "OPEN",
    "reason": "ewm20 per-coin variances (correlations from 60 d) forecast next-week vol 10% better (QLIKE) than the 60-d sample used by vol_target and track the books' vol target 9-23% better in all 6 book x sample cells, but the pre-registered xsmom confirm failed (TE -12%, SR -0.21) and the SR effect is mixed: a small, consistent risk improvement, not established at the bar. HAR-Parkinson over-forecasts (worse tracking for blend). Design-level change left to research (backlog L6).",
    "closed": "2026-11-27"
+  },
+  {
+   "id": "LS1",
+   "prio": 1.5,
+   "group": "T",
+   "title": "listing_short on HL with the backfilled HL funding (the 28% funding-coverage hole, T2b a)",
+   "src": "backlog T2b(a); findings listing_short; FC1C backfill (data/hl/funding 2023-05+)",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "coverage of listing_short HL short exposure by HL funding before (2024-07+) vs now; HL 1d listing_short defaults through the backtest: net SR, funding paid %/yr, by year; FRAGILE rule written first (as LV2c): SR w/o best 10 days < 0.3 OR SR before 2024-07 < 0",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "per listing event (HL, with funding): cumulative abnormal return vs BTC AND cumulative funding paid by the short, by days since listing (d1-14, 15-30, 31-60, 61-90): does funding eat the early decay? median and mean, cohort years",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "fetch the ~19 coins still without HL funding (2024-02+ listings; is3_fc1c_fetch unit) and re-run a at full coverage; if coverage was the hole, the verdict must not change by more than the FRAGILE margins",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "LV3",
+   "prio": 1.6,
+   "group": "T",
+   "title": "lowvol by idiosyncratic (BTC-residual) vol instead of total vol (LV1 untried form b)",
+   "src": "backlog LV1 (b); findings lowvol / LV2",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "bnall 1d explore 2021-23, top-30 and top-100: rank by 60-d BTC-residual vol, low minus high quintile, BTC-beta hedged; price-only AND net of funding; vs the total-vol ranking on the same panel; every year",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "dose: hedged next-day return by idio-vol quintile (monotone?) and the residual of idio vol after total vol (does idio add anything beyond total?)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "only if a passes (SR >= 0.5 net, >= 3 of 3 years > 0, beats total-vol ranking): ONE pre-registered confirm on HL 1d 2023-05+ (backfilled funding), else diagnose",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
