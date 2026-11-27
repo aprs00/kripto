@@ -217,6 +217,9 @@ Funding +2–3%/yr on HL can't pay ~5–8%/yr costs.
 **v2: HL 1d OOS 0.89 / 2.95y (med 1.34, 9/9 >0; cfg (1,60) worst 1.33), bnall 0.86 / 6.1y (med 0.42, 9/9; corr BTC 0.00).** At band
 0.01 the old bnall band artifact (corr BTC 0.63) is gone and the short leg shows. Holds one and two days late (1.47 → 1.27 → 1.01).
 Open hole: funding is known for only 28% of HL short exposure, and new-listing shorts can pay heavy funding (T2b a). DSR 0.42.
+**LS1 (2026-11-27 insilico, research/studies/is3_ls1.py): hole closed.** HL funding backfilled to 2023-05 → 95% of short exposure covered (was 56%): HL 1d SR 1.36 (1.44 without it), the shorts PAY
+funding 10.3/−2.3/8.4/7.4 %/yr (2023–26) vs price +27/+32/+68/+41%; not fragile (SR w/o best 10 days 0.82, before 2024-07 0.78). Per event the median listing pays the short (+2.2% by d90), a squeezed
+minority costs the mean (−2.0%); 2026 cohort −15% by d90 (n 8): watch.
 **T2b(b) event study (2026-11-12, descriptive, research/studies/t2b_listing_event.py):** log abnormal return vs BTC from the day-1
 close, median: HL (129 events) −17% d14, −49% d60, −82% d120; bnall (794) −12% / −34% / −51%; 76–84% of events negative at d60,
 every cohort year negative on both venues (weakest bnall 2021 −7% mean). The decay is ~linear to day 120, not front-loaded, so the

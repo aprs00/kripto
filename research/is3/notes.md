@@ -904,3 +904,5 @@ Unstated: (1) the 2023-05..2024-06 window is new to HL funding (backfilled 11-26
  weights isolates the funding hole exactly; (2) 8-hourly vs hourly funding era (pre/post 2023-06) is handled by the daily sums (FC1C note); (3) coins listed after 2024-07 always had funding.
 PRE-STATED (a): FRAGILE if, with full funding, SR without the best 10 days < 0.3 OR SR before 2024-07 < 0 (the LV2c rule). Report funding paid %/yr by year next to price P&L.
 Form c (fetch the missing coins): the fetch is already complete (134/134 coins with HL candles before 2024-06); c is a coverage check only.
+LS1 a/b/c done (is3_ls1.py, ls1_a/b.json): listing_short HL with full funding SR 1.36 (masked 1.44), shorts pay 7-10%/yr in 2023/25/26, not FRAGILE (.82 w/o best 10, .78 pre-2024-07). Per event median
+ listing pays the short (+2.2% by d90), mean -2.0% (squeezed tail); 2026 cohort -15% funding by d90 (n 8). Uncovered 5% = DOGE/INJ 2023-04 (old tokens new on HL). LS1 CLOSED OPEN (passes).

@@ -2947,7 +2947,7 @@
    "group": "T",
    "title": "listing_short on HL with the backfilled HL funding (the 28% funding-coverage hole, T2b a)",
    "src": "backlog T2b(a); findings listing_short; FC1C backfill (data/hl/funding 2023-05+)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -2960,15 +2960,24 @@
     {
      "id": "b",
      "what": "per listing event (HL, with funding): cumulative abnormal return vs BTC AND cumulative funding paid by the short, by days since listing (d1-14, 15-30, 31-60, 61-90): does funding eat the early decay? median and mean, cohort years",
-     "status": "planned"
+     "status": "done",
+     "result": "HL listings 2023-05+ with >= 90% funding coverage (n 121-125, entry close of day 1, simple returns vs BTC): short price gain d14/30/60/90 mean +7.5/+14.9/+25.8/+33.6% (median +15/+26/+40/+51%); funding received mean -0.2/-0.1/-0.9/-2.0% but median +0.6/+1.1/+1.8/+2.2%, 35-42% of events negative: a minority of squeezed listings pay heavily, the typical one pays the short. Per day mean -1.6/+1.1/-2.8/-3.4 bp (d1-14/15-30/31-60/61-90), median +4.0/+2.6/+2.1/+1.4. Funding does not eat the early decay; it is a tail. By cohort, d90 funding +7.2% (2024), -7.0% (2025), -15.2% (2026, n 8) vs price +43/+34/+37%: worsening, watch.",
+     "date": "2026-11-27",
+     "evidence": "ls1_b"
     },
     {
      "id": "c",
      "what": "fetch the ~19 coins still without HL funding (2024-02+ listings; is3_fc1c_fetch unit) and re-run a at full coverage; if coverage was the hole, the verdict must not change by more than the FRAGILE margins",
-     "status": "planned"
+     "status": "done",
+     "result": "no fetch needed: is3_fc1c_fetch_done has 134/134 coins (all HL coins with candles before 2024-06). Remaining 5% of short exposure without funding: DOGE 3.4%, INJ .7% (HL listings of OLD tokens in 2023-04, before the 2023-05-01 backfill start), IO/ZK/BLAST .1-.3% (listed 2024-06, funding from 07-01). Verdict of a unchanged by construction (< 5% exposure). Side note for research: in HL's first months listing_short also shorts old tokens newly listed on HL (DOGE, INJ): not the supply-overhang mechanism; small (2023-04/05 only).",
+     "date": "2026-11-27",
+     "evidence": "ls1_a"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "Robustness check passed: with HL funding backfilled (coverage 56% -> 95% of short exposure) listing_short HL SR 1.36 (was 1.44), the shorts pay 7-10%/yr funding in 3 of 4 years, but not FRAGILE (w/o best 10 days .82, before 2024-07 .78). Per event the median listing pays the short; a squeezed minority costs the mean; 2026 cohort funding -15% by d90 vs price +37% (worsening, n 8): watch. Stays in the HL blend.",
+   "closed": "2026-11-27"
   },
   {
    "id": "LV3",

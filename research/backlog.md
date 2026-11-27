@@ -83,7 +83,7 @@ so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 202
 - [ ] L5 Value-area rejection (library N7, Dalton/AMT): low prior, after the above.
 - [ ] T2b **listing_short follow-ups** (pre-register ≤ 8 configs each). (b) DONE 2026-11-12 (event study: linear decay to d120 on both
   venues → new (d): hold 90/120 d pre-registered, judged on bnall where 800 events exist):
-  (a) HL funding coverage: backfill funding for every coin ever shorted (currently 28% of short exposure) and re-measure;
+  (a) DONE 2026-11-27 (insilico LS1): coverage 95%, SR 1.36 with funding, not fragile (findings);
   (b) per-listing event study (cumulative abnormal return vs BTC by days since listing, HL + bnall) to see the decay shape,
   not just a portfolio Sharpe; (c) sizing: vol_target under-estimates new-coin vol (pre-listing returns = 0) → use a
   per-name vol floor. Capacity at $200: ~6 concurrent shorts at gross 0.5 ≈ $16 each, which is executable.

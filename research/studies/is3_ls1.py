@@ -58,5 +58,52 @@ def run_a():
     json.dump({"study": "research/studies/is3_ls1.py a", **out}, open("research/is3/ls1_a.json", "w"), indent=1)
 
 
+
+
+def run_b():
+    """Per HL listing (first traded day >= 2023-05-15, funding exists): short's abnormal price gain vs BTC (simple, compounded per leg) and funding received, days 1..H."""
+    from kripto import strategies as S
+    p = data.load_panel("hl", "1d")
+    c, v, f = p["close"], p["volume"], p["funding"]
+    traded = (v.fillna(0) > 0) & c.notna()
+    first = traded.idxmax().where(traded.any())
+    dv = S.dollar_volume(p)
+    rows = []
+    for coin, t0 in first.dropna().items():
+        if coin == "BTC" or t0 < pd.Timestamp("2023-05-15", tz="UTC"):
+            continue
+        i0 = c.index.get_loc(t0) + 1
+        if i0 + 2 >= len(c) or not (dv[coin].iloc[i0] >= 1e6):
+            continue
+        for h in (14, 30, 60, 90):
+            j = i0 + h
+            if j >= len(c) or not np.isfinite(c[coin].iloc[j]):
+                continue
+            short_px = -((c[coin].iloc[j] / c[coin].iloc[i0] - 1) - (c["BTC"].iloc[j] / c["BTC"].iloc[i0] - 1))
+            fr = f[coin].iloc[i0 + 1: j + 1]
+            rows.append({"coin": coin, "t0": t0, "h": h, "short_px": short_px, "funding": float(fr.sum()), "f_cov": float(fr.notna().mean())})
+    d = pd.DataFrame(rows)
+    d = d[d.f_cov >= 0.9]
+    out = {}
+    for h, g in d.groupby("h"):
+        out[int(h)] = {"n": int(len(g)), "px_mean": round(float(g.short_px.mean()), 4), "px_median": round(float(g.short_px.median()), 4),
+                       "fund_mean": round(float(g.funding.mean()), 4), "fund_median": round(float(g.funding.median()), 4),
+                       "fund_share_neg": round(float((g.funding < 0).mean()), 2), "net_mean": round(float((g.short_px + g.funding).mean()), 4),
+                       "net_median": round(float((g.short_px + g.funding).median()), 4),
+                       "by_year": {int(y): [int(len(x)), round(float(x.short_px.mean()), 3), round(float(x.funding.mean()), 4)] for y, x in g.groupby(g.t0.dt.year)}}
+        print(h, json.dumps(out[int(h)]), flush=True)
+    # incremental windows: funding per day in d1-14 vs d15-30 vs d31-60 vs d61-90
+    inc = {}
+    for coin, t0 in d[["coin", "t0"]].drop_duplicates().itertuples(index=False):
+        i0 = c.index.get_loc(t0) + 1
+        for a, b in ((1, 14), (15, 30), (31, 60), (61, 90)):
+            fr = f[coin].iloc[i0 + a: i0 + b + 1]
+            if len(fr) == b - a + 1 and fr.notna().mean() >= 0.9:
+                inc.setdefault(f"d{a}-{b}", []).append(float(fr.mean()) * 1e4)
+    out["funding_bp_per_day_by_window"] = {k: [len(x), round(float(np.mean(x)), 2), round(float(np.median(x)), 2)] for k, x in inc.items()}
+    print("funding received by the short, bp/day [n, mean, median]:", out["funding_bp_per_day_by_window"], flush=True)
+    json.dump({"study": "research/studies/is3_ls1.py b", **out}, open("research/is3/ls1_b.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    {"a": run_a}[sys.argv[1]]()
+    {"a": run_a, "b": run_b}[sys.argv[1]]()
