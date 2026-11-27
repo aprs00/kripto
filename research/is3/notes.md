@@ -863,3 +863,5 @@ Risks the backtest hides: (1) two accounts: each venue holds one direction, so a
 Unstated: margin need = the worst k-day adverse move of one account's legs before a transfer; at alloc 0.5 everything scales by 0.5 of the 11-12 numbers at gross 2 only if the
  book is the same; the 2023-05..2024-06 history (backfilled) adds the worst alt squeezes of 2024-Q1. Change my mind (b): if 2025-26 net is positive only in one interval bucket,
  the live book should be restricted to it (a research decision, written as a backlog line, not done here). Form c needs >= 30 live days (live since 11-12: 15) -> defer to 12-12.
+X1C a done (is3_x1cp.py, x1cp_ab.json): at alloc 0.5 (1x per account) worst account HL -18/-27/-46% (1/3/7 d, 2024-11), BN -27/-39/-42% (2025-10-10); basis p99 32 bp, max 527 (TON). Daily re-split needed, weekly is not safe.
+X1C b done: 2026 YTD the edge is in BN 8h-interval coins (+2.3% vs 4h +0.25%: 4h churns 2x and loses on price), but 2025 the 4h bucket was better (+3.5 vs +2.4): no restriction. Form c deferred to 12-12 (30 live days, X1f).
