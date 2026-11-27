@@ -3518,7 +3518,7 @@
    "group": "T",
    "title": "fspread_hold@pair entry timing by the HL-BN price basis (open when the rich venue is the one shorted)",
    "src": "X1C a (|basis| on held pair-days p50 5 bp, p99 32, max 527); CLAUDE.md: a filter for a book that works; owner: a cost saving is worth a signal",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -3531,15 +3531,24 @@
     {
      "id": "b",
      "what": "pre-stated rule (written before the run): an eligible new pair opens only when its signed basis >= its 30-d median basis, waiting at most k in {2, 5} days (else opens anyway); explore 2023-05..2024-12: net %/yr, SR, carry lost by waiting; PASS = net +0.5 %/yr at gross 2 with SR not lower, in both explore years",
-     "status": "planned"
+     "status": "done",
+     "result": "pre-stated wait rule on 2023-05-15..2024-12 (fills at the close basis = upper bound): live 22.3 %/yr SR 12.8; wait<=2 d 21.9 (SR 13.1, 2024 -0.7); wait<=5 d 22.8 (+0.46 %/yr, SR 12.95; 2023 +1.1, 2024 -0.4). Both FAIL (bar +0.5 %/yr and both years). 2 variants tried, as pre-stated",
+     "date": "2026-11-27",
+     "evidence": "pbt_b"
     },
     {
      "id": "c",
      "what": "if b passes: ONE run of the frozen pick on 2025-01..2026-11 (second look: the X1e WF saw these dates, stated); else diagnose (basis too small vs carry? already converged by the daily close?)",
-     "status": "planned"
+     "status": "done",
+     "result": "diagnosis (no confirm spent): the trip-level basis edge is real in explore (q4-q0 ~30 bp per leg unit) but a leg is 0.1 of equity and only the bad-basis 40 % of openings can be improved: <= ~0.3-0.5 %/yr at gross 2 before the carry and slot changes that waiting causes, which ate it; live fills see the 00:00 basis only partly (Spearman .57, |diff| 4 bp = signal size). Too small vs carry; not capturable at a daily clock",
+     "date": "2026-11-27",
+     "evidence": "pbt_b"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "entry basis mean-reverts and predicts the pair trip's price P&L (q4-q0 ~30 bp/leg unit, both explore years), but a wait-for-good-basis rule adds -0.4..+0.46 %/yr (bar +0.5, not both years): the effect is ~1-1.5 bp of equity per trip and only partly visible at the live fill minute. Not adopted; an intraday (hourly) entry clock could revisit it",
+   "closed": "2026-11-27"
   }
  ]
 }

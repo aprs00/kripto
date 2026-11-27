@@ -1055,3 +1055,4 @@ PBT a done (pbt_a.json): 89 explore trips, signed entry basis quintiles -> trip 
  Reality check on 40 live pair trades: fill-minute basis vs the 00:00 close basis Spearman .57, median |diff| 4.0 bp = the median |basis| (4.5): the daily signal is only partly capturable.
 PRE-STATED (b, unchanged from the queue): open an eligible pair only when sb >= 0 (signed basis >= its 30-d median) or after waiting k in {2, 5} days; explore 2023-05-15..2024-12-31;
  PASS = net >= live + 0.5 %/yr at gross 2, SR not lower, better in 2023 AND 2024. Upper bound (fills at the close basis).
+PBT b/c done (pbt_b.json): wait <= 2 d -0.4 %/yr, <= 5 d +0.46 (2024 worse): FAIL. Diagnosis: ~1-1.5 bp of equity per improved trip, eaten by carry/slot changes, partly invisible at 00:13. CLOSED OPEN.

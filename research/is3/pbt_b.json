@@ -1,0 +1,40 @@
+{
+ "live": {
+  "net_yr": 0.2232,
+  "sr": 12.79,
+  "cost_yr": 0.0358,
+  "funding_yr": 0.2566,
+  "turnover_yr": 35.1,
+  "gross_mean": 1.95,
+  "by_year": {
+   "2023": 0.1914,
+   "2024": 0.1737
+  }
+ },
+ "wait2": {
+  "net_yr": 0.2191,
+  "sr": 13.09,
+  "cost_yr": 0.0349,
+  "funding_yr": 0.2511,
+  "turnover_yr": 34.1,
+  "gross_mean": 1.93,
+  "by_year": {
+   "2023": 0.192,
+   "2024": 0.1664
+  },
+  "PASS": false
+ },
+ "wait5": {
+  "net_yr": 0.2278,
+  "sr": 12.95,
+  "cost_yr": 0.0358,
+  "funding_yr": 0.2582,
+  "turnover_yr": 34.7,
+  "gross_mean": 1.93,
+  "by_year": {
+   "2023": 0.2027,
+   "2024": 0.17
+  },
+  "PASS": false
+ }
+}
