@@ -1083,3 +1083,9 @@ Source: HLI a. Mechanism: when listing_short is empty, the vol target re-inflate
 Unstated: on explore 2023-24 only ~48 idle days (low power: say so); the full-sample number was seen in HLI a.
 PRE-STATED: PASS = dSR > 0 at >= 95th pct of 200 random masks (explore), then one confirm run on hlu_confirm after L.prereg.
 F0C a done (F0C__hlu_explore.json): cash-on-idle dSR +.06 = 54th pct of random day masks: exposure effect. b skipped, HLI2 closed. CLOSED OPEN.
+
+## BNB main_bn legs (think-through 19:2x UTC 11-27, before any run)
+Source: L3S c (flow@bn 2025-26 SR .49, blend_nested@bn .73), KSW (mix SR 2.02 in-sample). No chat records. main_bn = 0.5 flow@bn + 0.5 blend_nested@bn (x main_scale 1.156), not re-vol-targeted:
+ a leg's contribution is linear (0.5 x 1.156 x its weights). Question as BNH: which leg carries the alternative home of the $1,000, in which years; is flow's fade costs, funding or price?
+Unstated: bnall 2021-23 is also where both legs were chosen (in-sample; flow params = WF fold choice): the by-year view is descriptive only; the 2025-26 numbers are the closest to forward.
+Change my mind: if one leg carries > 80 % of 2024-26 P&L and the other is ~0 net of costs, STATUS should say main_bn is effectively one strategy.

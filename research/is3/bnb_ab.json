@@ -1,0 +1,164 @@
+{
+ "mix_sr": 1.83,
+ "by_year": {
+  "2021": {
+   "mix": {
+    "sr": 4.62,
+    "net": 1.1077
+   },
+   "flow": {
+    "sr_alone": 2.59,
+    "net_contrib": 0.3751,
+    "funding": 0.0226,
+    "costs": 0.032,
+    "turnover": 51.9,
+    "price": 0.3845
+   },
+   "blend_nested": {
+    "sr_alone": 4.27,
+    "net_contrib": 0.6994,
+    "funding": 0.0449,
+    "costs": 0.022,
+    "turnover": 35.9,
+    "price": 0.6765
+   },
+   "corr_legs": 0.16
+  },
+  "2022": {
+   "mix": {
+    "sr": 0.01,
+    "net": 0.0014
+   },
+   "flow": {
+    "sr_alone": 0.14,
+    "net_contrib": 0.0194,
+    "funding": 0.0373,
+    "costs": 0.0487,
+    "turnover": 79.2,
+    "price": 0.0308
+   },
+   "blend_nested": {
+    "sr_alone": -0.2,
+    "net_contrib": -0.0296,
+    "funding": 0.059,
+    "costs": 0.036,
+    "turnover": 58.4,
+    "price": -0.0526
+   },
+   "corr_legs": 0.52
+  },
+  "2023": {
+   "mix": {
+    "sr": 2.65,
+    "net": 0.5656
+   },
+   "flow": {
+    "sr_alone": 2.26,
+    "net_contrib": 0.2555,
+    "funding": 0.1138,
+    "costs": 0.0647,
+    "turnover": 104.2,
+    "price": 0.2064
+   },
+   "blend_nested": {
+    "sr_alone": 1.73,
+    "net_contrib": 0.2483,
+    "funding": 0.1932,
+    "costs": 0.0358,
+    "turnover": 57.7,
+    "price": 0.0909
+   },
+   "corr_legs": 0.47
+  },
+  "2024": {
+   "mix": {
+    "sr": 2.09,
+    "net": 0.4229
+   },
+   "flow": {
+    "sr_alone": 1.26,
+    "net_contrib": 0.1506,
+    "funding": 0.0142,
+    "costs": 0.0593,
+    "turnover": 97.0,
+    "price": 0.1957
+   },
+   "blend_nested": {
+    "sr_alone": 1.79,
+    "net_contrib": 0.2431,
+    "funding": 0.0452,
+    "costs": 0.0337,
+    "turnover": 54.9,
+    "price": 0.2316
+   },
+   "corr_legs": 0.29
+  },
+  "2025": {
+   "mix": {
+    "sr": 0.59,
+    "net": 0.143
+   },
+   "flow": {
+    "sr_alone": 0.39,
+    "net_contrib": 0.052,
+    "funding": 0.1039,
+    "costs": 0.0488,
+    "turnover": 79.2,
+    "price": -0.0031
+   },
+   "blend_nested": {
+    "sr_alone": 0.32,
+    "net_contrib": 0.0432,
+    "funding": 0.1613,
+    "costs": 0.0224,
+    "turnover": 36.4,
+    "price": -0.0957
+   },
+   "corr_legs": 0.33
+  },
+  "2026": {
+   "mix": {
+    "sr": 1.16,
+    "net": 0.2494
+   },
+   "flow": {
+    "sr_alone": 0.77,
+    "net_contrib": 0.0864,
+    "funding": 0.088,
+    "costs": 0.0215,
+    "turnover": 33.3,
+    "price": 0.0199
+   },
+   "blend_nested": {
+    "sr_alone": 0.53,
+    "net_contrib": 0.0652,
+    "funding": 0.234,
+    "costs": 0.0118,
+    "turnover": 18.2,
+    "price": -0.157
+   },
+   "corr_legs": 0.42
+  }
+ },
+ "share_2024_26": {
+  "flow": 0.45,
+  "blend_nested": 0.55
+ },
+ "btc_worst20_weeks": {
+  "btc": -0.15,
+  "flow": 0.0056,
+  "blend_nested": -0.0017,
+  "mix": 0.007
+ },
+ "btc_best20_weeks": {
+  "btc": 0.1714,
+  "flow": 0.0014,
+  "blend_nested": 0.0026,
+  "mix": 0.005
+ },
+ "2025-10-10": {
+  "flow": 0.0096,
+  "blend_nested": 0.0287,
+  "mix": 0.0306
+ }
+}

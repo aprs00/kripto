@@ -3669,24 +3669,31 @@
    "group": "T",
    "title": "main_bn (0.5 flow@bn + 0.5 blend_nested@bn): which leg carries it, by year, convexity, and 2025-26 weakness of flow",
    "src": "L3S c (flow@bn 2025-26 SR .49, blend_nested@bn .73 at model costs); KSW (main_bn bnall SR 2.02 in-sample 2020-); BNH method",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "bnall 1d 2021-01..2026-10: main_bn mix vs each leg alone, SR and net by year; attribution of the mix's P&L to the legs (the mix's own scale); correlation of the legs by year",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall 1d 2021..2026-10, legs at their mix share (0.5 x 1.156): mix SR 1.83 (2021 4.62 / 2022 .01 / 2023 2.65 / 2024 2.09 / 2025 .59 / 2026 1.16); 2024-26 P&L share flow 45 % / blend_nested@bn 55 %: balanced, not one strategy; leg corr .16-.52 by year. Legs alone 2025 .39 / .32, 2026 .77 / .53",
+     "date": "2026-11-27",
+     "evidence": "bnb_ab"
     },
     {
      "id": "b",
      "what": "convexity and stress: the mix and legs in BTC's 20 worst / best weeks and on 2025-10-10; funding vs price vs costs per leg by year (is flow's 2025-26 fade costs, funding or price?)",
-     "status": "planned"
+     "status": "done",
+     "result": "decomposition: 2025-26 the PRICE part is ~0 or negative in both legs (flow -0.3 / +2.0 %, blend_nested -9.6 / -15.7 %) and FUNDING carries them (flow +10.4 / +8.8, blend +16.1 / +23.4 %); 2021-24 price led. main_bn is now a funding-carry book (carry/carry_trend components short the payers and lose on price). Not convex: BTC worst 20 weeks mix +0.7 %/wk, best +0.5; 2025-10-10 +3.1 %. Costs fell with turnover (flow 97 -> 33x)",
+     "date": "2026-11-27",
+     "evidence": "bnb_ab"
     },
     {
      "id": "c",
      "what": "nested choice preview for blend_nested@bn (pool expanding SR on 11-27 vs the 11-03 choice carry_trend / carry / xsmom) and whether flow@bn would be picked by the same rule if it were in the pool; verdict only (no live change before the refit)",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }
