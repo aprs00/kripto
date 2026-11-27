@@ -1,0 +1,74 @@
+{
+ "n": 5922,
+ "by_year": {
+  "2023": {
+   "0": {
+    "price_bp": 7.5,
+    "funding_bp": 5.5,
+    "f7_ann_med": -0.24,
+    "n": 365
+   },
+   "1": {
+    "price_bp": -11.5,
+    "funding_bp": -1.5,
+    "f7_ann_med": 0.03,
+    "n": 365
+   },
+   "2": {
+    "price_bp": 98.3,
+    "funding_bp": -9.7,
+    "f7_ann_med": 0.28,
+    "n": 365
+   },
+   "3": {
+    "price_bp": 76.3,
+    "funding_bp": -15.3,
+    "f7_ann_med": 0.55,
+    "n": 365
+   },
+   "4": {
+    "price_bp": 86.6,
+    "funding_bp": -25.3,
+    "f7_ann_med": 0.95,
+    "n": 365
+   }
+  },
+  "2024": {
+   "0": {
+    "price_bp": 22.2,
+    "funding_bp": -0.5,
+    "f7_ann_med": 0.04,
+    "n": 820
+   },
+   "1": {
+    "price_bp": -12.9,
+    "funding_bp": -5.1,
+    "f7_ann_med": 0.14,
+    "n": 819
+   },
+   "2": {
+    "price_bp": 20.0,
+    "funding_bp": -8.0,
+    "f7_ann_med": 0.27,
+    "n": 819
+   },
+   "3": {
+    "price_bp": 46.2,
+    "funding_bp": -13.5,
+    "f7_ann_med": 0.5,
+    "n": 819
+   },
+   "4": {
+    "price_bp": 33.1,
+    "funding_bp": -24.0,
+    "f7_ann_med": 0.97,
+    "n": 820
+   }
+  }
+ },
+ "thresholds_f7_q80_by_year": {
+  "2023": 0.001891,
+  "2024": 0.001842
+ },
+ "thr_pooled_q80": 0.001859
+}

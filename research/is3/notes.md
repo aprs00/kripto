@@ -1174,3 +1174,9 @@ CRS a done (crs_a.json): only 'funding fading' (f3/f7 bottom quintile) is same-s
 PRE-STATED (b): block carry LONGS in the top |7-d funding| decile when f3/f7 < 0.443 (explore 20th pct), side +1, carry on bnall explore 2021-23, 200 random masks (circular shifts of the
  mask per coin: on-share kept, but shifted blocks may land outside the decile: a weaker null, stated). PASS = dSR > 0 at >= 95th pct AND dSR > 0 in 2021, 2022, 2023.
 CRS b done (crs_b.json, unit is3-crsb): dSR -.01, 36th pct: FAIL; c skipped. CLOSED OPEN.
+
+## TFF tsmom HL longs vs extreme HL funding (think-through 19:5x UTC 11-27, before any run)
+Source: TSH, VRT. A trend long in a coin whose HL longs pay heavy funding is a crowded long: either the trend continues (funding is the price of momentum) or the crowd is the top.
+Unstated: funding paid is certain, the price edge is not; at the top quintile funding can be 50-100 %/yr. hlu_explore only (2023-04..2024-12); HL 2025-26 kept for c.
+Change my mind: top-quintile longs' next-day price P&L < their funding paid in both explore years, with a dose -> b.
+TFF a done (tff_a.json): tsmom HL top-funding longs: price +87/+33 vs funding -25/-24 bp/unit-day (2023/24): trend pays for funding; b/c skipped. CLOSED OPEN.

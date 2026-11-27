@@ -807,6 +807,7 @@ Cash-on-idle SR 1.39 vs 1.34 (≥ every year) but F0C: = random day masks (54th 
 HL 2023-03..2026-11, SR by year 1.25 / −.07 / −.11 / 1.13: alts carry it (both legs in trend years), net exposure ~0 (market timing 19 % of gross); longs pay 3.5–12 %/yr funding.
 Convex: BTC's 20 worst weeks +3.1 %/wk, 20 best +1.9, other weeks −0.3 (the 2024–25 bleed); on listing_short's 20 worst days +0.5 % vs −4.7 % (daily corr .06). Nested pool on 11-27:
 listing_short 1.36, lowvol .71, tsmom .50, xsmom_k .30 → expected to survive the 2027-01-02 refit.
+TFF (is3_tff.py, hlu_explore): tsmom's longs in the top HL-funding quintile (~95 %/yr) earn +87 / +33 bp/unit-day price vs −25 / −24 funding (2023 / 24): trend pays for it; no funding filter.
 
 ### BNB main_bn legs: 0.5 flow@bn + 0.5 blend_nested@bn (2026-11-27 insilico, research/studies/is3_bnb.py, not registered) → OPEN (balanced; now a funding-carry book)
 bnall 1d, legs at their mix share: mix SR 1.83 (2021 4.6 / 2022 .0 / 2023 2.7 / 2024 2.1 / 2025 .6 / 2026 1.2, in-sample choice years included); 2024–26 P&L flow 45 % / blend 55 %, leg corr .16–.52.
