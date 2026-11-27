@@ -1115,3 +1115,11 @@ Unstated: (1) only coins on both venues can be routed (coverage); (2) the choice
  measure in b. Change my mind: routed saving >= 1 %/yr net of b's costs on the HL main book -> design backlog item.
 VRT a/b/c done (is3_vrt.py, vrt_a.json): HL book funding -12.3 %/yr on HL vs -7.8 all-BN vs -3.5 routed; net of venue-switch costs +14 / +7.2 / +1.6 / -1.6 %/yr (2023..26): the gap closed. CLOSED OPEN.
 CRB c done (crb_c.json, unit is3-crbc): dropping the top |funding| decile: carry dSR -.38 (1st pct of random), carry_trend -.15 (16th): FAIL. CLOSED OPEN: the extreme decile is the edge.
+
+## LSB new-listing shorts on Binance (think-through 19:3x UTC 11-27, before any run)
+Source: HLI (HL listings dried up in 2026), LVH/HLU1 (BN-only names). Mechanism: post-listing supply overhang (airdrops, unlocks, early holders selling to late longs), same as HL's listing_short.
+Binance lists far more perps; if the decay holds there in 2025-26 it can replace HL's dry flow inside main_bn. Unstated: (1) BN-only listings are thinner and squeeze-prone (LVH: BN-only shorts
+ pay -92 %/yr funding in lowvol) -> split by HL-listed at the time; (2) event P&L excludes funding here (bnall has funding; add it: shorts in new listings often pay); (3) equal-weight events,
+ clustered by listing month. Change my mind: 2025-26 BN events mean > 0 AND median > 0 with funding -> backlog WF item.
+LSB a/b/c done (is3_lsb.py, lsb_ab.json): BN listings 5.7/month in 2026 (HL ~1); event median +22..+41 % every year, mean squeezed (2021 -79 %, 2025 +4, 2026 +9 %); HL-listed vs BN-only no stable sign.
+ Backlog LSB2 (research WF in main_bn). CLOSED OPEN.

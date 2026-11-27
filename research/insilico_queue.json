@@ -1312,7 +1312,7 @@
     },
     {
      "id": "e",
-     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is \u22123..\u221221% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
+     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
      "status": "done",
      "added": "2026-11-22",
      "result": "his literal picture (every live adaptive bucket -3..-21% of its volume, day <= -7%), long 3 d: n 55, +105 bp vs matched +256 (diff -151, p .50, MDE 494), 2022 -470; 2-way table fall x selling: U-shape (no selling +989 and extreme selling <= -20% +711 on 16-18 events at <= -8%; his -3..-21% range -30..+278), no monotone dose in either direction. DEAD form",
@@ -1526,7 +1526,7 @@
    "prio": 23,
    "group": "C",
    "title": "Filter harness: does a signal improve a book that already works?",
-   "src": "design.md \u00a74 (filters)",
+   "src": "design.md §4 (filters)",
    "status": "closed",
    "forms": [
     {
@@ -3492,9 +3492,9 @@
     },
     {
      "id": "b",
-     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md \u00a74 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
+     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md §4 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
      "status": "done",
-     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design \u00a74 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
+     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design §4 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
      "date": "2026-11-27",
      "evidence": "ksw_ab"
     },
@@ -3767,16 +3767,16 @@
     },
     {
      "id": "c",
-     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the \u00a74 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
+     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the §4 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
      "status": "done",
-     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design \u00a74 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
+     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design §4 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
      "date": "2026-11-27",
      "evidence": "fld_ab"
     }
    ],
    "sessions": 1,
    "verdict": "OPEN",
-   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the \u00a74 live check; not DEAD (one formulation, IC MDE not met in single years)",
+   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the §4 live check; not DEAD (one formulation, IC MDE not met in single years)",
    "closed": "2026-11-27"
   },
   {
@@ -3823,24 +3823,37 @@
    "group": "T",
    "title": "New-listing shorts on Binance while HL's listing flow is dry: BN listing counts and the d2-d61 short P&L by year, HL-listed vs BN-only names",
    "src": "HLI (HL qualifying listings 57 -> ~10 in 2026); LVH/HLU1 (BN-only small caps behave differently as shorts); strategies.json listing_short note (bnall OOS 1.08 = BTC-leg artifact, SR .44 at band .005); owner: new-listing events",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "bnall 1d: every Binance perp listing 2021-26 (first traded bar after the panel's first 30 d) reaching \\$1M 7-d volume in d2-61: count per month, short-vs-BTC d2->d61 mean / median / win by year (as HLI b), day-clustered by listing month",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall: Binance perp listings reaching $1M 7-d volume in d2-61, short-vs-BTC d2->d61 incl. funding: per month 7.1 / 4.8 / 2.6 / 8.2 / 10.9 / 20.1 / 5.7 (2020..2026 to ~09-26); mean +38 / -79 / +7 / +14 / +25 / +4 / +9 %, MEDIAN +36 / +22 / +24 / +35 / +41 / +35 / +23 %, win 69-85 % every year; month-clustered t 2.0 / -.8 / .8 / 3.1 / 1.2 / .1 / 1.8. Median listing decays every year; the mean is set by a squeezed minority (2021). Funding costs shorts 6-7 % per event in 2025-26",
+     "date": "2026-11-27",
+     "evidence": "lsb_ab"
     },
     {
      "id": "b",
      "what": "split by whether the coin was listed on HL at the time (pair/HL panel close notna on that day): HL-listed vs BN-only, by year; and by listing-day 7-d volume tercile; is 2025-26 still positive on BN?",
-     "status": "planned"
+     "status": "done",
+     "result": "HL-listed at the time vs BN-only (HL panel from 2023): 2023 -23 % (n 23) vs +25 % (76); 2024 +15 (37) vs +30 (94); 2025 +31 (34) vs -0.6 (207); 2026 +19 (6) vs +8 (45): no stable side; medians positive in both groups every year. By first-week volume tercile no monotone pattern (2025 mid tercile -28 %). Binance still lists ~5x HL's rate in 2026 (5.7 vs ~1.1 a month)",
+     "date": "2026-11-27",
+     "evidence": "lsb_ab"
     },
     {
      "id": "c",
      "what": "verdict: if BN listings keep coming and the event mean is positive in 2025-26 with median > 0 -> backlog for a research WF of listing_short on bnall at band .005 inside main_bn (and the beta-leg artifact check from the 11-09 note); else note",
-     "status": "planned"
+     "status": "done",
+     "result": "verdict: BN listings keep coming and 2025-26 events are positive in mean (+4 / +9 %) and median (+35 / +23 %) after funding -> backlog LSB2 for a research WF: listing_short on bnall at band .005 inside main_bn, with the 11-09 BTC-leg artifact check (corr BTC) and a squeeze-tail stress (worst 10 events). Not applied here",
+     "date": "2026-11-27",
+     "evidence": "lsb_ab"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "Binance's listing decay is alive (median event +22..+41 % short-vs-BTC every year 2020-26, win 69-85 %) with a squeeze tail that sets the mean (2021 -79 %); BN lists ~5x HL's rate in 2026; HL-listed vs BN-only has no stable sign. Backlog LSB2 (research WF in main_bn)",
+   "closed": "2026-11-27"
   },
   {
    "id": "FLQ",
@@ -3862,7 +3875,7 @@
     },
     {
      "id": "c",
-     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the \u00a74 live-check flag",
+     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the §4 live-check flag",
      "status": "planned"
     }
    ]

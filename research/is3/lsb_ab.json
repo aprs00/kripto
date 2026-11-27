@@ -1,0 +1,228 @@
+{
+ "by_year": {
+  "2020": {
+   "n": 71,
+   "mean": 0.382,
+   "median": 0.36,
+   "win": 0.8,
+   "price_mean": 0.365,
+   "funding_mean": 0.017,
+   "t_month_clustered": 1.97
+  },
+  "2021": {
+   "n": 57,
+   "mean": -0.791,
+   "median": 0.218,
+   "win": 0.79,
+   "price_mean": -0.872,
+   "funding_mean": 0.081,
+   "t_month_clustered": -0.75
+  },
+  "2022": {
+   "n": 26,
+   "mean": 0.066,
+   "median": 0.24,
+   "win": 0.77,
+   "price_mean": 0.087,
+   "funding_mean": -0.021,
+   "t_month_clustered": 0.8
+  },
+  "2023": {
+   "n": 99,
+   "mean": 0.138,
+   "median": 0.352,
+   "win": 0.85,
+   "price_mean": 0.134,
+   "funding_mean": 0.005,
+   "t_month_clustered": 3.1
+  },
+  "2024": {
+   "n": 131,
+   "mean": 0.254,
+   "median": 0.407,
+   "win": 0.79,
+   "price_mean": 0.235,
+   "funding_mean": 0.018,
+   "t_month_clustered": 1.22
+  },
+  "2025": {
+   "n": 241,
+   "mean": 0.038,
+   "median": 0.351,
+   "win": 0.74,
+   "price_mean": 0.095,
+   "funding_mean": -0.057,
+   "t_month_clustered": 0.08
+  },
+  "2026": {
+   "n": 51,
+   "mean": 0.093,
+   "median": 0.227,
+   "win": 0.69,
+   "price_mean": 0.166,
+   "funding_mean": -0.073,
+   "t_month_clustered": 1.8
+  }
+ },
+ "by_year_on_hl": {
+  "2020": {
+   "False": {
+    "n": 71,
+    "mean": 0.382,
+    "median": 0.36,
+    "win": 0.8,
+    "price_mean": 0.365,
+    "funding_mean": 0.017,
+    "t_month_clustered": 1.97
+   }
+  },
+  "2021": {
+   "False": {
+    "n": 57,
+    "mean": -0.791,
+    "median": 0.218,
+    "win": 0.79,
+    "price_mean": -0.872,
+    "funding_mean": 0.081,
+    "t_month_clustered": -0.75
+   }
+  },
+  "2022": {
+   "False": {
+    "n": 26,
+    "mean": 0.066,
+    "median": 0.24,
+    "win": 0.77,
+    "price_mean": 0.087,
+    "funding_mean": -0.021,
+    "t_month_clustered": 0.8
+   }
+  },
+  "2023": {
+   "False": {
+    "n": 76,
+    "mean": 0.249,
+    "median": 0.339,
+    "win": 0.88,
+    "price_mean": 0.243,
+    "funding_mean": 0.006,
+    "t_month_clustered": 5.18
+   },
+   "True": {
+    "n": 23,
+    "mean": -0.227,
+    "median": 0.456,
+    "win": 0.74,
+    "price_mean": -0.229,
+    "funding_mean": 0.002,
+    "t_month_clustered": 0.51
+   }
+  },
+  "2024": {
+   "False": {
+    "n": 94,
+    "mean": 0.295,
+    "median": 0.399,
+    "win": 0.82,
+    "price_mean": 0.288,
+    "funding_mean": 0.007,
+    "t_month_clustered": 1.91
+   },
+   "True": {
+    "n": 37,
+    "mean": 0.148,
+    "median": 0.419,
+    "win": 0.73,
+    "price_mean": 0.1,
+    "funding_mean": 0.047,
+    "t_month_clustered": 1.06
+   }
+  },
+  "2025": {
+   "False": {
+    "n": 207,
+    "mean": -0.006,
+    "median": 0.343,
+    "win": 0.72,
+    "price_mean": 0.052,
+    "funding_mean": -0.058,
+    "t_month_clustered": 0.21
+   },
+   "True": {
+    "n": 34,
+    "mean": 0.31,
+    "median": 0.439,
+    "win": 0.88,
+    "price_mean": 0.359,
+    "funding_mean": -0.049,
+    "t_month_clustered": 3.4
+   }
+  },
+  "2026": {
+   "False": {
+    "n": 45,
+    "mean": 0.081,
+    "median": 0.227,
+    "win": 0.71,
+    "price_mean": 0.151,
+    "funding_mean": -0.07,
+    "t_month_clustered": 1.91
+   },
+   "True": {
+    "n": 6,
+    "mean": 0.188,
+    "median": 0.144,
+    "win": 0.5,
+    "price_mean": 0.279,
+    "funding_mean": -0.091,
+    "t_month_clustered": 1.15
+   }
+  }
+ },
+ "per_month_count": {
+  "2020": 7.1,
+  "2021": 4.8,
+  "2022": 2.6,
+  "2023": 8.2,
+  "2024": 10.9,
+  "2025": 20.1,
+  "2026": 5.7
+ },
+ "by_year_dv_tercile": {
+  "2020": {
+   "0": 0.38,
+   "1": 0.321,
+   "2": 0.442
+  },
+  "2021": {
+   "0": -2.909,
+   "1": 0.312,
+   "2": 0.223
+  },
+  "2022": {
+   "0": 0.136,
+   "1": 0.138,
+   "2": -0.067
+  },
+  "2023": {
+   "0": 0.233,
+   "1": 0.164,
+   "2": 0.019
+  },
+  "2024": {
+   "0": 0.296,
+   "1": 0.183,
+   "2": 0.28
+  },
+  "2025": {
+   "0": 0.272,
+   "1": -0.277,
+   "2": 0.118
+  },
+  "2026": {
+   "0": 0.13,
+   "1": -0.05,
+   "2": 0.2
+  }
+ }
+}
