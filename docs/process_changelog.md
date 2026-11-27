@@ -226,3 +226,7 @@ put a lesson into CLAUDE.md "Standing lessons" only if a future session must act
   a path into a main book in the same change. (2) The ladder needed main-book plumbing for 4 days after passing; the `sleeve` table now lets any overlay strategy share
   a main book's ledger without the hourly rebalance netting it. (3) `scripts/ledger_decomp.py <book>` (+ test): daily funding / fees / price split and live vol from the
   ledger alone, for books scripts.live_vs_backtest cannot replay (pair, sleeves). Built because today's DSR pass of fspread_hold rested on a backtest vol 3× below live.
+* 2026-11-27 research (2): HLL1's first run produced 52 "fills" at −7%/fill that were artefacts: data/hl/flow has days-long per-coin gaps (coins leave the collected
+  top-60), and the study forward-filled closes across them. Caught because the fills clustered at :27/:28 every 6 h (the collector's universe refresh) and WIF −25% had
+  not happened. Lesson for any per-coin minute series from our collectors: split at gaps before rolling statistics; a time-of-day cluster in "events" is a plumbing smell.
+  Recorded in the W2/TSZ-HL backlog line; covered by the "Verify the plumbing" standing lesson.

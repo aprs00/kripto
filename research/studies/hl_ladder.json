@@ -1,0 +1,68 @@
+{
+ "explore": {
+  "sample": "explore",
+  "all": {
+   "n": 7,
+   "days": 5,
+   "coins": 6,
+   "mean_net_bp": -202.7,
+   "median_net_bp": 13.4,
+   "mean_gross_bp": -191.7,
+   "hit": 0.57,
+   "day_t": -0.69,
+   "top3_day_share": NaN
+  },
+  "hl_only": {
+   "n": 1,
+   "days": 1,
+   "coins": 1,
+   "mean_net_bp": 521.5,
+   "median_net_bp": 521.5,
+   "mean_gross_bp": 532.5,
+   "hit": 1.0,
+   "day_t": NaN,
+   "top3_day_share": 1.0
+  },
+  "both_venues": {
+   "n": 6,
+   "days": 5,
+   "coins": 5,
+   "mean_net_bp": -323.4,
+   "median_net_bp": -26.9,
+   "mean_gross_bp": -312.4,
+   "hit": 0.5,
+   "day_t": -0.84,
+   "top3_day_share": NaN
+  },
+  "no_bn_market": {
+   "n": 0
+  },
+  "top_coins": {
+   "ASTER": {
+    "count": 2,
+    "mean": -0.1462
+   },
+   "IMX": {
+    "count": 1,
+    "mean": 0.0521
+   },
+   "LIT": {
+    "count": 1,
+    "mean": 0.0212
+   },
+   "PAXG": {
+    "count": 1,
+    "mean": 0.0013
+   },
+   "SKY": {
+    "count": 1,
+    "mean": 0.0826
+   },
+   "XMR": {
+    "count": 1,
+    "mean": -0.0067
+   }
+  },
+  "generated": "2026-11-27T07:13Z"
+ }
+}
