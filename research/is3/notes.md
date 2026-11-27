@@ -785,3 +785,10 @@ FC1C fetch chunk 3 started 00:47 (deadline 24 min, to finish before the 01:15 ni
  can run inside the window without loading bnall. is3_lv2.py: the --hlc main block ran before form_c was defined (NameError); moved to the end.
 LV2 c pre-stated (before the run): lowvol defaults on HL 1d through research.evaluate. FRAGILE if SR without the best 10 days < 0.3 OR SR before 2024-07 (the backfilled-funding
  window, unseen by the HL WF which started 2024-07) < 0; otherwise the HL blend leg stands. Insilico does not change lifecycle: a FRAGILE verdict goes to findings + backlog for research.
+FC1C a done (01:12, is3_fc1c.py, fc1c_explore.json; 115/134 coins backfilled, the 19 missing are 2024-02+ listings): c3s top-10% gap short 7-d entry +39 bp net vs cX control +10, t_price 1.4,
+ 2023 -175 / 2024 +189, dose U-shaped (d1 +61, d4 +66, d5-7 < 0, d10 +76): FAIL (t, dose, one regime). With the PC window (t 1.1-1.5, 2024-07..2025-06) it is a weak 2024+ effect, not a crowding gradient.
+FC1C b think-through: as a FILTER, the gap only has to separate GOOD from BAD shorts inside a book that already works (listing_short on HL, shorts of young perps). Mechanism: a young
+ coin whose HL longs pay more than Binance longs is being bought by levered HL retail -> the short is against the trapped side; gap <= 0 means HL is not crowded -> the short is plain
+ beta to new-listing decay. Unstated: (1) many young HL coins are not on Binance yet: gap undefined, the filter keeps them (report touched share); (2) a filter must beat random masks
+ of the same share/persistence (F0), cutting names alone costs SR; (3) exit vs delay: use exit (apply) first. Explore = 2023-05-15..2024-07-01 (F0 'explore' re-pointed, stated),
+ book listing_short HL 1d defaults. PASS = dSR > 0 at >= 95th pct of 200 random masks AND dSR > 0 in 2023 and 2024 halves. Prior low (a failed; filter is a weaker claim).

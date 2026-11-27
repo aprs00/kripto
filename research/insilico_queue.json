@@ -2528,12 +2528,15 @@
    "group": "D",
    "title": "HL-vs-Binance funding gap as a crowding measure (FC1 form c; only form with the right price sign)",
    "src": "findings funding_contra FC1 2026-11-26; backlog FC1/T3",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "re-explore on server HL funding BEFORE 2024-07 (check data/hl/funding start per coin first): short top-10% gap, 7-d entry, price leg and funding sign, by year, day-clustered t; confirm 2025-07+ stays untouched (PC explore used 2024-07..2025-06)",
-     "status": "todo"
+     "status": "done",
+     "result": "explore 2023-05-15..2024-07 (115/134 coins backfilled, median 95 HL coins/day): c3s top10% short 7-d entry n 651, net +39 bp vs control cX +10, but t_price 1.4 (MDE ~150 bp), 2023 -175 / 2024 +189 (one regime), dose U-shaped (decile1 +61, d10 +76, d5-7 negative); state form -21 bp; c1/c2/c3l all negative. FAIL pre-registered rule (t_price<2), no confirm",
+     "date": "2026-11-27",
+     "evidence": "fc1c_explore"
     },
     {
      "id": "b",
@@ -2546,7 +2549,7 @@
      "status": "todo"
     }
    ],
-   "sessions": 1,
+   "sessions": 2,
    "due": "2026-11-26T23:30",
    "defer_why": "fetch 77/134 done; next session: one more chunk (systemctl --user reset-failed is3-fc1cfetch; unit command in notes FC1C), then form a (is3_fc1c.py, rule committed)"
   },
