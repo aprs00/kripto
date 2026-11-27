@@ -1098,3 +1098,11 @@ Source: BNB b. Mechanism: carry shorts names whose longs pay most and longs name
 Unstated: (1) funding is known (7-d trailing); the price loss is the cost; dose by |funding| decile per side; (2) the extreme decile may be where most funding comes from (removing it costs carry);
  (3) explore 2021-23 only for the filter (c), pre-stated now: drop coin-days in the top |7-d funding| decile of the top-30 universe, F0 'apply', 200 masks, dSR > 0 >= 95th pct and per year.
 Change my mind: a clear dose (price loss/funding ratio > 1 in the top decile, < 1 elsewhere) in every year -> c is motivated; flat -> carry's price cost is uniform, no filter.
+
+## FLD flow@bn signal decay (think-through 19:3x UTC 11-27, before any run)
+Source: BNB b (flow's price P&L ~0 in 2025-26, +19..+38 %/unit-yr in 2021-24). No chat records. Signal: 3-d taker imbalance (2 x taker buy - volume)/volume, cross-sectional rank, top-30.
+Mechanism claimed: split metaorders keep coming (continuation). Decay candidates: (i) more market makers/algos read the same public taker split (crowded), (ii) the edge moved to faster
+ horizons (priced within the day), (iii) regime: 2025-26 alt bear + chop. Unstated: IC is the pre-cost test; long vs short leg; by liquidity tercile (the thin third may still work).
+Change my mind: IC (next-day, market-relative) ~0 in 2025 AND 2026 in all terciles -> flag for the §4 retirement check; IC alive but P&L ~0 -> costs/sizing; one year only -> regime.
+FLD a/b/c done (is3_fld.py, fld_ab.json): flow IC1 2021 .034 (t 2.4), then .005/-.009/.015/-.019/.010; liquid tercile +.04-.05 in 2022/24 only; longs paid in bull years only.
+ Recent return = funding. Flagged for §4 live check. 3-d IC sign oddity in 2023 unresolved (not used). CLOSED OPEN.
