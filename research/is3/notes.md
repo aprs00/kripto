@@ -852,3 +852,4 @@ Change my mind: delay cost of 1 h >= 3 bp per unit turnover (≈ HL taker fee) i
 T9B a/b done (is3_t9b.py, t9b_a.json): BN 2020-26 decay curves FLAT: 1 h late costs -0.5..+1.3 bp per unit turnover (xsmom the only CI>0), 4 h <= 1.2, alpha accrues over 24-48 h
  (tsmom +7/+10, xsmom +5/+10). HL and live-BN windows (7 months) too short (CI +-6 bp at +1h). xsmom first-hour alpha 2.4 (2021) -> 0.1 (2026). Late runs are harmless; T9-timing closed.
  Bug caught by the 4h known-answer check: fillna(0) on hold-NaN targets made fake changes (first run, numbers discarded).
+T9B c done (t9b_c.json): live fills 11-13 min after the close; notional drift BN -3 / HL +11 bp but by side it is market direction (side-balanced -0.3 / +2.1 bp). T9B CLOSED DEAD (late runs cost ~nothing).

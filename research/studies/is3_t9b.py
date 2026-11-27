@@ -116,5 +116,47 @@ def run_a():
     (OUT / "t9b_a.json").write_text(json.dumps(res, indent=1, default=str))
 
 
+
+
+def run_c():
+    """Live paper fills of the daily books vs the decision close: realised delay and signed drift (mid at fill vs bar close), bp; >0 = paid more."""
+    import sqlite3
+    con = sqlite3.connect("state/paper.db")
+    f = pd.read_sql("select ts, book, coin, size, px, mid, slip_bps, reason from fills where reason like 'bar %'", con)
+    f = f[~f.book.str.contains("@pair")]
+    f["venue"] = np.where(f.book.str.contains("@bn") | f.book.str.endswith("main_bn"), "bn", "hl")
+    f["ts"] = pd.to_datetime(f.ts, utc=True)
+    f["bar"] = pd.to_datetime(f.reason.str[4:], utc=True)
+    f["D"] = f.bar + pd.Timedelta(hours=4)
+    f["delay_min"] = (f.ts - f.D).dt.total_seconds() / 60
+    cl = {}
+    for v, c in f[["venue", "coin"]].drop_duplicates().itertuples(index=False):
+        p = (data.DATA / "hl" / "candles_4h" / f"{c}.parquet") if v == "hl" else (data.DATA / "bn" / "live_4h" / f"{c}.parquet")
+        if p.exists():
+            x = pd.read_parquet(p, columns=["t", "c"])
+            cl[(v, c)] = pd.Series(x.c.to_numpy(), pd.to_datetime(x.t, unit="ms", utc=True))
+    f["cD"] = [cl.get((v, c), pd.Series(dtype=float)).get(b, np.nan) for v, c, b in zip(f.venue, f.coin, f.bar)]
+    f["drift_bp"] = np.sign(f["size"]) * (f["mid"] / f["cD"] - 1) * 1e4
+    f["notional"] = (f["size"] * f["px"]).abs()
+    f = f.dropna(subset=["drift_bp"])
+    f = f[f.drift_bp.abs() < 2000]
+    out = {}
+    for v, g in f.groupby("venue"):
+        w = g.notional
+        days = g.ts.dt.floor("D")
+        dd = g.assign(wd=g.drift_bp * w).groupby(days)[["wd", "notional"]].sum()
+        rng = np.random.default_rng(3)
+        b = [dd.wd.to_numpy()[i].sum() / dd.notional.to_numpy()[i].sum() for i in (rng.integers(0, len(dd), len(dd)) for _ in range(2000))]
+        out[v] = {"fills": int(len(g)), "books": int(g.book.nunique()), "days": int(days.nunique()),
+                  "delay_min_median": round(float(g.delay_min.median()), 1), "delay_min_p90": round(float(g.delay_min.quantile(0.9)), 1),
+                  "drift_bp_mean": round(float(g.drift_bp.mean()), 2), "drift_bp_median": round(float(g.drift_bp.median()), 2),
+                  "drift_bp_notional_w": round(float((g.drift_bp * w).sum() / w.sum()), 2), "ci95_w": [round(float(np.quantile(b, q)), 2) for q in (0.025, 0.975)],
+                  "slip_bps_mean": round(float(g.slip_bps.mean()), 2),
+                  "by_delay": {str(k): [int(len(x)), round(float(x.drift_bp.mean()), 1)] for k, x in g.groupby(pd.cut(g.delay_min, [0, 5, 8, 12, 30, 60, 1e4]), observed=True)},
+                  "by_side": {("buy" if k > 0 else "sell"): [int(len(x)), round(float(x.drift_bp.mean()), 1)] for k, x in g.groupby(np.sign(g["size"]))}}
+        print(v, json.dumps(out[v]), flush=True)
+    (OUT / "t9b_c.json").write_text(json.dumps(out, indent=1, default=str))
+
+
 if __name__ == "__main__":
-    {"a": run_a}[sys.argv[1]]()
+    {"a": run_a, "c": run_c}[sys.argv[1]]()
