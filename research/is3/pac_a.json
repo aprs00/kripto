@@ -1,0 +1,344 @@
+{
+ "book": "shadow:fspread_hold@pair",
+ "start_equity": 2000.0,
+ "last_close_bar": "2026-11-26",
+ "venues": {
+  "hl": [
+   {
+    "day": "2026-11-12",
+    "pnl": 4.37,
+    "funding": 1.85,
+    "fees": 0.72,
+    "net_notional": -1588.6
+   },
+   {
+    "day": "2026-11-13",
+    "pnl": 44.71,
+    "funding": 0.13,
+    "fees": 0.81,
+    "net_notional": -1745.9
+   },
+   {
+    "day": "2026-11-14",
+    "pnl": 229.11,
+    "funding": -1.89,
+    "fees": 1.08,
+    "net_notional": -1390.9
+   },
+   {
+    "day": "2026-11-15",
+    "pnl": 152.87,
+    "funding": -4.91,
+    "fees": 1.25,
+    "net_notional": -1494.5
+   },
+   {
+    "day": "2026-11-16",
+    "pnl": 162.14,
+    "funding": -8.35,
+    "fees": 1.37,
+    "net_notional": -1209.4
+   },
+   {
+    "day": "2026-11-17",
+    "pnl": 137.12,
+    "funding": -10.23,
+    "fees": 1.37,
+    "net_notional": -1232.5
+   },
+   {
+    "day": "2026-11-18",
+    "pnl": 156.87,
+    "funding": -13.72,
+    "fees": 1.46,
+    "net_notional": -1007.5
+   },
+   {
+    "day": "2026-11-19",
+    "pnl": 182.57,
+    "funding": -17.87,
+    "fees": 1.47,
+    "net_notional": -989.3
+   },
+   {
+    "day": "2026-11-20",
+    "pnl": 290.41,
+    "funding": -20.13,
+    "fees": 1.57,
+    "net_notional": -1083.3
+   },
+   {
+    "day": "2026-11-21",
+    "pnl": 255.51,
+    "funding": -24.55,
+    "fees": 1.63,
+    "net_notional": -1247.6
+   },
+   {
+    "day": "2026-11-22",
+    "pnl": 248.58,
+    "funding": -29.25,
+    "fees": 1.74,
+    "net_notional": -1024.5
+   },
+   {
+    "day": "2026-11-23",
+    "pnl": 271.75,
+    "funding": -34.89,
+    "fees": 1.75,
+    "net_notional": -991.0
+   },
+   {
+    "day": "2026-11-24",
+    "pnl": 280.79,
+    "funding": -35.1,
+    "fees": 1.93,
+    "net_notional": -574.8
+   },
+   {
+    "day": "2026-11-25",
+    "pnl": 279.21,
+    "funding": -36.18,
+    "fees": 2.04,
+    "net_notional": -807.9
+   },
+   {
+    "day": "2026-11-26",
+    "pnl": 172.78,
+    "funding": -38.82,
+    "fees": 2.13,
+    "net_notional": -708.9
+   }
+  ],
+  "bn": [
+   {
+    "day": "2026-11-12",
+    "pnl": -3.79,
+    "funding": -0.34,
+    "fees": 0.8,
+    "net_notional": 1590.1
+   },
+   {
+    "day": "2026-11-13",
+    "pnl": -32.8,
+    "funding": 8.52,
+    "fees": 0.9,
+    "net_notional": 1753.0
+   },
+   {
+    "day": "2026-11-14",
+    "pnl": -217.84,
+    "funding": 13.7,
+    "fees": 1.21,
+    "net_notional": 1409.8
+   },
+   {
+    "day": "2026-11-15",
+    "pnl": -137.46,
+    "funding": 22.87,
+    "fees": 1.38,
+    "net_notional": 1477.8
+   },
+   {
+    "day": "2026-11-16",
+    "pnl": -146.31,
+    "funding": 28.96,
+    "fees": 1.51,
+    "net_notional": 1198.1
+   },
+   {
+    "day": "2026-11-17",
+    "pnl": -118.17,
+    "funding": 33.02,
+    "fees": 1.52,
+    "net_notional": 1221.0
+   },
+   {
+    "day": "2026-11-18",
+    "pnl": -143.62,
+    "funding": 34.54,
+    "fees": 1.63,
+    "net_notional": 988.6
+   },
+   {
+    "day": "2026-11-19",
+    "pnl": -165.35,
+    "funding": 38.94,
+    "fees": 1.65,
+    "net_notional": 982.9
+   },
+   {
+    "day": "2026-11-20",
+    "pnl": -275.87,
+    "funding": 42.19,
+    "fees": 1.76,
+    "net_notional": 1095.0
+   },
+   {
+    "day": "2026-11-21",
+    "pnl": -242.99,
+    "funding": 45.59,
+    "fees": 1.83,
+    "net_notional": 1243.7
+   },
+   {
+    "day": "2026-11-22",
+    "pnl": -236.82,
+    "funding": 49.91,
+    "fees": 1.95,
+    "net_notional": 1010.4
+   },
+   {
+    "day": "2026-11-23",
+    "pnl": -260.8,
+    "funding": 54.32,
+    "fees": 1.96,
+    "net_notional": 984.9
+   },
+   {
+    "day": "2026-11-24",
+    "pnl": -271.61,
+    "funding": 54.48,
+    "fees": 2.17,
+    "net_notional": 590.6
+   },
+   {
+    "day": "2026-11-25",
+    "pnl": -269.79,
+    "funding": 56.5,
+    "fees": 2.29,
+    "net_notional": 805.6
+   },
+   {
+    "day": "2026-11-26",
+    "pnl": -156.43,
+    "funding": 58.66,
+    "fees": 2.41,
+    "net_notional": 711.7
+   }
+  ]
+ },
+ "per_day": [
+  {
+   "day": "2026-11-12",
+   "hl_pnl": 4.37,
+   "bn_pnl": -3.79,
+   "book_pnl": 0.58,
+   "hl_account_pct": 0.44,
+   "bn_account_pct": -0.38
+  },
+  {
+   "day": "2026-11-13",
+   "hl_pnl": 44.71,
+   "bn_pnl": -32.8,
+   "book_pnl": 11.91,
+   "hl_account_pct": 4.47,
+   "bn_account_pct": -3.28
+  },
+  {
+   "day": "2026-11-14",
+   "hl_pnl": 229.11,
+   "bn_pnl": -217.84,
+   "book_pnl": 11.27,
+   "hl_account_pct": 22.91,
+   "bn_account_pct": -21.78
+  },
+  {
+   "day": "2026-11-15",
+   "hl_pnl": 152.87,
+   "bn_pnl": -137.46,
+   "book_pnl": 15.41,
+   "hl_account_pct": 15.29,
+   "bn_account_pct": -13.75
+  },
+  {
+   "day": "2026-11-16",
+   "hl_pnl": 162.14,
+   "bn_pnl": -146.31,
+   "book_pnl": 15.83,
+   "hl_account_pct": 16.21,
+   "bn_account_pct": -14.63
+  },
+  {
+   "day": "2026-11-17",
+   "hl_pnl": 137.12,
+   "bn_pnl": -118.17,
+   "book_pnl": 18.95,
+   "hl_account_pct": 13.71,
+   "bn_account_pct": -11.82
+  },
+  {
+   "day": "2026-11-18",
+   "hl_pnl": 156.87,
+   "bn_pnl": -143.62,
+   "book_pnl": 13.25,
+   "hl_account_pct": 15.69,
+   "bn_account_pct": -14.36
+  },
+  {
+   "day": "2026-11-19",
+   "hl_pnl": 182.57,
+   "bn_pnl": -165.35,
+   "book_pnl": 17.22,
+   "hl_account_pct": 18.26,
+   "bn_account_pct": -16.54
+  },
+  {
+   "day": "2026-11-20",
+   "hl_pnl": 290.41,
+   "bn_pnl": -275.87,
+   "book_pnl": 14.54,
+   "hl_account_pct": 29.04,
+   "bn_account_pct": -27.59
+  },
+  {
+   "day": "2026-11-21",
+   "hl_pnl": 255.51,
+   "bn_pnl": -242.99,
+   "book_pnl": 12.52,
+   "hl_account_pct": 25.55,
+   "bn_account_pct": -24.3
+  },
+  {
+   "day": "2026-11-22",
+   "hl_pnl": 248.58,
+   "bn_pnl": -236.82,
+   "book_pnl": 11.76,
+   "hl_account_pct": 24.86,
+   "bn_account_pct": -23.68
+  },
+  {
+   "day": "2026-11-23",
+   "hl_pnl": 271.75,
+   "bn_pnl": -260.8,
+   "book_pnl": 10.95,
+   "hl_account_pct": 27.18,
+   "bn_account_pct": -26.08
+  },
+  {
+   "day": "2026-11-24",
+   "hl_pnl": 280.79,
+   "bn_pnl": -271.61,
+   "book_pnl": 9.18,
+   "hl_account_pct": 28.08,
+   "bn_account_pct": -27.16
+  },
+  {
+   "day": "2026-11-25",
+   "hl_pnl": 279.21,
+   "bn_pnl": -269.79,
+   "book_pnl": 9.42,
+   "hl_account_pct": 27.92,
+   "bn_account_pct": -26.98
+  },
+  {
+   "day": "2026-11-26",
+   "hl_pnl": 172.78,
+   "bn_pnl": -156.43,
+   "book_pnl": 16.35,
+   "hl_account_pct": 17.28,
+   "bn_account_pct": -15.64
+  }
+ ],
+ "ledger_equity_now": 2013.12
+}

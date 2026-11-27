@@ -847,6 +847,7 @@ regimes); pair book +.61 (HL longs pay more in euphoria). Income persists (AR(1)
 fspread_hold × .5, each venue account = half the capital (1.0× leverage): worst 7 d HL −46.7 %, BN −39.2 % (accounts corr −1). Bootstrap P(account −50 % within 2 y) HL 94 %, BN 90 %; on the
 historical path the losing account goes below zero without transfers. Rebalancing the accounts to 50/50 when one is < 70 % of the other: worst −29 %, ~14 transfers/yr (monthly −67 %,
 weekly −42 % with 52). main@pair is deployable only with that operational rule; the paper book does not model per-account equity yet.
+PAC (is3_pac.py, live ledger): shadow pair accounts +28 % (HL shorts) / −27 % (BN longs) by 11-24 in an alt sell-off, book +$9; ≈ ±14 % at main@pair size, 12.5th pct of KSA's 13-d range; a 70 % transfer was due by 11-20.
 
 ### E2 execution-time tilt: CME break 17–18 NY as buy-first / sell-after (descriptive, BN-82 1h, 2026-11-26 PC, research/studies/e2_exec_tilt.py) → PASS by rule, small and fading
 Daily books trade at 04:03 UTC. Literal "buy before 17 NY, sell after 18 NY" at that clock loses to signal decay (xsmom −6, tsmom −10 bp/unit; flow +4.9 t 1.8). Clock moved to the break

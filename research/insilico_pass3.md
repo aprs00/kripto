@@ -133,4 +133,5 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * KSA the pair book's two accounts: OPEN. Held in two separate accounts with no transfers, one of them would almost surely lose half its money within two years (the other gains the same); moving money between them whenever one falls below 70 % of the other (about 14 times a year) keeps the worst account at -29 %.
 * CRS carry's crowded-short longs: OPEN. The ones whose funding is fading tend to keep falling a little, but skipping them changes nothing at the book level.
 * TFF HL trend longs with expensive funding: OPEN. Even the trend longs paying ~95 %/yr funding earned more than that in price in 2023-24: no filter.
+* PAC live pair accounts: OPEN. In its first two weeks the live pair book's Binance side lost 27 % and its Hyperliquid side gained 28 % (about half that at the real-account size): normal for the backtest, and a money transfer between the accounts would already have been needed.
 * FLQ flow on the 10 most liquid coins: OPEN. Worse than the live 30-coin version (Sharpe 0.67 vs 1.58 in 2021-23); flow@bn stays flagged.

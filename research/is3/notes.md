@@ -1180,3 +1180,9 @@ Source: TSH, VRT. A trend long in a coin whose HL longs pay heavy funding is a c
 Unstated: funding paid is certain, the price edge is not; at the top quintile funding can be 50-100 %/yr. hlu_explore only (2023-04..2024-12); HL 2025-26 kept for c.
 Change my mind: top-quintile longs' next-day price P&L < their funding paid in both explore years, with a dose -> b.
 TFF a done (tff_a.json): tsmom HL top-funding longs: price +87/+33 vs funding -25/-24 bp/unit-day (2023/24): trend pays for funding; b/c skipped. CLOSED OPEN.
+
+## PAC live per-venue account equity of the pair books (think-through 19:5x UTC 11-27, before any run)
+Source: KSA. The paper ledger keeps one equity per pair book; real money would sit in two accounts. Reconstruct each venue's P&L from fills (positions), funding rows (per leg) and daily
+ closes from the live caches (venue_pair.live_panel: the same closes the book trades on). Note already: funding per venue since 11-12 = HL legs -$39, BN legs +$59 (both venues' funding
+ negative in Nov: the BN longs receive, the HL shorts pay; FRG: low-median regime). Change my mind: live divergence outside KSA's 15-d distribution -> a model error to fix first.
+PAC a/b/c done (is3_pac.py, pac_a.json): live shadow pair accounts +28 / -27 % by 11-24 (book +$9); at alloc .5 ~ +/-14 % = 12.5th pct of KSA's 13-d range; 70 % transfer due by 11-20. KS1 spec. CLOSED OPEN.

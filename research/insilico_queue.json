@@ -1312,7 +1312,7 @@
     },
     {
      "id": "e",
-     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is \u22123..\u221221% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
+     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
      "status": "done",
      "added": "2026-11-22",
      "result": "his literal picture (every live adaptive bucket -3..-21% of its volume, day <= -7%), long 3 d: n 55, +105 bp vs matched +256 (diff -151, p .50, MDE 494), 2022 -470; 2-way table fall x selling: U-shape (no selling +989 and extreme selling <= -20% +711 on 16-18 events at <= -8%; his -3..-21% range -30..+278), no monotone dose in either direction. DEAD form",
@@ -1526,7 +1526,7 @@
    "prio": 23,
    "group": "C",
    "title": "Filter harness: does a signal improve a book that already works?",
-   "src": "design.md \u00a74 (filters)",
+   "src": "design.md §4 (filters)",
    "status": "closed",
    "forms": [
     {
@@ -3492,9 +3492,9 @@
     },
     {
      "id": "b",
-     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md \u00a74 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
+     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md §4 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
      "status": "done",
-     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design \u00a74 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
+     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design §4 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
      "date": "2026-11-27",
      "evidence": "ksw_ab"
     },
@@ -3767,16 +3767,16 @@
     },
     {
      "id": "c",
-     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the \u00a74 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
+     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the §4 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
      "status": "done",
-     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design \u00a74 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
+     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design §4 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
      "date": "2026-11-27",
      "evidence": "fld_ab"
     }
    ],
    "sessions": 1,
    "verdict": "OPEN",
-   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the \u00a74 live check; not DEAD (one formulation, IC MDE not met in single years)",
+   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the §4 live check; not DEAD (one formulation, IC MDE not met in single years)",
    "closed": "2026-11-27"
   },
   {
@@ -3880,9 +3880,9 @@
     },
     {
      "id": "c",
-     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the \u00a74 live-check flag",
+     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the §4 live-check flag",
      "status": "done",
-     "result": "verdict: no liquid-only variant; flow@bn keeps the FLD flag (signal ~0 since 2022, recent return = funding) for the design \u00a74 live check",
+     "result": "verdict: no liquid-only variant; flow@bn keeps the FLD flag (signal ~0 since 2022, recent return = funding) for the design §4 live check",
      "date": "2026-11-27",
      "evidence": "flq_a"
     }
@@ -4122,24 +4122,37 @@
    "group": "T",
    "title": "Live check of KSA: per-venue account equity of shadow:fspread_hold@pair and main@pair from the ledger (fills, funding per leg, marks)",
    "src": "KSA (two-account drawdowns; transfer rule at 70 %); kripto/venue_pair.py (one book equity, legs on two venues)",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "reconstruct each venue's account P&L per day since the book started: leg positions from fills, funding rows per leg (funding.coin suffix), fees per leg, price P&L from the pair 1d panel closes (to its end) and HL 1h / BN live 4h candles after; per-account equity at half the start capital",
-     "status": "planned"
+     "status": "done",
+     "result": "shadow:fspread_hold@pair (gross ~2, $2,000) reconstructed per venue from fills + funding rows + live-cache closes (book total reconciles: +$16.4 vs the ledger's +$13-20): by 11-24 the HL account (short legs) +$281 = +28 % of its half, the BN account (long legs) -$272 = -27 %, book +$9; on 11-26 +17 / -16 %. Funding: HL legs -$39, BN legs +$59 (Nov: both venues negative, BN longs receive). At main@pair's alloc .5 the swing is half: about +/-14 % per account in 13 days",
+     "date": "2026-11-27",
+     "evidence": "pac_a"
     },
     {
      "id": "b",
      "what": "compare the live per-account divergence with KSA's backtest distribution over the same number of days (bootstrap of 15-30-d windows): is live inside it? days to the 70 % transfer trigger at the current pace",
-     "status": "planned"
+     "status": "done",
+     "result": "vs KSA's backtest (alloc .5, 13-day windows): account return p05 / p50 / p95 HL -23.9 / 0 / +21.3 %, BN -20.9 / +.4 / +25 %; live -13.6 % (BN) sits at the 12.5th pct: inside the distribution, a normal alt sell-off. The 70 % rule would have triggered at main@pair size around 11-20 (BN 365 vs HL 640 on $1,000 = .57): the first real transfer would already have been due in week 2",
+     "date": "2026-11-27",
+     "evidence": "pac_a"
     },
     {
      "id": "c",
      "what": "verdict and a concrete spec for the review/research session: what venue_pair should record (per-venue equity in meta or a table) so STATUS can show both accounts; backlog line",
-     "status": "planned"
+     "status": "done",
+     "result": "spec for a review/research session (backlog KS1 extended): venue_pair should record per-venue account equity (half the book's start capital each, P&L = that venue's legs' price + funding - fees) every hour in a table or meta, the watchdog WARNs when one account < 70 % of the other (the transfer the owner would have to make) and STATUS shows both; until then is3_pac.py reconstructs it",
+     "date": "2026-11-27",
+     "evidence": "pac_a"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "the live pair book's two venue accounts already diverged +28 / -27 % (shadow, gross 2; ~+/-14 % at main@pair size) in two weeks of an alt sell-off, inside KSA's backtest range (12.5th pct); a 70 % transfer would have been due by 11-20. Spec for per-account equity in venue_pair added to KS1",
+   "closed": "2026-11-27"
   }
  ]
 }
