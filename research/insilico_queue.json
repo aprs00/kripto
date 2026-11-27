@@ -2753,7 +2753,7 @@
    "group": "T",
    "title": "Ladder fills in liquidity holes vs heavy-volume flushes (does a thin-book fill bounce more?)",
    "src": "backlog LD3; library N14; E2/LD1 ladder fill set (research/studies/ld1_ladder_skew.py)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -2781,11 +2781,17 @@
     {
      "id": "d",
      "what": "taker ADD-ON at c[t+1] after a ladder fill whose fill-minute Amihud/coin 30-d median > 0.9077 (frozen explore median), exit c[t+61], taker + volume-scaled slip; base = the same add-on on flush fills; ONE confirm on confirmT 2024-25 (2026 = vault)",
-     "status": "planned",
-     "added": "2026-11-27"
+     "status": "done",
+     "added": "2026-11-27",
+     "result": "CONFIRM FAIL (confirmT 2024-25, one run): hole add-on c[t+1]->t+61 n 257 / 69 days +46 bp (median +52, p .47, ex-top3 -34) vs flush +73: diff -27 (p .78, MDE 180); 2024 +95, 2025 -210; t+2 stress 28 vs 82; from the quote 100 vs 150. Explore +84 did not replicate; small confirm (half the explore events) but sign reversed.",
+     "date": "2026-11-27",
+     "evidence": "ld3_d_confirm"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "Explore (2021-23) pre-reg pass for hole fills bouncing more from t+1 (+84 bp, dose, not entry depth), but from the ladder's own quote no gap at all (+8), and the only tradeable form (taker add-on at c[t+1]) reversed on confirmT 2024-25 (-27 bp, 2025 -210, MDE 180). Volume-only splits weaker; taker-sell share reversed (one-sided flushes pay, as T1). Not DEAD: confirm underpowered, one sign flip; nothing for the live ladder.",
+   "closed": "2026-11-27"
   },
   {
    "id": "T9B",

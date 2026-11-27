@@ -155,6 +155,29 @@ def explore():
     (OUT / "ld3_explore.json").write_text(json.dumps(out, indent=1, default=str))
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and sys.argv[1:] != ["confirm_d"]:
     a = sys.argv[1:]
     {"build": build, "explore": explore}[a[0]]()
+
+
+def confirm_d():
+    """LD3 d: ONE run on confirmT (pre-registered LD3_d_hole_addon)."""
+    from research.studies import is3_lib as IL
+    lo, hi = (pd.Timestamp(x, tz="UTC") for x in IL.SAMPLES["confirmT"])
+    e = events(lo, hi)
+    hole = e.illiq > 0.9077
+    e["cost"] = 13e-4 + e.slip
+    A, B = e[hole].assign(gross=e.r1_61[hole]), e[~hole].assign(gross=e.r1_61[~hole])
+    c = IL.card("LD3_d_hole_addon", A, "confirmT", base=B, note="taker add-on c[t+1]->c[t+61] on hole fills vs flush fills")
+    yrs = {int(y): round(float(g[g.illiq > 0.9077].r1_61.mean() - g[g.illiq <= 0.9077].r1_61.mean()) * 1e4, 1) for y, g in e.groupby(e.time.dt.year)}
+    r2 = e.c62 / e.c2 - 1
+    stress = [round(float(r2[hole].mean()) * 1e4, 1), round(float(r2[~hole].mean()) * 1e4, 1)]
+    ok = bool(c["passes"] and c.get("vs_base_bp", -1) >= 13 and all(v > 0 for v in yrs.values()))
+    out = {"card": c, "diff_by_year": yrs, "stress_t2_hole_flush_bp": stress, "hole_share": round(float(hole.mean()), 2),
+           "q61_hole_flush_bp": [round(float(e.q61[hole].mean()) * 1e4, 1), round(float(e.q61[~hole].mean()) * 1e4, 1)], "pass": ok}
+    (OUT / "ld3_d_confirm.json").write_text(json.dumps(out, indent=1, default=str))
+    print("PASS" if ok else "FAIL", json.dumps({k: v for k, v in out.items() if k != "card"}, default=str))
+
+
+if __name__ == "__main__" and sys.argv[1:] == ["confirm_d"]:
+    confirm_d()

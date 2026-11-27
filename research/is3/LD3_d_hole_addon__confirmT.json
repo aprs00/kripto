@@ -1,0 +1,53 @@
+{
+ "name": "LD3_d_hole_addon",
+ "sample": "confirmT",
+ "n": 257,
+ "days": 69,
+ "coins": 79,
+ "mean_bp": 45.97,
+ "median_bp": 52.38,
+ "win": 0.572,
+ "se_bp": 64.27,
+ "ci95_bp": [
+  -82.17,
+  167.29
+ ],
+ "p": 0.47176411794102946,
+ "mde80_bp": 179.96,
+ "mean_ex_top3_bp": -34.13,
+ "top3_share": 1.63,
+ "t_day_mean": 0.51,
+ "by_year": {
+  "2024": [
+   183,
+   94.58
+  ],
+  "2025": [
+   74,
+   -74.24
+  ]
+ },
+ "by_side": {
+  "1": [
+   257,
+   45.97
+  ]
+ },
+ "coins_positive": 0.66,
+ "net_bp": {
+  "free": 45.97,
+  "maker_taker": 37.97,
+  "taker": 32.97,
+  "taker_x2": 19.97,
+  "crash": -34.03,
+  "own_cost": 31.41
+ },
+ "base_n": 226,
+ "base_bp": 72.56,
+ "vs_base_bp": -26.6,
+ "p_vs_base": 0.7801099450274862,
+ "passes": false,
+ "note": "taker add-on c[t+1]->c[t+61] on hole fills vs flush fills",
+ "rerun": "",
+ "at": "2026-11-27T10:56:49+00:00"
+}

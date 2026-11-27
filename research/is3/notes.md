@@ -836,3 +836,5 @@ LD3 a done (is3_ld3.py, ld3_explore.json; 1047 events <=2023): hole half c[t+1]-
  with d1/kreach). But from our QUOTE no gap (q61 +8): holes sit 72 bp lower at t+1 and return to the same level -> the resting ladder gains nothing; live form = a taker add-on at c[t+1]. Delay t+2 +73, t+5 +36.
 LD3 b done: relvol/trade count/trade size weaker same sign (p .27-.56, 2023 <0); taker-sell share reversed (one-sided selling bounces MORE: the forced sellers pay, T1). FAIL.
 LD3 c restated (form c "skip fills" is not live-implementable: the fill minute's volume is known after the fill): d = taker add-on at c[t+1] on hole fills (frozen threshold 0.9077), confirmT 2024-25, base = flush fills' add-on.
+LD3 d confirm (ld3_d_confirm.json): hole add-on 2024-25 +46 vs flush +73 bp (diff -27, p .78, MDE 180; 2024 +95, 2025 -210): FAIL. LD3 CLOSED OPEN. Sceptic: tested N14 on the ladder's own fills, by
+ Amihud and by volume alone, from the quote AND from t+1; the claim holds descriptively in 2021-23 but adds nothing to the resting ladder and the add-on did not replicate.
