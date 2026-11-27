@@ -838,3 +838,17 @@ LD3 b done: relvol/trade count/trade size weaker same sign (p .27-.56, 2023 <0);
 LD3 c restated (form c "skip fills" is not live-implementable: the fill minute's volume is known after the fill): d = taker add-on at c[t+1] on hole fills (frozen threshold 0.9077), confirmT 2024-25, base = flush fills' add-on.
 LD3 d confirm (ld3_d_confirm.json): hole add-on 2024-25 +46 vs flush +73 bp (diff -27, p .78, MDE 180; 2024 +95, 2025 -210): FAIL. LD3 CLOSED OPEN. Sceptic: tested N14 on the ladder's own fills, by
  Amihud and by volume alone, from the quote AND from t+1; the claim holds descriptively in 2021-23 but adds nothing to the resting ladder and the add-on did not replicate.
+
+## T9B alpha-decay of the live books' trades (think-through 11:0x UTC 11-27, before any run)
+Source: backlog T9b, library N8 (maxdama §7: plot each strategy's signed return from decision to +h; the curve says how much a late fill costs and whether a signal is
+ crowded). No chat records. Books: main = blend(listing_short, lowvol, tsmom) on HL 4h; main_bn = blend(carry_trend, carry, xsmom)@bn + flow@bn(lb 3, cap .05) on BN 4h (the 82-coin
+ bn set, survivor-biased: stated). Daily rebalances on a 4h grid; live fills land 4-10 min after the 04:00 close (fills table).
+Who pays / mechanism: a daily signal built on multi-day features should have a FLAT early curve (alpha spread over days); flow (3-d taker imbalance, metaorder continuation)
+ and anything with a reversal leg should front-load. If a curve is steep in the first hours, the 4-10 min live delay and a skipped hourly run cost real bp, and maker execution
+ (T9) loses most there (adverse selection). Unstated: (1) part of every target change is vol-rescaling noise with no alpha: report bp per unit of |dw| AND the share of |dw|
+ from sign changes / entries vs resizes; (2) funding over hours is tiny, price only, stated; (3) decision time = the 4h bar's CLOSE (index is open time, + 4h), price at D from the
+ 1h bar ending at D; known-answer check: h = 0 must give exactly 0 and the +4 h point must equal the 4h panel's next-bar return on the same Δw.
+Change my mind: delay cost of 1 h >= 3 bp per unit turnover (≈ HL taker fee) in any book -> execution timing is worth a research item; < 1 bp everywhere -> late runs are harmless (close T9-timing).
+T9B a/b done (is3_t9b.py, t9b_a.json): BN 2020-26 decay curves FLAT: 1 h late costs -0.5..+1.3 bp per unit turnover (xsmom the only CI>0), 4 h <= 1.2, alpha accrues over 24-48 h
+ (tsmom +7/+10, xsmom +5/+10). HL and live-BN windows (7 months) too short (CI +-6 bp at +1h). xsmom first-hour alpha 2.4 (2021) -> 0.1 (2026). Late runs are harmless; T9-timing closed.
+ Bug caught by the 4h known-answer check: fillna(0) on hold-NaN targets made fake changes (first run, numbers discarded).
