@@ -3418,7 +3418,10 @@
     {
      "id": "b",
      "what": "pre-stated variants (written before the run): per-name vol floor = max(est, cross-sectional median vol of coins listed < 60 d) and a fixed floor 150 %/yr; bnall explore 2021-23: SR, worst 10 days, realised vol vs target; PASS = realised vol closer to target AND SR not lower AND worst-day loss smaller in each explore year",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall 2021-23 explore, 2 pre-stated floors ('own' = vol from the coin's traded days only, replacing 'median of young coins', stated before the run): fixed 150 %/yr floor hits the target (vol 19.4 % vs 24.9) and cuts worst-10 days -4.7 -> -3.6 % but SR .18 -> -.01 (2022 .43 -> .02): FAIL; 'own' SR .35, vol 24.6, worst day worse in 2021/22: FAIL. The under-estimate over-sizes the youngest names, where the decay pays; correcting it trades return for vol on target. Both differences inside noise (3-y SR SE ~.6)",
+     "date": "2026-11-27",
+     "evidence": "lsv_b"
     },
     {
      "id": "c",

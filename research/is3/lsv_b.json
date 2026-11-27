@@ -1,0 +1,88 @@
+{
+ "live": {
+  "days": 1095,
+  "sr": 0.18,
+  "realised_vol": 0.249,
+  "target": 0.2,
+  "rolling30_vol_median": 0.231,
+  "rolling30_vol_p90": 0.336,
+  "gross_mean": 0.71,
+  "share_days_at_cap": 0.0,
+  "worst10_mean": -0.0467,
+  "by_year": {
+   "2021": {
+    "sr": -1.56,
+    "vol": 0.234,
+    "worst": -0.0401
+   },
+   "2022": {
+    "sr": 0.43,
+    "vol": 0.231,
+    "worst": -0.0527
+   },
+   "2023": {
+    "sr": 1.43,
+    "vol": 0.279,
+    "worst": -0.0811
+   }
+  }
+ },
+ "fixed150": {
+  "days": 1095,
+  "sr": -0.01,
+  "realised_vol": 0.194,
+  "target": 0.2,
+  "rolling30_vol_median": 0.193,
+  "rolling30_vol_p90": 0.243,
+  "gross_mean": 0.56,
+  "share_days_at_cap": 0.0,
+  "worst10_mean": -0.0355,
+  "by_year": {
+   "2021": {
+    "sr": -1.51,
+    "vol": 0.207,
+    "worst": -0.0412
+   },
+   "2022": {
+    "sr": 0.02,
+    "vol": 0.19,
+    "worst": -0.0522
+   },
+   "2023": {
+    "sr": 1.65,
+    "vol": 0.182,
+    "worst": -0.0361
+   }
+  },
+  "PASS": false
+ },
+ "own": {
+  "days": 1095,
+  "sr": 0.35,
+  "realised_vol": 0.246,
+  "target": 0.2,
+  "rolling30_vol_median": 0.219,
+  "rolling30_vol_p90": 0.315,
+  "gross_mean": 0.68,
+  "share_days_at_cap": 0.08,
+  "worst10_mean": -0.0471,
+  "by_year": {
+   "2021": {
+    "sr": -0.95,
+    "vol": 0.275,
+    "worst": -0.0751
+   },
+   "2022": {
+    "sr": 0.38,
+    "vol": 0.246,
+    "worst": -0.058
+   },
+   "2023": {
+    "sr": 2.0,
+    "vol": 0.214,
+    "worst": -0.036
+   }
+  },
+  "PASS": false
+ }
+}
