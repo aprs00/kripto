@@ -1186,3 +1186,9 @@ Source: KSA. The paper ledger keeps one equity per pair book; real money would s
  closes from the live caches (venue_pair.live_panel: the same closes the book trades on). Note already: funding per venue since 11-12 = HL legs -$39, BN legs +$59 (both venues' funding
  negative in Nov: the BN longs receive, the HL shorts pay; FRG: low-median regime). Change my mind: live divergence outside KSA's 15-d distribution -> a model error to fix first.
 PAC a/b/c done (is3_pac.py, pac_a.json): live shadow pair accounts +28 / -27 % by 11-24 (book +$9); at alloc .5 ~ +/-14 % = 12.5th pct of KSA's 13-d range; 70 % transfer due by 11-20. KS1 spec. CLOSED OPEN.
+
+## OVL the three main books together (think-through 19:5x UTC 11-27, before any run)
+Source: KSW, BNB, BNH. If the owner funds more than one home, what matters is whether the books share bets: main (HL listing shorts + lowvol + tsmom) and main_bn (flow + carry/xsmom) both
+ short weak alts and both hold carry; main@pair is hedged. Unstated: backtest correlations understate crash co-movement (look at the worst days); coin overlap by same-sign gross.
+Change my mind: corr(main, main_bn) > .5 or most of the worst days shared -> say in STATUS that two homes are one bet.
+OVL a/b/c done (is3_ovl.py, ovl_ab.json): main / main_bn / pair corr .05-.08, worst days not shared; main+main_bn SR 2.07 mdd -10.5 % vs alone 1.28/-19.8, 1.74/-13.4. CLOSED OPEN.

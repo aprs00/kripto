@@ -1,0 +1,146 @@
+{
+ "days": 1255,
+ "corr_all": {
+  "main (HL)": {
+   "main (HL)": 1.0,
+   "main_bn": 0.05,
+   "main@pair": 0.08
+  },
+  "main_bn": {
+   "main (HL)": 0.05,
+   "main_bn": 1.0,
+   "main@pair": 0.05
+  },
+  "main@pair": {
+   "main (HL)": 0.08,
+   "main_bn": 0.05,
+   "main@pair": 1.0
+  }
+ },
+ "corr_by_year": {
+  "2023": {
+   "main (HL)": {
+    "main (HL)": 1.0,
+    "main_bn": 0.05,
+    "main@pair": 0.12
+   },
+   "main_bn": {
+    "main (HL)": 0.05,
+    "main_bn": 1.0,
+    "main@pair": 0.13
+   },
+   "main@pair": {
+    "main (HL)": 0.12,
+    "main_bn": 0.13,
+    "main@pair": 1.0
+   }
+  },
+  "2024": {
+   "main (HL)": {
+    "main (HL)": 1.0,
+    "main_bn": 0.13,
+    "main@pair": 0.16
+   },
+   "main_bn": {
+    "main (HL)": 0.13,
+    "main_bn": 1.0,
+    "main@pair": 0.12
+   },
+   "main@pair": {
+    "main (HL)": 0.16,
+    "main_bn": 0.12,
+    "main@pair": 1.0
+   }
+  },
+  "2025": {
+   "main (HL)": {
+    "main (HL)": 1.0,
+    "main_bn": 0.02,
+    "main@pair": 0.1
+   },
+   "main_bn": {
+    "main (HL)": 0.02,
+    "main_bn": 1.0,
+    "main@pair": -0.1
+   },
+   "main@pair": {
+    "main (HL)": 0.1,
+    "main_bn": -0.1,
+    "main@pair": 1.0
+   }
+  },
+  "2026": {
+   "main (HL)": {
+    "main (HL)": 1.0,
+    "main_bn": 0.02,
+    "main@pair": -0.02
+   },
+   "main_bn": {
+    "main (HL)": 0.02,
+    "main_bn": 1.0,
+    "main@pair": 0.0
+   },
+   "main@pair": {
+    "main (HL)": -0.02,
+    "main_bn": 0.0,
+    "main@pair": 1.0
+   }
+  }
+ },
+ "worst20_of_main (HL)": {
+  "main (HL)": -0.0394,
+  "main_bn": 0.0028,
+  "main@pair": -0.0
+ },
+ "worst20_of_main_bn": {
+  "main (HL)": 0.0044,
+  "main_bn": -0.031,
+  "main@pair": 0.0003
+ },
+ "worst20_of_main@pair": {
+  "main (HL)": -0.0026,
+  "main_bn": 0.0026,
+  "main@pair": -0.001
+ },
+ "alone": {
+  "main (HL)": {
+   "sr": 1.28,
+   "mdd": -0.198
+  },
+  "main_bn": {
+   "sr": 1.74,
+   "mdd": -0.134
+  },
+  "main@pair": {
+   "sr": 8.34,
+   "mdd": -0.005
+  }
+ },
+ "combined_equal_capital": {
+  "main+main_bn": {
+   "sr": 2.07,
+   "mdd": -0.105
+  },
+  "all3": {
+   "sr": 2.26,
+   "mdd": -0.071
+  }
+ },
+ "live_overlap": {
+  "main_coins": 25,
+  "main_bn_coins": 28,
+  "common": 15,
+  "same_sign": [
+   "AVAX",
+   "BTC",
+   "ENA",
+   "ETH",
+   "HYPE",
+   "NEAR",
+   "PUMP",
+   "UNI",
+   "WLD",
+   "ZEC"
+  ]
+ }
+}
