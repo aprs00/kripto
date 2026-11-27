@@ -1205,3 +1205,4 @@ HLD b/c done (is3_hld.py, hld_b.json, 11 public info calls): builder dexes = sto
 Source: BNB c (pool 11-21: xsmom 1.25, tsmom 1.17), TSH (tsmom convex on HL). Descriptive only: the nested rule decides the refit. Question: what changes in main_bn's risk if the rule swaps
  them: tsmom (directional trend, convex) vs xsmom (market-neutral momentum). Change my mind: n/a (verdict note only).
 XST a/b/c done (is3_xst.py, xst_ab.json): tsmom convex (BTC worst weeks +2.4 %/wk) and hedges carry's worst days; blend with tsmom SR 1.40 / mdd -19.9 vs xsmom 1.28 / -16.7 (2023-26). CLOSED OPEN.
+FLB a/b/c done (flb_ab.json): known-answer tests pass; 2023 3-d IC vs daily lags = rank-of-sum vs sum-of-ranks (fat tail), not a bug. CLOSED OPEN.

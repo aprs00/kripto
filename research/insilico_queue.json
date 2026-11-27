@@ -1312,7 +1312,7 @@
     },
     {
      "id": "e",
-     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is \u22123..\u221221% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
+     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
      "status": "done",
      "added": "2026-11-22",
      "result": "his literal picture (every live adaptive bucket -3..-21% of its volume, day <= -7%), long 3 d: n 55, +105 bp vs matched +256 (diff -151, p .50, MDE 494), 2022 -470; 2-way table fall x selling: U-shape (no selling +989 and extreme selling <= -20% +711 on 16-18 events at <= -8%; his -3..-21% range -30..+278), no monotone dose in either direction. DEAD form",
@@ -1526,7 +1526,7 @@
    "prio": 23,
    "group": "C",
    "title": "Filter harness: does a signal improve a book that already works?",
-   "src": "design.md \u00a74 (filters)",
+   "src": "design.md §4 (filters)",
    "status": "closed",
    "forms": [
     {
@@ -3492,9 +3492,9 @@
     },
     {
      "id": "b",
-     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md \u00a74 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
+     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md §4 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
      "status": "done",
-     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design \u00a74 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
+     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design §4 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
      "date": "2026-11-27",
      "evidence": "ksw_ab"
     },
@@ -3767,16 +3767,16 @@
     },
     {
      "id": "c",
-     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the \u00a74 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
+     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the §4 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
      "status": "done",
-     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design \u00a74 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
+     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design §4 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
      "date": "2026-11-27",
      "evidence": "fld_ab"
     }
    ],
    "sessions": 1,
    "verdict": "OPEN",
-   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the \u00a74 live check; not DEAD (one formulation, IC MDE not met in single years)",
+   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the §4 live check; not DEAD (one formulation, IC MDE not met in single years)",
    "closed": "2026-11-27"
   },
   {
@@ -3880,9 +3880,9 @@
     },
     {
      "id": "c",
-     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the \u00a74 live-check flag",
+     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the §4 live-check flag",
      "status": "done",
-     "result": "verdict: no liquid-only variant; flow@bn keeps the FLD flag (signal ~0 since 2022, recent return = funding) for the design \u00a74 live check",
+     "result": "verdict: no liquid-only variant; flow@bn keeps the FLD flag (signal ~0 since 2022, recent return = funding) for the design §4 live check",
      "date": "2026-11-27",
      "evidence": "flq_a"
     }
@@ -4274,24 +4274,37 @@
    "group": "T",
    "title": "Verify the plumbing: FLD's 3-day IC (+.03, t ~2 in 2023) disagrees in sign with its lag-1..3 ICs (all negative in 2023)",
    "src": "FLD a (research/studies/is3_fld.py ic_series, fwd3 construction); CLAUDE.md 'verify the plumbing': a surprise is a bug until proven otherwise",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "known-answer tests on a synthetic panel for ic_series and the fwd3 window (planted signal at lag 1 only, at lag 3 only): does each IC recover the plant? print one coin-day by hand",
-     "status": "planned"
+     "status": "done",
+     "result": "known-answer tests on a synthetic panel: a signal planted at lag 1 gives lag ICs .426 / -.009 / .008 / .005 and 3-d IC .244; planted at lag 3: .005 / -.009 / .426 and .245; one fwd3 cell matches the hand product to 6 decimals. ic_series and the fwd3 window are correct",
+     "date": "2026-11-27",
+     "evidence": "flb_ab"
     },
     {
      "id": "b",
      "what": "recompute 2023's fwd3 IC with sum of simple rel returns vs compounded, and with the same row mask as the lag ICs; which choice flips the sign (NaN mask, rank of compounded returns, outliers)?",
-     "status": "planned"
+     "status": "done",
+     "result": "2023 real data: same row mask changes nothing (lags -.0083 / -.0057 / -.0015); rank IC of the 3-d SUM +.034 (compounded +.029) but of the sum of the three daily RANKS +.002; Pearson lags +.006 / .000 / +.005, sum +.026. Not a bug: the 3-d rank is set by large movers, and high-flow coins have more large 3-d up-moves while the typical day is flat: in 2023 flow's edge lived in the tail (its book SR 2.3 that year)",
+     "date": "2026-11-27",
+     "evidence": "flb_ab"
     },
     {
      "id": "c",
      "what": "fix is3_fld.py if it is a bug and rerun FLD a; update the FLD findings line either way",
-     "status": "planned"
+     "status": "done",
+     "result": "no fix needed; FLD findings line updated: the oddity is a magnitude effect (tail), not a pipeline error",
+     "date": "2026-11-27",
+     "evidence": "flb_ab"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "plumbing verified (known-answer tests pass); the 3-d vs daily IC sign split in 2023 is a fat-tail effect (rank of the 3-d sum vs sum of daily ranks), not a bug",
+   "closed": "2026-11-27"
   },
   {
    "id": "LSW",

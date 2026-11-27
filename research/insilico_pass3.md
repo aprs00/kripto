@@ -137,4 +137,5 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * OVL the three main books together: OPEN. They are nearly uncorrelated (0.05-0.08) and do not share their worst days; holding the HL and Binance books side by side would have roughly halved the drawdown in the backtest.
 * HLD HL listing drought: OPEN (explained). Hyperliquid listed 51 new crypto perps in 2025 and 8 in 2026; its growth went to stock and index perps on builder exchanges, which this project does not trade. Our data is complete.
 * XST Binance blend's third leg (xsmom vs tsmom): OPEN. Trend (tsmom) would hedge the carry legs' bad days better and earn a little more, with slightly deeper drawdowns; the refit rule decides.
+* FLB plumbing check of an IC oddity: OPEN (verified). The tools pass planted-signal tests; the odd number was a real effect of a few large moves, not a bug.
 * FLQ flow on the 10 most liquid coins: OPEN. Worse than the live 30-coin version (Sharpe 0.67 vs 1.58 in 2021-23); flow@bn stays flagged.
