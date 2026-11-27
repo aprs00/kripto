@@ -14,9 +14,9 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 - [x] HLU1 → DEAD 2026-11-27 (insilico: BN-only shorts are the momentum books' best; findings).
 - [ ] T5d (2026-11-27, prior LOW after T5c) untried T5b forms: F3 losers' side as a SHORT-side filter (rising OI on a 3-day fall → bounce; explore 2023 IC +0.032), the 2021–22 explore
   for a regime check once `scripts.metrics_coverage` ≥ 95%, and HL positioning (T6b) as the HL analogue. F1/F2 failed explore. Any confirm must span ≥ 2 regimes (T5c flipped sign after 2024).
-- [ ] LD3 (2026-11-27, library N14, prior medium; insilico/research, descriptive first) **ladder fills in liquidity holes vs heavy-volume flushes**: split the E2 ladder fill set by the fill
+- [x] LD3 → OPEN 2026-11-27 insilico (findings). LD3 (2026-11-27, library N14, prior medium; insilico/research, descriptive first) **ladder fills in liquidity holes vs heavy-volume flushes**: split the E2 ladder fill set by the fill
   minute's Amihud ratio vs the coin's 30-day median; predict the high-illiquidity half bounces more. Explore ≤ 2023, confirm 2024+, per-day P&L + worst day, size-matched vs random skips.
-- [ ] X1f (2026-11-27) **fspread_hold live vol vs backtest.** Live price-P&L vol 3.2%/yr (gross ~1.2, 15 d) vs backtest 1.4% (gross 1.9, synchronised 00:00 closes); the 11-10 WF had vol 6.5% on
+- [ ] X1f (2026-11-27; (b)(c) DONE insilico X1V 11-27: live vol = backtest's own vol on those days (98th-pct window), marks/timing minor; live pairs differ -> queue X1U) fspread_hold live vol vs backtest.** Live price-P&L vol 3.2%/yr (gross ~1.2, 15 d) vs backtest 1.4% (gross 1.9, synchronised 00:00 closes); the 11-10 WF had vol 6.5% on
   dates where today's data gives ≈ 1.1% (no code change found; the HL funding/candle files were rebuilt by the FC1C backfill). Do: (a) `scripts.ledger_decomp shadow:fspread_hold@pair` and main@pair
   at ≥ 30 days; (b) replay the backtest on the live days and compare day by day (live_vs_backtest does not support pair books: extend it); (c) test whether HL markPx vs Binance markPrice
   definitions explain the noise (mark both legs from the same-minute trade prices). If live vol stays ≥ 3× backtest, recompute the DSR with live-like vol and say so in STATUS (the incubation
@@ -30,7 +30,7 @@ so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 202
 - [ ] E2b (from E2, 2026-11-26; prior low–medium, effect fading 7.2 → 2.1 → 1.1 bp) **daily BN books decide on the 16:00/20:00 UTC bar, buy at the CME break, defer sells ≥ 1 h**: first the
   phase/robustness check that moving flow@bn's anchor does not cost signal P&L; only then a shadow variant, judged on forward days. HL re-check at > 12 months of hourly data.
 - [ ] A1 progress: 11-15 xsrev, lowvol; 11-22 tsmom long-only, funding_contra (both → OPEN, one form); 11-26 carry (HL), carry_trend (HL): DEAD holds (3 forms, diagnosed). Next: resrev, T9 maker execution.
-- [ ] **LV2c 2026-11-27: HL lowvol leg FRAGILE** (SR 0.70 on HL since 2023-03 with backfilled funding; 2025 2.36, every other year ≤ 0.5; w/o best 10 days 0.23; research/is3/lv2_hlc.json). The HL main book (blend_nested) holds it; the 2027-01-02 refit decides by rule, but a research session should check whether the nested selection would still pick it with the 2023-05+ funding (it was chosen on data with funding only from 2024-07).
+- [x] **LV2c** → insilico BNH 11-27: HL blend 1.30 without lowvol vs 1.34; lowvol picked OOS 2025-01: keep (findings). **LV2c 2026-11-27: HL lowvol leg FRAGILE** (SR 0.70 on HL since 2023-03 with backfilled funding; 2025 2.36, every other year ≤ 0.5; w/o best 10 days 0.23; research/is3/lv2_hlc.json). The HL main book (blend_nested) holds it; the 2027-01-02 refit decides by rule, but a research session should check whether the nested selection would still pick it with the 2023-05+ funding (it was chosen on data with funding only from 2024-07).
 - [ ] LV1 (a)(b) DONE 2026-11-26 (PC) → 4 forms fail net of funding (findings). Left, prior low: short leg without negative-funding names (needs HL/forward as confirm). Was: LV1 (2026-11-15 dead-list audit; lowvol relabelled OPEN) (c) ANSWERED 2026-11-17 by R1: high-vol shorts are not the losers (median +31–39 bp), no. (a)/(b) untried, prior low. Untried forms, prior low–medium: (a) bnall daily, survivorship-free (BN-82 drops the
   delisted high-vol losers that the short leg would have earned on); (b) idiosyncratic (BTC-residual) vol instead of total vol; (c) as a FILTER:
   drop the top-vol decile from the x-sec books' short side (same question as R1: are the high-vol shorts the squeeze losses?). ≤ 6 configs total.
@@ -77,11 +77,11 @@ so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 202
   currently dropped by `.iloc[:, :8]`/`cols`). Re-download is incremental-unfriendly → plan it within the nightly window.
   Then one pre-registered batch on bnall: (a) k-day net-taker-flow rank → next-k return, both signs, beta-hedged;
   (b) flow-without-price-progress (absorption) reversal. ≤ 8 configs each. Mechanism: metaorder splitting (Tóth et al.).
-- [ ] T9b Alpha-decay curve per strategy (library N8, maxdama §7): signed return of each strategy's trades from decision to +1/4/12/24 h.
+- [x] T9b → DEAD 2026-11-27 insilico T9B (late runs cost ~nothing; findings). T9b Alpha-decay curve per strategy (library N8, maxdama §7): signed return of each strategy's trades from decision to +1/4/12/24 h.
   Explains T9 and sizes the cost of a late run (one bar late costs tsmom a third). Descriptive, hourly data.
 - [ ] L6 (2026-11-27 insilico L6V → OPEN, research/is3/l6v_*.json) **ewm20 variances in vol_target**: track the vol target 9–23% better in 6/6 book × sample cells (blend@bn confirm −22%),
   SR mixed (xsmom confirm −0.21); HAR over-forecasts. A design-level risk change for a research session (design.md entry, all books at once, never in a promoting session); low priority.
-- [ ] L3 **Square-root impact sanity check of the slippage model (library N3)**: do this with T0a once there are live fills.
+- [ ] L3 **Square-root impact sanity check of the slippage model (library N3)**: do this with T0a once there are live fills. → queued as InSilico L3S 2026-11-27.
 - [ ] L5 Value-area rejection (library N7, Dalton/AMT): low prior, after the above.
 - [ ] T2b **listing_short follow-ups** (pre-register ≤ 8 configs each). (b) DONE 2026-11-12 (event study: linear decay to d120 on both
   venues → new (d): hold 90/120 d pre-registered, judged on bnall where 800 events exist):
