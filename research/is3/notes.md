@@ -906,3 +906,14 @@ PRE-STATED (a): FRAGILE if, with full funding, SR without the best 10 days < 0.3
 Form c (fetch the missing coins): the fetch is already complete (134/134 coins with HL candles before 2024-06); c is a coverage check only.
 LS1 a/b/c done (is3_ls1.py, ls1_a/b.json): listing_short HL with full funding SR 1.36 (masked 1.44), shorts pay 7-10%/yr in 2023/25/26, not FRAGILE (.82 w/o best 10, .78 pre-2024-07). Per event median
  listing pays the short (+2.2% by d90), mean -2.0% (squeezed tail); 2026 cohort -15% funding by d90 (n 8). Uncovered 5% = DOGE/INJ 2023-04 (old tokens new on HL). LS1 CLOSED OPEN (passes).
+
+## LV3 lowvol by idiosyncratic vol (think-through 11:1x UTC 11-27, before any run)
+Source: backlog LV1 (b); findings lowvol (LV1: 4 forms fail net of funding; price-only spread positive .17-.31 explore; LV2: excluding negative-funding shorts = random). No chat records.
+Mechanism: the low-vol anomaly in equities is mostly an IDIOSYNCRATIC-vol effect (lottery demand for coins with big own-moves); total vol in crypto is mostly BTC beta x BTC vol,
+ which the hedge removes anyway, so ranking on total vol mixes the lottery signal with beta. Who pays: lottery buyers of coins with big idiosyncratic swings.
+Unstated: (1) idio vol is ~80-90% correlated with total vol cross-sectionally in alts: the double sort (idio within total-vol terciles) is the test of 'adds anything'; (2) high idio-vol
+ names are also new listings / squeezes: funding matters (LV1's failure), report price-only AND net; (3) the beta estimate is noisy for young coins (min 20 d), they get beta 1.
+PRE-STATED (a, explore 2021-01..2023-12, bnall 1d, top-30 and top-100, rank weights, legs 0.5/0.5, beta-hedged, next-day simple, net of funding, gross of costs): PASS = net SR >= 0.5
+ AND 3/3 years > 0 AND > total-vol ranking's SR on the same universe, in at least one universe. Prior low (LV1: 2021 -0.9 every form).
+LV3 a/b/c done (is3_lv3.py, lv3_ab.json): idio vol = total vol (rho .93); idio ranking SR -.32/-.04, double sort -.81/-.32, low-idio long leg = average coin. High-vol coins lose in the MEDIAN (-90 bp/d) not
+ the MEAN (+11): pops pay the short back. LV3 CLOSED DEAD (7 forms with LV1).

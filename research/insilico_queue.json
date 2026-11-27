@@ -2985,24 +2985,37 @@
    "group": "T",
    "title": "lowvol by idiosyncratic (BTC-residual) vol instead of total vol (LV1 untried form b)",
    "src": "backlog LV1 (b); findings lowvol / LV2",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "bnall 1d explore 2021-23, top-30 and top-100: rank by 60-d BTC-residual vol, low minus high quintile, BTC-beta hedged; price-only AND net of funding; vs the total-vol ranking on the same panel; every year",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall 1d 2021-23, rank weights on 30-d BTC-residual vol, legs .5/.5, beta-hedged, net of funding, gross of costs: top30 SR -0.32 (total-vol ranking -0.26; price-only -0.04 vs .01), years -1.09/.32/.20; top100 -0.04 (total -0.18; price-only .20), years -.83/.25/.92. Spearman(idio, total) .93: idio vol IS total vol in alts. Pre-stated PASS (SR >= .5, 3/3 years, > total) not met in either universe. FAIL.",
+     "date": "2026-11-27",
+     "evidence": "lv3_ab"
     },
     {
      "id": "b",
      "what": "dose: hedged next-day return by idio-vol quintile (monotone?) and the residual of idio vol after total vol (does idio add anything beyond total?)",
-     "status": "planned"
+     "status": "done",
+     "result": "double sort (idio rank within total-vol terciles): top30 SR -0.81, top100 -0.32: idio beyond total adds nothing (negative). Dose, hedged next-day net of funding by idio quintile: top30 mean 4.3/1.5/6.1/9.6/11.2 bp, MEDIAN -3/-30/-40/-56/-90; top100 mean 7.2/5.4/12.2/-1.6/12.4, median -5/-28/-34/-48/-69. The median high-vol coin drifts down (volatility drag + lottery overpricing), but the MEAN is not lower: right-tail pops pay it back, and a short earns the mean. FAIL.",
+     "date": "2026-11-27",
+     "evidence": "lv3_ab"
     },
     {
      "id": "c",
      "what": "only if a passes (SR >= 0.5 net, >= 3 of 3 years > 0, beats total-vol ranking): ONE pre-registered confirm on HL 1d 2023-05+ (backfilled funding), else diagnose",
-     "status": "planned"
+     "status": "done",
+     "result": "a failed, so no HL confirm. Diagnosis + the one untested leg: long low-idio alone vs the average coin (same dose table): top30 Q1 4.3 vs avg 6.5 bp/day, top100 7.2 vs 7.1: the low-vol long leg has no edge either. Lowvol in crypto is a median effect on the short leg that the right tail of squeezes/pops (and funding, LV1) cancels in the mean.",
+     "date": "2026-11-27",
+     "evidence": "lv3_ab"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "idio vol = total vol in alts (rho .93); ranking on it, on idio beyond total (double sort), and the low-idio long leg alone all fail on bnall 2021-23 (SR -0.81..-0.04, pre-stated bar .5). Diagnosed: high-vol coins lose in the MEDIAN (-69..-90 bp/day hedged) but not in the MEAN (+11..+12): right-tail pops pay the short back. With LV1's 4 forms: 7 forms. MDE: daily book SR se ~.6 over 3 y; the dose table's per-quintile mean se ~3-5 bp/day.",
+   "closed": "2026-11-27"
   }
  ]
 }

@@ -1,0 +1,81 @@
+{
+ "study": "research/studies/is3_lv3.py",
+ "top30": {
+  "sr_total": -0.26,
+  "sr_idio": -0.32,
+  "sr_idio_within_total": -0.81,
+  "idio_years": {
+   "2021": -1.09,
+   "2022": 0.32,
+   "2023": 0.2
+  },
+  "dose_bp": {
+   "1": {
+    "size": 6563,
+    "mean": 4.33,
+    "median": -3.0
+   },
+   "2": {
+    "size": 6566,
+    "mean": 1.48,
+    "median": -30.04
+   },
+   "3": {
+    "size": 6565,
+    "mean": 6.06,
+    "median": -39.56
+   },
+   "4": {
+    "size": 6562,
+    "mean": 9.56,
+    "median": -55.52
+   },
+   "5": {
+    "size": 6561,
+    "mean": 11.2,
+    "median": -89.74
+   }
+  },
+  "spearman_total_idio": 0.93,
+  "pass": false
+ },
+ "top100": {
+  "sr_total": -0.18,
+  "sr_idio": -0.04,
+  "sr_idio_within_total": -0.32,
+  "idio_years": {
+   "2021": -0.83,
+   "2022": 0.25,
+   "2023": 0.92
+  },
+  "dose_bp": {
+   "1": {
+    "size": 21504,
+    "mean": 7.22,
+    "median": -5.2
+   },
+   "2": {
+    "size": 21545,
+    "mean": 5.38,
+    "median": -28.09
+   },
+   "3": {
+    "size": 21545,
+    "mean": 12.22,
+    "median": -33.71
+   },
+   "4": {
+    "size": 21538,
+    "mean": -1.56,
+    "median": -48.23
+   },
+   "5": {
+    "size": 21576,
+    "mean": 12.37,
+    "median": -68.67
+   }
+  },
+  "spearman_total_idio": 0.93,
+  "pass": false
+ }
+}
