@@ -983,3 +983,12 @@ Three explanations: (i) mark noise (HL markPx vs BN markPrice: no economic risk)
  (i)/(ii) are out; then compare with the backtest's own returns on the same days and its 10-d vol distribution. Change my mind: replay vol < half live -> marks/timing.
 X1V a/b/c done (is3_x1v.py, x1v_a.json, 10 days to panel end 11-21): live 3.14%/yr, replay of live positions 2.84 (corr .88), backtest's own 3.1 on the same days = 98th pct of its 10-d vol
  (median 1.0). Legs filled 2 s apart; residual live-replay $1.6/d. EXPLAINED by regime; no DSR recompute. Side fact: only 4.2 of 7.4 live pairs are the backtest's (live universe/path).
+
+## BNH HL main book (blend_nested = listing_short + lowvol + tsmom) dependence on lowvol (think-through 18:5x UTC 11-27, before any run)
+Source: LV2c (HL lowvol SR .70 from 2023-03; 2025 2.36, other years ~0; w/o best 10 days .23: FRAGILE), LVH (it works on HL because of the HL-listed universe). No chat records.
+Question: is the HL main book's backtest (1.87 nested) carried by one lucky lowvol year, and did the nested selection pick lowvol only because of 2025?
+Mechanism if real: low-vol anomaly = lottery demand; high-vol alts are overpriced by retail and bleed (short pays) except in pops. On HL the shorts are HL-listed (less squeezable).
+Unstated: (1) the blend vol-targets the SUM, so a leg's contribution is not its stand-alone P&L: attribute with the blend's own scale k_t (stated approximation); (2) leave-one-out
+ blends are new configs: logged via research.evaluate tag bnh (raises N by 3; descriptive, no promotion); (3) the nested choice is from an expanding window: truncate the panel at 2024-12-31
+ to see what it would pick without 2025. Nothing changes live before the 2027-01-02 refit (M1 rule); the verdict is a flag for that refit.
+Change my mind: lowvol share of blend P&L <= its 1/3 risk share outside 2025 AND the blend without it loses >= .3 SR in >= 2 years -> keep, not luck. Otherwise flag luck-driven.
