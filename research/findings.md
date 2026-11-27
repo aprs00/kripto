@@ -237,8 +237,11 @@ rank-hedged net of funding, before costs; no WF by the pre-written rule): total 
 **Why:** price-only is positive (0.17–0.31 / 0.69–0.92) but the high-vol shorts are crowded (confirm Q5 funding mean −102%/yr, median +9.7%: RIVER, LAB, PIPPIN, MYX), so the
 short leg pays its price gain back in funding; delistings few (9/15 in top-100), not survivorship; 2021 −0.9 every form. Its HL 0.90 rests on ~2 y: a warning for the HL main
 book's blend leg (refit 2027-01-02 decides by rule). Untried: short leg excluding negative-funding names (shaped after confirm: needs HL/forward as its confirm). R1 = (c).
+LV2 (2026-11-27, is3_lv2.py): dropping negative-funding shorts = random drops (2020-23), funding-adjusted vol ranks = price ranks. HL leg check (funding backfilled to 2023-05): SR 0.70, 2023 −0.01 / 2024 0.50 / **2025 2.36** / 2026 −0.11, without its best 10 days 0.23, pays 4–5 %/yr funding every year: **FRAGILE**, the HL main book's lowvol leg is one year deep (input for the 2027-01-02 refit and the next research session).
 
 ### funding_contra: fade funding spikes vs own history (2026-11-08, re-run 11-09) → DEAD as crowding reversal (FC1 2026-11-26, 4 forms); HL-vs-BN gap OPEN (T3)
+FC1C (2026-11-27, HL funding backfilled to 2023-05, is3_fc1c*.py): gap top-10% short 2023-05..2024-06 +39 bp net, t_price 1.4, 2023 −175 / 2024 +189, U-shaped dose: FAIL. As a listing_short filter (exit gap≤0 shorts) dSR −0.13; the
+dose was REVERSED (high-gap shorts −106 bp next day): blocking high-gap shorts explore +0.74 SR (lag-robust) → frozen confirm 2025-07+ +0.08 at 92nd pct: FAIL. fspread tilt (c) pending.
 WF HL −0.81, BN −0.42. FC1 (PC, research/studies/fc1_funding_contra.py, bnall top-100 explore 2020–23, rule: price leg t>2 every year, corr carry<0.5; nothing passed → no confirm, no WF):
 (a) long funding < −0.3%/d: price leg t −2.4..0.4; new listings −84..−96 bp/d (hedged supply, = listing_short); seasoned top-30 SR 1.63 is funding (+100 bp/d), top-10 days 104% of net
 (TRB/AXS/BLZ), corr carry 0.46 = carry's long tail. (b) short funding > 0.1%/d after a 1–7 d stall: −35..−60 bp/d whatever the stall; loss = worst 1% (squeezes); the working filter is

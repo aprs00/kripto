@@ -1,0 +1,36 @@
+{
+ "study": "research/studies/is3_lv2.py --hlc",
+ "sharpe": 0.703,
+ "n_days": 1341,
+ "start": "2023-03-28",
+ "years": {
+  "2023": {
+   "sr": -0.01,
+   "ret": -0.0019,
+   "funding_received": -0.0481,
+   "costs": 0.0461
+  },
+  "2024": {
+   "sr": 0.5,
+   "ret": 0.0857,
+   "funding_received": -0.0268,
+   "costs": 0.0186
+  },
+  "2025": {
+   "sr": 2.36,
+   "ret": 0.4127,
+   "funding_received": -0.0393,
+   "costs": 0.0127
+  },
+  "2026": {
+   "sr": -0.11,
+   "ret": -0.0205,
+   "funding_received": -0.0453,
+   "costs": 0.0159
+  }
+ },
+ "sr_wo_best10": 0.23,
+ "best10_share_of_total": 0.69,
+ "sr_since_2024_07": 1.05,
+ "sr_before_2024_07": -0.04
+}

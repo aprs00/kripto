@@ -798,3 +798,6 @@ FC1C d (added, data-mined from b's dose, stated): block shorts in the TOP gap te
 FC1C d explore (fc1c_d_explore.json): SR 0.26 -> 1.00, dSR +0.74 at 99.5th pct of random masks, mdd -27.9% -> -15.6%, 2023 -0.18 -> 0.84, 2024 0.81 -> 1.19. Bug check: gap lagged 1 / 2 days
  still 0.88 / 0.82 (not look-ahead; funding day D = prints during D, weight at D pays D+1). Data-mined on the same sample -> pre-registered FC1Cd_block_high_gap_shorts, one confirm 2025-07..2026-10.
 FC1C d confirm (fc1c_d_confirm.json): SR 1.34 -> 1.42, dSR +0.08 at 92nd pct (needs 95), mdd unchanged: FAIL. Same sign, a fraction of the explore effect (explore was the sample it was mined on).
+LV2 c done (lv2_hlc.json): HL lowvol SR 0.70 (2023-03..), 2023 -0.01 / 2024 0.50 / 2025 2.36 / 2026 -0.11, w/o best 10 days 0.23 (69% of P&L), pre-2024-07 -0.04, pays funding 4-5%/yr: FRAGILE (both
+ pre-stated clauses). Note 2023 funding coverage median 28 coins (partial). LV2 CLOSED OPEN; backlog line for research (nested selection with the longer funding history).
+FC1C c (fspread tilt) needs the pair panel (loads Binance files) -> deferred to 03:35 (nightly window).

@@ -2528,7 +2528,7 @@
    "group": "D",
    "title": "HL-vs-Binance funding gap as a crowding measure (FC1 form c; only form with the right price sign)",
    "src": "findings funding_contra FC1 2026-11-26; backlog FC1/T3",
-   "status": "wip",
+   "status": "todo",
    "forms": [
     {
      "id": "a",
@@ -2562,8 +2562,8 @@
     }
    ],
    "sessions": 2,
-   "due": "2026-11-26T23:30",
-   "defer_why": "fetch 77/134 done; next session: one more chunk (systemctl --user reset-failed is3-fc1cfetch; unit command in notes FC1C), then form a (is3_fc1c.py, rule committed)"
+   "due": "2026-11-27T03:35",
+   "defer_why": "form c needs the pair panel (Binance files): after the nightly window"
   },
   {
    "id": "LV2",
@@ -2571,7 +2571,7 @@
    "group": "D",
    "title": "lowvol minus carry: short leg without the crowded negative-funding names (LV1 diagnosis)",
    "src": "findings lowvol LV1 2026-11-26 (price leg positive, funding eats it)",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -2592,12 +2592,18 @@
     {
      "id": "c",
      "what": "HL check of the HL blend leg: lowvol on HL by year with HL funding, and whether the HL 0.90 survives without its best 10 days (it is in the live HL main book)",
-     "status": "todo"
+     "status": "done",
+     "result": "lowvol defaults HL 1d via research.evaluate (tag lv2c, funding backfilled to 2023-05): SR 0.70 (1341 d); by year 2023 -0.01, 2024 0.50, 2025 2.36, 2026 -0.11; SR without best 10 days 0.23 (best 10 = 69% of P&L); before 2024-07 -0.04, after 1.05; funding received -4..-5%/yr every year. FRAGILE by the pre-stated rule (both clauses)",
+     "date": "2026-11-27",
+     "evidence": "lv2_hlc"
     }
    ],
    "sessions": 1,
    "due": "2026-11-26T23:30",
-   "defer_why": "form c after the HL funding backfill completes (python -m research.studies.is3_lv2 --hlc)"
+   "defer_why": "form c after the HL funding backfill completes (python -m research.studies.is3_lv2 --hlc)",
+   "verdict": "OPEN",
+   "reason": "a: dropping negative-funding shorts = random drops; b: funding-adjusted vol ranks = price ranks; c: the HL blend leg is one year (2025) and 10 days deep, pays funding every year. The carry-exclusion idea had no effect in 2020-23 (the squeeze is 2024+), so untested where it might matter",
+   "closed": "2026-11-27"
   },
   {
    "id": "E2B",
