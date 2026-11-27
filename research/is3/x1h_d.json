@@ -1,0 +1,43 @@
+{
+ "study": "research/studies/is3_x1h.py d",
+ "window": [
+  "2025-01-01",
+  "2026-11-22"
+ ],
+ "0.0": {
+  "net_yr": 0.0408,
+  "sr": 3.59,
+  "cost_yr": 0.0335,
+  "funding_yr": 0.0852,
+  "turnover_yr": 40.6,
+  "gross_mean": 1.88,
+  "by_year": {
+   "2025": 0.0582,
+   "2026": 0.0189
+  }
+ },
+ "0.05": {
+  "net_yr": 0.0442,
+  "sr": 4.3,
+  "cost_yr": 0.0195,
+  "funding_yr": 0.0731,
+  "turnover_yr": 23.9,
+  "gross_mean": 2.01,
+  "by_year": {
+   "2025": 0.0515,
+   "2026": 0.0322
+  }
+ },
+ "0.1": {
+  "net_yr": 0.0391,
+  "sr": 4.12,
+  "cost_yr": 0.0186,
+  "funding_yr": 0.064,
+  "turnover_yr": 22.7,
+  "gross_mean": 2.1,
+  "by_year": {
+   "2025": 0.0419,
+   "2026": 0.032
+  }
+ }
+}

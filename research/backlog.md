@@ -58,7 +58,8 @@ so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 202
 - [ ] D1 One-voiced buying at a 1-day high (+6 bp / 1 h held-out) as an entry-timing feature for `flow` / breakouts: low value, only with TSZ-HL.
 - [ ] R3/R7 Range ("rotation") bars with trade count and size-bucket delta: second aggTrades pass (scripts/aggtrades.py keeps 5-min bars
   only). Low prior now that R1 and R4 are dead on time bars; do only together with LQ1 or if TSZ-HL shows something.
-- [ ] X1c fspread_hold robustness (descriptive, no new WF unless a new rule): per-pair basis excursions (worst daily |basis|),
+- [ ] X1H (insilico 2026-11-27, OPEN): re-run the FROZEN exit band x .05 (is3_x1h.py d) on 2026-12..2027-05 as forward data; adopt only via a research WF if it beats the live rule by >= 0.5 %/yr.
+- [ ] X1c (a/b done insilico 11-27: X1C; c at 30 live days, 12-12) fspread_hold robustness (descriptive, no new WF unless a new rule): per-pair basis excursions (worst daily |basis|),
   funding-interval mix on BN (1h/4h/8h coins), and a re-run when HL funding backfill reaches all coins (pair has 84 → more).
 - [ ] T5b (2026-11-19: DATA JOB BUILT: `scripts.download metrics` (also inside the nightly `all`, 15k files/night) → data/bn/metrics_full/<SYM>.parquet, cols oi, oiv, top_acct_ls, top_pos_ls, all_acct_ls, taker_ls, 5-min; target = every coin-day in the point-in-time top 60 since 2021 (290 coins, 128k files) ≈ 9 nights → analysis from ≈ 11-29. Explore 2021–23, confirm 2024+) (2026-11-17: data/bn/metrics holds OI only, 10 coins, 2021–23; the long/short ratios need one daily archive file per coin-day ≈ 100k+ files: build a capped nightly download job first, e.g. current top-60 from 2022, ≈ 2k files/night) **Positioning hypotheses NOW on Binance history** (added 2026-11-09, owner wants results fast; don't wait months
   for HL collection). data.binance.vision publishes per-symbol daily `metrics` files (5-min open interest, top-trader
