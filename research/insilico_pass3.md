@@ -128,4 +128,5 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * CRB carry legs by funding level: OPEN. The Binance carry book earns its funding almost entirely from the most extreme names (crowded shorts paying 1-2 % a day); cutting them is worse than random: that risk is what it is paid for.
 * LSB Binance listing shorts: OPEN. The typical new Binance perp still falls 20-40 % against BTC in its first two months every year, and Binance lists about five a month in 2026 (HL: one); a few squeezes set the average. Backlog LSB2 for a walk-forward inside the Binance book.
 * LSP Binance listing shorts as a book: OPEN. Shorting every new Binance listing equally loses to a few squeezes (Sharpe 0.18, negative in 2025-26; the 2023-24 profit came from the BTC hedge). LSB2 waits for a squeeze control.
+* SQZ squeeze predictors for listing shorts: OPEN. Listings that already trade far above their post-listing low are twice as likely to squeeze, but skipping them does no better than skipping random shorts.
 * FLQ flow on the 10 most liquid coins: OPEN. Worse than the live 30-coin version (Sharpe 0.67 vs 1.58 in 2021-23); flow@bn stays flagged.

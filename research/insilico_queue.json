@@ -3936,7 +3936,7 @@
    "group": "T",
    "title": "What predicts the squeeze of a new-listing short? (state -> left-tail distribution; LSB2's missing squeeze control)",
    "src": "LSB / LSP (median event decays +22..+41 %, the equal-weight book loses to single-name squeezes); LSF (hot funding = random as an exit)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -3949,15 +3949,23 @@
     {
      "id": "b",
      "what": "the single best monotone feature (chosen in a, stated) as an exit / no-entry rule on the bnall listing_short book: F0 vs 200 random masks on explore; PASS = dSR > 0 at >= 95th pct and dSR > 0 in 2021, 2022, 2023",
-     "status": "planned"
+     "status": "done",
+     "result": "pre-stated F0, bnall explore 2021-23: blocking shorts >= 43.3 % above their post-listing low: SR .18 -> .50 (dSR +.32; +.60 / +.18 / +.11 by year), mdd -43 -> -28 %, but 200 random masks of the same on-share give median +.25 (q95 +.62): 60th pct, FAIL. On a ~0-SR short book any cut of shorts helps; the squeeze state's 2x tail does not beat random blocking at the book level",
+     "date": "2026-11-27",
+     "evidence": "sqz_b"
     },
     {
      "id": "c",
      "what": "if b passes: L.prereg, ONE run on 2024-26 bnall and ONE on HL listing_short 2023-05..2026-11 (held-out venue); then LSB2 can be pre-registered with the control",
-     "status": "planned"
+     "status": "skipped",
+     "result": "b failed its pre-stated rule; 2024-26 and HL not spent",
+     "date": "2026-11-27"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "the squeeze state is visible (a listing far above its post-listing low has a 2x left tail every explore year) but blocking it = random masks on the bnall book (60th pct): no squeeze control yet; LSB2 stays parked",
+   "closed": "2026-11-27"
   }
  ]
 }

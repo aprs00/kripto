@@ -831,6 +831,8 @@ every year; mean +38 / −79 / +7 / +14 / +25 / +4 / +9 % (a squeezed minority; 
 Binance still lists ~5× HL's 2026 rate: a candidate to refill the listing leg (LSB2).
 LSP precheck (is3_lsp.py): as an equal-weight book (bnall, band .005) SR .18, by year −1.64 / .42 / 1.49 / 1.22 / −.40 / −.33; alt shorts −44 / +41 / +9 / −12 / −7 / +2 %, the 2023–24 profit is
 the BTC hedge leg; worst days are single-name squeezes (MARSCOIN −11 % of equity 2026-09-03); w/o worst 10 days .66. The median event's decay does not survive equal weighting: LSB2 needs a squeeze control.
+SQZ (is3_sqz.py): the squeeze state is 'far above the post-listing low' (top quintile P(7-d loss > 20 %) 17 % vs 7–10 %, every 2021–23 year), but blocking it on the bnall book = random masks
+(dSR +.32 vs random median +.25, 60th pct): no squeeze control yet, LSB2 parked.
 
 ### E2 execution-time tilt: CME break 17–18 NY as buy-first / sell-after (descriptive, BN-82 1h, 2026-11-26 PC, research/studies/e2_exec_tilt.py) → PASS by rule, small and fading
 Daily books trade at 04:03 UTC. Literal "buy before 17 NY, sell after 18 NY" at that clock loses to signal decay (xsmom −6, tsmom −10 bp/unit; flow +4.9 t 1.8). Clock moved to the break

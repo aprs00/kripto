@@ -1,0 +1,37 @@
+{
+ "name": "SQZb",
+ "sample": "explore",
+ "side": -1,
+ "on_share": 0.823,
+ "base": {
+  "sr": 0.1791462001273801,
+  "ann": 0.04467337503010442,
+  "mdd": -0.43178632978273224,
+  "days": 1095
+ },
+ "filtered": {
+  "sr": 0.5023039425534014,
+  "ann": 0.10981966077287446,
+  "mdd": -0.28188721049719534,
+  "days": 1095
+ },
+ "dSR": 0.323,
+ "dMDD": 0.1499,
+ "p_daily_diff": 0.43928035982008995,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.605,
+ "random_dSR_q05_q50_q95": [
+  -0.133,
+  0.246,
+  0.619
+ ],
+ "pct_dMDD_vs_random": 0.775,
+ "note": "block shorts >= 43.3 % above the post-listing low",
+ "passes": false,
+ "dSR_by_year": {
+  "2021": 0.596,
+  "2022": 0.176,
+  "2023": 0.109
+ },
+ "PASS_full_rule": false
+}

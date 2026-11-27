@@ -1148,3 +1148,4 @@ SQZ a done (sqz_a.json): off_low (how far above its post-listing low) top quinti
  Deviation, stated: my 2x-vs-bottom bar is missed narrowly (U-shape); I run b anyway because b was designed to take the best feature from a, and F0 + the held-out 2024-26/HL runs are the line.
 PRE-STATED (b): block (exit / no entry) listing_short shorts whose off_low >= 0.433 (explore pooled 80th pct), F0 'apply', bnall explore 2021-23, 200 random masks;
  PASS = dSR > 0 at >= 95th pct AND dSR > 0 in 2021, 2022, 2023.
+SQZ b done (sqz_b.json, unit is3-sqzb): off_low block dSR +.32 vs random median +.25 (60th pct): FAIL; c skipped. CLOSED OPEN; LSB2 parked.
