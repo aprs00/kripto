@@ -245,5 +245,15 @@
    "sample": "confirmT"
   },
   "at": "2026-11-27T10:56:38+00:00"
+ },
+ "L6V_ewm20_vt_xsmom": {
+  "claim": "Per-coin ewm(hl 20 d) variances on the vol_target diagonal (correlations from 60 d) track the vol target better than the 60-d sample covariance (library N6, L6V a/b).",
+  "rule": "xsmom@bn bnall 1d defaults, confirmT 2024-01..2025-12, one run (is3_l6v run_b confirmT): PASS = quarterly log tracking error vs target cut >= 20% vs cc60 AND SR(ewm20) >= SR(cc60) - 0.1. blend@bn and tsmom@bn reported on the same run, descriptive only (did not meet the explore bar: -9%, -18%).",
+  "params": {
+   "book": "xsmom",
+   "est": "ewm20",
+   "sample": "confirmT"
+  },
+  "at": "2026-11-27T11:10:50+00:00"
  }
 }

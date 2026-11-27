@@ -890,3 +890,5 @@ Unstated / must be true: (1) Parkinson needs clean highs/lows: Binance wicks (on
 Change my mind: range/HAR beat cc60 QLIKE by >= 10% out-of-sample on the liquid two-thirds of coins -> form b; else the estimator is not the problem.
 L6V a done (is3_l6v.py, l6v_a.json): 2023 OOS QLIKE HAR-Parkinson .524 / ewm20 .539 / cc60 .603 (what vol_target uses); HAR over-forecasts (log error .495 vs .459), ewm20 wins both metrics every year.
  Pass the pre-stated 10% bar (QLIKE) -> b: vol_target with ewm20 (and HAR) variances, correlations from 60 d.
+L6V b done (l6v_b_explore.json): ewm20 variances cut quarterly vol tracking error vs cc60 by 23% (xsmom), 18% (tsmom), 9% (blend), SR same or better; HAR over-forecasts. Bar met by xsmom only ->
+ PRE-REGISTERED L6V_ewm20_vt_xsmom (confirmT one run, TE cut >= 20% and SR loss <= .1); blend/tsmom reported descriptively on the same run.

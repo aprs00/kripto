@@ -2916,7 +2916,10 @@
     {
      "id": "b",
      "what": "portfolio level: blend@bn and tsmom@bn with the vol_target covariance's variances replaced by the best estimator from a (correlations unchanged): realized vol vs the 25% target per quarter (tracking error), worst month, SR, turnover; explore 2021-23",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall 1d explore 2021-23, vol_target with per-coin variances from ewm20 / HAR-Parkinson (correlations from the same 60-d window) vs cc60: quarterly log tracking error vs target blend .176/.160/.200 (ewm20 -9%), tsmom .150/.123/.148 (-18%), xsmom .177/.136/.151 (-23%); SR blend 2.11/2.26/2.16, tsmom 1.35/1.34/1.38, xsmom .92/1.01/.88; worst month ~unchanged (blend -11.6 both, xsmom -16.1 -> -15.2), turnover +2-4%. HAR over-forecasts -> worse tracking for blend. Pre-stated bar (TE cut >= 20%, SR loss <= .1) met by ewm20 on xsmom only; tsmom close (-18%). 2 estimators x 3 books.",
+     "date": "2026-11-27",
+     "evidence": "l6v_b_explore"
     },
     {
      "id": "c",
