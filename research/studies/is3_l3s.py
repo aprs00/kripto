@@ -95,5 +95,36 @@ def run_a():
     json.dump(out, open("research/is3/l3s_a.json", "w"), indent=1)
 
 
+
+
+def run_b():
+    """log(walk) on log(usd/ADV) per venue, day-block bootstrap of the slope; and the zero-size intercept (half-spread proxy)."""
+    f = pd.read_parquet(OUT / "l3s_fills.parquet")
+    f = f[(f.kind == "rebalance") & (f.walk_bp > 0.01) & (f.adv > 0)].copy()
+    f["x"], f["y"], f["xa"] = np.log(f.usd / f.adv), np.log(f.walk_bp), np.log(f.adv)
+    rng = np.random.default_rng(7)
+    out = {}
+    for v, g in f.groupby("venue"):
+        X = np.column_stack([np.ones(len(g)), g.x - g.xa * 0, g.xa])   # walk ~ size share + liquidity separately
+        X = np.column_stack([np.ones(len(g)), np.log(g.usd), g.xa])
+        beta = np.linalg.lstsq(X, g.y, rcond=None)[0]
+        days = g.day.unique()
+        bs = []
+        for _ in range(300):
+            pick = rng.choice(days, len(days))
+            idx = np.concatenate([np.flatnonzero(g.day.to_numpy() == d) for d in pick])
+            bs.append(np.linalg.lstsq(X[idx], g.y.to_numpy()[idx], rcond=None)[0])
+        bs = np.array(bs)
+        q = lambda j: [round(float(np.quantile(bs[:, j], .025)), 3), round(float(np.quantile(bs[:, j], .975)), 3)]
+        # within-coin size slope: demean by coin
+        gd = g.assign(yd=g.y - g.groupby("sym").y.transform("mean"), ud=np.log(g.usd) - g.groupby("sym").usd.transform(lambda s: np.log(s).mean()))
+        within = float(np.polyfit(gd.ud, gd.yd, 1)[0])
+        out[v] = {"n": int(len(g)), "slope_log_usd": round(float(beta[1]), 3), "ci": q(1), "slope_log_adv": round(float(beta[2]), 3), "ci_adv": q(2),
+                  "within_coin_size_slope": round(within, 3),
+                  "model_implied_adv_slope": -0.5, "model_implied_size_slope": 0.0}
+    print(json.dumps(out, indent=1))
+    json.dump(out, open("research/is3/l3s_b.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    {"a": run_a}[sys.argv[1]]()
+    {"a": run_a, "b": run_b}[sys.argv[1]]()

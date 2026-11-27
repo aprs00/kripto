@@ -3342,7 +3342,10 @@
     {
      "id": "b",
      "what": "dose-response: log(slip) vs log(order/ADV) and vs log(order / top-of-book depth) per venue: fitted exponent (square-root = 0.5?) with day-clustered CI; spread component (half-spread at zero size) vs impact component",
-     "status": "planned"
+     "status": "done",
+     "result": "log(walk) ~ log(ADV): slope -.58 BN [-.62,-.52] / -.46 HL [-.49,-.42] (model -0.5: the SHAPE is right); size slope -.08 BN (spread-dominated) / +.20 HL [+.08,+.34] (within coin +.10: thin HL books do walk). Level: coefficient on sqrt(50e6/ADV) median 1.6 BN / 0.6 HL (usd-weighted 1.9 / 1.1) vs the model's 3 (+1.5 bp floor): level ~2x too high, shape fine. Caveat: orders $10-400 only; a $1,000 book's larger HL orders sit at the size end where HL slope bites",
+     "date": "2026-11-27",
+     "evidence": "l3s_b"
     },
     {
      "id": "c",
