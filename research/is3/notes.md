@@ -1128,3 +1128,4 @@ LSB a/b/c done (is3_lsb.py, lsb_ab.json): BN listings 5.7/month in 2026 (HL ~1);
 Source: FLD (liquid-tercile IC +.04/+.05 in 2022/2024, thin ~0). Mechanism: metaorder splitting by funds/algos is visible in the liquid majors' taker flow; in thin names taker flow is
  retail noise and pumps. Unstated: top-10 by volume ~ BTC/ETH/SOL/XRP/DOGE...: fewer names = more concentrated book (vol target scales up), beta hedge matters more; I saw the tercile ICs of
  2024-26 in FLD, so b is a weak confirm (stated). PRE-STATED (a): top_n 10 vs 30, lookback 3, cap .05, bnall 2021-23: PASS = SR higher pooled AND in 2 of 3 years.
+FLQ a done (flq_a.json): flow top-10 SR .67 vs top-30 1.58 on 2021-23: FAIL. b skipped. CLOSED OPEN.

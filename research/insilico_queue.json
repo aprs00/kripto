@@ -3861,25 +3861,36 @@
    "group": "T",
    "title": "flow@bn on the most liquid names only (FLD: liquid-tercile IC +.04/+.05 in 2022/2024, ~0 elsewhere)",
    "src": "FLD a (tercile ICs by year SEEN for 2021-26: a weak confirm, stated)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "pre-stated before any run: flow (lookback 3, cap .05) with top_n 10 instead of 30 on bnall explore 2021-23: SR, net, costs by year vs the live top-30; PASS = SR higher in 2 of 3 explore years and pooled",
-     "status": "planned"
+     "status": "done",
+     "result": "pre-stated, bnall 2021-23: flow top-10 SR .67 (net 9.8 %/yr; 2021 .52, 2022 -.27, 2023 1.95) vs live top-30 1.58 (35.2 %/yr; 2.70 / .13 / 1.97): FAIL. The liquid third's positive IC (FLD 2022 +.04) does not survive as a 10-name book (concentration, beta hedge on few names); one variant",
+     "date": "2026-11-27",
+     "evidence": "flq_a"
     },
     {
      "id": "b",
      "what": "one run 2024-26 after L.prereg (tercile ICs for these years were seen in FLD: weak confirm, stated)",
-     "status": "planned"
+     "status": "skipped",
+     "result": "explore failed its pre-stated rule; 2024-26 not spent",
+     "date": "2026-11-27"
     },
     {
      "id": "c",
      "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the §4 live-check flag",
-     "status": "planned"
+     "status": "done",
+     "result": "verdict: no liquid-only variant; flow@bn keeps the FLD flag (signal ~0 since 2022, recent return = funding) for the design §4 live check",
+     "date": "2026-11-27",
+     "evidence": "flq_a"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "liquid-only flow (top-10) SR .67 vs 1.58 on 2021-23: the liquid tercile's IC does not make a book; flow@bn stays flagged (FLD)",
+   "closed": "2026-11-27"
   }
  ]
 }

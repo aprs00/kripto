@@ -814,7 +814,7 @@ Nested bnall pool 11-21: carry_trend 1.33, carry 1.31, xsmom 1.25, tsmom 1.17 (3
 ### FLD flow@bn: is the taker-flow signal still there? (2026-11-27 insilico, research/studies/is3_fld.py, not registered) → OPEN (decayed; flagged for the §4 live check)
 Rank IC of the live signal (3-d imbalance, top-30) vs next-day market-relative return, bnall: 2021 .034 (t 2.4), 2022 .005, 2023 −.009, 2024 .015, 2025 −.019 (t −1.75), 2026 .010;
 liquid third +.04 / +.05 (t 2.6 / 2.9) in 2022 / 2024 only, thin third ~0 always. Long leg paid in bull years only (+122 % 2021), nothing since 2025. flow@bn's 2025–26 return is funding (BNB).
-One formulation; the 3-d IC disagrees in sign with lags 2–3 in 2023 (unresolved, not used).
+Second formulation FLQ (top-10 names only, pre-stated): SR .67 vs 1.58 on 2021–23, FAIL. the 3-d IC disagrees in sign with lags 2–3 in 2023 (unresolved, not used).
 
 ### VRT venue routing of the HL main book's legs by funding (2026-11-27 insilico, research/studies/is3_vrt.py, not registered) → OPEN (gap closed; re-check if it reopens)
 HL blend 2023-05..2026-11 (98 % of gross on coins on both venues): funding −12.3 %/yr on HL (longs −9.4, shorts −2.9), −7.8 if all on Binance, −3.5 routed by trailing 7-d funding. Net of
