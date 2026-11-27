@@ -1,0 +1,108 @@
+{
+ "study": "research/studies/is3_hlu1.py HLU1d",
+ "flow": {
+  "name": "HLU1d_flow",
+  "sample": "hlu_explore",
+  "side": -1,
+  "on_share": 0.982,
+  "base": {
+   "sr": 1.8042827638239403,
+   "ann": 0.365491819589791,
+   "mdd": -0.17818683728496965,
+   "days": 641
+  },
+  "filtered": {
+   "sr": 1.8575016536616549,
+   "ann": 0.3773711562964012,
+   "mdd": -0.15495119766260457,
+   "days": 641
+  },
+  "dSR": 0.053,
+  "dMDD": 0.0232,
+  "p_daily_diff": 0.5107446276861569,
+  "n_random": 200,
+  "pct_dSR_vs_random": 0.86,
+  "random_dSR_q05_q50_q95": [
+   -0.088,
+   -0.009,
+   0.087
+  ],
+  "pct_dMDD_vs_random": 0.99,
+  "note": "block shorts f7 < -0.5 ann (flow)",
+  "passes": false,
+  "dSR_by_year": {
+   "2023": 0.102,
+   "2024": 0.179
+  }
+ },
+ "xsmom": {
+  "name": "HLU1d_xsmom",
+  "sample": "hlu_explore",
+  "side": -1,
+  "on_share": 0.982,
+  "base": {
+   "sr": 1.6023136147489587,
+   "ann": 0.3510267474418517,
+   "mdd": -0.14465160884081296,
+   "days": 641
+  },
+  "filtered": {
+   "sr": 1.6355787462909792,
+   "ann": 0.35822338393857805,
+   "mdd": -0.13372342717635677,
+   "days": 641
+  },
+  "dSR": 0.033,
+  "dMDD": 0.0109,
+  "p_daily_diff": 0.6216891554222889,
+  "n_random": 200,
+  "pct_dSR_vs_random": 0.75,
+  "random_dSR_q05_q50_q95": [
+   -0.077,
+   -0.004,
+   0.086
+  ],
+  "pct_dMDD_vs_random": 0.96,
+  "note": "block shorts f7 < -0.5 ann (xsmom)",
+  "passes": false,
+  "dSR_by_year": {
+   "2023": -0.108,
+   "2024": 0.149
+  }
+ },
+ "blend": {
+  "name": "HLU1d_blend",
+  "sample": "hlu_explore",
+  "side": -1,
+  "on_share": 0.982,
+  "base": {
+   "sr": 2.053605724437284,
+   "ann": 0.4848173219083514,
+   "mdd": -0.1189619786942856,
+   "days": 641
+  },
+  "filtered": {
+   "sr": 2.0376698159308853,
+   "ann": 0.48125384555482204,
+   "mdd": -0.11863275426153275,
+   "days": 641
+  },
+  "dSR": -0.016,
+  "dMDD": 0.0003,
+  "p_daily_diff": 0.10344827586206896,
+  "n_random": 200,
+  "pct_dSR_vs_random": 0.345,
+  "random_dSR_q05_q50_q95": [
+   -0.066,
+   0.001,
+   0.069
+  ],
+  "pct_dMDD_vs_random": 0.68,
+  "note": "block shorts f7 < -0.5 ann (blend)",
+  "passes": false,
+  "dSR_by_year": {
+   "2023": -0.001,
+   "2024": -0.021
+  }
+ }
+}

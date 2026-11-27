@@ -3182,7 +3182,7 @@
    "group": "T",
    "title": "HL-listed universe filter for the Binance books' short legs (BN-only small caps = squeeze shorts)",
    "src": "LVH c (BN-only lowvol shorts: -92 %/yr funding per unit, -12 %/yr); backlog HLU1",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -3195,20 +3195,31 @@
     {
      "id": "b",
      "what": "F0 filter: block shorts in BN-only coins (apply, side -1) vs 200 random same-share masks, explore 2023-04..2024-12; PASS = >= 95th pct AND dSR > 0 in 2023 and 2024",
-     "status": "planned"
+     "status": "done",
+     "result": "F0, block shorts in coins not listed on HL that day, hlu_explore 2023-04..2024-12, 200 random masks: flow SR 1.80 -> 1.12 (dSR -.69, 75th pct: random blocks cost as much), xsmom 1.60 -> 1.30 (-.31, 58th), blend 2.05 -> 1.57 (-.48, 84th); dSR by year flow -.08/-.38, xsmom +.80/-.18, blend +.06/-.35. FAIL all: blocking 16-20% of shorts costs SR, the BN-only ones are not worse than random (a: they are the best).",
+     "date": "2026-11-27",
+     "evidence": "hlu1b"
     },
     {
      "id": "c",
      "what": "ONE pre-registered confirm 2025-01..2026-11 for at most 2 books that pass b",
-     "status": "planned"
+     "status": "skipped",
+     "result": "b failed for every book: no confirm spent (hlu_confirm stays clean).",
+     "date": "2026-11-27"
     },
     {
      "id": "d",
      "what": "alternative form without HL: block shorts whose trailing 7-d funding < -0.5 ann. (extreme crowded shorts; LV2a's f7<0 was random in 2020-23), same F0 explore",
-     "status": "planned"
+     "status": "done",
+     "result": "alternative without HL: block shorts whose trailing 7-d funding < -0.5 ann. (on 98%): flow dSR +.05 (86th pct, years +.10/+.18, mdd -17.8 -> -15.5%), xsmom +.03 (75th, -.11/+.15), blend -.02 (35th): FAIL (needs 95th). Extreme crowded shorts are a small, random-like slice for the momentum books.",
+     "date": "2026-11-27",
+     "evidence": "hlu1d"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "HL-listing as a short-side universe filter for the BN books is wrong-signed: BN-only names are the momentum/flow books' best shorts in 2023-24 (+83..+135 %/unit-yr), blocking them = random masks or worse (dSR -.31..-.69); the funding-extreme alternative (f7 < -50 %/yr) is random too (dSR -.02..+.05, <= 86th pct). The LVH tail is lowvol-specific (it shorts high-vol BN-only names). 3 forms done, diagnosed; filter MDE = random-mask q05-q95 ~ +-0.1..0.3 SR.",
+   "closed": "2026-11-27"
   }
  ]
 }

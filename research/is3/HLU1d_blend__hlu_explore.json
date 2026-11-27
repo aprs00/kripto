@@ -1,0 +1,31 @@
+{
+ "name": "HLU1d_blend",
+ "sample": "hlu_explore",
+ "side": -1,
+ "on_share": 0.982,
+ "base": {
+  "sr": 2.053605724437284,
+  "ann": 0.4848173219083514,
+  "mdd": -0.1189619786942856,
+  "days": 641
+ },
+ "filtered": {
+  "sr": 2.0376698159308853,
+  "ann": 0.48125384555482204,
+  "mdd": -0.11863275426153275,
+  "days": 641
+ },
+ "dSR": -0.016,
+ "dMDD": 0.0003,
+ "p_daily_diff": 0.10344827586206896,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.345,
+ "random_dSR_q05_q50_q95": [
+  -0.066,
+  0.001,
+  0.069
+ ],
+ "pct_dMDD_vs_random": 0.68,
+ "note": "block shorts f7 < -0.5 ann (blend)",
+ "passes": false
+}

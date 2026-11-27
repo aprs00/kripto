@@ -1,0 +1,31 @@
+{
+ "name": "HLU1b_flow",
+ "sample": "hlu_explore",
+ "side": -1,
+ "on_share": 0.101,
+ "base": {
+  "sr": 1.8042827638239403,
+  "ann": 0.365491819589791,
+  "mdd": -0.17818683728496965,
+  "days": 641
+ },
+ "filtered": {
+  "sr": 1.1190561444321918,
+  "ann": 0.24020079401663416,
+  "mdd": -0.21184748663279707,
+  "days": 641
+ },
+ "dSR": -0.685,
+ "dMDD": -0.0337,
+ "p_daily_diff": 0.05847076461769116,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.745,
+ "random_dSR_q05_q50_q95": [
+  -1.029,
+  -0.794,
+  -0.508
+ ],
+ "pct_dMDD_vs_random": 0.98,
+ "note": "block shorts not listed on HL (flow)",
+ "passes": false
+}

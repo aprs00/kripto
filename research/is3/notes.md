@@ -974,3 +974,4 @@ Source: LVH c. Mechanism: Binance lists many small caps HL does not; their perps
 PRE-STATED (b): PASS = dSR > 0 at >= 95th pct of 200 random masks AND dSR > 0 in 2023 and 2024 (explore halves). At most 2 books to one confirm (c).
 HLU1 a done (is3_hlu1.py, hlu1_a.json): REVERSED for the momentum/flow books: BN-only coins (16-20% of short exposure) are their BEST shorts in 2023-24 (+83..+135 %/unit-yr price, funding received);
  the lowvol tail (LVH) is a lowvol-specific selection (high-vol BN-only names, 2025-26). b/d run for the record in unit is3-hlu1 (expected to fail).
+HLU1 b/d done (hlu1b.json, hlu1d.json): blocking BN-only shorts costs SR (-.31..-.69, = random), funding-extreme block (f7 < -.5) random (-.02..+.05). c skipped. HLU1 CLOSED DEAD (lowvol-specific tail).

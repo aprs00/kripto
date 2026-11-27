@@ -1,0 +1,31 @@
+{
+ "name": "HLU1b_blend",
+ "sample": "hlu_explore",
+ "side": -1,
+ "on_share": 0.101,
+ "base": {
+  "sr": 2.053605724437284,
+  "ann": 0.4848173219083514,
+  "mdd": -0.1189619786942856,
+  "days": 641
+ },
+ "filtered": {
+  "sr": 1.5736661816900495,
+  "ann": 0.3872964041979537,
+  "mdd": -0.1623850624180302,
+  "days": 641
+ },
+ "dSR": -0.48,
+ "dMDD": -0.0434,
+ "p_daily_diff": 0.15892053973013492,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.835,
+ "random_dSR_q05_q50_q95": [
+  -0.82,
+  -0.628,
+  -0.341
+ ],
+ "pct_dMDD_vs_random": 1.0,
+ "note": "block shorts not listed on HL (blend)",
+ "passes": false
+}

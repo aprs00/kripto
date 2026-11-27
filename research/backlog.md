@@ -11,8 +11,7 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 → 7. W2 re-check ≈ 12-23 → 8. E2b CME-break execution (fading) → 9. low prior: W3b, FC1(c), LV1 short leg, FF1 market-relative.
 - [ ] HLL1 (2026-11-27) ladder rule on HL minute bars: `nice -n 19 .venv/bin/python -m research.studies.hl_ladder --confirm` at ≥ 60 days of flow data (≈ 2027-01-15); explore had 7 fills
   (findings). Kill if HL-only fills < ⅓ or confirm median ≤ 0. NOTE for every study on data/hl/flow (W2, TSZ-HL): coins drop out of the collected top-60 for days; split at gaps, never ffill across them.
-- [ ] HLU1 (2026-11-27, insilico; see findings LVH/HLU1) HL-listed universe filter for BN books' shorts: REVERSED for flow/xsmom/blend (BN-only names are their BEST shorts 2023-24);
-  only relevant to a lowvol-type short leg (high-vol BN-only names squeezed 2025-26). No action for the live BN books.
+- [x] HLU1 → DEAD 2026-11-27 (insilico: BN-only shorts are the momentum books' best; findings).
 - [ ] T5d (2026-11-27, prior LOW after T5c) untried T5b forms: F3 losers' side as a SHORT-side filter (rising OI on a 3-day fall → bounce; explore 2023 IC +0.032), the 2021–22 explore
   for a regime check once `scripts.metrics_coverage` ≥ 95%, and HL positioning (T6b) as the HL analogue. F1/F2 failed explore. Any confirm must span ≥ 2 regimes (T5c flipped sign after 2024).
 - [ ] LD3 (2026-11-27, library N14, prior medium; insilico/research, descriptive first) **ladder fills in liquidity holes vs heavy-volume flushes**: split the E2 ladder fill set by the fill

@@ -1,0 +1,31 @@
+{
+ "name": "HLU1b_xsmom",
+ "sample": "hlu_explore",
+ "side": -1,
+ "on_share": 0.101,
+ "base": {
+  "sr": 1.6023136147489587,
+  "ann": 0.3510267474418517,
+  "mdd": -0.14465160884081296,
+  "days": 641
+ },
+ "filtered": {
+  "sr": 1.2953698362731443,
+  "ann": 0.2957672872848148,
+  "mdd": -0.1644215313246743,
+  "days": 641
+ },
+ "dSR": -0.307,
+ "dMDD": -0.0198,
+ "p_daily_diff": 0.3778110944527736,
+ "n_random": 200,
+ "pct_dSR_vs_random": 0.58,
+ "random_dSR_q05_q50_q95": [
+  -0.552,
+  -0.331,
+  -0.07
+ ],
+ "pct_dMDD_vs_random": 1.0,
+ "note": "block shorts not listed on HL (xsmom)",
+ "passes": false
+}
