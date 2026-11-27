@@ -1034,3 +1034,11 @@ Unstated: (1) the rate is mostly known before settlement (premium average): use 
 Change my mind: pre-settlement return against the payer > placebo with a dose in |rate| in every explore year -> b/c; else DEAD/FEATURE with MDE.
 FST a/b/c done (is3_fst.py, fst_a/b/c.json): no settlement drift (pre/post hour vs 4-h-earlier placebo diff -0.2/+0.0 bp, MDE 0.5; no dose; xs extremes 2-4 h = placebo, MDE 2-3.6).
  Mechanical deferral of payer-side opens past 08:00: flow@bn +0.23 %/yr (2026 .09), blend .11: 0.8 bp/moved unit vs ~5 bp drift noise. CLOSED DEAD.
+
+## KSW kill switch -25 % from peak: false alarms vs power (think-through 19:1x UTC 11-27, before any run)
+Source: config/risk.json kill_drawdown .25 (every book), design.md (flatten + halt until a review). No chat records. Not a signal: a risk-rule audit with a general criterion.
+Question: at each main book's live sizing, how often does -25 % fire if the backtest edge is real (false alarm: it halts a good book, and in a real account a halt locks in the loss),
+ and how fast does it stop a dead or broken book (power)? A stop that fires on a good book about as often as on a dead one is noise. The other stop is design §4's demotion (live 60-d SR < 0).
+Unstated: (1) daily closes under-state intraday troughs (the live watcher marks every 20 s): report daily and add the worst intraday/close gap where the bn 1h panel allows; (2) block bootstrap
+ (30-d blocks) keeps vol clustering; (3) main_bn = 0.5 flow@bn + 0.5 blend_nested@bn x main_scale 1.156, main = blend x .871, main@pair = fspread_hold x .5; the ladder sleeve is ignored.
+Change my mind: P(kill | real edge, 2 y) > 10 % or P(kill | zero edge, 2 y) < 30 % -> the threshold is mis-set for its job -> backlog proposal (vol-scaled). Else keep and write the numbers.

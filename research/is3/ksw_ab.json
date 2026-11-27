@@ -1,0 +1,98 @@
+{
+ "main (HL)": {
+  "start": "2023-03-28",
+  "days": 1341,
+  "sr": 1.38,
+  "vol": 0.245,
+  "hist_mdd": -0.198,
+  "real_365d": {
+   "p_kill": 0.058,
+   "median_day": 231
+  },
+  "real_730d": {
+   "p_kill": 0.132,
+   "median_day": 434
+  },
+  "zero_365d": {
+   "p_kill": 0.376,
+   "median_day": 230
+  },
+  "zero_730d": {
+   "p_kill": 0.716,
+   "median_day": 341
+  },
+  "neg05_365d": {
+   "p_kill": 0.579,
+   "median_day": 215
+  },
+  "neg05_730d": {
+   "p_kill": 0.895,
+   "median_day": 284
+  },
+  "share_60d_sr_below0_real": 0.24
+ },
+ "main_bn": {
+  "start": "2020-01-31",
+  "days": 2487,
+  "sr": 2.02,
+  "vol": 0.235,
+  "hist_mdd": -0.284,
+  "real_365d": {
+   "p_kill": 0.045,
+   "median_day": 245
+  },
+  "real_730d": {
+   "p_kill": 0.108,
+   "median_day": 422
+  },
+  "zero_365d": {
+   "p_kill": 0.492,
+   "median_day": 214
+  },
+  "zero_730d": {
+   "p_kill": 0.806,
+   "median_day": 300
+  },
+  "neg05_365d": {
+   "p_kill": 0.644,
+   "median_day": 200
+  },
+  "neg05_730d": {
+   "p_kill": 0.917,
+   "median_day": 257
+  },
+  "share_60d_sr_below0_real": 0.24
+ },
+ "main@pair": {
+  "start": "2023-05-26",
+  "days": 1276,
+  "sr": 8.22,
+  "vol": 0.008,
+  "hist_mdd": -0.005,
+  "real_365d": {
+   "p_kill": 0.0,
+   "median_day": null
+  },
+  "real_730d": {
+   "p_kill": 0.0,
+   "median_day": null
+  },
+  "zero_365d": {
+   "p_kill": 0.0,
+   "median_day": null
+  },
+  "zero_730d": {
+   "p_kill": 0.0,
+   "median_day": null
+  },
+  "neg05_365d": {
+   "p_kill": 0.0,
+   "median_day": null
+  },
+  "neg05_730d": {
+   "p_kill": 0.0,
+   "median_day": null
+  },
+  "share_60d_sr_below0_real": 0.03
+ }
+}
