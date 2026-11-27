@@ -1013,3 +1013,11 @@ Two differences: (i) UNIVERSE: live cannot see mid-cap pairs outside either top-
 Change my mind: live-universe net %/yr within 1 %/yr of research in 2025-26 and paths converge in < 60 d -> no action; else the live book's expectation in STATUS/notes is the live-universe number.
 X1U a/b/c done (is3_x1u.py, x1u_a/b/c.json): live-universe proxy (held legs kept) = research (4.2 vs 4.1 %/yr 2025-26, overlap 92-99 %); forcing exits on list drops would cost 1.8 %/yr (live doesn't).
  20 cold starts: overlap 50 % d0 -> 90 % d60, -0.3 % net once. Live replay from the 09-27 cache start matches 70 % of live pairs (continuous 54 %); funding inputs identical to the bp. CLOSED OPEN (explained).
+
+## LSV listing_short sizing: new-coin vol under-estimated (think-through 19:0x UTC 11-27, before any run)
+Source: backlog T2b (c); BNH (listing_short = the HL main book's edge). No chat records. Code fact: vol_target uses returns(panel).fillna(0) over 60 d, so a coin listed a days ago
+ has 60-a zero returns in its window: its vol is estimated at ~sqrt(a/60) of the truth; listing_short holds only coins aged 2..61 d, so the ex-ante book vol is biased low and the scale
+ goes UP until max_gross 1.5 binds. beta_to needs 20 d (young coins: NaN beta). Who pays: nobody; this is risk. A short in a 3-day-old coin is the riskiest position the book has (squeezes).
+Unstated: (1) if max_gross binds nearly always, the vol target is inert and the 'fix' is a gross choice (then it is a sizing parameter, judged by realised vol, not SR); (2) a floor changes
+ WHICH days are big (more gross when names are older), which could cut the squeeze tail; (3) explore bnall 2021-23 only; HL is the held-out venue.
+Change my mind: realised book vol >= 1.5x target or gross at the cap > 50 % of days -> the estimate is broken and b's floors are worth testing; else the bias is harmless.

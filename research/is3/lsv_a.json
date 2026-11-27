@@ -1,0 +1,123 @@
+{
+ "bnall": {
+  "days": 1095,
+  "sr": 0.18,
+  "realised_vol": 0.249,
+  "target": 0.2,
+  "rolling30_vol_median": 0.231,
+  "rolling30_vol_p90": 0.336,
+  "gross_mean": 0.71,
+  "share_days_at_cap": 0.0,
+  "worst10_mean": -0.0467,
+  "by_year": {
+   "2021": {
+    "sr": -1.56,
+    "vol": 0.234,
+    "worst": -0.0401
+   },
+   "2022": {
+    "sr": 0.43,
+    "vol": 0.231,
+    "worst": -0.0527
+   },
+   "2023": {
+    "sr": 1.43,
+    "vol": 0.279,
+    "worst": -0.0811
+   }
+  },
+  "per_name_by_age": [
+   {
+    "age": "1-7",
+    "n": 1095,
+    "est_med": 0.34,
+    "realised_next30_med": 1.48,
+    "ratio_med": 3.98
+   },
+   {
+    "age": "8-15",
+    "n": 1457,
+    "est_med": 0.68,
+    "realised_next30_med": 1.4,
+    "ratio_med": 1.99
+   },
+   {
+    "age": "16-30",
+    "n": 2676,
+    "est_med": 0.97,
+    "realised_next30_med": 1.25,
+    "ratio_med": 1.31
+   },
+   {
+    "age": "31-61",
+    "n": 5376,
+    "est_med": 1.31,
+    "realised_next30_med": 1.17,
+    "ratio_med": 0.92
+   }
+  ]
+ },
+ "hl": {
+  "days": 1269,
+  "sr": 1.31,
+  "realised_vol": 0.269,
+  "target": 0.2,
+  "rolling30_vol_median": 0.25,
+  "rolling30_vol_p90": 0.341,
+  "gross_mean": 0.58,
+  "share_days_at_cap": 0.0,
+  "worst10_mean": -0.0582,
+  "by_year": {
+   "2023": {
+    "sr": 0.16,
+    "vol": 0.251,
+    "worst": -0.0587
+   },
+   "2024": {
+    "sr": 1.23,
+    "vol": 0.281,
+    "worst": -0.1106
+   },
+   "2025": {
+    "sr": 2.06,
+    "vol": 0.278,
+    "worst": -0.0505
+   },
+   "2026": {
+    "sr": 1.35,
+    "vol": 0.262,
+    "worst": -0.0774
+   }
+  },
+  "per_name_by_age": [
+   {
+    "age": "1-7",
+    "n": 862,
+    "est_med": 0.48,
+    "realised_next30_med": 1.62,
+    "ratio_med": 3.43
+   },
+   {
+    "age": "8-15",
+    "n": 1215,
+    "est_med": 0.79,
+    "realised_next30_med": 1.42,
+    "ratio_med": 1.86
+   },
+   {
+    "age": "16-30",
+    "n": 2089,
+    "est_med": 1.17,
+    "realised_next30_med": 1.37,
+    "ratio_med": 1.24
+   },
+   {
+    "age": "31-61",
+    "n": 3812,
+    "est_med": 1.53,
+    "realised_next30_med": 1.3,
+    "ratio_med": 0.87
+   }
+  ]
+ }
+}

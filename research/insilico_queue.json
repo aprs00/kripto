@@ -1312,7 +1312,7 @@
     },
     {
      "id": "e",
-     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is \u22123..\u221221% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
+     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
      "status": "done",
      "added": "2026-11-22",
      "result": "his literal picture (every live adaptive bucket -3..-21% of its volume, day <= -7%), long 3 d: n 55, +105 bp vs matched +256 (diff -151, p .50, MDE 494), 2022 -470; 2-way table fall x selling: U-shape (no selling +989 and extreme selling <= -20% +711 on 16-18 events at <= -8%; his -3..-21% range -30..+278), no monotone dose in either direction. DEAD form",
@@ -1526,7 +1526,7 @@
    "prio": 23,
    "group": "C",
    "title": "Filter harness: does a signal improve a book that already works?",
-   "src": "design.md \u00a74 (filters)",
+   "src": "design.md §4 (filters)",
    "status": "closed",
    "forms": [
     {
@@ -3405,12 +3405,15 @@
    "group": "T",
    "title": "listing_short sizing: is a new coin's vol under-estimated by the vol target (pre-listing returns = 0), and does a per-name vol floor help?",
    "src": "backlog T2b (c); BNH (listing_short = +102 % of the HL main book's P&L)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "bnall 1d 2021-23 (explore) and HL 2023-26 (look only): for every listing_short short, the ex-ante vol estimate the strategy uses vs the realised vol over the next 7/30 d, by days since listing; the book's realised vol vs its 25 % target by month; is the error largest in the first 30 d (dose)?",
-     "status": "planned"
+     "status": "done",
+     "result": "per-name: the zero-filled 60-d vol under-estimates a new coin's next-30-d vol by 4.0x at age 1-7 d (bnall 2021-23; HL 3.4x), 2.0x at 8-15, 1.3x at 16-30, 0.9x after (n 1,095-5,376 short coin-days per bucket). Book: realised vol 24.9 % (bnall) / 26.9 % (HL) vs the 20 % target (1.25-1.35x), gross never at the 1.5 cap (mean .71/.58). Bias real per name, diluted at book level (mixed ages + BTC hedge); per-name weights are equal so it only moves the total scale; main_scale corrects book vol monthly. Below my 1.5x 'broken' bar",
+     "date": "2026-11-27",
+     "evidence": "lsv_a"
     },
     {
      "id": "b",
@@ -3422,7 +3425,8 @@
      "what": "if b passes: ONE frozen run of the winner on HL 2023-05..2026-11 (the live venue) and bnall 2024-26; else diagnose (is the vol error real but harmless because the vol target is book-level?)",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "FST",
