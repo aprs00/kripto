@@ -1064,3 +1064,5 @@ Mechanism: listing_short needs a stream of new HL perps with >= $1M 7-d volume; 
 Unstated: (1) whether the full rescale is right (equal-risk would leave listing_short's share in cash); (2) the idle share is the forward-looking fact: if HL listings dry up, the headline
  SR is the wrong expectation; (3) the $1M floor may cut events in quiet months, but changing it is a research-session WF, not this item.
 Change my mind: idle-day SR of the blend < 0.5 AND idle share rising in 2026 -> STATUS must quote the idle-spell expectation; cash-on-idle better than rescale -> backlog proposal.
+HLI a/b/c done (is3_hli.py, hli_a/b.json): listing_short idle 21 % of 2026 days; qualifying HL listings 69/64/57/10 per year (2026 to Sep); $1M floor drops only 21 weaker events.
+ Idle-day blend SR -1.8 (n.s.); cash-on-idle 1.39 vs 1.34 -> backlog HLI2. CLOSED OPEN (explained).

@@ -50,5 +50,40 @@ def run_a():
     json.dump(out, open("research/is3/hli_a.json", "w"), indent=1)
 
 
+
+
+def run_b():
+    """HL listings (first traded bar after the panel's first 30 days): which reach the $1M 7-d dollar-volume floor during days 2-61, and the beta-free short P&L (coin minus BTC) d2 -> d61 of each group."""
+    p = data.load_panel("hl", "1d")
+    c, v = p["close"], p["volume"]
+    traded = (v.fillna(0) > 0) & c.notna()
+    first = traded.idxmax()[traded.any()]
+    t_cut = traded.any(axis=1).idxmax() + pd.Timedelta(days=30)
+    dv = S.dollar_volume(p)
+    rows = []
+    for coin, t0 in first.items():
+        if t0 < t_cut or coin == "BTC":
+            continue
+        i0 = c.index.get_loc(t0)
+        if i0 + 62 >= len(c):
+            continue
+        win = c.index[i0 + 1: i0 + 62]
+        q = bool((dv.loc[win, coin] >= 1e6).any())
+        a, b = c.at[win[0], coin], c.at[win[-1], coin]
+        ba, bb = c.at[win[0], "BTC"], c.at[win[-1], "BTC"]
+        if not (np.isfinite(a) and np.isfinite(b)):
+            continue
+        rows.append({"coin": coin, "t0": str(t0.date()), "qualifies": q, "short_vs_btc": float(-(b / a - 1) + (bb / ba - 1)), "max_dv_m": float(dv.loc[win, coin].max() / 1e6)})
+    df = pd.DataFrame(rows)
+    out = {}
+    for q, g in df.groupby("qualifies"):
+        out["qualifies" if q else "below_floor"] = {"n": int(len(g)), "mean": round(float(g.short_vs_btc.mean()), 3), "median": round(float(g.short_vs_btc.median()), 3),
+                                                    "win": round(float((g.short_vs_btc > 0).mean()), 2), "se": round(float(g.short_vs_btc.std() / np.sqrt(len(g))), 3),
+                                                    "by_year": {int(y): [int(len(x)), round(float(x.short_vs_btc.mean()), 3)] for y, x in g.groupby(pd.to_datetime(g.t0).dt.year)}}
+    out["below_floor_maxdv_median_m"] = round(float(df[~df.qualifies].max_dv_m.median()), 2) if (~df.qualifies).any() else None
+    print(json.dumps(out, indent=1))
+    json.dump(out, open("research/is3/hli_b.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    {"a": run_a}[sys.argv[1]]()
+    {"a": run_a, "b": run_b}[sys.argv[1]]()

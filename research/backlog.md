@@ -13,6 +13,9 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
   1.0× the directional main books' vol (24 %): 2-y false-alarm 11–15 % on the backtest edge vs 72–84 % on a zero edge; at the steady mode's 30 % target the same −25 % is 0.83× vol (~35 % false).
   Proposal: kill = 1.25 × the book's vol target (4 % false / 50–65 % power on 2 y; research/is3/ksw_c.json); plus a per-venue-account drawdown guard for main@pair (book vol 0.8 % hides
   −27…−46 % 7-day swings of each account, X1C a). Record in design.md changelog; apply from the next session (HARD RULE 5).
+- [ ] HLI2 (insilico HLI 2026-11-27, research session, prior low-medium) **HL main book: listing_short's third in cash when it holds nothing** instead of re-scaling lowvol + tsmom
+  to the full vol target. Backtest SR 1.39 vs 1.34, >= in every year (research/is3/hli_a.json); 2026 idle 21 % of days as HL's qualifying listings fell to ~1/month (hli_b.json). Needs a WF
+  (pre-registered, 1 config) and an F0-style check that it is not just less exposure. Meanwhile quote the 2-leg HL expectation (SR ~1.06) next to the headline in STATUS.
 - [ ] HLL1 (2026-11-27) ladder rule on HL minute bars: `nice -n 19 .venv/bin/python -m research.studies.hl_ladder --confirm` at ≥ 60 days of flow data (≈ 2027-01-15); explore had 7 fills
   (findings). Kill if HL-only fills < ⅓ or confirm median ≤ 0. NOTE for every study on data/hl/flow (W2, TSZ-HL): coins drop out of the collected top-60 for days; split at gaps, never ffill across them.
 - [x] HLU1 → DEAD 2026-11-27 (insilico: BN-only shorts are the momentum books' best; findings).
