@@ -874,3 +874,8 @@ Unstated / must be true: (1) the state must be known at the close before trading
  persistence (F0), regime masks are very persistent, so the random masks are too; (3) the books are vol-targeted already: high-vol days get smaller weights, so the state view must
  be per unit of risk (SR per state), not raw return; (4) 2021-23 has 3 regimes only (bull, bear, chop): a state rule is close to a year dummy, so every year must agree.
 Change my mind: SR in the worst state tercile <= 0 in all 3 explore years for a book with a dose (middle state between) -> one filter; anything else -> regimes are noise for these books.
+T8R a/b done (is3_t8r.py, t8r_ab.json): pooled terciles are year dummies; within-year, flow weakens in high BTC vol (2.58/1.76/0.33, top tercile yrs 1.1/1.3/-2.1) and after strong BTC
+ rallies (vs MA50 0.43, ret30 0.67); hot market funding is GOOD for blend (carry). No book x state has a bad state <= 0 every year: pre-stated bar not met.
+PRE-REGISTERED (c, written before the run): the strongest dose = flow@bn x BTC 30-d vol. Causal rule: HALVE flow@bn (k 0.5) on days when BTC 30-d realized vol (lagged 1 d) is above the
+ 2/3 quantile of its own trailing 365 days. F0 judge, explore 2021-23, 200 random same-share same-persistence masks with the same halving. PASS = dSR > 0 at >= 95th pct AND dSR > 0 in
+ 2021, 2022 and 2023. Only then ONE confirmT. Prior low (a/b missed the bar; this is the closest cell, so selection is acknowledged).

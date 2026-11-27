@@ -67,5 +67,29 @@ def run_a():
     S.to_parquet(F.L.OUT / "t8r_states.parquet")
 
 
+
+
+def run_c():
+    import json as _j
+    w, panel, slip = F.book("flow", "bnall", {"lookback": 3, "cap": 0.05})
+    btc = panel["close"]["BTC"]
+    rv = btc.pct_change(fill_method=None).rolling(30, min_periods=20).std()
+    thr = rv.rolling(365, min_periods=180).quantile(2 / 3)
+    bad = (rv > thr).shift(1).fillna(False).astype(bool)
+    mask = ~bad
+    tf = lambda ww, m, side: F.scale(ww, m, side, k=0.5)
+    out = F.judge("T8Rc_flow_halve_btc_hivol", w, panel, slip, mask, "explore", tf=tf, note="halve flow@bn when BTC 30-d vol > trailing-365 2/3 quantile")
+    b = F.run(w, panel, slip)
+    f = F.run(tf(w, mask, None), panel, slip)
+    yrs = {}
+    for y in (2021, 2022, 2023):
+        bb, ff = b[b.index.year == y], f[f.index.year == y]
+        yrs[y] = round(float(ff.mean() / ff.std() * np.sqrt(365) - bb.mean() / bb.std() * np.sqrt(365)), 3)
+    out["dSR_by_year"] = yrs
+    out["pass_prereg"] = bool(out["passes"] and all(v > 0 for v in yrs.values()))
+    print("dSR by year", yrs, "PASS" if out["pass_prereg"] else "FAIL", flush=True)
+    (F.L.OUT / "t8r_c.json").write_text(_j.dumps(out, indent=1, default=float))
+
+
 if __name__ == "__main__":
-    {"a": run_a}[sys.argv[1]]()
+    {"a": run_a, "c": run_c}[sys.argv[1]]()
