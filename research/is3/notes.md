@@ -992,3 +992,5 @@ Unstated: (1) the blend vol-targets the SUM, so a leg's contribution is not its 
  blends are new configs: logged via research.evaluate tag bnh (raises N by 3; descriptive, no promotion); (3) the nested choice is from an expanding window: truncate the panel at 2024-12-31
  to see what it would pick without 2025. Nothing changes live before the 2027-01-02 refit (M1 rule); the verdict is a flag for that refit.
 Change my mind: lowvol share of blend P&L <= its 1/3 risk share outside 2025 AND the blend without it loses >= .3 SR in >= 2 years -> keep, not luck. Otherwise flag luck-driven.
+BNH a/b/c done (is3_bnh.py, bnh_a/b/c.json): HL blend 1.34 with lowvol vs 1.30 without (listing_short carries: +102% of +178% P&L, tsmom +50, lowvol +26 of which +24 in 2025).
+ lowvol = long majors / short alts (2023-24 longs pay, 2025 shorts pay, diffuse: top-5 coins 41%). Picked at the 2025-01-12 refit on prior-data SR .43 -> 2025 was OOS. KEEP; no dependence.
