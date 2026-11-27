@@ -234,5 +234,16 @@
    "book": "xsmom"
   },
   "at": "2026-11-27T07:19:21+00:00"
+ },
+ "LD3_d_hole_addon": {
+  "claim": "Ladder fills in liquidity holes (fill-minute Amihud high vs the coin's 30-d norm) keep bouncing from the close of t+1; heavy-volume flushes less (library N14).",
+  "rule": "Events: LD1 k30 one-bar-late ladder candidates, band rule, 60-min per-coin lock, no slot rule (is3_ld3.events). Hole = illiq > 0.9077 (frozen). Trade: buy at c[t+1], sell at c[t+61], gross simple return; cost = taker 13 bp rt + slip. PASS on confirmT (2024-01..2025-12) = is3_lib card passes (net of own cost > 0, p < 0.05, p vs flush-half base < 0.05, ex-top3 positive) AND diff vs flush >= +13 bp AND diff > 0 in 2024 and in 2025. Stress reported: entry c[t+2]. Explore 2021-23: hole +150 vs flush +66 (p .002). 2024-26 ladder base/cap/skew were seen by LD1/LD2, this feature was not.",
+  "params": {
+   "thr": 0.9077,
+   "entry": "c[t+1]",
+   "exit": "c[t+61]",
+   "sample": "confirmT"
+  },
+  "at": "2026-11-27T10:56:38+00:00"
  }
 }

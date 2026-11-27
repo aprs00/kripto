@@ -2774,7 +2774,15 @@
     {
      "id": "c",
      "what": "as a FILTER for ladder@bn: skip fills in the low-illiquidity half vs size-matched random skips (100 placebo draws); only if a or b shows an explore gap: one pre-registered confirm 2024+",
-     "status": "planned"
+     "status": "skipped",
+     "result": "not live-implementable as written: the fill minute's volume/Amihud is known only after the resting bid filled, so 'skip flush fills' cannot be done; and from the quote the hole/flush gap is +8 bp (p .78), nothing to skip for. Replaced by d (taker add-on at c[t+1]).",
+     "date": "2026-11-27"
+    },
+    {
+     "id": "d",
+     "what": "taker ADD-ON at c[t+1] after a ladder fill whose fill-minute Amihud/coin 30-d median > 0.9077 (frozen explore median), exit c[t+61], taker + volume-scaled slip; base = the same add-on on flush fills; ONE confirm on confirmT 2024-25 (2026 = vault)",
+     "status": "planned",
+     "added": "2026-11-27"
     }
    ],
    "sessions": 1
