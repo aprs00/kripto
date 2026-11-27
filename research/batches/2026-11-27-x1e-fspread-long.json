@@ -1,0 +1,4 @@
+{
+ "_note": "X1e 2026-11-27, pre-registered before any run: the SAME 6-config X1b grid (unchanged since 2026-11-10) on the longer pair 1d panel, --since 2023-05-12 (first backfilled HL funding), so OOS starts ~2024-01 instead of ~2025-03 (~2.9 y vs 1.66 y). Question: is X1b's DSR failure (0.006) a short-sample artefact? Caveat stated before the run: the FC1C c insilico study already looked at the frozen lb14/enter0.1 config on 2023-05..2024-06 (SR 14), so 2024-01..06 of this OOS is not unseen. No grid change, no new knobs. Gate walk clause by clause afterwards; deployable size = gross 1.0 in two accounts (X1c).",
+ "fspread_hold": {"lookback": [7, 14], "enter": [0.10, 0.20, 0.40]}
+}
