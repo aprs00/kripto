@@ -4203,7 +4203,10 @@
     {
      "id": "a",
      "what": "from data on disk: main-dex listings per month (first bar of each data/hl/candles_1d file) 2023-26 and their first-week volume; the ctx snapshots' coin count over time; is the drop in all listings or only in those reaching \\$1M?",
-     "status": "planned"
+     "status": "done",
+     "result": "on disk: every one of the 179 live main-dex coins (ctx snapshot 11-27) has a 1d candle file (no coverage gap). Main-dex first bars per year: 54 / 59 / 51 / 8 (2023..2026; 2026: SKR, AZTEC, CHIP, GRAM, CASHCAT, PONS, USELESS, XTEN), first-week volume median $0.2M / 2.2 / 10.8 / 7.9M, >= $1M: 15 / 37 / 43 / 7. The drop is in ALL main-dex listings: a real main-dex drought. Whether listings moved to builder dexes (HIP-3) needs b (public info calls)",
+     "date": "2026-11-27",
+     "evidence": "hld_a"
     },
     {
      "id": "b",
