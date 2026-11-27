@@ -3707,7 +3707,7 @@
    "group": "T",
    "title": "blend_nested@bn's carry legs: funding received vs price lost by funding level (2025-26: +16..23 % funding, -10..-16 % price)",
    "src": "BNB b; carry / carry_trend on bnall (top-30, xs rank of 7-d funding)",
-   "status": "wip",
+   "status": "todo",
    "forms": [
     {
      "id": "a",
@@ -3731,7 +3731,9 @@
      "status": "planned"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "due": "2026-11-27T20:05",
+   "defer_why": "form c F0 run in unit is3-crbc (400 carry backtests on bnall), output research/is3/crb_c.json"
   },
   {
    "id": "FLD",
@@ -3739,7 +3741,7 @@
    "group": "T",
    "title": "flow@bn: is the taker-flow signal still there before costs (2025-26 price P&L ~0)?",
    "src": "BNB b (flow price -0.3 / +2.0 % in 2025-26 vs +19..+38 % in 2021-24); flow@bn = half of main_bn",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -3756,7 +3758,8 @@
      "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the §4 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }
