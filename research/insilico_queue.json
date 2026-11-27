@@ -3091,6 +3091,56 @@
    "verdict": "DEAD",
    "reason": "Maker legs cannot cut fspread_hold's costs: for a same-asset two-venue pair, the move that fills one leg's limit is a move against the other leg, so both-maker (fallback) costs more than taker (3.4-3.6 vs 2.5 %/yr), post-only leaves unhedged pairs, and maker-one-leg + taker hedge loses 9-11 bp per event (33 events, 2026-04..10, MDE ~14 bp). T9's adverse selection holds for non-directional pairs too.",
    "closed": "2026-11-27"
+  },
+  {
+   "id": "X1H",
+   "prio": 1.9,
+   "group": "T",
+   "title": "fspread_hold churn: trip-level costs and a wider exit band (2026 costs ~half of gross; BN 4h-interval coins churn 2x)",
+   "src": "X1C b (2026: 4h-interval coins net +0.25% after 1.3% costs), findings fspread_hold",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "trip table, pair 1d lb14/enter .1, 2023-05..2026-11: length, carry, price legs, round-trip cost per trip; share of trips < 14 d and their net; by BN funding interval and year: where do costs go?",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "exit band (written first): hold until the 14-d spread crosses -x (x in .05, .1 ann.) instead of 0, explore 2023-05-15..2024-12 (FC1C c window + 2024 H2): net %/yr, turnover, SR vs the live rule",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "the frozen pick, ONE run on 2025-01..2026-11 (the decaying years; the WF saw them, so stated as a second look): net %/yr vs live rule; a pass = backlog line for a research WF",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "LVH",
+   "prio": 2.0,
+   "group": "T",
+   "title": "Why does lowvol work on HL (main book leg, SR .70) when it is dead on bnall (LV1/LV3)?",
+   "src": "LV2c (HL lowvol FRAGILE, 2025 = most of it), LV1/LV3 (bnall dead), blend_nested HL",
+   "status": "todo",
+   "forms": [
+    {
+     "id": "a",
+     "what": "HL lowvol 2023-03..2026-11 decomposition: long leg vs short leg (hedged), price vs funding, top-10 coins' share, by year",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "same rule on bnall restricted to (i) the same dates and (ii) the coins listed on HL at each date (point-in-time HL universe): is it the venue's universe or the period?",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "if b says universe: which coins (HL-only listings, memecoins with k-prefix, etc.) carry it; if period: 2025 regime (alt bear: short high-vol works in a falling alt market) - test the regime reading with BTC-dominance / alt-index trend as the state (state -> distribution)",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
