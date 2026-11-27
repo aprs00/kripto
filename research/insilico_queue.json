@@ -3442,7 +3442,7 @@
    "group": "T",
    "title": "Binance 8-h funding settlement: price drift into / out of 00/08/16 UTC conditional on funding size (longs exit before paying?)",
    "src": "backlog T13 (intraday seasonality of funding settlement); execution timing of the BN daily books (E2/E2B)",
-   "status": "wip",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -3463,10 +3463,16 @@
     {
      "id": "c",
      "what": "usable form: execution tilt for the BN daily books (buy high-funding names after settlement, sell before) measured in bp/unit of their real trades 2024-26 confirm, vs the E2B decay bar; or below costs -> FEATURE / DEAD with MDE",
-     "status": "planned"
+     "status": "done",
+     "result": "mechanical tilt (no price effect needed): BN daily books trade ~04:14 UTC; deferring trades that ADD to the paying side (previous print's sign) to 08:01 skips the 08:00 print. 2024-26, 82 coins with hourly funding (66-68 % of turnover covered): flow@bn saves 0.23 %/yr (2024 .43, 2025 .14, 2026 .09) on 28x/yr moved turnover = 0.8 bp per moved unit; blend_nested@bn 0.11 %/yr (2026 .015). A 4-h deferral's drift noise is ~5 bp/unit (E2B), so the saving is unmeasurable live and fading with funding levels: not adopted",
+     "date": "2026-11-27",
+     "evidence": "fst_c"
     }
    ],
-   "sessions": 2
+   "sessions": 2,
+   "verdict": "DEAD",
+   "reason": "no settlement-hour price effect: 105k coin-settlements, against-the-payer pre/post hour = placebo (MDE 0.5 bp), no dose in |rate| up to >= 10 bp/8h, cross-section extremes 2-4 h windows = placebo (MDE 2-3.6 bp); arbitraged. The only use, a mechanical deferral of payer-side opens past 08:00, saves 0.1-0.2 %/yr and fades",
+   "closed": "2026-11-27"
   }
  ]
 }

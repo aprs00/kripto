@@ -1,0 +1,24 @@
+{
+ "flow@bn": {
+  "saving_pct_yr": 0.233,
+  "by_year": {
+   "2024": 0.426,
+   "2025": 0.144,
+   "2026": 0.091
+  },
+  "moved_turnover_yr": 28.3,
+  "total_turnover_yr": 109.1,
+  "coverage_share_of_turnover": 0.66
+ },
+ "blend_nested@bn": {
+  "saving_pct_yr": 0.109,
+  "by_year": {
+   "2024": 0.23,
+   "2025": 0.063,
+   "2026": 0.015
+  },
+  "moved_turnover_yr": 14.1,
+  "total_turnover_yr": 64.6,
+  "coverage_share_of_turnover": 0.68
+ }
+}

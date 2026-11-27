@@ -1032,3 +1032,5 @@ Unstated: (1) the rate is mostly known before settlement (premium average): use 
  (minus the 82-coin equal-weight hour return) to remove clock effects; (3) placebo = the same coin's hour 4 h earlier (no settlement for 8-h coins); (4) only 0/8/16 settlements, coins on 4-h
  intervals that day excluded; (5) explore = 2021-23, coin half 0; at 1 h holding no taker trade survives (26 bp ladder): the only use is an execution tilt (c) or a maker timing rule.
 Change my mind: pre-settlement return against the payer > placebo with a dose in |rate| in every explore year -> b/c; else DEAD/FEATURE with MDE.
+FST a/b/c done (is3_fst.py, fst_a/b/c.json): no settlement drift (pre/post hour vs 4-h-earlier placebo diff -0.2/+0.0 bp, MDE 0.5; no dose; xs extremes 2-4 h = placebo, MDE 2-3.6).
+ Mechanical deferral of payer-side opens past 08:00: flow@bn +0.23 %/yr (2026 .09), blend .11: 0.8 bp/moved unit vs ~5 bp drift noise. CLOSED DEAD.

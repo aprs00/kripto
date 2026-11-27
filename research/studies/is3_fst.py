@@ -137,5 +137,35 @@ def run_b():
     json.dump(out, open("research/is3/fst_b.json", "w"), indent=1, default=float)
 
 
+def run_c():
+    """Usable form: the BN daily books trade at ~04:14 UTC; a trade that ADDS to the paying side (by the previous print's sign) deferred to 08:01 skips the 08:00 print.
+    Saving per year = sum |dw_payer-add| * |08:00 print| (scored on the real print), 2024-01..2026-10 (confirm years, 82 coins with hourly funding), per unit of book equity."""
+    from kripto import strategies as S
+    p1 = data.load_panel("bn", "1h")
+    rate, prev, skip = settlements({"funding": p1["funding"]})
+    r8, pv8 = rate[rate.index.hour == 8], prev[prev.index.hour == 8]
+    r8.index, pv8.index = r8.index.floor("1D"), pv8.index.floor("1D")
+    del p1
+    pd_ = data.load_panel("bnall", "1d")
+    books = {"flow@bn": ("flow", {"lookback": 3, "cap": 0.05}), "blend_nested@bn": ("blend", {"components": {"carry_trend": {}, "carry": {}, "xsmom": {}}})}
+    out = {}
+    for lab, (fn, prm) in books.items():
+        w = S.REGISTRY[fn](pd_, **prm).ffill().fillna(0.0)
+        cols = [c for c in w.columns if c in r8.columns]
+        # weights decided on bar D (closes D+1 00:00) are traded on D+1 ~04:14: the trade happens on calendar day D+1, before that day's 08:00 print
+        dw = w[cols].diff().shift(1).loc["2024-01-01":"2026-10-31"]
+        wprev = w[cols].shift(2).loc[dw.index]
+        rr, ps = r8.reindex(index=dw.index, columns=cols), pv8.reindex(index=dw.index, columns=cols)
+        payer = np.sign(ps)                              # +1: longs pay (by the previous print)
+        add = (np.sign(dw) == payer) & (np.abs(wprev + dw) > np.abs(wprev)) & (dw != 0)
+        saved = (dw.abs() * (rr * payer)).where(add, 0.0)        # funding the moved trade would have paid at 08:00 (negative if the print flipped)
+        yrs = len(dw) / 365
+        out[lab] = {"saving_pct_yr": round(float(saved.sum().sum() / yrs) * 100, 3), "by_year": {int(y): round(float(x.sum().sum()) * 100, 3) for y, x in saved.groupby(saved.index.year)},
+                    "moved_turnover_yr": round(float(dw.abs().where(add, 0).sum().sum() / yrs), 1), "total_turnover_yr": round(float(dw.abs().sum().sum() / yrs), 1),
+                    "coverage_share_of_turnover": round(float(dw.abs().sum().sum() / w.diff().abs().loc["2024-01-01":"2026-10-31"].sum().sum()), 2)}
+        print(lab, out[lab], flush=True)
+    json.dump(out, open("research/is3/fst_c.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    {"a": run_a, "b": run_b}[sys.argv[1]]()
+    {"a": run_a, "b": run_b, "c": run_c}[sys.argv[1]]()
