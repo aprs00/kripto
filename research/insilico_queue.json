@@ -1312,7 +1312,7 @@
     },
     {
      "id": "e",
-     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is \u22123..\u221221% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
+     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
      "status": "done",
      "added": "2026-11-22",
      "result": "his literal picture (every live adaptive bucket -3..-21% of its volume, day <= -7%), long 3 d: n 55, +105 bp vs matched +256 (diff -151, p .50, MDE 494), 2022 -470; 2-way table fall x selling: U-shape (no selling +989 and extreme selling <= -20% +711 on 16-18 events at <= -8%; his -3..-21% range -30..+278), no monotone dose in either direction. DEAD form",
@@ -1526,7 +1526,7 @@
    "prio": 23,
    "group": "C",
    "title": "Filter harness: does a signal improve a book that already works?",
-   "src": "design.md \u00a74 (filters)",
+   "src": "design.md §4 (filters)",
    "status": "closed",
    "forms": [
     {
@@ -3492,9 +3492,9 @@
     },
     {
      "id": "b",
-     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md \u00a74 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
+     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md §4 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
      "status": "done",
-     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design \u00a74 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
+     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design §4 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
      "date": "2026-11-27",
      "evidence": "ksw_ab"
     },
@@ -3556,12 +3556,15 @@
    "group": "T",
    "title": "HL main book when listing_short is idle (no qualifying HL listings: live and research both empty on 11-27)",
    "src": "BNH (listing_short = +102 % of the HL book's P&L); 11-27 check: research and live listing_short hold nothing (last: XTEN 11-15, USELESS 11-01)",
-   "status": "todo",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
      "what": "HL 1d 2023-03..2026-11: share of days listing_short holds 0 / 1 / 2+ names by year and month; qualifying HL listings per month (trend); the blend's SR, vol and mean on idle vs active days (day-clustered), and what the book is then (lowvol + tsmom scaled up by the vol target)",
-     "status": "planned"
+     "status": "done",
+     "result": "HL 1d 2023-03..2026-11: listing_short holds 0 names on 3 / 10 / 0 / 21 % of days (2023/24/25/26), 1 name 14/9/3/27 %; 2026 idle spells Mar-Apr (45/77 %), Jun 33 %, Nov 67 %. Blend on idle days SR -1.8 (114 d, 2024 -5.8 on ~37 d, 2026 +.28; SR SE ~1.8: not significant) vs active 1.58. Cash-on-idle (leave listing_short's third in cash, x2/3 on idle days) SR 1.39 vs 1.34, >= every year (2024 .68 -> .79, 2026 1.56 -> 1.63), vol 27.9 vs 28.2: small, exposure-cut caveat (not an F0 test)",
+     "date": "2026-11-27",
+     "evidence": "hli_a"
     },
     {
      "id": "b",
@@ -3573,7 +3576,8 @@
      "what": "verdict for STATUS/strategies.json: the HL book's expectation in idle spells (SR of the no-listing_short blend in those spells) vs the headline 1.34-1.87; whether the equal-risk rescaling of the two remaining legs on idle days helps or hurts (blend on idle days vs the same days with listing_short's 1/3 left in cash)",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "TSH",

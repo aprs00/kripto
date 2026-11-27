@@ -1056,3 +1056,11 @@ PBT a done (pbt_a.json): 89 explore trips, signed entry basis quintiles -> trip 
 PRE-STATED (b, unchanged from the queue): open an eligible pair only when sb >= 0 (signed basis >= its 30-d median) or after waiting k in {2, 5} days; explore 2023-05-15..2024-12-31;
  PASS = net >= live + 0.5 %/yr at gross 2, SR not lower, better in 2023 AND 2024. Upper bound (fills at the close basis).
 PBT b/c done (pbt_b.json): wait <= 2 d -0.4 %/yr, <= 5 d +0.46 (2024 worse): FAIL. Diagnosis: ~1-1.5 bp of equity per improved trip, eaten by carry/slot changes, partly invisible at 00:13. CLOSED OPEN.
+
+## HLI HL main book when listing_short is idle (think-through 19:2x UTC 11-27, before any run)
+Source: BNH; 11-27 check (research and live listing_short both hold nothing; live = research, so not a pipeline fault). No chat records.
+Mechanism: listing_short needs a stream of new HL perps with >= $1M 7-d volume; HL lists in waves (meme/airdrop seasons). When none qualify, the blend's sum is lowvol + tsmom only and
+ the book-level vol target scales them UP to the full 25 %: the book becomes a different, weaker strategy (no_listing_short SR 1.06 in BNH) at full risk.
+Unstated: (1) whether the full rescale is right (equal-risk would leave listing_short's share in cash); (2) the idle share is the forward-looking fact: if HL listings dry up, the headline
+ SR is the wrong expectation; (3) the $1M floor may cut events in quiet months, but changing it is a research-session WF, not this item.
+Change my mind: idle-day SR of the blend < 0.5 AND idle share rising in 2026 -> STATUS must quote the idle-spell expectation; cash-on-idle better than rescale -> backlog proposal.
