@@ -2528,7 +2528,7 @@
    "group": "D",
    "title": "HL-vs-Binance funding gap as a crowding measure (FC1 form c; only form with the right price sign)",
    "src": "findings funding_contra FC1 2026-11-26; backlog FC1/T3",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
@@ -2566,7 +2566,10 @@
    ],
    "sessions": 2,
    "due": "2026-11-27T03:35",
-   "defer_why": "form c needs the pair panel (Binance files): after the nightly window"
+   "defer_why": "form c needs the pair panel (Binance files): after the nightly window",
+   "verdict": "OPEN",
+   "reason": "4 forms: standalone gap short t 1.4 one regime U-dose; listing_short filter wrong sign; reversed filter confirm 92nd pct; slope gate in fspread_hold raises SR via lower vol only, 2024 down, dose reversed. The gap is carry (fspread_hold earns it), not a crowding price signal; MDE 150 bp > 100 bp bar so not DEAD",
+   "closed": "2026-11-27"
   },
   {
    "id": "LV2",

@@ -241,7 +241,8 @@ LV2 (2026-11-27, is3_lv2.py): dropping negative-funding shorts = random drops (2
 
 ### funding_contra: fade funding spikes vs own history (2026-11-08, re-run 11-09) → DEAD as crowding reversal (FC1 2026-11-26, 4 forms); HL-vs-BN gap OPEN (T3)
 FC1C (2026-11-27, HL funding backfilled to 2023-05, is3_fc1c*.py): gap top-10% short 2023-05..2024-06 +39 bp net, t_price 1.4, 2023 −175 / 2024 +189, U-shaped dose: FAIL. As a listing_short filter (exit gap≤0 shorts) dSR −0.13; the
-dose was REVERSED (high-gap shorts −106 bp next day): blocking high-gap shorts explore +0.74 SR (lag-robust) → frozen confirm 2025-07+ +0.08 at 92nd pct: FAIL. fspread tilt (c) pending.
+dose was REVERSED (high-gap shorts −106 bp next day): blocking high-gap shorts explore +0.74 SR (lag-robust) → frozen confirm 2025-07+ +0.08 at 92nd pct: FAIL. (c) gap SLOPE (|7d|≥|14d|) as fspread_hold entry gate: dSR +0.45 (97th pct) but ann 26.6→25.0%, 2024 half down,
+per-trip dose reversed: FAIL (book slot-bound, P&L all funding). Gap = carry, not a crowding/price signal.
 WF HL −0.81, BN −0.42. FC1 (PC, research/studies/fc1_funding_contra.py, bnall top-100 explore 2020–23, rule: price leg t>2 every year, corr carry<0.5; nothing passed → no confirm, no WF):
 (a) long funding < −0.3%/d: price leg t −2.4..0.4; new listings −84..−96 bp/d (hedged supply, = listing_short); seasoned top-30 SR 1.63 is funding (+100 bp/d), top-10 days 104% of net
 (TRB/AXS/BLZ), corr carry 0.46 = carry's long tail. (b) short funding > 0.1%/d after a 1–7 d stall: −35..−60 bp/d whatever the stall; loss = worst 1% (squeezes); the working filter is
@@ -290,6 +291,7 @@ sits in two.** At gross 2.0 each venue account is 2× one-directional (HL ≈ al
 HL −37% (1 d) / −68% (3 d) / −86% (7 d), BN −50% / −68% / −73%; worst single held HL leg +384% in 7 d (TNSR). Basis itself is calm
 (worst daily change 351 bp, p99 29 bp). Verdict for deployment: total gross ≤ 1.0 (≈1× per venue) + daily collateral re-split, ≈ 4%/yr.
 Paper book stays at 2.0 (signal measurement). Live since 2026-11-12 (8 pairs, all short HL / long BN).
+**Unseen-history replication (2026-11-27, FC1C c, frozen config lb14/enter 0.1, HL funding backfilled): 2023-05-15..2024-06 SR 14.2, 26.6%/yr net at gross 2.0, mdd −0.6%** (9.7/10 slots, 66 trips ~70 d).
 **X1d two-account sim (2026-11-12, pre-registered rule, descriptive, research/studies/x1d_pair_accounts.py):** both legs at their
 adverse intraday extreme, maintenance 5/10%. Gross 2.0 is liquidated 1–2× (2025-10-10 cascade: BN long legs −45…−81% intraday,
 account −133%); gross 1.0 and 0.5: 0 liquidations, min buffer 5.6× / 14× (weekly re-split, 10% mm), but a −67…−72% intraday account
