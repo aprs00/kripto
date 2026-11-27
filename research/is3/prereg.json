@@ -255,5 +255,53 @@
    "sample": "confirmT"
   },
   "at": "2026-11-27T11:10:50+00:00"
+ },
+ "HLU1b_flow": {
+  "claim": "explore F0 run (guard only: the hlu_explore sample is an EXPLORE sample)",
+  "rule": "PASS = dSR > 0 at >= 95th pct of 200 random masks AND dSR > 0 in 2023 and 2024",
+  "params": {
+   "sample": "hlu_explore"
+  },
+  "at": "2026-11-27T11:30:11+00:00"
+ },
+ "HLU1d_flow": {
+  "claim": "explore F0 run of the funding-extreme alternative (guard only)",
+  "rule": "same PASS rule as HLU1b",
+  "params": {
+   "sample": "hlu_explore"
+  },
+  "at": "2026-11-27T11:30:11+00:00"
+ },
+ "HLU1b_xsmom": {
+  "claim": "explore F0 run (guard only: the hlu_explore sample is an EXPLORE sample)",
+  "rule": "PASS = dSR > 0 at >= 95th pct of 200 random masks AND dSR > 0 in 2023 and 2024",
+  "params": {
+   "sample": "hlu_explore"
+  },
+  "at": "2026-11-27T11:30:11+00:00"
+ },
+ "HLU1d_xsmom": {
+  "claim": "explore F0 run of the funding-extreme alternative (guard only)",
+  "rule": "same PASS rule as HLU1b",
+  "params": {
+   "sample": "hlu_explore"
+  },
+  "at": "2026-11-27T11:30:11+00:00"
+ },
+ "HLU1b_blend": {
+  "claim": "explore F0 run (guard only: the hlu_explore sample is an EXPLORE sample)",
+  "rule": "PASS = dSR > 0 at >= 95th pct of 200 random masks AND dSR > 0 in 2023 and 2024",
+  "params": {
+   "sample": "hlu_explore"
+  },
+  "at": "2026-11-27T11:30:11+00:00"
+ },
+ "HLU1d_blend": {
+  "claim": "explore F0 run of the funding-extreme alternative (guard only)",
+  "rule": "same PASS rule as HLU1b",
+  "params": {
+   "sample": "hlu_explore"
+  },
+  "at": "2026-11-27T11:30:11+00:00"
  }
 }
