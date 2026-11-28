@@ -6844,7 +6844,7 @@
    "title": "Verify the 00:xx rebalances cleared the twin/hedge violations (GRAM/ZEC orphans, INIT imbalance, DOGE flip) with the new engine rules",
    "src": "TWC, SMP",
    "status": "todo",
-   "due": "2026-11-29T00:30",
+   "due": "2026-11-29T04:30",
    "sessions": 0,
    "forms": [
     {
@@ -6862,7 +6862,8 @@
      "what": "verdict: zero unexplained violations -> TWC closed for good; else fix with a test",
      "status": "planned"
     }
-   ]
+   ],
+   "defer_why": "daily HL/BN books rebalance at 04:06-04:13 UTC (4h bar closing 04:00), pair books 00:13: check after both"
   },
   {
    "id": "SXR",
@@ -7027,7 +7028,7 @@
    "title": "BUILD SMX: small: twins round small targets UP to the effective minimum (spec frozen by SMD/SMY/SMP/CTG), so the \\$200 books hold their strategy",
    "src": "backlog SMX (frozen spec), SMD/SMY/SMP/CTG/SXR",
    "status": "todo",
-   "due": "2026-11-29T01:30",
+   "due": "2026-11-29T04:30",
    "sessions": 1,
    "forms": [
     {
@@ -7052,7 +7053,7 @@
      "status": "planned"
     }
    ],
-   "defer_why": "form c needs the 11-29 00:00 daily rebalances of the small twins under the new rule"
+   "defer_why": "SMX's first rounded rebalance of the HL/BN small: twins happens at 04:06-04:13, not 00:00"
   },
   {
    "id": "SMXR",
