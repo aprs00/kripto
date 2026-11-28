@@ -276,3 +276,8 @@ See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits;
   backtest deployed share at $200 .19 (BN 2026) / .44 (HL 2026). `small_acct` is kept for comparability with old results; quote small_acct_min AND small_deployed.
 * 2026-11-28 (insilico SMA; reporting) `robustness()` adds `small_acct_round`: the small account under the round-to-minimum rule (a target >= half the minimum weight is placed at
   the minimum, below half 0; research.round_to_min), the rule the backlog's SMX would give the live small: twins. Same general rationale as small_acct_min; gate unchanged.
+* 2026-11-28 (insilico SMXB; execution model of the small: twins, gate unchanged) The live `small:` twins now ROUND, not truncate: a target notional >= half the coin's effective
+  minimum (venue minimum rounded up to whole size steps) is placed at that minimum, sign kept; below half 0; pair legs both at the larger of their two minima (paper.round_targets_to_min,
+  venue_pair.round_pairs_to_min). General rationale: the $200 twin exists to show what a $200 trader would hold, and a person running a small account rounds a wanted position up to the
+  smallest tradable size instead of silently dropping it; truncation measured the min-order filter, not the strategy. Evidence it matters (not used to promote anything): SMD history
+  HL round 1.21 vs truncation 1.12 (deployed .61 vs .41), BN 1.50; SMY live replay corr with the big sibling .94/.87; SMP pair 7.33 vs 1.32. The $1,000 gate is unaffected.

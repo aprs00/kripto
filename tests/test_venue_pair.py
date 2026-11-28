@@ -196,7 +196,7 @@ def test_whole_pairs_drops_both_legs_when_one_is_below_its_minimum():
 
 def test_small_pair_book_never_holds_a_one_legged_pair(env):
     store, cfg, risk, bn_run = env
-    cfg["fspread_hold@pair"].update(status="incubation", alloc=0.4)    # small:main@pair legs = .4 x 10 % x $200 = $8: HL leg < $10
+    cfg["fspread_hold@pair"].update(status="incubation", alloc=0.2)    # small:main@pair legs = .2 x 10 % x $200 = $4: < half of $10
     store.ensure_book("small:main@pair", 200.0)
     store.x("insert into positions values('small:main@pair','AAA@bn',0.9)")   # an orphan left by the old engine
     _run(env)
@@ -231,3 +231,28 @@ def test_unbalanced_held_pair_is_repaired():
     assert out["AAA@hl"] == pytest.approx(-143 * 0.088 / 200) and out["AAA@bn"] == pytest.approx(143 * 0.088 / 200)
     bal = {"AAA@hl": -200.0, "AAA@bn": 210.0}                     # within 0.7-1.4: left alone
     assert VP.whole_pair_trades(t, 200.0, mins, bal, marks).equals(t)
+
+
+def test_round_pairs_to_min_places_both_legs_at_the_larger_minimum():
+    """SMX 11-28: a pair in a small: twin rounds both legs to the larger of the two effective minima, or drops both."""
+    import pandas as pd
+    from kripto import venue_pair as VP
+    mins = {"AAA@hl": 10.0, "AAA@bn": 5.0, "BBB@hl": 10.0, "BBB@bn": 90.0, "CCC@hl": 10.0, "CCC@bn": 5.0, "DDD@bn": 5.0}
+    t = pd.Series({"AAA@hl": 0.03, "AAA@bn": -0.03,    # $6 / -$6 at $200: >= $5 = half of $10 -> both at $10
+                   "BBB@hl": -0.25, "BBB@bn": 0.25,    # $50: >= $45 -> both at $90
+                   "CCC@hl": 0.02, "CCC@bn": -0.02,    # $4 < $5 -> both 0
+                   "DDD@bn": 0.015})                   # single leg $3 >= $2.5 -> $5
+    out = VP.round_pairs_to_min(t, 200.0, lambda x: mins[x])
+    want = {"AAA@hl": 0.05, "AAA@bn": -0.05, "BBB@hl": -0.45, "BBB@bn": 0.45, "CCC@hl": 0.0, "CCC@bn": 0.0, "DDD@bn": 0.025}
+    assert all(abs(out[k] - v) < 1e-12 for k, v in want.items())
+    assert VP.whole_pairs(out, 200.0, lambda x: {**mins, "BBB@bn": 50.0}[x]).equals(out)   # nothing left for whole_pairs to drop
+
+
+def test_small_pair_book_rounds_both_legs_up_end_to_end(env):
+    """SMX 11-28: $8 legs (>= half the HL $10 minimum) are both placed at $10 in the small twin, hedged."""
+    store, cfg, risk, bn_run = env
+    cfg["fspread_hold@pair"].update(status="incubation", alloc=0.4)
+    _run(env)
+    pos = {c: s for c, s in store.positions("small:main@pair").items() if abs(s) > 0}
+    assert set(pos) == {"AAA@hl", "AAA@bn"} and pos["AAA@hl"] < 0 < pos["AAA@bn"]
+    assert pos["AAA@bn"] == pytest.approx(-pos["AAA@hl"], rel=0.05)

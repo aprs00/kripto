@@ -1687,3 +1687,7 @@ SXR a/b/c (sxr_a.json, sxr_b.json): live $200 twins deployed 0-.90 of their shad
 CTG a/b/c (ctg_ab.json): small:carry_trend@bn: BTC target $56.40 = 58 % of its gross, Binance step .001 BTC > $56 -> floored to 0; the rest < $5. No fault; SMX rounds to max(min, one step). CLOSED OPEN.
 SMA a/b/c (kripto/research.round_to_min, small_acct_round, tests, is3_sma.py, sma_b.json): known answer exact. CLOSED FEATURE.
 FLP a/b/c (is3_flp.py, flp_ab.json): main_bn mix .5 flow 1.75 vs blend alone 1.66 vs .25 flow 1.80 (2025-26 .86/.98/.99); funding overlap per coin .85. FLX2 pre-registered (+.1 OOS SR keep bar). CLOSED OPEN.
+
+## SMXB build SMX (14:5x UTC 11-28)
+SMXB a/b: built round-to-min for the live small: twins (paper.round_targets_to_min, effective_min = minimum rounded up to whole steps; venue_pair.round_pairs_to_min); 222 pass, trader 14:50 exit 0.
+ Not capped by max_gross after rounding (worst case at $200: every name at the minimum; HL 20 x $10 = 1.0x, far below max_gross). Form c after the 11-29 00:00 rebalances (deferred 01:30).

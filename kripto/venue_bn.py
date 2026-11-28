@@ -244,7 +244,8 @@ def run(store: P.Store, cfg: dict, risk: dict, bn: BN | None = None) -> dict:
                     round_size=lambda c, d: round_step(d, filters.get(c, {}).get("step", 0.0)),
                     fill=lambda c, d: simulate_fill(bn, c, d, depth),
                     min_notional=lambda c: filters.get(c, {}).get("min_notional", 5.0),
-                    fee_rate=TAKER_FEE_BN)
+                    step=lambda c: filters.get(c, {}).get("step", 0.0),
+                    fee_rate=TAKER_FEE_BN, round_min=book.startswith("small:"))
 
     with P.trade_lock():
         books = P.run_books(store, entries, risk, marks, strat_w, last_bar, "main_bn", reb)

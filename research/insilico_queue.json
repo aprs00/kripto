@@ -7026,9 +7026,9 @@
    "group": "T",
    "title": "BUILD SMX: small: twins round small targets UP to the effective minimum (spec frozen by SMD/SMY/SMP/CTG), so the \\$200 books hold their strategy",
    "src": "backlog SMX (frozen spec), SMD/SMY/SMP/CTG/SXR",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T13:46",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",

@@ -172,3 +172,40 @@ def test_a_flip_below_the_minimum_closes_the_old_side(tmp_path):
     assert pos.get("DOGE", 0.0) == 0.0                     # target -$3 < $5: the +$1 long is closed, not kept
     assert pos["SOL"] == 0.1                               # +$2 resize on the same side: below the minimum, waits
     assert fills == [("DOGE", -20.0)]
+
+
+def test_small_twins_round_targets_up_to_the_effective_minimum(tmp_path):
+    """SMX 11-28: in a small: book a target >= half the effective minimum is placed AT it (sign kept), below half -> 0;
+    the effective minimum is the venue minimum rounded up to whole size steps (CTG: BN BTC step .001 at $90k = $90 > $50)."""
+    import math
+    import pandas as pd
+    from kripto import paper as P
+    assert P.effective_min(10.0, 0.001, 100.0) == 10.0                     # HL, step $0.1: the $10 minimum itself
+    assert math.isclose(P.effective_min(50.0, 0.001, 90000.0), 90.0)       # BN BTC: one step is $90
+    assert math.isclose(P.effective_min(5.0, 1.0, 3.0), 6.0)               # step $3: two steps
+    t = pd.Series({"A": 0.03, "B": -0.04, "C": 0.02, "D": 0.10, "E": 0.0})
+    out = P.round_targets_to_min(t, 200.0, {"A": 10.0, "B": 10.0, "C": 10.0, "D": 10.0, "E": 10.0})
+    assert out.to_dict() == {"A": 0.05, "B": -0.05, "C": 0.0, "D": 0.10, "E": 0.0}   # $6 -> $10, -$8 -> -$10, $4 -> 0, $20 kept
+
+    s = Store(tmp_path / "p.db")
+    s.ensure_book("small:x", 200.0)
+    s.ensure_book("shadow:x", 200.0)
+    marks = {"BTC": 90000.0, "SOL": 100.0}
+    for b in ("small:x", "shadow:x"):
+        P.rebalance(None, s, b, pd.Series({"BTC": 0.25, "SOL": -0.03}), marks, {}, "bar",
+                    round_size=lambda c, d: P.math.copysign(math.floor(abs(d) / {"BTC": .001, "SOL": .01}[c] + 1e-9)
+                                                            * {"BTC": .001, "SOL": .01}[c], d),
+                    fill=lambda c, d: (marks[c], marks[c], 0.0), min_notional=lambda c: {"BTC": 50.0, "SOL": 5.0}[c],
+                    step=lambda c: {"BTC": .001, "SOL": .01}[c], round_min=b.startswith("small:"))
+    assert s.positions("small:x") == {"BTC": 0.001, "SOL": -0.06}          # BTC $50 target -> one $90 step; SOL -$6 kept
+    assert s.positions("shadow:x") == {"SOL": -0.06}                       # without the rule BTC floors to 0 (CTG)
+    # a flip: the old long is replaced by the rounded short, not just closed
+    P.rebalance(None, s, "small:x", pd.Series({"BTC": -0.25, "SOL": 0.02}), marks, {}, "bar2",
+                round_size=lambda c, d: round(d, 3 if c == "BTC" else 2), fill=lambda c, d: (marks[c], marks[c], 0.0),
+                min_notional=lambda c: {"BTC": 50.0, "SOL": 5.0}[c], step=lambda c: {"BTC": .001, "SOL": .01}[c], round_min=True)
+    pos = s.positions("small:x")
+    assert math.isclose(pos["BTC"], -0.001) and math.isclose(pos["SOL"], 0.05)   # SOL $4 >= $2.5 -> placed at $5
+    # retirement still closes everything
+    P.rebalance(None, s, "small:x", pd.Series(dtype=float), marks, {}, "retired", round_min=True,
+                fill=lambda c, d: (marks[c], marks[c], 0.0), round_size=lambda c, d: d)
+    assert not any(abs(v) > 1e-12 for v in s.positions("small:x").values())

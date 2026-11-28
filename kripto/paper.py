@@ -14,6 +14,7 @@ from __future__ import annotations
 import contextlib
 import fcntl
 import json
+import math
 import os
 import sqlite3
 import sys
@@ -273,15 +274,48 @@ def apply_risk(w: pd.Series, risk: dict) -> pd.Series:
     return w
 
 
+def effective_min(min_notional: float, step: float, mark: float) -> float:
+    """Smallest notional that can really be held: the venue minimum, rounded UP to a whole number of size steps
+    (CTG 11-28: Binance BTC step .001 = $90 > the $50 minimum)."""
+    if mark <= 0:
+        return float("inf")
+    if step <= 0:
+        return float(min_notional)
+    n = max(1, math.ceil(min_notional / (mark * step) - 1e-9))
+    return n * step * mark
+
+
+def round_targets_to_min(target_w: pd.Series, eq: float, mins: dict[str, float]) -> pd.Series:
+    """SMX rule for the small: twins (SMD/SMY/SMP 11-28; same rule as research.round_to_min): a target whose notional is at
+    least half the coin's effective minimum is placed AT that minimum (sign kept), below half -> 0, at or above unchanged.
+    mins = coin -> effective minimum notional ($). A $200 trader rounds up instead of silently dropping the names."""
+    if target_w.empty or eq <= 0:
+        return target_w
+    out = target_w.astype(float).copy()
+    for c, w in target_w.items():
+        m = mins.get(c)
+        if m is None or not np.isfinite(m) or w == 0 or pd.isna(w):
+            continue
+        n = abs(float(w)) * eq
+        if n < m - 1e-9:
+            out[c] = float(np.sign(w)) * (m / eq if n >= m / 2 else 0.0)
+    return out
+
+
 def rebalance(hl: HL, store: Store, book: str, target_w: pd.Series, marks: dict[str, float],
               meta_sz: dict[str, int], reason: str, *, round_size=None, fill=None,
-              min_notional=None, fee_rate=TAKER_FEE):
-    """Trade `book` to target weights. HL defaults; another venue passes round_size(coin, d), fill(coin, d) and
-    min_notional(coin). `fee_rate` is a number or fee_rate(coin) (two-venue books pay each leg its venue's fee)."""
+              min_notional=None, fee_rate=TAKER_FEE, step=None, round_min: bool = False):
+    """Trade `book` to target weights. HL defaults; another venue passes round_size(coin, d), fill(coin, d),
+    min_notional(coin) and step(coin) (size increment). `fee_rate` is a number or fee_rate(coin) (two-venue books pay each
+    leg its venue's fee). round_min (the small: twins, SMX): targets are first rounded with round_targets_to_min."""
     round_size = round_size or (lambda c, d: float(np.round(d, meta_sz.get(c, 4))))
     fill = fill or (lambda c, d: simulate_fill(hl, c, d))
     min_notional = min_notional or (lambda c: MIN_NOTIONAL)
+    step = step or (lambda c: 10.0 ** -meta_sz.get(c, 4))
     eq, _ = book_equity(store, book, marks)
+    if round_min and reason not in ("kill_switch", "retired"):
+        target_w = round_targets_to_min(target_w, eq, {c: effective_min(min_notional(c), step(c), marks[c])
+                                                       for c in target_w.index if c in marks})
     pos = store.positions(book)
     # Overlay sleeves (kripto/ladder.py trading inside a main book, same account): the part of a position the sleeve owns is
     # not this rebalance's to net. A kill switch or retirement closes everything, sleeve included, and drops the sleeve rows.
@@ -441,7 +475,8 @@ def run_once():
     strat_w = compute_targets(store, entries, panel, last_bar)
     l2 = {}   # order books fetched in this run, shared by all books trading the same coin (see simulate_fill)
     reb = lambda book, tgt, reason: rebalance(hl, store, book, tgt, marks, sz_dec, reason,
-                                              fill=lambda c, d: simulate_fill(hl, c, d, l2))
+                                              fill=lambda c, d: simulate_fill(hl, c, d, l2),
+                                              round_min=book.startswith("small:"))
     with trade_lock():
         books = run_books(store, entries, risk, marks, strat_w, last_bar, "main", reb)
     store.set_meta("hl_trades_done", now_iso())   # fill-delay audit: trades finished, before funding/BN/pair/collector

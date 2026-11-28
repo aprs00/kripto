@@ -186,7 +186,7 @@ HL $10; Binance $5 (BTC $50, ETH $20). Taker fee: HL 4.5 bp, Binance 5 bp (VIP0)
 own shadow paper book (`shadow:<name>`, `shadow_equity` in config/risk.json, currently $2,000 so the $10 min
 order doesn't distort signal measurement). Only `incubation`/`active` strategies with `alloc > 0` trade in the
 `main` book ($1,000 = the reference account size; `main`, `main_bn` and the two-account `main@pair` are alternative homes for it). Every
-book also has a `small:` twin at $200 that gets the same targets (what the same thing does in a $200 account); it is created,
+book also has a `small:` twin at $200 that gets the same targets (what the same thing does in a $200 account; since SMXB 11-28 a target >= half the effective minimum order is rounded UP to it, below half dropped, pair legs both to the larger minimum); it is created,
 retired and closed together with its big sibling. Keep `sum(alloc)` ≤ 1.0 per venue (main and main_bn are separate allocations). Since M1 (2026-11-12) `incubation` = the
 main book's best estimate (design.md 2026-11-10 rule), so allocs are the equal-risk mix, not a 0.25 toe-in. Promotion and
 demotion follow the gates in `docs/design.md §4`. Record the evidence (numbers) in the journal and findings.

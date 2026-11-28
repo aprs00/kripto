@@ -201,6 +201,30 @@ def whole_pair_trades(tgt: pd.Series, eq: float, min_notional, pos: dict[str, fl
     return out
 
 
+def round_pairs_to_min(tgt: pd.Series, eq: float, eff_min) -> pd.Series:
+    """SMX for the two-venue small: twins (SMP 11-28: round-up of both legs kept the $1,000 SR at $200). Per coin, m = the larger of
+    its legs' effective minima (eff_min(col): venue minimum rounded up to whole size steps); if the larger leg's target notional
+    is >= m/2, every leg below m is placed AT m (sign kept), else the pair is 0. Single legs follow the same rule on their own
+    minimum. whole_pairs / whole_pair_trades then run as before."""
+    if tgt.empty or eq <= 0:
+        return tgt
+    out = tgt.astype(float).copy()
+    by = {}
+    for col in tgt.index:
+        by.setdefault(leg(col)[0], []).append(col)
+    for c, cols in by.items():
+        if any(float(tgt[x]) == 0 or pd.isna(tgt[x]) for x in cols):
+            continue
+        m = max(eff_min(x) for x in cols)
+        if not np.isfinite(m):
+            continue
+        n = max(abs(float(tgt[x])) * eq for x in cols)
+        for x in cols:
+            if abs(float(tgt[x])) * eq < m - 1e-9:
+                out[x] = float(np.sign(tgt[x])) * (m / eq if n >= m / 2 else 0.0)
+    return out
+
+
 def whole_pairs(tgt: pd.Series, eq: float, min_notional) -> pd.Series:
     """A pair is held whole or not at all (SMP 2026-11-28): if either leg's target notional is below its venue's minimum order at
     this book's equity, both legs' targets are 0. Without this the $200 twin held one-legged positions (BN $5 minimum let the
@@ -269,9 +293,15 @@ def run(store: P.Store, cfg: dict, risk: dict, hl, bn_run: dict, hl_marks: dict,
         c, v = leg(col)
         return P.MIN_NOTIONAL if v == "hl" else filters.get(data.hl_to_bn(c), {}).get("min_notional", 5.0)
 
+    def step(col):
+        c, v = leg(col)
+        return 10.0 ** -sz_dec.get(c, 4) if v == "hl" else filters.get(data.hl_to_bn(c), {}).get("step", 0.0)
+
     def reb(book, tgt, reason):
         if reason not in ("kill_switch", "retired"):
             eq = P.book_equity(store, book, marks)[0]
+            if book.startswith("small:"):
+                tgt = round_pairs_to_min(tgt, eq, lambda x: P.effective_min(min_notional(x), step(x), marks.get(x, 0.0)))
             tgt = whole_pair_trades(whole_pairs(tgt, eq, min_notional), eq, min_notional, store.positions(book), marks)
         P.rebalance(None, store, book, tgt, marks, {}, reason, round_size=round_size, fill=fill,
                     min_notional=min_notional, fee_rate=lambda col: TAKER_FEE if col.endswith("@hl") else V.TAKER_FEE_BN)
