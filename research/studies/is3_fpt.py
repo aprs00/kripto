@@ -105,8 +105,7 @@ def form_b():
     E.TRUE_HOURLY = th
     E.form_a(tag="fpt_b_a")                 # anchors on the true split (single books are valid each on their own clock)
     from research.studies import is3_pdx as X   # avg6 ONLY on one hourly clock (PDX lesson)
-    X.EV = EV
-    X.form_xf()                              # writes pdx_xf.json: copy to fpt_b_xf.json after the run
+    X.form_xf(tag="fpt_b_xf")
 
 
 if __name__ == "__main__":

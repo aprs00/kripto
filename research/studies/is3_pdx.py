@@ -94,7 +94,7 @@ def form_x(names=("blend_nested", "tsmom", "carry")):
     json.dump(out, open(EV / "pdx_x.json", "w"), indent=1)
 
 
-def form_xf():
+def form_xf(tag="pdx_xf"):
     """E2C c's flow@bn avg6 (approx taker split) re-measured on one hourly clock. Memory: books first, panels freed, hourly returns only for held coins."""
     import gc
     from research.studies import is3_e2c as E
@@ -124,7 +124,7 @@ def form_xf():
            "monthly_sr": {"avg6": mo(avg), **{h: mo(df[h]) for h in E.ANCH}},
            "years_avg6": {int(y): sr(x) for y, x in avg.groupby(avg.index.year)}, "years_00": {int(y): sr(x) for y, x in df[0].groupby(df.index.year)}}
     print(json.dumps(res), flush=True)
-    json.dump(res, open(EV / "pdx_xf.json", "w"), indent=1)
+    json.dump(res, open(EV / f"{tag}.json", "w"), indent=1)
 
 
 if __name__ == "__main__":
