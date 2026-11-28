@@ -8066,6 +8066,60 @@
    "verdict": "OPEN",
    "reason": "forward judge has no power at the 2026 edge (MDE 2.1x mean at 90 d, ~1x at 365 d; false-retire 16.5 % on 60-d SR<0): clause restated as a disaster veto with backtest-derived thresholds; the funding cash-flow comparison is the only short-horizon test with power (12-12)",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "X1F",
+   "prio": 2.6,
+   "group": "T",
+   "title": "fspread_hold@pair: live funding collected per pair-day vs what the backtest credits for the same pairs and days (X1P: the only short-horizon test with power)",
+   "src": "X1P c, backlog X1f(3)",
+   "status": "todo",
+   "due": "2026-11-28T18:55",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "plumbing: live funding rows (funding table, both legs) vs research prints (data/hl/funding, Binance funding in the pair panel) for the same coin/hour; share matched, median abs diff; a known-answer check on one pair-day by hand",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "per pair-day: live funding $ / live notional vs the backtest's funding rate on the SAME pairs/days (live positions replayed on research funding); ratio, CI from day-clustered bootstrap; split HL leg vs BN leg",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "power: SD of the daily live-minus-replay funding diff -> MDE of the ratio at 30/60 d; write the 12-12 clause (what ratio, at what n, means 'funding as modelled') before 12-12",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "LFV",
+   "prio": 2.7,
+   "group": "T",
+   "title": "Listing venue order: do HL-first listings (not yet on Binance perps) decay faster / more front-loaded than listings already trading on Binance? (the venue reason LSH3 needs)",
+   "src": "LSH3, T2b(b), HLD",
+   "status": "todo",
+   "due": "2026-11-28T18:55",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "think-through + classify every HL listing 2023-24 (explore) by whether the coin had Binance perp volume before its HL first bar (bnall first traded day); counts per class; abnormal return vs BTC d1..d60 by class, mean and median, by age bucket 1-15/16-30/31-60",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "same split on bnall listings 2020-23: coin already on HL before Binance (only from 2023) is too rare -> instead split Binance listings by first-day dollar volume rank (hot vs quiet listings), the state view; dose-response of d1-30 vs d31-60 decay on that rank",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict: does the split give a stated venue reason for a bnall-only front-loaded pre-registration (backlog T2b(f))? write it there; HL 2025-26 and bnall 2024-26 not opened",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
