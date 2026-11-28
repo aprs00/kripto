@@ -1,0 +1,129 @@
+{
+ "decomp_err": 4.440892098500626e-16,
+ "tier1": {
+  "2023": {
+   "gross_exp": 0.093,
+   "price": 0.1594,
+   "funding": -0.0316,
+   "cost": 0.0206,
+   "net": 0.1072,
+   "turn": 12.2,
+   "net_per_gross": 1.153,
+   "cost_bp_per_unit": 16.8
+  },
+  "2024": {
+   "gross_exp": 0.115,
+   "price": 0.0932,
+   "funding": -0.0214,
+   "cost": 0.0129,
+   "net": 0.0589,
+   "turn": 16.8,
+   "net_per_gross": 0.515,
+   "cost_bp_per_unit": 7.7
+  },
+  "2025": {
+   "gross_exp": 0.106,
+   "price": -0.0247,
+   "funding": -0.0055,
+   "cost": 0.0113,
+   "net": -0.0415,
+   "turn": 18.3,
+   "net_per_gross": -0.392,
+   "cost_bp_per_unit": 6.2
+  },
+  "2026": {
+   "gross_exp": 0.164,
+   "price": 0.1235,
+   "funding": -0.0033,
+   "cost": 0.0165,
+   "net": 0.1037,
+   "turn": 24.8,
+   "net_per_gross": 0.631,
+   "cost_bp_per_unit": 6.7
+  }
+ },
+ "tier2": {
+  "2023": {
+   "gross_exp": 0.091,
+   "price": 0.0445,
+   "funding": -0.0161,
+   "cost": 0.0331,
+   "net": -0.0046,
+   "turn": 14.8,
+   "net_per_gross": -0.051,
+   "cost_bp_per_unit": 22.4
+  },
+  "2024": {
+   "gross_exp": 0.087,
+   "price": 0.0255,
+   "funding": -0.0131,
+   "cost": 0.0169,
+   "net": -0.0045,
+   "turn": 14.2,
+   "net_per_gross": -0.052,
+   "cost_bp_per_unit": 11.9
+  },
+  "2025": {
+   "gross_exp": 0.068,
+   "price": 0.0532,
+   "funding": -0.0028,
+   "cost": 0.0093,
+   "net": 0.0411,
+   "turn": 11.4,
+   "net_per_gross": 0.602,
+   "cost_bp_per_unit": 8.2
+  },
+  "2026": {
+   "gross_exp": 0.135,
+   "price": 0.1506,
+   "funding": -0.0091,
+   "cost": 0.0213,
+   "net": 0.1202,
+   "turn": 21.1,
+   "net_per_gross": 0.892,
+   "cost_bp_per_unit": 10.1
+  }
+ },
+ "tier3": {
+  "2023": {
+   "gross_exp": 0.064,
+   "price": 0.0648,
+   "funding": -0.0128,
+   "cost": 0.0263,
+   "net": 0.0257,
+   "turn": 9.7,
+   "net_per_gross": 0.4,
+   "cost_bp_per_unit": 27.1
+  },
+  "2024": {
+   "gross_exp": 0.08,
+   "price": -0.0211,
+   "funding": -0.0096,
+   "cost": 0.0206,
+   "net": -0.0513,
+   "turn": 14.3,
+   "net_per_gross": -0.644,
+   "cost_bp_per_unit": 14.4
+  },
+  "2025": {
+   "gross_exp": 0.075,
+   "price": -0.0156,
+   "funding": -0.003,
+   "cost": 0.0135,
+   "net": -0.0321,
+   "turn": 13.8,
+   "net_per_gross": -0.426,
+   "cost_bp_per_unit": 9.8
+  },
+  "2026": {
+   "gross_exp": 0.12,
+   "price": 0.007,
+   "funding": -0.0029,
+   "cost": 0.026,
+   "net": -0.0218,
+   "turn": 21.6,
+   "net_per_gross": -0.181,
+   "cost_bp_per_unit": 12.0
+  }
+ }
+}

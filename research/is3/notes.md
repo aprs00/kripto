@@ -1374,3 +1374,11 @@ Source: SQZ (bnall 2021-23: top off_low quintile P(7-d short loss > 20 %) 17 % v
 HSQ a/b done (is3_hsq.py, hsq_ab.json): SQZ replicates on HL (frozen edges): far-above-low top quintile P(7-d short loss > 20 %) 14.3 vs 9.3 % bottom 3 (2023/25/26 yes, 2024 no: q1 19 %).
  Same quintile has the HIGHEST median short return (+8 %): the squeeze tail rides on the strongest decay, so blocking it throws the edge away (consistent with SQZ F0). By group: risk ratio
  highest in established coins (14 vs 3-6 %), fresh 17 vs 10-12 %.
+
+## TLQ HL tsmom cost by liquidity (think-through 02:5x UTC 11-28, before any run)
+Source: HTN (HL tsmom 105x turnover; cost/unit 8-22 bp vs BN 6 bp), PRB/PRL (tsmom > half the HL book's cost). tsmom weights = trend/vol over HL's top 20 by volume: ranks 15-20 are thin,
+ high-vol coins whose 1/vol weight is small but whose signal flips often and whose slippage is near the 25 bp cap. Unstated: the thin end may carry the trend (new coins trend hardest) AND
+ the cost; a cost cut that removes the trend is no saving. a = per rank tercile (1-7 / 8-14 / 15-20, point-in-time 30-d dollar-volume rank) gross, funding, cost per unit held, by year.
+ b = ONE stated variant top_n 10 (no grid), explore 2023-24 then confirm 2025-26 by prereg. c = is it the same saving as PRB2 (lam .33)?
+TLQ a done (is3_tlq.py, tlq_a.json): tsmom by liquidity tier: tier1 net +11/+6/-4/+10 %/yr, tier2 ~0/0/+4/+12, tier3 (ranks 15-20) +3/-5/-3/-2 with ~0 price edge after 2023 at 10-27 bp/unit.
+ Dose in liquidity. a saw 2025-26 (descriptive), so b's confirm is weakened: say so; b variant (top 10) was stated before a.
