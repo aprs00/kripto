@@ -11,6 +11,9 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 (AKE, same minute as the shadow, 2.9 % of equity: item 4 done). Detail: journal 2026-11-28.
 **Next priorities (2026-11-28):** 1. PRB2 forward check at 30 live days (≈ 12-28, below) → 2. X1f at ≥ 30 days (≈ 12-12) → 3. E1 + LQ1 (≈ 12-01) → 4. fill-delay ≈ 12-09 → 5. T6b ≈ 12-07 → 6. T5d (low)
 → 7. W2 ≈ 12-23 → 8. (FPD low) → 9. KS1b (low, see below) → 10. low prior: W3b, FC1(c), LV1 short leg, FF1 market-relative, NPC2, TLQ2, HFX2.
+- [ ] FLX2 (insilico FLX 2026-11-28, research session, prior MEDIUM) **flow@bn's price edge is ~0 since 2025; its return is funding carry** (research/is3/flx_ab.json: 2025/26 gross
+  23.6/13.8 %/yr = funding 18.9/15.4 + price +4.7/-1.6; 2023-24 price +33-35). Decay not significant (HAC t -1.0; blend control -1.34), no retire clause met. Do: pre-register ONE comparison on
+  bnall WF: main_bn = .5 flow + .5 blend vs blend alone vs flow-without-funding-names; decide with forward days, not this table (a 2-year lull happened in 2022 too).
 - [ ] SMX (insilico SMD 2026-11-28, research session, prior MEDIUM-HIGH: it decides whether the owner's $200 option is real) **small: twins round small targets UP to the minimum order**
   (a target >= half the venue/symbol minimum is placed AT the minimum, sign kept; below half: 0). Today the engine drops them: small:main = BTC only, small:main_bn 3 of 31 names.
   Descriptive (research/is3/smd_b.json, smd_track.json; rule fixed a priori): HL $200 SR 1.21 vs 1.58 at $1,000 (corr .78, deployed .61/.72 2025/26) vs truncation 1.38 at corr .40 / 2.7 names;

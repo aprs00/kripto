@@ -1675,3 +1675,11 @@ T6P a/b (is3_t6p.py, t6p_ab.json): 453/453 hours, 0 gaps, 38 accounts/snapshot b
  at most 2 variants (level x, and per-account change dx over 1 d on accounts present both days). CONFIRM = 2026-12-08 .. 2027-02-05 (60 d), untouched until then: PASS = same sign as
  explore, t >= 2, and IC >= .03. Fade vs follow is decided on explore only.
 T6P c: pre-registration above, copied to backlog T6b. CLOSED.
+
+## FLX flow@bn decay (think-through 13:3x UTC 11-28, before any run)
+Source: SMQ b (flow alone SR by year 2.66/-.01/2.02/1.07/.47/.22 at main weight), FLL (live = 3-5th pct of backtest 19-d windows). Decay mechanisms: (1) crowding (taker-flow
+ continuation is a known signal; more market makers lean on it); (2) the universe grew 113 -> 532 names: the 5 % cap spreads the book over more, thinner names where costs eat the edge;
+ (3) a regime (2023 was a trend year for alts). Unstated: 2021 and 2023 dominate the average; a 'decay' test with 6 yearly points has no power: slope t over monthly returns with HAC is
+ the minimum. Change my mind: monthly-return slope HAC t <= -2 AND IC by year falling in 2025-26 vs 2021-24 -> real decay; else 'weak recent years' consistent with noise.
+FLX a/b/c (is3_flx.py, flx_ab.json): flow slope HAC t -1.0 (blend -1.34): no significant decay; but 2025-26 flow = funding 18.9/15.4 %/yr + price +4.7/-1.6 (2023-24 price 33-35): the price
+ edge is ~0 for 2 years, flow is now a carry book overlapping blend. No clause met, no lifecycle change. CLOSED OPEN -> backlog FLX2.
