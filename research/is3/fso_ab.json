@@ -1,0 +1,47 @@
+{
+ "a": {
+  "days_any_pair": 1.0,
+  "top_coins_by_gross": {
+   "AAVE": 0.064,
+   "kPEPE": 0.056,
+   "TAO": 0.046,
+   "WIF": 0.04,
+   "LDO": 0.035,
+   "AVAX": 0.034,
+   "DOGE": 0.031,
+   "WLD": 0.03,
+   "LINK": 0.027,
+   "NEAR": 0.027
+  },
+  "hl_side_sign_share_short": 0.826,
+  "days_BTC": 0.247,
+  "days_ETH": 0.109,
+  "overlap_gross_share_of_hl_longs": 0.1087
+ },
+ "b": {
+  "2023": {
+   "hl_book_funding_ann": -0.2511,
+   "pair_book_funding_ann": 0.3655,
+   "offset_in_same_coins_ann": 0.0225,
+   "hl_btc_long_funding_ann": -0.0815
+  },
+  "2024": {
+   "hl_book_funding_ann": -0.0465,
+   "pair_book_funding_ann": 0.2032,
+   "offset_in_same_coins_ann": 0.0298,
+   "hl_btc_long_funding_ann": -0.095
+  },
+  "2025": {
+   "hl_book_funding_ann": -0.0937,
+   "pair_book_funding_ann": 0.0953,
+   "offset_in_same_coins_ann": 0.0056,
+   "hl_btc_long_funding_ann": -0.0472
+  },
+  "2026": {
+   "hl_book_funding_ann": -0.1142,
+   "pair_book_funding_ann": 0.0739,
+   "offset_in_same_coins_ann": 0.009,
+   "hl_btc_long_funding_ann": -0.0163
+  }
+ }
+}

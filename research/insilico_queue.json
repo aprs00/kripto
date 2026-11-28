@@ -5556,25 +5556,38 @@
    "group": "T",
    "title": "Do the owner's books already net out the HL BTC funding drag? main@pair (fspread_hold) pairs vs the HL main book's long legs",
    "src": "HFX/HFZ (HL longs pay ~2x; a split is not operable), X1 fspread_hold@pair (short the venue whose longs pay more)",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T03:31",
    "forms": [
     {
      "id": "a",
      "what": "pair panel 2023-26: fspread_hold's held pairs by coin and sign; share of days it holds BTC / ETH and the HL main book's long coins short on HL",
-     "status": "planned"
+     "status": "done",
+     "result": "pair panel 2023-06..2026-11, fspread_hold@pair (live params): holds pairs every day; HL leg short 83 % of pair-days; BTC held 25 % of days, ETH 11 %; top gross AAVE/kPEPE/TAO/WIF/LDO (3-6 % each). Overlap with the HL main book's longs (min of HL long and pair's HL short, same coin, same day) = 10.9 % of HL long gross.",
+     "date": "2026-11-28",
+     "evidence": "fso_ab"
     },
     {
      "id": "b",
      "what": "aggregate funding of HL main + main@pair (as two $1,000 books) vs the sum of their separate funding: how much of the HL book's long-side funding is offset by the pair book's HL shorts in the same coins",
-     "status": "planned"
+     "status": "done",
+     "result": "funding %/yr of each ,000 book 2023(H2)/24/25/26: HL main -25.1/-4.7/-9.4/-11.4 (of which BTC long -8.2/-9.5/-4.7/-1.6), pair book +36.6/+20.3/+9.5/+7.4; funding the pair book's HL shorts collect in the same coins the HL book is long: +2.3/+3.0/+0.6/+0.9 %/yr, i.e. 10-30 % of the HL book's long-side drag. (HL 2023 funding is backfilled, FC1C.)",
+     "date": "2026-11-28",
+     "evidence": "fso_ab"
     },
     {
      "id": "c",
      "what": "verdict: if the owner funds both books, is HFX's saving already captured (no action) or not",
-     "status": "planned"
+     "status": "done",
+     "result": "Verdict: not already captured. Funding both books, the pair book offsets only ~1-3 %/yr of the HL book's long funding (11 % gross overlap, BTC a quarter of days); the two books are complementary, not a hidden HFX. Combined funding is positive (+11/+16/0/-4 %/yr per ,000 / 2), and in 2026 the HL drag exceeds the pair income. No action; HFX2 stays low (HFZ).",
+     "date": "2026-11-28",
+     "evidence": "fso_ab"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "main@pair offsets only 10-30 % of the HL book's long-side funding (11 % gross overlap): complementary books, HFX's saving is not already captured; no action",
+   "closed": "2026-11-28"
   },
   {
    "id": "ASR",

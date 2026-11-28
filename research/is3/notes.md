@@ -1450,3 +1450,10 @@ ASR a/b (is3_asr.py, asr_a/b.json): no dose HL (+.08) or bnall (+.04); c skipped
 Source: NPC, FTL. On bnall the standard choice is carry_trend + carry + xsmom; carry and carry_trend are both funding-sorted (likely corr > .4), so the cap drops carry for tsmom /
  xsmom_k. Expect: tsmom on bnall is a strong, factor-free leg (bnall tsmom SR 1.3: PRX), so the BN cap gain should be real diversification, not dilution. a/b/c as queued.
 FTB a/b/c (is3_ftb.py, ftb_a.json): bnall cap drops carry (.49 w carry_trend) for tsmom (6/6). CLOSED OPEN.
+
+## FSO do the owner's books net the HL BTC funding drag? (think-through 03:1x UTC 11-28, before any run)
+Source: HFX/HFZ, X1. fspread_hold@pair shorts the venue whose longs pay more (HL, mostly) and longs the other: if it holds BTC (or the HL book's long alts), then HL main (long BTC on HL)
+ + main@pair (short BTC on HL, long BTC on BN) together = the HFX structure across two books, without a split of the HL book. Unstated: fspread_hold picks the WIDEST spreads among top-20
+ pairs, likely thin alts, not BTC; and the books are separate accounts (no netting of margin), so only the funding P&L nets, not the risk. a = which coins it holds; b = aggregate
+ funding vs separate; c = verdict. Runs after 03:30 (pair panel reads bn files the nightly job refreshes).
+FSO a/b/c (is3_fso.py, fso_ab.json): pair book offsets 10-30 % of HL long funding; complementary. CLOSED OPEN.
