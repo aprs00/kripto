@@ -7833,6 +7833,33 @@
      "status": "planned"
     }
    ]
+  },
+  {
+   "id": "E1H",
+   "prio": 2.0,
+   "group": "T",
+   "title": "Liquidation fade (lshock, frozen z=8 / z=6 reference) replayed on HL's own 1-min bars since 2026-11-12: unseen venue + forward data that accrues (E1(a) without an engine)",
+   "src": "backlog E1, 2026-11-15 pass-2 prereg (z=8, m=5, e=1, long, taker, hold 60, 50 %, <= 2 open)",
+   "status": "todo",
+   "due": "2026-11-28T17:33",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "HL 1-min panel from data/hl/flow (close ffilled, high/low = close on empty minutes, volume = buy+sell notional), 70 coins; known answer: events.lshock on it reproduces a hand-checked trigger printed bar by bar",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "frozen configs on all HL days: trades, net bp/trade (BN fees = slightly conservative for HL), day-clustered t, top-3-day share, cascade days (>= 5 coins triggering within 30 min) vs single triggers; MDE",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "research/studies/is3_e1h.py as a weekly forward re-run + retro line; verdict only at >= 60 trades (history: ~130 trades/yr on 30 BN coins)",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
