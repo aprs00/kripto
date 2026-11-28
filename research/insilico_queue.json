@@ -6485,6 +6485,33 @@
    "verdict": "FEATURE",
    "reason": "every future robustness block reports what a $200 account can place (per-symbol minima) and how much of the book that is; known answer exact",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "SMD",
+   "prio": 3.0,
+   "group": "T",
+   "title": "A \\$200-able book: can a few-name or round-to-minimum version of the main books keep the edge at \\$200 (HL \\$10, BN per-symbol minima)?",
+   "src": "SMQ d (BN top-N), SMH (HL \\$200 = BTC + 1-2 names), owner 2026-11-10 (test \\$200 too)",
+   "status": "wip",
+   "due": "2026-11-28T13:16",
+   "sessions": 1,
+   "forms": [
+    {
+     "id": "a",
+     "what": "HL main config (blend listing_short/lowvol/tsmom slow_lam .33 x .871): top-N |target| (N 3/5/8/12) vol-matched to the \\$1,000 book's vol, then \\$10 minimum at \\$200; rule stated now: smallest N within 80 % of the best \\$200 SR; SR, ann, deployed share 2025-26, by year",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "round-to-minimum (what a small trader does): a target >= half the minimum is placed AT the minimum (sign kept), below that 0; HL and BN main mixes at \\$200; then vol-rescale to the \\$1,000 vol only DOWN (never more gross than the \\$1,000 book); SR, deployed, names held",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict stated now: a \\$200 form with SR >= 70 % of the \\$1,000 book AND deployed >= .6 in both 2025 and 2026 -> backlog research-session item (pre-registered WF of exactly that form, as a \\$200 book); else STATUS-level conclusion: a \\$200 account cannot run these books, fund \\$1,000 or nothing",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }

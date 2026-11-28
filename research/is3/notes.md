@@ -1630,3 +1630,9 @@ Source: LVB/SMQ. Live: small:main holds ONLY BTC ($31, 16 % gross) vs main 26 na
 SMH a/b/c (is3_smh.py, smh_a.json, smh_b.json): HL $200 holds 2-3.6 names (BTC + 1-2) of 27-144, deployed .41-.57; live = BTC only ($31). SR 1.12 is BTC timing. CLOSED OPEN -> SMB (both venues).
 SMR a/b/c (kripto/research.py small_minima / min_weight / small_acct_min + small_deployed, tests, is3_smr.py, smr_b.json): known answer exact (diff 0.0). Docs + standing lesson. CLOSED FEATURE.
  Left for a research session (SMB): STATUS $200 rows with deployed share; re-quote candidates' small_acct_min when their WFs are next re-run (no extra registry lines today).
+
+## SMD a $200-able book (think-through 13:1x UTC 11-28, before any run)
+Source: SMQ d (BN top-N vol-matched: N4 1.56, deployed 2026 .47), SMH (HL $200 = BTC + 1-2). A $200 trader with a 25 % vol target has ~$120-170 of gross: at $10 per name that is <= 12-17 names,
+ and with BTC as the hedge leg taking a big share, fewer. Unstated: he would not truncate (drop everything small) but ROUND: place the minimum on a name the model wants at >= half the minimum,
+ accepting over-weighting the weakest names; that keeps breadth (the source of a x-sec book's SR) at the price of tracking. Over-weighting raises gross, so the vol is capped at the $1,000 book's.
+Change my mind: as queued (c). Prior: low for HL (the blend's tsmom/lowvol legs are broad; few-name versions lose breadth), medium for round-to-min.
