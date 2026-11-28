@@ -4623,13 +4623,16 @@
    "group": "T",
    "title": "The $200 HL account: which leg of the main book dies at the $200 band (.05), and is a smaller book better there?",
    "src": "owner 2026-11-10 ($200 twins), PRB/PRL d (band .05: 2025 .48, 2026 1.28 for lam1)",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T00:00",
    "forms": [
     {
      "id": "a",
      "what": "descriptive HL 1d 2023-26 at band .05: each leg's standalone net SR, costs, share of target changes skipped by the band, by year; vs the same at band .005",
-     "status": "planned"
+     "status": "done",
+     "result": "HL legs alone (book's own contributions) at band .05 vs .005, net SR 2023/24/25/26: listing 2.41/1.35/.02/1.22 vs .54/1.21/2.17/1.48; lowvol -1.23/-.35/0/-.91 vs -.11/-.15/2.19/-.26; tsmom .59/.57/-1.28/1.61 vs 1.20/.13/-.25/1.18; book 1.91/1.00/.48/1.28 vs .87/.75/2.19/1.50; 98-100 % of target changes below .05 (legs frozen, path lottery). Rule: lowvol <= 0 both explore years -> b drops lowvol",
+     "date": "2026-11-28",
+     "evidence": "sml_a"
     },
     {
      "id": "b",
@@ -4641,7 +4644,8 @@
      "what": "if b passes: L.prereg, ONE run HL 2025-26 at band .05 (the $200 twin's expectation in STATUS)",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }

@@ -1274,3 +1274,9 @@ Source: PRB/PRL. vol_target() rescales every row so ex-ante vol = target; the tr
  these trades; (3) a = the turnover the rule removes (descriptive), b = SR/vol verdict. Change my mind: net SR >= daily in every explore year for HL blend, BN blend, flow, and realised vol
  within 10 % -> c.
 VTS a/b FAIL (is3_vts.py, vts_a.json): scalar hysteresis 10 % removes no turnover (+1 %) in HL blend, BN blend, flow; SR diffs noise. CLOSED OPEN.
+
+## SML the $200 HL account (think-through 01:3x UTC 11-28, before any run)
+Source: owner 11-10 ($200 twins), PRB/PRL d. At $200 the $10 minimum order = band .05: a coin's weight changes only in 5 % steps. Legs with many small positions (lowvol, tsmom across
+ ~20 coins at 1/3 of the book) are mostly frozen or skipped; listing_short (few names, larger weights) survives. Unstated: a frozen leg is not neutral: it holds stale positions (old trend,
+ old low-vol picks). Leg contributions = the book's own (is3_prl.legs), each run alone at band .05 (ignores netting, stated). Change my mind: a leg <= 0 net at .05 in 2023 and 2024 -> b.
+SML a done (sml_a.json): at band .05 98-100 % of leg changes are skipped (frozen legs, lottery-like years: listing 2025 .02 vs 2.17); lowvol <= 0 in 2023/24 -> b: blend(listing_short, tsmom) at .05.
