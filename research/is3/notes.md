@@ -1614,3 +1614,11 @@ Source: LVB (small:main_bn holds 3/31 targets, 10 % of target gross; BTC target 
  the $200 BN account is fine and only STATUS needs a deployed-gross note.
 SMQ a/b/c/d (is3_smq.py, smq_abc.json, smq_d.json): main_bn mix $1,000 1.75 (vol 23.5); $200 band 1.71; $200 per-symbol minima 1.70 at gross .45, deployed .47/.58/.65/.62/.39/.19 by year (2026: 2.6 names).
  Legs alone die at $200 (flow .19). Top-N vol-matched: N4 1.56 / deployed 2026 .47: deployment only. First run of a forgot the .5 allocs (gross 1.6, vol 47 %): caught by the vol, rerun. CLOSED OPEN.
+
+## T9Q maker at the touch on HL's own live fills (think-through 13:1x UTC 11-28, before any run)
+Source: T9P (BN orders on HL-proxy minute paths: 99.9 % fill, +4 bp/unit). Here venue = path = HL, so no proxy. HL saving per filled unit = 4.5 - 1.5 = 3 bp + live slip (HL thin books:
+ slip larger than BN's 1.1 bp, so the saving should be bigger on thin names). Unstated: (1) HL queues on thin names are short but a trade-through by q on a thin name can be one small print
+ (the 1-min low is a single trade): q 5-10 bp guards; (2) HL fills from the slow legs (PRB2 lam .33) are small partial steps: many tiny orders, maybe below the $10 minimum when maker-split;
+ (3) adverse selection again lives only in the unfilled tail. Change my mind: as queued (c).
+T9Q a/b/c (is3_t9q.py, t9q_ab.json): HL books' own fills on HL 1-min paths: 99.8 % fill at q5, median 1 min; main +3.89 bp/unit (40 orders, 13/13 d), all books +2.61 (one thin-name runaway +583 bp).
+ ~+1.2 %/yr at main's turnover: real, small. T9c frozen k0/q5/carry. CLOSED OPEN.

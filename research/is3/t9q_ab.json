@@ -1,0 +1,133 @@
+{
+ "fills_hl_books": 755,
+ "replayed": 457,
+ "window": [
+  "2026-11-13 04:10:39+00:00",
+  "2026-11-26 06:50:57+00:00"
+ ],
+ "minutes_to_fill_q5_median": 1.0,
+ "filled_q5_within_60min": 0.961,
+ "all": {
+  "0": {
+   "n": 457,
+   "fill_share_notional": 0.998,
+   "unfilled_move24_bp": 582.6,
+   "slip_bps_wmean": 1.01,
+   "net_bp_per_unit": 2.61,
+   "day_t": 0.93,
+   "days": 14
+  },
+  "3": {
+   "n": 457,
+   "fill_share_notional": 0.998,
+   "unfilled_move24_bp": 582.6,
+   "slip_bps_wmean": 1.01,
+   "net_bp_per_unit": 2.61,
+   "day_t": 0.93,
+   "days": 14
+  },
+  "5": {
+   "n": 457,
+   "fill_share_notional": 0.998,
+   "unfilled_move24_bp": 582.6,
+   "slip_bps_wmean": 1.01,
+   "net_bp_per_unit": 2.61,
+   "day_t": 0.93,
+   "days": 14
+  },
+  "10": {
+   "n": 457,
+   "fill_share_notional": 0.994,
+   "unfilled_move24_bp": 576.8,
+   "slip_bps_wmean": 1.01,
+   "net_bp_per_unit": 0.45,
+   "day_t": -0.24,
+   "days": 14
+  }
+ },
+ "by_book_q5": {
+  "main": {
+   "n": 40,
+   "fill_share_notional": 1.0,
+   "unfilled_move24_bp": null,
+   "slip_bps_wmean": 0.89,
+   "net_bp_per_unit": 3.89,
+   "day_t": 19.19,
+   "days": 13
+  },
+  "shadow:blend": {
+   "n": 136,
+   "fill_share_notional": 1.0,
+   "unfilled_move24_bp": null,
+   "slip_bps_wmean": 1.0,
+   "net_bp_per_unit": 4.0,
+   "day_t": 22.25,
+   "days": 14
+  },
+  "shadow:blend_nested": {
+   "n": 91,
+   "fill_share_notional": 1.0,
+   "unfilled_move24_bp": null,
+   "slip_bps_wmean": 0.92,
+   "net_bp_per_unit": 3.92,
+   "day_t": 27.87,
+   "days": 14
+  },
+  "shadow:tsmom": {
+   "n": 56,
+   "fill_share_notional": 1.0,
+   "unfilled_move24_bp": null,
+   "slip_bps_wmean": 0.63,
+   "net_bp_per_unit": 3.63,
+   "day_t": 31.78,
+   "days": 14
+  },
+  "shadow:xsmom_k": {
+   "n": 132,
+   "fill_share_notional": 0.994,
+   "unfilled_move24_bp": 582.6,
+   "slip_bps_wmean": 1.13,
+   "net_bp_per_unit": 0.52,
+   "day_t": -0.07,
+   "days": 14
+  },
+  "small:main": {
+   "n": 2,
+   "fill_share_notional": 1.0,
+   "unfilled_move24_bp": null,
+   "slip_bps_wmean": 0.1,
+   "net_bp_per_unit": 3.1,
+   "day_t": null,
+   "days": 2
+  }
+ },
+ "by_liquidity_q5": {
+  "thin": {
+   "n": 153,
+   "fill_share_notional": 0.992,
+   "unfilled_move24_bp": 582.6,
+   "slip_bps_wmean": 1.6,
+   "net_bp_per_unit": 0.18,
+   "day_t": 0.12,
+   "days": 14
+  },
+  "mid": {
+   "n": 152,
+   "fill_share_notional": 1.0,
+   "unfilled_move24_bp": null,
+   "slip_bps_wmean": 1.42,
+   "net_bp_per_unit": 4.42,
+   "day_t": 30.28,
+   "days": 14
+  },
+  "deep": {
+   "n": 152,
+   "fill_share_notional": 1.0,
+   "unfilled_move24_bp": null,
+   "slip_bps_wmean": 0.3,
+   "net_bp_per_unit": 3.3,
+   "day_t": 74.95,
+   "days": 14
+  }
+ }
+}

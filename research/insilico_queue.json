@@ -6375,26 +6375,38 @@
    "group": "T",
    "title": "Maker at the touch on HL's OWN live fills with HL 1-min paths (exact venue, no proxy): main + HL shadows; HL taker 4.5 bp vs maker 1.5 bp is the binding cost of the HL book",
    "src": "T9P (BN at-touch +4 bp/unit on HL-proxy paths), T9D/T9c (HL slow legs post-only +1 %/yr at fitted cost), backlog T9c",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T13:10",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "every HL-venue book's live fills (main, shadow:blend_nested, shadow:blend, tsmom, xsmom, xsmom_k; not pair) 11-12..11-26, resting at the HL price of the order minute, trade-through q 0/3/5/10 bp in the next 24 h on data/hl/flow 1-min OHLC: fill share by notional, minutes to fill, unfilled signed 24-h move; HL live slip_bps from the fills table",
-     "status": "planned"
+     "status": "done",
+     "result": "457 of 755 HL-book live fills (11-13..11-26, HL 1-min paths, exact venue): fill 99.8 % at q0-5, 99.4 % at q10; median 1 min to fill, 96 % within 60 min; the unfilled = 1 order (xsmom_k, thin name, +583 bp/24h); live HL slip 1.0 bp",
+     "date": "2026-11-28",
+     "evidence": "t9q_ab"
     },
     {
      "id": "b",
      "what": "net per unit vs live taker (4.5 - 1.5 bp + live slip) minus the unfilled cost (skip: forgo 24-h move, save the taker cost), by book and by coin liquidity tercile (thin HL names: slip larger, queue thinner), day-clustered t",
-     "status": "planned"
+     "status": "done",
+     "result": "net vs live taker at q5: all +2.61 bp/unit (t .93, one runaway), main +3.89 (40 orders, 13/13 days), blend_nested +3.92, blend +4.0, tsmom +3.63, xsmom_k +.52 (the runaway); liquidity terciles thin +.18 (the runaway) / mid +4.42 / deep +3.3: the saving = fee 3 + slip; selection only through rare runaways on thin names",
+     "date": "2026-11-28",
+     "evidence": "t9q_ab"
     },
     {
      "id": "c",
      "what": "verdict stated now: net >= +2 bp/unit at q5 and fill >= 90 % on the main book's orders -> backlog T9c gets a frozen HL live-shadow spec (k0, q5, carry residue) and its prior goes to MEDIUM; else T9c stays LOW with the measured reason",
-     "status": "planned"
+     "status": "done",
+     "result": "rule: main book net >= +2 at q5 and fill >= 90 % -> PASS (+3.89, 100 %, n 40 / 13 d). Size: main's live turnover ~32x/yr -> ~+1.2 %/yr of book (T9D's +1 %/yr on fitted costs agrees); T9c gets the frozen live-shadow spec k0/q5/carry residue, prior MEDIUM-LOW (real but small; one shared resting-order engine with T9G is the efficient build)",
+     "date": "2026-11-28",
+     "evidence": "t9q_ab"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "HL at-touch post-only fills ~always on HL's own minute paths; the saving is the fee + slip (~4 bp/unit), ~+1.2 %/yr at the main book's turnover; runaways on thin names are the only cost; queue position needs a live shadow (T9c/T9G spec frozen)",
+   "closed": "2026-11-28"
   },
   {
    "id": "SMH",
