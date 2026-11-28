@@ -1320,3 +1320,4 @@ Source: PRX, TSN. tsmom weight = tanh trend / ann_vol, normalised to gross 1 ove
  swing daily, and the gross normalisation spreads each coin's swing over all weights. bnall's top 20 are deep majors. Unstated: if turnover concentrates in the high-vol tercile, PRB2's gain
  is a property of the coin set (lasting while HL lists thin coins), else a panel accident. a is descriptive; b uses HL listing dates on bnall.
 HTN a/c done (is3_htn.py, htn_a.json): tsmom turnover HL 105x = bnall 100x; cost per unit HL 22/11/8/10 bp vs BN 6 bp. PRL's gain = cost-per-turnover effect (explains PRX). CLOSED OPEN.
+HTN d (htn_d.json, after close): at the fills-fitted cost (slip x .5, L3S) slow33 >= lam1 every year 1.09/1.06/2.41/1.81 vs 1.09/.85/2.23/1.56: PRL's gain survives realistic costs.

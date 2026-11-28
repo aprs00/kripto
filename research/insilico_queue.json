@@ -4901,12 +4901,44 @@
      "result": "PRB2 mechanism = HL cost per unit turnover (8-22 bp vs 6 bp), lasting while HL coins stay thin; prediction: the gain shrinks as HL costs fall (2023 22 bp -> 2025 8 bp); track live HL slip per unit turnover (L3S) next to the shadow",
      "date": "2026-11-28",
      "evidence": "htn_a"
+    },
+    {
+     "id": "d",
+     "what": "PRL at the fills-fitted cost level (L3S: model slippage ~2x live): HL slip x .5 (fees unchanged), lam1 vs slow33 2023-26 by year",
+     "status": "planned",
+     "added": "2026-11-28"
     }
    ],
    "sessions": 1,
    "verdict": "OPEN",
    "reason": "HL tsmom is not noisier than Binance's (105x vs 100x); its trades cost 8-22 bp per unit vs 6 bp: PRL's gain is a venue-cost effect (explains PRX), durable while HL coins stay thin",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "HLF",
+   "prio": 1.0,
+   "group": "T",
+   "title": "HL main book's funding drag (-5..-16 %/yr in the backtest, as large as its trading costs): which leg pays it, and is there a cheaper hedge than long BTC?",
+   "src": "PRB/PRL summaries (funding_ann -15.8/-4.7/-9.3/-11.1 % 2023-26), HBL a (BTC leg funding -4/-7/-4/-1 %, alt funding -6/+10/-5/-7 %), TFF (trend longs pay but earn more)",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "descriptive HL 1d 2023-26: funding paid by leg (listing alt shorts, listing BTC hedge, lowvol longs/shorts, tsmom longs/shorts) per year, via is3_prl.legs contributions x funding; vs each leg's pre-cost price P&L",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "the BTC hedge leg alternatives on HL: hedge listing shorts with ETH or a beta-weighted top-5 basket instead of BTC: funding paid, tracking error vs BTC hedge (corr of the hedged book to BTC), 2023-24 explore",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "if b finds a hedge with funding saving > its extra tracking cost in both explore years: L.prereg and ONE run 2025-26; else close with the per-leg funding table as the deliverable",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
