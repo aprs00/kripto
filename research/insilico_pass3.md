@@ -233,3 +233,5 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
   it is re-run every week and judged only after 60 trades.
 * LSH2 holding the new-listing shorts for 90 or 120 days instead of 60: worse on both exchanges. After two months, the typical new coin keeps falling, but the few that get squeezed cost more
   than that, and shorts pay more funding the longer they stay. 60 days stays.
+* T5E the explanation I had for why a Binance open-interest signal flipped sign between 2023 and 2026 (calm markets vs trending markets) does not hold up when calm and trending are defined
+  in advance. The older 2021-22 data, now fully downloaded, is kept unopened until there is a better idea to test on it.

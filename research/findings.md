@@ -597,6 +597,8 @@ day spread −26 bp t −1.5 → frozen LONG-side filter for the Binance books p
 dropped-vs-kept next-day mean flips sign after 2024 (xsmom 2025: +11 vs −34 bp; 2026: +14 vs −24): OI-building winners faded in 2023's range market and CONTINUED in 2025–26. Two forms failed
 (stand-alone at taker costs; long filter), diagnosis = regime-dependent sign. Untried: losers' side (no shorts where OI builds on a fall), HL positioning (T6b), 2021–22 explore once downloaded.
 
+T5E (insilico 11-28, is3_t5e.py): T5c's 'regime-dependent sign' story tested with a split frozen in advance (|BTC 60-d| >= 20 % = trend): winners' fade IC is on TREND days (+.021, t 1.7) not range (−.002):
+story not supported; the 2023→2026 sign flip stays unexplained. 2021–22 metrics (100 % coverage since 11-28) kept UNSEEN for a better-motivated hypothesis.
 T5D short-side filter (insilico 11-28, is3_t5x.py): losers' short P&L, top-minus-bottom 3-d OI-change tercile 2022–26 +12/−18/+22/−35/−25 bp/day, |t| ≤ 1.34, inside a within-day shuffle null every
 year, no dose (metrics start 2021-12); the books' own shorts (flow, xsmom) mixed sign, |t| < 1.9, only 2026 favours a filter: **F3 DEAD after 3 forms** (stand-alone, long filter, short filter): the 2023 IC was one draw of a sign-alternating noise. HL positioning (T6b) is a separate idea.
 ### InSilico S1: sources re-read against the rules as coded (2026-11-22) → no verdict, but several older DEADs were verdicts on my translation

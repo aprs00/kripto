@@ -54,8 +54,10 @@ for grp, side in (("winners", 1), ("losers", -1)):
     out[grp] = o
     print(grp, json.dumps(o), flush=True)
 w = out["winners"]
-out["H_holds_on_seen"] = bool(SAMPLE == "seen" and w["range"]["ic"] is not None and w["range"]["ic"] < 0 and w["trend_minus_range"] > 0)
+# F3 = dOI x -sign(ret3): within winners a POSITIVE F3 IC = OI-building winners FADE. Story (T5c): fade in range, continue in trend
+# -> range IC > 0 and trend IC < range IC. (11-28 first run coded this with the wrong sign and printed True; corrected before any unseen look.)
+out["H_holds_on_seen"] = bool(SAMPLE == "seen" and w["range"]["ic"] is not None and w["range"]["ic"] > 0 and w["trend_minus_range"] < 0)
 if SAMPLE == "unseen":
-    out["PASS"] = bool(w["range"]["ic"] is not None and w["range"]["ic"] < 0 and w["trend_minus_range"] > 0 and (w["t_diff"] or 0) >= 2)
+    out["PASS"] = bool(w["range"]["ic"] is not None and w["range"]["ic"] > 0 and w["trend_minus_range"] < 0 and (w["t_diff"] or 0) <= -2)
 json.dump(out, open(f"research/is3/t5e_{SAMPLE}.json", "w"), indent=1)
 print("H_holds_on_seen" if SAMPLE == "seen" else "PASS", out.get("H_holds_on_seen", out.get("PASS")))

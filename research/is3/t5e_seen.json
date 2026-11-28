@@ -1,0 +1,76 @@
+{
+ "sample": "seen",
+ "window": [
+  "2023-03-05",
+  "2026-11-20"
+ ],
+ "coins": 556,
+ "days": 1357,
+ "trend_day_share": 0.35,
+ "winners": {
+  "trend": {
+   "days": 320,
+   "ic": 0.0207,
+   "t_nw3": 1.73
+  },
+  "range": {
+   "days": 556,
+   "ic": -0.0015,
+   "t_nw3": -0.15
+  },
+  "trend_minus_range": 0.0222,
+  "t_diff": 1.45,
+  "by_year": {
+   "2023": {
+    "ic": 0.0483,
+    "trend_share": 0.44
+   },
+   "2024": {
+    "ic": 0.0289,
+    "trend_share": 0.41
+   },
+   "2025": {
+    "ic": -0.0206,
+    "trend_share": 0.22
+   },
+   "2026": {
+    "ic": -0.0341,
+    "trend_share": 0.39
+   }
+  }
+ },
+ "losers": {
+  "trend": {
+   "days": 354,
+   "ic": 0.0133,
+   "t_nw3": 1.26
+  },
+  "range": {
+   "days": 701,
+   "ic": 0.0264,
+   "t_nw3": 3.27
+  },
+  "trend_minus_range": -0.0131,
+  "t_diff": -0.99,
+  "by_year": {
+   "2023": {
+    "ic": 0.0322,
+    "trend_share": 0.36
+   },
+   "2024": {
+    "ic": 0.0142,
+    "trend_share": 0.38
+   },
+   "2025": {
+    "ic": 0.0222,
+    "trend_share": 0.24
+   },
+   "2026": {
+    "ic": 0.0212,
+    "trend_share": 0.37
+   }
+  }
+ },
+ "H_holds_on_seen": false,
+ "note": "corrected 11-28: winners F3 IC range -.0015, trend +.0207 = the fade sits on TREND days, opposite the story; unseen 2021-22 stays closed"
+}

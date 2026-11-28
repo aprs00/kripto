@@ -1817,3 +1817,4 @@ LSH2 a/b/c (is3_lsh2.py, lsh2_bnall.json, lsh2_hl.json): hold 60/90/120 SR bnall
 Metrics coverage 2021-22 now 100 % (was 72/76 % on 11-27). T5c's diagnosis was 'regime-dependent sign' (OI-building winners faded in 2023's range, continued in 2025-26). That is a story
  fitted after seeing 2023-26; 2021-22 is its only clean test. Frozen split: trend day = |BTC trailing 60-d simple return| >= 20 %, else range (round number, not fitted). Order: check the
  story holds on the seen years under this exact split (else stop), then one look at 2021-22.
+T5E a/c (is3_t5e.py, t5e_seen.json): F3 winners' fade sits on trend days (+.021) not range (-.002): regime story fails; my first flag had the sign flipped (caught, fixed before any unseen look). 2021-22 unseen. CLOSED OPEN.
