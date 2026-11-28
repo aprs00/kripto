@@ -909,6 +909,7 @@ CRS (is3_crs.py): among those longs, fading funding (f3/f7 bottom quintile) prec
 678 bnall events 2020–26 (d1 close → d61, short vs BTC, 2× costs): alt leg median +20..37 % every year, net mean +4.5 % pooled (month t .01; 2021 −85 %); book corr BTC .00 (11-09 '.63' obsolete).
 Path stops −100/−50/−30 % (crossing close, gap paid ~−25 %): pooled mean 8/7/7 %, but vs a same-size random-exit placebo the gain is all 2021 and negative in 2020, 2024–26.
 Books with 5/10 concurrent names: SR −.08/−.16, with stop100 .30/.42; 2025–26 ≤ .5 everywhere. 4 squeeze controls failed (SQZ, LSV, LSW, stop): listing shorts stay HL-only.
+LSH hourly stop (is3_lsh.py): loss beyond the level −9 % (daily −30 %), more stop-outs on retracing squeezes, event mean unchanged (6.5 vs 6.9 %), vs placebo 4/7 years (2021): selection, not the gap. 5 controls failed.
 ### LSB new-listing shorts on Binance by year, HL-listed vs BN-only (2026-11-27 insilico, research/studies/is3_lsb.py, not registered) → OPEN (alive in the median; backlog LSB2)
 bnall listings reaching $1M 7-d volume, short-vs-BTC d2→d61 incl. funding: per month 7 / 5 / 3 / 8 / 11 / 20 / 5.7 (2020–26); median +36 / +22 / +24 / +35 / +41 / +35 / +23 %, win 69–85 %
 every year; mean +38 / −79 / +7 / +14 / +25 / +4 / +9 % (a squeezed minority; month-clustered t ≤ 3.1). Shorts pay 6–7 % funding per event in 2025–26. HL-listed vs BN-only flips sign by year.

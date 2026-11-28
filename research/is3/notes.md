@@ -1547,3 +1547,4 @@ Source: LSX (daily stops lose to a random-exit placebo outside 2021; the stop pa
  exit) or the selection (stopped names would have decayed later anyway)? If the gap: hourly stops cut the beyond-level loss to a few % and beat the placebo in most years. If selection:
  hourly stops trigger MORE often on intraday wicks that later revert, and lose more. Unstated: squeezes on fresh listings often wick and retrace within hours (thin books), so finer stops
  may be worse. Change my mind: hourly stop beats placebo in >= 5 of 7 years.
+LSH a/b (is3_lsh.py, lsh_ab.json): hourly stops: gap beyond -9 % (daily -30 %) but more stop-outs on retracing squeezes; mean unchanged; vs placebo 4/7 years (2021 only). c skipped. CLOSED OPEN.

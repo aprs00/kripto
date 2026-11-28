@@ -6013,26 +6013,37 @@
    "group": "T",
    "title": "Binance listing shorts with an HOURLY squeeze stop (LSX's named revisit): does exiting at the crossing hour instead of the crossing daily close change the placebo verdict?",
    "src": "LSX (daily-path stops = 2021 insurance vs a random-exit placebo; gap beyond the stop ~-25 %)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T11:35",
    "forms": [
     {
      "id": "a",
      "what": "LSX events whose coin has bn100 1h bars over d1..d61 (coverage stated): hourly path P&L, stops -50/-100 % exiting at the first hourly close beyond the level; gap beyond the level vs the daily version; event mean/median by year",
-     "status": "planned"
+     "status": "done",
+     "result": "636 of 678 LSX events with bn100 1h over d1..d61 (known answer: hourly path at d61 = daily path, max err 0.0): hourly stop -100/-50 % stopped share 21/36 % (daily 16/30 %), loss beyond the level -9.8/-8.4 % (daily -33/-25 %); event mean 6.5/5.5 % vs daily 6.9/5.5 % on the same events, median 30/20 vs 31/27 %. Finer exits pay a smaller gap but stop more squeezes that later retrace: same mean.",
+     "date": "2026-11-28",
+     "evidence": "lsh_ab"
     },
     {
      "id": "b",
      "what": "same-size random-exit placebo (exit share and exit-hour distribution of the real stops on random events, 200 draws), per year: is the hourly stop better than placebo in >= 5 of 7 years",
-     "status": "planned"
+     "status": "done",
+     "result": "same-size random-exit placebo (real exit-hour offsets on random events, 200 draws): stop100 91st pct, stop50 79th; by year real - placebo 2020-26: -.01/+.63/+.01/+.07/-.07/0/-.16 and -.02/+.52/+.04/+.02/-.04/0/-.10: above placebo in 4/7 years, gain = 2021; 2024 and 2026 negative. FAIL (bar >= 5/7).",
+     "date": "2026-11-28",
+     "evidence": "lsh_ab"
     },
     {
      "id": "c",
      "what": "verdict for listing shorts on BN: if b passes, the 5/10-slot book with the hourly stop (2x costs) by year; else close with the reason (the stop's problem is not the gap)",
-     "status": "planned"
+     "status": "skipped",
+     "result": "b failed: no book run; the stop's problem is selection, not the gap",
+     "date": "2026-11-28"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "Hourly squeeze stops for Binance listing shorts: the hourly exit cuts the loss beyond the stop from ~-30 % to ~-9 %, but fires more often on squeezes that retrace, so the event mean is unchanged (6.5 vs 6.9 %) and the gain over a same-size random-exit placebo is again 2021 alone (4/7 years). Five squeeze controls have now failed (SQZ, LSV, LSW, daily stop, hourly stop); listing shorts stay HL-only; revisit only with a predictor of WHICH squeezes keep going.",
+   "closed": "2026-11-28"
   }
  ]
 }
