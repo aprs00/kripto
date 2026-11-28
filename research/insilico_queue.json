@@ -8022,7 +8022,7 @@
    "group": "T",
    "title": "Power of the X1f forward judge (main@pair / fspread_hold@pair at >= 30 live days, 12-12): what can 30/60/90 days detect, and restate the clause before it is applied",
    "src": "PRBF/FJP method, backlog X1f, X1V",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T17:40",
    "sessions": 1,
    "forms": [
@@ -8045,9 +8045,15 @@
     {
      "id": "c",
      "what": "restate the X1f clause in backlog (veto vs verdict, horizon with power), written before 12-12; no gate change",
-     "status": "planned"
+     "status": "done",
+     "result": "backlog X1f restated before 12-12: §4 gate unchanged (DD > 1.6 % = 2x bt MDD .79 %; 60-d SR<0 only WITH inconsistency); inconsistency for this book = 60-d loss worse than bt's worst 60-d (-.39 %) or live/replay-same-days vol >= 2 at >= 30 d; full-sample vol never the yardstick; the test with power = live funding per pair-day vs bt same pairs/days at 12-12 (with X1C c). Disaster veto, no claim of confirmation before ~365 d",
+     "date": "2026-11-28",
+     "evidence": "x1p_ab"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "forward judge has no power at the 2026 edge (MDE 2.1x mean at 90 d, ~1x at 365 d; false-retire 16.5 % on 60-d SR<0): clause restated as a disaster veto with backtest-derived thresholds; the funding cash-flow comparison is the only short-horizon test with power (12-12)",
+   "closed": "2026-11-28"
   }
  ]
 }

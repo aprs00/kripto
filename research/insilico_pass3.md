@@ -235,3 +235,4 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
   than that, and shorts pay more funding the longer they stay. 60 days stays.
 * T5E the explanation I had for why a Binance open-interest signal flipped sign between 2023 and 2026 (calm markets vs trending markets) does not hold up when calm and trending are defined
   in advance. The older 2021-22 data, now fully downloaded, is kept unopened until there is a better idea to test on it.
+* X1P the forward check on the funding-spread pair book cannot tell a real but shrunken edge from no edge in less than about a year of live days; its retire rule is now a disaster check with limits taken from the backtest, and the useful early test is whether the live book collects the funding the backtest says it should.

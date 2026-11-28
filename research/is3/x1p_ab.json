@@ -188,5 +188,16 @@
    "gap_in_mde_units": 0.09,
    "vol_ratio_vs_bt2024": NaN
   }
+ },
+ "c_thresholds": {
+  "mdd_full_pct": -0.79,
+  "full_w30_p01_pct": -0.399,
+  "full_w30_min_pct": -0.586,
+  "full_w60_p01_pct": -0.353,
+  "full_w60_min_pct": -0.391,
+  "2024_w30_p01_pct": -0.413,
+  "2024_w30_min_pct": -0.586,
+  "2024_w60_p01_pct": -0.359,
+  "2024_w60_min_pct": -0.391
  }
 }
