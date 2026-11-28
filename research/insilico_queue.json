@@ -5196,7 +5196,7 @@
    "group": "T",
    "title": "HL tsmom cost by liquidity: does the thin end of the top-20 universe earn its trading cost? (tsmom = over half the HL main book's cost)",
    "src": "HTN (HL tsmom cost per unit 8-22 bp vs BN 6 bp, turnover 105x), PRB/PRL (tsmom = over half the book's cost), TSN",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T02:50",
    "forms": [
     {
@@ -5218,7 +5218,10 @@
     {
      "id": "c",
      "what": "interaction: does PRB2's partial-lam gain survive when the thin tercile is already gone (slow33 vs lam1 on the top-10 tsmom book): are they the same saving counted twice? verdict for PRB2's priority",
-     "status": "planned"
+     "status": "done",
+     "result": "PRB2 interaction, explore HL 2023/24/pooled: on the default top-20 book slow33 vs lam1 .95/1.01/.98 vs .87/.75/.80 (+.18 pooled); on the top-10 book 1.01/1.37/1.20 vs 1.08/1.17/1.12 (+.08 pooled, 2023 worse). Half of PRB2's gain is the same saving (thin coins' churn); combined top10+slow33 1.20 vs .80 base. If a research session adopts top 10, PRB2 drops to low-medium; neither is confirmed.",
+     "date": "2026-11-28",
+     "evidence": "tlq_c"
     },
     {
      "id": "conf",
@@ -5230,7 +5233,10 @@
      "evidence": "tlq_conf"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "HL tsmom's thinnest third (ranks 15-20) loses 3/4 years with no price edge after 2023; top_n 10 pre-registered confirm tied 2025 (-0.02, rule fails), won 2026 (+0.5) at lower cost; overlaps half of PRB2. Research-session WF candidate, no claim",
+   "closed": "2026-11-28"
   },
   {
    "id": "HFX",
