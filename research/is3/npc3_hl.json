@@ -1,0 +1,461 @@
+{
+ "venue": "hl",
+ "refits": 39,
+ "oos_start": "2024-01-18",
+ "standard": {
+  "2024": 0.36,
+  "2025": 1.92,
+  "2026": 1.45,
+  "pooled": 1.21,
+  "pooled_ex2026": 1.1
+ },
+ "size2": {
+  "2024": 0.5,
+  "2025": 2.19,
+  "2026": 1.21,
+  "pooled": 1.31,
+  "pooled_ex2026": 1.36,
+  "changed_vs_std": 18,
+  "log_tail": [
+   [
+    "2026-03-08",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short"
+    ],
+    1.25
+   ],
+   [
+    "2026-05-07",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short"
+    ],
+    1.42
+   ],
+   [
+    "2026-07-06",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short"
+    ],
+    1.36
+   ],
+   [
+    "2026-09-04",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short"
+    ],
+    1.35
+   ],
+   [
+    "2026-11-03",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short"
+    ],
+    1.39
+   ]
+  ],
+  "mean_legs": 1.4
+ },
+ "size3": {
+  "2024": 0.5,
+  "2025": 2.0,
+  "2026": 1.2,
+  "pooled": 1.24,
+  "pooled_ex2026": 1.25,
+  "changed_vs_std": 16,
+  "log_tail": [
+   [
+    "2026-03-08",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short"
+    ],
+    1.25
+   ],
+   [
+    "2026-05-07",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short"
+    ],
+    1.42
+   ],
+   [
+    "2026-07-06",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short"
+    ],
+    1.36
+   ],
+   [
+    "2026-09-04",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short"
+    ],
+    1.35
+   ],
+   [
+    "2026-11-03",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short"
+    ],
+    1.39
+   ]
+  ],
+  "mean_legs": 1.52
+ },
+ "size4": {
+  "2024": 0.5,
+  "2025": 2.0,
+  "2026": 1.2,
+  "pooled": 1.24,
+  "pooled_ex2026": 1.25,
+  "changed_vs_std": 16,
+  "log_tail": [
+   [
+    "2026-03-08",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short"
+    ],
+    1.25
+   ],
+   [
+    "2026-05-07",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short"
+    ],
+    1.42
+   ],
+   [
+    "2026-07-06",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short"
+    ],
+    1.36
+   ],
+   [
+    "2026-09-04",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short"
+    ],
+    1.35
+   ],
+   [
+    "2026-11-03",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short"
+    ],
+    1.39
+   ]
+  ],
+  "mean_legs": 1.52
+ },
+ "shr3": {
+  "2024": 0.22,
+  "2025": 2.0,
+  "2026": 0.83,
+  "pooled": 1.01,
+  "pooled_ex2026": 1.09,
+  "changed_vs_std": 15,
+  "log_tail": [
+   [
+    "2026-03-08",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short",
+     "lowvol"
+    ],
+    1.32
+   ],
+   [
+    "2026-05-07",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short"
+    ],
+    1.42
+   ],
+   [
+    "2026-07-06",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short"
+    ],
+    1.36
+   ],
+   [
+    "2026-09-04",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short",
+     "lowvol"
+    ],
+    1.35
+   ],
+   [
+    "2026-11-03",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short",
+     "lowvol"
+    ],
+    1.44
+   ]
+  ],
+  "mean_legs": 1.71
+ },
+ "exact3": {
+  "2024": 0.42,
+  "2025": 1.92,
+  "2026": 0.79,
+  "pooled": 1.02,
+  "pooled_ex2026": 1.13,
+  "changed_vs_std": 3,
+  "log_tail": [
+   [
+    "2026-03-08",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    1.18
+   ],
+   [
+    "2026-05-07",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    1.25
+   ],
+   [
+    "2026-07-06",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    1.24
+   ],
+   [
+    "2026-09-04",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    1.28
+   ],
+   [
+    "2026-11-03",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    1.34
+   ]
+  ],
+  "mean_legs": 2.89
+ },
+ "exact3_shr": {
+  "2024": 0.42,
+  "2025": 1.92,
+  "2026": 1.45,
+  "pooled": 1.22,
+  "pooled_ex2026": 1.13,
+  "changed_vs_std": 2,
+  "log_tail": [
+   [
+    "2026-03-08",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    1.26
+   ],
+   [
+    "2026-05-07",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    1.34
+   ],
+   [
+    "2026-07-06",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    1.31
+   ],
+   [
+    "2026-09-04",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    1.35
+   ],
+   [
+    "2026-11-03",
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    [
+     "listing_short",
+     "lowvol",
+     "tsmom"
+    ],
+    1.42
+   ]
+  ],
+  "mean_legs": 2.89
+ }
+}

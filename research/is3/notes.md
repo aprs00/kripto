@@ -1737,3 +1737,12 @@ Source: FLX (2025-26 flow gross = funding 18.9/15.4 %/yr + price +4.7/-1.6), FLP
 LV1S: closed as a duplicate of LV2 (funding filter = random drops) / LVH (universe) before any run; the refill had read the stale backlog LV1 line, not findings. Backlog LV1 corrected.
 FLXF a/b/c/d (is3_flxf.py, flxf_abc.json, flxf_mix.json): flow@bn gross 50 % on the funding-receiving side (+10..26 %/yr funding, small price); paying side = the price edge (2021/23/24), ~0/-7 in 2025/26.
  Frozen (iii) resid_f7: SR .77 (vs 1.06), corr blend .17 (vs .40), price 2025/26 +12/+3; .5/.5 mix with blend 1.75 = 1.75 (blend alone 1.66). Paying-only dead (.09). CLOSED OPEN -> FLX2 arm (iii).
+
+## NPC3 threshold-free nested selection (think-through 16:5x UTC 11-28, before any run)
+Source: NPC (cap .4 passed prereg), NPS (knife-edge: .5 inert, .3 loses). The idea behind the cap is right (two legs on the same factor waste risk) but a hard cap turns it into a threshold.
+ The direct, threshold-free statement: choose the SET whose equal-risk sum had the best expanding Sharpe (that already prices the correlation). Unstated risk: with 175 candidate sets per
+ refit the max is an optimiser on noisy Sharpes (error maximisation); it may pick odd pairs with short common histories. Guard: every leg needs its own SR > 0 and 240 d, common window
+ = from the latest leg's start; shrinking correlations 50 % to 0 is the standard antidote and is a variant, not a tuned knob. Change my mind: >= 3 of 4 variants (size 2/3/4, shrunk 3)
+ beat standard pooled on BOTH venues -> WF worth its DSR count; else NPC2 stays low and H4 unchanged.
+NPC3 a (npc3_hl.json): HL max combined Sharpe over sets <= k mostly holds listing_short ALONE (mean 1.4-1.5 legs): pooled 1.24-1.31 vs 1.21 but 2026 1.20 vs 1.45 = concentration, not diversification.
+ Added e (exact 3 legs): 1.02 (differs on 3 refits, 2026 .79); exact3 shrunk 1.22 (2 refits) = standard. bnall in unit is3-npc3 -> data/is3/npc3_bnall.log.
