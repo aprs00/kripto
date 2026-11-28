@@ -1569,3 +1569,4 @@ FHM a/c (is3_fhm.py, fhm_a.json): flow on HL at maker fees: selection-free upper
 Source: FLL (shadow:flow@bn -9 % = flow's own loss, replay -13.6 %). main_bn = .5 flow@bn + .5 blend_nested@bn (+ the ladder sleeve). If the blend half also matches its replay, the book's
  -9 % is the strategies, not the plumbing; if the blend half diverges, it is an implementation gap (universe, timing, sleeve). Unstated: the two halves can both be fine and the book still
  look worse than the mean of its shadows (sleeve fills, rounding at $1,000, min orders). Change my mind: replay corr < .7 or live < replay by > 3 % -> a fault to chase.
+MBL a/b/c (is3_mbl.py, mbl_c.json): main_bn -9.1 % / 19 d = 1.8-3.0th pct of its mix's 19-day windows, price-driven, both halves down, flow replay worse than live. Not a fault. CLOSED OPEN. Tool gap -> backlog LVB.

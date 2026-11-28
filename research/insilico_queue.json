@@ -6198,26 +6198,38 @@
    "group": "T",
    "title": "main_bn -9.1 % in 19 live days: same-days replay, P&L decomposition, percentile among the backtest's 19-day windows (the reference $1,000 Binance book)",
    "src": "FLL (flow half = its own drawdown), paper status 11-28 11:40",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T11:46",
    "forms": [
     {
      "id": "a",
      "what": "scripts.live_vs_backtest main_bn: live vs same-days replay, corr, weight corr, costs, turnover",
-     "status": "planned"
+     "status": "done",
+     "result": "scripts.live_vs_backtest covers shadow books only (main_bn not replayable: tooling gap -> backlog); shadow:blend_nested@bn exists only 2 days (live -1.01 vs replay -0.84 %, weight corr 1.0); flow half via FLL: live -8.87 vs replay -13.6 %, wcorr .97. No sign of an implementation gap in either half.",
+     "date": "2026-11-28",
+     "evidence": "mbl_c"
     },
     {
      "id": "b",
      "what": "scripts.ledger_decomp main_bn: funding / fees / price, live vol vs target; which leg (flow vs blend) carries the loss (shadow:flow@bn vs shadow:blend_nested@bn same days)",
-     "status": "planned"
+     "status": "done",
+     "result": "ledger_decomp main_bn 19 days: price -$93.08, fees -$0.88, funding +$4.14 (of -$91 on $1,000), live vol 27.6 % (target 25-30 %); flow half ~-4.5 % (its shadow -9 %), so the blend half + ladder sleeve lost ~-4.6 % too: both halves down, price-driven.",
+     "date": "2026-11-28",
+     "evidence": "mbl_c"
     },
     {
      "id": "c",
      "what": "percentile of the live 19-day return among the backtest's 19-day windows of main_bn's own mix (.5 flow + .5 blend_nested@bn on bnall 1d at taker, vol-matched); verdict",
-     "status": "planned"
+     "status": "done",
+     "result": "main_bn's mix on bnall 1d at taker 2021-26.10 (SR 1.75, vol 23 %): live -9.13 % / 19 d = 1.8th pct of 19-day windows (3.0th vol-matched); share of windows this bad 2021 .3 %, 2022 4.1, 2023 0, 2024 1.4, 2025 .3, 2026 4.9 % (8.2 vm). Rare (~1 in 33-55) but inside the distribution; kill switch -25 % far. Verdict: not a fault; the retro should quote this percentile next to the live number.",
+     "date": "2026-11-28",
+     "evidence": "mbl_c"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "main_bn -9.1 % in 19 live days: price-driven (fees -$0.9, funding +$4.1), both halves down, the flow half's own replay lost more than live; at the 2-3rd percentile of the mix's backtest 19-day windows. Not an implementation fault; watch with the forward ledger. Tool gap: live_vs_backtest cannot replay main books (backlog).",
+   "closed": "2026-11-28"
   }
  ]
 }

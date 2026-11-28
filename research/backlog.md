@@ -11,6 +11,8 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 (AKE, same minute as the shadow, 2.9 % of equity: item 4 done). Detail: journal 2026-11-28.
 **Next priorities (2026-11-28):** 1. PRB2 forward check at 30 live days (≈ 12-28, below) → 2. X1f at ≥ 30 days (≈ 12-12) → 3. E1 + LQ1 (≈ 12-01) → 4. fill-delay ≈ 12-09 → 5. T6b ≈ 12-07 → 6. T5d (low)
 → 7. W2 ≈ 12-23 → 8. (FPD low) → 9. KS1b (low, see below) → 10. low prior: W3b, FC1(c), LV1 short leg, FF1 market-relative, NPC2, TLQ2, HFX2.
+- [ ] LVB (insilico MBL 2026-11-28, review/retro, prior MEDIUM, small) **scripts.live_vs_backtest for the main books** (main, main_bn, main@pair: replay the book's own mix incl. sleeves): today it
+  covers shadow books only, so a main-book drawdown (main_bn -9.1 % / 19 d, 1.8th pct of its backtest windows) can only be checked leg by leg.
 - [ ] T9G (insilico T9F 2026-11-28, research session, prior LOW-MEDIUM after T9C: flow@bn pays ~11 %/yr taker costs in backtest) **live rest-below shadow for flow@bn's daily orders**: each target change rests
   k = 10 bp beyond the decision price for 24 h, residue to the next day (skip) or taker beyond 1x step (env); fills judged on LIVE Binance trade prints / 1-min lows with a >= 3 bp
   trade-through (kripto/ladder.py already simulates resting bids on live 1-min klines: reuse its fill code); compare its fill rate, runaway cost and net vs the taker shadow after >= 60 days.
