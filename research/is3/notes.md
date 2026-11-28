@@ -1787,3 +1787,6 @@ L1T a/b (is3_l1t.py, l1t_abc.json): HL main daily trades: waiting 1 h costs 3.7 
  L1T caveat: measured on the 1d clock (decision at the 00:00 close); live daily books decide on the 4h bar closing 04:00 and fill ~04:06 (findings 976), 6 min after the decision: the 3.7 bp/h continuation costs ~0.4 bp/unit at that delay. Checked fills table 11-20..28: no fault.
 A1T a/b/c (reading, 11 findings entries opened): T9 family relabel (r1/r2 dead, maker fee OPEN -> T9G); minute-bar holds (dead at taker; maker = ladder); resrev holds. A1 list exhausted. CLOSED OPEN.
 A1T a/b/c (reading, 14 findings entries opened, a1t_ab.json): T9 family relabel (r1/r2 dead, maker fee OPEN -> T9G); minute-bar holds (dead at taker; maker = ladder); resrev holds. A1 list exhausted. CLOSED OPEN.
+NPCB c: trader 17:11-17:24 exit 0. CLOSED FEATURE.
+T9W a/b/c (scripts/maker_ledger.py, tests/test_maker_ledger.py, t9w_ab.json): T9G as a frozen forward ledger (orders since 11-29, two 4h bounds), known answer = T9P exactly (-32.25 / +4.08);
+ retro runs it; MDE at 60 order-days ~12 bp vs a +4 bp saving. CLOSED FEATURE.

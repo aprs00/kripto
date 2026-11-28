@@ -1,0 +1,11 @@
+{
+ "known_answer_since_2026_11_10": {
+  "orders": 370,
+  "conservative_net_bp": -32.25,
+  "optimistic_net_bp": 4.08,
+  "t9p_ab_conservative": -32.25,
+  "t9p_ab_optimistic": 4.08,
+  "match": true
+ },
+ "unit_tests": "tests/test_maker_ledger.py 2 passed"
+}

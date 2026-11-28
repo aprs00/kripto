@@ -227,3 +227,5 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
   can only catch a change that goes clearly wrong, so they are written down as that, before any of them starts. One cost rule I had written an hour earlier could never have been met and was replaced.
 * L1T using the fact that Hyperliquid prices lag Binance by a little to choose whether the Hyperliquid book trades now or in an hour: no use. After the book decides, prices keep moving
   its way for the next hour, so waiting costs about 0.04 % per trade on average; the lag only shows when waiting would be free, never when it would pay. Trading promptly is what matters.
+* T9W whether resting orders would beat market orders for the Binance flow book is now tracked automatically on its real orders from tomorrow on, with the rules fixed today. It will take
+  months to say anything, and only if the cautious and the generous way of counting agree.

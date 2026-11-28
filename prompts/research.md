@@ -96,6 +96,9 @@ WEEKLY RETROSPECTIVE (Sundays): step back from individual experiments.
   `nice -n 19 .venv/bin/python -m scripts.forward_score`. Report, for configs with ≥ 30 forward days: how ALIVE configs did
   versus DEAD ones (the null), and each candidate's forward return next to its backtest OOS Sharpe. Put the candidates'
   forward numbers in STATUS.md. Until there are 30 days, say "too early" and nothing more. Commit research/forward.json.
+* Maker forward ledger (T9G as a ledger, insilico T9W 2026-11-28): `.venv/bin/python -m scripts.maker_ledger` (frozen k0/q3 maker-at-the-touch replay of
+  shadow:flow@bn's orders since 2026-11-29; conservative and optimistic 4h bounds). Commit research/maker_forward.json. Judge only at >= 60 order-days, and only
+  if BOTH bounds agree in sign; history (T9P, 11-10..27): conservative -32, optimistic +4 bp/unit: the bounds disagree, so expect 'undecided' unless minute data settles it.
 * Live vs backtest (T0a, LVB 2026-11-28): `nice -n 19 .venv/bin/python -m scripts.live_vs_backtest --since <last alloc/main_scale change>` (shadows)
   and the same with `--main` (main, main_bn + small twins). corr < .7 or live below replay by > 3 % = a fault to chase that day; a small: twin that holds
   far less gross than its sibling is the min-order limit, say so next to its return in STATUS.md.

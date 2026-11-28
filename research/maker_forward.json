@@ -1,0 +1,13 @@
+{
+ "book": "shadow:flow@bn",
+ "since": "2026-11-29",
+ "spec": "k0 q3 skip, 24 h, 4h bars",
+ "fills_since": 0,
+ "conservative_first_bar_excluded": {
+  "orders": 0
+ },
+ "optimistic_first_bar_included": {
+  "orders": 0
+ },
+ "run": "2026-11-28T17:24:22+00:00"
+}
