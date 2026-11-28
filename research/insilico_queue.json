@@ -6648,26 +6648,38 @@
    "group": "T",
    "title": "\\$200 pair book (small:main@pair): does a two-leg book clear both venues' minimums at \\$200?",
    "src": "SMQ/SMH/SMD (single-venue \\$200 twins min-order limited)",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T13:25",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "live: small:main@pair vs main@pair positions, names, gross, leg balance (a pair with one leg under its minimum is an unhedged leg!)",
-     "status": "planned"
+     "status": "done",
+     "result": "live small:main@pair: 2 ONE-LEGGED positions (GRAM@bn short $9.9, ZEC@bn long $9.3 = 27 % of gross, 10 % of equity unhedged): BN $5 minimum let the BN leg through while HL $10 blocked the hedge; INIT/ZRO HL legs $7-10 (opened at higher prices). main@pair 5 whole pairs. ENGINE FAULT -> fixed same session (venue_pair.whole_pairs + 2 tests)",
+     "date": "2026-11-28",
+     "evidence": "smp_a"
     },
     {
      "id": "b",
      "what": "history (pair dataset, fspread_hold config x .5 alloc): at \\$200 the share of pairs where BOTH legs clear their minimum, deployed share by year, and the share of book gross in one-legged positions under truncation",
-     "status": "planned"
+     "status": "done",
+     "result": "pair dataset 2023-26, fspread_hold x .5: $1,000 SR 7.34 / 6.2 %/yr; $200 old per-leg truncation 1.32 (one-legged 2-6 % of gross kills the hedge); whole pairs 6.57 / 5.8 %/yr, deployed .95/.87/.94/.97; round both legs up to the larger minimum 7.33, deployed ~1.0; ~9-10 pairs held",
+     "date": "2026-11-28",
+     "evidence": "smp_b"
     },
     {
      "id": "c",
      "what": "verdict: one-legged exposure > 0 anywhere -> engine rule needed (a pair is placed whole or not at all; SMX must cover pairs); deployed < .6 -> \\$200 pair book is not the strategy",
-     "status": "planned"
+     "status": "done",
+     "result": "one-legged exposure > 0 -> engine rule shipped: venue_pair.whole_pairs (a pair placed whole or not at all; a 0 target closes existing orphans; kill/retire unchanged), tests (unit + run with an old orphan), 213 pass; deployed whole-pairs >= .87: the $200 pair book IS the strategy once whole (SR 6.57 vs 7.34); round-up-both (7.33) goes into SMX's spec",
+     "date": "2026-11-28",
+     "evidence": "smp_b"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "engine fault found and fixed: the $200 pair twin held one-legged positions (27 % of gross live); history: per-leg truncation SR 1.32 vs whole pairs 6.57 vs $1,000 7.34; SMX adds round-up of both legs",
+   "closed": "2026-11-28"
   }
  ]
 }

@@ -182,3 +182,25 @@ def test_account_equity_transfer_and_guard_known_answer(tmp_path):
     assert np.isclose(st["transferred"], 100.0) and not st["guard"]
     st = VP.account_step(s, "shadow:x@pair", m(60.0))   # HL 500-300 = 200 < 60 % of its 500 peak, before any transfer
     assert st["guard"] and st["transferred"] == 0
+
+
+def test_whole_pairs_drops_both_legs_when_one_is_below_its_minimum():
+    """SMP 11-28: the $200 twin held Binance legs whose HL hedge was below HL's $10 minimum."""
+    mins = lambda col: 10.0 if col.endswith("@hl") else 5.0
+    t = pd.Series({"AAA@hl": -0.04, "AAA@bn": 0.04, "BBB@hl": -0.06, "BBB@bn": 0.06})
+    out = VP.whole_pairs(t, 200.0, mins)                           # AAA: HL leg $8 < $10 -> both 0; BBB: $12 / $12 -> kept
+    assert out["AAA@hl"] == 0 and out["AAA@bn"] == 0
+    assert out["BBB@hl"] == -0.06 and out["BBB@bn"] == 0.06
+    assert VP.whole_pairs(t, 1000.0, mins).equals(t)               # at $1,000 every leg clears its minimum
+
+
+def test_small_pair_book_never_holds_a_one_legged_pair(env):
+    store, cfg, risk, bn_run = env
+    cfg["fspread_hold@pair"].update(status="incubation", alloc=0.4)    # small:main@pair legs = .4 x 10 % x $200 = $8: HL leg < $10
+    store.ensure_book("small:main@pair", 200.0)
+    store.x("insert into positions values('small:main@pair','AAA@bn',0.9)")   # an orphan left by the old engine
+    _run(env)
+    pos = {c: s for c, s in store.positions("small:main@pair").items() if abs(s) > 0}
+    assert pos == {}                                                    # nothing one-legged: the orphan is closed, no new single leg
+    big = store.positions("main@pair")
+    assert big["AAA@hl"] < 0 < big["AAA@bn"]                             # $40 legs at $1,000 still trade

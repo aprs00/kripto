@@ -1,0 +1,24 @@
+{
+ "small_main_pair_positions": {
+  "GRAM@bn": -10.2,
+  "INIT@bn": 82.0,
+  "INIT@hl": -83.0,
+  "LIT@bn": 3.7,
+  "LIT@hl": -4.0,
+  "ZEC@bn": 0.013,
+  "ZRO@bn": 8.8,
+  "ZRO@hl": -8.8
+ },
+ "orphans_usd": {
+  "GRAM@bn short": 9.9,
+  "ZEC@bn long": 9.3
+ },
+ "orphan_share_of_gross": 0.266,
+ "orphan_share_of_equity": 0.097,
+ "legs_below_hl_min_usd": {
+  "INIT@hl": 7.2,
+  "ZRO@hl": 9.5
+ },
+ "main_pair": "5 whole pairs, gross $488",
+ "when": "2026-11-28 13:2x UTC"
+}

@@ -1661,3 +1661,5 @@ Suspects: (1) the 11-26 mix change: before 11-26 main_bn traded a different seco
  days before/after 11-26; (2) netting: flow and blend opposite on a coin -> live nets, replay nets too (same); (3) per-symbol minimum at $1,000 (BTC $50 = 5 %): replay now has it;
  (4) the 'due' logic: main rebalances only on a fresh row or alloc change. Expect (1) to explain most of it.
 MBT a/b/c (is3_mbt.py, mbt_ab.json): main_bn turnover gap = the 11-26 mix change (before .62 vs 1.45, after .35 vs .40); no skipped rebalance; tool prints the last config change. CLOSED DEAD (no fault).
+SMP a/b/c (is3_smp.py, smp_a.json, smp_b.json, kripto/venue_pair.whole_pairs + tests): live small:main@pair held GRAM@bn / ZEC@bn unhedged (27 % of gross). FIXED: pairs whole or nothing.
+ History $200: per-leg truncation SR 1.32, whole 6.57, round-up both 7.33 ($1,000 7.34). CLOSED OPEN.

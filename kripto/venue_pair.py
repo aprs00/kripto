@@ -173,6 +173,23 @@ def account_step(store: P.Store, book: str, marks: dict[str, float]) -> dict:
     return {"accounts": acc, "transferred": moved, "guard": guard}
 
 
+def whole_pairs(tgt: pd.Series, eq: float, min_notional) -> pd.Series:
+    """A pair is held whole or not at all (SMP 2026-11-28): if either leg's target notional is below its venue's minimum order at
+    this book's equity, both legs' targets are 0. Without this the $200 twin held one-legged positions (BN $5 minimum let the
+    Binance leg through while HL's $10 blocked the hedge: small:main@pair held GRAM@bn and ZEC@bn unhedged). A 0 target closes an
+    existing orphan (closing ignores the minimum)."""
+    if tgt.empty:
+        return tgt
+    out = tgt.copy()
+    by = {}
+    for col in tgt.index:
+        by.setdefault(leg(col)[0], []).append(col)
+    for c, cols in by.items():
+        if len(cols) == 2 and any(abs(float(tgt[x])) * eq < min_notional(x) for x in cols):
+            out[cols] = 0.0
+    return out
+
+
 def main_live(store: P.Store, entries: dict) -> bool:
     """The two-account main book (design.md 2026-11-27) runs once a pair entry is incubation/active with alloc > 0, and keeps
     running (to close out / follow alloc changes) once it exists."""
@@ -225,6 +242,8 @@ def run(store: P.Store, cfg: dict, risk: dict, hl, bn_run: dict, hl_marks: dict,
         return P.MIN_NOTIONAL if v == "hl" else filters.get(data.hl_to_bn(c), {}).get("min_notional", 5.0)
 
     def reb(book, tgt, reason):
+        if reason not in ("kill_switch", "retired"):
+            tgt = whole_pairs(tgt, P.book_equity(store, book, marks)[0], min_notional)
         P.rebalance(None, store, book, tgt, marks, {}, reason, round_size=round_size, fill=fill,
                     min_notional=min_notional, fee_rate=lambda col: TAKER_FEE if col.endswith("@hl") else V.TAKER_FEE_BN)
 
