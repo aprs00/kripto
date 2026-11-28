@@ -4343,6 +4343,58 @@
    "verdict": "OPEN",
    "reason": "inverse-vol weighting = permutation of the same weights (73rd pct), 2023 worse; squeeze tail hits names whose prior vol was ordinary; LSB2 stays parked",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "PRB",
+   "prio": 1.1,
+   "group": "T",
+   "title": "HL main book (blend_nested hl) trades a fraction of the gap to target each day (aim-portfolio partial rebalancing) instead of the full gap",
+   "src": "mandate: costs are the binding constraint on HL; T1c (EMA of the tsmom SIGNAL, DEAD) is the nearest dead idea: new angle = book level, incl. listing_short entries, judged net of costs",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "pre-stated: w_t = w_{t-1} + lam*(target_t - w_{t-1}), lam in {1, .5, .33}, HL 1d explore 2023-03..2024-12 (hl panel), band .005: gross SR, costs, turnover, net SR per year; pick = best net SR with net >= lam=1 in both explore years, else FAIL",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "if a picks lam<1: L.prereg, ONE run of the frozen lam on HL 2025-01..2026-11 vs lam=1 (net SR, cost saved, worst 10 days)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "the frozen lam on blend_nested@bn bnall (held-out venue, cached panel or outside 01:15-03:30) 2021-23 and the $200 twin's executability (fraction of trades below the $10/$5 min order)",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "HBL",
+   "prio": 1.15,
+   "group": "T",
+   "title": "HL listing_short: P&L of the shorts vs the BTC hedge leg by year, and the young-coin beta (assumed 1 below 20 d)",
+   "src": "LSP (bnall: 2023-24 profit was the BTC leg), BNH/HLI (listing_short = the HL main book's edge), beta_to min_periods 20 d",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "HL 1d 2023-03..2026-11: listing_short net P&L split alt-short legs vs BTC leg (funding and costs per leg), by year; corr to BTC; if the BTC leg carries >= half of any year, say so in findings/STATUS",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "realised beta of listing-age coins (days 2-20 vs 21-61) to BTC, pooled HL 2023-24 and bnall-cache 2021-23 events: is beta=1 for <20 d too high/low? dose by age",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "if b shows |pooled beta - 1| >= .3: hedge young coins with the explore-pooled beta (frozen) vs beta 1 on HL 2025-26 held out: corr BTC, SR, worst days",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
