@@ -1563,3 +1563,4 @@ Source: L2b (Binance taker flow continuation transfers to HL prices, +19 %/yr gr
  taker imbalance leads HL (deeper venue leads); HL thin books make taker execution expensive, but a resting order on HL costs 1.5 bp. Unstated: (1) the random-fill placebo is an UPPER
  bound (real fills are selected against us ~1:1 with any improvement, T9K/T9C); (2) HL queues on thin names are short, so fills are likelier but adverse selection by faster HL
  makers may be worse; (3) HL perps list fast: the hlx universe is the HL coins with Binance flow. Frozen config (live flow@bn), no grid. Change my mind: as queued (c).
+FHM a/c (is3_fhm.py, fhm_a.json): flow on HL at maker fees: selection-free upper bound SR .39 (-.79/.79/.50/.65), taker ~0, corr HL book .06. b skipped. CLOSED OPEN.

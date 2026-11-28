@@ -6147,26 +6147,37 @@
    "group": "T",
    "title": "flow on HL prices (hlx) at MAKER fees: does L2b's 'dead at HL taker costs' leg come alive as a post-only book? (frozen live config lb 3, cap .05)",
    "src": "L2b a (hlx: +19 %/yr gross, 17-50 %/yr HL costs), T9C (OOS the maker fee is the lever, depth adds nothing), ERC (HL book needs an uncorrelated leg)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T11:44",
    "forms": [
     {
      "id": "a",
      "what": "hlx 1d 2023-03..2026-11, flow lb 3 cap .05: taker (fee 4.5 + fitted slip x .5) vs fee-only maker placebo (random fills at the 90 % share T9 measured, maker 1.5 bp, no slip; 10 masks): ann/SR by year, and corr with the HL main book's daily returns",
-     "status": "planned"
+     "status": "done",
+     "result": "hlx 1d 2023-03..2026-11, frozen flow lb 3 cap .05 (turnover 228x/yr): taker (4.5 bp + fitted slip x.5) costs 19.6 %/yr, SR by year ~0 (2024 .18, 2025 -.26, 2026 -.07); fee-only maker placebo (random 90 % fills, 1.5 bp, no slip; UPPER bound, real fills are selected against ~1:1, T9K/T9C) +7.0 %/yr SR .39, years -.79/.79/.50/.65; corr with the HL main book .06. Bar (placebo SR >= 1 in >= 3 of 4 years) FAILS even for the upper bound.",
+     "date": "2026-11-28",
+     "evidence": "fhm_a"
     },
     {
      "id": "b",
      "what": "HL 1h 2026-04-15..11-26 (seen, descriptive): the real trade-through fill model at the touch and k 10 (q 3) vs the same placebo: is selection on HL thin names worse than on Binance",
-     "status": "planned"
+     "status": "skipped",
+     "result": "a's upper bound already fails the bar; real HL fills can only be <= the random-fill placebo (T9K/T9C selection), so the 7.5-month fill replay cannot change the verdict",
+     "date": "2026-11-28"
     },
     {
      "id": "c",
      "what": "verdict: a candidate for an HL post-only shadow (needs the live resting engine of T9G) only if a's placebo SR >= 1 in >= 3 of 4 years AND b shows real >= placebo - 2 %/yr; else close with the reason",
-     "status": "planned"
+     "status": "done",
+     "result": "verdict: no HL post-only flow shadow. Even free-of-selection maker fills leave flow-on-HL at SR .39 (one losing year of four): the Binance flow signal transfers to HL prices too weakly at the 3-day lookback; uncorrelated (.06) but too small to be the missing HL leg.",
+     "date": "2026-11-28",
+     "evidence": "fhm_a"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "flow on HL prices at maker fees: even the selection-free upper bound (random 90 % maker fills, 1.5 bp) gives SR .39 2023-26 (-.79/.79/.50/.65) at 228x turnover; taker ~0. Uncorrelated with the HL book (.06) but far from a leg; revisit only with a slower flow variant whose gross survives (L2b: lb14 +19 %/yr gross) as a pre-registered maker-placebo check.",
+   "closed": "2026-11-28"
   }
  ]
 }

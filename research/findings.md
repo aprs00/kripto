@@ -321,6 +321,7 @@ HL 1d WF OOS 0.03 / 2.97y, grid med −1.54, 2/12 >0. The SIGN carries over: con
 loses in all 6 configs (−1.5 to −2.2). But HL costs are 17–50%/yr at this turnover (118–366×): net SR 0.23 at best, −0.40 at 2× costs.
 So flow is real on both venues and only tradable where costs are low (Binance). Revisit on HL only with cheaper execution (T9).
 
+FHM (insilico 11-28, is3_fhm.py): live config (lb 3, cap .05) at MAKER fees, selection-free upper bound (random 90 % fills, 1.5 bp): SR .39 2023–26 (−.79/.79/.50/.65), corr HL book .06: still not a leg.
 ### fspread: HL-vs-Binance funding capture, same coin long on one venue and short on the other (X1, dataset pair, 2026-11-09) → DEAD at taker costs (funding leg real)
 pair 1d WF OOS −1.42 / 1.67y, 0/9 >0. The funding difference IS there: +6% to +13%/yr of equity at gross ≤ 2, price risk cancels
 (vol ≈ 2–4%). But weights that follow the spread turn over 70–410×/yr and cost 6–36%/yr: more than the funding in every config.
