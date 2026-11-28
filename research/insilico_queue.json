@@ -7053,6 +7053,60 @@
     }
    ],
    "defer_why": "form c needs the 11-29 00:00 daily rebalances of the small twins under the new rule"
+  },
+  {
+   "id": "SMXR",
+   "prio": 2.1,
+   "group": "T",
+   "title": "Dry-run SMX on today's live targets before the first 00:00 rebalance: what each small: twin will hold, caps, churn",
+   "src": "SMXB (built 11-28), SXR, CTG",
+   "status": "todo",
+   "due": "2026-11-28T15:10",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "per small: book (HL, BN, pair): latest targets x book equity -> rounded with the shipped paper.round_targets_to_min / venue_pair.round_pairs_to_min using live marks + steps; names held and gross vs the big sibling's (deployed share) and vs today's positions",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "caps: any rounded weight > max_asset_weight (.35) or gross > max_gross (3); list coins whose effective minimum is > .35 x $200 (BN BTC one step ~ $90 = .45) -> decide: respect the cap (drop) as a general rule if hit",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "day-1 transition cost + daily churn: notional traded to move today's small positions to the rounded targets, fees at taker; compare with SMY churn 13/15 % of gross",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "TLQP",
+   "prio": 3.0,
+   "group": "T",
+   "title": "TLQ2 precheck: HL main blend tsmom top_n 10 vs 20 by year, phase and cost, no new WF",
+   "src": "backlog TLQ2, insilico TLQ/TLX",
+   "status": "todo",
+   "due": "2026-11-28T15:10",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "descriptive with the frozen main-book config: blend with tsmom top_n 10 vs 20, SR / mean / median simple daily by year 2021-26 on HL; sign consistency (n years better)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "cost side: turnover and taker cost per year for both; 2x cost stress; $200 small_acct_round for both",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "phase: the same comparison with daily decisions at 4 different hour anchors (common hourly clock rule) -> is the top-10 gain a phase artefact",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
