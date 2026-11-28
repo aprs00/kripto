@@ -1859,3 +1859,12 @@ Change my mind: HL 'new to perps' (HL-first or same day) CAR d1-30 more negative
  otherwise LSH3's bnall effect has no venue story and stays OPEN without a prereg.
 LFV a/b/c (is3_lfv.py, lfv_ab.json): HL 2023-24 n 64: new-to-perps listings d31-60 -16.7 % vs BN-first -7.0 (CI incl 0), d2-30 no front-loading -> venue story reversed.
  bnall 2020-23 by first-week $vol tercile: hot d2-60 -21 % (back-loaded), quiet -3 % mean / -20 % median (d31-60 squeeze tail). flat30's gain = skipping that tail. CLOSED OPEN; launch-heat idea -> backlog T2b(f).
+
+## LHT listing_short by launch heat (think-through 19:0x UTC 11-28, before any run)
+Source: LFV b (explore-born: hot tercile d2-60 -21 % back-loaded, quiet -3 % mean / -20 % median). Risk: an explore-born split chosen after seeing it; so (a) asks for a DOSE (deciles,
+ monotone?) and a market-relative heat (2021's boom inflates every launch's $vol), (b) a second venue, (c) a book rule written before it runs. Mechanism: a hot launch = big float sold
+ to many late longs (overhang sold over months: unlocks, market-maker inventory); a quiet launch = small float held by few -> easy to squeeze once shorts pile in (late squeezes).
+ Unstated: who shorts quiet launches late? funding-paying shorts (LS1) -> crowding; a quiet coin also drops out of min_dv, so the shipped book holds fewer of them anyway.
+Change my mind: d31-60 CAR monotone in heat decile (Spearman over deciles <= -.6) in >= 3/4 years with the relative heat too -> real dose; else the tercile result was noise.
+LHT a/b (is3_lht.py, lht_a/b.json): bnall heat-decile dose -.53 over bins but per-year rho 2021 -.28, others -.11/+.08/+.02; quiet tercile d31-60 = 5 mania events (CHZ, ANKR, ALPHA, GALA, SAND).
+ HL relative heat reversed (quiet -23.5 vs hot -0.5, MDE 23 pp). c skipped (no dose = tuning). CLOSED OPEN; T2b(f) = a 2021 regime note, no prereg. Chain LSH3 -> LFV -> LHT ends here.

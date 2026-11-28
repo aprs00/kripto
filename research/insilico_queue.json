@@ -8151,26 +8151,37 @@
    "group": "T",
    "title": "listing_short held by launch heat (LFV: bnall decay sits in hot launches, quiet launches squeeze late): dose-response and a hot-60/quiet-30 book on EXPLORE samples only",
    "src": "LFV b, LSH3, backlog T2b(f)",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T18:58",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "bnall 2020-23: CAR d2-30 / d31-60 by first-week $vol DECILE (continuous dose), mean, median, top-5-event share, by year; and the same with heat = first-week $vol / BTC $vol that week (market-relative, removes the 2021 boom level)",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall 2020-23 n 253: d31-60 mean by heat decile Spearman over bins -.53 raw / -.43 market-relative (medians -.14/-.33); per-event rho -.07/-.11; by year 2020 -.11, 2021 -.28, 2022 +.08, 2023 +.02. Bottom decile +21 % mean / -10 % median; quiet-tercile d31-60 sum +462 % = top-5 events (CHZ, ANKR, ALPHA, GALA, SAND: 2021 mania) +926, rest -464. Rule (bins <= -.6, >= 3/4 years) FAILS: one regime + 5 events",
+     "date": "2026-11-28",
+     "evidence": "lht_a"
     },
     {
      "id": "b",
      "what": "HL 2023-24 (n ~64): the same tercile split, as a replication on the other venue (expect wide CIs; report MDE); plus HL shipped listing_short tranche P&L by heat",
-     "status": "planned"
+     "status": "done",
+     "result": "HL 2023-24 n 64 terciles: raw heat d31-60 quiet -5.0 / hot -17.0 (bnall direction) but market-relative quiet -23.5 / hot -0.5 (reversed); event rho -.08 / +.23; by year rho d31-60 -.01/+.02; MDE of a tercile diff 23 pp. No replication",
+     "date": "2026-11-28",
+     "evidence": "lht_b"
     },
     {
      "id": "c",
      "what": "rule written before c: book 'hot (top tercile, point-in-time rank within trailing 365 d listings) hold 60, others hold 30' vs flat60 and flat30 on bnall 2020-23 + HL 2023-24, SR by year at matched vol; worth a research-session prereg (confirm bnall 2024-26) only if it beats BOTH flat60 and flat30 in >= 3/4 bnall years AND is not worse than flat60 on HL in either year",
-     "status": "planned"
+     "status": "skipped",
+     "result": "a's pre-written dose rule failed (2021 + 5 events) and b does not replicate: a hot-60/quiet-30 book on these samples would be tuning a split with no dose; bnall 2024-26 stays unseen",
+     "date": "2026-11-28"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "launch heat has no dose: bnall's quiet-launch late squeezes are 5 events in the 2021 alt mania (CHZ, ANKR, ALPHA, GALA, SAND), other years flat; HL reverses on relative heat (MDE 23 pp). LSH3's flat30 gain = avoiding 2021-style mania squeezes, a regime, not a rule",
+   "closed": "2026-11-28"
   },
   {
    "id": "FCX",

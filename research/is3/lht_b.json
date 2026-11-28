@@ -1,0 +1,100 @@
+{
+ "n": 64,
+ "heat": {
+  "table": {
+   "0": {
+    "n": 22,
+    "car_2_30_mean": -4.4,
+    "car_31_60_mean": -5.0,
+    "car_2_60_mean": -9.5,
+    "car_2_30_median": -14.8,
+    "car_31_60_median": -11.1
+   },
+   "1": {
+    "n": 21,
+    "car_2_30_mean": -9.5,
+    "car_31_60_mean": -15.4,
+    "car_2_60_mean": -24.9,
+    "car_2_30_median": -17.8,
+    "car_31_60_median": -17.3
+   },
+   "2": {
+    "n": 21,
+    "car_2_30_mean": 7.5,
+    "car_31_60_mean": -17.0,
+    "car_2_60_mean": -9.4,
+    "car_2_30_median": -14.9,
+    "car_31_60_median": -5.9
+   }
+  },
+  "spearman_over_bins_mean": {
+   "car_2_30": 0.5,
+   "car_31_60": -1.0,
+   "car_2_60": 0.5
+  },
+  "spearman_over_bins_median": {
+   "car_2_30": -0.5,
+   "car_31_60": 0.5
+  },
+  "spearman_events": {
+   "car_2_30": 0.112,
+   "car_31_60": -0.081,
+   "car_2_60": 0.053
+  }
+ },
+ "heat_rel": {
+  "table": {
+   "0": {
+    "n": 22,
+    "car_2_30_mean": 1.6,
+    "car_31_60_mean": -23.5,
+    "car_2_60_mean": -21.9,
+    "car_2_30_median": -10.5,
+    "car_31_60_median": -18.7
+   },
+   "1": {
+    "n": 21,
+    "car_2_30_mean": -0.3,
+    "car_31_60_mean": -12.5,
+    "car_2_60_mean": -12.9,
+    "car_2_30_median": 9.1,
+    "car_31_60_median": -19.6
+   },
+   "2": {
+    "n": 21,
+    "car_2_30_mean": -7.9,
+    "car_31_60_mean": -0.5,
+    "car_2_60_mean": -8.4,
+    "car_2_30_median": -18.8,
+    "car_31_60_median": 2.4
+   }
+  },
+  "spearman_over_bins_mean": {
+   "car_2_30": -1.0,
+   "car_31_60": 1.0,
+   "car_2_60": 1.0
+  },
+  "spearman_over_bins_median": {
+   "car_2_30": -0.5,
+   "car_31_60": 0.5
+  },
+  "spearman_events": {
+   "car_2_30": -0.058,
+   "car_31_60": 0.23,
+   "car_2_60": 0.139
+  }
+ },
+ "by_year": {
+  "2023": {
+   "car_2_30": 0.5,
+   "car_31_60": -0.013,
+   "car_2_60": 0.47
+  },
+  "2024": {
+   "car_2_30": 0.076,
+   "car_31_60": 0.02,
+   "car_2_60": 0.082
+  }
+ },
+ "mde_pp_tercile_diff_d31_60": 23.0
+}
