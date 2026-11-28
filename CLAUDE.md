@@ -232,6 +232,8 @@ Log every process change in `docs/process_changelog.md` (append, newest last). K
   count restarts of auto-restarting services. A number that is legitimately small early on can hide a pipeline that will never grow it.
 * **"Nothing to do" is a fault.** An idle queue, a skipped session, a book that never trades: fix it in the session that sees it (11-26: InSilico idle 40 h).
 * **No unwritten hold-backs** (design.md §4): a strategy that passes every written clause trades; run `scripts.held_back`. Write the advocate's case before leaving one out.
+* **A $200 number needs its deployed share:** min orders (HL $10, BN per symbol: BTC $50) leave the $200 twins mostly cash (11-28: small:main = BTC only,
+  small:main_bn 3 of 31 names). Quote `small_acct_min` + `small_deployed`, never the one-band `small_acct` alone; check twins with `live_vs_backtest --main`.
 * **Report honestly and completely:** gross, costs, turnover and funding separately; simple-return mean AND median with the funding sign; day-clustered t and
   top-3-day share for events; worst stress and the $200 account next to every Sharpe. Distinguish "dead" from "dead at taker costs".
 * **No verdict on one formulation; split by year before spending a confirm;** placebo levels for "levels"; judge tail rules against a size-matched base;

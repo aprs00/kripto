@@ -75,18 +75,52 @@ def small_band() -> float | None:
     return MIN_ORDER / float(eq) if eq else None
 
 
+BN_DATASETS = ("bn", "bnall", "bn100", "bnts", "bnm")
+
+
+def small_equity() -> float | None:
+    try:
+        eq = json.loads(RISK.read_text()).get("small_equity")
+    except Exception:
+        return None
+    return float(eq) if eq else None
+
+
+def small_minima(columns, dataset: str) -> pd.Series:
+    """$ minimum order per panel column (SMR 2026-11-28): Binance = the symbol's MIN_NOTIONAL from venue_bn's exchangeInfo disk
+    cache (BTC $50, ETH $20, most $5; a symbol not listed now or no cache = $5), HL = $10. Two-venue panels name the venue in
+    the column (`X@bn`, `X@hl`). Never sends a request."""
+    bn: dict = {}
+    try:
+        from .venue_bn import symbol_filters
+        bn = {k: float(v["min_notional"]) for k, v in symbol_filters(None, max_age_h=1e9).items()}
+    except Exception:
+        pass
+
+    def one(c: str) -> float:
+        base, _, ven = str(c).partition("@")
+        ven = ven or ("bn" if dataset in BN_DATASETS else "hl")
+        return bn.get(base, 5.0) if ven == "bn" else MIN_ORDER
+    return pd.Series({c: one(c) for c in columns}, dtype=float)
+
+
 def evaluate(name: str, panel: dict, params: dict, dataset: str, cost_mult: float = 1.0,
              band: float | None = None, log: bool = True, start: str | None = None, lag: int = 0,
-             tag: str | None = None, maker: dict | None = None, exec_desc: str | None = None) -> tuple[bt.BTResult, dict]:
+             tag: str | None = None, maker: dict | None = None, exec_desc: str | None = None,
+             min_weight: pd.Series | None = None) -> tuple[bt.BTResult, dict]:
     """One config, full sample. lag = bars of execution delay (weights decided at close t are traded at close t+lag).
     tag marks the purpose of a logged line ("robust", "forward", ...). maker = execution.maker_fills(...) + {"fee"}
-    (passive execution with taker fallback, T9); exec_desc names that policy in the registry line."""
+    (passive execution with taker fallback, T9); exec_desc names that policy in the registry line.
+    min_weight = per-column |weight| below which a target is never opened (small account: min order / equity; SMR)."""
     band = default_band() if band is None else band
     if name in EVENTS:
         # intraday order strategies (kripto/events.py) simulate their own fills and return a daily BTResult
         res = EVENTS[name](panel, cost_mult=cost_mult, lag=lag, band=band, **params)
     else:
         w = REGISTRY[name](panel, **params)
+        if min_weight is not None:
+            mw = min_weight.reindex(w.columns).fillna(0.0).to_numpy()
+            w = w.where((w.abs() >= mw) | (w == 0) | w.isna(), 0.0)
         if lag:
             w = w.shift(lag)
         bpd = bars_per_day(panel["close"].index)
@@ -104,7 +138,8 @@ def evaluate(name: str, panel: dict, params: dict, dataset: str, cost_mult: floa
     if log:
         log_trial({"strategy": name, "params": params, "dataset": dataset, "cost_mult": cost_mult, "band": band,
                    **({"lag": lag} if lag else {}), **({"tag": tag} if tag else {}),
-                   **({"exec": exec_desc or "maker"} if maker is not None else {}), **s})
+                   **({"exec": exec_desc or "maker"} if maker is not None else {}),
+                   **({"min_w": "symbol"} if min_weight is not None else {}), **s})
     return res, s
 
 
@@ -121,6 +156,9 @@ def robustness(name: str, panel: dict, params: dict, dataset: str) -> dict:
     `worst` = min(base, 2x costs, delay, start-date cuts): the gate reads this, not the best case.
     `small_acct` = the same config in the small account (band = min order / small_equity): reported next to `base`
     because the owner may fund $200 rather than $1,000; it is not part of `worst` (the gate is judged at the main size).
+    `small_acct_min` (SMR 2026-11-28) also never opens a target below the symbol's minimum order at small_equity (BTC $50 on
+    Binance, $10 on HL), and `small_deployed` = its mean held gross / the main size's: the one-band small_acct let a $200 account
+    hold 30 names of $3 each (LVB: live small:main_bn holds 3 of 31, small:main BTC only). Quote small_acct_min AND small_deployed.
     Lines are logged as config kind with tag "robust", so they do not raise the walk-forward DSR bar."""
     def ev(p=params, **kw):
         return evaluate(name, panel, p, dataset, tag="robust", **kw)
@@ -130,6 +168,13 @@ def robustness(name: str, panel: dict, params: dict, dataset: str) -> dict:
     sb = small_band()
     if sb:
         out["small_acct"] = ev(band=sb)[1].get("sharpe")
+        if name not in EVENTS:   # SMR 2026-11-28: what a small account can PLACE (per-symbol minimum orders), and how much of the book that is
+            mw = small_minima(panel["close"].columns, dataset) / small_equity()
+            rm, sm = ev(band=sb, min_weight=mw)
+            out["small_acct_min"] = sm.get("sharpe")
+            inv = res.gross > 0
+            g0 = res.weights.abs().sum(axis=1)[inv].mean()
+            out["small_deployed"] = round(float(rm.weights.abs().sum(axis=1)[inv].mean() / g0), 3) if g0 > 0 else None
     first = res.gross[res.gross > 0].index.min()
     if not pd.isna(first):
         r = res.returns[res.returns.index >= first]

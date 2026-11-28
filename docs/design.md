@@ -269,3 +269,8 @@ See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits;
   counted in STATUS. General rationale: two accounts cannot net margin, whatever strategy holds them; the numbers 70 % / 40 % come from KSA's path
   study of the pair structure, not from any book's returns. The vol-scaled book kill switch (KS1 second half: 1.25 × the book's vol target) is NOT
   adopted today; it needs a definition for books without a vol target (pair, overlay) first (backlog KS1b).
+* 2026-11-28 (insilico SMR; reporting, not a gate: the gate stays judged at $1,000) **small-account metrics respect per-symbol minimum orders.** `robustness()` adds
+  `small_acct_min` (a target below the symbol's minimum order at small_equity is never opened: Binance MIN_NOTIONAL per symbol, BTC $50 / ETH $20 / most $5; HL $10)
+  and `small_deployed` (its mean held gross / the main size's). General rationale: the $200 twin must model what a $200 account can place, whatever the strategy;
+  the one-band `small_acct` let it hold dozens of $3 positions. Evidence it mattered (LVB/SMQ/SMH): live small:main_bn holds 3 of 31 targets, small:main BTC only;
+  backtest deployed share at $200 .19 (BN 2026) / .44 (HL 2026). `small_acct` is kept for comparability with old results; quote small_acct_min AND small_deployed.

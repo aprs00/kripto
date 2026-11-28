@@ -103,3 +103,33 @@ def test_walk_forward_grid_average_known_answer(tmp_path, monkeypatch):
     assert one["oos_grid_avg"] is not None and abs(one["oos_grid_avg"] - one["oos"]["sharpe"]) < 0.01
     two = research.walk_forward("tsmom", p, {"top_n": [5], "every_days": [1, 3]}, "synthetic")
     assert two["oos_grid_avg"] is not None
+
+
+def test_small_minima_per_venue_and_the_small_account_min_block(tmp_path, monkeypatch):
+    """SMR 2026-11-28: Binance symbols use their own minimum (cache), HL $10, pair columns by suffix; robustness reports
+    small_acct_min + small_deployed and logs the line with min_w (a robust line: never a walk-forward)."""
+    from kripto import venue_bn
+    monkeypatch.setattr(venue_bn, "symbol_filters", lambda bn, max_age_h=24: {"BTC": {"step": .001, "min_notional": 50.0}, "ETH": {"step": .001, "min_notional": 20.0}})
+    m = research.small_minima(["BTC", "ETH", "DOGE"], "bnall")
+    assert m.to_dict() == {"BTC": 50.0, "ETH": 20.0, "DOGE": 5.0}
+    assert research.small_minima(["BTC", "DOGE"], "hl").to_dict() == {"BTC": 10.0, "DOGE": 10.0}
+    assert research.small_minima(["BTC@bn", "BTC@hl"], "pair").to_dict() == {"BTC@bn": 50.0, "BTC@hl": 10.0}
+    monkeypatch.setattr(research, "REG", tmp_path / "registry.jsonl")
+    risk = tmp_path / "risk.json"
+    risk.write_text(json.dumps({"start_equity": 1000.0, "small_equity": 200.0}))
+    monkeypatch.setattr(research, "RISK", risk)
+    rb = research.robustness("xsmom", _panel(), {"lookback": 14, "every_days": 1, "top_n": 6}, "t")
+    assert "small_acct_min" in rb and 0 <= rb["small_deployed"] <= 1.0 + 1e-9
+    lines = [json.loads(x) for x in (tmp_path / "registry.jsonl").read_text().splitlines()]
+    assert any(x.get("min_w") == "symbol" and x.get("tag") == "robust" and "kind" not in x for x in lines)
+
+
+def test_min_weight_never_opens_a_target_below_the_minimum(tmp_path, monkeypatch):
+    monkeypatch.setattr(research, "REG", tmp_path / "registry.jsonl")
+    p = _panel()
+    mw = pd.Series(1.0, p["close"].columns)          # a minimum no weight can reach -> nothing is ever held
+    res, _ = research.evaluate("xsmom", p, {"lookback": 14, "every_days": 1, "top_n": 6}, "t", min_weight=mw, log=False)
+    assert float(res.weights.abs().sum().sum()) == 0.0
+    res0, _ = research.evaluate("xsmom", p, {"lookback": 14, "every_days": 1, "top_n": 6}, "t", min_weight=mw * 0, log=False)
+    res1, _ = research.evaluate("xsmom", p, {"lookback": 14, "every_days": 1, "top_n": 6}, "t", log=False)
+    assert np.allclose(res0.returns.to_numpy(), res1.returns.to_numpy())   # a zero minimum changes nothing

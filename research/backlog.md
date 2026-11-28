@@ -19,6 +19,7 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
   mostly cash now (universe 113 -> 532 names, weights per name below the minima). Top-4 vol-matched $200 book: SR 1.56, deployed 2026 .47 (prior LOW, a different book; only if the owner's $200 option matters).
   SMH (11-28, research/is3/smh_a.json): HL too: the $200 HL book holds BTC + 1-2 names of 124-144 (live: BTC only, $31); SR 1.12 is BTC timing. Neither $200 twin holds its strategy:
   the honest STATUS line is 'a $200 account cannot run these books' unless a $200-specific book (few names) is built and tested.
+  SMR (11-28) DONE step (2): robustness now reports small_acct_min + small_deployed (kripto/research.py, known answer exact). Left: (1) STATUS rows, (3) re-quote at the next WFs.
 - [ ] T9G (insilico T9F 2026-11-28, research session, prior MEDIUM after T9P (11-28: at the touch fills ~always on minute paths, +4 bp/unit vs live taker): flow@bn pays ~11 %/yr taker costs in backtest) **live rest-below shadow for flow@bn's daily orders**: each target change rests
   k = 10 bp beyond the decision price for 24 h, residue to the next day (skip) or taker beyond 1x step (env); fills judged on LIVE Binance trade prints / 1-min lows with a >= 3 bp
   trade-through (kripto/ladder.py already simulates resting bids on live 1-min klines: reuse its fill code); compare its fill rate, runaway cost and net vs the taker shadow after >= 60 days.

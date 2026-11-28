@@ -1,0 +1,10 @@
+{
+ "hl_max_abs_return_diff": 0.0,
+ "hl_sr_evaluate": 1.138,
+ "bnall_minima_mismatch_vs_cache": 0,
+ "bnall_BTC_ETH": [
+  50.0,
+  20.0
+ ],
+ "bnall_share_at_5": 0.991
+}

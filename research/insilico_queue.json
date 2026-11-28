@@ -6446,6 +6446,45 @@
    "verdict": "OPEN",
    "reason": "the $10 HL minimum leaves the $200 HL book with BTC + 1-2 names; its SR (1.12) is a different, BTC-timing book; today's small_acct (.86, one band) measures neither. Both $200 twins are min-order limited -> SMB",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "SMR",
+   "prio": 2.9,
+   "group": "T",
+   "title": "research small_acct with hard per-symbol minimum orders + deployed share (the SMB measurement fix in kripto/research.py)",
+   "src": "LVB/SMQ/SMH, backlog SMB",
+   "status": "closed",
+   "due": "2026-11-28T13:15",
+   "sessions": 1,
+   "forms": [
+    {
+     "id": "a",
+     "what": "kripto/research.py: small_minima(columns, dataset) (BN: venue_bn.symbol_filters disk cache, else \\$5; HL \\$10; pair by column suffix), evaluate(min_weight=) zeroes targets below min/small_equity, robustness adds small_acct_min + small_deployed next to small_acct (kept for comparability); tests",
+     "status": "done",
+     "result": "kripto/research.py: small_minima (BN symbol cache / $5, HL $10, pair by suffix, no request), evaluate(min_weight=), robustness small_acct_min + small_deployed (events skipped); 2 new tests (known minima, robust line with min_w, zero minimum = unchanged, unreachable minimum = flat); 211 pass; trader run exit 0",
+     "date": "2026-11-28",
+     "evidence": "smr_b"
+    },
+    {
+     "id": "b",
+     "what": "known answer: robustness on the SMQ/SMH configs reproduces is3_smq/is3_smh's \\$200 hard-minimum SR and deployed share (same panel, same config) within rounding",
+     "status": "done",
+     "result": "known answer: evaluate(blend HL main config, min_weight) vs hand truncation + bt.run: max |return diff| 0.0 (SR 1.138 = is3_smh's 1.12 up to main_scale); bnall minima 0 mismatches vs the cache, BTC 50 / ETH 20, 99.1 % of symbols $5",
+     "date": "2026-11-28",
+     "evidence": "smr_b"
+    },
+    {
+     "id": "c",
+     "what": "docs: design.md changelog (reporting fix, not a gate: the gate is judged at \\$1,000; general rationale = the twin must model what a \\$200 account can place), CLAUDE.md standing lesson, show_result column",
+     "status": "done",
+     "result": "design.md changelog (reporting fix, gate unchanged), process_changelog, CLAUDE.md standing lesson ($200 number needs its deployed share), show_result prints small_acct_min + small_deployed; retro step for live_vs_backtest --main already in prompts/research.md",
+     "date": "2026-11-28",
+     "evidence": "smr_b"
+    }
+   ],
+   "verdict": "FEATURE",
+   "reason": "every future robustness block reports what a $200 account can place (per-symbol minima) and how much of the book that is; known answer exact",
+   "closed": "2026-11-28"
   }
  ]
 }

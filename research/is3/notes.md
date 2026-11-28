@@ -1628,3 +1628,5 @@ Source: LVB/SMQ. Live: small:main holds ONLY BTC ($31, 16 % gross) vs main 26 na
  slow_lam .33) x main_scale .871, ~26 names at ~2.6 % each = $5 at $200 < $10 HL minimum: only BTC (the beta hedge, big weight) clears it. Expect the backtest deployed share to be
  tiny for all years with many names; unstated: the slow legs (lam .33) make trades even smaller (partial steps), so with the band model even more is skipped.
 SMH a/b/c (is3_smh.py, smh_a.json, smh_b.json): HL $200 holds 2-3.6 names (BTC + 1-2) of 27-144, deployed .41-.57; live = BTC only ($31). SR 1.12 is BTC timing. CLOSED OPEN -> SMB (both venues).
+SMR a/b/c (kripto/research.py small_minima / min_weight / small_acct_min + small_deployed, tests, is3_smr.py, smr_b.json): known answer exact (diff 0.0). Docs + standing lesson. CLOSED FEATURE.
+ Left for a research session (SMB): STATUS $200 rows with deployed share; re-quote candidates' small_acct_min when their WFs are next re-run (no extra registry lines today).

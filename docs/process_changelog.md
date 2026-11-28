@@ -260,3 +260,6 @@ put a lesson into CLAUDE.md "Standing lessons" only if a future session must act
   item and `cat >` overwrote its study script research/studies/is3_fld.py. Repaired from git the same session (old item byte-identical, script restored, new work renamed FLL / is3_fll.py).
   Guard: tests/test_insilico_queue.py::test_real_queue_ids_are_unique (refills run this file before committing). Habit: `ls research/studies/is3_<id>*` and grep the queue before naming.
   Audit the same session: no other study averages shifted-window daily returns; scheduled(phase=None) averages positions on one grid (safe).
+* 2026-11-28 insilico (LVB/SMQ/SMH/SMR): the $200 twins were never checked for what they can actually hold. live_vs_backtest gained `--main` (main books + small twins,
+  per-symbol minima in BN replays) and the retro step in prompts/research.md; research.robustness gained small_acct_min + small_deployed (design.md changelog). Lesson: a
+  derived size (the twin) needs its own replay against live, not only the big sibling's.
