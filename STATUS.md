@@ -41,6 +41,8 @@ InSilico idle 40 h reported as healthy; a research day lost to the usage limit (
    ($262: its accounts had drifted to +27 % / −25 % while the book as a whole was +0.7 %). main@pair after one day: Hyperliquid $528 / Binance $473.
 4. Retired the Binance trend shadow book (tsmom@bn, weakest by the written rules) to keep the number of books polite.
 
+InSilico pass 3: 471 of 519 forms done (30 skipped), 129 of 137 items closed. Best finding so far: on Binance, resting orders instead of market orders would save the fast flow book several % a year, but only through the lower fee. Choosing a price below the market added nothing in its one-shot 2024–26 check (failed, set in advance), and whether resting orders really fill can only be learned live (this month's real orders: 88 % would have filled, history said 90 %). Also today: shorting new Binance listings stays a no (5 stop-loss designs failed), and an apparent 'trade at six different hours' gain was my own measuring mistake, caught and corrected the same session.
+
 ## Books (07:00 UTC; 19 days of paper P&L is noise)
 | book | $1,000 (shadow $2,000) | $200 twin |
 |---|---|---|
