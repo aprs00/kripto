@@ -26,7 +26,7 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
 - flow on HL prices: Binance taker flow → trade the same coins on HL (L2b a, dataset hlx, 2026-11-09) → DEAD at taker costs (signal transfers)
 - fspread: HL-vs-Binance funding capture, same coin long on one venue and short on the other (X1, dataset pair, 2026-11-09) → DEAD at taker costs (funding leg real)
 - blend_nested: blend with component SELECTION out-of-sample (H4, 2026-11-10) → ALIVE (candidate, shadow blend_nested)
-- T9 passive (maker) execution for the daily books (2026-11-10, exec_study r1+r2, config-level) → DEAD as a general fix
+- T9 passive (maker) execution for the daily books (2026-11-10, exec_study r1+r2, config-level) → DEAD as a general fix (r1/r2 forms; family audited A1T 2026-11-28: maker …
 - fspread_hold: funding capture with hysteresis (X1b, 2026-11-10) → ALIVE (incubation 2026-11-27, main@pair; edge decaying)
 - L1 hourly horizon: Binance → HL lead-lag and 1h reversal (library N4; descriptive kill test, no backtest, 2026-11-10) → DEAD at taker costs
 - Minute-bar ideas from the library: flow, absorption, sweeps, BTC leader-lag, breadth, activity spikes, extreme-move fades (event study, 2026-11-10) → DEAD at taker costs
@@ -357,7 +357,7 @@ Every 60 days, top-3 by expanding net Sharpe among 10 pool strategies at default
 (HL > 0.8, worst > 0), so the blend's HL number is NOT mainly hindsight. The rule picks listing_short+tsmom+lowvol on HL and carry+carry_trend+xsmom
 on bnall. Fails DSR only. Caveat: listing_short leads; its HL funding is known for 35% of short exposure overall (92% in 2026).
 **2026-11-28 same-data re-run (HL funding backfilled since): HL OOS 1.45 / 2.21y (DSR 0.37, worst 0.95 = 2× costs, $200 0.89)**: the 1.87 headline was on the pre-backfill panel. With PRB2 slow legs 1.82 (below).
-### T9 passive (maker) execution for the daily books (2026-11-10, exec_study r1+r2, config-level) → DEAD as a general fix
+### T9 passive (maker) execution for the daily books (2026-11-10, exec_study r1+r2, config-level) → DEAD as a general fix (r1/r2 forms; family audited A1T 2026-11-28: maker fee OPEN via T9P/T9Q, forward-only T9G)
 Model: limit at the decision close, filled on a 5 bp trade-through within 4 h (hourly OHLC). (r1) taker fallback: BN-82 costs UP ~20%
 (unfilled orders chase ~150 bp of drift). (r2) post-only, skip unfilled: costs −65–80% on both venues, but BN-82 6y Sharpe falls
 (tsmom 0.88→0.83, xsmom 0.65→0.58, xsmom_k 0.51→0.46; 20 bp trade-through 0.44/−0.01). By year, post-only gained only in 2025–26,

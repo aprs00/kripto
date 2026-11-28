@@ -1,0 +1,40 @@
+{
+ "entries_opened": [
+  "T9",
+  "T9B",
+  "T9D",
+  "T9F",
+  "T9K(in T9F)",
+  "T9L(in T9F)",
+  "T9C(in T9F)",
+  "T9P",
+  "T9Q",
+  "T9R",
+  "FSM",
+  "Minute-bar ideas 2026-11-10",
+  "resrev",
+  "xsrev audit"
+ ],
+ "T9_family": {
+  "forms": [
+   "r1 taker fallback 5bp/4h",
+   "r2 post-only skip",
+   "T9F rest-below k",
+   "T9K depth dose + random-fill placebo",
+   "T9C prereg confirm 2024-26",
+   "T9D slow legs post-only",
+   "T9P at-touch live Nov orders",
+   "T9Q at-touch HL 1-min",
+   "T9R pair legs",
+   "FSM fspread maker legs"
+  ],
+  "diagnosis": "resting depth paid back ~1:1 by adverse selection; taker fallback chases ~150 bp drift; post-only skip loses the trades trend legs need; what survives is the maker fee (+~4 bp/unit, ~+1 %/yr HL)",
+  "verdict": "r1/r2 DEAD as a general fix holds; family OPEN via the maker fee, forward-only (T9G)"
+ },
+ "minute_bar": {
+  "forms": "7 ideas x 1 form (flow, absorption, sweeps, BTC lead, breadth, activity spikes, extreme fades), 20 coins, two halves; pass 3 M1-M7/X1/T3 added >= 3 forms to most",
+  "diagnosis": "<= 2-7 bp vs 12-15 bp taker round trip; halves disagree",
+  "verdict": "'DEAD at taker costs' holds; maker form of extreme fades = ladder@bn (incubation), lshock OPEN; untried L2 imbalance (V1 12-14), thin coins"
+ },
+ "resrev": "one of xsrev's 4 diagnosed forms (residual moves continue, price-only SR -0.72): holds"
+}

@@ -7651,26 +7651,38 @@
    "group": "T",
    "title": "Dead-list audit (A1) of the last two entries: T9 maker execution and the 11-10 minute-bar ideas: forms tested, diagnosis, untried forms",
    "src": "backlog A1, design.md §4 (2026-11-12 dead-list audit rule)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T17:25",
    "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "T9 family (T9, T9D, T9F, T9K, T9L, T9C, T9P, T9Q, FSM): read each findings entry; count materially different forms, the diagnosed reason each failed, what is still untried; does 'DEAD as a general fix' hold",
-     "status": "planned"
+     "status": "done",
+     "result": "14 findings entries opened (T9 family x 11 incl. FSM): >= 10 forms, each diagnosed (depth paid back ~1:1 by selection, fallback chases drift, post-only loses the needed trades); survivor = maker fee (+4 bp/unit, ~+1 %/yr HL), forward-only T9G. r1/r2 'DEAD as a general fix' holds; family relabelled OPEN",
+     "date": "2026-11-28",
+     "evidence": "a1t_ab"
     },
     {
      "id": "b",
      "what": "minute-bar ideas (2026-11-10 event study) + the pass-3 minute items (M1-M8, lshock, X1, T3): which ideas got >= 3 forms with a diagnosis, which only one; 'dead at taker costs' vs dead",
-     "status": "planned"
+     "status": "done",
+     "result": "minute-bar entry: 7 ideas x 1 form, <= 2-7 bp vs 12-15 bp round trip, halves disagree: 'DEAD at taker costs' is the right label; pass 3 gave most >= 3 forms; maker extreme-fade = ladder@bn, lshock OPEN; untried L2 imbalance (V1) and thin coins. Holds",
+     "date": "2026-11-28",
+     "evidence": "a1t_ab"
     },
     {
      "id": "c",
      "what": "backlog A1 line: mark both audited with the verdict (holds / relabel OPEN + untried forms), so the retro does not repeat it",
-     "status": "planned"
+     "status": "done",
+     "result": "backlog A1 + findings T9 header updated; audit list exhausted",
+     "date": "2026-11-28",
+     "evidence": "a1t_ab"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "audit done: T9 header relabelled (maker fee alive, forward-only); minute-bar and resrev verdicts hold with diagnoses",
+   "closed": "2026-11-28"
   }
  ]
 }
