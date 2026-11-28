@@ -5223,8 +5223,11 @@
     {
      "id": "conf",
      "what": "ONE confirm run of prereg TLQ_top10 on HL 2025-26 (caveat: TLQ a saw these years' tier P&L)",
-     "status": "planned",
-     "added": "2026-11-28"
+     "status": "done",
+     "added": "2026-11-28",
+     "result": "prereg TLQ_top10 confirm HL 2025-26 (one run): blend top10 SR 2.169 vs 2.186 in 2025 (-0.02), 1.99 vs 1.47 in 2026 YTD, pooled 2.09 vs 1.85; costs 4.8/6.8 vs 5.3/8.9 %/yr; tsmom leg -0.08/2.06 vs -0.25/1.19. Pre-stated rule (>= in BOTH years) FAILS on 2025 by 0.02: a tie, not a pass. 3 of 4 years clearly better, never materially worse, lower cost every year. Verdict: not confirmed as written; prior raised (medium) for a research-session WF + forward shadow, no claim.",
+     "date": "2026-11-28",
+     "evidence": "tlq_conf"
     }
    ],
    "sessions": 1

@@ -1382,3 +1382,5 @@ Source: HTN (HL tsmom 105x turnover; cost/unit 8-22 bp vs BN 6 bp), PRB/PRL (tsm
  b = ONE stated variant top_n 10 (no grid), explore 2023-24 then confirm 2025-26 by prereg. c = is it the same saving as PRB2 (lam .33)?
 TLQ a done (is3_tlq.py, tlq_a.json): tsmom by liquidity tier: tier1 net +11/+6/-4/+10 %/yr, tier2 ~0/0/+4/+12, tier3 (ranks 15-20) +3/-5/-3/-2 with ~0 price edge after 2023 at 10-27 bp/unit.
  Dose in liquidity. a saw 2025-26 (descriptive), so b's confirm is weakened: say so; b variant (top 10) was stated before a.
+TLQ b/conf (tlq_b/conf.json): tsmom top 10 in the HL blend: explore 1.08/1.17 vs .87/.75; prereg TLQ_top10 confirm 2025 2.17 vs 2.19 (FAIL by .02 as written), 2026 1.99 vs 1.47, pooled 2.09 vs 1.85,
+ costs lower every year. Strict rule failed; a tie in 2025, so no claim; backlog as a research-session WF candidate with the caveat that a saw 2025-26.
