@@ -97,5 +97,62 @@ def form_a():
     json.dump(out, open(EV / "t9d_a.json", "w"), indent=1)
 
 
+QS = (0, 5, 10, 20)          # queue stress: a fill needs a trade-through of q bp beyond the limit
+TAKER, MAKER = 5e-4, 2e-4    # Binance VIP0
+
+
+def first_hit(df, h1, q):
+    hi, lo = h1["high"].to_numpy(), h1["low"].to_numpy()
+    pos = h1["high"].index.get_indexer(df["D"]); ci = h1["high"].columns.get_indexer(df["coin"])
+    side = np.sign(df["dw"].to_numpy()); L = df["L0"].to_numpy() * (1 - side * q * 1e-4)
+    first = np.full(len(df), np.inf)
+    for k in range(24):
+        hit = np.where(side > 0, lo[pos + k, ci] < L, hi[pos + k, ci] > L)
+        first = np.where(hit & ~np.isfinite(first), k + 1, first)
+    return first
+
+
+def dayboot(v, w, day, reps=2000, seed=7):
+    g = pd.DataFrame({"vw": v * w, "w": w, "d": day}).groupby("d")[["vw", "w"]].sum()
+    a, b = g["vw"].to_numpy(), g["w"].to_numpy()
+    rng = np.random.default_rng(seed); i = rng.integers(0, len(a), (reps, len(a)))
+    bs = a[i].sum(1) / b[i].sum(1)
+    return float(a.sum() / b.sum()), [float(np.quantile(bs, .025)), float(np.quantile(bs, .975))]
+
+
+def form_b():
+    from kripto import backtest as bt
+    d = data.load_panel("bn", "1d")
+    slip = bt.slippage_model(d["volume"], 1)
+    h1 = data.load_panel("bn", "1h")
+    out = {}
+    for n in ("net", "tsmom", "lowvol"):
+        df = pd.read_parquet(OUT / f"t9d_orders_{n}.parquet")
+        df = df[np.isfinite(df["r24"])]
+        w = df["dw"].abs().to_numpy()
+        sl = np.array([slip.at[t, c] for t, c in zip(df["t"], df["coin"])])
+        sl = np.where(np.isfinite(sl), sl, 25e-4)
+        r24 = df["r24"].to_numpy(); day = df["D"].dt.normalize().to_numpy()
+        row = {"slip_bp_wmean": round(float((w * sl).sum() / w.sum() * 1e4), 2),
+               "r24_all_bp": round(float((w * r24).sum() / w.sum() * 1e4), 1)}
+        for q in QS:
+            fh = first_hit(df, h1, q)
+            f = fh <= 24
+            m_f, ci_f = dayboot(r24[f], w[f], day[f])
+            m_u, ci_u = dayboot(r24[~f], w[~f], day[~f]) if (~f).sum() > 30 else (float("nan"), None)
+            save = np.where(f, TAKER + sl - MAKER, -r24)        # chase unfilled at D+24h as taker
+            s_m, s_ci = dayboot(save, w, day)
+            yr = {int(y): round(float((w[m] * save[m]).sum() / w[m].sum() * 1e4), 2)
+                  for y in (2021, 2022, 2023) for m in [pd.DatetimeIndex(df["D"]).year == y]}
+            row[f"q{q}"] = {"fill24": round(float(w[f].sum() / w.sum()), 3), "fill1h": round(float(w[fh <= 1].sum() / w.sum()), 3),
+                            "r24_filled_bp": round(m_f * 1e4, 1), "r24_unfilled_bp": round(m_u * 1e4, 1),
+                            "r24_unfilled_ci_bp": None if ci_u is None else [round(x * 1e4, 1) for x in ci_u],
+                            "save_bp_per_unit": round(s_m * 1e4, 2), "save_ci_bp": [round(x * 1e4, 2) for x in s_ci],
+                            "save_pct_yr": round(s_m * w.sum() / 3 * 100, 2), "save_bp_by_year": yr}
+        out[n] = row
+        print(n, json.dumps(row), flush=True)
+    json.dump(out, open(EV / "t9d_b.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    {"a": form_a}[sys.argv[1]]()
+    {"a": form_a, "b": form_b}[sys.argv[1]]()

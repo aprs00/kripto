@@ -1471,3 +1471,5 @@ New angle: under lam .33 an unfilled order is not a missed trade, it is a lag: t
  slow), fills are closer to noise. Fill model strict: a later 1h bar must trade THROUGH the level (low < L for buys, high > L for sells), no queue credit. BN-82 1h, legs built on BN-82 1d,
  explore <= 2023 only. a = fill fractions 1h/4h/24h at 0 / -2 bp by leg and side; b = adverse selection and net saving; c = envelope. Change my mind: 24h fill < 70 % or filled-minus-unfilled
  24h signed return < -5 bp (eats the 5 bp taker saving).
+T9D b (t9d_b.json): fills are not adversely selected (filled r24 = all); the cost is the 0.3-4 % unfilled runaways (+450..700 bp/24h) that must be chased. BN net save q0 +2.5 bp/unit
+ (.75 %/yr), q5 ~0, q10 -5: worthless on BN. The lever scales with the taker slip avoided: on HL (8-22 bp) the arithmetic is ~10 bp/unit, but untestable here (HL 1h too short). c = envelope (no chase inside 1x step).

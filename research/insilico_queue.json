@@ -5725,7 +5725,10 @@
     {
      "id": "b",
      "what": "adverse selection: signed next-24h return after a fill vs after a non-fill (is the filled half the bad half?); net saving vs taker 5 bp incl. the cost of chasing unfilled residue at 24h as taker",
-     "status": "planned"
+     "status": "done",
+     "result": "BN-82 explore 2021-23 net slow-leg orders (38.8k, 30x/yr, BN slip 1.7 bp): filled orders' signed r24 = all orders' (2.7 vs 4.9 bp): no adverse selection among fills; the UNFILLED 0.3-4 % are runaways (+450..700 bp in 24h, CI 390-1220). Saving vs taker with chase-at-24h: q0 (1-tick trade-through) +2.5 bp/unit (CI .5..3.6) = 0.75 %/yr, 3/3 years +; q5 -0.5 (CI -2.6..1.1); q10 -5.3; q20 -13. tsmom/lowvol alike (lowvol q0 3.3). Below the 1 %/yr bar even before queue stress on BN; HL (slip 8-22 bp) would save more per fill but has <= 7 months of 1h. 4 queue levels tried.",
+     "date": "2026-11-28",
+     "evidence": "t9d_b"
     },
     {
      "id": "c",
