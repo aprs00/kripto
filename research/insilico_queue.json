@@ -7060,26 +7060,38 @@
    "group": "T",
    "title": "Dry-run SMX on today's live targets before the first 00:00 rebalance: what each small: twin will hold, caps, churn",
    "src": "SMXB (built 11-28), SXR, CTG",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T14:50",
    "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "per small: book (HL, BN, pair): latest targets x book equity -> rounded with the shipped paper.round_targets_to_min / venue_pair.round_pairs_to_min using live marks + steps; names held and gross vs the big sibling's (deployed share) and vs today's positions",
-     "status": "planned"
+     "status": "done",
+     "result": "dry-run on a ledger copy, latest targets, live marks: 12 trading small twins deployed now .00-.84 -> .62-1.36 of the big sibling (small:main .24->.71, 1->7 names; main_bn .23->1.36, 5->14; carry@bn 0->.71; flow@bn .15->.84); pair twin unchanged (already whole, 10 legs). Rule works as specified",
+     "date": "2026-11-28",
+     "evidence": "smxr_ab"
     },
     {
      "id": "b",
      "what": "caps: any rounded weight > max_asset_weight (.35) or gross > max_gross (3); list coins whose effective minimum is > .35 x $200 (BN BTC one step ~ $90 = .45) -> decide: respect the cap (drop) as a general rule if hit",
-     "status": "planned"
+     "status": "done",
+     "result": "no cap breach: max rounded weight .30 (< .35), gross <= .97; effective minima at $200: BN BTC $59 (.30), ETH/BCH/LINK/ETC/LTC ~$20, none > .35x$200; HL none. Over-weighting: small:main_bn gross .66 vs main_bn .48 (x1.36), tsmom x1.18: twin vol can exceed the sibling's; left to SMXB c / 30-d tracking (spec frozen, no cap added)",
+     "date": "2026-11-28",
+     "evidence": "smxr_ab"
     },
     {
      "id": "c",
      "what": "day-1 transition cost + daily churn: notional traded to move today's small positions to the rounded targets, fees at taker; compare with SMY churn 13/15 % of gross",
-     "status": "planned"
+     "status": "done",
+     "result": "transition: $700 traded over all small books, fees $0.34 total (main_bn $121, $.06 = 3 bp of equity); one-off; daily churn per SMY 13/15 % of gross. Negligible",
+     "date": "2026-11-28",
+     "evidence": "smxr_ab"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "SMX dry-run clean (no cap breach, deployed .62-1.36, $0.34 transition); open point: rounded twins can carry more gross than the sibling (main_bn x1.36 today) - judged by SMXB c and 30-d tracking",
+   "closed": "2026-11-28"
   },
   {
    "id": "TLQP",

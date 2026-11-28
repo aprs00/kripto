@@ -1691,3 +1691,12 @@ FLP a/b/c (is3_flp.py, flp_ab.json): main_bn mix .5 flow 1.75 vs blend alone 1.6
 ## SMXB build SMX (14:5x UTC 11-28)
 SMXB a/b: built round-to-min for the live small: twins (paper.round_targets_to_min, effective_min = minimum rounded up to whole steps; venue_pair.round_pairs_to_min); 222 pass, trader 14:50 exit 0.
  Not capped by max_gross after rounding (worst case at $200: every name at the minimum; HL 20 x $10 = 1.0x, far below max_gross). Form c after the 11-29 00:00 rebalances (deferred 01:30).
+
+## SMXR dry-run of SMX before its first live rebalance (think-through 15:0x UTC 11-28, before any run)
+Source: SMXB (code shipped 14:50), SXR (would-be deployed .79-1.09), CTG (BN BTC step). Question: what will each small: twin hold at the 11-29 00:00 bar, and does any rounded target
+ break a risk cap? Unstated by the spec: (1) apply_risk caps weights BEFORE rounding, so rounding can push one name past max_asset_weight .35: BN BTC one step ~$90 = .45 of $200;
+ a small trader with a 35 % per-name cap would simply not hold BTC there; (2) rounding raises gross most for books with many tiny weights (flow@bn ~500 names x $2-3 -> up to N x $5);
+ (3) the first rebalance is a transition: every rounded name is opened at once, one-off fees. Method: copy state/paper.db to /tmp, re-run run_books there with the latest saved targets,
+ live marks (one HL + one BN public request) and the shipped rebalance with mark fills; read positions. Change my mind: any small book > max_gross or a name > .35 -> fix in code (general rule).
+SMXR a/b/c (is3_smxr.py, smxr_ab.json): dry-run of shipped SMX: deployed .00-.84 -> .62-1.36 of the sibling; no cap breach (max w .30 = BN BTC one step $59); transition fees $0.34 total.
+ Open: small:main_bn gross x1.36 its sibling (over-weighting the weakest names) -> watch vol in SMXB c / 30 d. CLOSED OPEN.
