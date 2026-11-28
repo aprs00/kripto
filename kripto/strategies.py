@@ -402,18 +402,42 @@ BLEND_COMPONENTS = {  # fixed before testing (T4, 2026-11-09): the candidates' d
 }
 
 
+def partial_path(w: pd.DataFrame, lam: float, bpd: int = 1) -> pd.DataFrame:
+    """PRB2 (2026-11-28): trade only `lam` of the gap to target per DAY, out_t = out_{t-1} + l * (target_t - out_{t-1}) with
+    the per-bar rate l = 1 - (1 - lam)^(1/bpd) (live HL runs on 4h bars, research on 1d: same daily speed), starting flat.
+    Deterministic from the target history (no live position state needed), so research and live agree. lam = 1: unchanged."""
+    T = w.fillna(0.0).to_numpy()
+    if lam >= 1:
+        return pd.DataFrame(T, w.index, w.columns)
+    lam = 1 - (1 - lam) ** (1 / bpd)
+    out = np.zeros_like(T)
+    prev = np.zeros(T.shape[1])
+    for t in range(len(T)):
+        prev = prev + lam * (T[t] - prev)
+        out[t] = prev
+    return pd.DataFrame(out, w.index, w.columns)
+
+
+SLOW_LEGS = ("tsmom", "lowvol")   # PRB2: the HL main book's slow legs (PRL 2026-11-28); listing_short trades in full
+
+
 @register
-def blend(panel, target_vol=0.25, every_days=1, unit_vol=0.20, max_gross=3.0, components=None, phase=None):
+def blend(panel, target_vol=0.25, every_days=1, unit_vol=0.20, max_gross=3.0, components=None, phase=None,
+          slow_lam=None, slow_legs=SLOW_LEGS):
     """Equal-risk blend of the candidate strategies (T4). Each component's (held) target weights are
     rescaled from its own vol target to unit_vol, summed with equal weight 1/n, and the sum is
-    vol-targeted to target_vol on a daily grid. One pre-registered rule; no weight search."""
+    vol-targeted to target_vol on a daily grid. One pre-registered rule; no weight search.
+    slow_lam (PRB2): components named in slow_legs move only slow_lam of the way to their target each bar."""
     comps = components or BLEND_COMPONENTS
     bpd = bars_per_day(panel["close"].index)
     tot = 0.0
     for name, p in comps.items():
         tv = p.get("target_vol", inspect.signature(REGISTRY[name]).parameters["target_vol"].default)
         wi = _ffill_targets(REGISTRY[name](panel, **p)) * (unit_vol / tv)
-        tot = tot + wi.reindex(columns=panel["close"].columns, fill_value=0.0)
+        wi = wi.reindex(columns=panel["close"].columns, fill_value=0.0)
+        if slow_lam is not None and name in slow_legs:
+            wi = partial_path(wi, slow_lam, bpd)
+        tot = tot + wi
     return scheduled(tot / len(comps), panel, every_days, target_vol, max_gross, phase)
 
 
@@ -572,7 +596,7 @@ def nested_selection(panel, top=3, refit_days=60, min_days=240, unit_vol=0.20, p
 
 @register
 def blend_nested(panel, top=3, refit_days=60, min_days=240, target_vol=0.25, unit_vol=0.20, max_gross=3.0,
-                 every_days=1, pool=NESTED_POOL, phase=None):
+                 every_days=1, pool=NESTED_POOL, phase=None, slow_lam=None, slow_legs=SLOW_LEGS):
     """Blend whose components are chosen out-of-sample (H4, pre-registered 2026-11-10). Every `refit_days` days (grid
     anchored at the epoch) rank every pool strategy by its expanding net Sharpe on all data up to that bar (needs
     >= min_days of invested history) and hold the equal-risk blend (same rescaling as `blend`) of the `top` best with
@@ -582,7 +606,10 @@ def blend_nested(panel, top=3, refit_days=60, min_days=240, target_vol=0.25, uni
     comps, sel, _ = nested_selection(panel, top, refit_days, min_days, unit_vol, pool)
     tot = pd.DataFrame(0.0, c.index, c.columns)
     for name, w in comps.items():
-        tot = tot + w.mul(sel[name], axis=0)
+        wn = w.mul(sel[name], axis=0)
+        if slow_lam is not None and name in slow_legs:   # PRB2: the slow legs enter, follow and leave gradually
+            wn = partial_path(wn, slow_lam, bars_per_day(c.index))
+        tot = tot + wn
     tot = tot.where(sel.sum(axis=1) > 0, 0.0)
     return scheduled(tot, panel, every_days, target_vol, max_gross, phase)
 

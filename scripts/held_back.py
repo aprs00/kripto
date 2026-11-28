@@ -39,9 +39,36 @@ def _fn(name: str, sc: dict) -> str:
     return "blend_nested" if base.startswith("blend_nested") else sc.get("strategy", base)
 
 
-def _latest(fn: str, ds: str, root: Path) -> dict | None:
+def _matches(d: dict, fn: str, params: dict) -> bool:
+    """2026-11-28: a result counts for an entry only if the config it would trade agrees with the entry's params on every
+    argument of `fn` (an argument missing on one side = the function default). Before, the newest file won, so a same-day
+    re-run of another variant of the same function silently became an entry's gate evidence."""
+    import inspect
+    from kripto.strategies import REGISTRY
+    if fn not in REGISTRY:
+        return True
+    sig = inspect.signature(REGISTRY[fn]).parameters
+    rp = (d.get("robust") or {}).get("params") or {}
+    norm = lambda v: list(v) if isinstance(v, tuple) else v
+    for k, par in sig.items():
+        if k in ("panel", "components", "phase"):
+            continue
+        dflt = None if par.default is inspect.Parameter.empty else par.default
+        if norm(rp.get(k, dflt)) != norm(params.get(k, dflt)):
+            return False
+    return True
+
+
+def _latest(fn: str, ds: str, root: Path, params: dict | None = None) -> dict | None:
     files = sorted((root / "research" / "results").glob(f"*_{fn}_{ds}.json"))
-    return json.loads(files[-1].read_text()) if files else None
+    if not files:
+        return None
+    docs = [json.loads(f.read_text()) for f in reversed(files)]
+    if params is not None:
+        for d in docs:
+            if _matches(d, fn, params):
+                return d
+    return docs[0]
 
 
 def _grid_median(d: dict) -> float | None:
@@ -62,7 +89,7 @@ def _mixed_sign(d: dict) -> bool:
 def evidence(name: str, sc: dict, root: Path = ROOT, overrides: dict | None = None) -> dict:
     fn, venue = _fn(name, sc), sc.get("venue", "hl")
     e: dict = {"fn": fn, "venue": venue}
-    d = _latest(fn, DS.get(venue, ""), root) if venue in DS else None
+    d = _latest(fn, DS.get(venue, ""), root, sc.get("params", {})) if venue in DS else None
     if d:
         o = d.get("oos") or {}
         e.update(pick=o.get("sharpe"), dsr=o.get("dsr"), worst=(d.get("robust") or {}).get("worst"),

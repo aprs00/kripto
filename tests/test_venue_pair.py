@@ -156,3 +156,29 @@ def test_incubation_entry_trades_the_two_account_main_book_at_its_alloc(env):
     cfg["fspread_hold@pair"].update(status="retired", alloc=0.0)                      # leaving: main book closes out at the next day
     _run(env, NOW + pd.Timedelta(days=1))
     assert not store.positions("main@pair")
+
+
+def test_account_equity_transfer_and_guard_known_answer(tmp_path):
+    """KS1: two accounts of $500 each. Long 10 A@bn at 10, short 10 A@hl at 10 (fees 0). A rises to 13: HL -30, BN +30
+    -> 470 / 530, no transfer (470 > 0.7*530). A at 20: HL -100, BN +100 -> 400 / 600 < 70 % -> move 100 to HL, 500/500.
+    Accounts always sum to book equity. Then A at 100 (HL short -800 from 20): HL account deep below its peak -> guard."""
+    s = P.Store(tmp_path / "p.db")
+    s.ensure_book("shadow:x@pair", 1000.0)
+    with s.c:
+        for coin, d in (("A@bn", 10.0), ("A@hl", -10.0)):
+            s.c.execute("update books set cash=cash-? where name=?", (d * 10.0, "shadow:x@pair"))
+            s.c.execute("insert into positions values(?,?,?)", ("shadow:x@pair", coin, d))
+            s.c.execute("insert into fills values(?,?,?,?,?,?,?,?,?)", (P.now_iso(), "shadow:x@pair", coin, d, 10.0, 10.0, 0.0, 0.0, "t"))
+    m = lambda px: {"A@bn": px, "A@hl": px}
+    st = VP.account_step(s, "shadow:x@pair", m(13.0))
+    assert np.allclose([st["accounts"]["hl"], st["accounts"]["bn"]], [470, 530]) and st["transferred"] == 0 and not st["guard"]
+    st = VP.account_step(s, "shadow:x@pair", m(20.0))
+    assert np.isclose(st["transferred"], 100.0)
+    acc = VP.account_equity(s, "shadow:x@pair", m(20.0))
+    assert np.allclose([acc["hl"], acc["bn"]], [500, 500])
+    assert np.isclose(sum(acc.values()), P.book_equity(s, "shadow:x@pair", m(20.0))[0])
+    assert s.q("select count(*) from transfers")[0][0] == 1
+    st = VP.account_step(s, "shadow:x@pair", m(30.0))   # HL 500-100 = 400 vs BN 600: transfer again, no guard
+    assert np.isclose(st["transferred"], 100.0) and not st["guard"]
+    st = VP.account_step(s, "shadow:x@pair", m(60.0))   # HL 500-300 = 200 < 60 % of its 500 peak, before any transfer
+    assert st["guard"] and st["transferred"] == 0

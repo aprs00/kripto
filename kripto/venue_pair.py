@@ -118,6 +118,59 @@ def pair_marks(hl_marks: dict[str, float], bn_marks: dict[str, float], coins) ->
 
 
 MAIN = "main@pair"
+VENUES = ("hl", "bn")
+TRANSFER_RATIO = 0.70   # KS1 (design.md 2026-11-28): rebalance the two accounts to 50/50 when one is < 70 % of the other
+ACCOUNT_GUARD = 0.40    # flatten + halt a pair book when one venue account is 40 % below its peak since the last transfer
+
+
+def account_equity(store: P.Store, book: str, marks: dict[str, float]) -> dict[str, float]:
+    """KS1: a pair book is two margin accounts (half the start capital each) that cannot net. Each account = start/2
+    + its legs' trade cash flows, fees and funding + the mark value of its legs + transfers in. Sums to book_equity."""
+    start = store.q("select start_equity from books where name=?", book)[0][0]
+    out = {}
+    for v in VENUES:
+        flows = store.q("select coalesce(sum(-size*px-fee),0) from fills where book=? and coin like ?", book, f"%@{v}")[0][0]
+        fund = store.q("select coalesce(sum(amount),0) from funding where book=? and coin like ?", book, f"%@{v}")[0][0]
+        tr = store.q("select transfer from accounts where book=? and venue=?", book, v)
+        mv = sum(sz * marks.get(c, 0.0) for c, sz in store.positions(book).items() if c.endswith(f"@{v}"))
+        out[v] = start / 2 + flows + fund + mv + (tr[0][0] if tr else 0.0)
+    return out
+
+
+def account_step(store: P.Store, book: str, marks: dict[str, float]) -> dict:
+    """Hourly, before trading: (1) if one account is < TRANSFER_RATIO of the other, move cash to 50/50 (a paper transfer: in a
+    real two-account setup the owner moves it by hand, so this is optimistic about timing) and reset both peaks; (2) track
+    each account's peak (checked first, see below); (3) if an account is ACCOUNT_GUARD below its peak, the book is flattened and halted (what a
+    liquidation of one side would force). Returns {"accounts", "transferred", "guard"}."""
+    pos = store.positions(book)
+    if any(marks.get(c, 0.0) <= 0 for c in pos):           # an unpriced leg would read as a loss
+        return {"accounts": None, "transferred": 0.0, "guard": False}
+    acc = account_equity(store, book, marks)
+    for v in VENUES:
+        if not store.q("select 1 from accounts where book=? and venue=?", book, v):
+            store.x("insert into accounts values(?,?,0,?)", book, v, acc[v])
+    # the guard is checked BEFORE any transfer: a transfer made after an account went through its floor would not have saved it
+    guard = False
+    for v in VENUES:
+        peak = max(store.q("select peak from accounts where book=? and venue=?", book, v)[0][0], acc[v])
+        store.x("update accounts set peak=? where book=? and venue=?", peak, book, v)
+        if acc[v] < peak * (1 - ACCOUNT_GUARD):
+            guard = True
+    lo, hi = sorted(VENUES, key=lambda v: acc[v])
+    moved = 0.0
+    if not guard and acc[hi] > 0 and acc[lo] < TRANSFER_RATIO * acc[hi]:
+        moved = (acc[hi] - acc[lo]) / 2
+        store.x("update accounts set transfer=transfer+? where book=? and venue=?", moved, book, lo)
+        store.x("update accounts set transfer=transfer-? where book=? and venue=?", moved, book, hi)
+        store.x("insert into transfers values(?,?,?,?,?)", P.now_iso(), book, hi, lo, moved)
+        store.event("INFO", f"{book}: account transfer ${moved:.2f} {hi} -> {lo} ({acc[lo]:.2f} < {TRANSFER_RATIO:.0%} of {acc[hi]:.2f})")
+        acc = account_equity(store, book, marks)
+        for v in VENUES:
+            store.x("update accounts set peak=? where book=? and venue=?", acc[v], book, v)
+    ntr = store.q("select count(*), coalesce(sum(amount),0) from transfers where book=?", book)[0]
+    store.set_meta(f"accounts:{book}", __import__("json").dumps({"ts": P.now_iso(), **{v: round(acc[v], 2) for v in VENUES},
+                                                                  "transfers": ntr[0], "moved": round(ntr[1], 2)}))
+    return {"accounts": acc, "transferred": moved, "guard": guard}
 
 
 def main_live(store: P.Store, entries: dict) -> bool:
@@ -175,7 +228,15 @@ def run(store: P.Store, cfg: dict, risk: dict, hl, bn_run: dict, hl_marks: dict,
         P.rebalance(None, store, book, tgt, marks, {}, reason, round_size=round_size, fill=fill,
                     min_notional=min_notional, fee_rate=lambda col: TAKER_FEE if col.endswith("@hl") else V.TAKER_FEE_BN)
 
-    with P.trade_lock():   # every hour: kill switch + retired close-out; trades only when strat_w has the new day
+    with P.trade_lock():   # every hour: account transfers/guard (KS1), kill switch + retired close-out; trades only when strat_w has the new day
+        for (b, halted) in store.q("select name, halted from books"):
+            if P.book_venue(b) != "pair" or halted:
+                continue
+            st = account_step(store, b, marks)
+            if st["guard"]:
+                store.event("ALERT", f"{b}: venue-account guard (one account {ACCOUNT_GUARD:.0%} below its peak: {st['accounts']}); flattening")
+                reb(b, pd.Series(dtype=float), "kill_switch")
+                store.x("update books set halted=1 where name=?", b)
         books = P.run_books(store, entries, risk, marks, strat_w, last_bar, MAIN if main_live(store, entries) else None, reb)
     for b in books:
         eq, gross = P.book_equity(store, b, marks)

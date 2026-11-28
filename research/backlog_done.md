@@ -133,3 +133,26 @@ Evidence that accrues with time (forward ledger, tracking, T6b data) outranks an
   Test with the F0 harness (apply transform) on flow@bn and xsmom@bn, bnall 1d, **confirm window 2024-01-01..2026-11 only** (explore 2023 done: findings T5b). Pass = SR up ≥ +0.1 AND the dropped
   longs' next-day mean < kept longs' in ≥ 2 of 3 confirm years, against random drops of the same count (≥ 90th pct). One shot; no knob changes. Also, untried T5b forms (prior low): F1 as a
   short-side filter, positioning on 4h bars, HL positioning (T6b) as the HL analogue. → FAIL 2026-11-27 (flow dSR −0.04, xsmom −0.22; sign flips after 2024; findings T5b).
+
+
+## moved 2026-11-28
+- [x] KS1 first half DONE 2026-11-28 (venue_pair accounts + transfer + guard, design.md 2026-11-28). Remaining = KS1b:
+- [x] HLI2 → CLOSED by insilico F0C 11-27: cash-on-idle = random day masks (54th pct on hlu_explore): exposure effect. HLI2 (insilico HLI 2026-11-27, research session, prior low-medium) **HL main book: listing_short's third in cash when it holds nothing** instead of re-scaling lowvol + tsmom
+  to the full vol target. Backtest SR 1.39 vs 1.34, >= in every year (research/is3/hli_a.json); 2026 idle 21 % of days as HL's qualifying listings fell to ~1/month (hli_b.json). Needs a WF
+  (pre-registered, 1 config) and an F0-style check that it is not just less exposure. Meanwhile quote the 2-leg HL expectation (SR ~1.06) next to the headline in STATUS.
+- [x] PRB2 → ADOPTED 2026-11-28 (WF 1.82 vs 1.45 same data; forward judge PRB2-F). Was: PRB2 (insilico PRB+PRL 2026-11-28, research session, prior MEDIUM: cost lever, HL-specific; PRX: no replication on bnall 2021-23 .73 vs .81; HTN: because HL trades cost 8-22 bp/unit vs BN 6 bp) **HL main book: tsmom + lowvol legs trade a third of the gap to target (lam .33), listing_short
+  in full**: PRL pre-registered held-out HL 2025-26 net SR 2.10 vs 1.86 (whole-book lam .33 1.94), costs 7.0 -> 4.0 %/yr; band .01 >= full 3/4 years (2023 tie), 2x cost better every year;
+  $200 (band .05) worse 3/4 -> $1,000 only. tsmom = over half the book's cost (turnover 35-64x). research/is3/prb_*.json, prl_*.json. Do: paper engine per-leg option `partial_lam` (live
+  blend: leg target' = leg held + lam*(leg target - leg held), needs per-leg held state in paper.db), shadow variant at $1,000, judged on forward days vs shadow:blend_nested.
+  Min order: 56 % of lam .33 trades are < $10 at $1,000: keep the leg target and trade when the cumulative gap clears $10 (CMB simulated it: 3/4 years > lam1, 2023 worse; the band form is not better live).
+- [x] HBL2 → CLOSED 2026-11-28, no change: listing_short corr BTC is already −.04 (the beta-neutral claim holds), the fix costs .06 SR. Was: HBL2 (insilico HBL 2026-11-28, research session, risk fix) **listing_short: coins without a 20-d beta hedged at 1.35, not 1.0**: pooled young-coin beta 1.37/1.46 (HL 2023-24, age 2-7/8-20 d),
+  1.34/1.26 (bnall 2021-23), down-beta 1.5-1.6; pre-registered HL 2025-26: corr BTC closer to 0 (listing_short -.04 -> +.01) for -.06 SR (research/is3/hbl_*.json). Decide as a risk choice
+  (design.md: beta-neutral claim), code in strategies.beta_to fill / hedge_beta, pytest + trader run.
+- [x] HLE2 → NOT a filter (insilico HLB 2026-11-28: skip rule lowers HL listing_short 1.37 -> 1.21, blend worse 3/4 years; event-level new-float contrast replicated on bnall (HLX) but the book needs the established coins too).
+- [x] HLU1 → DEAD 2026-11-27 (insilico: BN-only shorts are the momentum books' best; findings).
+- [x] LD3 → OPEN 2026-11-27 insilico (findings). LD3 (2026-11-27, library N14, prior medium; insilico/research, descriptive first) **ladder fills in liquidity holes vs heavy-volume flushes**: split the E2 ladder fill set by the fill
+  minute's Amihud ratio vs the coin's 30-day median; predict the high-illiquidity half bounces more. Explore ≤ 2023, confirm 2024+, per-day P&L + worst day, size-matched vs random skips.
+- [x] **LV2c** → insilico BNH 11-27: HL blend 1.30 without lowvol vs 1.34; lowvol picked OOS 2025-01: keep (findings). **LV2c 2026-11-27: HL lowvol leg FRAGILE** (SR 0.70 on HL since 2023-03 with backfilled funding; 2025 2.36, every other year ≤ 0.5; w/o best 10 days 0.23; research/is3/lv2_hlc.json). The HL main book (blend_nested) holds it; the 2027-01-02 refit decides by rule, but a research session should check whether the nested selection would still pick it with the 2023-05+ funding (it was chosen on data with funding only from 2024-07). **LVS 11-28:** lowvol on HL = two opposite market bets netting ~0 beta; price spread +5..+6 %/yr eaten by long-side funding; whole return = 2025 high-vol short side (+22 % net; ex-2025 -3 %/yr). One year deep; refit by rule (research/is3/lvs_a.json).
+- [x] T9b → DEAD 2026-11-27 insilico T9B (late runs cost ~nothing; findings). T9b Alpha-decay curve per strategy (library N8, maxdama §7): signed return of each strategy's trades from decision to +1/4/12/24 h.
+  Explains T9 and sizes the cost of a late run (one bar late costs tsmom a third). Descriptive, hourly data.
+- [x] T8 Regime filter → DEAD 2026-11-27 (insilico T8R: 6 states × 3 BN books, = random masks; findings).

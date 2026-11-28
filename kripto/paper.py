@@ -51,6 +51,8 @@ create table if not exists rebalances(book text, bar text, primary key(book, bar
 create table if not exists targets(strategy text primary key, bar text, weights text);
 create table if not exists universe(venue text, bar text, coins text, primary key(venue, bar));
 create table if not exists sleeve(book text, coin text, size real, t0 integer, primary key(book, coin));
+create table if not exists accounts(book text, venue text, transfer real, peak real, primary key(book, venue));
+create table if not exists transfers(ts text, book text, src text, dst text, amount real);
 """
 
 
@@ -511,6 +513,10 @@ def status() -> str:
         lines.append(f"{name:28s} eq=${eq:8.2f} ret={eq/start-1:+7.2%} gross={gross/eq if eq else 0:4.2f}x "
                      f"pos={n:2d} fees=${fees[0]:.2f} ({fees[1]} fills) funding=${fund:+.2f} "
                      f"lastreb={reb[:16] if reb else 'never'} {'HALTED ' if halted else ''}since {first[:10]}")
+        acc = store.get_meta(f"accounts:{name}") if book_venue(name) == "pair" else None
+        if acc:   # KS1: the two venue accounts of a pair book (design.md 2026-11-28)
+            a = json.loads(acc)
+            lines.append(f"{'':28s}   accounts: hl=${a['hl']:.2f} bn=${a['bn']:.2f} transfers={a['transfers']} (${a['moved']:.2f} moved)")
     lines.append(collect_status(store))
     ev = store.q("select ts,level,msg from events where level!='INFO' order by ts desc limit 10")
     if ev:

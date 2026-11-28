@@ -258,3 +258,14 @@ See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits;
   blend. alloc is capped by the deployable gross in two separately-margined accounts (X1c: gross 1.0 survives 2025-10-10, 2.0 does not); with one pair
   entry its equal-risk share is the whole book, so alloc = that cap (0.5 of the shadow's gross 2.0). Not vol-scaled by main_scale (a hedged book at
   1–5%/yr vol cannot be levered to the steady-mode 25–30% in real accounts).
+* 2026-11-28 (research session; risk policy for two-account books, not a gate). **Per-venue account ledger, transfer rule and account guard (KS1).**
+  A book whose legs sit in two separately-margined accounts can lose one account while the book is flat: the book-level −25 % kill switch never sees it
+  (live shadow pair accounts were +28 / −27 % after two weeks at book vol < 2 %/yr; insilico KSA/PAC 11-27). Every pair book now carries two accounts of
+  half the start capital each (`venue_pair.account_equity`: each venue's legs' trade cash, fees, funding, marks, plus transfers; they sum to the book).
+  Hourly, before trading: (1) **guard**: if either account is 40 % below its peak since the last transfer, the book is flattened and halted (what a
+  liquidation of one side would force; checked before any transfer, because a transfer made after the floor would not have saved it); (2) **transfer**:
+  if one account is below 70 % of the other, cash is moved to 50/50 and both peaks reset (KSA: ≈ 14 transfers a year, worst account −29 % on the
+  historical path; in a real setup the owner moves this by hand, so paper is optimistic about timing). Transfers are logged in the `transfers` table and
+  counted in STATUS. General rationale: two accounts cannot net margin, whatever strategy holds them; the numbers 70 % / 40 % come from KSA's path
+  study of the pair structure, not from any book's returns. The vol-scaled book kill switch (KS1 second half: 1.25 × the book's vol target) is NOT
+  adopted today; it needs a definition for books without a vol target (pair, overlay) first (backlog KS1b).

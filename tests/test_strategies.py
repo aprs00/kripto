@@ -261,3 +261,24 @@ def test_fractional_every_days_decides_intraday_never_finer_than_a_bar():
     assert rows(four_h) == len(raw) and rows(hourly) == len(raw)      # every bar; 1h on 4h bars cannot go below a bar
     assert rows(daily) == pytest.approx(len(raw) / 6, abs=1)
     pd.testing.assert_frame_equal(st.scheduled(raw, p, 1, 0.2), st.vol_target(st.rebalance_rows(raw, 6), p, 0.2))
+
+
+def test_partial_path_known_answer_and_blend_slow_legs():
+    """PRB2: a step target 0 -> 1 is approached as 1 - (1 - lam)^k; lam 1 = unchanged; slow_lam is causal in blend_nested."""
+    from kripto import strategies as st
+    idx = pd.date_range("2024-01-01", periods=4, freq="1D", tz="UTC")
+    w = pd.DataFrame({"A": [1.0, 1.0, 1.0, 0.0]}, idx)
+    out = st.partial_path(w, 0.5)["A"].tolist()
+    assert np.allclose(out, [0.5, 0.75, 0.875, 0.4375])
+    assert np.allclose(st.partial_path(w, 1.0)["A"], w["A"])
+    h = pd.DataFrame({"A": np.ones(18)}, pd.date_range("2024-01-01", periods=18, freq="4h", tz="UTC"))
+    assert np.allclose(st.partial_path(h, 0.5, bpd=6)["A"].iloc[[5, 11, 17]], [0.5, 0.75, 0.875])   # 4h bars, same daily speed
+    from tests.test_backtest import _panel
+    p = _panel(T=6 * 150)
+    cut = 6 * 120
+    kw = dict(min_days=30, refit_days=10, slow_lam=0.33, slow_legs=("tsmom", "lowvol", "xsmom"))
+    full = st.blend_nested(p, **kw)
+    trunc = st.blend_nested({k: v.iloc[:cut] for k, v in p.items()}, **kw)
+    pd.testing.assert_frame_equal(full.iloc[:cut].fillna(0), trunc.fillna(0), check_exact=False, atol=1e-10)
+    base = st.blend_nested(p, min_days=30, refit_days=10)
+    assert (full.fillna(0) - base.fillna(0)).abs().max().max() > 1e-6   # not inert (turnover is checked on real data in the WF)

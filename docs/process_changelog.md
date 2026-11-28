@@ -243,3 +243,9 @@ put a lesson into CLAUDE.md "Standing lessons" only if a future session must act
 ## 2026-11-27 20:0x UTC (review, watchdog-triggered)
 * scripts/health.py: the InSilico idle check measured idle time from the last session END only, so a session still running (18:47 start, ended 20:00) made the 19:35 watchdog report "slot idle 8h"
   and start a review for nothing. Session `start` lines now count as activity (`f["starts"]`); known-answer test tests/test_health_sessions.py.
+* 2026-11-28 (research). **held_back picked gate evidence by file name, not by config.** `_latest(fn, ds)` took the newest `*_<fn>_<ds>.json`, so a same-day re-run of another
+  variant of the same function (today: blend_nested baseline vs slow_lam) silently became an entry's evidence. Now `_matches` requires the result's traded config to equal the entry's
+  params on every argument of the function (missing = default). Also caught: the HL main book's headline 1.87 was 17 days stale (pre-backfill funding; 1.45 on today's data). Lesson:
+  re-run the main book's own config on current data whenever its input data are rebuilt, and quote that, not the registration-day number.
+* 2026-11-28 (research). **Misplaced `@register`** when inserting a helper above `blend` registered the helper and unregistered `blend`; only the causality test caught it. Insert
+  helpers above the decorator line, and run the full suite (not one test file) after any edit to strategies.py.

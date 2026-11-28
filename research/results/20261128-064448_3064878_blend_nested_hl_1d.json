@@ -1,0 +1,165 @@
+{
+ "strategy": "blend_nested",
+ "dataset": "hl_1d",
+ "n_configs": 1,
+ "grid_median_sharpe": 1.245,
+ "grid_frac_positive": 1.0,
+ "oos": {
+  "start": "2024-09-14",
+  "end": "2026-11-28",
+  "years": 2.21,
+  "cagr": 0.4823,
+  "vol": 0.3042,
+  "sharpe": 1.448,
+  "sortino": 1.885,
+  "max_dd": -0.1998,
+  "calmar": 2.414,
+  "psr0": 0.9799,
+  "dsr": 0.3726,
+  "n_trials": 90,
+  "pos_months": 0.704
+ },
+ "oos_grid_avg": 1.448,
+ "folds": [
+  {
+   "from": "2024-09-14",
+   "params": {
+    "top": 3
+   },
+   "is_sharpe": 0.47,
+   "oos_sharpe": 0.5
+  },
+  {
+   "from": "2024-11-13",
+   "params": {
+    "top": 3
+   },
+   "is_sharpe": 0.46,
+   "oos_sharpe": 1.63
+  },
+  {
+   "from": "2025-01-12",
+   "params": {
+    "top": 3
+   },
+   "is_sharpe": 0.61,
+   "oos_sharpe": 3.95
+  },
+  {
+   "from": "2025-03-13",
+   "params": {
+    "top": 3
+   },
+   "is_sharpe": 1.04,
+   "oos_sharpe": 0.08
+  },
+  {
+   "from": "2025-05-12",
+   "params": {
+    "top": 3
+   },
+   "is_sharpe": 0.94,
+   "oos_sharpe": 4.71
+  },
+  {
+   "from": "2025-07-11",
+   "params": {
+    "top": 3
+   },
+   "is_sharpe": 1.24,
+   "oos_sharpe": -1.84
+  },
+  {
+   "from": "2025-09-09",
+   "params": {
+    "top": 3
+   },
+   "is_sharpe": 0.94,
+   "oos_sharpe": 2.42
+  },
+  {
+   "from": "2025-11-08",
+   "params": {
+    "top": 3
+   },
+   "is_sharpe": 1.08,
+   "oos_sharpe": -0.46
+  },
+  {
+   "from": "2026-01-07",
+   "params": {
+    "top": 3
+   },
+   "is_sharpe": 0.95,
+   "oos_sharpe": 1.41
+  },
+  {
+   "from": "2026-03-08",
+   "params": {
+    "top": 3
+   },
+   "is_sharpe": 0.99,
+   "oos_sharpe": 2.37
+  },
+  {
+   "from": "2026-05-07",
+   "params": {
+    "top": 3
+   },
+   "is_sharpe": 1.07,
+   "oos_sharpe": 0.66
+  },
+  {
+   "from": "2026-07-06",
+   "params": {
+    "top": 3
+   },
+   "is_sharpe": 1.04,
+   "oos_sharpe": 2.19
+  },
+  {
+   "from": "2026-09-04",
+   "params": {
+    "top": 3
+   },
+   "is_sharpe": 1.12,
+   "oos_sharpe": 3.23
+  },
+  {
+   "from": "2026-11-03",
+   "params": {
+    "top": 3
+   },
+   "is_sharpe": 1.22,
+   "oos_sharpe": 2.94
+  }
+ ],
+ "grid": [
+  {
+   "i": 0,
+   "top": 3,
+   "sharpe": 1.245,
+   "cagr": 0.384,
+   "max_dd": -0.1998,
+   "turnover_yr": 80.4,
+   "cost_yr": 0.0876,
+   "funding_yr": -0.0708
+  }
+ ],
+ "robust": {
+  "params": {
+   "top": 3
+  },
+  "base": 1.245,
+  "cost_x2": 0.95,
+  "delay_1bar": 0.991,
+  "band_tiny": 1.17,
+  "small_acct": 0.886,
+  "skip_first_6m": 1.367,
+  "skip_first_12m": 1.615,
+  "corr_btc": -0.049,
+  "worst": 0.95
+ },
+ "seconds": 16.4,
+ "max_rss_gb": 0.4
+}

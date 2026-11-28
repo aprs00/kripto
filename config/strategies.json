@@ -86,7 +86,7 @@
   "tsmom@bn": {
     "strategy": "tsmom",
     "venue": "bn",
-    "status": "candidate",
+    "status": "retired",
     "alloc": 0.0,
     "params": {
       "lookbacks": [
@@ -98,7 +98,7 @@
       "top_n": 12,
       "target_vol": 0.3
     },
-    "note": "2026-11-09 interactive: Binance paper venue (B1). Params = latest bnall 1d walk-forward fold choice. bnall WF OOS 0.97 / 6.1y. Shadow only: tracks the same signal as HL tsmom on another venue. | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): bnall OOS 0.65 (med 0.96, chosen cfg worst 0.97)."
+    "note": "2026-11-09 interactive: Binance paper venue (B1). Params = latest bnall 1d walk-forward fold choice. bnall WF OOS 0.97 / 6.1y. Shadow only: tracks the same signal as HL tsmom on another venue. | 2026-11-09 v2 (tranches, band 0.01, $1,000 book): bnall OOS 0.65 (med 0.96, chosen cfg worst 0.97). | 2026-11-28 retired to keep the shadow-book count (blend_nested_lam1 added): weakest non-component entry by the written clauses (fails pick > 0.8 and DSR; held_back 11-27). tsmom keeps its HL shadow (a leg of the HL main book)."
   },
   "xsmom@bn": {
     "strategy": "xsmom",
@@ -129,9 +129,25 @@
         "listing_short": {},
         "lowvol": {},
         "tsmom": {}
+      },
+      "slow_lam": 0.33
+    },
+    "note": "2026-11-10 H4: blend_nested = blend whose components are re-chosen every 60 days out-of-sample (top-3 expanding Sharpe of 10 pool strategies at default params). HL 1d WF OOS 1.87 / 2.16y (worst 1.29 = 1 day late; 2x costs 1.34), bnall 1.16 / 5.4y (DSR 0.63, worst 0.98). Fails only DSR. Live = `blend` with the rule's CURRENT HL choice (listing_short, lowvol, tsmom at defaults; the live panel holds 220 days, too short to rerun the selection). Next HL refit on the 60-day epoch grid: 2027-01-02 -> run `python -m scripts.nested_choice hl` and update components. | M1 2026-11-12: incubation = main-book best estimate (design.md 2026-11-10 rule: venue OOS > 0.8 and robust.worst > 0; components of an included blend are not added again). Not a funding recommendation. HL main = this alone (1.87/worst 1.29); blend (hindsight) and listing_short are subsumed. | 2026-11-28 PRB2: slow legs (tsmom, lowvol) trade 1/3 of the gap to target per day (strategies.partial_path; listing_short in full). Pre-registered 1-config WF hl 1d (research/batches/2026-11-28_prb2.json): OOS 1.82 vs 1.45 for the unchanged rule on the SAME data (re-run today; the 11-10 1.87 was on pre-backfill funding), worst 1.27 vs 0.95, 2x costs 1.31 vs 0.95, $200 1.23 vs 0.89, costs 8.8 -> 6.6 %/yr, turnover 80 -> 58x; DSR 0.58 vs 0.37. Live components (blend, inspect): 1.33 -> 1.62, costs 8.6 -> 5.5 %/yr, better every year 2023-26. Caveat: lam .33 comes from insilico PRL/PRD on the same HL history (2025-26 seen twice); forward judge = shadow:blend_nested_lam1. M1 best-estimate rule: the better config of the main book's own entry is used.",
+    "due": "2027-01-02",
+    "due_what": "refit: run `python -m scripts.nested_choice hl`, update components + due"
+  },
+  "blend_nested_lam1": {
+    "strategy": "blend",
+    "status": "candidate",
+    "alloc": 0.0,
+    "params": {
+      "components": {
+        "listing_short": {},
+        "lowvol": {},
+        "tsmom": {}
       }
     },
-    "note": "2026-11-10 H4: blend_nested = blend whose components are re-chosen every 60 days out-of-sample (top-3 expanding Sharpe of 10 pool strategies at default params). HL 1d WF OOS 1.87 / 2.16y (worst 1.29 = 1 day late; 2x costs 1.34), bnall 1.16 / 5.4y (DSR 0.63, worst 0.98). Fails only DSR. Live = `blend` with the rule's CURRENT HL choice (listing_short, lowvol, tsmom at defaults; the live panel holds 220 days, too short to rerun the selection). Next HL refit on the 60-day epoch grid: 2027-01-02 -> run `python -m scripts.nested_choice hl` and update components. | M1 2026-11-12: incubation = main-book best estimate (design.md 2026-11-10 rule: venue OOS > 0.8 and robust.worst > 0; components of an included blend are not added again). Not a funding recommendation. HL main = this alone (1.87/worst 1.29); blend (hindsight) and listing_short are subsumed.",
+    "note": "2026-11-28 PRB2: reference shadow = the HL main book's config BEFORE slow_lam (every leg rebalanced in full each day). Exists only so the forward ledger can compare live fees/slippage and price P&L of blend_nested (slow_lam 0.33) against it on the same days. Keep its components equal to blend_nested's at every refit (scripts.nested_choice hl). Retire once PRB2 is decided (switch criterion in backlog PRB2).",
     "due": "2027-01-02",
     "due_what": "refit: run `python -m scripts.nested_choice hl`, update components + due"
   },
@@ -158,7 +174,7 @@
       "slots": 5,
       "universe": "top-20 by 30-d mean volume (bnall)"
     },
-    "note": "InSilico T1 CONFIRMED (2026-11-22); E2a WF OOS SR 1.94, E2b frozen k30 h60: SR 2.14, 2x cost 2.04, one-bar-late 2.14, robust.worst 2.00, DSR .98 (the only entry above the DSR bar). Live since 2026-11-23 (kripto-ladder.service; one-bar-late quotes, fills 30 bp through, 2 bp maker in / taker depth-walk out). SIZE 0.029/order (E2d: -50% on the largest same-minute batch stays above the 25% kill). | 2026-11-27: incubation, overlay sleeve of main_bn + small:main_bn (design.md 2026-11-27: alloc = fraction of the frozen per-order size x WHOLE main-book equity, outside sum(alloc)<=1; at the cap its vol ~4%/yr vs ~19% for the daily mix, i.e. below its equal-risk share). Was held back 11-23..11-27 by an unwritten 'prove it live' condition (my error). Monitor: live fills vs backtest; retire per \u00a74. Mark-low mdd at 2.9%: about -10% (E2c size table), on top of the daily books in the same account."
+    "note": "InSilico T1 CONFIRMED (2026-11-22); E2a WF OOS SR 1.94, E2b frozen k30 h60: SR 2.14, 2x cost 2.04, one-bar-late 2.14, robust.worst 2.00, DSR .98 (the only entry above the DSR bar). Live since 2026-11-23 (kripto-ladder.service; one-bar-late quotes, fills 30 bp through, 2 bp maker in / taker depth-walk out). SIZE 0.029/order (E2d: -50% on the largest same-minute batch stays above the 25% kill). | 2026-11-27: incubation, overlay sleeve of main_bn + small:main_bn (design.md 2026-11-27: alloc = fraction of the frozen per-order size x WHOLE main-book equity, outside sum(alloc)<=1; at the cap its vol ~4%/yr vs ~19% for the daily mix, i.e. below its equal-risk share). Was held back 11-23..11-27 by an unwritten 'prove it live' condition (my error). Monitor: live fills vs backtest; retire per §4. Mark-low mdd at 2.9%: about -10% (E2c size table), on top of the daily books in the same account."
   },
   "blend_nested@bn": {
     "strategy": "blend",

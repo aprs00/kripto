@@ -93,3 +93,13 @@ Mechanical rule for our ladder (descriptive, on the existing E2 fill set, top-20
 |log(low/open)| / quote volume, relative to that coin's trailing 30-day median; predict higher 60-min net return for the high-illiquidity half (holes) than for the
 low-illiquidity half (heavy selling). Explore ≤ 2023, confirm 2024+; judge per-day P&L and the worst day, size-matched (the LD1 lesson). If it holds, the form is a
 skip-rule for heavy-volume flushes or a larger size on holes. Data: existing bnm/klines_1m (volume present). §8.2 (volatility ≈ impact, news part small) adds nothing testable.
+
+### N15 Strategy vs tactics: a trading curve with envelopes; child orders need not hit the curve each slice (gueant-2016 §7.2.1–7.2.2; mined 2026-11-28) → backlog T9c
+Claim (own words): execution is two layers. The strategic layer sets an ideal path toward the target and upper/lower envelopes around it (where acting
+differently from the path changes little). The tactical layer posts passive orders to follow the path and is obliged to cross the spread only when the
+position would leave the envelope; missing a slice's target is allowed. Static order-mix models (Cont–Kukanov) need the fill probability at a price level
+and the conditional drift when unfilled (= T9's adverse-selection term).
+Mechanical rule for us: PRB2's partial path (lam .33/day) = the curve; envelope = ±e of the leg's target weight per coin; each day post a post-only limit
+at the touch for the gap to the curve, cross (taker) only for the part outside the envelope. Applies to the slow legs, whose alpha barely decays within
+a day (T9B), not to fast legs (T9 r2: skipping fills cost signal there). Data: HL 1h OHLC ≥ 18 months for the trade-through fill model (T9), or live
+paper with a resting-order engine (kripto/ladder.py style). New vs T9: no taker fallback to the full target and no obligation, only an envelope.
