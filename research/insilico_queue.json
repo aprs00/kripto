@@ -8189,26 +8189,36 @@
    "group": "T",
    "title": "flow@bn vs carry: is main_bn's flow half the same funding carry the blend half already holds? (FLX: flow's 2025-26 return = funding)",
    "src": "FLX, backlog FLX2",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T18:58",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "bnall 2021-26: daily corr and beta of flow@bn (shipped params) on carry and carry_trend (default params) and on the blend leg, by year; funding P&L of each leg by year",
-     "status": "planned"
+     "status": "skipped",
+     "result": "already measured: FLXF (flxf_abc.json) flow corr to blend .40 (.17 residualised) and funding P&L by side and year; no new run (the carry/carry_trend corr by year is in b)",
+     "date": "2026-11-28"
     },
     {
      "id": "b",
      "what": "flow's alpha after regressing on carry + carry_trend, by year, HAC t; and overlap of held names/signs between flow and the blend leg on high-|funding| names (share of gross on the same side)",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall 2021-26 flow on carry + carry_trend: all alpha 12.5 %/yr t 1.45, R2 .11; by year alpha 62/-0/21/22/-1/-6 %/yr (t 2.87/-.02/1.31/1.07/-.04/-.25), beta to carry_trend -.07/.25/.24/.16/.80/.70, R2 .01/.26/.18/.02/.29/.24. Since 2025 flow@bn = ~.75x carry_trend, no alpha left; 2022's lull had the same signature (alpha 0, beta to carry .48). main_bn's blend half already holds carry_trend -> the flow half doubles it in 2025-26",
+     "date": "2026-11-28",
+     "evidence": "fcx_b"
     },
     {
      "id": "c",
      "what": "what FLX2's pre-registered comparison should be, with its power (MDE at the WF length) written before the research session runs it; no gate change",
-     "status": "planned"
+     "status": "skipped",
+     "result": "FJP already computed FLX2's power (MDE 4.1-4.9x the gap at 180 d): forward days are a veto; FCX b's regression added to the FLX2 backlog line as the arm-design input instead",
+     "date": "2026-11-28"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "flow@bn has had no alpha after carry_trend since 2025 (beta .7-.8, R2 .24-.29), like the 2022 lull; main_bn's two halves overlap in carry_trend now. Not a retire (2022 lull recovered: 2023-24 alpha +21/+22 %/yr); FLX2 should judge flow's alpha after carry_trend, not its SR",
+   "closed": "2026-11-28"
   }
  ]
 }

@@ -1,0 +1,96 @@
+{
+ "corr": {
+  "flow": {
+   "flow": 1.0,
+   "carry": 0.257,
+   "carry_trend": 0.305
+  },
+  "carry": {
+   "flow": 0.257,
+   "carry": 1.0,
+   "carry_trend": 0.53
+  },
+  "carry_trend": {
+   "flow": 0.305,
+   "carry": 0.53,
+   "carry_trend": 1.0
+  }
+ },
+ "all": {
+  "days": 2130,
+  "flow_ann%": 24.5,
+  "alpha_ann%": 12.5,
+  "t_alpha": 1.45,
+  "beta_carry": 0.15,
+  "beta_carry_trend": 0.26,
+  "r2": 0.105,
+  "corr_carry": 0.26,
+  "corr_carry_trend": 0.3
+ },
+ "2021": {
+  "days": 365,
+  "flow_ann%": 66.5,
+  "alpha_ann%": 62.4,
+  "t_alpha": 2.87,
+  "beta_carry": 0.15,
+  "beta_carry_trend": -0.07,
+  "r2": 0.012,
+  "corr_carry": 0.09,
+  "corr_carry_trend": 0.02
+ },
+ "2022": {
+  "days": 365,
+  "flow_ann%": -2.4,
+  "alpha_ann%": -0.3,
+  "t_alpha": -0.02,
+  "beta_carry": 0.48,
+  "beta_carry_trend": 0.25,
+  "r2": 0.255,
+  "corr_carry": 0.45,
+  "corr_carry_trend": 0.32
+ },
+ "2023": {
+  "days": 365,
+  "flow_ann%": 39.4,
+  "alpha_ann%": 20.9,
+  "t_alpha": 1.31,
+  "beta_carry": 0.25,
+  "beta_carry_trend": 0.24,
+  "r2": 0.182,
+  "corr_carry": 0.38,
+  "corr_carry_trend": 0.37
+ },
+ "2024": {
+  "days": 366,
+  "flow_ann%": 22.5,
+  "alpha_ann%": 22.2,
+  "t_alpha": 1.07,
+  "beta_carry": -0.02,
+  "beta_carry_trend": 0.16,
+  "r2": 0.022,
+  "corr_carry": 0.05,
+  "corr_carry_trend": 0.15
+ },
+ "2025": {
+  "days": 365,
+  "flow_ann%": 11.8,
+  "alpha_ann%": -1.1,
+  "t_alpha": -0.04,
+  "beta_carry": -0.16,
+  "beta_carry_trend": 0.8,
+  "r2": 0.287,
+  "corr_carry": 0.27,
+  "corr_carry_trend": 0.53
+ },
+ "2026": {
+  "days": 304,
+  "flow_ann%": 6.1,
+  "alpha_ann%": -5.6,
+  "t_alpha": -0.25,
+  "beta_carry": -0.16,
+  "beta_carry_trend": 0.7,
+  "r2": 0.239,
+  "corr_carry": 0.31,
+  "corr_carry_trend": 0.48
+ }
+}

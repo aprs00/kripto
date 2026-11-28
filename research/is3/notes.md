@@ -1868,3 +1868,11 @@ Source: LFV b (explore-born: hot tercile d2-60 -21 % back-loaded, quiet -3 % mea
 Change my mind: d31-60 CAR monotone in heat decile (Spearman over deciles <= -.6) in >= 3/4 years with the relative heat too -> real dose; else the tercile result was noise.
 LHT a/b (is3_lht.py, lht_a/b.json): bnall heat-decile dose -.53 over bins but per-year rho 2021 -.28, others -.11/+.08/+.02; quiet tercile d31-60 = 5 mania events (CHZ, ANKR, ALPHA, GALA, SAND).
  HL relative heat reversed (quiet -23.5 vs hot -0.5, MDE 23 pp). c skipped (no dose = tuning). CLOSED OPEN; T2b(f) = a 2021 regime note, no prereg. Chain LSH3 -> LFV -> LHT ends here.
+
+## FCX flow@bn vs carry (think-through 19:0x UTC 11-28, before any run)
+Overlap found at the start: FLXF already gives flow's corr to the blend (.40; .17 residualised) and its funding split; FJP gives FLX2's power (MDE 4-5x the gap at 180 d). So forms a (corr part)
+ and c are covered; the new question is (b): after regressing flow on carry and carry_trend (the two carry books in the blend leg), is there alpha left in 2025-26, or is flow@bn a
+ levered copy of the carry the blend already holds? Mechanism: taker buying imbalance correlates with longs paying funding (crowded longs), so a flow-follow book is long the crowded
+ side... but FLXF says half its gross RECEIVES funding, so it is not plain carry. Change my mind: alpha t < 1 in 2025-26 with beta to carry > .5 -> flow half double-counts carry.
+FCX b (is3_fcx.py, fcx_b.json): flow on carry + carry_trend by year: alpha 62/0/21/22/-1/-6 %/yr, beta to carry_trend .80/.70 in 2025/26 (R2 .29/.24); 2022 same signature, then recovered.
+ a, c skipped (FLXF, FJP already did them). CLOSED OPEN; FLX2 line: judge flow's alpha after carry_trend, check arm (iii)'s beta.
