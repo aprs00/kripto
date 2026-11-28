@@ -6320,6 +6320,33 @@
    "verdict": "OPEN",
    "reason": "maker at the touch fills ~always on minute paths (99.9 %, median 1 min), so live it is the fee+slip saving, ~+4 bp/unit, not a selection trade; the 4h-bar loss was a resolution artefact. Only a live resting shadow (T9G, spec frozen) can show queue effects",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "SMQ",
+   "prio": 2.6,
+   "group": "T",
+   "title": "\\$200 Binance account with per-symbol minimum orders: how much of main_bn's backtest survives, and what a \\$200-able BN book would look like",
+   "src": "LVB (small:main_bn 10 % deployed), backlog SMB",
+   "status": "wip",
+   "due": "2026-11-28T13:10",
+   "sessions": 1,
+   "forms": [
+    {
+     "id": "a",
+     "what": "bnall 1d, main_bn's mix (.5 flow + .5 blend carry_trend/carry/xsmom, x main_scale 1.156, apply_risk-like 5 % caps as in is3_mbl) at \\$1,000 band \\$5, \\$200 band \\$5 (= today's small_acct), \\$200 with per-symbol minima (current symbol_filters; coins not listed now = \\$5; BTC \\$50 / ETH \\$20 also pre-2024 as a stress): SR, ann, deployed gross share, by year",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "the same split per leg (flow@bn alone, blend alone): which leg the minima kill (flow has many small 5 %-capped names)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "state -> distribution, not a tuned book: \\$200 holding only the top-N |target| names re-scaled to the same gross (N 4/6/8/12, rule: smallest N within 80 % of the best SR, stated now) vs the minima-truncated book; descriptive, no registry; if a \\$200-able form keeps >= 70 % of the \\$1,000 SR it goes to the backlog as a research-session WF item",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
