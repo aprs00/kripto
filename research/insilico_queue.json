@@ -8226,26 +8226,38 @@
    "group": "T",
    "title": "HL main in a listing drought (HLD: 8 HL listings in 2026 vs 51-59/yr): what does the shipped blend do when its listing_short leg is empty, and does the 2027-01-02 refit rule cope?",
    "src": "HLD, BNH, LSH2",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T19:02",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "HL panel, shipped listing_short: names/day, gross and net P&L per quarter 2023-26; share of HL main (blend_nested live components) P&L and risk per quarter",
-     "status": "planned"
+     "status": "done",
+     "result": "HL main live components (slow .33) by quarter: listing_short names/day 2023-25 avg 8.3, 2026 2.6 (Q2 1.3); leg contrib 29.4 %/yr 2023-25 vs 30.1 %/yr 2026; but 2026 = 17 coins, top-3 82 % of the leg (CHIP +15.1 % of book) vs 191 coins / 35 % before. Book SR 2023-25 1.49, 2026 1.68, vol 29 % (main_scale). Attribution corr .997",
+     "date": "2026-11-28",
+     "evidence": "ldr_ab"
     },
     {
      "id": "b",
      "what": "read kripto/strategies.blend: is an empty leg's risk budget idle (cash) or redistributed? measure the live components' book gross / realised vol per quarter vs target; what an idle leg costs in deployed risk",
-     "status": "planned"
+     "status": "done",
+     "result": "read strategies.blend: legs summed /n then the SUM is vol-targeted (max gross 3) -> an empty leg's budget is redistributed, not idle. Measured: scale k 1.8-2.0 in listing-rich quarters, 2.3-2.8 in 2026 Q1-Q2; book gross ~1.1-1.2 throughout; lowvol+tsmom gross share .75-.87 in 2026. No cash drag; the cost is concentration (few listing names x higher k) and more weight on the FRAGILE lowvol leg",
+     "date": "2026-11-28",
+     "evidence": "ldr_ab"
     },
     {
      "id": "c",
      "what": "decision written before the 2027-01-02 refit: does nested_choice's expanding-SR pick keep a starving leg (yes by construction?) and what rule (general, not result-picked) should handle a leg with no positions; backlog line, no gate change",
-     "status": "planned"
+     "status": "done",
+     "result": "decision written (backlog LDR): no change now (leg thin, not empty; nested_choice keeps it by construction; no rule broken). For the 2027-01-02 refit: one pre-registered general breadth rule (leg budget x min(1, names/5), every leg/venue) vs unchanged on HL + bnall. No gate change",
+     "date": "2026-11-28",
+     "evidence": "ldr_ab"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "drought thins the listing leg to 2.6 names/day (17 coins in 2026, top-3 82 % of its P&L) but it still earns; the blend re-scales others (k up to 2.8), so the risk is concentration, not idle cash; breadth rule queued for the refit session",
+   "closed": "2026-11-28"
   },
   {
    "id": "FCY",

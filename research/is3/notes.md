@@ -1876,3 +1876,12 @@ Overlap found at the start: FLXF already gives flow's corr to the blend (.40; .1
  side... but FLXF says half its gross RECEIVES funding, so it is not plain carry. Change my mind: alpha t < 1 in 2025-26 with beta to carry > .5 -> flow half double-counts carry.
 FCX b (is3_fcx.py, fcx_b.json): flow on carry + carry_trend by year: alpha 62/0/21/22/-1/-6 %/yr, beta to carry_trend .80/.70 in 2025/26 (R2 .29/.24); 2022 same signature, then recovered.
  a, c skipped (FLXF, FJP already did them). CLOSED OPEN; FLX2 line: judge flow's alpha after carry_trend, check arm (iii)'s beta.
+
+## LDR HL main in a listing drought (think-through 19:0x UTC 11-28, before any run)
+Source: HLD (HL main-dex listings 54/59/51/8 per year 2023-26), BNH (listing_short = +102 of the blend's +178 % P&L). Reading kripto/strategies.blend: legs are summed /n, then the SUM
+ is vol-targeted (max gross 3), so an empty listing_short leg is NOT idle cash: its budget goes to lowvol + tsmom, scaled up until the book hits 25 %. Consequence (unstated): in a
+ drought the HL main becomes a 2-leg lowvol + tsmom book at full vol, and lowvol is the FRAGILE leg (LV2: one year deep). Who pays the short side in a drought: nobody new; the remaining
+ listing shorts are old names (by d60 they leave). Question: how empty was the leg in 2026, how much did k_t (the scale) rise, and what did the book earn per quarter?
+Change my mind: listing_short names/day in 2026 >= half of 2023-25 -> no drought effect on the book; else write a general rule for the refit (a leg with no positions for > 60 d).
+LDR a/b/c (is3_ldr.py, ldr_ab.json): 2026 listing_short 2.6 names/day (8.3 before), leg +30 %/yr of book from 17 coins (top 3 = 82 %, CHIP +15 %); k 2.0 -> 2.8; book SR 1.68 (2023-25 1.49).
+ Empty-leg budget is redistributed (blend vol-targets the sum). No change; breadth rule (min(1, names/5)) for the refit session -> backlog LDR. CLOSED OPEN.
