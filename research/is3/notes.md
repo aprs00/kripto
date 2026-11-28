@@ -1848,3 +1848,14 @@ Source: X1P (P&L clauses have no power; the funding flow is a measured cash flow
 Change my mind: replay/live funding within 10 % and live funding per unit gross >= 0.5x the backtest's on the same days -> 'funding as modelled'; else find which leg.
 X1F a/b/c (is3_x1f.py, x1f_ab.json): prints exact on both venues (2198 prints); live funding $21.04 vs replay $20.88 (x1.007, corr .992); per unit gross 7.0 vs bt 6.1 bp/d on the same days.
  MDE: replay .36 bp/d, carry 2.25 bp/d at 30 d. 12-12 clause in backlog X1f. CLOSED OPEN (judge works; repeat 12-12). bnall/funding_all is weekly (retro): refresh before the 12-12 look.
+
+## LFV listing venue order (think-through 19:0x UTC 11-28, before any run)
+Source: LSH3 (front-loading helps on bnall explore, HL split; a bnall-only prereg needs a venue reason), T2b(b) (decay ~linear to d120 on both), HLD. No chat records.
+Mechanism to test: the overhang is sold where the float first meets leverage. A listing that is NEW to perps (first perp anywhere) carries pre-market hype, airdrop recipients and
+ maximal retail longs -> fast early decay. A listing that already trades on Binance perps has its price discovered there; HL just adds a venue -> slower, flatter decay (or none).
+ Unstated: (1) simultaneous listings (same day on both, the hyped launches) are the purest 'new float' class; (2) HL-only coins are often HL-native/meme (no Binance demand at all);
+ (3) the bnall analogue is first-day dollar volume (hot vs quiet launch), a continuous state, not a venue flag. Explore only: HL listings 2023-24 (windows run into early 2025), bnall 2020-23.
+Change my mind: HL 'new to perps' (HL-first or same day) CAR d1-30 more negative than 'BN-first' by > 5 pp with the d31-60 gap smaller (= front-loaded) -> venue reason holds;
+ otherwise LSH3's bnall effect has no venue story and stays OPEN without a prereg.
+LFV a/b/c (is3_lfv.py, lfv_ab.json): HL 2023-24 n 64: new-to-perps listings d31-60 -16.7 % vs BN-first -7.0 (CI incl 0), d2-30 no front-loading -> venue story reversed.
+ bnall 2020-23 by first-week $vol tercile: hot d2-60 -21 % (back-loaded), quiet -3 % mean / -20 % median (d31-60 squeeze tail). flat30's gain = skipping that tail. CLOSED OPEN; launch-heat idea -> backlog T2b(f).
