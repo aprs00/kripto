@@ -1556,7 +1556,7 @@ Source: T9K. The backtest says 90 % of flow's daily orders would fill 50 bp belo
  the 24 h window = the 6 bars opening after the fill (conservative: the bar containing the fill is excluded).
 T9L a/b/c (is3_t9l.py, t9l_ab.json): live Nov orders of flow@bn: k50 fill 88 % (bt 90 %), filled -264 / unfilled +543 bp at 24 h (selection as predicted), live slip 1.1 bp. CLOSED OPEN.
 T9C a/b (prereg T9C_flow_k50 / _carry_trend_k20, t9c_confirm.json): FAIL both: vs taker +8.7 / +2.5 %/yr pooled 2024-26 but <= random fee-only fills (-0.2 / -0.95); flow 2026 -1.0. CLOSED OPEN.
-FLD a/b/c (is3_fld.py, fld_a.json): shadow:flow@bn -9 % / 19 d = 3-5th pct of backtest 19-day windows; price loss (fees -$4, funding +$2); same-days replay -13.6 % (corr .83): no implementation gap. CLOSED OPEN.
+FLL a/b/c (is3_fll.py, fll_a.json; first recorded under the id FLD, which collided with the closed FLD item of 11-2x: repaired the same session, old item and is3_fld.py restored from git; no think-through was written before this run, a lapse): shadow:flow@bn -9 % / 19 d = 3-5th pct of backtest 19-day windows; price loss (fees -$4, funding +$2); same-days replay -13.6 % (corr .83): no implementation gap. CLOSED OPEN.
 
 ## FHM flow on HL prices at maker fees (think-through 11:4x UTC 11-28, before any run)
 Source: L2b (Binance taker flow continuation transfers to HL prices, +19 %/yr gross, killed by 17-50 %/yr HL taker costs), T9C (OOS the maker fee is the lever). Mechanism: Binance's

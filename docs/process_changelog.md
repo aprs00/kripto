@@ -256,3 +256,6 @@ put a lesson into CLAUDE.md "Standing lessons" only if a future session must act
   (pair corr .55-.61 from window misalignment alone), and the lift matched sqrt(6/(1+5 rho)) on every leg, which was the tell. On one hourly clock rho was .95 and the lift vanished.
   E2C c (flow avg6 1.16) and the backlog item FPD rested on it and were corrected the same session. Rule (standing lessons): compare books that trade on different clocks only on one
   common clock (hourly P&L summed, then common days); a result that equals a textbook formula exactly is a reason to look for the construction that produced it.
+- 2026-11-28 insilico. **Duplicate InSilico item id**: a refill added FLD although a closed FLD existed; `start/form/close` act on the first match, so the new results overwrote the old
+  item and `cat >` overwrote its study script research/studies/is3_fld.py. Repaired from git the same session (old item byte-identical, script restored, new work renamed FLL / is3_fll.py).
+  Guard: tests/test_insilico_queue.py::test_real_queue_ids_are_unique (refills run this file before committing). Habit: `ls research/studies/is3_<id>*` and grep the queue before naming.

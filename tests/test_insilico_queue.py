@@ -77,3 +77,13 @@ def test_an_item_that_eats_four_sessions_goes_to_the_back(env):
         q.start("A1")
     assert q.next_item("2026-12-07")["id"] == "A2"
     assert q.get(q.load(), "A1")["status"] == "wip"
+
+
+def test_real_queue_ids_are_unique():
+    """2026-11-28: a refill reused the id FLD of a closed item; `start/form/close` then wrote into the OLD item (first match).
+    Every refill runs this file, so a duplicate id now fails before it is committed."""
+    from pathlib import Path
+    items = json.loads((Path(__file__).resolve().parents[1] / "research" / "insilico_queue.json").read_text())["items"]
+    ids = [it["id"] for it in items]
+    dup = sorted({i for i in ids if ids.count(i) > 1})
+    assert not dup, f"duplicate InSilico item ids: {dup} (pick a new id; commands act on the first match)"
