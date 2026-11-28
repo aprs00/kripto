@@ -1700,3 +1700,12 @@ Source: SMXB (code shipped 14:50), SXR (would-be deployed .79-1.09), CTG (BN BTC
  live marks (one HL + one BN public request) and the shipped rebalance with mark fills; read positions. Change my mind: any small book > max_gross or a name > .35 -> fix in code (general rule).
 SMXR a/b/c (is3_smxr.py, smxr_ab.json): dry-run of shipped SMX: deployed .00-.84 -> .62-1.36 of the sibling; no cap breach (max w .30 = BN BTC one step $59); transition fees $0.34 total.
  Open: small:main_bn gross x1.36 its sibling (over-weighting the weakest names) -> watch vol in SMXB c / 30 d. CLOSED OPEN.
+
+## TLQP TLQ2 precheck (think-through 15:1x UTC 11-28, before any run)
+Source: TLQ (top10 in the lam1 blend: 2026 1.99 vs 1.47, 2025 tie), TLQ c (explore years with slow .33: 1.20 vs PRB2's own number), TLX (Binance held-out fails: HL-specific).
+ Form a would repeat TLQ b/conf: skipped. New: (d) top10 inside the SHIPPED main config (blend_nested slow_lam .33): does top10 still add once PRB2 already cut the slow legs' turnover?
+ TLQ said they overlap by half. (c) phase: HL daily bars close at 00:00 UTC; if top10's 2026 gain sits on one anchor it is noise. Unstated: thin HL names are fresh listings
+ (decaying float, squeezes): top_n 10 removes them from tsmom but listing_short still trades them, so the book keeps that exposure through the other leg.
+ Change my mind: top10 >= top20 with slow .33 in >= 3 of 4 years AND on >= 3 of 4 anchors -> the WF is worth its DSR count; else TLQ2 drops to low.
+TLQP d/b (is3_tlqp.py, tlqp_d.json): in the shipped slow-.33 main, tsmom top10 vs top20 1.63 vs 1.49 pooled 2023-26 (3/4 years, 2025 -.10), 2x cost 1.43 vs 1.28; known answer lam1 = TLQ.
+ Overlap with PRB2 ~full (top10 lam1 1.61 ~ top10 slow 1.63). a skipped (dup TLQ), c skipped (HL hourly 228 d: listing ages/lookbacks broken). CLOSED OPEN -> TLQ2 WF = shipped vs top10 slow .33.

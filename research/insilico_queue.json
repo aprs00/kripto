@@ -7099,26 +7099,45 @@
    "group": "T",
    "title": "TLQ2 precheck: HL main blend tsmom top_n 10 vs 20 by year, phase and cost, no new WF",
    "src": "backlog TLQ2, insilico TLQ/TLX",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T14:50",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "descriptive with the frozen main-book config: blend with tsmom top_n 10 vs 20, SR / mean / median simple daily by year 2021-26 on HL; sign consistency (n years better)",
-     "status": "planned"
+     "status": "skipped",
+     "result": "duplicate: TLQ b/conf already measured blend top10 vs top20 by year (explore 1.08/1.17 vs .87/.75; 2025 2.17 vs 2.19, 2026 1.99 vs 1.47; tlq_b/tlq_conf.json); replaced by form d (inside the shipped slow-.33 config)",
+     "date": "2026-11-28"
     },
     {
      "id": "b",
      "what": "cost side: turnover and taker cost per year for both; 2x cost stress; $200 small_acct_round for both",
-     "status": "planned"
+     "status": "done",
+     "result": "costs/turnover from tlqp_d: costs/yr top10 slow .084/.058/.034/.046 vs top20 slow .090/.061/.036/.051; 2x cost pooled 1.43 vs 1.28 (both lam: top10 more robust). $200 small_acct_round NOT run (needs robustness(), registry line; left to the WF)",
+     "date": "2026-11-28",
+     "evidence": "tlqp_d"
     },
     {
      "id": "c",
      "what": "phase: the same comparison with daily decisions at 4 different hour anchors (common hourly clock rule) -> is the top-10 gain a phase artefact",
-     "status": "planned"
+     "status": "skipped",
+     "result": "not testable soundly: HL hourly history starts 2026-04-14 (228 d), 4h ~2024-08; listing_short reads listing age from the first bar and tsmom/lowvol need long lookbacks, so a re-anchored panel measures warm-up artefacts. If the WF is run: phase via the blend's phase parameter on daily bars",
+     "date": "2026-11-28"
+    },
+    {
+     "id": "d",
+     "what": "top10 vs top20 inside the SHIPPED main config (REGISTRY blend_nested, slow_lam .33, not registered): SR/mean/median simple daily + costs by year 2023-26, 2x cost; decision input for the joint PRB2+TLQ2 WF",
+     "status": "done",
+     "added": "2026-11-28",
+     "result": "shipped main config (blend slow .33): top10 vs top20 SR 2023-26 1.04/1.22/2.22/1.99 vs .97/.91/2.33/1.68 (better 3/4 y, 2025 -.10), pooled 1.63 vs 1.49; known answer lam1 top10 = TLQ exactly; overlap: top10 lam1 1.61 ~ top10 slow 1.63 (slow adds .02 once top10; adds .16 on top20): both fixes cut the same thin-name churn. 2025-26 already seen (TLQ conf), Binance held-out failed (TLX): not independent evidence",
+     "date": "2026-11-28",
+     "evidence": "tlqp_d"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "top10 adds +.14 SR over the shipped slow-.33 main (3/4 years, robust to 2x cost) but overlaps PRB2 almost fully and the years were already seen; Binance held-out failed: one WF (shipped vs top10, both slow .33) is worth its DSR count, prior LOW-MEDIUM unchanged",
+   "closed": "2026-11-28"
   }
  ]
 }
