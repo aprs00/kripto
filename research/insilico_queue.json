@@ -7026,8 +7026,8 @@
    "group": "T",
    "title": "BUILD SMX: small: twins round small targets UP to the effective minimum (spec frozen by SMD/SMY/SMP/CTG), so the \\$200 books hold their strategy",
    "src": "backlog SMX (frozen spec), SMD/SMY/SMP/CTG/SXR",
-   "status": "wip",
-   "due": "2026-11-28T13:46",
+   "status": "todo",
+   "due": "2026-11-29T01:30",
    "sessions": 1,
    "forms": [
     {
@@ -7051,7 +7051,8 @@
      "what": "after the next daily rebalances: live_vs_backtest --main small:main / small:main_bn and scripts.twin_check: twins' gross now >= .6 of the big sibling, no violations; record the before/after deployed share per twin (SXR table)",
      "status": "planned"
     }
-   ]
+   ],
+   "defer_why": "form c needs the 11-29 00:00 daily rebalances of the small twins under the new rule"
   }
  ]
 }
