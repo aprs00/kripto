@@ -5040,25 +5040,38 @@
    "group": "T",
    "title": "Book-level effect of the HLE skip rule (no short in coins with >= 60 d of trading on the other venue): listing_short on HL and bnall, and the HL main blend",
    "src": "HLE/HLX (event level: established coins do not decay, both venues)",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
      "id": "a",
      "what": "HL listing_short with the skip rule (other-venue first trade from cached bnall) vs base, 2023-26 by year: net SR, ann, idle-day share, worst 10 days (HL in-sample for the rule: stated)",
-     "status": "planned"
+     "status": "done",
+     "result": "HL listing_short (replication 0; 74 coins established on Binance >= 60 d) skip rule vs base 2023/24/25/26: SR .69/1.06/1.85/.95 vs .58/1.07/2.08/1.40, pooled 1.21 vs 1.37; idle days 45/12/0/27 % vs 26/10/0/21 %: worse 2 of 4, pooled lower",
+     "date": "2026-11-28",
+     "evidence": "hlb_abc"
     },
     {
      "id": "b",
      "what": "bnall listing_short with the mirror rule (skip coins on HL >= 60 d) vs base, 2023-04..2026-11 by year (held-out venue for the rule)",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall mirror rule: only 10 coins established on HL; SR 1.49/1.35/-.46/-.32 vs 1.49/1.22/-.40/-.33: no effect (too few)",
+     "date": "2026-11-28",
+     "evidence": "hlb_abc"
     },
     {
      "id": "c",
      "what": "HL main blend (listing_short+lowvol+tsmom) with the rule vs base by year: input for the HLE2 pre-registration",
-     "status": "planned"
+     "status": "done",
+     "result": "HL main blend with the rule 1.09/.73/2.01/1.24 vs .87/.75/2.19/1.47: worse 3 of 4: HLE2 should NOT be pre-registered as a filter; established coins' hedged shorts still earn (buy-hold median +14 %) and removing them concentrates the book in fresh squeeze-prone names",
+     "date": "2026-11-28",
+     "evidence": "hlb_abc"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "the new-float event contrast (HLE/HLX) does not survive at book level: skipping established coins lowers HL listing_short 1.37 -> 1.21 and the main blend in 3/4 years; HLE2 downgraded to a description (explains the drought), not a filter",
+   "closed": "2026-11-28"
   }
  ]
 }

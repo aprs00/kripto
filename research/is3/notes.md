@@ -1342,3 +1342,10 @@ Source: HLE. Same mechanism in mirror: a coin that traded on HL >= 60 d before i
 PASS pre-stated in the queue (established mean & median < others, established median <= +5 %).
 HLX a/b/c done (is3_hlx*.py, hlx_ab/bh.json): bnall listings of coins on HL >= 60 d: n 10, buy-hold median -5 % win .30 vs new +36 % win .77; replicates HLE (both measures). Measure note: the
  daily-rebalanced short carries vol drag (~19 % over 60 d): LSB's medians are buy-hold. HLE2 -> one pre-registered WF. CLOSED OPEN.
+
+## HLB book-level effect of the HLE skip rule (think-through 03:1x UTC 11-28, before any run)
+Source: HLE/HLX. Event means can mislead at book level: the book equal-weights the names held each day, vol-targets and beta-hedges; dropping established coins concentrates the book in
+ fewer, more volatile fresh names (squeeze tail up) and adds idle days. Mask = coin-days where the coin had >= 60 d of trading on the other venue at its listing date (fixed per event).
+ F0 'apply' semantics (blocked shorts -> 0), weights renormalise? No: listing_short equal-weights by n eligible; implemented by removing the coins from eligibility before weighting (closer to
+ what the rule would be live). bnall = held-out venue for the rule (book level).
+HLB a/b/c done (is3_hlb.py, hlb_abc.json): skip rule at book level: HL listing_short 1.21 vs 1.37 pooled, blend worse 3/4, bnall no effect (10 coins). Event contrast != book gain. HLE2 downgraded. CLOSED OPEN.

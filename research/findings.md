@@ -814,10 +814,11 @@ Young coins' beta to BTC is 1.3–1.46 (HL and bnall, down-beta 1.5–1.6): the 
 At band .05 98–100 % of each leg's target changes are skipped: listing leg 2025 .02 vs 2.17 at .005, lowvol ≤ 0 every year; dropping lowvol 1.83/1.10 vs 1.91/1.00 (2023/24): no pass.
 The $200 twin's backtest SR is path luck of frozen positions; quote it with that caveat, judge small: books on their live ledger.
 
-### HLE HL listing events: fresh tokens vs coins already on Binance (2026-11-28 insilico, research/studies/is3_hle.py, not registered) → OPEN (edge = new float, replicated on bnall; backlog HLE2)
+### HLE HL listing events: fresh tokens vs coins already on Binance (2026-11-28 insilico, research/studies/is3_hle.py, not registered) → OPEN (edge = new float, replicated on bnall; NOT a book filter: HLB)
 d2→d61 short-vs-BTC incl. HL funding, 2023–26: coins with ≥ 60 d of Binance perp history n 42 mean +1.0 %, median −0.2 %, t .13 (2023 −13 %, 22 events); new to Binance < 60 d n 35
 +28.7 / +14.5 %, t 2.4; fresh (no BN perp) n 88 +25.1 / +10.4 %, t 2.1. 2026: 7 fresh/recent events (−16 / −6 %). Filter 'skip ≥ 60 d on Binance' is in-sample on HL. **HLX held-out (bnall, frozen): coins on HL ≥ 60 d before their Binance listing n 10, buy-hold median −5 %, win .30 vs new float +36 %, win .77: replicates.**
 Measure: HLE/HLX daily-rebalanced shorts carry ~19 % vol drag over 60 d; buy-hold (LSB's measure): HL established median +14 % vs fresh +46 %.
+**HLB book level: the skip rule LOWERS HL listing_short 1.37 → 1.21 (2025 1.85 vs 2.08, 2026 .95 vs 1.40) and the blend in 3/4 years: a description, not a filter.**
 
 ### HLF HL main book funding drag by leg (2026-11-28 insilico, research/studies/is3_hlf*.py) → OPEN (market-wide, no cheaper hedge)
 Funding %/yr 2023–26: BTC hedge longs −4.2/−8.9/−4.6/−1.6, listing alt shorts −4.1/+6.4/−3.1/−4.9, tsmom alt longs −2.1/−4.9/−1.5/−1.7 (hlf_a.json). ETH as the listing hedge: funding
