@@ -4655,6 +4655,58 @@
    "verdict": "OPEN",
    "reason": "at the $200 band (.05) the HL book's legs are frozen (98-100 % of target changes skipped): yearly SR swings (listing 2025 .02 vs 2.17 at .005) are path luck, so neither dropping lowvol nor partial rebalancing can be chosen; quote the $200 twin with that uncertainty, judge it on its live small: ledger",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "PRD",
+   "prio": 1.05,
+   "group": "T",
+   "title": "Dose-response of PRL: lam grid and leg choice for the HL main book's slow-leg partial rebalancing (is .33 a knife-edge?)",
+   "src": "PRL (lam .33 frozen from PRB a's 3-value grid; held-out opened twice)",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "descriptive, no choice change: slow legs lam in {1,.75,.5,.33,.25,.15,.1}, HL explore 2023-24 AND 2025-26 shown separately: net SR, costs, pre-cost SR; PASS(robust) = every lam in [.25,.5] >= lam 1 in all four years",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "which leg carries it: lam .33 on tsmom only, on lowvol only, on both; all four years",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict for PRB2: the lam to build (stays .33 unless a shows a cliff next to it) and the leg set",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "TSN",
+   "prio": 1.2,
+   "group": "T",
+   "title": "Where HL tsmom's turnover (35-64x/yr) comes from: signal flips, per-coin vol rescaling, or universe churn",
+   "src": "PRL a (tsmom = over half the HL main book's cost)",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "descriptive HL 1d 2023-26: tsmom turnover decomposed by recomputing with (i) the per-coin vol held at its 30-d-ago value... no: (i) signal frozen, vol live; (ii) vol frozen at monthly, signal live; (iii) universe frozen monthly; share of turnover each removes",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "pre-stated: the component that removes the most turnover at the least pre-cost loss, held monthly, on HL explore 2023-24 within the 3-leg book (listing in full); PASS = net SR >= PRL slow33 in both years (else lam stays the form)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "if b passes: L.prereg, ONE run HL 2025-26 (third look at it: say so)",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
