@@ -4506,13 +4506,16 @@
    "group": "T",
    "title": "Per-leg costs and slow-leg partial rebalancing on the Binance blend (carry, carry_trend, xsmom): does PRL transfer?",
    "src": "PRL (HL: slow legs lam .33 held-out 2.10 vs 1.86), PRB c (whole-book lam .33 hurt bnall blend 2.10 -> 1.84)",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T00:00",
    "forms": [
     {
      "id": "a",
      "what": "cached bnall (data/is3/fc1c_bnall_1d.pkl, ends 11-21) 2021-23: per-leg standalone costs, turnover and pre-cost P&L of blend(carry_trend, carry, xsmom) (exact split as is3_prl.legs)",
-     "status": "planned"
+     "status": "done",
+     "result": "cached bnall 2021/22/23 split exact (6e-16): turnover carry_trend 42/74/67x, carry 36/46/51x, xsmom 18/33/32x; costs 2.5-4.5 / 2.2-3.1 / 1.1-2.1 %/yr; book cost 5.2/7.8/7.7 %, turnover 84-127x (netting ~0); pre-cost leg P&L ct 57/6/21 %, carry 46/-2/23, xsmom 20/1/8. Rule: legs >= 2x lowest turnover = carry_trend only",
+     "date": "2026-11-28",
+     "evidence": "prn_a"
     },
     {
      "id": "b",
@@ -4524,7 +4527,8 @@
      "what": "if b passes: L.prereg, ONE run 2024-01..2026-11 (cache) vs lam 1",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "TSB",

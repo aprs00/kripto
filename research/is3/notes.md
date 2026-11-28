@@ -1253,3 +1253,9 @@ Source: HBL (young beta 1.3-1.46; hedge_beta fills a NaN 20-d beta with 1.0). Th
  most held coins have a beta; the fill matters only for names < 20 d in a book that does not require history (flow? carry?). Unstated: if the share is tiny the question is closed.
 Cached panel only (data/is3/fc1c_bnall_1d.pkl, ends 11-21; nightly window). Change my mind: >= 3 % of gross in NaN-beta coins in some year -> b.
 HBM a done (is3_hbm.py, hbm_a.json): BN books' gross in NaN-beta coins <= 0.2 %: irrelevant; HBL2 = listing_short only. CLOSED OPEN.
+
+## PRN per-leg partial rebalancing on the Binance blend (think-through 01:1x UTC 11-28, before any run)
+Source: PRL, PRB c. Whole-book lam .33 hurt the BN blend (pre-cost loss > cost saving) because some legs are fast. Carry (funding persists for weeks) and carry_trend should be slow; xsmom
+ (lb 28, every 3 d tranches) medium. Unstated: carry's target jumps when funding flips sign (a real signal change, not noise): partial rebalancing delays that exit while paying funding.
+Cached bnall only (nightly window). Leg chosen by turnover rule from a before b runs. Change my mind: b net SR >= lam 1 in 2021, 2022, 2023 -> c.
+PRN a done (prn_a.json): BN turnover ct 42-74x, carry 36-51, xsmom 18-33; rule picks carry_trend only for b (stated before b).
