@@ -159,7 +159,7 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
 - T6P HL positioning precheck (2026-11-28 insilico, research/studies/is3_t6p.py) → T6b PRE-REGISTERED
 - SMXR dry-run of the SMX round-to-minimum rule (2026-11-28 insilico, research/studies/is3_smxr.py) → OPEN (shipped rule works; watch twin gross)
 - SMV rounded $200 twins' gross/vol tail vs the $1,000 sibling (2026-11-28 insilico, research/studies/is3_smv.py) → DEAD (no fault, no cap)
-- L1T Binance→HL lead-lag as execution timing for the HL main book (A1 angle on L1; 2026-11-28 insilico, research/studies/is3_l1t.py, not registered) → DEAD
+- L1T Binance→HL lead-lag as execution timing for the HL main book (A1 angle on L1; 2026-11-28 insilico, research/studies/is3_l1t.py, not registered) → OPEN (one form fail…
 - FJP power of the forward judges for FLX2 / NPC2 / TLQ2 (2026-11-28 insilico, research/studies/is3_fjp.py) → OPEN (forward days = veto only)
 - L6M ewm20 variances in vol_target on the shipped main books (2026-11-28 insilico, research/studies/is3_l6m.py, not registered) → DEAD (as an all-books change)
 - T3S HL−Binance funding spread as a directional signal (backlog T3; 2026-11-28 insilico, research/studies/is3_t3s.py, not registered) → OPEN (weak follow, confirm unopene…
@@ -1082,7 +1082,7 @@ No retire clause met (FLL: live 3–5th pct, consistent). The flow signal's pric
 - HL 2023–26 / BN 2021–26 main mixes, round-to-min $200 vs $1,000: gross ratio p50 .72/.85, p90 .95/1.01, > 1.25 on 1 day each; 60-d vol ratio p50 .98/1.04, p90 1.20/1.19 (bar 1.25), p99 1.55/1.43.
 - Yearly vol p90 peaks HL 2024 1.53, BN 2025 1.31: concentration in few minimum-sized names at ordinary gross, so a gross cap would not help. Full-sample vol 24.9 vs 24.3 / 23.4 vs 23.5 %.
 
-### L1T Binance→HL lead-lag as execution timing for the HL main book (A1 angle on L1; 2026-11-28 insilico, research/studies/is3_l1t.py, not registered) → DEAD
+### L1T Binance→HL lead-lag as execution timing for the HL main book (A1 angle on L1; 2026-11-28 insilico, research/studies/is3_l1t.py, not registered) → OPEN (one form failed: timing saves nothing)
 - 47 coins, explore 2026-04-15..07-22, 696 daily trades: waiting 1 h after the decision costs 3.7 bp/unit (price continues in the trade direction); by lag tercile −.2/−4.9/−5.6 bp.
 - Rule 'wait when Binance moved against the trade' saves −.02 bp/unit (placebo −2.0, p .12): the lag marks when delay is free, never when it pays. Held-out unopened. Corollary: fill promptly.
 

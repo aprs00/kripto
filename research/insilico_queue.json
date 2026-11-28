@@ -7612,7 +7612,7 @@
    "group": "T",
    "title": "L1 lead-lag (DEAD as a strategy at taker costs) as EXECUTION TIMING for the HL main book's daily trades: trade now or wait 1 h by the Binance-HL lag of the last hour",
    "src": "findings L1 (IC +.031 t 7.9 'HL lagged Binance'), A1 audit",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T17:20",
    "sessions": 1,
    "forms": [
@@ -7639,7 +7639,10 @@
      "result": "explore failed the written bar (saving < 1 bp/unit); held-out 07-23..10-31 left unopened",
      "date": "2026-11-28"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "one formulation (wait-or-trade by the 1-h lag) saves nothing: HL main prices continue 3.7 bp/h in the trade direction, the lag marks free delays only; untried: thin-name subset, earlier decision bar",
+   "closed": "2026-11-28"
   }
  ]
 }

@@ -1782,5 +1782,5 @@ Source: findings L1 (HL lagging Binance this hour predicts HL next hour, rank IC
  daily signal decay (tiny at daily horizons) and the HL book trades thin names where the lag is largest. Rule fixed now: per trade, L = sign(trade) x (BN 1h ret - HL 1h ret) before the
  decision; L < 0 means Binance moved against our trade direction and HL has not caught up -> HL should move our way?? No: HL follows Binance, so if BN fell relative to HL and we buy, HL
  will fall -> waiting buys cheaper. So wait when L < 0, trade now when L >= 0. Change my mind: held-out saving < 1 bp/unit or not above the random-delay placebo -> DEAD.
-L1T a/b (is3_l1t.py, l1t_abc.json): HL main daily trades: waiting 1 h costs 3.7 bp/unit on average (price keeps moving our way); by lag tercile -.2/-4.9/-5.6 bp. Rule saving -.02 bp. CLOSED DEAD.
+L1T a/b (is3_l1t.py, l1t_abc.json): HL main daily trades: waiting 1 h costs 3.7 bp/unit on average (price keeps moving our way); by lag tercile -.2/-4.9/-5.6 bp. Rule saving -.02 bp. CLOSED OPEN (one form; queue needs 3 for DEAD).
  Corollary: the live fill delay (3 min) matters more than timing; 3.7 bp/h x 42 units/yr ~ 1.5 %/yr if trades slipped by an hour.
