@@ -266,7 +266,38 @@ def form_e():
     json.dump(out, open(EV / "t9d_e.json", "w"), indent=1)
 
 
+def form_khl(ks=(0, 5, 10, 20), q=3, slip_mult=0.5):
+    """T9K b: HL slow legs, rest k bp beyond the close (filled there: maker fee - k), fill needs k + q through; fitted slip x .5; 2026-04-15..11-26 (seen, descriptive)."""
+    from kripto import backtest as bt
+    d = data.load_panel("hl", "1d")
+    fin, _, err = legs(d)
+    S = partial(fin["tsmom"] + fin["lowvol"], LAM)
+    cols, idx = S.columns, S.index
+    px = d["close"].reindex(columns=cols).to_numpy(float); fnd = d["funding"].reindex(index=idx, columns=cols).to_numpy(float)
+    slip = bt.slippage_model(d["volume"], 1).reindex(index=idx, columns=cols).to_numpy(float) * slip_mult
+    h1 = data.load_panel("hl", "1h")
+    D = idx + pd.Timedelta(days=1)
+    mn = h1["low"].rolling(24, min_periods=24).min().shift(-23).reindex(columns=cols).reindex(D).to_numpy(float) / px
+    mx = h1["high"].rolling(24, min_periods=24).max().shift(-23).reindex(columns=cols).reindex(D).to_numpy(float) / px
+    drift = d["close"].reindex(columns=cols).shift(-1).to_numpy(float) / px - 1
+    W = S.to_numpy(float)
+    g = lambda res: round(float(res.set_index(idx).loc["2026-04-15":"2026-11-26"]["r"].mean() * 365 * 100), 2)
+    base = g(sim(W, px, fnd, slip, mn * 0, mn * 0, drift, "taker", taker=4.5e-4))
+    out = {"taker_ann_pct": base}
+    rng = np.random.default_rng(5)
+    for k in ks:
+        th = (k + q) * 1e-4
+        fb = np.where(np.isfinite(mn), (mn < 1 - th).astype(float), np.nan); fs = np.where(np.isfinite(mx), (mx > 1 + th).astype(float), np.nan)
+        real = g(sim(W, px, fnd, slip, fb, fs, drift, "skip", maker=1.5e-4 - k * 1e-4, taker=4.5e-4))
+        share = float(np.nanmean(np.concatenate([fb[np.isfinite(fb)], fs[np.isfinite(fs)]])))
+        pn = np.mean([g(sim(W, px, fnd, slip, m, m, drift, "skip", maker=1.5e-4, taker=4.5e-4))
+                      for m in [np.where(np.isfinite(mn), (rng.random(mn.shape) < share).astype(float), np.nan) for _ in range(5)]])
+        out[f"k{k}"] = {"fill_share": round(share, 3), "real_minus_taker": round(real - base, 2), "placebo_fee_only_minus_taker": round(float(pn) - base, 2)}
+        print(k, out[f"k{k}"], flush=True)
+    json.dump(out, open(EV / "t9k_b.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
     {"a": form_a, "b": form_b, "c": form_c,
-     "d": lambda: form_c("hl", 4.5e-4, 1.5e-4, ("2026-04-15", "2026-11-26"), (), "d"), "e": lambda: form_e(),
+     "d": lambda: form_c("hl", 4.5e-4, 1.5e-4, ("2026-04-15", "2026-11-26"), (), "d"), "e": lambda: form_e(), "khl": lambda: form_khl(),
      "d2": lambda: form_c("hl", 4.5e-4, 1.5e-4, ("2026-04-15", "2026-11-26"), (), "d_slip05", 0.5)}[sys.argv[1]]()

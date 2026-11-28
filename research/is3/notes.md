@@ -1539,3 +1539,5 @@ Source: T9F. Resting a buy k bp below the close earns k on fills and loses the r
  L = C0 (1 - k) wherever inside the day it fills = drift + k, which is what the sim books. Unstated: a deep resting order is a free option given to faster traders (it fills on news
  gaps first); the 3 bp extra stress is the only guard here. Rule for c, stated
  now: the smallest k within 80 % of the explore peak. Bias of deep k is upward, so c prefers small k.
+T9K a/b/c (is3_t9f k/kp, t9k_a.json, t9k_placebo_flow.json, t9k_b.json): rest-below gain grows with k (flow +10.6 at k100) but the matched placebo shows fee = the lever (+8-9 %/yr), level k paid
+ back by selection ~1:1; HL slow legs below placebo. Frozen for T9G: flow k 50, carry_trend k 20. CLOSED OPEN.

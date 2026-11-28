@@ -5974,7 +5974,7 @@
    "group": "T",
    "title": "T9G sizing: dose of the rest-below depth k (10..100 bp) for the Binance daily books and the HL slow legs, explore only, to freeze the live shadow's k",
    "src": "T9F (gain grows with k at q3), T9D (HL slow legs; its q-stress had no price improvement)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T11:30",
    "forms": [
     {
@@ -5988,15 +5988,24 @@
     {
      "id": "b",
      "what": "HL slow legs (T9D d sim, HL 2026-04..11, descriptive, seen sample) with price improvement: k = 0/5/10/20 at q 3: is the HL ~+1 %/yr of T9D the conservative side",
-     "status": "planned"
+     "status": "done",
+     "result": "HL slow legs 2026-04-15..11-26 (seen, descriptive), fitted slip x.5, q 3: rest k 0/5/10/20 bp real +0.8/+1.4/+1.5/+1.7 %/yr vs taker (fill 98/97/96/94 %); random-fill fee-only placebo +1.9/+2.3/+1.7/+2.4: real <= placebo at every k (selection eats the improvement, as on BN). T9D's ~+1 %/yr is about right, not conservative; HL stays below a build.",
+     "date": "2026-11-28",
+     "evidence": "t9k_b"
     },
     {
      "id": "c",
      "what": "freeze one k for T9G (the smallest k within 80 % of the explore peak, rule stated before reading the table) and write it into backlog T9G; no confirm spent (the live shadow is the confirm)",
-     "status": "planned"
+     "status": "done",
+     "result": "freeze by the rule stated before the table (smallest k within 80 % of the explore peak, skip mode): flow peak +10.6 at k100 (grid edge) -> 80 % = 8.5 -> k = 50 bp (+9.1); carry_trend peak +4.3 -> k = 20 bp. Written into backlog T9G. Caveat for the shadow: the matched placebo says most of the gain is the maker fee (+8-9 %/yr on flow's turnover) and the level k is given back by selection ~1:1, so the shadow must report fill share and per-fill selection (signed move from decision to fill vs k) against these numbers, not only net P&L.",
+     "date": "2026-11-28",
+     "evidence": "t9k_a"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "Rest-below depth dose: gains rise with k on BN (flow +2 -> +10.6 %/yr k10 -> k100) but a matched random-fill placebo shows the price improvement is paid back by adverse selection ~1:1 and the robust part is the maker fee (+8-9 %/yr on flow's ~150x turnover); shallow resting is worse than random fills; HL slow legs the same at ~+1.5 %/yr. Frozen for the live shadow T9G: flow k 50 bp, carry_trend k 20 bp (rule stated first). Only live fills can say whether the hourly-OHLC fill model holds.",
+   "closed": "2026-11-28"
   }
  ]
 }

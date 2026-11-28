@@ -1,0 +1,23 @@
+{
+ "taker_ann_pct": 43.05,
+ "k0": {
+  "fill_share": 0.984,
+  "real_minus_taker": 0.8,
+  "placebo_fee_only_minus_taker": 1.86
+ },
+ "k5": {
+  "fill_share": 0.973,
+  "real_minus_taker": 1.39,
+  "placebo_fee_only_minus_taker": 2.32
+ },
+ "k10": {
+  "fill_share": 0.963,
+  "real_minus_taker": 1.54,
+  "placebo_fee_only_minus_taker": 1.74
+ },
+ "k20": {
+  "fill_share": 0.941,
+  "real_minus_taker": 1.7,
+  "placebo_fee_only_minus_taker": 2.38
+ }
+}
