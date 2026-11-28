@@ -1294,3 +1294,9 @@ Source: PRL a (tsmom 35-64x/yr), T1c (EMA signal smoothing halved turnover but H
  d first-suspects a bug/data difference in T1c vs PRL before any conclusion.
 TSN a/d done (is3_tsn.py, tsn_ad.json): tsmom turnover = signal drift (monthly hold -73 %), not vol/universe. T1c fails to replicate: EMA3 .59, lam .21 .75 vs base .46 (2023-26). PRE-STATED (b): book = listing full + lowvol lam .33 + tsmom with monthly-held signal (lam 1), HL explore 2023-24 vs PRL slow33; PASS = >= in both years.
 TSN b FAIL (tsn_b.json): monthly signal 1.49/.89 vs slow33 .95/1.01. CLOSED OPEN; T1c smoothing relabelled OPEN (no replication on 2023-26).
+
+## CPB per-coin band .02 on the fast Binance books (think-through 02:0x UTC 11-28, before any run)
+Source: PRB c/PRN (lam delays real signal changes on fast books: cost saving = signal loss), TSB (band form). A band ignores small changes (noise: flow's 3-d imbalance wobbles, vol rescaling)
+ but executes big ones at once (sign flips, new extremes), so it should lose less signal than lam on fast books. Unstated: a held weight that never crosses the band goes stale (positions
+ kept on old signals); flow has ~30 names at cap .05 = weights ~.03-.05: a .02 band is ~half a position, i.e. coarse. One pre-stated band, no grid. Cached bnall (window 01:15-03:30).
+CPB a FAIL (is3_cpb.py, cpb_a.json): band .02 flow 1.28 vs 1.60, blend_bn 1.23 vs 2.10 (2021 halves). CLOSED OPEN: BN fast books' turnover is signal under both filters.

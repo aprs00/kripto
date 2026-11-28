@@ -822,6 +822,7 @@ Caveat: 2025–26 was opened twice (PRB b whole-book, then PRL c slow legs): PRL
 PRD (is3_prd.py): plateau, not knife-edge: every lam .15–.75 ≥ lam 1 in all four HL years 2023–26; both slow legs contribute (tsmom via costs, lowvol via pre-cost).
 TSB (is3_tsb.py): a per-coin band .02 on the slow legs instead of lam: explore 1.00/.92 vs .95/1.01 (fails 2024) but 11 % vs 56 % of trades < $10 at $1,000: PRB2's fallback.
 VTS (is3_vts.py): holding every vol-target scalar until it moves > 10 % removes no turnover (+1 %, HL blend, BN blend, flow): the costs are in position targets, not rescaling.
+CPB (is3_cpb.py): a per-coin band .02 on fast BN books fails too (flow 1.60 → 1.28, blend_bn 2.10 → 1.23, 2021 halves): there the turnover is signal under both filters.
 PRN (is3_prn.py): BN blend's fastest leg (carry_trend, 61x) at lam .33: 2.09 vs 2.10, worse 2021/2023 (cost saving = signal loss): PRL is HL-specific.
 
 ### HLI HL main book when listing_short is idle (2026-11-27 insilico, research/studies/is3_hli.py, not registered) → OPEN (explained; backlog HLI2)

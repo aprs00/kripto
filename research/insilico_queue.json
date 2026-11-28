@@ -4749,25 +4749,38 @@
    "group": "T",
    "title": "Fast Binance books (flow@bn, blend carry/carry_trend/xsmom): a per-coin no-trade band .02 keeps big signal changes immediate where partial rebalancing failed",
    "src": "PRB c / PRN (lam hurts fast books: delays real signal), TSB (band form on HL), flow costs 7-13 %/yr at 120-206x turnover",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
      "id": "a",
      "what": "pre-stated: target per coin updated only when |target - held| > 0.02 (then fully), bt band .005 after; cached bnall explore 2021-23 for flow (lb3 cap .05) and blend_bn; PASS = net SR >= base in 2021, 2022, 2023 for that book",
-     "status": "planned"
+     "status": "done",
+     "result": "cached bnall explore 2021/22/23 net SR: flow band .02 1.49/.32/2.21 vs 2.85/-.09/2.09 (pooled 1.28 vs 1.60, costs 8.2 vs 10.1 %, pre-cost 1.61 vs 2.05); blend_bn .02 2.54/.62/.54 vs 4.19/-.13/2.02 (1.23 vs 2.10): FAIL both (2021); stale positions lose more signal than costs saved",
+     "date": "2026-11-28",
+     "evidence": "cpb_a"
     },
     {
      "id": "b",
      "what": "for each book that passes: L.prereg, ONE run 2024-01..2026-11 (cache ends 11-21) vs base",
-     "status": "planned"
+     "status": "skipped",
+     "result": "a failed for both books",
+     "date": "2026-11-28",
+     "evidence": "cpb_a"
     },
     {
      "id": "c",
      "what": "executability at $1,000 on Binance ($5 min, BTC $50/ETH $20): share of trades below the minimum, base vs band; verdict for main_bn",
-     "status": "planned"
+     "status": "skipped",
+     "result": "a failed; no verdict needed beyond: main_bn keeps full rebalancing at band .005",
+     "date": "2026-11-28",
+     "evidence": "cpb_a"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "fast Binance books lose with both cost filters (lam: PRB c/PRN; per-coin band .02: flow 1.60 -> 1.28, blend 2.10 -> 1.23): their turnover is signal; the cost lever is HL-slow-leg-specific",
+   "closed": "2026-11-28"
   }
  ]
 }
