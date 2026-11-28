@@ -231,3 +231,5 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
   months to say anything, and only if the cautious and the generous way of counting agree.
 * E1H the "buy the bounce after a forced-selling minute" rule, frozen in November, now also runs on Hyperliquid's own minute data, which it has never seen. Two trades in its first 16 days;
   it is re-run every week and judged only after 60 trades.
+* LSH2 holding the new-listing shorts for 90 or 120 days instead of 60: worse on both exchanges. After two months, the typical new coin keeps falling, but the few that get squeezed cost more
+  than that, and shorts pay more funding the longer they stay. 60 days stays.

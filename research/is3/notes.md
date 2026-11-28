@@ -1805,3 +1805,10 @@ Source: findings lshock (OPEN, tail-event: 3 crash days = 72 % of P&L; z=8 pre-r
  day: expect very few z=8 trades; the value is that it accrues. No tuning: frozen configs only, verdict at >= 60 trades.
 E1H a/b/c (is3_e1h.py, e1h_ab.json): lshock frozen on HL 1-min (101 coins, 16 d): z=8 2 trades (PAXG -21, LIT +378 bp), z=6 3; hand check exact. Weekly in the retro. CLOSED OPEN.
 SMB1 a/b/c (scripts/twin_deployed.py + scoreboard, smb1_abc.json): $200 deployed share now a fact line; baseline small:main .24, main_bn .22, main@pair .75. CLOSED FEATURE.
+
+## LSH2 listing_short hold 60/90/120 (think-through 17:3x UTC 11-28, before any run)
+Source: T2b(b) (abnormal return median HL -17/-49/-82 % at d14/60/120, bnall -12/-34/-51 %: ~linear to d120), registry (hold 30/60/90 in grids, 120 never). Mechanism: supply overhang
+ (unlocks, airdrop sellers) keeps coming for months; but by d60-120 the survivors are the coins that held up (selection), the float has rotated, and shorts are crowded (funding paid
+ by shorts rises: LS1 found shorts PAY funding 2-10 %/yr). Unstated: a late-tranche short is short the names that already fell 50 %: squeeze risk per unit is higher (low price, high
+ vol, thin). So the question is the 90-120 tranche alone, after funding and costs, not the book's Sharpe. Rule (form c) written in the queue before running.
+LSH2 a/b/c (is3_lsh2.py, lsh2_bnall.json, lsh2_hl.json): hold 60/90/120 SR bnall .49/.32/.19, HL 1.33/1.21/.96; 90-125 d tranche bnall -9.8 bp/unit/day (2/4 y), HL +5.6. CLOSED DEAD (60 stays).

@@ -1,0 +1,91 @@
+{
+ "dataset": "hl",
+ "lo": "2023-01-01",
+ "hi": "2027-01-01",
+ "hold60": {
+  "sr": 1.33,
+  "ann%": 34.3,
+  "funding%": -6.2,
+  "cost%": 3.7,
+  "sr_by_year": {
+   "2023": 0.58,
+   "2024": 1.07,
+   "2025": 2.08,
+   "2026": 1.4
+  }
+ },
+ "hold90": {
+  "sr": 1.21,
+  "ann%": 30.0,
+  "funding%": -6.8,
+  "cost%": 3.7,
+  "sr_by_year": {
+   "2023": 0.3,
+   "2024": 0.76,
+   "2025": 2.27,
+   "2026": 1.43
+  }
+ },
+ "hold120": {
+  "sr": 0.96,
+  "ann%": 22.9,
+  "funding%": -7.2,
+  "cost%": 3.8,
+  "sr_by_year": {
+   "2023": 0.08,
+   "2024": 0.69,
+   "2025": 1.65,
+   "2026": 1.36
+  }
+ },
+ "tranches_hold120": {
+  "0-30": {
+   "gross_share": 0.131,
+   "price_bp_per_unit_day": 51.95,
+   "funding_bp_per_unit_day": -3.79,
+   "by_year_price_plus_funding_pct": {
+    "2023": 17.27,
+    "2024": -2.81,
+    "2025": 34.6,
+    "2026": 11.64
+   },
+   "worst_1pct_event_day_bp": -3951.0
+  },
+  "30-60": {
+   "gross_share": 0.109,
+   "price_bp_per_unit_day": 21.76,
+   "funding_bp_per_unit_day": -2.85,
+   "by_year_price_plus_funding_pct": {
+    "2023": -9.09,
+    "2024": 7.68,
+    "2025": 12.05,
+    "2026": 9.15
+   },
+   "worst_1pct_event_day_bp": -2761.0
+  },
+  "60-90": {
+   "gross_share": 0.106,
+   "price_bp_per_unit_day": 7.63,
+   "funding_bp_per_unit_day": 0.61,
+   "by_year_price_plus_funding_pct": {
+    "2023": -4.96,
+    "2024": -10.11,
+    "2025": 11.53,
+    "2026": 11.93
+   },
+   "worst_1pct_event_day_bp": -2295.0
+  },
+  "90-125": {
+   "gross_share": 0.12,
+   "price_bp_per_unit_day": 7.0,
+   "funding_bp_per_unit_day": -1.44,
+   "by_year_price_plus_funding_pct": {
+    "2023": 1.35,
+    "2024": 0.95,
+    "2025": -8.08,
+    "2026": 12.22
+   },
+   "worst_1pct_event_day_bp": -2514.0
+  }
+ }
+}
