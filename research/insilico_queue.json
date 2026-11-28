@@ -5768,13 +5768,16 @@
    "group": "T",
    "title": "LSB2 precheck: bnall listing_short P&L without the BTC hedge leg, worst-10-event stress, and per-year with funding",
    "src": "backlog LSB2 (LSP 11-27 negative book, positive event medians), findings 11-09 (bnall WF = BTC-leg P&L, corr .63)",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T08:00",
    "forms": [
     {
      "id": "a",
      "what": "bnall events (>= $1M 7-d vol): d2->d61 short-vs-BTC split into short-leg-alone and BTC-leg-alone P&L per year 2020-26 incl. funding; corr of the book's daily P&L to BTC; is the 11-09 'BTC-leg' finding still true",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall 678 listing events 2020-26 (replicates LSB 676), short d1-close -> d61 vs BTC, net of 2x-taker+slip costs: alt-leg-alone median +20..+37 % every year, mean +3/-83/+24/-3/+7/+6/+12 %; BTC leg mean +32/-2/-17/+15/+16/-3/-3 %; net mean +4.5 % pooled, month-clustered t 0.01, median +33 %, win 76 %. 2023's event mean is the BTC leg (alt -3 %); book corr BTC .00 every year (lsp_abc): the 11-09 'corr .63' no longer holds (old version). The edge is a median with a fat squeezed left tail, not beta.",
+     "date": "2026-11-28",
+     "evidence": "lsx_a"
     },
     {
      "id": "b",
@@ -5786,7 +5789,8 @@
      "what": "sizing that a $1,000 main_bn could hold: equal-risk per event with max 5 concurrent, 2x costs; verdict GO (pre-register one WF config for a research session) or NO-GO with reason",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "E2C",

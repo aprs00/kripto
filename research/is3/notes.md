@@ -1475,3 +1475,11 @@ T9D b (t9d_b.json): fills are not adversely selected (filled r24 = all); the cos
  (.75 %/yr), q5 ~0, q10 -5: worthless on BN. The lever scales with the taker slip avoided: on HL (8-22 bp) the arithmetic is ~10 bp/unit, but untestable here (HL 1h too short). c = envelope (no chase inside 1x step).
 T9D c (t9d_c.json): BN slow sub-book: post-only cuts costs 2.18 -> .65 %/yr, but missed runaways give it back: +.9 %/yr at q0, 0 at q5, -1.6 at q10 (envelope in between). Below bar on BN.
  Unstated condition that would make it work: taker cost much larger than the selection loss, i.e. HL thin names (slip 8-22 bp). Selection loss scales with volatility, saving with cost. add-form d (HL 7.5 months).
+
+## LSX LSB2 precheck: legs, stress, sizing (think-through 10:5x UTC 11-28, before any run)
+Source: backlog LSB2, LSB/LSP/LSW (no chat records). Already known: lsp_abc.json book corr BTC .00 every year (the 11-09 corr .63 is gone: that was an older listing_short version), alt shorts
+ -44/+41/+9/-12/-7/+2 % by year 2021-26, LSW: 3 squeeze controls failed (SQZ, LSV, LSW). Event view (LSB): median +22..+41 % every year, mean crushed by a minority.
+Unstated, what a trader shorting fresh listings must be doing: a hard buy-stop (no one holds a short through a 3x), a cap on concurrent names (margin), and staggered entry. A stop on a daily
+ close path is a real, operable squeeze control that LSW/SQZ did not test (they tested predictors and weights, not exits on own P&L). Daily closes understate the gap: the stop fills at the
+ close that crosses it (worse than the level). a = event split short-alone vs BTC-alone per year (d2->d61) + day-clustered t; b = drop worst 10, path stops at -50/-100 %, top-3 share; c = 5 concurrent.
+Change my mind: a stop that lifts the event mean above 0 in >= 5 of 7 years with the median kept -> c sizing GO candidate; else LSB2 stays parked with this reason.
