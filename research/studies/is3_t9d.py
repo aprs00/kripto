@@ -21,6 +21,7 @@ from research.studies.is3_prb import partial
 from research.studies.is3_prl import legs
 
 OUT = data.DATA / "is3"
+EV = data.DATA.parent / "research" / "is3"   # evidence JSONs (tracked)
 HS = (1, 4, 24)
 OFFS = (0.0, 2e-4)
 LAM = 0.33
@@ -93,7 +94,7 @@ def form_a():
                                 for y, g in df.groupby(df["D"].dt.year)}
         out[n] = row
         print(n, json.dumps(row), flush=True)
-    json.dump(out, open(OUT / "t9d_a.json", "w"), indent=1)
+    json.dump(out, open(EV / "t9d_a.json", "w"), indent=1)
 
 
 if __name__ == "__main__":

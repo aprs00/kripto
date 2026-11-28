@@ -5717,7 +5717,10 @@
     {
      "id": "a",
      "what": "explore 2021-23 BN-82 1h: replay blend_nested's slow legs (tsmom/lowvol, lam .33) daily target changes; for each needed trade a resting limit at the touch-side best (close +/- 0 bp) and at -2 bp: fraction filled within 1h/4h/24h (fill only if a later bar TRADES THROUGH the level, conservative), by leg and by side",
-     "status": "planned"
+     "status": "done",
+     "result": "BN-82 explore 2021-23, slow legs lam .33: 25.6k tsmom / 38.8k lowvol orders, net turnover 30x/yr; fill at close (strict trade-through) 98.5 % in 1h, 99.1 % 4h, 99.5 % 24h; at -2 bp 97/98/99 %; equal by side and year (2022 lowest 99.1 %). Known answer L0 = prior 1h close (diff 0), UNI 2021-08-07 hand-checked. Fill rate is NOT the constraint at OHLC resolution (hourly range >> 2 bp); queue position is: b stresses 5/10/20 bp trade-through. 2 levels tried.",
+     "date": "2026-11-28",
+     "evidence": "t9d_a"
     },
     {
      "id": "b",
