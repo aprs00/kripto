@@ -1483,3 +1483,5 @@ Unstated, what a trader shorting fresh listings must be doing: a hard buy-stop (
  close path is a real, operable squeeze control that LSW/SQZ did not test (they tested predictors and weights, not exits on own P&L). Daily closes understate the gap: the stop fills at the
  close that crosses it (worse than the level). a = event split short-alone vs BTC-alone per year (d2->d61) + day-clustered t; b = drop worst 10, path stops at -50/-100 %, top-3 share; c = 5 concurrent.
 Change my mind: a stop that lifts the event mean above 0 in >= 5 of 7 years with the median kept -> c sizing GO candidate; else LSB2 stays parked with this reason.
+LSX a (is3_lsx.py, lsx_a.json): 678 bnall events: alt-leg median +20..37 % every year, net mean 4.5 % pooled, t_month .01; book corr BTC .00 (11-09 'BTC-leg' finding obsolete).
+LSX b (lsx_b.json): path stops -100/-50/-30 % lift the pooled mean to 7-8 % and t to 1-2, but vs a same-size random-exit placebo the gain is all 2021 and negative in 2020, 2024-26. FAIL.

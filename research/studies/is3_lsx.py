@@ -10,6 +10,7 @@ Path P&L on entry notional at close k: -(a_k/a_0 - 1) + (b_k/b_0 - 1) + sum fund
 from __future__ import annotations
 
 import json
+import warnings
 import sys
 
 import numpy as np
@@ -19,6 +20,7 @@ from kripto import backtest as bt
 from kripto import data
 from kripto import strategies as S
 
+warnings.filterwarnings("ignore")
 EV = data.DATA.parent / "research" / "is3"
 TAKER = 5e-4
 
@@ -105,6 +107,23 @@ def form_b():
                               ((i, ev[i]) for i in df.net.nsmallest(10).index)]
         print(key, json.dumps({k: v for k, v in out[key].items() if k != "by_year"}),
               {y: (v["mean"], v["median"]) for y, v in out[key]["by_year"].items()}, flush=True)
+    # placebo: the stop's exits (share and exit days) assigned to random events; 200 draws. Real stop gain must beat it.
+    rng = np.random.default_rng(7)
+    paths = [e["path"] for e in ev]; cost = np.array([e["cost"] for e in ev]); yr = np.array([e["t0"].year for e in ev])
+    for stop in (1.0, 0.5):
+        ks = np.array([exit_at(pa, stop) for pa in paths]); stopped = ks < 60
+        real = np.array([pa[k] for pa, k in zip(paths, ks)]) - cost
+        pl, ply = [], []
+        for _ in range(200):
+            pick = rng.permutation(len(ev))[: stopped.sum()]
+            kk = np.full(len(ev), 60); kk[pick] = rng.permutation(ks[stopped])
+            x = np.array([pa[min(k, len(pa) - 1)] for pa, k in zip(paths, kk)]) - cost
+            pl.append(x.mean()); ply.append([x[yr == y].mean() for y in range(2020, 2027)])
+        pl, ply = np.array(pl), np.array(ply)
+        key = f"placebo_stop{int(stop*100)}"
+        out[key] = {"real_mean": round(float(real.mean()), 3), "placebo_mean": round(float(pl.mean()), 3), "pct_rank": round(float((pl < real.mean()).mean()), 3),
+                    "by_year_real_minus_placebo": {y: round(float(real[yr == y].mean() - ply[:, i].mean()), 3) for i, y in enumerate(range(2020, 2027))}}
+        print(key, out[key], flush=True)
     json.dump(out, open(EV / "lsx_b.json", "w"), indent=1)
 
 

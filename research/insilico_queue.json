@@ -5782,7 +5782,10 @@
     {
      "id": "b",
      "what": "stress: drop the worst 10 events / cap any one event at -100 %; mean, median, day-clustered t, top-3-day share per year",
-     "status": "planned"
+     "status": "done",
+     "result": "678 events: drop worst 10 -> see lsx_b.json; path stops (exit at the crossing daily close, gap paid: mean -21..-33 % beyond the level): stop100/50/30 pooled mean 8.1/6.7/6.8 % vs 4.5, t_month 1.1/1.7/2.3 vs .01, top-3-day share .13-.15 vs .24, median 31/27/19 vs 33; years > 0: 5/7, 4/7, 4/7. Placebo (same exit share + exit days on random events, 200 draws): stop100 91.5th pct, stop50 81st; gain is ALL 2021 (+69/+54 pts), negative vs placebo in 2020, 2024, 2025, 2026 (-1..-14 pts). FAIL: the stop is 2021 crash insurance, a cost in normal years. 3 stop levels + placebo tried.",
+     "date": "2026-11-28",
+     "evidence": "lsx_b"
     },
     {
      "id": "c",
