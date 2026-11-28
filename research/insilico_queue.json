@@ -5874,25 +5874,38 @@
    "group": "T",
    "title": "Phase diversification for the other Binance daily legs (blend_nested@bn components carry_trend/carry/xsmom, tsmom) on bn100 1h -> 6 daily anchors: is avg6 > 00 a general law?",
    "src": "E2C c, E2B a (blend anchors 1.57-1.87), scheduled() staggering for every_days > 1 (adopted 2026-11-10 on the same argument)",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T11:00",
    "forms": [
     {
      "id": "a",
      "what": "blend_nested@bn components (carry_trend, carry, xsmom; defaults) on the 6 is3_e2b anchor panels: avg6 vs 00 vs mean single, by year 2021-26, pair corr, predicted lift sqrt(6/(1+5 rho)) vs measured",
-     "status": "planned"
+     "status": "done",
+     "result": "blend_nested@bn components on 6 bn100 anchors 2021-26.10: naive table (each anchor's daily returns labelled by bar-end date, averaged) avg6 1.97 vs singles 1.45-1.78, rho .61, = sqrt(6/(1+5 rho)) exactly -> suspected and CONFIRMED artefact: the anchors' daily windows are shifted 4-20 h, their average is a smoothed series. Exact re-check (each sub-book's positions on ONE hourly grid, P&L summed, 00-UTC days): rho .95, avg6 1.54 vs 00 1.58 (singles 1.36-1.65), monthly SR 1.35 vs 1.41, autocorr ~0. No diversification.",
+     "date": "2026-11-28",
+     "evidence": "pdx_x"
     },
     {
      "id": "b",
      "what": "single legs tsmom, xsmom, carry, carry_trend: same table; which legs are phase-noisy (low pair corr) and gain, which are phase-stable (corr > .9, no gain)",
-     "status": "planned"
+     "status": "done",
+     "result": "single legs, exact common clock: tsmom avg6 1.13 vs 00 1.03 (singles 1.03-1.15, rho .94), carry 1.14 vs 1.17 (rho .95); naive table had shown tsmom 1.40, xsmom 1.25, carry 1.52, carry_trend 1.73 (all = the smoothing artefact). Legs are phase-stable on a true clock; anchor spread ~.3 SR = phase noise of ONE sub-book, not removable by averaging (corr .95).",
+     "date": "2026-11-28",
+     "evidence": "pdx_x"
     },
     {
      "id": "c",
      "what": "costs: 6 separate sub-books vs one netted book (sum of the 6 anchors' targets, traded every 4 h): turnover and cost per year, 2x-cost SR; verdict: does the live trader's 00 anchor leave diversification on the table for main_bn, and is it implementable in the hourly step",
-     "status": "planned"
+     "status": "done",
+     "result": "moot: with rho .95 on a common clock there is no diversification to net; live's 00/04 anchor is inside the anchor spread (00 1.58, 04 1.46 for blend). Choosing the best anchor (16) would be tuning. Verdict: no change to main_bn. Lesson: averaging daily series whose windows are shifted lifts SR by construction; compare books on one clock (hourly P&L) before any phase claim.",
+     "date": "2026-11-28",
+     "evidence": "pdx_x"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "Phase diversification of the BN daily legs: on one hourly clock the six anchor books correlate .94-.95 and their average equals the mean single anchor (blend 1.54 vs 1.58 at 00, tsmom 1.13 vs 1.03-1.15, carry 1.14 vs 1.17); the apparent x1.25 lift was a window-misalignment artefact (shifted daily windows averaged = smoothed series). 3 legs + blend, naive and exact.",
+   "closed": "2026-11-28"
   }
  ]
 }

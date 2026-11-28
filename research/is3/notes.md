@@ -1505,3 +1505,13 @@ Source: E2C (approx split from 5-min taker ratios: anchors .63-1.10, avg6 1.16).
  anchor spread and the pair corr rises (> .8), the avg6 lift shrinks with it (sqrt(6/(1+5 rho))). Unstated: E2B's blend anchors spread .3 SR on true data: some phase noise is real.
  Data: same public archive files as bn100, column 10 kept, only coins ever in the point-in-time top 40 (flow uses top 30). Known answer: 24 hourly tbqv sum == daily tbqv.
 Change my mind: as queued (c). 
+
+## PDX phase diversification of the Binance daily legs (think-through 11:1x UTC 11-28, before any run)
+Source: E2C c (flow avg6 1.16 vs 00 .63), E2B a (blend anchors 1.57-1.87 on bn100, 'phase noise +-.15'), the 2026-11-10 staggering of every_days > 1 schedules (same argument, adopted).
+Mechanism: a daily book sampled at one hour carries the noise of that hour's prices (signal and fills both): 6 anchors are 6 noisy draws of the same bet; their average keeps the bet and
+ cuts the timing noise, by sqrt(6/(1+5 rho)). Slow signals (carry: funding averages over days) should be phase-stable (rho ~ .95, no gain); fast ones (flow 3-d, xsmom short lookbacks) noisy.
+Unstated: (1) the gain is free only if the 6 sub-books net their trades (one account), else costs x ~1; (2) live trades at 04:03 on the 00 bar, so live's phase is ~04; (3) rho from the same
+ sample that measures SR: the predicted lift is a check of arithmetic, not evidence. Change my mind: a leg with rho > .9 that still gains > .2 SR from avg6 = a bug (the arithmetic cannot do it).
+PDX a/b/c (is3_pdx.py, pdx_ab.json naive, pdx_x.json exact): the naive avg6 lift (x1.22-1.27 on every leg, = sqrt(6/(1+5 rho)) exactly) was an ARTEFACT: averaging daily returns whose windows are shifted
+ 4-20 h smooths them. On one hourly clock rho .95 and avg6 = mean single (blend 1.54 vs 1.58). CLOSED DEAD. E2C c's flow 1.16 used the same flawed alignment: re-check in unit is3-pdxf.
+ Peak RAM of pdx x was 2.19 GB (over the 2 GB rule): the flow re-check runs in a unit with MemoryMax 1800M and fewer columns.
