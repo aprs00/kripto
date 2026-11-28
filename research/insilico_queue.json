@@ -6327,26 +6327,47 @@
    "group": "T",
    "title": "\\$200 Binance account with per-symbol minimum orders: how much of main_bn's backtest survives, and what a \\$200-able BN book would look like",
    "src": "LVB (small:main_bn 10 % deployed), backlog SMB",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T13:10",
    "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "bnall 1d, main_bn's mix (.5 flow + .5 blend carry_trend/carry/xsmom, x main_scale 1.156, apply_risk-like 5 % caps as in is3_mbl) at \\$1,000 band \\$5, \\$200 band \\$5 (= today's small_acct), \\$200 with per-symbol minima (current symbol_filters; coins not listed now = \\$5; BTC \\$50 / ETH \\$20 also pre-2024 as a stress): SR, ann, deployed gross share, by year",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall 1d 2021-26.10, main_bn mix (.578 x (flow + blend)): $1,000 SR 1.75 / 41 %/yr / vol 23.5 / gross .84; $200 one $5 band (= small_acct today) 1.71; $200 per-symbol minima 1.70 but gross .45; deployed share by year .47/.58/.65/.62/.39/.19 (2026: 2.6 names held of 31; last bar 0 held, BTC $43 < $50 = live). The $200 BN account is mostly cash since 2025: its SR is a few names' noise. BTC/ETH stress = today's minima (no change)",
+     "date": "2026-11-28",
+     "evidence": "smq_abc"
     },
     {
      "id": "b",
      "what": "the same split per leg (flow@bn alone, blend alone): which leg the minima kill (flow has many small 5 %-capped names)",
-     "status": "planned"
+     "status": "done",
+     "result": "legs at their main_bn weight, $200 per-symbol minima: flow 1.06 -> .19 (gross .52 -> .18; 2024-26 negative), blend 1.70 -> 1.36 (gross .56 -> .19, 2026 -1.39); the mix survives only because flow + blend add on the same coins; minima kill flow (many 5 %-capped small names x .578)",
+     "date": "2026-11-28",
+     "evidence": "smq_abc"
     },
     {
      "id": "c",
      "what": "state -> distribution, not a tuned book: \\$200 holding only the top-N |target| names re-scaled to the same gross (N 4/6/8/12, rule: smallest N within 80 % of the best SR, stated now) vs the minima-truncated book; descriptive, no registry; if a \\$200-able form keeps >= 70 % of the \\$1,000 SR it goes to the backlog as a research-session WF item",
-     "status": "planned"
+     "status": "done",
+     "result": "top-N |target| re-scaled to the SAME GROSS then cut at minima, $200: N4/6/8/12 SR 1.48/1.46/1.60/1.88 but vol 56-115 % (concentrated at full gross: not a steady-mode book); superseded by d (vol-matched)",
+     "date": "2026-11-28",
+     "evidence": "smq_abc"
+    },
+    {
+     "id": "d",
+     "what": "c corrected to the steady mode: top-N (4/6/8/12) re-scaled to the $1,000 mix's VOL (23.5 %), not its gross, THEN truncated at per-symbol minima (at same gross c runs 56-91 % vol, not a $200 steady book); same rule (smallest N within 80 % of the best SR), plus deployed share 2025-26",
+     "status": "done",
+     "added": "2026-11-28",
+     "result": "vol-matched to 23.5 %, then minima at $200: N4/6/8/12 SR 1.56/1.56/1.75/1.91 ($1,000 vol-matched 1.48/1.47/1.58/1.78), deployed 2026 .47/.42/.37/.28 vs plain mix .19; rule (smallest N within 80 % of best) -> N4: 1.56 >= 70 % of 1.75 so it goes to the backlog, but it adds no SR over the plain mix at $200 (1.70); its only gain is deployment in 2025-26; prior LOW. Truncated SR >= untruncated in several cells = small positions cost more than they earn (turnover), not an edge",
+     "date": "2026-11-28",
+     "evidence": "smq_d"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "the $200 BN backtest Sharpe roughly holds where positions exist (1.70 vs 1.75) but the account is mostly cash since 2025 (deployed .39/.19), because the universe grew (113 -> 532 names) and weights per name shrank below $5/$50 minima; today's small_acct (one band) hides it. Fix = report deployed gross + per-symbol minima in small_acct (SMB); a top-4 $200 book only lifts deployment (LOW)",
+   "closed": "2026-11-28"
   }
  ]
 }

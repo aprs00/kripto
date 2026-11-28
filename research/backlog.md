@@ -15,6 +15,8 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
   small:main_bn holds 3 of 31 targets, 10 % of its target gross (research/is3/lvb_b.json); kripto/research.py small_acct = one band min/small_equity, so every BN $200 Sharpe is overstated.
   Do: (1) STATUS.md states the $200 BN book's deployed gross next to its return; (2) small_acct with per-symbol minima (venue_bn.symbol_filters cache; delisted = $5) in kripto/research.py, general rationale
   in design.md changelog (a measurement fix, not a gate); (3) re-quote the BN candidates' small_acct. insilico SMQ (queue) measures (3) descriptively first.
+  SMQ (11-28, research/is3/smq_abc.json, smq_d.json): main_bn mix at $200 with minima SR 1.70 vs 1.75 but deployed share .39 (2025) / .19 (2026; 2.6 names): the account is
+  mostly cash now (universe 113 -> 532 names, weights per name below the minima). Top-4 vol-matched $200 book: SR 1.56, deployed 2026 .47 (prior LOW, a different book; only if the owner's $200 option matters).
 - [ ] T9G (insilico T9F 2026-11-28, research session, prior MEDIUM after T9P (11-28: at the touch fills ~always on minute paths, +4 bp/unit vs live taker): flow@bn pays ~11 %/yr taker costs in backtest) **live rest-below shadow for flow@bn's daily orders**: each target change rests
   k = 10 bp beyond the decision price for 24 h, residue to the next day (skip) or taker beyond 1x step (env); fills judged on LIVE Binance trade prints / 1-min lows with a >= 3 bp
   trade-through (kripto/ladder.py already simulates resting bids on live 1-min klines: reuse its fill code); compare its fill rate, runaway cost and net vs the taker shadow after >= 60 days.

@@ -1605,3 +1605,12 @@ LVB a/b/c (scripts.live_vs_backtest --main, tests/test_lvb_main.py, is3_lvb.py, 
  .79 and -0.60 = -0.60 with per-symbol minima: holds 3/31 targets, 10 % of the 57 % target gross (BTC target $36 < $50). The $200 BN twin is not main_bn at $200. CLOSED OPEN -> SMB.
 T9P a/b/c (is3_t9p.py, t9p_ab.json, t9p_b.json): at-touch k0 on 4h bars -32 bp/unit (an exclusion artefact: hand-checked BTC 11-21 fills 2 min later); on HL 1-min paths 99.9 % fill,
  median 1 min, net +3.97 bp/unit vs live taker, 14/14 days. PASS by the stated rule -> T9G frozen k0/q3/carry. CLOSED OPEN.
+
+## SMQ $200 Binance with per-symbol minima (think-through 13:0x UTC 11-28, before any run)
+Source: LVB (small:main_bn holds 3/31 targets, 10 % of target gross; BTC target $36 < $50). main_bn's mix is ~57 % gross over ~30 names = ~2 % per name = $4 at $200: below $5 for most names,
+ so a truncated $200 book holds only its largest weights (BTC hedge? capped alts). Expect: SR falls a lot and the book is mostly cash; the band-only small_acct says little changes (it skips
+ trades < $5 but lets every position be opened by a bigger move). Unstated: a $200 trader would not hold 30 names; he'd hold the few strongest. That is form c (top-N re-scaled), a different book,
+ judged only descriptively. Account kept at a constant $200 (no compounding; re-funded) so the minimum binds the same way every year. Change my mind: truncated $200 SR within 80 % of $1,000 ->
+ the $200 BN account is fine and only STATUS needs a deployed-gross note.
+SMQ a/b/c/d (is3_smq.py, smq_abc.json, smq_d.json): main_bn mix $1,000 1.75 (vol 23.5); $200 band 1.71; $200 per-symbol minima 1.70 at gross .45, deployed .47/.58/.65/.62/.39/.19 by year (2026: 2.6 names).
+ Legs alone die at $200 (flow .19). Top-N vol-matched: N4 1.56 / deployed 2026 .47: deployment only. First run of a forgot the .5 allocs (gross 1.6, vol 47 %): caught by the vol, rerun. CLOSED OPEN.
