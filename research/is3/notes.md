@@ -1216,3 +1216,12 @@ Placebo: the same relative weights permuted across the day's eligible names (kee
 Change my mind: SR above equal weight in 2021, 2022 and 2023 AND >= 95th pct of 200 permutations -> b.
 LSW a done (is3_lsw.py, lsw_a.json): replication of listing_short exact; inverse own-days vol SR .24 vs .18, years +.23/+.26/-.25, 73rd pct of 200 permutations; worst-10 mean -4.56 vs -4.67 %:
  FAIL. The tail is not in the already-volatile names. b skipped; c: listing shorts stay HL-only (LSB2 parked; 3 squeeze controls failed: SQZ, LSV, LSW). CLOSED OPEN.
+
+## PRB partial rebalancing of the HL main book (think-through 01:0x UTC 11-28, before any run)
+Source: mandate (costs bind on HL), T1c (EMA of the tsmom signal: DEAD). Mechanism (Garleanu-Pedersen aim portfolio): when the target moves a little every day (vol-target rescaling, tsmom
+ drift, beta-hedge noise), trading the full gap pays the spread on noise that later reverses; trading a fraction lam of the gap cuts turnover more than it cuts signal, IF the signal's
+ alpha decays slower than the noise (T9B: daily books' alpha accrues over 24-48 h, so a 1-2 day lag costs little). Unstated: (1) listing_short entries are events: lam<1 delays the entry
+ and the early decay (LS1: days 1-14 carry the most) may be lost: that is the risk to watch per leg; (2) the band .005 already filters tiny trades: the gain must beat the band, not zero;
+ (3) a smaller turnover lowers the realised exposure a bit: compare net SR, not return. Explore HL 2023-03..2024-12; 2025-26 held out. Live book = blend(listing_short, lowvol, tsmom).
+Change my mind: a lam<1 with net SR >= lam=1 in 2023 AND 2024 -> b.
+PRB a done (is3_prb.py, prb_a.json): lam .33 net SR .87/.93 vs .87/.75 (2023/24), costs 11.1 -> 5.7 %/yr, pre-cost SR 1.21 -> 1.11. PRE-STATED (b): lam .33, ONE run HL 2025-26; PASS = net SR >= lam 1 pooled AND 2025.

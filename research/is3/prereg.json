@@ -311,5 +311,15 @@
    "k": 0.6666666666666666
   },
   "at": "2026-11-27T19:24:44+00:00"
+ },
+ "PRB_b": {
+  "claim": "partial rebalancing lam=.33 of the HL main book (blend listing_short+lowvol+tsmom, band .005) beats lam=1 net of costs on unseen HL days",
+  "rule": "ONE run 2025-01..2026-11 HL 1d; PASS = net SR(lam .33) >= net SR(lam 1) on 2025-26 pooled AND in 2025; report costs, pre-cost SR, worst 10",
+  "params": {
+   "lam": 0.33,
+   "band": 0.005,
+   "dataset": "hl"
+  },
+  "at": "2026-11-28T00:56:59+00:00"
  }
 }

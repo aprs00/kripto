@@ -4350,13 +4350,16 @@
    "group": "T",
    "title": "HL main book (blend_nested hl) trades a fraction of the gap to target each day (aim-portfolio partial rebalancing) instead of the full gap",
    "src": "mandate: costs are the binding constraint on HL; T1c (EMA of the tsmom SIGNAL, DEAD) is the nearest dead idea: new angle = book level, incl. listing_short entries, judged net of costs",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T00:00",
    "forms": [
     {
      "id": "a",
      "what": "pre-stated: w_t = w_{t-1} + lam*(target_t - w_{t-1}), lam in {1, .5, .33}, HL 1d explore 2023-03..2024-12 (hl panel), band .005: gross SR, costs, turnover, net SR per year; pick = best net SR with net >= lam=1 in both explore years, else FAIL",
-     "status": "planned"
+     "status": "done",
+     "result": "HL 1d blend(listing_short,lowvol,tsmom) band .005, 2023/2024: lam 1 net SR .87/.75 (costs 13.6/8.6 %/yr, turnover 65x), lam .5 .91/.79, lam .33 .87/.93 (costs 7.0/4.3 %, turnover 33x); pooled .80 -> .84 -> .90; pre-cost SR 1.21 -> 1.10/1.11 (half the cost saving is lost signal); worst-10 -4.5 -> -5.0 %; pick lam .33 by the pre-stated rule",
+     "date": "2026-11-28",
+     "evidence": "prb_a"
     },
     {
      "id": "b",
@@ -4368,7 +4371,8 @@
      "what": "the frozen lam on blend_nested@bn bnall (held-out venue, cached panel or outside 01:15-03:30) 2021-23 and the $200 twin's executability (fraction of trades below the $10/$5 min order)",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "HBL",
