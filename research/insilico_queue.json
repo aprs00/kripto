@@ -6140,6 +6140,33 @@
      "status": "planned"
     }
    ]
+  },
+  {
+   "id": "FHM",
+   "prio": 1.6,
+   "group": "T",
+   "title": "flow on HL prices (hlx) at MAKER fees: does L2b's 'dead at HL taker costs' leg come alive as a post-only book? (frozen live config lb 3, cap .05)",
+   "src": "L2b a (hlx: +19 %/yr gross, 17-50 %/yr HL costs), T9C (OOS the maker fee is the lever, depth adds nothing), ERC (HL book needs an uncorrelated leg)",
+   "status": "wip",
+   "due": "2026-11-28T11:44",
+   "forms": [
+    {
+     "id": "a",
+     "what": "hlx 1d 2023-03..2026-11, flow lb 3 cap .05: taker (fee 4.5 + fitted slip x .5) vs fee-only maker placebo (random fills at the 90 % share T9 measured, maker 1.5 bp, no slip; 10 masks): ann/SR by year, and corr with the HL main book's daily returns",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "HL 1h 2026-04-15..11-26 (seen, descriptive): the real trade-through fill model at the touch and k 10 (q 3) vs the same placebo: is selection on HL thin names worse than on Binance",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict: a candidate for an HL post-only shadow (needs the live resting engine of T9G) only if a's placebo SR >= 1 in >= 3 of 4 years AND b shows real >= placebo - 2 %/yr; else close with the reason",
+     "status": "planned"
+    }
+   ],
+   "sessions": 1
   }
  ]
 }

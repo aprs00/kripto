@@ -1557,3 +1557,9 @@ Source: T9K. The backtest says 90 % of flow's daily orders would fill 50 bp belo
 T9L a/b/c (is3_t9l.py, t9l_ab.json): live Nov orders of flow@bn: k50 fill 88 % (bt 90 %), filled -264 / unfilled +543 bp at 24 h (selection as predicted), live slip 1.1 bp. CLOSED OPEN.
 T9C a/b (prereg T9C_flow_k50 / _carry_trend_k20, t9c_confirm.json): FAIL both: vs taker +8.7 / +2.5 %/yr pooled 2024-26 but <= random fee-only fills (-0.2 / -0.95); flow 2026 -1.0. CLOSED OPEN.
 FLD a/b/c (is3_fld.py, fld_a.json): shadow:flow@bn -9 % / 19 d = 3-5th pct of backtest 19-day windows; price loss (fees -$4, funding +$2); same-days replay -13.6 % (corr .83): no implementation gap. CLOSED OPEN.
+
+## FHM flow on HL prices at maker fees (think-through 11:4x UTC 11-28, before any run)
+Source: L2b (Binance taker flow continuation transfers to HL prices, +19 %/yr gross, killed by 17-50 %/yr HL taker costs), T9C (OOS the maker fee is the lever). Mechanism: Binance's
+ taker imbalance leads HL (deeper venue leads); HL thin books make taker execution expensive, but a resting order on HL costs 1.5 bp. Unstated: (1) the random-fill placebo is an UPPER
+ bound (real fills are selected against us ~1:1 with any improvement, T9K/T9C); (2) HL queues on thin names are short, so fills are likelier but adverse selection by faster HL
+ makers may be worse; (3) HL perps list fast: the hlx universe is the HL coins with Binance flow. Frozen config (live flow@bn), no grid. Change my mind: as queued (c).
