@@ -1685,3 +1685,4 @@ FLX a/b/c (is3_flx.py, flx_ab.json): flow slope HAC t -1.0 (blend -1.34): no sig
  edge is ~0 for 2 years, flow is now a carry book overlapping blend. No clause met, no lifecycle change. CLOSED OPEN -> backlog FLX2.
 SXR a/b/c (sxr_a.json, sxr_b.json): live $200 twins deployed 0-.90 of their shadow (carry@bn 0, flow@bn .15, blend_nested .21); round-to-min would give .79-1.09 for all entries. carry_trend@bn gap -> TWV d. CLOSED OPEN.
 CTG a/b/c (ctg_ab.json): small:carry_trend@bn: BTC target $56.40 = 58 % of its gross, Binance step .001 BTC > $56 -> floored to 0; the rest < $5. No fault; SMX rounds to max(min, one step). CLOSED OPEN.
+SMA a/b/c (kripto/research.round_to_min, small_acct_round, tests, is3_sma.py, sma_b.json): known answer exact. CLOSED FEATURE.

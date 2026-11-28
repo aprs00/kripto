@@ -104,14 +104,23 @@ def small_minima(columns, dataset: str) -> pd.Series:
     return pd.Series({c: one(c) for c in columns}, dtype=float)
 
 
+def round_to_min(w: pd.DataFrame, minw: pd.Series) -> pd.DataFrame:
+    """SMD/SMX rule: a target with |w| >= half the column's minimum weight is placed AT the minimum (sign kept), below half -> 0,
+    at or above the minimum unchanged; NaN stays NaN."""
+    rm = minw.reindex(w.columns).fillna(0.0).to_numpy()
+    a = w.abs()
+    return w.where(w.isna() | (a >= rm), np.sign(w) * np.where(a >= rm / 2, rm, 0.0))
+
+
 def evaluate(name: str, panel: dict, params: dict, dataset: str, cost_mult: float = 1.0,
              band: float | None = None, log: bool = True, start: str | None = None, lag: int = 0,
              tag: str | None = None, maker: dict | None = None, exec_desc: str | None = None,
-             min_weight: pd.Series | None = None) -> tuple[bt.BTResult, dict]:
+             min_weight: pd.Series | None = None, round_min: pd.Series | None = None) -> tuple[bt.BTResult, dict]:
     """One config, full sample. lag = bars of execution delay (weights decided at close t are traded at close t+lag).
     tag marks the purpose of a logged line ("robust", "forward", ...). maker = execution.maker_fills(...) + {"fee"}
     (passive execution with taker fallback, T9); exec_desc names that policy in the registry line.
-    min_weight = per-column |weight| below which a target is never opened (small account: min order / equity; SMR)."""
+    min_weight = per-column |weight| below which a target is never opened (small account: min order / equity; SMR).
+    round_min = per-column minimum weight for the round-to-minimum rule (SMD/SMX): |w| >= half of it -> placed AT it, below -> 0."""
     band = default_band() if band is None else band
     if name in EVENTS:
         # intraday order strategies (kripto/events.py) simulate their own fills and return a daily BTResult
@@ -121,6 +130,8 @@ def evaluate(name: str, panel: dict, params: dict, dataset: str, cost_mult: floa
         if min_weight is not None:
             mw = min_weight.reindex(w.columns).fillna(0.0).to_numpy()
             w = w.where((w.abs() >= mw) | (w == 0) | w.isna(), 0.0)
+        if round_min is not None:
+            w = round_to_min(w, round_min)
         if lag:
             w = w.shift(lag)
         bpd = bars_per_day(panel["close"].index)
@@ -139,7 +150,8 @@ def evaluate(name: str, panel: dict, params: dict, dataset: str, cost_mult: floa
         log_trial({"strategy": name, "params": params, "dataset": dataset, "cost_mult": cost_mult, "band": band,
                    **({"lag": lag} if lag else {}), **({"tag": tag} if tag else {}),
                    **({"exec": exec_desc or "maker"} if maker is not None else {}),
-                   **({"min_w": "symbol"} if min_weight is not None else {}), **s})
+                   **({"min_w": "symbol"} if min_weight is not None else {}),
+                   **({"round_min": "symbol"} if round_min is not None else {}), **s})
     return res, s
 
 
@@ -175,6 +187,7 @@ def robustness(name: str, panel: dict, params: dict, dataset: str) -> dict:
             inv = res.gross > 0
             g0 = res.weights.abs().sum(axis=1)[inv].mean()
             out["small_deployed"] = round(float(rm.weights.abs().sum(axis=1)[inv].mean() / g0), 3) if g0 > 0 else None
+            out["small_acct_round"] = ev(band=sb, round_min=mw)[1].get("sharpe")   # SMX rule: what the $200 twin would do if it rounded up
     first = res.gross[res.gross > 0].index.min()
     if not pd.isna(first):
         r = res.returns[res.returns.index >= first]

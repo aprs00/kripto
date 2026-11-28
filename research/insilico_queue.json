@@ -6941,6 +6941,45 @@
    "verdict": "OPEN",
    "reason": "small:carry_trend@bn is BTC-heavy and BTC's one-step size (> $56) exceeds its target: step rounding, not a fault; SMX must round to the step too",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "SMA",
+   "prio": 4.2,
+   "group": "T",
+   "title": "research.robustness: small_acct_round (round-to-minimum \\$200 twin, the SMX rule) next to small_acct_min",
+   "src": "SMD/SMY, backlog SMX",
+   "status": "closed",
+   "due": "2026-11-28T13:41",
+   "sessions": 1,
+   "forms": [
+    {
+     "id": "a",
+     "what": "evaluate(round_min=Series of per-column minimum weights): |w| >= half the minimum -> placed at the minimum, below -> 0; robustness adds small_acct_round; test (known answer on a toy panel)",
+     "status": "done",
+     "result": "research.round_to_min + evaluate(round_min=) + robustness small_acct_round (registry line tag robust + round_min field); test: known transform values + robustness key",
+     "date": "2026-11-28",
+     "evidence": "sma_b"
+    },
+    {
+     "id": "b",
+     "what": "known answer: evaluate(blend HL main config, round_min) equals is3_smd's roundmin replay (SR 1.23 HL 2023+ / same returns) exactly",
+     "status": "done",
+     "result": "evaluate(blend HL main config, round_min = minima/$200) vs hand round-to-min + bt.run: max |return diff| 0.0 (SR 1.489 full sample, no main_scale)",
+     "date": "2026-11-28",
+     "evidence": "sma_b"
+    },
+    {
+     "id": "c",
+     "what": "docs: design.md changelog line (reporting), show_result column",
+     "status": "done",
+     "result": "design.md changelog (reporting, gate unchanged), show_result prints small_acct_round",
+     "date": "2026-11-28",
+     "evidence": "sma_b"
+    }
+   ],
+   "verdict": "FEATURE",
+   "reason": "every robustness block now reports the $200 twin three ways: one band (old), hard minima + deployed share, round-to-minimum; known answer exact",
+   "closed": "2026-11-28"
   }
  ]
 }

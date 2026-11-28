@@ -133,3 +133,17 @@ def test_min_weight_never_opens_a_target_below_the_minimum(tmp_path, monkeypatch
     res0, _ = research.evaluate("xsmom", p, {"lookback": 14, "every_days": 1, "top_n": 6}, "t", min_weight=mw * 0, log=False)
     res1, _ = research.evaluate("xsmom", p, {"lookback": 14, "every_days": 1, "top_n": 6}, "t", log=False)
     assert np.allclose(res0.returns.to_numpy(), res1.returns.to_numpy())   # a zero minimum changes nothing
+
+
+def test_round_min_places_half_minimum_targets_at_the_minimum(tmp_path, monkeypatch):
+    """SMA 11-28: |w| >= half the minimum -> AT the minimum, below half -> 0, above the minimum unchanged, NaN kept."""
+    w = pd.DataFrame({"A": [0.04, 0.02, -0.03, np.nan], "B": [0.06, -0.06, 0.0, 0.01]})
+    out = research.round_to_min(w, pd.Series({"A": 0.05, "B": 0.05}))
+    assert out["A"].iloc[:3].tolist() == [0.05, 0.0, -0.05] and np.isnan(out["A"].iloc[3])
+    assert out["B"].tolist() == [0.06, -0.06, 0.0, 0.0]
+    monkeypatch.setattr(research, "REG", tmp_path / "registry.jsonl")
+    risk = tmp_path / "risk.json"
+    risk.write_text(json.dumps({"start_equity": 1000.0, "small_equity": 200.0}))
+    monkeypatch.setattr(research, "RISK", risk)
+    rb = research.robustness("xsmom", _panel(), {"lookback": 14, "every_days": 1, "top_n": 6}, "t")
+    assert "small_acct_round" in rb

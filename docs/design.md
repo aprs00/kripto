@@ -274,3 +274,5 @@ See `CLAUDE.md`. Summary: paper only; public data only; respect API rate limits;
   and `small_deployed` (its mean held gross / the main size's). General rationale: the $200 twin must model what a $200 account can place, whatever the strategy;
   the one-band `small_acct` let it hold dozens of $3 positions. Evidence it mattered (LVB/SMQ/SMH): live small:main_bn holds 3 of 31 targets, small:main BTC only;
   backtest deployed share at $200 .19 (BN 2026) / .44 (HL 2026). `small_acct` is kept for comparability with old results; quote small_acct_min AND small_deployed.
+* 2026-11-28 (insilico SMA; reporting) `robustness()` adds `small_acct_round`: the small account under the round-to-minimum rule (a target >= half the minimum weight is placed at
+  the minimum, below half 0; research.round_to_min), the rule the backlog's SMX would give the live small: twins. Same general rationale as small_acct_min; gate unchanged.
