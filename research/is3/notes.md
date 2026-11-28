@@ -1515,3 +1515,11 @@ Unstated: (1) the gain is free only if the 6 sub-books net their trades (one acc
 PDX a/b/c (is3_pdx.py, pdx_ab.json naive, pdx_x.json exact): the naive avg6 lift (x1.22-1.27 on every leg, = sqrt(6/(1+5 rho)) exactly) was an ARTEFACT: averaging daily returns whose windows are shifted
  4-20 h smooths them. On one hourly clock rho .95 and avg6 = mean single (blend 1.54 vs 1.58). CLOSED DEAD. E2C c's flow 1.16 used the same flawed alignment: re-check in unit is3-pdxf.
  Peak RAM of pdx x was 2.19 GB (over the 2 GB rule): the flow re-check runs in a unit with MemoryMax 1800M and fewer columns.
+
+## T5D OI building on a 3-day fall as a SHORT-side filter (think-through 11:2x UTC 11-28, before any run)
+Source: T5b (2023: losers with rising OI bounce, IC +.032), T5c (long-side filter failed confirm, sign flipped after 2024). Data: the Binance metrics archive starts 2021-12-01 for every coin
+ but BTC, so explore = 2021-12..2022-12 only (one bear year; the queue's '2021-22' is in practice 2022). Mechanism: OI rising while price falls = new shorts piling in (or longs averaging down);
+ if new shorts are late, they are the fuel of a short squeeze (bounce); our books' shorts in those names sit next to them. Unstated: in a bear trend (2022) new shorts are RIGHT more often
+ (continuation), so 2022 may show the opposite of 2023: that is the T5c regime flip again. Outcome = the short's next-day P&L, market-relative (minus the universe's equal-weight mean), plus funding.
+Change my mind: top OI-build tercile short P&L below the bottom tercile by >= 10 bp/day with a dose (quintiles monotone-ish) in 2022 -> b; else the filter has no explore support.
+T5D a/c/d (is3_t5x.py, t5x_a_<yyyy-mm>.json, t5x_d.json): short-side OI-build spread by year +12/-18/+22/-35/-25 bp (2022-26), |t| <= 1.34, shuffle null 14-88th pct, no dose. d: books' own shorts mixed sign (only 2026 favours a filter). b skipped. CLOSED DEAD (F3: 3 forms).

@@ -3227,27 +3227,47 @@
    "group": "T",
    "title": "T5b F3 (OI built against the 3-day move) as a SHORT-side filter, explored on 2021-22 once metrics coverage >= 95%",
    "src": "backlog T5d; findings T5b/T5c (long-side filter failed confirm, sign flipped after 2024)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T11:20",
    "forms": [
     {
      "id": "a",
      "what": "first `scripts.metrics_coverage`: 2021 and 2022 must be >= 95% (else defer 2 days). State -> distribution on 2021-22 (a NEW regime, never looked at): next-day hedged return of the books' short candidates by OI-change-against-price tercile; dose; both years",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall top 60, explore 2021-12-05..2022-12 (metrics archive starts 2021-12 except BTC; 384 days, 32 losers/day): short's next-day market-relative P&L + funding by 3-d OI-change tercile: -0.3/-3.0/+6.5 bp, top-bottom +12.5 bp (t .75; H1 +9.5, H2 +15.1); quintiles 3.3/7.9/-15.4/9.8/9.7 (no dose); within-day shuffle null 77th pct (sd 14.8 bp -> MDE ~42 bp/day); within r3 terciles +3/-7/+26. In 2022 OI-building losers CONTINUED (shorts win), the opposite of 2023's bounce: no support for a short filter.",
+     "date": "2026-11-28",
+     "evidence": "t5x_a_2021-12"
     },
     {
      "id": "b",
      "what": "if a shows losers with rising OI bounce (+ in both years): block flow@bn / xsmom shorts in the top OI-build-on-a-fall tercile, F0 vs 200 random masks on 2021-22; PASS >= 95th pct and both years",
-     "status": "planned"
+     "status": "skipped",
+     "result": "precondition (losers with rising OI bounce in explore) not met: 2022 spread is +12.5 bp the other way, t .75",
+     "date": "2026-11-28"
     },
     {
      "id": "c",
      "what": "confirm on 2023 (the T5b explore year, seen only for the long side and stand-alone IC: stated) AND the sign check 2024-26; a pass needs both regimes (T5c lesson)",
-     "status": "planned"
+     "status": "done",
+     "result": "sign check, same function per year (descriptive, nothing pre-registered since a gave no claim): top-bottom tercile spread 2023 -17.5 (t -1.34), 2024 +21.7 (1.07), 2025 -34.8 (-.85), 2026 -25.1 (-.83); null pct 16/88/14/19 %; quintiles non-monotone every year. The sign alternates with the year, every year inside the shuffle null: noise, not a regime-dependent effect.",
+     "date": "2026-11-28",
+     "evidence": "t5x_a_2023-01"
+    },
+    {
+     "id": "d",
+     "what": "the books' ACTUAL shorts (flow@bn lb 3 cap .05, xsmom@bn lb 28 cap .05 on bnall 1d; w < 0 at day t, any 3-d return): short next-day market-relative P&L + funding, top vs bottom 3-d OI-change tercile among each day's shorts, per year 2022-26 (what a short-side filter would remove)",
+     "status": "done",
+     "added": "2026-11-28",
+     "result": "books' actual shorts on bnall 1d (~15/day each), short next-day market-relative P&L + funding, top-minus-bottom 3-d OI-change tercile: flow 2022-26 -1.4/+7.8/+24.6/-8.8/-17.5 bp (t -.1/.69/1.85/-.38/-.56); xsmom +5.3/+17.6/-1.2/+10.8/-70.0 (t .39/1.53/-.08/.33/-1.67). Mixed sign, no year |t| >= 2; a short filter would have helped only in 2026 (both books), cost in 2023-24: no consistent effect.",
+     "date": "2026-11-28",
+     "evidence": "t5x_d"
     }
    ],
    "defer_why": "wait condition met: metrics_coverage 2021-26 = 100 % (checked 11:0x UTC); pulled forward as the refill's due-now item",
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "F3 (OI built against the 3-day move) on Binance daily: three forms failed - stand-alone (T5b: gross -1 bp/day, fat tails), long-side filter (T5c: confirm FAIL, sign flip), short-side filter (T5D: generic losers 2022-26 spread +12/-18/+22/-35/-25 bp inside a shuffle null; the books' own shorts mixed sign, |t| < 1.9; no dose; MDE ~42 bp/day <= 100). Sign alternates by year: noise. 2026 alone favoured a short filter for both books (watch, not act).",
+   "closed": "2026-11-28"
   },
   {
    "id": "X1V",

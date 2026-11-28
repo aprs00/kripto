@@ -59,7 +59,7 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
 - T2b(e) listing_short liquidity hysteresis (cost fix after live XTEN churn; fixed configs, tag t2be, 2026-11-19) → rejected (pre-registered rule failed on HL)
 - InSilico T1 resting bids 30 σ below the last price, causal top-20 coins, exit 60 min (2026-11-22, is3_ladtop.py) → CONFIRMED; incubation 2026-11-27 (overlay sleeve of ma…
 - HLL1 frozen ladder rule on Hyperliquid minute bars (2026-11-27, research/studies/hl_ladder.py, descriptive, not registered) → OPEN (too few: 7 fills)
-- T5b Binance positioning metrics as daily cross-sectional signals (2026-11-27, research/studies/t5b_positioning.py + t5b_diag.py, descriptive) → OPEN (two forms failed: s…
+- T5b Binance positioning metrics as daily cross-sectional signals (2026-11-27, research/studies/t5b_positioning.py + t5b_diag.py, descriptive) → F3 DEAD 2026-11-28 (three…
 - InSilico S1: sources re-read against the rules as coded (2026-11-22) → no verdict, but several older DEADs were verdicts on my translation
 - InSilico S2: every picture and video opened by eye (2026-11-23/24) → no verdict, the stored descriptions hold
 - InSilico T2: forensics of his own dated examples (2026-11-24) → OPEN (nothing beyond 'big down day' / 'a line near price'; underpowered)
@@ -561,7 +561,7 @@ median +13 bp, mean −203 bp (two ASTER fills −14.6%), day t −0.7. 6 of 7 H
 First run was wrong (ffill across days-long collection gaps when a coin leaves the top-60 = stale-price "crashes" at the 6-hourly universe refresh); fixed by splitting at gaps > 30 min.
 Re-run `--confirm` at ≥ 60 days (≈ 2027-01-15); kill if HL-only fills stay < ⅓ of fills or confirm median ≤ 0.
 
-### T5b Binance positioning metrics as daily cross-sectional signals (2026-11-27, research/studies/t5b_positioning.py + t5b_diag.py, descriptive) → OPEN (two forms failed: stand-alone, long filter; sign flips by regime)
+### T5b Binance positioning metrics as daily cross-sectional signals (2026-11-27, research/studies/t5b_positioning.py + t5b_diag.py, descriptive) → F3 DEAD 2026-11-28 (three forms failed: stand-alone, long filter, short filter T5D; noise)
 Explore 2023-03-05..12-31 (point-in-time top 60; confirm 2024-01+ untouched). Retail crowding z (F1) and top-trader-minus-retail (F2): |IC| < 0.02 or t < 2, fail. **F3 OI built against the 3-day
 move: 1d IC 0.034 (t 3.9 net of funding + ret3, both halves +)**, not plain reversal (sign-only 0.014): rising OI in losers → bounce (IC +0.032), in winners → fade (−0.048, t −3.4).
 But Q5−Q1 gross −1 bp/day mean (median +10), turnover 59%/day: dead as a stand-alone daily taker book (fat tails). Within winners, top-OI-tercile next-day mean 14 vs 24 bp (median −50 vs −25),
@@ -570,6 +570,8 @@ day spread −26 bp t −1.5 → frozen LONG-side filter for the Binance books p
 dropped-vs-kept next-day mean flips sign after 2024 (xsmom 2025: +11 vs −34 bp; 2026: +14 vs −24): OI-building winners faded in 2023's range market and CONTINUED in 2025–26. Two forms failed
 (stand-alone at taker costs; long filter), diagnosis = regime-dependent sign. Untried: losers' side (no shorts where OI builds on a fall), HL positioning (T6b), 2021–22 explore once downloaded.
 
+T5D short-side filter (insilico 11-28, is3_t5x.py): losers' short P&L, top-minus-bottom 3-d OI-change tercile 2022–26 +12/−18/+22/−35/−25 bp/day, |t| ≤ 1.34, inside a within-day shuffle null every
+year, no dose (metrics start 2021-12); the books' own shorts (flow, xsmom) mixed sign, |t| < 1.9, only 2026 favours a filter: **F3 DEAD after 3 forms** (stand-alone, long filter, short filter): the 2023 IC was one draw of a sign-alternating noise. HL positioning (T6b) is a separate idea.
 ### InSilico S1: sources re-read against the rules as coded (2026-11-22) → no verdict, but several older DEADs were verdicts on my translation
 Read: 374 chat records (image descriptions; 8 images opened by eye), 2 guides, 46 templates, rule pages of 3 PDFs. 11 rules had been flattened: R3 (thin fast bar, not the sign of 7 groups), R4 (two tests),
 R14 (valley between two humps), R19 (second target), R1 (magnitude), R7 (location), R18, R23, R24, Hull, R30. 33 new queue forms, 11 forms reworded; those rules are not settled until they run.
