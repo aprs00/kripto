@@ -1307,3 +1307,10 @@ Source: PRL/PRD, HBL, TSB c. Two changes to one book can interact (the beta fix 
  a hybrid lam+band. Unstated: the gap is measured against the HELD weight (which drifts with price), so stale small gaps eventually trade. All years already seen: descriptive + a spec rule.
 CMB a/b/c/d done (is3_cmb*.py, cmb_ab/d.json): PRL + HBL additive. Min-order $10 at $1,000: lam1 .85/.65/2.02/1.59, slow33 .78/.98/2.17/1.81, band02 .99/.94/1.66/1.57.
  Spec rule met 2/4 -> written fallback (band) is not better live (d): DEVIATION stated, spec stays lam .33 + $10 accumulation. CLOSED OPEN.
+
+## PRX frozen replication of PRL on Binance (think-through 02:2x UTC 11-28, before any run)
+Source: PRL/PRD. If slow-leg partial rebalancing works because tsmom/lowvol targets carry daily noise, the same legs on another venue's instruments should show it; if it is an HL-panel
+ artifact (few coins, 2023-26 regime), it will not. Frozen: lam .33, the same legs, band .005, no change. bnall universe differs (tsmom top 20 by volume, listing events many more).
+ PASS (a) = net SR >= lam 1 in 2 of 3 years and pooled 2021-23; b = 2024-26 the same way; c = where it lives.
+PRX a/b/c done (is3_prx.py, prx_abc.json): frozen PRL on bnall 3-leg book: 2021-23 .73 vs .81 (FAIL), 2024-26 .52 vs .43; bnall tsmom lam .33 = lam 1 (1.29/1.30). Not a general law: HL-specific
+ (HL tsmom noisier). PRB2 prior lowered to medium; forward days decide. CLOSED OPEN.

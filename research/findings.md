@@ -113,7 +113,7 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
 - HBL HL listing_short: shorts vs BTC hedge leg, young-coin beta (2026-11-28 insilico, research/studies/is3_hbl*.py, prereg HBL_c) → OPEN (risk fix; backlog HBL2)
 - SML the $200 HL account: legs at the $10-min-order band .05 (2026-11-28 insilico, research/studies/is3_sml.py) → OPEN (path lottery)
 - HBM young-coin beta in the Binance main books (2026-11-28 insilico, research/studies/is3_hbm.py) → OPEN (no exposure)
-- PRB/PRL partial rebalancing of the HL main book (2026-11-28 insilico, research/studies/is3_prb*.py, is3_prl*.py, prereg PRB_b, PRL_c, not a WF) → OPEN (promising; backlo…
+- PRB/PRL partial rebalancing of the HL main book (2026-11-28 insilico, research/studies/is3_prb*.py, is3_prl*.py, prereg PRB_b, PRL_c, not a WF) → OPEN (HL-specific, no r…
 - HLI HL main book when listing_short is idle (2026-11-27 insilico, research/studies/is3_hli.py, not registered) → OPEN (explained; backlog HLI2)
 - TSH tsmom leg of the HL main book (2026-11-27 insilico, research/studies/is3_tsh.py, not registered) → OPEN (kept, well-motivated)
 - BNB main_bn legs: 0.5 flow@bn + 0.5 blend_nested@bn (2026-11-27 insilico, research/studies/is3_bnb.py, not registered) → OPEN (balanced; now a funding-carry book)
@@ -815,7 +815,8 @@ The $200 twin's backtest SR is path luck of frozen positions; quote it with that
 ### HBM young-coin beta in the Binance main books (2026-11-28 insilico, research/studies/is3_hbm.py) → OPEN (no exposure)
 flow/carry/carry_trend/xsmom hold ≤ 0.2 % of gross in coins without a 20-d beta (cached bnall 2020–26): the beta-1 fill matters only in listing_short (HBL2).
 
-### PRB/PRL partial rebalancing of the HL main book (2026-11-28 insilico, research/studies/is3_prb*.py, is3_prl*.py, prereg PRB_b, PRL_c, not a WF) → OPEN (promising; backlog PRB2)
+### PRB/PRL partial rebalancing of the HL main book (2026-11-28 insilico, research/studies/is3_prb*.py, is3_prl*.py, prereg PRB_b, PRL_c, not a WF) → OPEN (HL-specific, no replication; backlog PRB2)
+**PRX frozen replication on bnall (same 3-leg book): 2021–23 .73 vs .81 (fail), 2024–26 .52 vs .43; bnall tsmom lam .33 = lam 1 (1.29/1.30): not a general law, HL tsmom is the noisy one.**
 Trade lam .33 of the gap to target. Whole book: held-out HL 2025–26 1.94 vs 1.86. Slow legs only (tsmom, lowvol; listing_short in full; tsmom = over half the costs, turnover 35–64x):
 explore .95/1.01 vs .87/.75, **held-out 2.10 vs 1.86, costs 7.0 → 4.0 %/yr, pre-cost 2.24 vs 2.11**; band .01 ≥ full 3/4 years, 2× cost better every year, causal (truncation test 0).
 Caveat: 2025–26 was opened twice (PRB b whole-book, then PRL c slow legs): PRL's held-out is a second look, so forward days are the real test. Fails at $200 (band .05, 2026 .14 vs 1.28) and on fast BN books (bnall blend_bn 2.10 → 1.84, flow 1.60 → 1.34): a $1,000 HL cost lever, needs forward evidence.
