@@ -4312,24 +4312,37 @@
    "group": "T",
    "title": "Binance listing shorts weighted by inverse own-days vol instead of equally (the squeeze tail is set by a few names; LSP / SQZ)",
    "src": "LSP (equal-weight bnall listing book SR .18, single-name squeezes), SQZ (blocking the squeeze state = random), LSV (young-coin vol under-estimated)",
-   "status": "todo",
+   "status": "closed",
    "forms": [
     {
      "id": "a",
      "what": "pre-stated: listing_short's raw weights proportional to 1 / (realised vol over the coin's own traded days, min 3 d, floor 100 %/yr), capped at 2x the equal weight; bnall explore 2021-23 vs the equal-weight book and vs 200 placebo weightings (random permutations of the same weights across names each day); PASS = SR > equal weight in every explore year AND >= 95th pct of placebos",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall explore 2021-23, 1095 d: inverse own-days vol weights (floor 100 %, cap 2x, rel q05-q95 in json) SR .24 vs equal .18 (dSR +.06), by year +.23/+.26/-.25, 73rd pct of 200 day-wise permutations (q05..q95 -.18..+.17); worst-10-day mean -4.56 vs -4.67 %: FAIL (2023 and placebo); the squeeze tail is not set by names that were already volatile",
+     "date": "2026-11-28",
+     "evidence": "lsw_a"
     },
     {
      "id": "b",
      "what": "if a passes: L.prereg, ONE run 2024-26 bnall; then the frozen rule on HL listing_short 2023-05..2026-11 (held-out venue)",
-     "status": "planned"
+     "status": "skipped",
+     "result": "a failed: no prereg, confirm unspent",
+     "date": "2026-11-28",
+     "evidence": "lsw_a"
     },
     {
      "id": "c",
      "what": "verdict for LSB2 (Binance listing leg inside main_bn): go with the weighting, or listing shorts stay HL-only",
-     "status": "planned"
+     "status": "done",
+     "result": "LSB2 verdict: listing shorts stay HL-only on main; third failed squeeze control on bnall (SQZ off_low, LSV vol floors, LSW inverse vol): squeezes are not predictable from price state or prior vol",
+     "date": "2026-11-28",
+     "evidence": "lsw_a"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "inverse-vol weighting = permutation of the same weights (73rd pct), 2023 worse; squeeze tail hits names whose prior vol was ordinary; LSB2 stays parked",
+   "closed": "2026-11-28"
   }
  ]
 }

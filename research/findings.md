@@ -840,6 +840,7 @@ LSP precheck (is3_lsp.py): as an equal-weight book (bnall, band .005) SR .18, by
 the BTC hedge leg; worst days are single-name squeezes (MARSCOIN −11 % of equity 2026-09-03); w/o worst 10 days .66. The median event's decay does not survive equal weighting: LSB2 needs a squeeze control.
 SQZ (is3_sqz.py): the squeeze state is 'far above the post-listing low' (top quintile P(7-d loss > 20 %) 17 % vs 7–10 %, every 2021–23 year), but blocking it on the bnall book = random masks
 (dSR +.32 vs random median +.25, 60th pct): no squeeze control yet, LSB2 parked.
+LSW (is3_lsw.py, 11-28): inverse own-days vol weights SR .24 vs .18 but 73rd pct of permuted weights, 2023 −.25; worst days unchanged. 3rd failed squeeze control (SQZ, LSV, LSW): listing shorts stay HL-only.
 
 ### FRG market funding regime vs the carry books' next month (2026-11-27 insilico, research/studies/is3_frg.py, not registered) → OPEN (income forecastable, net not)
 Monthly 2021–26: next-month funding income of carry / carry_trend / main_bn vs this month's market median 7-d funding: Spearman −.48 / −.44 / −.42 (BN carry is paid by crowded shorts in LOW

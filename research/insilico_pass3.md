@@ -139,3 +139,4 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * XST Binance blend's third leg (xsmom vs tsmom): OPEN. Trend (tsmom) would hedge the carry legs' bad days better and earn a little more, with slightly deeper drawdowns; the refit rule decides.
 * FLB plumbing check of an IC oddity: OPEN (verified). The tools pass planted-signal tests; the odd number was a real effect of a few large moves, not a bug.
 * FLQ flow on the 10 most liquid coins: OPEN. Worse than the live 30-coin version (Sharpe 0.67 vs 1.58 in 2021-23); flow@bn stays flagged.
+* LSW Binance listing shorts weighted by inverse volatility: OPEN. A small Sharpe gain (0.24 vs 0.18) that random reweightings match, worse in 2023; the squeeze losses come from names that did not look volatile beforehand. Listing shorts stay on Hyperliquid only.

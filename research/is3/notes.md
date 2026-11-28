@@ -1206,3 +1206,13 @@ Source: BNB c (pool 11-21: xsmom 1.25, tsmom 1.17), TSH (tsmom convex on HL). De
  them: tsmom (directional trend, convex) vs xsmom (market-neutral momentum). Change my mind: n/a (verdict note only).
 XST a/b/c done (is3_xst.py, xst_ab.json): tsmom convex (BTC worst weeks +2.4 %/wk) and hedges carry's worst days; blend with tsmom SR 1.40 / mdd -19.9 vs xsmom 1.28 / -16.7 (2023-26). CLOSED OPEN.
 FLB a/b/c done (flb_ab.json): known-answer tests pass; 2023 3-d IC vs daily lags = rank-of-sum vs sum-of-ranks (fat tail), not a bug. CLOSED OPEN.
+
+## LSW listing shorts weighted by inverse own-days vol (think-through 00:5x UTC 11-28, before any run)
+Source: LSP (bnall equal-weight book SR .18; squeezes like MARSCOIN set the tail), SQZ (blocking the squeeze state = random), LSV (zero-filled vol under-estimates young coins 4x). No chat records.
+Mechanism: equal weights give a 300 %-vol micro-float the same short as a 90 %-vol name; the squeeze tail is a few very volatile names. Inverse-vol puts the risk budget where the decay is
+ steadier. Unstated: (1) the decay may live IN the volatile names (high vol = overhang being sold), then inverse-vol cuts the edge with the tail; (2) vol is only known after 3 own returns:
+ before that the name keeps relative weight 1 (stated choice); (3) the weighting changes the mix, the book-level vol target rescales gross, so the test is SR, not size.
+Placebo: the same relative weights permuted across the day's eligible names (keeps concentration, breaks the vol link). Explore bnall 2021-23; HL is the held-out venue.
+Change my mind: SR above equal weight in 2021, 2022 and 2023 AND >= 95th pct of 200 permutations -> b.
+LSW a done (is3_lsw.py, lsw_a.json): replication of listing_short exact; inverse own-days vol SR .24 vs .18, years +.23/+.26/-.25, 73rd pct of 200 permutations; worst-10 mean -4.56 vs -4.67 %:
+ FAIL. The tail is not in the already-volatile names. b skipped; c: listing shorts stay HL-only (LSB2 parked; 3 squeeze controls failed: SQZ, LSV, LSW). CLOSED OPEN.
