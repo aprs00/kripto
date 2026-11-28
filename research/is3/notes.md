@@ -1715,3 +1715,5 @@ Source: SMXR (today small:main_bn gross x1.36 its sibling), SMD b (full-sample v
  targets sit between half the minimum and the minimum (each is pushed up by up to x2) and removes it below half; on average they cancel, but on a day with a wide, flat target book
  (BN: flow spreads 5 % caps over hundreds of names) the push-ups dominate. Unstated: what a $200 trader fears is not the mean but a stretch of weeks at 1.5x the risk he chose.
  Change my mind: p90 of the 60-d rolling vol ratio > 1.25 on either venue -> a general gross cap; else no change.
+SMV a/b/c (is3_smv.py, smv_ab.json): rounded-$200 vs $1,000 gross p90 .95 HL / 1.01 BN (>1.25 on 1 day each); 60-d vol ratio p90 1.20/1.19 (bar 1.25), yearly peaks HL 2024 1.53, BN 2025 1.31.
+ The tail is concentration (few minimum-sized names), not gross: no cap. CLOSED DEAD (no fault).

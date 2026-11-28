@@ -209,3 +209,5 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
   0–84 % of what their big siblings hold to 62–136 %, nothing breaks a risk cap, switching costs 34 cents in total. Watch: the $200 Binance main twin carries more exposure than its sibling.
 * TLQP holding only the 10 most liquid names in the Hyperliquid main book's trend leg, on top of the slower trading shipped this morning: Sharpe 1.63 vs 1.49 over 2023–26, better in 3 of 4
   years. But it is mostly the same saving as the slower trading (both stop churning thin names), the years were already looked at, and it failed on Binance. Worth one walk-forward, no more.
+* SMV does rounding make the $200 twins riskier than their big siblings over long stretches: no. Over 3.7 years the twins' 60-day volatility is within 20 % of the sibling's on 9 days in 10
+  on both venues, and their total exposure passed 1.25 times the sibling's on one day only. The occasional riskier stretches come from holding few, minimum-sized positions, which a cap would not fix. No change.
