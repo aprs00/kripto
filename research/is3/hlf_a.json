@@ -1,0 +1,200 @@
+{
+ "listing_short_long_BTC": {
+  "2023": {
+   "funding": -0.0254,
+   "price": 0.081
+  },
+  "2024": {
+   "funding": -0.0475,
+   "price": 0.1714
+  },
+  "2025": {
+   "funding": -0.0241,
+   "price": -0.0434
+  },
+  "2026": {
+   "funding": -0.009,
+   "price": -0.0192
+  }
+ },
+ "listing_short_short_BTC": {
+  "2023": {
+   "funding": 0.0002,
+   "price": -0.0088
+  },
+  "2024": {
+   "funding": 0.0,
+   "price": 0.0
+  },
+  "2025": {
+   "funding": 0.0,
+   "price": 0.0
+  },
+  "2026": {
+   "funding": 0.0,
+   "price": 0.0
+  }
+ },
+ "listing_short_short_alts": {
+  "2023": {
+   "funding": -0.041,
+   "price": 0.1054
+  },
+  "2024": {
+   "funding": 0.064,
+   "price": 0.0435
+  },
+  "2025": {
+   "funding": -0.0314,
+   "price": 0.5124
+  },
+  "2026": {
+   "funding": -0.049,
+   "price": 0.3648
+  }
+ },
+ "lowvol_long_BTC": {
+  "2023": {
+   "funding": -0.0164,
+   "price": 0.0804
+  },
+  "2024": {
+   "funding": -0.0417,
+   "price": 0.2046
+  },
+  "2025": {
+   "funding": -0.0217,
+   "price": -0.0066
+  },
+  "2026": {
+   "funding": -0.0071,
+   "price": -0.0706
+  }
+ },
+ "lowvol_long_alts": {
+  "2023": {
+   "funding": 0.0093,
+   "price": 0.1445
+  },
+  "2024": {
+   "funding": -0.041,
+   "price": 0.1685
+  },
+  "2025": {
+   "funding": -0.0135,
+   "price": -0.0073
+  },
+  "2026": {
+   "funding": -0.0168,
+   "price": -0.0801
+  }
+ },
+ "lowvol_short_BTC": {
+  "2023": {
+   "funding": 0.0,
+   "price": 0.0
+  },
+  "2024": {
+   "funding": 0.0,
+   "price": 0.0
+  },
+  "2025": {
+   "funding": 0.0,
+   "price": 0.0005
+  },
+  "2026": {
+   "funding": 0.0,
+   "price": -0.0005
+  }
+ },
+ "lowvol_short_alts": {
+  "2023": {
+   "funding": -0.0226,
+   "price": -0.1625
+  },
+  "2024": {
+   "funding": 0.0637,
+   "price": -0.3258
+  },
+  "2025": {
+   "funding": 0.0083,
+   "price": 0.2766
+  },
+  "2026": {
+   "funding": -0.0146,
+   "price": 0.1433
+  }
+ },
+ "tsmom_long_BTC": {
+  "2023": {
+   "funding": -0.0029,
+   "price": 0.016
+  },
+  "2024": {
+   "funding": -0.0065,
+   "price": 0.0299
+  },
+  "2025": {
+   "funding": -0.0026,
+   "price": 0.0027
+  },
+  "2026": {
+   "funding": -0.0009,
+   "price": 0.0025
+  }
+ },
+ "tsmom_long_alts": {
+  "2023": {
+   "funding": -0.0214,
+   "price": 0.1124
+  },
+  "2024": {
+   "funding": -0.0488,
+   "price": 0.1311
+  },
+  "2025": {
+   "funding": -0.0146,
+   "price": -0.0392
+  },
+  "2026": {
+   "funding": -0.0171,
+   "price": 0.1672
+  }
+ },
+ "tsmom_short_BTC": {
+  "2023": {
+   "funding": -0.0003,
+   "price": -0.0049
+  },
+  "2024": {
+   "funding": 0.0006,
+   "price": -0.009
+  },
+  "2025": {
+   "funding": 0.0013,
+   "price": -0.012
+  },
+  "2026": {
+   "funding": 0.001,
+   "price": 0.0297
+  }
+ },
+ "tsmom_short_alts": {
+  "2023": {
+   "funding": -0.0359,
+   "price": 0.1452
+  },
+  "2024": {
+   "funding": 0.0106,
+   "price": -0.0544
+  },
+  "2025": {
+   "funding": 0.0047,
+   "price": 0.0614
+  },
+  "2026": {
+   "funding": 0.0018,
+   "price": 0.0817
+  }
+ }
+}

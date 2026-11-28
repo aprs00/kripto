@@ -1321,3 +1321,9 @@ Source: PRX, TSN. tsmom weight = tanh trend / ann_vol, normalised to gross 1 ove
  is a property of the coin set (lasting while HL lists thin coins), else a panel accident. a is descriptive; b uses HL listing dates on bnall.
 HTN a/c done (is3_htn.py, htn_a.json): tsmom turnover HL 105x = bnall 100x; cost per unit HL 22/11/8/10 bp vs BN 6 bp. PRL's gain = cost-per-turnover effect (explains PRX). CLOSED OPEN.
 HTN d (htn_d.json, after close): at the fills-fitted cost (slip x .5, L3S) slow33 >= lam1 every year 1.09/1.06/2.41/1.81 vs 1.09/.85/2.23/1.56: PRL's gain survives realistic costs.
+
+## HLF HL main book funding drag (think-through 02:4x UTC 11-28, before any run)
+Source: PRB/PRL summaries (book funding -5..-16 %/yr), HBL a. HL funding is mostly positive (longs pay) in up markets: every long leg pays (BTC hedge, tsmom longs, lowvol longs), shorts
+ receive except crowded-short listings. Unstated: the BTC hedge pays funding for no alpha (pure risk control): a cheaper hedge instrument would be a free saving if it tracks.
+ a = per-leg table (longs vs shorts), price P&L next to it.
+HLF a done (is3_hlf.py, hlf_a.json): BTC hedge longs pay 1.6-8.9 %/yr funding (largest steady payer), listing alt shorts pay 3-5 % in 3 of 4 years. b (cheaper hedge: ETH / top-5 basket) next session.

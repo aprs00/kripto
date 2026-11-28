@@ -4905,8 +4905,11 @@
     {
      "id": "d",
      "what": "PRL at the fills-fitted cost level (L3S: model slippage ~2x live): HL slip x .5 (fees unchanged), lam1 vs slow33 2023-26 by year",
-     "status": "planned",
-     "added": "2026-11-28"
+     "status": "done",
+     "added": "2026-11-28",
+     "result": "HL slip x .5 (L3S fills-fitted): slow33 1.09/1.06/2.41/1.81 vs lam1 1.09/.85/2.23/1.56 (2023-26): gain survives realistic costs",
+     "date": "2026-11-28",
+     "evidence": "htn_d"
     }
    ],
    "sessions": 1,
@@ -4920,13 +4923,16 @@
    "group": "T",
    "title": "HL main book's funding drag (-5..-16 %/yr in the backtest, as large as its trading costs): which leg pays it, and is there a cheaper hedge than long BTC?",
    "src": "PRB/PRL summaries (funding_ann -15.8/-4.7/-9.3/-11.1 % 2023-26), HBL a (BTC leg funding -4/-7/-4/-1 %, alt funding -6/+10/-5/-7 %), TFF (trend longs pay but earn more)",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T00:00",
    "forms": [
     {
      "id": "a",
      "what": "descriptive HL 1d 2023-26: funding paid by leg (listing alt shorts, listing BTC hedge, lowvol longs/shorts, tsmom longs/shorts) per year, via is3_prl.legs contributions x funding; vs each leg's pre-cost price P&L",
-     "status": "planned"
+     "status": "done",
+     "result": "HL 2023/24/25/26 funding %/yr by leg (price P&L in brackets in json): BTC longs (listing + lowvol hedges) -4.2/-8.9/-4.6/-1.6; listing alt shorts -4.1/+6.4/-3.1/-4.9 (crowded shorts pay); tsmom alt longs -2.1/-4.9/-1.5/-1.7, alt shorts -3.6/+1.1/+.5/+.2; lowvol alt longs +.9/-4.1/-1.4/-1.7, alt shorts -2.3/+6.4/+.8/-1.5. The BTC hedge is the single biggest steady payer (no alpha): b next",
+     "date": "2026-11-28",
+     "evidence": "hlf_a"
     },
     {
      "id": "b",
@@ -4938,7 +4944,8 @@
      "what": "if b finds a hedge with funding saving > its extra tracking cost in both explore years: L.prereg and ONE run 2025-26; else close with the per-leg funding table as the deliverable",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }
