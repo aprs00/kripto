@@ -814,7 +814,7 @@ flow/carry/carry_trend/xsmom hold ≤ 0.2 % of gross in coins without a 20-d bet
 ### PRB/PRL partial rebalancing of the HL main book (2026-11-28 insilico, research/studies/is3_prb*.py, is3_prl*.py, prereg PRB_b, PRL_c, not a WF) → OPEN (promising; backlog PRB2)
 Trade lam .33 of the gap to target. Whole book: held-out HL 2025–26 1.94 vs 1.86. Slow legs only (tsmom, lowvol; listing_short in full; tsmom = over half the costs, turnover 35–64x):
 explore .95/1.01 vs .87/.75, **held-out 2.10 vs 1.86, costs 7.0 → 4.0 %/yr, pre-cost 2.24 vs 2.11**; band .01 ≥ full 3/4 years, 2× cost better every year, causal (truncation test 0).
-Fails at $200 (band .05, 2026 .14 vs 1.28) and on fast BN books (bnall blend_bn 2.10 → 1.84, flow 1.60 → 1.34): a $1,000 HL cost lever, needs forward evidence.
+Caveat: 2025–26 was opened twice (PRB b whole-book, then PRL c slow legs): PRL's held-out is a second look, so forward days are the real test. Fails at $200 (band .05, 2026 .14 vs 1.28) and on fast BN books (bnall blend_bn 2.10 → 1.84, flow 1.60 → 1.34): a $1,000 HL cost lever, needs forward evidence.
 TSB (is3_tsb.py): a per-coin band .02 on the slow legs instead of lam: explore 1.00/.92 vs .95/1.01 (fails 2024) but 11 % vs 56 % of trades < $10 at $1,000: PRB2's fallback.
 PRN (is3_prn.py): BN blend's fastest leg (carry_trend, 61x) at lam .33: 2.09 vs 2.10, worse 2021/2023 (cost saving = signal loss): PRL is HL-specific.
 
