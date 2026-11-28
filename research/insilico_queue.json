@@ -4389,7 +4389,7 @@
    "group": "T",
    "title": "HL listing_short: P&L of the shorts vs the BTC hedge leg by year, and the young-coin beta (assumed 1 below 20 d)",
    "src": "LSP (bnall: 2023-24 profit was the BTC leg), BNH/HLI (listing_short = the HL main book's edge), beta_to min_periods 20 d",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
@@ -4411,10 +4411,16 @@
     {
      "id": "c",
      "what": "if b shows |pooled beta - 1| >= .3: hedge young coins with the explore-pooled beta (frozen) vs beta 1 on HL 2025-26 held out: corr BTC, SR, worst days",
-     "status": "planned"
+     "status": "done",
+     "result": "PRE-REGISTERED ONE run HL 2025-26: young beta 1.35 vs 1.0: listing_short SR 1.71 vs 1.77, corr BTC +.01 vs -.04; blend 1.79 vs 1.86, corr -.07 vs -.09; worst-10 -4.5 vs -4.6 %; BTC<-5 % day mean +0.9 vs +1.1 %: PASS (clauses met, small): beta 1 under-hedges young coins, the lost .06 SR is net-short beta that paid as BTC fell",
+     "date": "2026-11-28",
+     "evidence": "hbl_c"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "HL listing_short is a hedged spread (corr BTC ~0; the leg split misleads, incl. LSP's 'BTC leg made 2023-24'); young coins' beta is 1.3-1.46 on both venues, so beta 1 leaves ~.35 net short; the 1.35 hedge is cleaner at -.06 SR held-out: risk fix for a research session (backlog HBL2)",
+   "closed": "2026-11-28"
   }
  ]
 }

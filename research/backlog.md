@@ -19,6 +19,9 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 - [ ] PRB2 (insilico PRB 2026-11-28, research session, prior medium) **HL main book trades a third of the gap to target (lam .33)**: pre-registered held-out HL 2025-26 net SR 1.94 vs 1.86,
   costs 7.0 -> 3.4 %/yr (research/is3/prb_*.json); at band .01 better 2024-26, worse 2023; hurts the $200 twin (band .05) and the fast BN books. Do: paper engine option `partial_lam` per book
   (target' = held + lam*(target - held), before the min-order filter), a shadow variant `shadow:blend_nested~lam33` at $1,000 only, judged on forward days vs shadow:blend_nested.
+- [ ] HBL2 (insilico HBL 2026-11-28, research session, risk fix) **listing_short: coins without a 20-d beta hedged at 1.35, not 1.0**: pooled young-coin beta 1.37/1.46 (HL 2023-24, age 2-7/8-20 d),
+  1.34/1.26 (bnall 2021-23), down-beta 1.5-1.6; pre-registered HL 2025-26: corr BTC closer to 0 (listing_short -.04 -> +.01) for -.06 SR (research/is3/hbl_*.json). Decide as a risk choice
+  (design.md: beta-neutral claim), code in strategies.beta_to fill / hedge_beta, pytest + trader run.
 - [ ] LSB2 (insilico LSB 2026-11-27, research session, prior medium) **listing_short on Binance inside main_bn** (PRECHECK LSP 11-27 NEGATIVE: equal-weight book SR .18, 2025 −.40, 2026 −.33, 2023–24 profit = BTC hedge leg; w/o worst 10 days .66: needs a squeeze control before any WF; SQZ 11-27: 'far above post-listing low' has a 2x tail but blocking it = random masks) while HL's listing flow is dry (HL ~1/month in 2026, BN ~5.7).
   bnall events (≥ $1M 7-d volume, d2→d61 short-vs-BTC incl. funding): median +22…+41 % every year 2020–26, win 69–85 %, mean set by squeezes (2021 −79 %; 2025 +4, 2026 +9 %).
   Pre-register ONE config (listing_short defaults, band .005) on bnall; re-check the 11-09 finding that the bnall WF was BTC-leg P&L (corr BTC .63); stress the worst 10 events. research/is3/lsb_ab.json.

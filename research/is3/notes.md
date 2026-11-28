@@ -1235,3 +1235,5 @@ Unstated: (1) new listings may have beta > 1 (thin, retail) -> hedge too small -
  BTC leg is over-sized and long the market; (2) the leg split must include funding per leg (HL shorts in new listings often RECEIVE funding). Change my mind: BTC leg >= half the net in
  any year -> say in findings/STATUS that the HL edge is partly beta; pooled young beta outside 1 +/- .3 -> c.
 HBL a/b done (is3_hbl.py, hbl_a/b.json): leg split exact; corr BTC ~0, 2024 profit = alts lagging a BTC rally. Young-coin beta 1.3-1.46 both venues (down 1.5-1.6). PRE-STATED (c): young beta 1.35 frozen, ONE run HL 2025-26, PASS = |corr| not larger AND SR >= beta-1 SR - .10, both books.
+HBL c PASS (hbl_c.json): young beta 1.35, HL 2025-26: listing_short 1.71 vs 1.77 SR, corr +.01 vs -.04; blend 1.79 vs 1.86, corr -.07 vs -.09. Small; the beta-1 SR edge = net-short beta in a falling
+ BTC year. CLOSED OPEN -> backlog HBL2 (apply as a risk fix in a research session, not as an SR gain). Note: LSP's 'BTC leg made 2023-24' is a leg-accounting artifact of a hedged spread.
