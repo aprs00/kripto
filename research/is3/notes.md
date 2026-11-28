@@ -1281,3 +1281,8 @@ Source: owner 11-10 ($200 twins), PRB/PRL d. At $200 the $10 minimum order = ban
  old low-vol picks). Leg contributions = the book's own (is3_prl.legs), each run alone at band .05 (ignores netting, stated). Change my mind: a leg <= 0 net at .05 in 2023 and 2024 -> b.
 SML a done (sml_a.json): at band .05 98-100 % of leg changes are skipped (frozen legs, lottery-like years: listing 2025 .02 vs 2.17); lowvol <= 0 in 2023/24 -> b: blend(listing_short, tsmom) at .05.
 SML b FAIL (sml_b.json): 2-leg 1.83/1.10 vs 3-leg 1.91/1.00 at .05. CLOSED OPEN: $200 = frozen legs, path lottery; live small: twin is the only evidence.
+
+## PRD dose-response of PRL (think-through 01:4x UTC 11-28, before any run)
+Source: PRL. lam .33 came from a 3-point grid; a real noise-filter effect should be a plateau (any lam .25-.5 helps; very small lam starts to lose signal); a knife-edge means luck.
+ Descriptive only: no new choice; the held-out years are shown but were already seen (PRB b, PRL c). Change my mind: every lam in [.25,.5] >= lam 1 in all four years -> robust.
+PRD a/b/c done (is3_prd.py, prd_ab.json): lam .15-.75 all >= lam1 in 2023-26 (plateau); tsmom-only = cost, lowvol-only = pre-cost gain; both best. CLOSED OPEN; PRB2 lam .33 both legs.

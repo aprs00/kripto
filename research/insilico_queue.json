@@ -4662,25 +4662,38 @@
    "group": "T",
    "title": "Dose-response of PRL: lam grid and leg choice for the HL main book's slow-leg partial rebalancing (is .33 a knife-edge?)",
    "src": "PRL (lam .33 frozen from PRB a's 3-value grid; held-out opened twice)",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
      "id": "a",
      "what": "descriptive, no choice change: slow legs lam in {1,.75,.5,.33,.25,.15,.1}, HL explore 2023-24 AND 2025-26 shown separately: net SR, costs, pre-cost SR; PASS(robust) = every lam in [.25,.5] >= lam 1 in all four years",
-     "status": "planned"
+     "status": "done",
+     "result": "slow-leg lam grid, net SR 2023/24/25/26: lam1 .87/.75/2.19/1.50; .75 1.00/.83/2.22/1.60; .5 .99/.88/2.29/1.72; .33 .94/1.01/2.37/1.79; .25 .94/1.06/2.43/1.66; .15 .95/1.00/2.57/1.65; .1 .87/1.11/2.59/1.43: every lam .15-.75 >= lam1 in all 4 years: ROBUST plateau (2025-26 already seen: descriptive)",
+     "date": "2026-11-28",
+     "evidence": "prd_ab"
     },
     {
      "id": "b",
      "what": "which leg carries it: lam .33 on tsmom only, on lowvol only, on both; all four years",
-     "status": "planned"
+     "status": "done",
+     "result": "lam .33 on tsmom only .86/.85/2.39/1.53 (costs down, signal flat), lowvol only 1.01/.91/2.20/1.65 (pre-cost up 1.44 -> 1.56 in 2023), both .94/1.01/2.37/1.79: both legs contribute, both together best pooled",
+     "date": "2026-11-28",
+     "evidence": "prd_ab"
     },
     {
      "id": "c",
      "what": "verdict for PRB2: the lam to build (stays .33 unless a shows a cliff next to it) and the leg set",
-     "status": "planned"
+     "status": "done",
+     "result": "PRB2: build lam .33 on both slow legs (plateau .15-.75, no cliff); listing_short in full",
+     "date": "2026-11-28",
+     "evidence": "prd_ab"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "PRL's gain is a plateau over lam .15-.75 in all four HL years, carried by both slow legs: not a knife-edge; PRB2 = lam .33 on tsmom + lowvol",
+   "closed": "2026-11-28"
   },
   {
    "id": "TSN",
