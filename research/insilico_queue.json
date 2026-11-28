@@ -5445,12 +5445,18 @@
     {
      "id": "a",
      "what": "descriptive: pool strategies' expanding daily P&L corr matrix at the last HL refit and at 3 bnall refits; which choices the cap would change",
-     "status": "planned"
+     "status": "done",
+     "result": "HL expanding daily-P&L corr at the 2026-11-03 refit: listing_short-lowvol .41 (just over the cap), ls-tsmom .06, lowvol-tsmom -.10, tsmom-xsmom_k .27; the cap changed 12 of 39 HL refits, in 2026 it swaps lowvol for resrev / xsmom / xsmom_k or holds 2 legs (03-08). My selection loop reproduces nested_selection's choices exactly (8/8 checked). Fragility: the binding corr sits at .39-.41, so choices flip on noise.",
+     "date": "2026-11-28",
+     "evidence": "npc_hl"
     },
     {
      "id": "b",
      "what": "prereg NPC_cap04 then ONE run each venue: OOS net SR by year, standard nested vs capped (hold fewer if fewer pass); HL 2024-26",
-     "status": "planned"
+     "status": "done",
+     "result": "prereg NPC_cap04, HL OOS (one run): standard 2024/25/26 .36/1.92/1.45, pooled 1.21; capped .59/1.72/1.65, pooled 1.27 (band .005, same book code for both). HL clause met (pooled >=, 2/3 years). bnall clause running (unit is3-npc).",
+     "date": "2026-11-28",
+     "evidence": "npc_hl"
     },
     {
      "id": "c",

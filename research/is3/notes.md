@@ -1423,3 +1423,4 @@ ERC b/c (erc_b.json): ERC explore 1.13/.48 vs .87/.75: FAIL; flat-leg bug in run
 Source: ERC (risk concentrated, reweighting fails), LVQ. H4 picks the top 3 by Sharpe; when two winners share a factor the book is a two-bet book. A cap makes the third slot go to the
  best different bet. Unstated: a lower-Sharpe uncorrelated leg can still dilute (if its Sharpe is ~0 the book loses); correlations on daily P&L understate tail co-movement (squeezes hit
  both short-alt legs on the same days). Prereg NPC_cap04 (0.4 stated before any run, greedy, hold fewer). Venues: HL (OOS 2024-26) + cached bnall 2021-26 (window-safe).
+NPC a/b (is3_npc.py, npc_hl.json): HL capped 1.27 vs 1.21 pooled (2/3 years); binding corr ls-lowvol .41 = right at the cap (fragile). bnall in unit is3-npc -> data/is3/npc_bnall.log.
