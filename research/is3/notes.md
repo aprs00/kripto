@@ -1365,3 +1365,12 @@ LVS a done (is3_lvs.py, lvs_a.json): each side is a market bet (corr to BTC +.73
  1-8 %; leg net -1/0/+22/-7. 2025's whole return = the high-vol short side (+28 %). So: a small positive spread most years, one big year from high-vol alts collapsing.
 LVS b done (lvs_b.json): short candidates by trailing-30-d quintile (2023-24): mean fwd +3/+9/+15/+12/+8 %, medians all -1..-5 %: no dose, inverted-U; already-falling names keep falling. The leg's
  losses are right-tail squeezes spread over every state (21-30 % of candidates +20 % in 30 d): no crowding filter here.
+
+## HSQ SQZ's squeeze state on HL listing shorts (think-through 02:5x UTC 11-28, before any run)
+Source: SQZ (bnall 2021-23: top off_low quintile P(7-d short loss > 20 %) 17 % vs 7-10 %, every year; blocking it = random), HLE (HL edge = new float). Mechanism: a coin far above its
+ post-listing low has trapped shorts (who sold the decay story) and momentum longs; the squeeze is the forced cover. Unstated: on HL the shorts are retail-sized and HL has no spot
+ market to borrow-and-sell into, so squeezes may be sharper; but HL lists after Binance often, when the post-listing low is already old. Frozen edges from bnall 2021-23 (verified
+ from the cached panel), no refit on HL. Replicates if top quintile P(loss > 20 %) >= 1.5x the bottom-3 pooled and in >= 2 of 3 full years. Description only (SQZ F0 failed as a filter).
+HSQ a/b done (is3_hsq.py, hsq_ab.json): SQZ replicates on HL (frozen edges): far-above-low top quintile P(7-d short loss > 20 %) 14.3 vs 9.3 % bottom 3 (2023/25/26 yes, 2024 no: q1 19 %).
+ Same quintile has the HIGHEST median short return (+8 %): the squeeze tail rides on the strongest decay, so blocking it throws the edge away (consistent with SQZ F0). By group: risk ratio
+ highest in established coins (14 vs 3-6 %), fresh 17 vs 10-12 %.

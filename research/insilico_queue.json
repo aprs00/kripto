@@ -5157,25 +5157,32 @@
    "group": "T",
    "title": "SQZ's squeeze state on HL listing events (descriptive replication on the live venue): does 'far above the post-listing low' predict 7-d short losses on HL?",
    "src": "SQZ (bnall: top quintile of off_low P(7-d loss > 20 %) 17 % vs 7-10 %, but blocking = random), HLE (HL edge = new float)",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T00:00",
    "forms": [
     {
      "id": "a",
      "what": "HL listing_short held coin-days 2023-26: off_low (close / post-listing low - 1) quintiles (bnall explore edges, frozen: 0.433 = 80th pct) -> P(next-7-d short loss > 20 %) and mean, by year",
-     "status": "planned"
+     "status": "done",
+     "result": "HL listing_short held coin-days 2023-26 (n 8011, 128-171 coins/quintile), frozen bnall edges verified (.014/.085/.2/.433): P(7-d short loss > 20 %) q1..q5 11.5/7.4/8.3/9.2/14.3 %; top vs bottom-3 14.3 vs 9.3 % (1.54x, coin-subsample p .002). By year q5 vs others: 2023 18.5 vs 3-10, 2024 11.4 vs q1 19.4 (fails), 2025 15.0 vs 7-11, 2026 17.2 vs 4-10. Pre-stated rule (>= 1.5x, >= 2 of 3 full years) MET: replicates. But q5 mean +2.5 %, MEDIAN highest (+8.1 %): fat left tail on top of the strongest decay = why blocking fails. U-shape: q1 (at the low) 11.5 %.",
+     "date": "2026-11-28",
+     "evidence": "hsq_ab"
     },
     {
      "id": "b",
      "what": "same split by HLE group (fresh / new to BN / established): is the squeeze state concentrated in fresh tokens?",
-     "status": "planned"
+     "status": "done",
+     "result": "by HLE group, P(loss>20 %) q5 vs q1-3: fresh 16.9 vs 10-12 % (q5 share of days 27 %), BN >= 60 d 14.0 vs 3-6 %, BN < 60 d 6.0 vs 6-15 % (no). The squeeze state is a bit more common in fresh tokens but its relative risk is highest in established coins (which have no decay edge: HLE); q5 medians stay positive in every group (+3.5/+12/+8.8 %).",
+     "date": "2026-11-28",
+     "evidence": "hsq_ab"
     },
     {
      "id": "c",
      "what": "verdict: replicates as a description or not; no filter (SQZ's F0 failed); note for the HL listing leg's risk",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }
