@@ -4742,6 +4742,32 @@
    "verdict": "OPEN",
    "reason": "HL tsmom's turnover is its own signal drift (monthly hold -73 %), not vol rescaling or universe churn; smoothing it does not cost SR on today's data (T1c's loss came from the 11-09 panel: relabelled OPEN); the monthly-signal book fails 2024: PRL's lam .33 remains the form",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "CPB",
+   "prio": 1.1,
+   "group": "T",
+   "title": "Fast Binance books (flow@bn, blend carry/carry_trend/xsmom): a per-coin no-trade band .02 keeps big signal changes immediate where partial rebalancing failed",
+   "src": "PRB c / PRN (lam hurts fast books: delays real signal), TSB (band form on HL), flow costs 7-13 %/yr at 120-206x turnover",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "pre-stated: target per coin updated only when |target - held| > 0.02 (then fully), bt band .005 after; cached bnall explore 2021-23 for flow (lb3 cap .05) and blend_bn; PASS = net SR >= base in 2021, 2022, 2023 for that book",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "for each book that passes: L.prereg, ONE run 2024-01..2026-11 (cache ends 11-21) vs base",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "executability at $1,000 on Binance ($5 min, BTC $50/ETH $20): share of trades below the minimum, base vs band; verdict for main_bn",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
