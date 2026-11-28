@@ -6233,6 +6233,60 @@
    "verdict": "OPEN",
    "reason": "main_bn -9.1 % in 19 live days: price-driven (fees -$0.9, funding +$4.1), both halves down, the flow half's own replay lost more than live; at the 2-3rd percentile of the mix's backtest 19-day windows. Not an implementation fault; watch with the forward ledger. Tool gap: live_vs_backtest cannot replay main books (backlog).",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "LVB",
+   "prio": 2.4,
+   "group": "T",
+   "title": "live_vs_backtest for the MAIN books (main, main_bn): replay scale x sum(alloc x entry target) through apply_risk at $1,000; is main_bn's -9 % the mix or the plumbing?",
+   "src": "MBL (main_bn -9.1 %/19 d, legs checked one by one), backlog LVB",
+   "status": "todo",
+   "due": "2026-11-28T13:00",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "build scripts.live_vs_backtest --main: main-book replay = apply_risk(main_scale x sum alloc_i x ffilled entry targets), band = min order / book equity, same day alignment as the shadow path; known answer: a one-entry alloc-1 scale-1 'main' replay equals that entry's shadow replay to 1e-12 (test), and the shadow table is unchanged",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "run it for main, main_bn (and small: twins) --since each book's first rebalance and --since 2026-11-18 (point-in-time universe era): corr, te, ret gap, cost/fund gaps; main_bn's ladder sleeve P&L separated (sleeve fills from the fills table) so the gap is not blamed on the mix",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict by the MBL rule stated in advance: replay corr < .7 or live < replay by > 3 % over the period (sleeve excluded) -> a fault to chase this session; else main books track their mix; add the --main run to the Sunday retro line in prompts/research.md",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "T9P",
+   "prio": 2.5,
+   "group": "T",
+   "title": "Plain maker at the touch for flow@bn on LIVE November orders (T9G precheck after T9C: depth adds nothing, only the fee saving might): fill share, selection, net vs taker",
+   "src": "T9C/T9K/T9L, backlog T9G",
+   "status": "todo",
+   "due": "2026-11-28T13:00",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "replay shadow:flow@bn's live fills as post-only at the decision mid (k = 0) with trade-through q 0/3/5 bp on live bars (finest live bars on disk; the bar containing the order excluded): fill share by notional, by side, by day; filled vs unfilled 24-h signed move",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "net per unit vs the live taker fill: maker saving (5 - 2 bp fee + live slip) on fills minus the unfilled residue's cost (taker at 24 h, at the 24-h price) and minus the selection on fills; and the 'carry residue' variant (unfilled waits for the next day's order); compare with the backtest's T9F k0 numbers for Nov 2026 only",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict stated now: live net saving >= +2 bp per traded unit at q3 AND fill share >= 85 % -> T9G build gets a frozen spec (k 0, q3, carry residue) and moves up the backlog; else T9G stays LOW (the fee saving is eaten by selection live too)",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
