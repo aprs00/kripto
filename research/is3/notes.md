@@ -1225,3 +1225,5 @@ Source: mandate (costs bind on HL), T1c (EMA of the tsmom signal: DEAD). Mechani
  (3) a smaller turnover lowers the realised exposure a bit: compare net SR, not return. Explore HL 2023-03..2024-12; 2025-26 held out. Live book = blend(listing_short, lowvol, tsmom).
 Change my mind: a lam<1 with net SR >= lam=1 in 2023 AND 2024 -> b.
 PRB a done (is3_prb.py, prb_a.json): lam .33 net SR .87/.93 vs .87/.75 (2023/24), costs 11.1 -> 5.7 %/yr, pre-cost SR 1.21 -> 1.11. PRE-STATED (b): lam .33, ONE run HL 2025-26; PASS = net SR >= lam 1 pooled AND 2025.
+PRB b PASS (prb_b.json): HL 2025-26 lam .33 net 1.94 vs 1.86, costs 7.0 -> 3.4 %/yr. c (prb_c/prb_d.json): bnall fast books lose (blend_bn 2.10 -> 1.84, flow 1.60 -> 1.34); HL band .01: better 2024-26,
+ worse 2023; band .05 ($200) worse every year. Mechanism holds: pays only where alpha decays slower than target noise (HL legs) and the band is small. CLOSED OPEN -> backlog PRB2 (shadow variant).

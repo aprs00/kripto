@@ -4350,7 +4350,7 @@
    "group": "T",
    "title": "HL main book (blend_nested hl) trades a fraction of the gap to target each day (aim-portfolio partial rebalancing) instead of the full gap",
    "src": "mandate: costs are the binding constraint on HL; T1c (EMA of the tsmom SIGNAL, DEAD) is the nearest dead idea: new angle = book level, incl. listing_short entries, judged net of costs",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
@@ -4364,15 +4364,24 @@
     {
      "id": "b",
      "what": "if a picks lam<1: L.prereg, ONE run of the frozen lam on HL 2025-01..2026-11 vs lam=1 (net SR, cost saved, worst 10 days)",
-     "status": "planned"
+     "status": "done",
+     "result": "PRE-REGISTERED, ONE run HL 2025-01..2026-11 band .005: lam .33 net SR 2.22/1.61 vs 2.19/1.50 (pooled 1.94 vs 1.86), costs 7.0 -> 3.4 %/yr, pre-cost SR 2.11 -> 2.06, mdd -17.7 vs -17.9 %: PASS",
+     "date": "2026-11-28",
+     "evidence": "prb_b"
     },
     {
      "id": "c",
      "what": "the frozen lam on blend_nested@bn bnall (held-out venue, cached panel or outside 01:15-03:30) 2021-23 and the $200 twin's executability (fraction of trades below the $10/$5 min order)",
-     "status": "planned"
+     "status": "done",
+     "result": "held-out venue bnall 2021-23: lam .33 HURTS fast books (blend carry/carry_trend/xsmom 2.10 -> 1.84, flow 1.60 -> 1.34). HL stress (prb_d.json) band .01: 2023 .69 vs .86, 2024-26 better (.85/2.19/1.73 vs .68/2.11/1.56); band .05 ($200): worse every year. 62 % of lam .33 trades < $10 at $1,000. Book-specific and $1,000-only",
+     "date": "2026-11-28",
+     "evidence": "prb_c"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "partial rebalancing (lam .33) halves the HL main book's costs and beat lam 1 on pre-registered 2025-26 (1.94 vs 1.86) and at band .01 in 3/4 years; it hurts fast Binance books and the $200 twin: candidate shadow variant of the HL main book only (backlog PRB2)",
+   "closed": "2026-11-28"
   },
   {
    "id": "HBL",

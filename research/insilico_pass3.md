@@ -140,3 +140,4 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * FLB plumbing check of an IC oddity: OPEN (verified). The tools pass planted-signal tests; the odd number was a real effect of a few large moves, not a bug.
 * FLQ flow on the 10 most liquid coins: OPEN. Worse than the live 30-coin version (Sharpe 0.67 vs 1.58 in 2021-23); flow@bn stays flagged.
 * LSW Binance listing shorts weighted by inverse volatility: OPEN. A small Sharpe gain (0.24 vs 0.18) that random reweightings match, worse in 2023; the squeeze losses come from names that did not look volatile beforehand. Listing shorts stay on Hyperliquid only.
+* PRB partial rebalancing of the Hyperliquid main book (trade a third of the gap to target each day): OPEN, promising. It halves trading costs and beat full rebalancing on unseen 2025-26 data (Sharpe 1.94 vs 1.86), but only for this slow book at $1,000; it hurts the fast Binance books and the $200 account.
