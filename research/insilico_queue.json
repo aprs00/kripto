@@ -1312,7 +1312,7 @@
     },
     {
      "id": "e",
-     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is \u22123..\u221221% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
+     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
      "status": "done",
      "added": "2026-11-22",
      "result": "his literal picture (every live adaptive bucket -3..-21% of its volume, day <= -7%), long 3 d: n 55, +105 bp vs matched +256 (diff -151, p .50, MDE 494), 2022 -470; 2-way table fall x selling: U-shape (no selling +989 and extreme selling <= -20% +711 on 16-18 events at <= -8%; his -3..-21% range -30..+278), no monotone dose in either direction. DEAD form",
@@ -1526,7 +1526,7 @@
    "prio": 23,
    "group": "C",
    "title": "Filter harness: does a signal improve a book that already works?",
-   "src": "design.md \u00a74 (filters)",
+   "src": "design.md §4 (filters)",
    "status": "closed",
    "forms": [
     {
@@ -3514,9 +3514,9 @@
     },
     {
      "id": "b",
-     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md \u00a74 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
+     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md §4 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
      "status": "done",
-     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design \u00a74 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
+     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design §4 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
      "date": "2026-11-27",
      "evidence": "ksw_ab"
     },
@@ -3789,16 +3789,16 @@
     },
     {
      "id": "c",
-     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the \u00a74 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
+     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the §4 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
      "status": "done",
-     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design \u00a74 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
+     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design §4 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
      "date": "2026-11-27",
      "evidence": "fld_ab"
     }
    ],
    "sessions": 1,
    "verdict": "OPEN",
-   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the \u00a74 live check; not DEAD (one formulation, IC MDE not met in single years)",
+   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the §4 live check; not DEAD (one formulation, IC MDE not met in single years)",
    "closed": "2026-11-27"
   },
   {
@@ -3902,9 +3902,9 @@
     },
     {
      "id": "c",
-     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the \u00a74 live-check flag",
+     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the §4 live-check flag",
      "status": "done",
-     "result": "verdict: no liquid-only variant; flow@bn keeps the FLD flag (signal ~0 since 2022, recent return = funding) for the design \u00a74 live check",
+     "result": "verdict: no liquid-only variant; flow@bn keeps the FLD flag (signal ~0 since 2022, recent return = funding) for the design §4 live check",
      "date": "2026-11-27",
      "evidence": "flq_a"
     }
@@ -7612,24 +7612,32 @@
    "group": "T",
    "title": "L1 lead-lag (DEAD as a strategy at taker costs) as EXECUTION TIMING for the HL main book's daily trades: trade now or wait 1 h by the Binance-HL lag of the last hour",
    "src": "findings L1 (IC +.031 t 7.9 'HL lagged Binance'), A1 audit",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T17:20",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "HL main shipped blend daily trades (1d backtest target changes, |dw| > band) on coins with BN 1h + HL 1h bars: s = trade sign, L = s x (BN ret - HL ret) over the hour before the decision; outcome = s x HL ret over the next hour (cost of waiting); dose-response by L tercile, first half of the hourly sample",
-     "status": "planned"
+     "status": "done",
+     "result": "explore 2026-04-15..07-22, 47 coins, 696 HL main trades on 100 days: next-hour HL move in the trade direction = waiting COSTS 3.7 bp/unit on average; by L tercile (lo/mid/hi) wait gain -.2/-4.9/-5.6 bp: monotone, but the lag only says when waiting is free, never when it pays. Hand check UNI 07-12 exact",
+     "date": "2026-11-28",
+     "evidence": "l1t_abc"
     },
     {
      "id": "b",
      "what": "rule fixed before b: wait 1 h when L < 0 (HL predicted to move against... toward our price), else trade now; saving in bp per unit traded vs always-now, vs a placebo that delays the same share at random; day-clustered t",
-     "status": "planned"
+     "status": "done",
+     "result": "rule wait if L < 0 (47 % of units): saving -.02 bp/unit vs always-now (day t -.19); random-delay placebo -2.0 bp (p95 1.0), p .12: it only avoids the cost of waiting better than chance. No saving vs today's practice",
+     "date": "2026-11-28",
+     "evidence": "l1t_abc"
     },
     {
      "id": "c",
      "what": "second half of the hourly sample (held out): same rule once; annual %/yr at the book's turnover; verdict",
-     "status": "planned"
+     "status": "skipped",
+     "result": "explore failed the written bar (saving < 1 bp/unit); held-out 07-23..10-31 left unopened",
+     "date": "2026-11-28"
     }
    ]
   }

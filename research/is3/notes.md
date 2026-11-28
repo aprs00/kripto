@@ -1775,3 +1775,12 @@ L6M a/b/c (is3_l6m.py, l6m_hl.json, l6m_bn.json): ewm20 vs cc60: main_bn better 
  Clause 'both books' fails -> CLOSED DEAD as an all-books design change. Side note: HL main realised vol 28 % vs 25 % target over 2023-26 (cc60): main_scale (AL2b) is the live fix.
 FJP a/b/c/d (is3_fjp.py, fjp_abc.json): MDE at 180 d = 4.1-4.9x each arm's gap (FLX2 mix iii-i mean -4.0 %/yr t -1.43; NPC2 +8.3 %/yr t 1.42; TLQ2 +3.6 %/yr t 1.36). TLQ2 cost ratio .93:
  my 17:07 '<= .85' clause would fail 95 % by chance -> restated (batch note + backlog) to disaster checks. CLOSED OPEN. Lesson: compute the power of a forward clause before writing it.
+
+## L1T lead-lag as execution timing (think-through 17:2x UTC 11-28, before any run)
+Source: findings L1 (HL lagging Binance this hour predicts HL next hour, rank IC +.031, t 7.9, but 5 bp top-bottom = dead as a taker strategy). New angle (A1 audit, owner: use a signal as a filter
+ for a book that works): the HL main book must trade anyway each day; choosing WHEN (now vs +1 h) costs no extra fee, so a 2-5 bp edge is pure saving. Unstated: waiting 1 h also lets the
+ daily signal decay (tiny at daily horizons) and the HL book trades thin names where the lag is largest. Rule fixed now: per trade, L = sign(trade) x (BN 1h ret - HL 1h ret) before the
+ decision; L < 0 means Binance moved against our trade direction and HL has not caught up -> HL should move our way?? No: HL follows Binance, so if BN fell relative to HL and we buy, HL
+ will fall -> waiting buys cheaper. So wait when L < 0, trade now when L >= 0. Change my mind: held-out saving < 1 bp/unit or not above the random-delay placebo -> DEAD.
+L1T a/b (is3_l1t.py, l1t_abc.json): HL main daily trades: waiting 1 h costs 3.7 bp/unit on average (price keeps moving our way); by lag tercile -.2/-4.9/-5.6 bp. Rule saving -.02 bp. CLOSED DEAD.
+ Corollary: the live fill delay (3 min) matters more than timing; 3.7 bp/h x 42 units/yr ~ 1.5 %/yr if trades slipped by an hour.

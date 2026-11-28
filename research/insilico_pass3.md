@@ -225,3 +225,5 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
   Sharpe in 5 of 6 years) but makes the Hyperliquid book's risk less steady and its worst month worse. A rule for all books at once therefore fails, and there is no general reason to use it on one venue only.
 * FJP can live paper trading tell whether any of today's three proposed changes is better: no, not within a year; each would need 3 to 7 times its expected gain to show up. Live days
   can only catch a change that goes clearly wrong, so they are written down as that, before any of them starts. One cost rule I had written an hour earlier could never have been met and was replaced.
+* L1T using the fact that Hyperliquid prices lag Binance by a little to choose whether the Hyperliquid book trades now or in an hour: no use. After the book decides, prices keep moving
+  its way for the next hour, so waiting costs about 0.04 % per trade on average; the lag only shows when waiting would be free, never when it would pay. Trading promptly is what matters.

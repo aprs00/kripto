@@ -1,0 +1,31 @@
+{
+ "coins": 47,
+ "trades": 1178,
+ "days": 196,
+ "explore": {
+  "trades": 696,
+  "days": 100,
+  "wait_gain_bp_by_L_tercile": {
+   "lo": -0.18,
+   "mid": -4.91,
+   "hi": -5.64
+  },
+  "share_waited_units": 0.466,
+  "saving_bp_per_unit": -0.02,
+  "day_t": -0.19,
+  "placebo_bp_mean_p95": [
+   -1.99,
+   1.03
+  ],
+  "p_vs_placebo": 0.12,
+  "top3_day_share": null
+ },
+ "turnover_units_per_yr": 42.5,
+ "hand_check": {
+  "day": "2026-07-12 00:00:00+00:00",
+  "coin": "UNI",
+  "units": 0.009116,
+  "L": 0.000571,
+  "wait_gain": -0.010578
+ }
+}
