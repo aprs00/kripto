@@ -5807,13 +5807,16 @@
    "group": "T",
    "title": "E2b phase check: does moving flow@bn's daily decision anchor from 00:00 to 16:00/20:00 UTC cost signal P&L? (bn 1h, descriptive)",
    "src": "backlog E2b (E2 2026-11-26: CME-break effect 7.2 -> 2.1 -> 1.1 bp, fading)",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T08:00",
    "forms": [
     {
      "id": "a",
      "what": "bn 1h: rebuild flow@bn's signal on 24h windows ending 00, 16, 20 UTC; gross next-24h signal P&L and rank-IC per anchor per year 2021-26 (explore 2021-23 first, then 2024-26)",
-     "status": "planned"
+     "status": "done",
+     "result": "flow@bn (lb 3, cap .05) on bn100 restricted to 574 coins with metrics, hourly taker buy ~ qv x taker_ls/(1+taker_ls); known answer at 00: xs rank corr of imbalance vs true daily tbqv median .83, SR approx .63 vs true .78 (2025 .12 vs .65: approximation loses signal there). Anchors 00/04/08/12/16/20 UTC SR .63/.89/1.10/1.06/1.05/.69 (2022-26.10): 00 is the WORST of six, moving the anchor costs nothing; spread .47 SR = phase noise (best anchor flips by year); only 16 UTC >= 00 in all 5 years (.60/2.18/1.34/.81/.38 vs .08/1.92/.92/.12/.14). E2B saw blend best at 16 too. 6 anchors tried.",
+     "date": "2026-11-28",
+     "evidence": "e2c_a"
     },
     {
      "id": "b",
@@ -5825,7 +5828,8 @@
      "what": "net: (a) loss + (b) saving vs flow@bn at 00:00 after costs; verdict: shadow variant worth a book, or DEAD at its current size (diagnosed: fading effect vs anchor cost)",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }

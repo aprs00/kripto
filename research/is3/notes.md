@@ -1486,3 +1486,13 @@ Change my mind: a stop that lifts the event mean above 0 in >= 5 of 7 years with
 LSX a (is3_lsx.py, lsx_a.json): 678 bnall events: alt-leg median +20..37 % every year, net mean 4.5 % pooled, t_month .01; book corr BTC .00 (11-09 'BTC-leg' finding obsolete).
 LSX b (lsx_b.json): path stops -100/-50/-30 % lift the pooled mean to 7-8 % and t to 1-2, but vs a same-size random-exit placebo the gain is all 2021 and negative in 2020, 2024-26. FAIL.
 LSX c (lsx_c.json): 5/10-slot books SR -.08/-.16 (ruinous tail at 1/5 equity per name), .30/.42 with stop100 (2021-only lift); 2025-26 <= .5 everywhere. NO-GO. CLOSED OPEN: LSB2 parked (4 squeeze controls failed).
+
+## E2C flow@bn decision anchor 00 vs 16/20 UTC (think-through 11:0x UTC 11-28, before any run)
+Source: backlog E2b, E2 (CME-break buy-first/sell-after: flow +7.2/+2.1/+1.1 bp/unit by year 2024-26, fading), E2B (blend_nested's anchor costs nothing, but its 3-h sell deferral = placebo
+ deferrals at other hours: not adopted; flow@bn untestable then: no hourly taker split). New: metrics_full has 5-min taker buy/sell ratio for 605 coins since 2021-12 (100 % coverage):
+ hourly taker buy ~ qv x mean(r/(1+r)) (equal 5-min weights inside the hour: an approximation; validated at the 00 anchor against the true daily tbqv before any anchor is read).
+Mechanism for an anchor cost: flow is a 3-day imbalance; its alpha decays within 24-48 h (T9B), so a 16 UTC anchor uses a window 8 h fresher than 04:03 live trading but the US session flow lands
+ differently. Unstated: E2's saving is a 1-h net long over the break, i.e. a drift bet, not a cost cut; E2B showed such deferrals are generic. Explore 2022-23 (Dec 2021 = warm-up), then 2024-26.
+Change my mind: approx-00 SR within .15 of true-00 AND 16/20 anchors >= 00 - .15 in every explore year -> b/c; an anchor loss > .15 in 2 of 2 explore years -> DEAD at current size.
+E2C a (is3_e2c.py, e2c_a.json): approximate hourly taker split from metrics_full (xs rank corr .83 vs true daily; SR .63 vs .78 at 00). flow@bn anchors 00..20: 00 worst (.63), 16 = 1.05
+ and >= 00 in 5/5 years; phase spread .47 SR. Anchor move costs nothing. b: the break execution itself (buys at the break hour, sells deferred) on flow's trades at the 16/20 anchors, with placebo hours.
