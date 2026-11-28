@@ -226,6 +226,8 @@ Log every process change in `docs/process_changelog.md` (append, newest last). K
   A tracking tool needs its own known-answer check before its verdicts count. Run every new tool end-to-end once when it is built.
   pandas silently ignores `resample("1D", offset=...)` on a tz-aware index (only a RuntimeWarning): shift the index instead and assert one bar by hand.
   When input data are rebuilt (backfills), re-run the main books' own configs on the new data before quoting them (11-28: HL main headline 1.87 was 1.45).
+  Books on different clocks (decision anchors, bar offsets) are compared and averaged only on ONE common clock (hourly P&L, then common days): averaging shifted
+  daily windows smooths returns and inflates SR by construction (11-28 PDX: a fake x1.25 'phase diversification' on every leg).
 * **A connection is not data; a heartbeat is not health.** Check that data arrives and that each source's last bar is recent (`scripts.data_status`);
   count restarts of auto-restarting services. A number that is legitimately small early on can hide a pipeline that will never grow it.
 * **"Nothing to do" is a fault.** An idle queue, a skipped session, a book that never trades: fix it in the session that sees it (11-26: InSilico idle 40 h).

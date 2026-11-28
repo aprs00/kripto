@@ -94,5 +94,38 @@ def form_x(names=("blend_nested", "tsmom", "carry")):
     json.dump(out, open(EV / "pdx_x.json", "w"), indent=1)
 
 
+def form_xf():
+    """E2C c's flow@bn avg6 (approx taker split) re-measured on one hourly clock. Memory: books first, panels freed, hourly returns only for held coins."""
+    import gc
+    from research.studies import is3_e2c as E
+    P, _ = E.panels()
+    keep = {}
+    for h in E.ANCH:
+        p = P[h]
+        res = bt.run(REGISTRY["flow"](p, **E.PARAMS), p["close"], p["funding"], bt.slippage_model(p["volume"], 1), fee=5e-4)
+        W = res.weights.fillna(0.0); W = W.loc[:, W.abs().sum() > 0]
+        keep[h] = (W.astype("float32"), res.funding, res.costs, res.returns)
+    del P; gc.collect()
+    cols = sorted(set().union(*[set(k[0].columns) for k in keep.values()]))
+    rh = hourly_returns(cols)
+    rh = rh[rh.index >= "2021-12-01"]
+    out = {}
+    for h, (W, fu, co, rr) in keep.items():
+        W = W.reindex(columns=rh.columns).fillna(0.0)
+        pos = W.reindex(rh.index, method="ffill").fillna(0.0).to_numpy(np.float32)
+        pnl = pd.Series((pos * rh.to_numpy()).sum(axis=1), rh.index)
+        fc = pd.Series(fu.to_numpy() - co.to_numpy(), co.index + pd.Timedelta(hours=24))
+        pnl = pnl.add(fc.groupby(level=0).sum().reindex(pnl.index, fill_value=0.0), fill_value=0.0)
+        out[h] = pnl.groupby(pnl.index.floor("D")).sum().loc["2022-01-01":"2026-10-31"]
+        del pos
+    df = pd.DataFrame(out); avg = df.mean(axis=1)
+    mo = lambda x: round(float(x.resample("ME").sum().mean() / x.resample("ME").sum().std() * np.sqrt(12)), 2)
+    res = {"avg6": sr(avg), "single": {h: sr(df[h]) for h in E.ANCH}, "rho": round(float(df.corr().where(~np.eye(6, dtype=bool)).stack().mean()), 3),
+           "monthly_sr": {"avg6": mo(avg), **{h: mo(df[h]) for h in E.ANCH}},
+           "years_avg6": {int(y): sr(x) for y, x in avg.groupby(avg.index.year)}, "years_00": {int(y): sr(x) for y, x in df[0].groupby(df.index.year)}}
+    print(json.dumps(res), flush=True)
+    json.dump(res, open(EV / "pdx_xf.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    {"ab": form_ab, "x": form_x}[sys.argv[1]]()
+    {"ab": form_ab, "x": form_x, "xf": form_xf}[sys.argv[1]]()

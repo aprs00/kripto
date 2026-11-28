@@ -5842,9 +5842,9 @@
   },
   {
    "id": "FPT",
-   "prio": 1.3,
+   "prio": 2.3,
    "group": "T",
-   "title": "FPD precheck on the TRUE hourly taker split: flow@bn's 6 anchors and the 6-anchor average (bn100 coins ever in the top 40, 2021-12..2026-10)",
+   "title": "True hourly taker split for flow@bn (data build) + anchors and the 6-anchor average on ONE hourly clock (PDX lesson): is flow's phase noise real, does avg6 beat the mean single?",
    "src": "E2C c (approx split: avg6 SR 1.16 vs 00 .63), backlog FPD",
    "status": "todo",
    "due": "2026-11-28T12:45",
@@ -5856,12 +5856,12 @@
     },
     {
      "id": "b",
-     "what": "is3_e2c a and c re-run with the true hourly split (coins outside the built set keep NaN -> outside flow's universe only if never top 40): anchors 00..20 SR by year, the 6-anchor average, pair corr, 2x cost",
+     "what": "anchors 00..20 on the true split (is3_e2c a with TRUE_HOURLY) AND the exact common-clock avg6 (is3_pdx xf with TRUE_HOURLY; never the naive bar-end average): SR by year, rho, avg6 - mean single",
      "status": "planned"
     },
     {
      "id": "c",
-     "what": "verdict for FPD: avg6 >= 00 + .2 SR in >= 3 of 5 years AND above the mean single anchor -> FPD GO (one WF config pre-registered in backlog for a research session); else NO-GO with the reason (phase noise was an artefact of the approximation / no diversification)",
+     "what": "verdict: avg6 - mean single >= .2 SR on the common clock in >= 3 of 5 years -> FPD GO (WF config in backlog); else close FPD (phase noise is one sub-book's luck, not diversifiable); also record whether the true split moves flow@bn's 00 SR (.52 approx)",
      "status": "planned"
     }
    ],

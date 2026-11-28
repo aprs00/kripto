@@ -2,7 +2,7 @@
 
   PYTHONPATH=. nice -n 19 .venv/bin/python -m research.studies.is3_fpt dl      # resumable download -> data/is3/k1h_tb/<SYM>.parquet (<= 1 request/s)
   PYTHONPATH=. nice -n 19 .venv/bin/python -m research.studies.is3_fpt check   # known answer: 24 x hourly tbqv == daily tbqv
-  PYTHONPATH=. nice -n 19 .venv/bin/python -m research.studies.is3_fpt b       # is3_e2c a + c on the true split -> research/is3/fpt_b.json
+  PYTHONPATH=. nice -n 19 .venv/bin/python -m research.studies.is3_fpt b       # is3_e2c a + is3_pdx xf on the true split (run in a unit, MemoryMax 1800M)
 
 Source: the public data.binance.vision monthly 1h kline archives (the same files bn100 is built from; column 10 = taker buy quote volume is kept here).
 Coin-months: data/is3/fpt_months.json = every bn100 coin-month in the point-in-time top 40 by 30-d dollar volume (2021-12..2026-10) plus the month before.
@@ -103,8 +103,10 @@ def form_b():
     from research.studies import is3_e2c as E
     th = true_hourly()
     E.TRUE_HOURLY = th
-    E.form_a(tag="fpt_b_a")
-    E.form_c(tag="fpt_b_c")
+    E.form_a(tag="fpt_b_a")                 # anchors on the true split (single books are valid each on their own clock)
+    from research.studies import is3_pdx as X   # avg6 ONLY on one hourly clock (PDX lesson)
+    X.EV = EV
+    X.form_xf()                              # writes pdx_xf.json: copy to fpt_b_xf.json after the run
 
 
 if __name__ == "__main__":

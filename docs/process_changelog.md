@@ -252,3 +252,7 @@ put a lesson into CLAUDE.md "Standing lessons" only if a future session must act
 - 2026-11-28 review: InSilico queue empty again (02:47 session closed its last items and stopped: "remaining work needs research sessions"; 04:47/06:47 slots idle).
   Refilled with T9D (post-only fill rates for PRB2 slow legs), LSX (LSB2 precheck: BTC-leg split, worst-10 stress), E2C (flow@bn anchor phase check), all due now.
   prompts/insilico.md: that excuse is named as not a reason to stop (prechecks of research-session items are queue work).
+- 2026-11-28 insilico (PDX/E2C). **Averaging daily-return series whose windows are shifted (anchors 00..20 UTC) inflates Sharpe by construction**: the average is a smoothed series
+  (pair corr .55-.61 from window misalignment alone), and the lift matched sqrt(6/(1+5 rho)) on every leg, which was the tell. On one hourly clock rho was .95 and the lift vanished.
+  E2C c (flow avg6 1.16) and the backlog item FPD rested on it and were corrected the same session. Rule (standing lessons): compare books that trade on different clocks only on one
+  common clock (hourly P&L summed, then common days); a result that equals a textbook formula exactly is a reason to look for the construction that produced it.
