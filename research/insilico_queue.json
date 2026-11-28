@@ -4962,25 +4962,38 @@
    "group": "T",
    "title": "HL listing_short events: fresh tokens vs coins that already traded on Binance (established coin, new on HL): which ones decay?",
    "src": "HLI/HLD (HL listing drought 2026), LSB (BN: HL-listed vs BN-only), listing_short = the HL main book's edge",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
      "id": "a",
      "what": "descriptive: every HL listing_short event 2023-26 (first HL trade, >= $1M 7-d dv): days the coin had traded on Binance before (cached bnall first-trade date; none = fresh); counts by year and group (fresh / BN < 60 d / BN >= 60 d)",
-     "status": "planned"
+     "status": "done",
+     "result": "HL listing_short events 2023-26 (>= $1M 7-d dv, cached bnall first-trade dates): fresh (no BN perp) 17/32/34/5, BN < 60 d 3/13/17/2, BN >= 60 d 22/10/6/4 (2023/24/25/26); 'fresh' = no Binance PERP (spot/other venues unknown: stated)",
+     "date": "2026-11-28",
+     "evidence": "hle_ab"
     },
     {
      "id": "b",
      "what": "per event d2->d61 short-vs-BTC (beta 1) hedged return incl. HL funding, by group and year: mean, median, win rate, worst 3; day-clustered t across events",
-     "status": "planned"
+     "status": "done",
+     "result": "d2-d61 short-vs-BTC incl. HL funding: BN >= 60 d n 42 mean +1.0 % median -0.2 % win .50 t .13 (2023 -12.9 %, n 22); BN < 60 d n 35 +28.7 / +14.5 % win .66 t 2.4; fresh n 88 +25.1 / +10.4 % win .56 t 2.1 (worst -508 % squeeze); 2026 fresh+recent n 7 mean -16/-6 %",
+     "date": "2026-11-28",
+     "evidence": "hle_ab"
     },
     {
      "id": "c",
      "what": "verdict: which group the HL edge lives in and what the 2026 drought removed; if established coins decay as much, Binance listings of coins already on HL are no substitute evidence (or are): note for LSB2",
-     "status": "planned"
+     "status": "done",
+     "result": "the HL edge lives in NEW float (fresh tokens and coins new to Binance too); coins established on Binance >= 60 d do not decay when HL lists them (2023's weak listing year = 22 such events). Candidate filter (skip coins with >= 60 d of Binance history) for a research session: in-sample on HL, held-out = bnall listings of coins already on HL >= 60 d (LSB: HL-listed vs BN-only flips sign by year, so not yet supported); 2026's drought removed fresh-token events, the edge itself",
+     "date": "2026-11-28",
+     "evidence": "hle_ab"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "HL listing decay is a new-float effect: fresh / new-to-Binance tokens +25-29 % mean, t 2.1-2.4; established Binance coins listing on HL +1 % (t .1, 2023 -13 %); filter idea = backlog HLE2, needs a held-out (bnall) before use",
+   "closed": "2026-11-28"
   }
  ]
 }

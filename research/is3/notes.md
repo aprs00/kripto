@@ -1328,3 +1328,10 @@ Source: PRB/PRL summaries (book funding -5..-16 %/yr), HBL a. HL funding is most
  a = per-leg table (longs vs shorts), price P&L next to it.
 HLF a done (is3_hlf.py, hlf_a.json): BTC hedge longs pay 1.6-8.9 %/yr funding (largest steady payer), listing alt shorts pay 3-5 % in 3 of 4 years. b (cheaper hedge: ETH / top-5 basket) next session.
 HLF b/c (hlf_b.json): ETH hedge no cheaper (-5.8/-6.9 vs -4.0/-7.3 %), SR worse. CLOSED OPEN: funding drag is market-wide on one venue.
+
+## HLE HL listing events: fresh tokens vs coins already on Binance (think-through 02:5x UTC 11-28, before any run)
+Source: HLI/HLD, LSB. The decay story (airdrop/unlock overhang, early holders selling to late retail) is about FRESH tokens. A coin that has traded on Binance for a year and then lists on HL
+ has no new float; its HL listing is a venue event: maybe a small HL premium (HL longs arrive) that arbitrage closes in days. Unstated: established coins' 'decay' would be beta + funding;
+ fresh tokens should carry the edge. If so, the 2026 drought removed the edge itself, not just events. Event P&L: short coin, long BTC (beta 1), d2..d61 closes, HL funding on the short.
+HLE a/b/c done (is3_hle.py, hle_ab.json): HL events by Binance history: >= 60 d n 42 mean +1 % (t .13; 2023 -13 %), < 60 d n 35 +29 % (t 2.4), fresh n 88 +25 % (t 2.1). The edge = new float;
+ 2026 drought removed it. Filter idea -> backlog HLE2 (held-out on bnall needed). CLOSED OPEN.
