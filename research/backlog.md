@@ -16,9 +16,10 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 - [x] HLI2 → CLOSED by insilico F0C 11-27: cash-on-idle = random day masks (54th pct on hlu_explore): exposure effect. HLI2 (insilico HLI 2026-11-27, research session, prior low-medium) **HL main book: listing_short's third in cash when it holds nothing** instead of re-scaling lowvol + tsmom
   to the full vol target. Backtest SR 1.39 vs 1.34, >= in every year (research/is3/hli_a.json); 2026 idle 21 % of days as HL's qualifying listings fell to ~1/month (hli_b.json). Needs a WF
   (pre-registered, 1 config) and an F0-style check that it is not just less exposure. Meanwhile quote the 2-leg HL expectation (SR ~1.06) next to the headline in STATUS.
-- [ ] PRB2 (insilico PRB 2026-11-28, research session, prior medium) **HL main book trades a third of the gap to target (lam .33)**: pre-registered held-out HL 2025-26 net SR 1.94 vs 1.86,
-  costs 7.0 -> 3.4 %/yr (research/is3/prb_*.json); at band .01 better 2024-26, worse 2023; hurts the $200 twin (band .05) and the fast BN books. Do: paper engine option `partial_lam` per book
-  (target' = held + lam*(target - held), before the min-order filter), a shadow variant `shadow:blend_nested~lam33` at $1,000 only, judged on forward days vs shadow:blend_nested.
+- [ ] PRB2 (insilico PRB+PRL 2026-11-28, research session, prior medium-high: cost lever) **HL main book: tsmom + lowvol legs trade a third of the gap to target (lam .33), listing_short
+  in full**: PRL pre-registered held-out HL 2025-26 net SR 2.10 vs 1.86 (whole-book lam .33 1.94), costs 7.0 -> 4.0 %/yr; band .01 >= full 3/4 years (2023 tie), 2x cost better every year;
+  $200 (band .05) worse 3/4 -> $1,000 only. tsmom = over half the book's cost (turnover 35-64x). research/is3/prb_*.json, prl_*.json. Do: paper engine per-leg option `partial_lam` (live
+  blend: leg target' = leg held + lam*(leg target - leg held), needs per-leg held state in paper.db), shadow variant at $1,000, judged on forward days vs shadow:blend_nested.
 - [ ] HBL2 (insilico HBL 2026-11-28, research session, risk fix) **listing_short: coins without a 20-d beta hedged at 1.35, not 1.0**: pooled young-coin beta 1.37/1.46 (HL 2023-24, age 2-7/8-20 d),
   1.34/1.26 (bnall 2021-23), down-beta 1.5-1.6; pre-registered HL 2025-26: corr BTC closer to 0 (listing_short -.04 -> +.01) for -.06 SR (research/is3/hbl_*.json). Decide as a risk choice
   (design.md: beta-neutral claim), code in strategies.beta_to fill / hedge_beta, pytest + trader run.

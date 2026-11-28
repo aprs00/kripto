@@ -1245,3 +1245,5 @@ Source: PRB (whole-book lam .33: costs halved, pre-cost SR -0.1 on explore). Uns
 Change my mind: slow-legs-only lam .33 net SR >= whole-book lam .33 in 2023 AND 2024 -> c.
 PRL a done (is3_prl.py, prl_a.json): split exact; tsmom pays 3-8 %/yr of costs (turnover 35-64x), listing 2-4, lowvol 1-4; book 5-14 %/yr.
 PRL b PASS (prl_b.json): slow-legs lam .33 .95/1.01 vs whole .87/.93 vs lam1 .87/.75; pre-cost 1.25. PRE-STATED (c): ONE run HL 2025-26, PASS = slow33 >= whole33 and >= lam1 pooled, >= lam1 each year.
+PRL c PASS (prl_c.json): HL 2025-26 slow33 2.10 vs whole33 1.94 vs lam1 1.86, costs 7.0 -> 4.0 %/yr. Stress (prl_s.json): causality 0; band .01 >= lam1 3/4 (2023 tie .84/.86); 2x cost
+ better every year; $200 band .05 worse 3/4. CLOSED OPEN (best of the session) -> backlog PRB2 rewritten: engine option per leg, $1,000 HL main shadow variant.

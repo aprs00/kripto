@@ -4428,7 +4428,7 @@
    "group": "T",
    "title": "Where the HL main book's costs go (per leg) and partial rebalancing only on the slow legs (keep listing entries immediate)",
    "src": "PRB (lam .33 on the whole book: costs 7.0 -> 3.4 %/yr but pre-cost SR -0.1 explore; listing entries delayed), HBL",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
@@ -4450,10 +4450,16 @@
     {
      "id": "c",
      "what": "if b passes: L.prereg, ONE run HL 2025-26 vs lam .33 whole-book (PRB b numbers) and lam 1",
-     "status": "planned"
+     "status": "done",
+     "result": "PRE-REGISTERED ONE run HL 2025-26: slow33 net SR 2.10 vs whole33 1.94 vs lam1 1.86 (2025 2.37 vs 2.19, 2026 1.79 vs 1.50), costs 4.0 vs 7.0 %/yr, pre-cost 2.24 vs 2.11: PASS. Stress (prl_s.json, frozen): causality 0; band .01 .84/.96/2.24/1.81 vs .86/.68/2.11/1.56; 2x cost better every year; band .05 ($200) worse 3/4 (2026 .14 vs 1.28)",
+     "date": "2026-11-28",
+     "evidence": "prl_c"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "partial rebalancing (lam .33) of the slow legs (tsmom, lowvol) with listing_short traded in full: explore + pre-registered held-out + $1,000 band + 2x cost all >= full rebalancing (held-out 2.10 vs 1.86, costs 7.0 -> 4.0 %/yr); fails at $200: candidate engine option for the $1,000 HL main book (backlog PRB2), forward evidence needed",
+   "closed": "2026-11-28"
   },
   {
    "id": "HBM",
