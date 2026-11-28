@@ -1,0 +1,22 @@
+{
+ "legs": 118,
+ "pairs": 46,
+ "window": [
+  "2026-11-12 06:56:00+00:00",
+  "2026-11-26 00:13:00+00:00"
+ ],
+ "leg_fill_share": {
+  "bn": 0.986,
+  "hl": 1.0
+ },
+ "pairs_both_filled": 0.978,
+ "pairs_one_leg": 1,
+ "pairs_none": 0,
+ "gap_min_median": 5.0,
+ "gap_min_p90": 124.0,
+ "one_leg_moves_bp": [
+  -306.0
+ ],
+ "net_bp_per_leg_unit": 3.06,
+ "net_bp_per_leg_unit_both_filled_only": 4.57
+}

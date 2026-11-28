@@ -1646,3 +1646,11 @@ Source: SMD (history: round-to-min tracks .78 HL / .91 BN). Live since 11-18 is 
  (3) 10 days, effective n ~10: only a gross failure (corr < .5) would count against SMX.
 SMY a/b/c (is3_smy.py, is3_smd churn, smy_a.json, smy_b.json): truncation replay = live small twins exactly (known answer); round-min live corr .94 HL / .87 BN; churn 13/15 % of gross;
  hysteresis worse (1.01/1.39). SMX spec frozen: round-to-min at half the minimum, no hysteresis. CLOSED OPEN.
+
+## T9R pair book at the touch, leg risk (think-through 13:2x UTC 11-28, before any run)
+Source: T9P/T9Q. The pair book is long one venue, short the other in the same coin. Both legs rest at the decision price; on one price path a buy fills on a dip, a sell on a rise. If both fill
+ at the same level, the gap between them costs nothing (each leg's entry is the level; the open leg's P&L over the gap is zero when the other fills at that level). The cost is a leg that NEVER
+ fills in 24 h: the filled leg is then unhedged and, by construction, on the wrong side of a one-way move (the hedge failed to fill because price ran in the direction that hurts the filled leg).
+ Unstated: the pair book's edge is funding spread (bp/day), tiny next to a 1 % directional move, so even rare one-leg cases can eat the saving; the fallback (taker at the end) caps it.
+ BN leg judged on the HL path (same coin; basis few bp; q 5 bp).
+T9R a/b/c (is3_t9r.py, t9r_ab.json): pair legs at the touch: 97.8 % of pairs both filled, gap median 5 / p90 124 min, 1 one-leg pair -306 bp; net +3.06 bp/leg unit. Gap clause fails: pair stays taker. CLOSED OPEN.
