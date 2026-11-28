@@ -5111,6 +5111,58 @@
    "verdict": "OPEN",
    "reason": "HL main book's funding drag (-11 %/yr) is larger in low-funding regimes (rank corr +.47 with the prior month's market funding): now low (23rd pct) -> expect ~-1.4 %/month; descriptive, 42 months",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "LVS",
+   "prio": 1.1,
+   "group": "T",
+   "title": "HL lowvol leg by side: long low-vol vs short high-vol legs' price and funding by year (input for the 2027-01-02 nested refit)",
+   "src": "HLF a (lowvol short alts price -16/-33/+28/+14 %/yr, long alts +14/+17/-1/-8), LV2 (HL lowvol leg FRAGILE, one year deep), SML a",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "descriptive HL 2023-26 (is3_prl.legs contributions): lowvol long and short legs separately: price, funding, costs by year; corr of each side to BTC; which side made 2025",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "state -> distribution: next-30-d return of the high-vol short candidates by their trailing 30-d return quintile (are the losing shorts the coins already falling = crowded?), 2023-24 explore",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict note for the refit: is lowvol on HL a long-low-vol or a short-high-vol bet, and is its expectation one-year deep (no rule change by insilico)",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "HSQ",
+   "prio": 1.2,
+   "group": "T",
+   "title": "SQZ's squeeze state on HL listing events (descriptive replication on the live venue): does 'far above the post-listing low' predict 7-d short losses on HL?",
+   "src": "SQZ (bnall: top quintile of off_low P(7-d loss > 20 %) 17 % vs 7-10 %, but blocking = random), HLE (HL edge = new float)",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "HL listing_short held coin-days 2023-26: off_low (close / post-listing low - 1) quintiles (bnall explore edges, frozen: 0.433 = 80th pct) -> P(next-7-d short loss > 20 %) and mean, by year",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "same split by HLE group (fresh / new to BN / established): is the squeeze state concentrated in fresh tokens?",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict: replicates as a description or not; no filter (SQZ's F0 failed); note for the HL listing leg's risk",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
