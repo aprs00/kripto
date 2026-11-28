@@ -7033,12 +7033,18 @@
     {
      "id": "a",
      "what": "kripto/paper.rebalance(round_min=True) used only for small: books (paper.run_once, venue_bn.run, venue_pair.run reb lambdas): a target notional >= half the effective minimum (max(min notional, one step x mark); HL step from szDecimals, BN from symbol_filters) is placed AT it, sign kept; below half 0; pair books: both legs rounded to the larger of the two effective minima, then whole_pairs/whole_pair_trades as today; tests: known answers per venue + a pair + BTC step case (CTG) + flip; pytest; trader run exit 0",
-     "status": "planned"
+     "status": "done",
+     "result": "built: paper.effective_min/round_targets_to_min + rebalance(step, round_min) for small: books on HL and BN; venue_pair.round_pairs_to_min (legs at the larger effective min) before whole_pairs; 3 new tests (HL/BN BTC step $90/pair/flip/retire), 1 pair test updated; 222 pass; trader 14:50 exit 0. FEATURE",
+     "date": "2026-11-28",
+     "evidence": "smxb_code"
     },
     {
      "id": "b",
      "what": "design.md changelog line (the \\$200 twin models what a small trader would do: round up, not drop; general rationale, numbers from SMD/SMY only as evidence); CLAUDE.md lifecycle paragraph: small twins round up",
-     "status": "planned"
+     "status": "done",
+     "result": "design.md changelog (general rationale: a $200 trader rounds up; gate unchanged) + CLAUDE.md lifecycle line",
+     "date": "2026-11-28",
+     "evidence": "smxb_docs"
     },
     {
      "id": "c",
