@@ -1,46 +1,61 @@
-"""T5e: up-spikes continue. Long at the close one bar after a 1-min UP move >= 8 x 24-h sigma that is NOT alone (at least one
-other coin of the build universe moved >= 3 sigma up in the same minute), exit at market 60 min later (taker).
-Baseline = same-coin up moves of 3-5 sigma (any breadth), same 60-min long, 3 per event (is3_lib.matched).
-Explore = data/is3/t5a.parquet (COINS10 2021-23). Confirm samples are built here, once each, after the committed prereg:
-  confirmT = COINS10 2024-2025, confirmC = the other 73 lshock coins 2021-2025 (breadth counted among those 73).
+"""T5E: T5b F3 (3-d OI change against the 3-d move) IC within 3-d winners / losers, split by a FROZEN regime (trend day = |BTC trailing 60-d simple return| >= 20 %).
+a = the seen years 2023-03-05..2026-11-20 (does the regime story hold under this split?); b = 2021-01-01..2022-12-31 once (never seen), only if a holds.
+Reuses research/studies/t5b_positioning (point-in-time top 60, last 5-min row of day d, target = bar d+1 return). Not registered.
+  PYTHONPATH=. nice -n 19 .venv/bin/python -m research.studies.is3_t5e seen|unseen -> research/is3/t5e_<sample>.json"""
+import json, sys
+import numpy as np, pandas as pd
+from kripto import data
+from research.studies.t5b_positioning import daily_metrics, ic_series
 
-    nice -n 19 .venv/bin/python -m research.studies.is3_t5e explore | confirmT | confirmC
-"""
-from __future__ import annotations
-
-import sys
-from pathlib import Path
-
-import pandas as pd
-
-from research.studies import is3_lib as L
-from research.studies import is3_t5a as A
-
-ROOT = Path(__file__).resolve().parents[2]
-NAME, ZMIN, BMIN = "T5e_upspike_z8_b2_h60", 8.0, 2
-
-
-def card(e: pd.DataFrame, sample: str) -> dict:
-    ev = e[(e.dirq == 1) & (e.z >= ZMIN) & (e.breadth >= BMIN)].assign(side=1, gross=lambda d: -d.f60, m=0)
-    pool = e[(e.dirq == 1) & (e.z >= 3) & (e.z < 5)].assign(side=1, gross=lambda d: -d.f60, m=0)
-    cols = ["time", "coin", "side", "gross"]
-    return L.card(NAME, ev[cols], sample, L.matched(ev, pool, k=3)[cols],
-                  note=f"long 60 min after a >= {ZMIN:g} sigma up minute with breadth >= {BMIN}; base = same-coin 3-5 sigma up moves")
-
-
-def main(sample: str) -> None:
-    if sample == "explore":
-        e = pd.read_parquet(A.TAB)
-    else:
-        if NAME not in L.committed_prereg():
-            raise SystemExit("pre-register and commit first")
-        if sample == "confirmT":
-            e = A.build(L.COINS10, "2024-01-01", "2026-01-01", ROOT / "data/is3/t5a_confirmT.parquet")
-        else:
-            coins = sorted(set(pd.read_parquet(ROOT / "data/is3/lshock.parquet", columns=["coin"]).coin) - set(L.COINS10))
-            e = A.build(coins, "2021-01-01", "2026-01-01", ROOT / "data/is3/t5a_confirmC.parquet")
-    card(e, sample)
+SAMPLE = sys.argv[1]
+start, end = {"seen": ("2023-03-05", "2026-11-20"), "unseen": ("2021-01-01", "2022-12-31")}[SAMPLE]
+if SAMPLE == "unseen":
+    a = json.load(open("research/is3/t5e_seen.json"))
+    if not a.get("H_holds_on_seen"):
+        raise SystemExit("form a did not support the regime story on the seen years: the unseen sample stays closed")
+p = data.load_bn_all_panel()
+close = p["close"]
+dv = p["volume"].rolling(30, min_periods=7).mean()
+member = (dv.rank(axis=1, ascending=False) <= 60)
+lo, hi = pd.Timestamp(start, tz="UTC"), pd.Timestamp(end, tz="UTC")
+syms = [c + "USDT" for c in member.columns[member.loc[lo:hi].any()]]
+m = daily_metrics(syms, start, end)
+coins = [c for c in m["oi"].columns if c in close.columns]
+ret3 = (close / close.shift(3) - 1).reindex(columns=coins)
+fwd1 = close.pct_change(fill_method=None).shift(-1).reindex(columns=coins)
+doi = np.log(m["oi"].reindex(columns=coins)).diff(3)
+f3 = doi * -np.sign(ret3.reindex(index=doi.index))
+r60 = close["BTC"] / close["BTC"].shift(60) - 1
+trend = (r60.abs() >= 0.20)
+idx = f3.index[(f3.index >= lo) & (f3.index <= hi)]
+mem = member.reindex(columns=coins).reindex(index=idx).fillna(False)
+out = {"sample": SAMPLE, "window": [start, end], "coins": len(coins), "days": len(idx), "trend_day_share": round(float(trend.reindex(idx).mean()), 3)}
 
 
-if __name__ == "__main__":
-    main(sys.argv[1])
+def nw(s, L=3):
+    s = s.dropna(); e = s - s.mean(); n = len(s); v = float((e * e).mean())
+    for l in range(1, L + 1):
+        v += 2 * (1 - l / (L + 1)) * float((e[l:].to_numpy() * e[:-l].to_numpy()).mean())
+    return float(s.mean() / np.sqrt(v / n)) if n > 5 else None
+
+
+for grp, side in (("winners", 1), ("losers", -1)):
+    mm = mem & (np.sign(ret3.reindex(idx)) == side)
+    ic = ic_series(f3.reindex(idx), fwd1, mm, None, 1)
+    tr = trend.reindex(ic.index).fillna(False)
+    o = {}
+    for k, msk in (("trend", tr), ("range", ~tr)):
+        s = ic[msk]
+        o[k] = {"days": int(len(s)), "ic": round(float(s.mean()), 4) if len(s) else None, "t_nw3": round(nw(s), 2) if len(s) > 5 else None}
+    d = ic[tr].mean() - ic[~tr].mean()
+    se = np.sqrt(ic[tr].var(ddof=1) / max(tr.sum(), 1) + ic[~tr].var(ddof=1) / max((~tr).sum(), 1))
+    o["trend_minus_range"] = round(float(d), 4); o["t_diff"] = round(float(d / se), 2) if se > 0 else None
+    o["by_year"] = {int(y): {"ic": round(float(v.mean()), 4), "trend_share": round(float(tr[v.index].mean()), 2)} for y, v in ic.groupby(ic.index.year)}
+    out[grp] = o
+    print(grp, json.dumps(o), flush=True)
+w = out["winners"]
+out["H_holds_on_seen"] = bool(SAMPLE == "seen" and w["range"]["ic"] is not None and w["range"]["ic"] < 0 and w["trend_minus_range"] > 0)
+if SAMPLE == "unseen":
+    out["PASS"] = bool(w["range"]["ic"] is not None and w["range"]["ic"] < 0 and w["trend_minus_range"] > 0 and (w["t_diff"] or 0) >= 2)
+json.dump(out, open(f"research/is3/t5e_{SAMPLE}.json", "w"), indent=1)
+print("H_holds_on_seen" if SAMPLE == "seen" else "PASS", out.get("H_holds_on_seen", out.get("PASS")))
