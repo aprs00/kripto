@@ -1461,3 +1461,4 @@ FSO a/b/c (is3_fso.py, fso_ab.json): pair book offsets 10-30 % of HL long fundin
 ## NPS NPC robustness (think-through 03:3x UTC 11-28, before any run)
 Source: NPC, FTL. If the cap works because duplicated factors are wasted risk, nearby caps (.3, .5) should give similar results; if only .4 works, it is a knife-edge (HL ls-lowvol .41).
  Top 2 without a cap = 'hold fewer legs' baseline: if it matches cap .4, the gain is from concentration on the best two, not diversification. cap 1.0 top 2 = plain top 2. Reported, not chosen.
+NPS a/b/c (npc_*_cap*.json, nps_bnall.log): cap .5 inert, .3 loses both venues, top 2 = standard: knife-edge. NPC2 -> low. CLOSED OPEN.

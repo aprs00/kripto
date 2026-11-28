@@ -133,7 +133,7 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
 - HFX HL main book's long legs funded on Binance (2026-11-28 insilico, research/studies/is3_hfx.py, not registered) → OPEN (saving real, needs KS1's two-account rule)
 - HFY main_bn's short legs on HL (mirror of HFX; 2026-11-28 insilico, research/studies/is3_hfy.py, not registered) → DEAD (HL costs exceed the funding gain)
 - ERC HL blend legs: equal-risk-contribution weights (2026-11-28 insilico, research/studies/is3_erc.py, not registered) → OPEN (risk concentration real; ERC fails explore)
-- NPC blend_nested selection with a correlation cap (2026-11-28 insilico, research/studies/is3_npc.py, not registered as a WF) → OPEN (prereg NPC_cap04 passed both venues;…
+- NPC blend_nested selection with a correlation cap (2026-11-28 insilico, research/studies/is3_npc.py, not registered as a WF) → OPEN (prereg passed, but a knife-edge: NPS)
 - FTL a fourth HL leg: nested pool vs the short-alt factor (2026-11-28 insilico, research/studies/is3_ftl.py) → OPEN (xsmom_k the only factor-free candidate)
 - ASR alt-season state vs the HL short-alt factor (2026-11-28 insilico, research/studies/is3_asr.py) → OPEN (no dose on HL or bnall; coarse)
 - FTB nested pool on bnall: what the correlation cap swaps (2026-11-28 insilico, research/studies/is3_ftb.py) → OPEN (BN side = real diversification)
@@ -946,9 +946,10 @@ net −0.2…−5.9 %/yr every year for flow and the carry blend. Only HFX's dir
 Equal weights: listing_short .47–.56 of book variance, lowvol .24–.32, tsmom .16–.28 (2023–26); ls–lowvol corr .27–.57, tsmom ~uncorrelated. ERC on trailing 90-d leg returns, monthly,
 vol-matched: explore SR 1.13/.48 vs .87/.75 (2023/24) → FAIL, no confirm. Noisy covariance on 3 legs; the book needs another uncorrelated leg, not a reweighting.
 
-### NPC blend_nested selection with a correlation cap (2026-11-28 insilico, research/studies/is3_npc.py, not registered as a WF) → OPEN (prereg NPC_cap04 passed both venues; research WF NPC2)
+### NPC blend_nested selection with a correlation cap (2026-11-28 insilico, research/studies/is3_npc.py, not registered as a WF) → OPEN (prereg passed, but a knife-edge: NPS)
 Greedy top-3 by expanding Sharpe, skip if expanding daily corr > .4 with a chosen leg, hold fewer. HL OOS 2024/25/26 .59/1.72/1.65 (pooled 1.27) vs standard .36/1.92/1.45 (1.21);
 cached bnall 2021–26 4.07/−.12/1.79/1.45/.16/1.73 (1.72) vs 3.61/−.12/1.79/1.45/.40/.79 (1.52). Caveats: 2026 inside both runs (large share of bnall's gain); HL ls–lowvol corr .41 = at the cap.
+**NPS robustness: knife-edge. Cap .5 = standard on both venues, cap .3 HL 1.10 / bnall 1.07 (vs 1.21/1.52), top 2 = standard: the .4 pass is threshold luck. NPC2 low; H4 stays.**
 
 ### FTL a fourth HL leg: nested pool vs the short-alt factor (2026-11-28 insilico, research/studies/is3_ftl.py) → OPEN (xsmom_k the only factor-free candidate)
 Net SR 2023–26 standalone: listing_short .53/1.14/2.06/1.35 (corr to ls+lowvol .90), lowvol −.03/.53/2.36/−.16, tsmom 1.04/−.07/−.11/1.14 (−.02), xsmom_k −.62/.25/.69/.85 (.00);

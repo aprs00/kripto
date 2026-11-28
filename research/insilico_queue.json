@@ -5672,7 +5672,7 @@
    "group": "T",
    "title": "NPC robustness: cap .3 / .5 and the 2-leg (top 2) baseline on HL and cached bnall; is NPC_cap04 a plateau or a knife-edge?",
    "src": "NPC (prereg passed both venues; HL binding corr .41 at the cap), FTL (dilution question)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T03:31",
    "forms": [
     {
@@ -5686,15 +5686,24 @@
     {
      "id": "b",
      "what": "cached bnall: the same four variants",
-     "status": "planned"
+     "status": "done",
+     "result": "cached bnall OOS 2021..2026 pooled: standard 1.52; cap .4 1.72; cap .3 3.46/.52/.80/1.38/-.32/-.71 = 1.07 (37 of 43 refits changed); cap .5 = standard exactly (carry-carry_trend .49 never binds); top 2 no cap 1.52. Knife-edge on bnall too: .3 is much worse, .5 inert.",
+     "date": "2026-11-28",
+     "evidence": "npc_bnall_cap0.3_top3"
     },
     {
      "id": "c",
      "what": "verdict for NPC2: plateau (all caps >= standard on both venues) or knife-edge; is the gain more than 'hold fewer legs' (top-2 baseline)?",
-     "status": "planned"
+     "status": "done",
+     "result": "Verdict: NPC_cap04's pass is a point, not a plateau: on both venues .5 never binds, .3 loses (HL 1.10, bnall 1.07 vs 1.21/1.52), and plain top 2 matches standard (1.22/1.52). The .4 gain rides on one or two specific swaps (HL: lowvol at .41; bnall: carry at .49 is NOT the driver since .5 = standard... the .4 gain came from other pairs crossing .4-.49). A sceptic would call the pass luck of the threshold. NPC2 prior medium -> LOW; keep H4 as is at the 2027-01-02 refit unless a research session finds a threshold-free version (e.g. cluster legs by factor).",
+     "date": "2026-11-28",
+     "evidence": "npc_hl"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "NPC's 0.4 cap is a knife-edge: .5 inert, .3 loses on both venues (HL 1.10, bnall 1.07 vs 1.21/1.52): NPC2 downgraded to low, H4 stays",
+   "closed": "2026-11-28"
   }
  ]
 }
