@@ -1765,3 +1765,11 @@ Source: L6V (ewm20 cut quarterly TE 9-23 % in 6/6 single-book cells; SR mixed; x
  that trade. Mechanism: cc60 lags vol regime shifts by weeks; ewm20 (halflife 20 d) reacts faster, so the book is smaller right after a vol spike (good: fewer worst months) and larger
  sooner after calm (bad if calm precedes a crash). Unstated: faster vol = more size changes = turnover and costs, which on HL thin names cost 8-22 bp/unit (HTN); the slow legs (PRB2)
  damp part of that. Change my mind: TE down on both books AND worst month not worse AND SR not worse in > half the years -> recommend L6 to the research session; else stays low.
+
+## FJP power of today's three forward judges (think-through 17:1x UTC 11-28, before any run)
+Source: PRBF (slow vs lam1: corr .976, MDE 5x the gain at 90 d; only the cost ratio has power). The three new arms differ from their baselines much more than PRB2 did (FLX2 iii corr .85 to
+ flow; NPC2 swaps a whole leg; TLQ2 drops half of tsmom's names), so their difference series are noisier and the P&L clause will have even less power; their cost ratios differ by less.
+ Expect: no P&L clause can confirm in 180 d; forward days are a disaster check only, and the decision rests on the WF + the general rationale. Writing that down before any shadow starts
+ keeps a lucky 90 days from becoming an adoption. Change my mind: an MDE at 180 d <= the in-sample gap for any arm -> that arm's forward clause can be a real test.
+L6M a/b/c (is3_l6m.py, l6m_hl.json, l6m_bn.json): ewm20 vs cc60: main_bn better on all (TE .30/.35, worst month -12.8/-15.4, SR 1.88/1.75); HL main worse (TE .51/.45, worst month -13.1/-12.1, SR 2/4 y worse).
+ Clause 'both books' fails -> CLOSED DEAD as an all-books design change. Side note: HL main realised vol 28 % vs 25 % target over 2023-26 (cc60): main_scale (AL2b) is the live fix.

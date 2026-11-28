@@ -221,3 +221,5 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
   funding-based strategies, which are really one bet, with trend following. On Hyperliquid, where the three strategies are already different, it changes nothing useful. Worth one walk-forward on Binance before the January refit.
 * T3S when Hyperliquid traders pay more funding than Binance traders on the same coin, does the coin then fall (crowded retail) or rise: if anything it rises a little, but not reliably.
   The tilt survives removing the funding level and the recent move, and fake versions show nothing, but it is too weak in two years of 46 coins to count. The later years are kept unopened for one check together with the account-position data in December.
+* L6M a faster-reacting volatility estimate for sizing, tried on the two books that actually trade: it helps the Binance book on every count (steadier risk, a smaller worst month, a higher
+  Sharpe in 5 of 6 years) but makes the Hyperliquid book's risk less steady and its worst month worse. A rule for all books at once therefore fails, and there is no general reason to use it on one venue only.

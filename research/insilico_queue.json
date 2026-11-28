@@ -1312,7 +1312,7 @@
     },
     {
      "id": "e",
-     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is \u22123..\u221221% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
+     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
      "status": "done",
      "added": "2026-11-22",
      "result": "his literal picture (every live adaptive bucket -3..-21% of its volume, day <= -7%), long 3 d: n 55, +105 bp vs matched +256 (diff -151, p .50, MDE 494), 2022 -470; 2-way table fall x selling: U-shape (no selling +989 and extreme selling <= -20% +711 on 16-18 events at <= -8%; his -3..-21% range -30..+278), no monotone dose in either direction. DEAD form",
@@ -1526,7 +1526,7 @@
    "prio": 23,
    "group": "C",
    "title": "Filter harness: does a signal improve a book that already works?",
-   "src": "design.md \u00a74 (filters)",
+   "src": "design.md §4 (filters)",
    "status": "closed",
    "forms": [
     {
@@ -3514,9 +3514,9 @@
     },
     {
      "id": "b",
-     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md \u00a74 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
+     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md §4 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
      "status": "done",
-     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design \u00a74 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
+     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design §4 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
      "date": "2026-11-27",
      "evidence": "ksw_ab"
     },
@@ -3789,16 +3789,16 @@
     },
     {
      "id": "c",
-     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the \u00a74 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
+     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the §4 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
      "status": "done",
-     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design \u00a74 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
+     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design §4 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
      "date": "2026-11-27",
      "evidence": "fld_ab"
     }
    ],
    "sessions": 1,
    "verdict": "OPEN",
-   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the \u00a74 live check; not DEAD (one formulation, IC MDE not met in single years)",
+   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the §4 live check; not DEAD (one formulation, IC MDE not met in single years)",
    "closed": "2026-11-27"
   },
   {
@@ -3902,9 +3902,9 @@
     },
     {
      "id": "c",
-     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the \u00a74 live-check flag",
+     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the §4 live-check flag",
      "status": "done",
-     "result": "verdict: no liquid-only variant; flow@bn keeps the FLD flag (signal ~0 since 2022, recent return = funding) for the design \u00a74 live check",
+     "result": "verdict: no liquid-only variant; flow@bn keeps the FLD flag (signal ~0 since 2022, recent return = funding) for the design §4 live check",
      "date": "2026-11-27",
      "evidence": "flq_a"
     }
@@ -7526,7 +7526,7 @@
    "group": "T",
    "title": "ewm20 variances in vol_target on the two SHIPPED main books (L6V tested single strategies; the design decision is for the books that trade)",
    "src": "L6V, backlog L6",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T17:15",
    "sessions": 1,
    "forms": [
@@ -7541,14 +7541,23 @@
     {
      "id": "b",
      "what": "main_bn mix (.5 flow lb3 cap .05 + .5 blend carry_trend/carry/xsmom) on bnall 2021-26: same table",
-     "status": "planned"
+     "status": "done",
+     "result": "main_bn mix bnall 2021-10/26: ewm20 vs cc60 TE .30 vs .35, worst month -12.8 vs -15.4 %, worst day -7.7 vs -7.4, SR 1.88 vs 1.75 (better 5/6 years: 4.80/.12/2.42/2.07/.70/1.29 vs 4.65/-.06/2.46/1.90/.63/1.16), turnover 114 vs 109, costs 7.61 vs 7.30 %/yr",
+     "date": "2026-11-28",
+     "evidence": "l6m_bn"
     },
     {
      "id": "c",
      "what": "decision input for backlog L6 (research session, design.md entry, all books at once): adopt only if TE falls on both books AND worst month is not worse AND SR by year is not worse in more than half the years; write which way each clause went",
-     "status": "planned"
+     "status": "done",
+     "result": "written clauses: TE down on both books FAILS (HL .51 vs .45 up; BN down); worst month not worse FAILS on HL (-13.1 vs -12.1), passes BN; SR not worse in > half the years: HL 2/4 worse (fails at exactly half), BN passes. No design-level change; a BN-only rule would need a general reason why HL differs (none known: HL's worse TE sits in the thin 2023 quarters). Backlog L6 stays low with these numbers",
+     "date": "2026-11-28",
+     "evidence": "l6m_hl"
     }
-   ]
+   ],
+   "verdict": "DEAD",
+   "reason": "as an all-books design change: helps main_bn on every metric but worsens the HL main's tracking and worst month; no general reason for a venue-specific rule",
+   "closed": "2026-11-28"
   },
   {
    "id": "FJP",
@@ -7556,9 +7565,9 @@
    "group": "T",
    "title": "Power of the forward judges of today's three batches (FLX2 iii vs i, NPC2 combo vs H4, TLQ2 top10 vs top20): what 90/180 live days can detect",
    "src": "PRBF, FLXF, NPC3, TLQP",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T17:15",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",

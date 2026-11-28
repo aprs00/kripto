@@ -134,6 +134,8 @@ so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 202
   (b) flow-without-price-progress (absorption) reversal. ≤ 8 configs each. Mechanism: metaorder splitting (Tóth et al.).
 - [ ] L6 (2026-11-27 insilico L6V → OPEN, research/is3/l6v_*.json) **ewm20 variances in vol_target**: track the vol target 9–23% better in 6/6 book × sample cells (blend@bn confirm −22%),
   SR mixed (xsmom confirm −0.21); HAR over-forecasts. A design-level risk change for a research session (design.md entry, all books at once, never in a promoting session); low priority.
+  **L6M 11-28 (research/is3/l6m_*.json) on the shipped main books: main_bn TE .30 vs .35, worst month −12.8 vs −15.4 %, SR 1.88 vs 1.75 (5/6 y); HL main TE .51 vs .45 (worse), worst month −13.1 vs −12.1, SR worse 2/4 y.
+  Written clause (both books) fails: no all-books change. Revisit only with a general reason for venue-specific vol forecasts (e.g. once HL has a longer, fuller history).**
 - [ ] L3 **Square-root impact sanity check of the slippage model (library N3)**: do this with T0a once there are live fills. → queued as InSilico L3S 2026-11-27.
 - [ ] L5 Value-area rejection (library N7, Dalton/AMT): low prior, after the above.
 - [ ] T2b **listing_short follow-ups** (pre-register ≤ 8 configs each). (b) DONE 2026-11-12 (event study: linear decay to d120 on both
