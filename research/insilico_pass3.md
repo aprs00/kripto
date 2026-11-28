@@ -219,3 +219,5 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
   planned walk-forward as a third option; it must beat today's version by a clear margin there to replace it.
 * NPC3 choosing the Binance book's three strategies by how well they do together rather than one by one: better in history, 1.82 vs 1.52, in every year. It replaces one of the two
   funding-based strategies, which are really one bet, with trend following. On Hyperliquid, where the three strategies are already different, it changes nothing useful. Worth one walk-forward on Binance before the January refit.
+* T3S when Hyperliquid traders pay more funding than Binance traders on the same coin, does the coin then fall (crowded retail) or rise: if anything it rises a little, but not reliably.
+  The tilt survives removing the funding level and the recent move, and fake versions show nothing, but it is too weak in two years of 46 coins to count. The later years are kept unopened for one check together with the account-position data in December.

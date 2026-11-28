@@ -1,0 +1,29 @@
+{
+ "lo": "2023-05-15",
+ "hi": "2025-04-01",
+ "coverage_of_gross": 0.913,
+ "long_spread_hi": {
+  "bp_per_unit_day": 16.53,
+  "t_nw": 1.58,
+  "days": 685,
+  "gross_share": 0.431
+ },
+ "long_spread_lo": {
+  "bp_per_unit_day": 0.84,
+  "t_nw": 0.07,
+  "days": 683,
+  "gross_share": 0.154
+ },
+ "short_spread_hi": {
+  "bp_per_unit_day": 0.51,
+  "t_nw": 0.03,
+  "days": 685,
+  "gross_share": 0.2
+ },
+ "short_spread_lo": {
+  "bp_per_unit_day": -0.17,
+  "t_nw": -0.01,
+  "days": 685,
+  "gross_share": 0.188
+ }
+}

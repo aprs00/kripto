@@ -1,0 +1,116 @@
+{
+ "sample": "explore",
+ "lo": "2023-05-15",
+ "hi": "2025-04-01",
+ "ic_h1": {
+  "ic": -0.0033,
+  "t_nw": -0.47,
+  "days": 553,
+  "n_coins": 46.3,
+  "mde_ic": 0.0145
+ },
+ "placebo_h1": {
+  "ic": -0.0,
+  "t_nw": -0.01,
+  "days": 553,
+  "n_coins": 46.3,
+  "mde_ic": 0.0129
+ },
+ "ic_h3": {
+  "ic": 0.0092,
+  "t_nw": 0.83,
+  "days": 553,
+  "n_coins": 46.3,
+  "mde_ic": 0.0259
+ },
+ "placebo_h3": {
+  "ic": 0.0033,
+  "t_nw": 0.52,
+  "days": 553,
+  "n_coins": 46.3,
+  "mde_ic": 0.0226
+ },
+ "ic_h7": {
+  "ic": 0.0214,
+  "t_nw": 1.43,
+  "days": 553,
+  "n_coins": 46.3,
+  "mde_ic": 0.0391
+ },
+ "placebo_h7": {
+  "ic": -0.0002,
+  "t_nw": -0.03,
+  "days": 553,
+  "n_coins": 46.3,
+  "mde_ic": 0.0333
+ },
+ "partial_ic_h1": {
+  "ic": 0.0089,
+  "t_nw": 1.24,
+  "days": 553,
+  "n_coins": 46.3,
+  "mde_ic": 0.0143
+ },
+ "fundlevel_ic_h1": {
+  "ic": -0.0074,
+  "t_nw": -0.92,
+  "days": 553,
+  "n_coins": 46.3,
+  "mde_ic": 0.0158
+ },
+ "partial_ic_h3": {
+  "ic": 0.0152,
+  "t_nw": 1.58,
+  "days": 553,
+  "n_coins": 46.3,
+  "mde_ic": 0.0237
+ },
+ "fundlevel_ic_h3": {
+  "ic": -0.0004,
+  "t_nw": -0.03,
+  "days": 553,
+  "n_coins": 46.3,
+  "mde_ic": 0.0281
+ },
+ "partial_ic_h7": {
+  "ic": 0.0231,
+  "t_nw": 1.71,
+  "days": 553,
+  "n_coins": 46.3,
+  "mde_ic": 0.0372
+ },
+ "fundlevel_ic_h7": {
+  "ic": 0.0063,
+  "t_nw": 0.34,
+  "days": 553,
+  "n_coins": 46.3,
+  "mde_ic": 0.0442
+ },
+ "quintiles_h3_demeaned": {
+  "1": {
+   "mean_bp": -15.9,
+   "t_nw": -1.04
+  },
+  "2": {
+   "mean_bp": -34.3,
+   "t_nw": -2.58
+  },
+  "3": {
+   "mean_bp": -13.8,
+   "t_nw": -1.01
+  },
+  "4": {
+   "mean_bp": 26.2,
+   "t_nw": 1.9
+  },
+  "5": {
+   "mean_bp": 32.0,
+   "t_nw": 1.86
+  }
+ },
+ "spread_ann_pct": {
+  "p10": -10.2,
+  "p50": 5.5,
+  "p90": 41.3
+ }
+}

@@ -1749,3 +1749,13 @@ NPC3 a (npc3_hl.json): HL max combined Sharpe over sets <= k mostly holds listin
 NPC3 b/c/d (npc3_bnall.json): bnall size3 1.82 vs 1.52 (6/6 years >=), size2/4/shr3 1.60/1.88/1.79; swaps carry_trend -> tsmom. Bar met by letter (HL 3/4 via concentration). Backlog NPC2: one WF on bnall. CLOSED OPEN.
 TLQB a/b/c (is3_tlqb.py, tlqb_a.json): batch 2026-11-29_tlq2.json (1 config, baseline = live params exactly, probe .31 GB). CLOSED OPEN (WF = research session).
 NPCB a/b (kripto select='combo' + test, npcb_*.json): known answer exact HL + bnall, H4 unchanged; batch 2026-11-29_npc2.json (probe .75 GB). c after the trader run.
+
+## T3S HL-BN funding spread as a crowding signal (think-through 17:1x UTC 11-28, before any run)
+Source: backlog T3 (HL retail flow distinct; HL hourly vs BN 8h funding). Mechanism: HL funding above Binance's for the same coin = HL longs pay more than the wider market's = leveraged retail
+ demand concentrated on HL. If that retail is late/wrong (chasing), the coin underperforms; if it is informed (HL whales), it outperforms. Arbitrage (fspread_hold) keeps prices aligned, so the
+ signal is about the coin's price on both venues, not the HL-BN basis. Unstated confounders: (1) the spread rises with HL's own funding level (= the carry sort tsmom/lowvol already touch);
+ (2) chasers arrive after a rally, so the spread correlates with the 7-d return (momentum / reversal); (3) new HL listings have extreme spreads (listing_short overlap). Form b controls (1),
+ I add the 7-d return to the partial IC too. Change my mind: explore |t| >= 2 on daily IC after both controls, monotone quintiles, else DEAD/OPEN by MDE.
+T3S a/b/c (is3_t3s.py, is3_t3s_c.py, t3s_explore.json, t3s_c.json): HL-BN 7-d funding spread vs next HL return: IC +.021 at 7 d (t 1.43), partial after funding level + r7 +.023 (t 1.71), placebo 0;
+ sign = follow (HL premium -> outperforms), quintiles top-vs-rest not monotone. In the main book longs on high spread +16.5 vs +0.8 bp/unit/day (t 1.58). Below the bar; confirm 2025-04+ unopened. CLOSED OPEN.
+ What would make it work (unstated): HL premium = informed leveraged demand on HL (whales, T6b positions); test jointly with T6b's account data at 12-07, using this confirm window.
