@@ -923,6 +923,7 @@ Same quintile mean +2.5 % (= others), median +8.1 % (highest): the tail rides on
 tsmom in the HL blend by point-in-time volume rank, book %/yr 2023–26: ranks 1–7 +11/+6/−4/+10, 8–14 ~0/0/+4/+12, 15–20 +3/−5/−3/−2 (10–27 bp/unit, ~0 price edge after 2023).
 ONE variant top_n 10: explore blend 1.08/1.17 vs .87/.75; prereg TLQ_top10 confirm 2025 2.17 vs 2.19 (rule ≥ both years FAILS by .02), 2026 1.99 vs 1.47, pooled 2.09 vs 1.85, costs lower every year.
 Caveat: the descriptive (a) saw 2025–26 first. Overlaps half of PRB2's lam .33 gain (top-10 book +.08 vs +.18). Backlog TLQ2.
+**TLX held-out (cached bnall 2020–26): thin tier trends as well as liquid (worse in 2/6 years), top 10 worse 5/7 years: HL-specific (HL's thin names = fresh listings). TLQ2 prior low-medium.**
 
 ### HFX HL main book's long legs funded on Binance (2026-11-28 insilico, research/studies/is3_hfx.py, not registered) → OPEN (saving real, needs KS1's two-account rule)
 BTC funding HL vs BN %/yr 2023–26: 13.5/8.2, 24.1/11.9, 10.6/5.1, 5.6/3.3; the blend holds BTC long at .30–.49 → +3.1/+5.0/+2.5/+0.7 %/yr of book on BN (tracking sd 2–6 bp/day).

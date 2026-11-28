@@ -1391,3 +1391,9 @@ Source: HLF (BTC hedge longs pay 1.6-8.9 %/yr of book on HL; ETH no cheaper), X1
  harvests, so the HL book's BTC hedge on BN and main@pair would partly be the same trade; and a two-account book needs per-account guards (KS1) and margin on both venues (idle cash).
  Price tracking: HL BTC vs BN BTC daily close diff should be bp-level. a = BTC; b = long alts with a BN twin; c = verdict. Uses cached bnall pickle (to 11-21) -> no nightly-window issue.
 HFX a/b/c (is3_hfx.py, hfx_ab.json): BTC funding HL 24 vs BN 12 %/yr (2024); longs on BN would save +3.3/+8.7/+3.8/+2.2 %/yr of book; shorts belong on HL. Blocked by two-account risk (KS1). CLOSED OPEN.
+
+## TLX held-out for TLQ on Binance (think-through 02:5x UTC 11-28, before any run)
+Source: TLQ. If thin top-20 names trend worse (noisier, squeezes, listing churn), bnall's thin tier should show lower price P&L per unit gross than its liquid tier in most years, even
+ though costs there are low (6 bp). If not, TLQ's gain is HL-specific (HL's thin end = recent listings with decaying float, which trend down and bounce). Unstated: bnall's top 20 by
+ volume is mostly majors + a rotating hype name: tier3 there is the hype slot. Frozen tiers, frozen top 10; cached bnall (to 11-21), standalone tsmom defaults, band .005.
+TLX a/b/c (is3_tlx.py, tlx_ab.json): bnall thin tier trends as well (tier3 < tier1 in 2/6 years); top 10 worse 5/7 years. TLQ HL-specific; TLQ2 low-medium. CLOSED OPEN.
