@@ -62,3 +62,11 @@ def render(f: dict) -> str:
 
 if __name__ == "__main__":
     print(render(facts(int(sys.argv[1]) if len(sys.argv) > 1 else 7)))
+    try:   # the $200 twins' deployed share goes next to every $200 number (SMB step 1, insilico SMB1 2026-11-28); needs state/paper.db
+        import sqlite3
+        from scripts import twin_deployed as T
+        if T.DB.exists():
+            t = [r for r in T.table(T.latest(sqlite3.connect(T.DB))) if r["sibling"] in ("main", "main_bn", "main@pair")]
+            print("$200 deployed share of the $1,000 book (scripts.twin_deployed): " + ", ".join(f"{r['twin']} {r['deployed']} ({r['names']} vs {r['sibling_names']} names)" for r in t))
+    except Exception as e:
+        print(f"(twin_deployed unavailable: {e!r})")

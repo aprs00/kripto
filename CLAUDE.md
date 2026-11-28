@@ -172,6 +172,8 @@ scripts/dash.sh                                            # phone-width dashboa
 .venv/bin/python -m scripts.held_back [--check]            # written gate clauses applied mechanically; who is held back by what (exit 2 = unwritten hold-back)
 .venv/bin/python -m scripts.findings_index                 # regenerate the one-line Index at the top of findings.md after editing it
 .venv/bin/python -m scripts.scoreboard [days]              # facts of the week for STATUS.md (WF count, studies, lifecycle changes, InSilico closes)
+.venv/bin/python -m scripts.twin_deployed [--line]         # each $200 twin's deployed share of its $1,000 sibling (also printed by scoreboard)
+.venv/bin/python -m scripts.maker_ledger [--venue hl]      # frozen maker-at-the-touch forward ledgers (Binance flow / HL main), retro
 ```
 
 ## Venues

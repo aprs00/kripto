@@ -1,0 +1,15 @@
+{
+ "run": "2026-11-28T17:3x",
+ "line": "small:main 0.24 (1 vs 26), small:main@pair 0.75 (8 vs 10), small:main_bn 0.22 (5 vs 30)",
+ "known_answer_vs_sxr": {
+  "small:blend": [
+   0.89,
+   0.89
+  ],
+  "small:blend_nested": [
+   0.21,
+   0.21
+  ]
+ },
+ "tests": "tests/test_twin_deployed.py 1 passed"
+}

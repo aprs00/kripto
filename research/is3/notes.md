@@ -1804,3 +1804,4 @@ Source: findings lshock (OPEN, tail-event: 3 crash days = 72 % of P&L; z=8 pre-r
  itself unwinds = a slower, smaller bounce. Unstated: the bounce is paid by the forced seller; on HL the vault's inventory risk is the counterparty. 16 days with probably no cascade
  day: expect very few z=8 trades; the value is that it accrues. No tuning: frozen configs only, verdict at >= 60 trades.
 E1H a/b/c (is3_e1h.py, e1h_ab.json): lshock frozen on HL 1-min (101 coins, 16 d): z=8 2 trades (PAXG -21, LIT +378 bp), z=6 3; hand check exact. Weekly in the retro. CLOSED OPEN.
+SMB1 a/b/c (scripts/twin_deployed.py + scoreboard, smb1_abc.json): $200 deployed share now a fact line; baseline small:main .24, main_bn .22, main@pair .75. CLOSED FEATURE.

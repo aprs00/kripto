@@ -7872,6 +7872,45 @@
    "verdict": "OPEN",
    "reason": "frozen lshock on HL 1-min: 2 trades in 16 d (+178 bp mean), no cascade day; evidence accrues weekly, verdict at >= 60 trades",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "SMB1",
+   "prio": 2.2,
+   "group": "T",
+   "title": "SMB step 1 as a tool: live deployed share of every $200 twin vs its sibling, printed with the scoreboard so every STATUS update quotes it",
+   "src": "backlog SMB (1), SXR",
+   "status": "closed",
+   "due": "2026-11-28T17:35",
+   "sessions": 1,
+   "forms": [
+    {
+     "id": "a",
+     "what": "scripts/twin_deployed.py from the latest equity rows (no network): deployed = (twin gross/equity) / (sibling gross/equity), names; --line",
+     "status": "done",
+     "result": "scripts/twin_deployed.py: latest equity rows, deployed share per twin, names, --line; no network",
+     "date": "2026-11-28",
+     "evidence": "smb1_abc"
+    },
+    {
+     "id": "b",
+     "what": "known answer vs SXR's 11-28 table (small:blend .89, small:blend_nested .21) + unit test by hand",
+     "status": "done",
+     "result": "known answer = SXR 11-28 (small:blend .89, small:blend_nested .21); tests/test_twin_deployed.py by hand (.2, 0, no-twin skipped)",
+     "date": "2026-11-28",
+     "evidence": "smb1_abc"
+    },
+    {
+     "id": "c",
+     "what": "scoreboard prints the line; CLAUDE.md commands; baseline before SMX's first rounded HL/BN rebalance (11-29 04:06) recorded for SMXB c",
+     "status": "done",
+     "result": "scoreboard prints the line; CLAUDE.md commands; baseline 17:3x before SMX's first HL/BN rounded rebalance: small:main .24 (1 vs 26 names), small:main_bn .22 (5 vs 30), small:main@pair .75 (8 vs 10)",
+     "date": "2026-11-28",
+     "evidence": "smb1_abc"
+    }
+   ],
+   "verdict": "FEATURE",
+   "reason": "the 00 deployed share is now a scoreboard line from facts; baseline recorded before SMX",
+   "closed": "2026-11-28"
   }
  ]
 }
