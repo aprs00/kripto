@@ -1584,3 +1584,12 @@ With the true split the approx noise is gone; if the spread stays (.5 SR range) 
  much when rho is .9 (max lift sqrt(6/(1+5*.9)) = 1.04x). Prediction: avg6 - mean single < .1 -> FPD closes. Unstated: live flow@bn trades the 00 anchor; if 00 stays the worst by a lot in
  every year, a cheaper fix is just moving the anchor (but choosing the best of 6 in-sample is selection: a 6-way max of SR with SE .45 is worth ~ +.5 by luck alone), so no anchor switch on this.
 a done: 439 coins, known answer passes (p99 rel err ~1e-16), 8 coin-months have no archive.
+
+## LVB main-book live vs backtest (think-through 13:0x UTC 11-28, before any code)
+Source: MBL (main_bn -9.1 % / 19 d checked only leg by leg), paper.run_books: main target = main_scale x sum(alloc_i x last saved target_i), then apply_risk, rebalanced whenever any
+ entry has a fresh row. A replay of exactly that on the live panel is the main book's own check. Unstated pitfalls: (1) allocs and main_scale CHANGED during the period (PRB2 11-28,
+ main_scale 11-27, ladder sleeve 11-27): current config replays are valid only after the last change (--since), earlier days carry a config gap I must not read as a fault; (2) the ladder sleeve
+ trades inside main_bn's account: its P&L is in live equity but not in the replay (report sleeve fills separately); (3) $1,000 with 5 % caps: min orders bind more than in a $2,000 shadow (band).
+Change my mind (MBL rule): corr < .7 or live < replay by > 3 % on post-change days, sleeve excluded -> chase a fault.
+FPT b/c (is3_fpt.py, fpt_check.json, fpt_b_a.json, fpt_b_xf.json): true split known answer exact; one-clock singles .42-.90 (mean .705), avg6 .74, rho .91: lift +.035, bounded x1.04 by rho.
+ FPD closed (no staggering of flow@bn), no anchor switch (00 -.19 vs mean = .4 SE). CLOSED OPEN.

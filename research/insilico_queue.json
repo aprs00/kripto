@@ -5868,7 +5868,7 @@
    "group": "T",
    "title": "True hourly taker split for flow@bn (data build) + anchors and the 6-anchor average on ONE hourly clock (PDX lesson): is flow's phase noise real, does avg6 beat the mean single?",
    "src": "E2C c (approx split: avg6 SR 1.16 vs 00 .63), backlog FPD",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T12:45",
    "forms": [
     {
@@ -5882,16 +5882,25 @@
     {
      "id": "b",
      "what": "anchors 00..20 on the true split (is3_e2c a with TRUE_HOURLY) AND the exact common-clock avg6 (is3_pdx xf with TRUE_HOURLY; never the naive bar-end average): SR by year, rho, avg6 - mean single",
-     "status": "planned"
+     "status": "done",
+     "result": "true split: anchors 00..20 on their own clocks (e2c a) SR .69/.82/1.03/1.06/.91/.53 (approx was .63-1.10); exact one-hourly-clock (pdx xf): singles .52/.69/.90/.90/.80/.42, mean .705, avg6 .74, rho .91, monthly SR avg6 .71; avg6 by year .07/2.55/.93/.27/.14 vs 00 -.26/2.05/1.07/-.01/.08",
+     "date": "2026-11-28",
+     "evidence": "fpt_b_xf"
     },
     {
      "id": "c",
      "what": "verdict: avg6 - mean single >= .2 SR on the common clock in >= 3 of 5 years -> FPD GO (WF config in backlog); else close FPD (phase noise is one sub-book's luck, not diversifiable); also record whether the true split moves flow@bn's 00 SR (.52 approx)",
-     "status": "planned"
+     "status": "done",
+     "result": "avg6 - mean single = +.035 SR overall (rule: >= .2 in >= 3 of 5 years); at rho .91 the lift is bounded by x sqrt(6/(1+5 rho)) = 1.04, i.e. <= +.1 SR even in 2023 (2.5): FAILS -> FPD closed. True split does not move flow@bn 00 on the one-clock measure (.52 approx and true); 00 is below the mean single by .19 = .4 SE of a 5-y SR: no anchor switch (best-of-6 is worth ~+.5 by luck)",
+     "date": "2026-11-28",
+     "evidence": "fpt_b_xf"
     }
    ],
    "sessions": 2,
-   "defer_why": "unit is3-fpt downloading true 1h taker split (2 chunks, ~70 min); then check + b"
+   "defer_why": "unit is3-fpt downloading true 1h taker split (2 chunks, ~70 min); then check + b",
+   "verdict": "OPEN",
+   "reason": "data built and checked (439 coins true 1h taker split); on one hourly clock avg6 adds +.035 SR over the mean single (rho .91): phase noise is one sub-book's luck, not diversifiable; FPD closed; flow@bn's anchor stays 00",
+   "closed": "2026-11-28"
   },
   {
    "id": "PDX",
@@ -6240,9 +6249,9 @@
    "group": "T",
    "title": "live_vs_backtest for the MAIN books (main, main_bn): replay scale x sum(alloc x entry target) through apply_risk at $1,000; is main_bn's -9 % the mix or the plumbing?",
    "src": "MBL (main_bn -9.1 %/19 d, legs checked one by one), backlog LVB",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T13:00",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",

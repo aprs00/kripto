@@ -948,6 +948,7 @@ Hourly taker split approximated from metrics_full 5-min taker_ls × 1h qv (574 b
 Anchors 00/04/08/12/16/20 UTC SR .63/.89/1.10/1.06/1.05/.69: 00 is the worst; best anchor flips by year (phase noise). Break sell deferral +2–3 bp/unit sold, t ≈ 1, 2024-only, rank 19–20/23 vs other hours.
 ~~avg6 SR 1.16~~ CORRECTED same session (PDX): averaging the anchors' shifted daily windows smooths returns; on ONE hourly clock rho .88, **avg6 .86 vs mean single .81** (00 .52):
 no diversification worth a book. The anchor spread (.52–1.01) is one sub-book's phase noise; picking 16 UTC would be tuning. Backlog FPD → low.
+FPT 11-28 (true 1h taker split, 439 coins, known answer exact; research/is3/fpt_b_xf.json): one-clock singles .42–.90 (mean .705), **avg6 .74**, rho .91 (lift bound ×1.04). FPD closed; 00 stays.
 ### E2 execution-time tilt: CME break 17–18 NY as buy-first / sell-after (descriptive, BN-82 1h, 2026-11-26 PC, research/studies/e2_exec_tilt.py) → PASS by rule, small and fading
 Daily books trade at 04:03 UTC. Literal "buy before 17 NY, sell after 18 NY" at that clock loses to signal decay (xsmom −6, tsmom −10 bp/unit; flow +4.9 t 1.8). Clock moved to the break
 (buy 17 NY, sell 18 NY vs both at 17): confirm 2024–26 flow +3.5 bp/unit t 2.49 (+7.2/+2.1/+1.1 by year), xsmom +3.7, tsmom +6.1; placebo: 17 NY tops all hours for all three books.

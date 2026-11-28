@@ -50,8 +50,6 @@ so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 202
 → 3. E1 + LQ1 (≈ 12-01) → 4. fill-delay re-measure ≈ 12-09 → 5. T6b HL positioning (≈ 12-07) → 6. W2 re-check ≈ 12-23
 → 8. (FPD low after PDX) → 9. low prior: W3b, FC1(c) pre-2024-07 HL funding, LV1 funding-filtered short leg, FF1 market-relative.
 **2026-11-26 PC session (journal):** LD1, LV1, LO1, FC1(a)(b), E2 done descriptively, 0 walk-forwards spent; carry/carry_trend HL audited (DEAD holds). C1 monthly (≈ 12-25). Weekly: T0a in the retro. T2b(f) listing-day costs DONE 11-26 (robust; findings).
-- [ ] FPD (insilico E2C 2026-11-28, prior LOW after PDX) phase-diversified flow@bn: the 1.16 was a window-misalignment artefact; on one hourly clock rho .88, avg6 .86 vs mean single .81
-  (00 .52). Left: FPT (queue) re-measures it on the true hourly taker split; only if avg6 - mean single >= .2 there is anything to build.
 - [ ] A1 progress: 11-15 xsrev, lowvol; 11-22 tsmom long-only, funding_contra (both → OPEN, one form); 11-26 carry (HL), carry_trend (HL): DEAD holds (3 forms, diagnosed). Next: resrev, T9 maker execution.
 - [ ] LV1 (a)(b) DONE 2026-11-26 (PC) → 4 forms fail net of funding (findings). Left, prior low: short leg without negative-funding names (needs HL/forward as confirm). Was: LV1 (2026-11-15 dead-list audit; lowvol relabelled OPEN) (c) ANSWERED 2026-11-17 by R1: high-vol shorts are not the losers (median +31–39 bp), no. (a)/(b) untried, prior low. Untried forms, prior low–medium: (a) bnall daily, survivorship-free (BN-82 drops the
   delisted high-vol losers that the short leg would have earned on); (b) idiosyncratic (BTC-residual) vol instead of total vol; (c) as a FILTER:
