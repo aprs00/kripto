@@ -1636,3 +1636,5 @@ Source: SMQ d (BN top-N vol-matched: N4 1.56, deployed 2026 .47), SMH (HL $200 =
  and with BTC as the hedge leg taking a big share, fewer. Unstated: he would not truncate (drop everything small) but ROUND: place the minimum on a name the model wants at >= half the minimum,
  accepting over-weighting the weakest names; that keeps breadth (the source of a x-sec book's SR) at the price of tracking. Over-weighting raises gross, so the vol is capped at the $1,000 book's.
 Change my mind: as queued (c). Prior: low for HL (the blend's tsmom/lowvol legs are broad; few-name versions lose breadth), medium for round-to-min.
+SMD a/b/c (is3_smd.py, smd_a.json, smd_b.json, smd_track.json): top-N fails (3.7 names); round-to-minimum PASSES: HL 1.21-1.23 vs 1.58, deployed .61/.72, corr .78; BN 1.50 vs 1.77, .83/.75, corr .91.
+ BN band bug ($10 -> $5) caught by comparing with SMQ. CLOSED OPEN -> backlog SMX (small: twins trade round-to-min).

@@ -11,6 +11,11 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 (AKE, same minute as the shadow, 2.9 % of equity: item 4 done). Detail: journal 2026-11-28.
 **Next priorities (2026-11-28):** 1. PRB2 forward check at 30 live days (≈ 12-28, below) → 2. X1f at ≥ 30 days (≈ 12-12) → 3. E1 + LQ1 (≈ 12-01) → 4. fill-delay ≈ 12-09 → 5. T6b ≈ 12-07 → 6. T5d (low)
 → 7. W2 ≈ 12-23 → 8. (FPD low) → 9. KS1b (low, see below) → 10. low prior: W3b, FC1(c), LV1 short leg, FF1 market-relative, NPC2, TLQ2, HFX2.
+- [ ] SMX (insilico SMD 2026-11-28, research session, prior MEDIUM-HIGH: it decides whether the owner's $200 option is real) **small: twins round small targets UP to the minimum order**
+  (a target >= half the venue/symbol minimum is placed AT the minimum, sign kept; below half: 0). Today the engine drops them: small:main = BTC only, small:main_bn 3 of 31 names.
+  Descriptive (research/is3/smd_b.json, smd_track.json; rule fixed a priori): HL $200 SR 1.21 vs 1.58 at $1,000 (corr .78, deployed .61/.72 2025/26) vs truncation 1.38 at corr .40 / 2.7 names;
+  BN 1.50 vs 1.77 (corr .91, deployed .83/.75). Do: paper.rebalance option `round_min` for small: books only (tests: known answer on a toy book), research small_acct_round in robustness,
+  design.md changelog (the twin models what a small trader would do; general, not a result). Judge on live: small twins' tracking of their big sibling (live_vs_backtest --main) after 30 days.
 - [ ] SMB (insilico LVB/SMQ/SMH 2026-11-28, prior HIGH for honesty, small) **$200 books (BN AND HL) are min-order limited; research small_acct ignores per-symbol minimum orders** (BTC $50, ETH $20, others $5):
   small:main_bn holds 3 of 31 targets, 10 % of its target gross (research/is3/lvb_b.json); kripto/research.py small_acct = one band min/small_equity, so every BN $200 Sharpe is overstated.
   Do: (1) STATUS.md states the $200 BN book's deployed gross next to its return; (2) small_acct with per-symbol minima (venue_bn.symbol_filters cache; delisted = $5) in kripto/research.py, general rationale

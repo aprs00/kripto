@@ -6492,26 +6492,38 @@
    "group": "T",
    "title": "A \\$200-able book: can a few-name or round-to-minimum version of the main books keep the edge at \\$200 (HL \\$10, BN per-symbol minima)?",
    "src": "SMQ d (BN top-N), SMH (HL \\$200 = BTC + 1-2 names), owner 2026-11-10 (test \\$200 too)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T13:16",
    "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "HL main config (blend listing_short/lowvol/tsmom slow_lam .33 x .871): top-N |target| (N 3/5/8/12) vol-matched to the \\$1,000 book's vol, then \\$10 minimum at \\$200; rule stated now: smallest N within 80 % of the best \\$200 SR; SR, ann, deployed share 2025-26, by year",
-     "status": "planned"
+     "status": "done",
+     "result": "HL main config 2023-26: $1,000 SR 1.58 (91 names); $200 truncated 1.38 (2.7 names, deployed .39 2025-26, corr .40 to $1,000); top-N vol-matched then $10 min: N3/5/8/12 SR .99/1.09/1.51/1.18, names 2.4-3.7, deployed 2025-26 .53-.59; rule -> N8 (1.51) but deployed .53/.55 < .6 and 3.7 names: a BTC + 3 book, FAIL the deployment clause",
+     "date": "2026-11-28",
+     "evidence": "smd_a"
     },
     {
      "id": "b",
      "what": "round-to-minimum (what a small trader does): a target >= half the minimum is placed AT the minimum (sign kept), below that 0; HL and BN main mixes at \\$200; then vol-rescale to the \\$1,000 vol only DOWN (never more gross than the \\$1,000 book); SR, deployed, names held",
-     "status": "planned"
+     "status": "done",
+     "result": "round-to-minimum (>= half the minimum -> AT the minimum), $200: HL SR 1.23 (vol-capped 1.21) vs 1.58 = 77 %, 8.7 names, deployed .61/.72 (2025/26), corr to $1,000 .78 (trunc .40); BN mix 1.50 vs 1.77 = 85 %, 19 names, deployed .83/.75, corr .91 (trunc .84); 2026 BN .67 vs 1.22. First BN run used a $10 band (bug, fixed to $5: numbers now match SMQ)",
+     "date": "2026-11-28",
+     "evidence": "smd_b"
     },
     {
      "id": "c",
      "what": "verdict stated now: a \\$200 form with SR >= 70 % of the \\$1,000 book AND deployed >= .6 in both 2025 and 2026 -> backlog research-session item (pre-registered WF of exactly that form, as a \\$200 book); else STATUS-level conclusion: a \\$200 account cannot run these books, fund \\$1,000 or nothing",
-     "status": "planned"
+     "status": "done",
+     "result": "rule stated before: SR >= 70 % of $1,000 AND deployed >= .6 in 2025 and 2026 -> round-to-minimum PASSES on both venues (HL 77 % / .61 / .72, BN 85 % / .83 / .75), top-N fails. Full-sample descriptive (no explore/confirm split; the half-minimum rule was fixed a priori, not tuned): confirmation = the live small: twins trading round-to-min + a WF line with small_acct_round -> backlog SMX",
+     "date": "2026-11-28",
+     "evidence": "smd_b"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "a $200 account CAN hold most of the main books if it rounds small targets up to the minimum order (HL 77 %, BN 85 % of the $1,000 Sharpe, tracking .78/.91, 60-80 % deployed) instead of dropping them (today's engine: BTC only on HL); needs the small twins to trade that rule live (SMX)",
+   "closed": "2026-11-28"
   }
  ]
 }
