@@ -1244,3 +1244,4 @@ Source: PRB (whole-book lam .33: costs halved, pre-cost SR -0.1 on explore). Uns
  each leg's share before the vol-target scalar (exact if scheduled() is a row scalar: checked in code). Standalone leg costs ignore netting between legs: report the netting share.
 Change my mind: slow-legs-only lam .33 net SR >= whole-book lam .33 in 2023 AND 2024 -> c.
 PRL a done (is3_prl.py, prl_a.json): split exact; tsmom pays 3-8 %/yr of costs (turnover 35-64x), listing 2-4, lowvol 1-4; book 5-14 %/yr.
+PRL b PASS (prl_b.json): slow-legs lam .33 .95/1.01 vs whole .87/.93 vs lam1 .87/.75; pre-cost 1.25. PRE-STATED (c): ONE run HL 2025-26, PASS = slow33 >= whole33 and >= lam1 pooled, >= lam1 each year.

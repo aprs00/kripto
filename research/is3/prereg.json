@@ -329,5 +329,15 @@
    "young_beta": 1.35
   },
   "at": "2026-11-28T01:00:16+00:00"
+ },
+ "PRL_c": {
+  "claim": "HL main book with partial rebalancing lam .33 on the lowvol+tsmom legs only (listing_short at lam 1) beats whole-book lam .33 and lam 1 net of costs on unseen HL days",
+  "rule": "ONE run HL 1d 2025-01..2026-11 band .005; PASS = net SR(slow33) >= whole33 AND >= lam1 pooled 2025-26, and >= lam1 in 2025 and in 2026",
+  "params": {
+   "lam": 0.33,
+   "legs": "lowvol,tsmom",
+   "band": 0.005
+  },
+  "at": "2026-11-28T01:03:56+00:00"
  }
 }

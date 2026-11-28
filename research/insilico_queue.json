@@ -4442,7 +4442,10 @@
     {
      "id": "b",
      "what": "pre-stated: lam .33 on lowvol+tsmom legs only, listing_short at lam 1 (entries/exits immediate), HL explore 2023-24 vs whole-book lam .33 and lam 1; PASS = net SR >= whole-book lam .33 in both years",
-     "status": "planned"
+     "status": "done",
+     "result": "HL explore 2023/2024 net SR: slow-legs lam .33 (listing at lam 1) .945/1.005 vs whole-book lam .33 .874/.930 vs lam 1 .867/.750; costs 8.6/5.5 vs 7.0/4.3 vs 13.6/8.6 %; pre-cost SR 1.25 vs 1.11 vs 1.21 (signal kept): PASS",
+     "date": "2026-11-28",
+     "evidence": "prl_b"
     },
     {
      "id": "c",
