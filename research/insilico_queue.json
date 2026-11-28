@@ -4868,6 +4868,32 @@
    "verdict": "OPEN",
    "reason": "PRL does not replicate on unseen instruments (bnall 2021-23 .73 vs .81; 2024-26 .52 vs .43; bnall tsmom neutral): the gain is HL-specific (HL tsmom's 100x turnover on a thinner universe), not a general noise-filter law; PRB2 rests on forward evidence, prior lowered to medium",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "HTN",
+   "prio": 1.0,
+   "group": "T",
+   "title": "Why HL tsmom turns over ~100x/yr (bnall tsmom far less) and whether that noise is a lasting HL feature (PRB2's mechanism)",
+   "src": "PRX (PRL does not replicate on bnall), TSN (HL tsmom turnover = signal drift)",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "descriptive: standalone tsmom turnover per coin-year on HL (2023-26) and bnall (2021-26, cached), by coin liquidity tercile (30-d $ volume) and by ann_vol tercile; share of turnover from the top-vol tercile; universe size per day",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "pre-stated: bnall tsmom restricted to coins also listed on HL at that date (HL first-trade date from data/hl), lam .33 vs 1, 2021-23 and 2024-26: if the gain appears there, the mechanism is the coin set, not the venue",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict for PRB2: lasting HL feature (coin set / thin universe) or a 2023-26 HL-panel accident; write it into the PRB2 backlog line",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
