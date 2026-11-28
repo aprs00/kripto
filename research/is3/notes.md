@@ -1445,3 +1445,8 @@ Source: ERC, LVS, R28. Both HL short legs are short alts vs BTC: an alt season (
  and the hedge is beta-scaled. Unstated: who is trapped: in an alt season retail longs pile into new listings, so listing shorts get squeezed first (HSQ: tail rides on decay).
  State = trailing 30-d (equal-weight alt index return - BTC return), known at the close. Edges from HL 2023-26 (a), frozen for bnall (b). Overlap: 30-d windows daily = ~30x overlap.
 ASR a/b (is3_asr.py, asr_a/b.json): no dose HL (+.08) or bnall (+.04); c skipped. CLOSED OPEN.
+
+## FTB FTL on Binance (think-through 03:0x UTC 11-28, before any run)
+Source: NPC, FTL. On bnall the standard choice is carry_trend + carry + xsmom; carry and carry_trend are both funding-sorted (likely corr > .4), so the cap drops carry for tsmom /
+ xsmom_k. Expect: tsmom on bnall is a strong, factor-free leg (bnall tsmom SR 1.3: PRX), so the BN cap gain should be real diversification, not dilution. a/b/c as queued.
+FTB a/b/c (is3_ftb.py, ftb_a.json): bnall cap drops carry (.49 w carry_trend) for tsmom (6/6). CLOSED OPEN.

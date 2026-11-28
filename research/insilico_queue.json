@@ -5613,6 +5613,45 @@
    "verdict": "OPEN",
    "reason": "alt-minus-BTC trailing strength does not predict the short-alt factor's next month on HL (Spearman +.08) or bnall 2020-26 (+.04, 2021 included): the beta hedge absorbs alt-season beta; losses are idiosyncratic squeezes (LVS b, HSQ). Coarse (MDE ~7 %/month)",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "FTB",
+   "prio": 1.2,
+   "group": "T",
+   "title": "FTL on Binance: nested pool standalone SR by year and correlation structure on cached bnall (what NPC's cap swaps in blend_nested@bn)",
+   "src": "NPC (bnall capped choice at 11-03: carry_trend, tsmom, xsmom_k vs carry_trend, carry, xsmom), FTL",
+   "status": "closed",
+   "due": "2026-11-28T03:08",
+   "forms": [
+    {
+     "id": "a",
+     "what": "cached bnall 2021-26: each pool strategy's net SR by year and daily corr with the current standard choice's legs (carry_trend, carry, xsmom)",
+     "status": "done",
+     "result": "cached bnall 2021-26 standalone net SR: tsmom 2.18/.66/1.23/.39/.33/1.90 (6/6 positive), xsmom 1.86/.04/.80/1.43/1.18/1.53, xsmom_k 1.70/.54/.53/1.31/.26/1.60 (6/6), carry 3.03/-.55/2.03/2.94/-.47/1.04, carry_trend 4.08/.70/1.75/.47/.70/.32 (6/6); lowvol, listing_short, funding_contra mixed; xsrev, resrev negative.",
+     "date": "2026-11-28",
+     "evidence": "ftb_a"
+    },
+    {
+     "id": "b",
+     "what": "which pairs exceed the 0.4 cap (carry vs carry_trend? xsmom vs xsmom_k?) and how the capped slot's leg did by year",
+     "status": "done",
+     "result": "pairs over the .4 cap (active-day corr): xsmom-xsmom_k .87, carry-carry_trend .49; all else <= .33. So the cap drops carry (behind carry_trend) and keeps one of xsmom/xsmom_k; the freed slot goes to tsmom (6/6 positive years, corr .32 with carry_trend, .00 with carry).",
+     "date": "2026-11-28",
+     "evidence": "ftb_a"
+    },
+    {
+     "id": "c",
+     "what": "verdict for NPC2 on the BN side: real diversification or dilution",
+     "status": "done",
+     "result": "Verdict for NPC2 (BN side): real diversification, not dilution: the capped slot goes to tsmom, a strong factor-free leg on Binance, replacing carry, which duplicates carry_trend (corr .49) and lost in 2022 and 2025. Raises NPC2's prior on the BN side (blend_nested@bn) more than on HL (FTL: xsmom_k weak).",
+     "date": "2026-11-28",
+     "evidence": "ftb_a"
+    }
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "bnall: cap removes carry (corr .49 with carry_trend) and frees a slot for tsmom (positive 6/6 years): NPC's BN gain is real diversification; HL side weaker (FTL)",
+   "closed": "2026-11-28"
   }
  ]
 }
