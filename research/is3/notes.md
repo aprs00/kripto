@@ -1300,3 +1300,10 @@ Source: PRB c/PRN (lam delays real signal changes on fast books: cost saving = s
  but executes big ones at once (sign flips, new extremes), so it should lose less signal than lam on fast books. Unstated: a held weight that never crosses the band goes stale (positions
  kept on old signals); flow has ~30 names at cap .05 = weights ~.03-.05: a .02 band is ~half a position, i.e. coarse. One pre-stated band, no grid. Cached bnall (window 01:15-03:30).
 CPB a FAIL (is3_cpb.py, cpb_a.json): band .02 flow 1.28 vs 1.60, blend_bn 1.23 vs 2.10 (2021 halves). CLOSED OPEN: BN fast books' turnover is signal under both filters.
+
+## CMB PRB2 + HBL2 together; live min-order rule (think-through 02:1x UTC 11-28, before any run)
+Source: PRL/PRD, HBL, TSB c. Two changes to one book can interact (the beta fix moves the BTC leg, which is in no slow leg: lam does not touch it here since the BTC hedge sits inside
+ listing_short's contribution). The bigger risk is execution: live skips orders < $10, so lam's many small steps may never execute; the rule 'trade when the gap clears $10' turns lam into
+ a hybrid lam+band. Unstated: the gap is measured against the HELD weight (which drifts with price), so stale small gaps eventually trade. All years already seen: descriptive + a spec rule.
+CMB a/b/c/d done (is3_cmb*.py, cmb_ab/d.json): PRL + HBL additive. Min-order $10 at $1,000: lam1 .85/.65/2.02/1.59, slow33 .78/.98/2.17/1.81, band02 .99/.94/1.66/1.57.
+ Spec rule met 2/4 -> written fallback (band) is not better live (d): DEVIATION stated, spec stays lam .33 + $10 accumulation. CLOSED OPEN.

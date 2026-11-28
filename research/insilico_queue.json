@@ -4788,25 +4788,47 @@
    "group": "T",
    "title": "PRB2 + HBL2 together on the HL main book, and the live min-order rule PRB2 needs (accumulate sub-$10 gaps at $1,000)",
    "src": "PRL/PRD (slow-leg lam .33), HBL (young beta 1.35), TSB c (56 % of lam trades < $10 at $1,000)",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
      "id": "a",
      "what": "descriptive HL 2023-26 by year: base, PRL slow33, HBL beta 1.35, both: net SR, corr BTC, costs (interaction check; all years already seen: no choice)",
-     "status": "planned"
+     "status": "done",
+     "result": "HL band 0, net SR 2023/24/25/26: lam1 .86/.71/1.97/1.45; slow33 .92/.87/2.20/1.68; beta 1.35 .81/.71/1.93/1.33; both .88/.88/2.16/1.56; corr BTC both -.04/.12/-.15/-.04 vs lam1 -.07/.06/-.19/-.02: effects additive, no interaction",
+     "date": "2026-11-28",
+     "evidence": "cmb_ab"
     },
     {
      "id": "b",
      "what": "live min-order simulation at $1,000 equity: per coin, the held weight moves to the (partial) target only when |target - held| x equity >= $10 (else nothing), for lam1 and slow33; HL 2023-26 by year vs the frictionless versions",
-     "status": "planned"
+     "status": "done",
+     "result": "$10-at-$1,000 min-order rule (held drifts, trade only when gap >= $10): lam1 .85/.65/2.02/1.59 (58/57/49/76x), slow33 .78/.98/2.17/1.81 (38/35/27/38x); gain over lam1 -.07/+.33/+.15/+.22 vs frictionless +.06/+.16/+.23/+.23",
+     "date": "2026-11-28",
+     "evidence": "cmb_ab"
     },
     {
      "id": "c",
      "what": "verdict for PRB2's spec: if slow33 under the min-order rule keeps >= 80 % of its SR gain over lam1 under the same rule in 3 of 4 years, the spec stands; else the band form (TSB) is the spec",
-     "status": "planned"
+     "status": "done",
+     "result": "spec rule (>= 80 % of the frictionless gain in 3/4 years) met in 2/4 (2024, 2026; 2025 65 %, 2023 negative) -> its written fallback = band form; DEVIATION, stated: d shows the band form under the same rule is not better than lam1 (mean 1.29 vs 1.28), so the fallback's premise fails; PRB2 spec stays lam .33 + $10 accumulation (beats lam1 under live min-order in 3/4 years, mean 1.44 vs 1.28), 2023 the weak year",
+     "date": "2026-11-28",
+     "evidence": "cmb_ab"
+    },
+    {
+     "id": "d",
+     "what": "band .02 slow legs (TSB form) under the same min-order rule, HL 2023-26 by year, so the c verdict compares the two specs under live execution (descriptive)",
+     "status": "done",
+     "added": "2026-11-28",
+     "result": "band .02 slow legs under the min-order rule: .99/.94/1.66/1.57 vs lam1 .85/.65/2.02/1.59 vs slow33 .78/.98/2.17/1.81 (mean 1.29 / 1.28 / 1.44): the band form is no better live (worse 2025)",
+     "date": "2026-11-28",
+     "evidence": "cmb_d"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "PRL and HBL are additive; under the live $10 min-order rule at $1,000 the slow-leg lam .33 keeps most of its gain (3/4 years better, 2023 worse) and beats the band form: PRB2 spec = lam .33 with sub-$10 gaps accumulated",
+   "closed": "2026-11-28"
   }
  ]
 }

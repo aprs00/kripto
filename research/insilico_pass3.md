@@ -151,3 +151,4 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * PRD how sensitive that cost saving is to its one setting: OPEN, robust. Any rebalancing speed between 15 % and 75 % a day beats full rebalancing in all four years, and both legs contribute.
 * TSN where the trend leg's trading comes from: OPEN. It is the trend signal's own day-to-day drift. An older result saying that smoothing it destroys the edge does not hold on today's data, so that idea is reopened.
 * CPB a no-trade band for the fast Binance books: OPEN (fails). Skipping small changes costs them far more signal than it saves; their trading is the signal.
+* CMB the two Hyperliquid fixes together, under real minimum-order limits: OPEN. They add up without interfering. With the $10 minimum order at $1,000 the partial-rebalancing version still wins in 3 of 4 years (2023 is the weak one) and beats the band alternative.

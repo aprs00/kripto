@@ -820,6 +820,7 @@ Trade lam .33 of the gap to target. Whole book: held-out HL 2025–26 1.94 vs 1.
 explore .95/1.01 vs .87/.75, **held-out 2.10 vs 1.86, costs 7.0 → 4.0 %/yr, pre-cost 2.24 vs 2.11**; band .01 ≥ full 3/4 years, 2× cost better every year, causal (truncation test 0).
 Caveat: 2025–26 was opened twice (PRB b whole-book, then PRL c slow legs): PRL's held-out is a second look, so forward days are the real test. Fails at $200 (band .05, 2026 .14 vs 1.28) and on fast BN books (bnall blend_bn 2.10 → 1.84, flow 1.60 → 1.34): a $1,000 HL cost lever, needs forward evidence.
 PRD (is3_prd.py): plateau, not knife-edge: every lam .15–.75 ≥ lam 1 in all four HL years 2023–26; both slow legs contribute (tsmom via costs, lowvol via pre-cost).
+CMB (is3_cmb*.py): with HBL's beta fix additive; under the live $10-at-$1,000 min-order rule slow33 .78/.98/2.17/1.81 vs lam1 .85/.65/2.02/1.59 vs band .99/.94/1.66/1.57 (2023–26): spec = lam .33 + $10 accumulation.
 TSB (is3_tsb.py): a per-coin band .02 on the slow legs instead of lam: explore 1.00/.92 vs .95/1.01 (fails 2024) but 11 % vs 56 % of trades < $10 at $1,000: PRB2's fallback.
 VTS (is3_vts.py): holding every vol-target scalar until it moves > 10 % removes no turnover (+1 %, HL blend, BN blend, flow): the costs are in position targets, not rescaling.
 CPB (is3_cpb.py): a per-coin band .02 on fast BN books fails too (flow 1.60 → 1.28, blend_bn 2.10 → 1.23, 2021 halves): there the turnover is signal under both filters.
