@@ -6609,26 +6609,38 @@
    "group": "T",
    "title": "main_bn live turnover 34 % below its replay since 11-18 (1.40 vs 2.12) while shadow:flow@bn matches (4.74 vs 5.13): plumbing fault or the band?",
    "src": "LVB b",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T13:25",
    "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "per day: live traded notional / equity vs the replay's turnover for main_bn since 11-18; which days carry the gap",
-     "status": "planned"
+     "status": "done",
+     "result": "since 11-18: live turn 1.45 vs replay 2.07; before 11-26 .62 vs 1.45 (the whole gap), from 11-26 .83 vs .63 incl. the 11-26 switch trade (.48); 11-27/28 .35 vs .40",
+     "date": "2026-11-28",
+     "evidence": "mbt_ab"
     },
     {
      "id": "b",
      "what": "per coin: replay trades with no live fill (and the reverse) on the gap days; classify: below symbol minimum / step rounding / band / coin missing from the live panel / timing (rebalance skipped: 'due' logic) / sleeve netting",
-     "status": "planned"
+     "status": "done",
+     "result": "per coin: gap spread over the old mix's names (BTC .50 vs .25, PUMP/AAVE/AVAX/TAO ...), ETH live-only (old mix), no replay-only coin: class = config gap (main_bn traded flow@bn + an older second leg until the 11-26 M1 re-derivation; the replay uses today's blend_nested@bn), not band/rounding/skipped rebalance (13 rebalance bars since 11-18, none missing)",
+     "date": "2026-11-28",
+     "evidence": "mbt_ab"
     },
     {
      "id": "c",
      "what": "verdict: a class that is an engine fault (skipped rebalance, missing coin, sleeve netting) -> fix with a test this session; a class that is modelling (band, rounding) -> put it into the replay so the tool stops reporting it; record",
-     "status": "planned"
+     "status": "done",
+     "result": "no engine fault; modelling fix: live_vs_backtest --main prints the last config change date (git) so a pre-change window is not read as a gap; post-change days match (.35 vs .40)",
+     "date": "2026-11-28",
+     "evidence": "mbt_ab"
     }
-   ]
+   ],
+   "verdict": "DEAD",
+   "reason": "not a fault: the turnover gap is entirely the 11-26 mix change (replay uses today's mix); after it live and replay trade the same (.35 vs .40); tool now warns",
+   "closed": "2026-11-28"
   },
   {
    "id": "SMP",

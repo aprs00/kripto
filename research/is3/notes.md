@@ -1654,3 +1654,10 @@ Source: T9P/T9Q. The pair book is long one venue, short the other in the same co
  Unstated: the pair book's edge is funding spread (bp/day), tiny next to a 1 % directional move, so even rare one-leg cases can eat the saving; the fallback (taker at the end) caps it.
  BN leg judged on the HL path (same coin; basis few bp; q 5 bp).
 T9R a/b/c (is3_t9r.py, t9r_ab.json): pair legs at the touch: 97.8 % of pairs both filled, gap median 5 / p90 124 min, 1 one-leg pair -306 bp; net +3.06 bp/leg unit. Gap clause fails: pair stays taker. CLOSED OPEN.
+
+## MBT main_bn turnover gap (think-through 13:2x UTC 11-28, before any run)
+LVB b: since 11-18 main_bn live turn 1.40 vs replay 2.12; shadow:flow@bn 4.74 vs 5.13 (close). main_bn = .5 flow + .5 blend_nested@bn; blend_nested@bn's shadow only started 11-26.
+Suspects: (1) the 11-26 mix change: before 11-26 main_bn traded a different second leg; the replay uses today's (blend_nested@bn since 11-18): a config gap, not a fault: test by splitting
+ days before/after 11-26; (2) netting: flow and blend opposite on a coin -> live nets, replay nets too (same); (3) per-symbol minimum at $1,000 (BTC $50 = 5 %): replay now has it;
+ (4) the 'due' logic: main rebalances only on a fresh row or alloc change. Expect (1) to explain most of it.
+MBT a/b/c (is3_mbt.py, mbt_ab.json): main_bn turnover gap = the 11-26 mix change (before .62 vs 1.45, after .35 vs .40); no skipped rebalance; tool prints the last config change. CLOSED DEAD (no fault).

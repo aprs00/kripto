@@ -231,7 +231,21 @@ def main(only: list[str], since: str | None = None, daily: bool = False, mains: 
     out = pd.DataFrame(rows)
     with pd.option_context("display.width", 200, "display.max_columns", 30):
         print(out.to_string(index=False))
+    if mains:   # MBT 11-28: a replay with today's allocs over days traded under an older mix shows a fake gap (main_bn turnover 1.45 vs 2.07)
+        last = _last_config_change()
+        if last and (since_ts is None or since_ts < last):
+            print(f"NOTE: config/strategies.json or risk.json last changed {last.date()}: days before it may have traded an older mix or main_scale (check `git log -p config/` for which venue) and use --since <that day>")
     return out
+
+
+def _last_config_change() -> pd.Timestamp | None:
+    import subprocess
+    try:
+        iso = subprocess.check_output(["git", "log", "-1", "--format=%cI", "--", "config/strategies.json", "config/risk.json"],
+                                      cwd=P.ROOT if hasattr(P, "ROOT") else None, text=True).strip()
+        return pd.Timestamp(iso).tz_convert("UTC") if iso else None
+    except Exception:
+        return None
 
 
 def wcorr(c, book: str, res, panel) -> float | None:
