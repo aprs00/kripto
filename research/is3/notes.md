@@ -1773,3 +1773,5 @@ Source: PRBF (slow vs lam1: corr .976, MDE 5x the gain at 90 d; only the cost ra
  keeps a lucky 90 days from becoming an adoption. Change my mind: an MDE at 180 d <= the in-sample gap for any arm -> that arm's forward clause can be a real test.
 L6M a/b/c (is3_l6m.py, l6m_hl.json, l6m_bn.json): ewm20 vs cc60: main_bn better on all (TE .30/.35, worst month -12.8/-15.4, SR 1.88/1.75); HL main worse (TE .51/.45, worst month -13.1/-12.1, SR 2/4 y worse).
  Clause 'both books' fails -> CLOSED DEAD as an all-books design change. Side note: HL main realised vol 28 % vs 25 % target over 2023-26 (cc60): main_scale (AL2b) is the live fix.
+FJP a/b/c/d (is3_fjp.py, fjp_abc.json): MDE at 180 d = 4.1-4.9x each arm's gap (FLX2 mix iii-i mean -4.0 %/yr t -1.43; NPC2 +8.3 %/yr t 1.42; TLQ2 +3.6 %/yr t 1.36). TLQ2 cost ratio .93:
+ my 17:07 '<= .85' clause would fail 95 % by chance -> restated (batch note + backlog) to disaster checks. CLOSED OPEN. Lesson: compute the power of a forward clause before writing it.

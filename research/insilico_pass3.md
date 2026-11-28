@@ -223,3 +223,5 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
   The tilt survives removing the funding level and the recent move, and fake versions show nothing, but it is too weak in two years of 46 coins to count. The later years are kept unopened for one check together with the account-position data in December.
 * L6M a faster-reacting volatility estimate for sizing, tried on the two books that actually trade: it helps the Binance book on every count (steadier risk, a smaller worst month, a higher
   Sharpe in 5 of 6 years) but makes the Hyperliquid book's risk less steady and its worst month worse. A rule for all books at once therefore fails, and there is no general reason to use it on one venue only.
+* FJP can live paper trading tell whether any of today's three proposed changes is better: no, not within a year; each would need 3 to 7 times its expected gain to show up. Live days
+  can only catch a change that goes clearly wrong, so they are written down as that, before any of them starts. One cost rule I had written an hour earlier could never have been met and was replaced.

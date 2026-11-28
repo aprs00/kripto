@@ -7565,31 +7565,46 @@
    "group": "T",
    "title": "Power of the forward judges of today's three batches (FLX2 iii vs i, NPC2 combo vs H4, TLQ2 top10 vs top20): what 90/180 live days can detect",
    "src": "PRBF, FLXF, NPC3, TLQP",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T17:15",
    "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "FLX2: main_bn mix with flow (i) vs with resid_f7 (iii), bnall 2021-26 daily: corr, sd of the difference, AC, mean diff, HAC MDE at 90/180 d vs the in-sample gap",
-     "status": "planned"
+     "status": "done",
+     "result": "FLX2 main_bn mix (iii)-(i) bnall 2021-26: corr .956, sd 32 bp/d, mean -1.11 bp/d (-4.0 %/yr, HAC t -1.43; SR tie 1.75 hides a lower mean), MDE 7.5/5.3/3.7 bp at 90/180/365 d = 6.8/4.8/3.4x the gap; cost ratio 1.03",
+     "date": "2026-11-28",
+     "evidence": "fjp_abc"
     },
     {
      "id": "b",
      "what": "NPC2: blend_nested H4 vs combo on cached bnall (from is3_npc3 books): same table; how many refits per 90 d actually differ",
-     "status": "planned"
+     "status": "done",
+     "result": "NPC2 combo-H4 cached bnall: corr .883, sd 64 bp, mean +2.26 bp/d (+8.3 %/yr, t 1.42), choice differs 55 % of days, MDE 15.6/11.0/7.8 bp = 6.9/4.9/3.4x; cost ratio 1.04",
+     "date": "2026-11-28",
+     "evidence": "fjp_abc"
     },
     {
      "id": "c",
      "what": "TLQ2: HL main slow .33 top20 vs top10: same table + cost ratio by 90-d window (share failing <= .85 by chance)",
-     "status": "planned"
+     "status": "done",
+     "result": "TLQ2 top10-top20 HL 2023-26: corr .983, sd 27 bp, mean +.98 bp/d (+3.6 %/yr, t 1.36), MDE 5.7/4.1/2.9 bp = 5.9/4.1/2.9x; cost ratio .93, 90-d p10/p50/p90 .88/.93/1.01: a <= .85 clause fails 95 % by chance",
+     "date": "2026-11-28",
+     "evidence": "fjp_abc"
     },
     {
      "id": "d",
      "what": "write each judge's restated clause into its backlog line (disaster check vs verdict, the horizon with power), before any shadow starts",
-     "status": "planned"
+     "status": "done",
+     "result": "all three forward judges restated BEFORE any shadow: disaster checks only (revert if t <= -2; TLQ2 also cost ratio > 1.05); TLQ2 batch note's .85 cost clause (written 17:07 today) replaced; decisions rest on the WFs. Backlog FLX2/NPC2/TLQ2 updated",
+     "date": "2026-11-28",
+     "evidence": "fjp_abc"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "no forward P&L clause has power within a year (MDE 3-7x each gap); the forward days can only veto; TLQ2's cost clause was unpassable and is fixed",
+   "closed": "2026-11-28"
   }
  ]
 }
