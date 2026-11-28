@@ -23,6 +23,8 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
   churn 13 / 15 % of gross; hysteresis (.5/.25) worse. FROZEN SPEC: half-minimum round-up, no hysteresis, small: books only.
   Pair books (SMP 11-28): a pair is already held whole or not at all (venue_pair.whole_pairs, shipped); SMX adds round-up of BOTH legs to the larger minimum
   (history $200: SR 7.33 vs whole-only 6.57 vs $1,000 7.34; research/is3/smp_b.json).
+  SXR (11-28, research/is3/sxr_a.json, sxr_b.json): $200 twins needing it (< 50 % deployed today, >= 79 % rounded): carry@bn (0 %), flow@bn, blend_nested, xsmom@bn, tsmom; fine: blend,
+  blend_nested@bn, xsmom_k@bn, pair books.
 - [ ] SMB (insilico LVB/SMQ/SMH 2026-11-28, prior HIGH for honesty, small) **$200 books (BN AND HL) are min-order limited; research small_acct ignores per-symbol minimum orders** (BTC $50, ETH $20, others $5):
   small:main_bn holds 3 of 31 targets, 10 % of its target gross (research/is3/lvb_b.json); kripto/research.py small_acct = one band min/small_equity, so every BN $200 Sharpe is overstated.
   Do: (1) STATUS.md states the $200 BN book's deployed gross next to its return; (2) small_acct with per-symbol minima (venue_bn.symbol_filters cache; delisted = $5) in kripto/research.py, general rationale

@@ -1,0 +1,138 @@
+[
+ {
+  "small": "small:blend",
+  "small_gross_x": 0.891,
+  "big_gross_x": 1.006,
+  "ratio": 0.89,
+  "names_small": 11,
+  "names_big": 17
+ },
+ {
+  "small": "small:blend_nested",
+  "small_gross_x": 0.161,
+  "big_gross_x": 0.76,
+  "ratio": 0.21,
+  "names_small": 1,
+  "names_big": 28
+ },
+ {
+  "small": "small:blend_nested@bn",
+  "small_gross_x": 0.563,
+  "big_gross_x": 0.805,
+  "ratio": 0.7,
+  "names_small": 9,
+  "names_big": 28
+ },
+ {
+  "small": "small:blend_nested_lam1",
+  "small_gross_x": 0.211,
+  "big_gross_x": 0.755,
+  "ratio": 0.28,
+  "names_small": 1,
+  "names_big": 25
+ },
+ {
+  "small": "small:carry@bn",
+  "small_gross_x": 0.0,
+  "big_gross_x": 0.301,
+  "ratio": 0.0,
+  "names_small": 0,
+  "names_big": 24
+ },
+ {
+  "small": "small:carry_trend@bn",
+  "small_gross_x": 0.027,
+  "big_gross_x": 0.472,
+  "ratio": 0.06,
+  "names_small": 1,
+  "names_big": 13
+ },
+ {
+  "small": "small:flow@bn",
+  "small_gross_x": 0.065,
+  "big_gross_x": 0.437,
+  "ratio": 0.15,
+  "names_small": 4,
+  "names_big": 29
+ },
+ {
+  "small": "small:fspread_hold@pair",
+  "small_gross_x": 0.877,
+  "big_gross_x": 0.974,
+  "ratio": 0.9,
+  "names_small": 10,
+  "names_big": 10
+ },
+ {
+  "small": "small:ladder@bn",
+  "small_gross_x": 0.0,
+  "big_gross_x": 0.0,
+  "ratio": null,
+  "names_small": 0,
+  "names_big": 0
+ },
+ {
+  "small": "small:listing_short",
+  "small_gross_x": 0.0,
+  "big_gross_x": 0.0,
+  "ratio": null,
+  "names_small": 0,
+  "names_big": 0
+ },
+ {
+  "small": "small:main",
+  "small_gross_x": 0.161,
+  "big_gross_x": 0.672,
+  "ratio": 0.24,
+  "names_small": 1,
+  "names_big": 26
+ },
+ {
+  "small": "small:main@pair",
+  "small_gross_x": 0.363,
+  "big_gross_x": 0.486,
+  "ratio": 0.75,
+  "names_small": 8,
+  "names_big": 10
+ },
+ {
+  "small": "small:main_bn",
+  "small_gross_x": 0.112,
+  "big_gross_x": 0.5,
+  "ratio": 0.22,
+  "names_small": 5,
+  "names_big": 30
+ },
+ {
+  "small": "small:tsmom",
+  "small_gross_x": 0.378,
+  "big_gross_x": 0.446,
+  "ratio": 0.85,
+  "names_small": 6,
+  "names_big": 12
+ },
+ {
+  "small": "small:tsmom@bn",
+  "small_gross_x": 0.0,
+  "big_gross_x": 0.0,
+  "ratio": null,
+  "names_small": 0,
+  "names_big": 0
+ },
+ {
+  "small": "small:xsmom@bn",
+  "small_gross_x": 0.204,
+  "big_gross_x": 0.507,
+  "ratio": 0.4,
+  "names_small": 9,
+  "names_big": 29
+ },
+ {
+  "small": "small:xsmom_k@bn",
+  "small_gross_x": 0.201,
+  "big_gross_x": 0.396,
+  "ratio": 0.51,
+  "names_small": 8,
+  "names_big": 10
+ }
+]

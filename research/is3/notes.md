@@ -1683,3 +1683,4 @@ Source: SMQ b (flow alone SR by year 2.66/-.01/2.02/1.07/.47/.22 at main weight)
  the minimum. Change my mind: monthly-return slope HAC t <= -2 AND IC by year falling in 2025-26 vs 2021-24 -> real decay; else 'weak recent years' consistent with noise.
 FLX a/b/c (is3_flx.py, flx_ab.json): flow slope HAC t -1.0 (blend -1.34): no significant decay; but 2025-26 flow = funding 18.9/15.4 %/yr + price +4.7/-1.6 (2023-24 price 33-35): the price
  edge is ~0 for 2 years, flow is now a carry book overlapping blend. No clause met, no lifecycle change. CLOSED OPEN -> backlog FLX2.
+SXR a/b/c (sxr_a.json, sxr_b.json): live $200 twins deployed 0-.90 of their shadow (carry@bn 0, flow@bn .15, blend_nested .21); round-to-min would give .79-1.09 for all entries. carry_trend@bn gap -> TWV d. CLOSED OPEN.

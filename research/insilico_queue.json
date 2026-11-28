@@ -6861,6 +6861,12 @@
      "id": "c",
      "what": "verdict: zero unexplained violations -> TWC closed for good; else fix with a test",
      "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "carry_trend@bn $200 twin: live .06 deployed vs target-level .64 (SXR b): find the cause (step-size rounding? first-day timing?) or a fault",
+     "status": "planned",
+     "added": "2026-11-28"
     }
    ]
   },
@@ -6870,26 +6876,38 @@
    "group": "T",
    "title": "Deployment of every small: shadow twin vs its \\$2,000 shadow (live): which entries can a \\$200 account hold at all?",
    "src": "SMQ/SMH/SMD",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T13:38",
    "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "live equity table: gross/equity of small:<entry> vs shadow:<entry> for every non-retired entry, names held, and the ratio",
-     "status": "planned"
+     "status": "done",
+     "result": "live gross/equity small twin vs $2,000 shadow: carry@bn 0 (0/24 names), carry_trend@bn .06, flow@bn .15, blend_nested .21, main_bn .22, main .24, blend_nested_lam1 .28, xsmom@bn .40, xsmom_k@bn .51, blend_nested@bn .70, main@pair .75, tsmom .85, blend .89, fspread_hold@pair .90",
+     "date": "2026-11-28",
+     "evidence": "sxr_a"
     },
     {
      "id": "b",
      "what": "the same entries' targets at \\$200 under round-to-minimum (live last target row x \\$200, venue/symbol minima): names and gross they WOULD hold",
-     "status": "planned"
+     "status": "done",
+     "result": "latest saved target x $200 (target level): truncation keeps carry@bn 0 %, flow@bn 19 %, blend_nested 26 %, lam1 27 %, xsmom@bn 41 %, tsmom 44 %, carry_trend@bn 64 %, blend_nested@bn 66 %, blend 72 %, xsmom_k@bn 79 %; round-to-min 79-109 % for all (can exceed 100 %: rounding up over-weights). Gap: carry_trend@bn live .06 vs target-level .64 (unexplained: step rounding or its 11-26 start) -> TWV",
+     "date": "2026-11-28",
+     "evidence": "sxr_b"
     },
     {
      "id": "c",
      "what": "verdict: list the entries whose \\$200 twin is < 50 % deployed today and would be >= 60 % under round-to-min (they need SMX), and those that are fine as they are; one line in backlog SMX",
-     "status": "planned"
+     "status": "done",
+     "result": "need SMX (< 50 % today, >= 79 % rounded): carry@bn, flow@bn, blend_nested (HL main's engine), xsmom@bn, tsmom; fine as is (>= 60 %): blend, blend_nested@bn, xsmom_k@bn, the pair books; carry_trend@bn to be explained (TWV a)",
+     "date": "2026-11-28",
+     "evidence": "sxr_b"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "most $200 shadow twins hold < 50 % of their book (carry@bn nothing); round-to-min would bring every entry to >= 79 %; list in backlog SMX",
+   "closed": "2026-11-28"
   }
  ]
 }

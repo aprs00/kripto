@@ -1,0 +1,102 @@
+[
+ {
+  "entry": "tsmom",
+  "venue": "hl",
+  "names": 12,
+  "gross": 0.461,
+  "trunc_names": 3,
+  "trunc_share": 0.44,
+  "round_names": 9,
+  "round_share": 1.09
+ },
+ {
+  "entry": "blend",
+  "venue": "hl",
+  "names": 17,
+  "gross": 1.072,
+  "trunc_names": 6,
+  "trunc_share": 0.72,
+  "round_names": 12,
+  "round_share": 1.0
+ },
+ {
+  "entry": "blend_nested",
+  "venue": "hl",
+  "names": 44,
+  "gross": 0.773,
+  "trunc_names": 1,
+  "trunc_share": 0.26,
+  "round_names": 11,
+  "round_share": 0.91
+ },
+ {
+  "entry": "blend_nested_lam1",
+  "venue": "hl",
+  "names": 31,
+  "gross": 0.779,
+  "trunc_names": 1,
+  "trunc_share": 0.27,
+  "round_names": 12,
+  "round_share": 0.98
+ },
+ {
+  "entry": "xsmom_k@bn",
+  "venue": "bn",
+  "names": 10,
+  "gross": 0.394,
+  "trunc_names": 9,
+  "trunc_share": 0.79,
+  "round_names": 9,
+  "round_share": 0.79
+ },
+ {
+  "entry": "flow@bn",
+  "venue": "bn",
+  "names": 30,
+  "gross": 0.444,
+  "trunc_names": 3,
+  "trunc_share": 0.19,
+  "round_names": 15,
+  "round_share": 0.87
+ },
+ {
+  "entry": "xsmom@bn",
+  "venue": "bn",
+  "names": 30,
+  "gross": 0.508,
+  "trunc_names": 7,
+  "trunc_share": 0.41,
+  "round_names": 17,
+  "round_share": 0.9
+ },
+ {
+  "entry": "blend_nested@bn",
+  "venue": "bn",
+  "names": 31,
+  "gross": 0.806,
+  "trunc_names": 8,
+  "trunc_share": 0.66,
+  "round_names": 17,
+  "round_share": 0.94
+ },
+ {
+  "entry": "carry@bn",
+  "venue": "bn",
+  "names": 32,
+  "gross": 0.306,
+  "trunc_names": 0,
+  "trunc_share": 0.0,
+  "round_names": 10,
+  "round_share": 0.82
+ },
+ {
+  "entry": "carry_trend@bn",
+  "venue": "bn",
+  "names": 14,
+  "gross": 0.485,
+  "trunc_names": 2,
+  "trunc_share": 0.64,
+  "round_names": 9,
+  "round_share": 1.0
+ }
+]
