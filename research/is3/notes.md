@@ -1892,3 +1892,12 @@ Source: FCX (flow beta to carry_trend .80/.70 in 2025/26), FLXF (iii = flow scor
  b separates these: same-coin-same-side gross share vs return corr. c is the mix table FLX2 needs. Change my mind: iii's 2025-26 beta to carry_trend < .3 with alpha >= 0 -> iii is the arm.
 FCY a/b/c (is3_fcy.py, fcy_abc.json): iii beta to carry_trend .60/.64 in 2025/26 (flow .80/.70), alpha -5/-4 %/yr: rule fails. Same-side holdings share flat ~.34 all years -> co-movement, not holdings.
  Mix SR 2026 YTD blend 1.61 / +flow 1.16 / +iii 1.19; 2021-25 flow half added. CLOSED OPEN; FLX2 unchanged + alpha-after-carry_trend column.
+
+## CTD carry_trend decay on bnall (think-through 19:0x UTC 11-28, before any run)
+Source: FCY (blend R2 on carry_trend .79/.87 in 2025/26), findings (carry_trend positive 6/6 years 2021-26). Mechanism: long names whose longs PAY high funding only when they also trend
+ (crowded but still rising); short the reverse. Gross = price trend + funding received (shorts on high funding receive... no: the book is long-trend AND collects funding where it can).
+ Unstated: a crowded carry trade decays when more capital chases it (funding compresses: BN funding medians fell 2024->2026), and its tail is a crowded unwind. Decay vs lull: a lull is
+ price-side (trend fails), decay is funding-side (spread compresses). So split gross into price and funding by year, and test the funding share's trend.
+Change my mind: funding P&L per unit gross falling every year since 2023 AND HAC slope t < -2 -> decay; else lull/regime.
+CTD a/b/c (is3_ctd.py, ctd_abc.json): carry_trend source shift: price +93 % (2021) -> -6.9 % (2026), funding +2 % -> +29 % (20 bp/d per unit gross; 8 squeezed coins at -1.6..-3.6 %/d = half).
+ Net slope t -1.79 (not decay by rule). CLOSED OPEN -> backlog CTF (X1F-style funding judge on main_bn, live reach of those coins, event risk).

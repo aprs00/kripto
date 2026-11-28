@@ -8304,26 +8304,38 @@
    "group": "T",
    "title": "carry_trend decay check on bnall (FCY: it explains .79-.87 of the Binance blend's variance in 2025-26, so main_bn is mostly carry_trend now)",
    "src": "FCY c, FLX method",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T19:06",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "bnall 1d 2021-26, default params: SR, gross, funding, price, costs by year; long vs short leg; top-5 coin share per year",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall carry_trend by year 2021-26: SR 3.90/.63/1.74/.33/.68/1.13; price +93/+18/+19/+9/+2.5/-6.9 %, funding +2.4/+3.3/+22/+5.1/+17/+29 %, costs 4.6-8.3 %; funding per unit gross 1.1/1.0/6.3/1.6/6.4/20.2 bp/d. 2026 funding = longs in squeezed coins with extreme negative BN funding (RIVER -187, LAB -279, KITE -361 bp/d; top 8 = 16 of 29 %); hand-checked rates, not a bug. Price edge fading 2024-26, funding source rising",
+     "date": "2026-11-28",
+     "evidence": "ctd_abc"
     },
     {
      "id": "b",
      "what": "monthly net return slope HAC t (FLX method) with xsmom as a control; rolling 365-d SR vs its own 2021-24 distribution; the 2022 lull as a comparison",
-     "status": "planned"
+     "status": "done",
+     "result": "monthly net slope -0.95 %/yr per yr, HAC t -1.79 (minus xsmom -1.91); funding slope t +5.15 (rising); rolling 365-d SR now .71 = 35th pct of 2021-24, min 2025-26 -.18 vs 2022 min .34. Rule (funding falling AND t < -2) not met: not decay, a COMPOSITION shift from price trend to extreme-funding harvest",
+     "date": "2026-11-28",
+     "evidence": "ctd_abc"
     },
     {
      "id": "c",
      "what": "written: does any §4 clause bind for blend_nested@bn / main_bn; what forward evidence would tell decay from a lull (power, MDE at 180 d) - no gate change",
-     "status": "planned"
+     "status": "done",
+     "result": "§4: no clause binds (main_bn live 19 d -7 %, funding +$4.1 vs price -$93: too short). Lull vs decay is told by the SOURCE: price edge back -> lull; funding-only -> a different, event-driven book (squeeze funding) whose capacity/fill risk the backtest does not model. Forward test with power = X1F-style live-vs-backtest funding per unit gross on main_bn; backlog line",
+     "date": "2026-11-28",
+     "evidence": "ctd_abc"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "carry_trend is not decaying by the written rule (net slope t -1.79, rolling SR 35th pct) but its source moved from price (+93 % 2021) to funding (+29 % 2026, half from 8 squeezed coins at -1.6..-3.6 %/day funding): main_bn is now largely an extreme-negative-funding harvest; X1F-style funding judge for main_bn queued",
+   "closed": "2026-11-28"
   },
   {
    "id": "BRD",
