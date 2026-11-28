@@ -562,9 +562,34 @@ def _component_returns(panel, name: str):
     return held, r
 
 
-def nested_selection(panel, top=3, refit_days=60, min_days=240, unit_vol=0.20, pool=NESTED_POOL):
+def _combo_choice(cur, start, rets_u, i, top, min_bars, ann):
+    """select='combo' (insilico NPC3 2026-11-28): among all sets of <= top qualifying legs, the one whose equal-weight sum of
+    unit-vol returns had the best Sharpe on the common window (from the latest leg's start to bar i, >= min_bars)."""
+    import itertools
+    best, bs = [], -np.inf
+    for k in range(1, top + 1):
+        for combo in itertools.combinations(sorted(cur), k):
+            lo = max(start[n] for n in combo)
+            X = np.column_stack([rets_u[n][lo: i + 1] for n in combo])
+            if len(X) < min_bars:
+                continue
+            mu = X.mean(0)
+            cov = np.cov(X, rowvar=False) if k > 1 else np.array([[X[:, 0].var(ddof=1)]])
+            wv = np.full(k, 1.0 / k)
+            den = float(np.sqrt(wv @ cov @ wv))
+            if den <= 0:
+                continue
+            v = float(wv @ mu / den * ann)
+            if v > bs:
+                bs, best = v, list(combo)
+    return best
+
+
+def nested_selection(panel, top=3, refit_days=60, min_days=240, unit_vol=0.20, pool=NESTED_POOL, select="h4"):
     """H4 selection rule. Returns (comps, sel, log): comps = {name: rescaled held weights}, sel = per-bar equal weights of the
-    chosen components (rows on refit bars, forward-filled), log = [(refit date, {name: expanding Sharpe})] of the choices."""
+    chosen components (rows on refit bars, forward-filled), log = [(refit date, {name: expanding Sharpe})] of the choices.
+    select='h4' (default): the `top` best by own expanding Sharpe > 0. select='combo' (NPC2 arm): the <= `top` set of those
+    legs with the best expanding Sharpe of their equal-risk sum (prices duplicated factors; _combo_choice)."""
     c = panel["close"]
     bpd = bars_per_day(c.index)
     comps, rets = {}, {}
@@ -576,6 +601,7 @@ def nested_selection(panel, top=3, refit_days=60, min_days=240, unit_vol=0.20, p
         tv = inspect.signature(REGISTRY[name]).parameters["target_vol"].default
         comps[name] = held.reindex(columns=c.columns, fill_value=0.0) * (unit_vol / tv)
         rets[name] = r
+    rets_u = {n: rets[n].to_numpy() * (unit_vol / inspect.signature(REGISTRY[n]).parameters["target_vol"].default) for n in rets}
     epoch = pd.Timestamp(0, tz=c.index.tz)
     day = np.asarray((c.index - epoch) // pd.Timedelta(days=1), dtype=np.int64)
     refit = np.r_[True, np.diff(day // refit_days) != 0]
@@ -583,17 +609,22 @@ def nested_selection(panel, top=3, refit_days=60, min_days=240, unit_vol=0.20, p
     ann = np.sqrt(365 * bpd)
     log = []
     for i in np.flatnonzero(refit):
-        cur = {}
+        cur, start = {}, {}
         for name, r in rets.items():
             ri = r.iloc[: i + 1]
             inv = ri.ne(0).to_numpy()
             if not inv.any():
                 continue
-            ri = ri.iloc[int(inv.argmax()):]
+            start[name] = int(inv.argmax())
+            ri = ri.iloc[start[name]:]
             if len(ri) < min_days * bpd or ri.std() == 0:
                 continue
             cur[name] = float(ri.mean() / ri.std() * ann)
-        best = [n for n, s in sorted(cur.items(), key=lambda x: -x[1]) if s > 0][:top]
+        if select == "combo":
+            pos = {n: v for n, v in cur.items() if v > 0}
+            best = _combo_choice(pos, start, rets_u, i, top, min_days * bpd, ann)
+        else:
+            best = [n for n, s in sorted(cur.items(), key=lambda x: -x[1]) if s > 0][:top]
         sel.iloc[i] = 0.0
         if best:
             sel.iloc[i, [sel.columns.get_loc(n) for n in best]] = 1.0 / len(best)
@@ -603,14 +634,14 @@ def nested_selection(panel, top=3, refit_days=60, min_days=240, unit_vol=0.20, p
 
 @register
 def blend_nested(panel, top=3, refit_days=60, min_days=240, target_vol=0.25, unit_vol=0.20, max_gross=3.0,
-                 every_days=1, pool=NESTED_POOL, phase=None, slow_lam=None, slow_legs=SLOW_LEGS):
+                 every_days=1, pool=NESTED_POOL, phase=None, slow_lam=None, slow_legs=SLOW_LEGS, select="h4"):
     """Blend whose components are chosen out-of-sample (H4, pre-registered 2026-11-10). Every `refit_days` days (grid
     anchored at the epoch) rank every pool strategy by its expanding net Sharpe on all data up to that bar (needs
     >= min_days of invested history) and hold the equal-risk blend (same rescaling as `blend`) of the `top` best with
     Sharpe > 0 until the next refit. Removes the hindsight in choosing `blend`'s three components.
     Live trades `blend` with the latest choice (`python -m scripts.nested_choice hl`): the live panel is too short."""
     c = panel["close"]
-    comps, sel, _ = nested_selection(panel, top, refit_days, min_days, unit_vol, pool)
+    comps, sel, _ = nested_selection(panel, top, refit_days, min_days, unit_vol, pool, select)
     tot = pd.DataFrame(0.0, c.index, c.columns)
     for name, w in comps.items():
         wn = w.mul(sel[name], axis=0)

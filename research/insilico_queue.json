@@ -7395,6 +7395,39 @@
      "status": "planned"
     }
    ]
+  },
+  {
+   "id": "NPCB",
+   "prio": 2.1,
+   "group": "T",
+   "title": "Build NPC2's arm in kripto: nested_selection select='combo' (NPC3 rule) + known answer + pre-registered bnall batch (not run)",
+   "src": "NPC3, backlog NPC2",
+   "status": "wip",
+   "due": "2026-11-28T17:05",
+   "sessions": 1,
+   "forms": [
+    {
+     "id": "a",
+     "what": "strategies.nested_selection / blend_nested select='h4' (default, unchanged) | 'combo' (<= top legs, each SR > 0 and min_days, max expanding Sharpe of the unit-vol equal-risk sum on the common window); unit test on a toy pool where two legs duplicate one factor",
+     "status": "done",
+     "result": "strategies._combo_choice + nested_selection/blend_nested select='h4'|'combo' (default h4); unit test: duplicate leg A~B, weaker independent C -> combo picks A+C (H4 would take A+B); too-short window -> empty",
+     "date": "2026-11-28",
+     "evidence": "npcb_hl"
+    },
+    {
+     "id": "b",
+     "what": "known answer: combo selection on HL and the cached bnall pickle == research/studies/is3_npc3 size3 choices at every refit; default output unchanged",
+     "status": "done",
+     "result": "known answer: combo == is3_npc3 size3 at every refit on HL and cached bnall (max diff 0.0 both); H4 output identical to the pre-edit run (npc3_*.json standard rows unchanged). Live today: HL listing_short alone, bnall carry+tsmom+xsmom",
+     "date": "2026-11-28",
+     "evidence": "npcb_bnall"
+    },
+    {
+     "id": "c",
+     "what": "research/batches/<date>_npc2.json: ONE config blend_nested select combo on bnall 1d with the decision rule written (adopt for blend_nested@bn at the 2027-01-02 refit if WF OOS >= H4's re-run + .1 SR); --probe RAM; pytest + trader run",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }

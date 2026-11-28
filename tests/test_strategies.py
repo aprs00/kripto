@@ -303,3 +303,19 @@ def test_flow_fund_resid_removes_the_funding_sort_and_default_is_unchanged():
     assert np.corrcoef(w0.to_numpy(), fr)[0, 1] > 0.8 and abs(np.corrcoef(w1.to_numpy(), fr)[0, 1]) < 0.2
     assert np.corrcoef(w1.to_numpy(), z)[0, 1] > 0.9
     pd.testing.assert_series_equal(w0, flow(p, lookback=3, top_n=10, beta_neutral=False, fund_resid=False).dropna(how="all").iloc[-1])
+
+
+def test_combo_choice_prefers_a_diversifying_leg_over_a_duplicate():
+    """NPC2 arm: A and B are one factor, C is independent and a bit weaker alone. H4 (top 2 by own Sharpe) would take A+B;
+    the combined-Sharpe rule takes A+C."""
+    from kripto.strategies import _combo_choice
+    rng = np.random.default_rng(7)
+    T = 20000
+    f, g = rng.normal(0.001, 0.01, T), rng.normal(0.0007, 0.01, T)
+    rets = {"A": f + rng.normal(0, 0.001, T), "B": f + rng.normal(0, 0.001, T), "C": g}
+    ann = np.sqrt(365)
+    cur = {n: float(r.mean() / r.std() * ann) for n, r in rets.items()}
+    assert sorted(cur, key=lambda n: -cur[n])[2] == "C"            # C is the weakest alone
+    best = _combo_choice(cur, {n: 0 for n in rets}, rets, T - 1, 2, 240, ann)
+    assert sorted(best) == ["A", "C"] or sorted(best) == ["B", "C"]
+    assert _combo_choice(cur, {n: 0 for n in rets}, rets, T - 1, 2, T + 1, ann) == []   # too short a window: nothing
