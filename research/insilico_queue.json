@@ -5400,7 +5400,7 @@
    "group": "T",
    "title": "HL main blend: legs share a factor (LVQ: lowvol vs listing_short corr .27-.57): does equal-risk-contribution leg weighting (trailing 90-d covariance) beat equal leg weights?",
    "src": "LVQ, LVS, PRL legs; design: equal-risk mix of components",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T02:58",
    "forms": [
     {
@@ -5414,15 +5414,24 @@
     {
      "id": "b",
      "what": "ONE pre-stated rule (general method, no parameters tuned): leg multipliers = ERC on trailing 90-d leg-return covariance, monthly, then the book's usual vol scaling; explore 2023-24 net SR vs equal; prereg + confirm 2025-26 only if explore >= equal both years",
-     "status": "planned"
+     "status": "done",
+     "result": "ONE rule: ERC leg multipliers on trailing 90-d leg net returns, monthly, book ex-ante vol matched to equal weights, equal when a leg has < 60 active days (run 1 blew up on a flat leg: fixed, stated). Explore HL net SR 2023/24/pooled: ERC 1.13/.48/.76 vs equal .87/.75/.80; mdd -12/-24 vs -16/-21 %; mean multipliers ls .87, lowvol 1.18, tsmom 1.08. Pre-stated rule (>= equal both years) FAILS (2024). No confirm spent.",
+     "date": "2026-11-28",
+     "evidence": "erc_b"
     },
     {
      "id": "c",
      "what": "verdict; if it fails, why (estimation noise on 3 legs, regime flip of the correlations)",
-     "status": "planned"
+     "status": "done",
+     "result": "Why: 3 legs x 90-d windows = noisy covariance, and the factor overlap flips by year (ls-lowvol corr .47 -> .28 -> .57): ERC cut listing_short (the best leg in 2024) after its volatile quarters. The real issue (ERC a) is that 3/4 of book risk sits in two short-alt legs; a weighting rule cannot add a bet the book does not have. Equal weights stay.",
+     "date": "2026-11-28",
+     "evidence": "erc_b"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "HL blend: 72-84 % of risk in the two short-alt legs (ERC a), but 90-d ERC weights fail explore (2024 .48 vs .75): noisy covariance on 3 legs; equal weights stay",
+   "closed": "2026-11-28"
   }
  ]
 }

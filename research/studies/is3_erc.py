@@ -39,7 +39,7 @@ else:
     mult = pd.DataFrame(np.nan, index=lr.index, columns=LEGS)
     for t in me.iloc[:-1]:
         x = lr.loc[:t].iloc[-90:]
-        if len(x) < 60:
+        if len(x) < 60 or ((x.abs() > 0).sum() < 60).any():   # a leg flat for most of the window -> no covariance: stay equal (fix after run 1 blew up)
             continue
         S = x.cov().to_numpy()
         m = erc(S) * 3                        # equal weights = 1 each

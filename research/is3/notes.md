@@ -1417,3 +1417,4 @@ Source: LVQ (lowvol vs listing_short corr .27-.57). The blend scales each leg to
  Implementation: leg multipliers m_i on the leg weights (fin from is3_prl.legs, already book-scaled), renormalised so the book's ex-ante vol under ERC equals the equal-weight book's
  (so the comparison is not a leverage change); multipliers from data up to the prior month end.
 ERC a (is3_erc.py, erc_a.json): listing_short = 47-56 % of book variance, ls+lowvol 72-84 %; tsmom near-uncorrelated (diversifier). ERC fixed point checked on a known 3x3 (contributions 1/3 each).
+ERC b/c (erc_b.json): ERC explore 1.13/.48 vs .87/.75: FAIL; flat-leg bug in run 1 fixed. CLOSED OPEN: the book needs another uncorrelated leg, not reweighting.
