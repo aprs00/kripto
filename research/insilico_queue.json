@@ -7369,7 +7369,7 @@
    "group": "T",
    "title": "Build FLX2's arm (iii) in kripto: strategies.flow fund_resid=True + known-answer test + pre-registered FLX2 batch file (not run)",
    "src": "FLXF, backlog FLX2",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T16:55",
    "sessions": 1,
    "forms": [
@@ -7392,9 +7392,15 @@
     {
      "id": "c",
      "what": "pytest, trader run once (rule 6), backlog FLX2 points at the batch file and states the DSR count it adds",
-     "status": "planned"
+     "status": "done",
+     "result": "pytest 223 passed; trader run 16:59-17:11 exit 0 (Result=success) with fund_resid in; backlog FLX2 points at the batch (+1 DSR)",
+     "date": "2026-11-28",
+     "evidence": "flxb_a"
     }
-   ]
+   ],
+   "verdict": "FEATURE",
+   "reason": "flow fund_resid built with an exact known answer; FLX2 batch written + probed for the research session",
+   "closed": "2026-11-28"
   },
   {
    "id": "NPCB",
