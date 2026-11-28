@@ -816,7 +816,7 @@ The $200 twin's backtest SR is path luck of frozen positions; quote it with that
 flow/carry/carry_trend/xsmom hold ≤ 0.2 % of gross in coins without a 20-d beta (cached bnall 2020–26): the beta-1 fill matters only in listing_short (HBL2).
 
 ### PRB/PRL partial rebalancing of the HL main book (2026-11-28 insilico, research/studies/is3_prb*.py, is3_prl*.py, prereg PRB_b, PRL_c, not a WF) → OPEN (HL-specific, no replication; backlog PRB2)
-**PRX frozen replication on bnall (same 3-leg book): 2021–23 .73 vs .81 (fail), 2024–26 .52 vs .43; bnall tsmom lam .33 = lam 1 (1.29/1.30): not a general law, HL tsmom is the noisy one.**
+**PRX frozen replication on bnall (same 3-leg book): 2021–23 .73 vs .81 (fail), 2024–26 .52 vs .43; bnall tsmom lam .33 = lam 1 (1.29/1.30): not a general law.** HTN: HL tsmom turnover 105x = bnall 100x, but cost per unit 8–22 bp vs 6 bp: the gain is a venue-cost effect (lasts while HL coins stay thin).
 Trade lam .33 of the gap to target. Whole book: held-out HL 2025–26 1.94 vs 1.86. Slow legs only (tsmom, lowvol; listing_short in full; tsmom = over half the costs, turnover 35–64x):
 explore .95/1.01 vs .87/.75, **held-out 2.10 vs 1.86, costs 7.0 → 4.0 %/yr, pre-cost 2.24 vs 2.11**; band .01 ≥ full 3/4 years, 2× cost better every year, causal (truncation test 0).
 Caveat: 2025–26 was opened twice (PRB b whole-book, then PRL c slow legs): PRL's held-out is a second look, so forward days are the real test. Fails at $200 (band .05, 2026 .14 vs 1.28) and on fast BN books (bnall blend_bn 2.10 → 1.84, flow 1.60 → 1.34): a $1,000 HL cost lever, needs forward evidence.

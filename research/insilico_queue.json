@@ -4875,25 +4875,38 @@
    "group": "T",
    "title": "Why HL tsmom turns over ~100x/yr (bnall tsmom far less) and whether that noise is a lasting HL feature (PRB2's mechanism)",
    "src": "PRX (PRL does not replicate on bnall), TSN (HL tsmom turnover = signal drift)",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
      "id": "a",
      "what": "descriptive: standalone tsmom turnover per coin-year on HL (2023-26) and bnall (2021-26, cached), by coin liquidity tercile (30-d $ volume) and by ann_vol tercile; share of turnover from the top-vol tercile; universe size per day",
-     "status": "planned"
+     "status": "done",
+     "result": "standalone tsmom turnover HL 105x vs bnall 100x (19-20 names; entry/exit 8 %; low-vol tercile 42-44 % of turnover on both): NOT noisier on HL. Median held $ volume HL $17M vs bnall $466M -> cost per unit turnover HL 22/11/8/10 bp (2023-26) vs BN 6.0-6.1 bp every year: PRL's gain = same signal loss, 1.5-3.5x bigger cost saving on HL",
+     "date": "2026-11-28",
+     "evidence": "htn_a"
     },
     {
      "id": "b",
      "what": "pre-stated: bnall tsmom restricted to coins also listed on HL at that date (HL first-trade date from data/hl), lam .33 vs 1, 2021-23 and 2024-26: if the gain appears there, the mechanism is the coin set, not the venue",
-     "status": "planned"
+     "status": "skipped",
+     "result": "a answered it: turnover and its structure are the same on both venues; the difference is HL's cost per unit (thin coins), which an HL-listed subset priced at Binance costs cannot show",
+     "date": "2026-11-28",
+     "evidence": "htn_a"
     },
     {
      "id": "c",
      "what": "verdict for PRB2: lasting HL feature (coin set / thin universe) or a 2023-26 HL-panel accident; write it into the PRB2 backlog line",
-     "status": "planned"
+     "status": "done",
+     "result": "PRB2 mechanism = HL cost per unit turnover (8-22 bp vs 6 bp), lasting while HL coins stay thin; prediction: the gain shrinks as HL costs fall (2023 22 bp -> 2025 8 bp); track live HL slip per unit turnover (L3S) next to the shadow",
+     "date": "2026-11-28",
+     "evidence": "htn_a"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "HL tsmom is not noisier than Binance's (105x vs 100x); its trades cost 8-22 bp per unit vs 6 bp: PRL's gain is a venue-cost effect (explains PRX), durable while HL coins stay thin",
+   "closed": "2026-11-28"
   }
  ]
 }

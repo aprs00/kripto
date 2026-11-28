@@ -1314,3 +1314,9 @@ Source: PRL/PRD. If slow-leg partial rebalancing works because tsmom/lowvol targ
  PASS (a) = net SR >= lam 1 in 2 of 3 years and pooled 2021-23; b = 2024-26 the same way; c = where it lives.
 PRX a/b/c done (is3_prx.py, prx_abc.json): frozen PRL on bnall 3-leg book: 2021-23 .73 vs .81 (FAIL), 2024-26 .52 vs .43; bnall tsmom lam .33 = lam 1 (1.29/1.30). Not a general law: HL-specific
  (HL tsmom noisier). PRB2 prior lowered to medium; forward days decide. CLOSED OPEN.
+
+## HTN why HL tsmom turns over ~100x (think-through 02:3x UTC 11-28, before any run)
+Source: PRX, TSN. tsmom weight = tanh trend / ann_vol, normalised to gross 1 over the top-20-by-volume universe. On HL the top 20 reach thin, high-vol coins whose trend signal and vol both
+ swing daily, and the gross normalisation spreads each coin's swing over all weights. bnall's top 20 are deep majors. Unstated: if turnover concentrates in the high-vol tercile, PRB2's gain
+ is a property of the coin set (lasting while HL lists thin coins), else a panel accident. a is descriptive; b uses HL listing dates on bnall.
+HTN a/c done (is3_htn.py, htn_a.json): tsmom turnover HL 105x = bnall 100x; cost per unit HL 22/11/8/10 bp vs BN 6 bp. PRL's gain = cost-per-turnover effect (explains PRX). CLOSED OPEN.

@@ -1,0 +1,36 @@
+{
+ "hl_2023_26": {
+  "turnover_ann": 104.76754245084315,
+  "names_held_median": 19.0,
+  "median_vol_held": 1.0079360384035012,
+  "median_dv_held_musd": 16.637453926209286,
+  "turnover_share_by_vol_tercile": {
+   "t1": 0.42146323028968125,
+   "t2": 0.2974585100159285,
+   "t3": 0.24537693751451242
+  },
+  "turnover_share_by_dv_tercile": {
+   "t1": 0.28501743840257665,
+   "t2": 0.2967203301471336,
+   "t3": 0.3825609092704119
+  },
+  "share_from_entry_exit": 0.08009467885291904
+ },
+ "bnall_2021_26": {
+  "turnover_ann": 99.66491845331836,
+  "names_held_median": 20.0,
+  "median_vol_held": 1.1449489751962696,
+  "median_dv_held_musd": 466.3903472348,
+  "turnover_share_by_vol_tercile": {
+   "t1": 0.44486741354564124,
+   "t2": 0.31315721627170334,
+   "t3": 0.20669107565409664
+  },
+  "turnover_share_by_dv_tercile": {
+   "t1": 0.23660548187701552,
+   "t2": 0.3286961562253133,
+   "t3": 0.3994140673691124
+  },
+  "share_from_entry_exit": 0.07737873727383478
+ }
+}
