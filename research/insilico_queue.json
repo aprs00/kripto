@@ -7019,6 +7019,33 @@
    "verdict": "OPEN",
    "reason": "flow adds +.09 SR full-sample, -.12 in 2025-26, its funding overlaps blend's (per-coin corr .85); FLX2 WF pre-registered with a +.1 keep bar",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "SMXB",
+   "prio": 2.0,
+   "group": "T",
+   "title": "BUILD SMX: small: twins round small targets UP to the effective minimum (spec frozen by SMD/SMY/SMP/CTG), so the \\$200 books hold their strategy",
+   "src": "backlog SMX (frozen spec), SMD/SMY/SMP/CTG/SXR",
+   "status": "todo",
+   "due": "2026-11-28T13:46",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "kripto/paper.rebalance(round_min=True) used only for small: books (paper.run_once, venue_bn.run, venue_pair.run reb lambdas): a target notional >= half the effective minimum (max(min notional, one step x mark); HL step from szDecimals, BN from symbol_filters) is placed AT it, sign kept; below half 0; pair books: both legs rounded to the larger of the two effective minima, then whole_pairs/whole_pair_trades as today; tests: known answers per venue + a pair + BTC step case (CTG) + flip; pytest; trader run exit 0",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "design.md changelog line (the \\$200 twin models what a small trader would do: round up, not drop; general rationale, numbers from SMD/SMY only as evidence); CLAUDE.md lifecycle paragraph: small twins round up",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "after the next daily rebalances: live_vs_backtest --main small:main / small:main_bn and scripts.twin_check: twins' gross now >= .6 of the big sibling, no violations; record the before/after deployed share per twin (SXR table)",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
