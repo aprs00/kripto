@@ -4781,6 +4781,32 @@
    "verdict": "OPEN",
    "reason": "fast Binance books lose with both cost filters (lam: PRB c/PRN; per-coin band .02: flow 1.60 -> 1.28, blend 2.10 -> 1.23): their turnover is signal; the cost lever is HL-slow-leg-specific",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "CMB",
+   "prio": 1.05,
+   "group": "T",
+   "title": "PRB2 + HBL2 together on the HL main book, and the live min-order rule PRB2 needs (accumulate sub-$10 gaps at $1,000)",
+   "src": "PRL/PRD (slow-leg lam .33), HBL (young beta 1.35), TSB c (56 % of lam trades < $10 at $1,000)",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "descriptive HL 2023-26 by year: base, PRL slow33, HBL beta 1.35, both: net SR, corr BTC, costs (interaction check; all years already seen: no choice)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "live min-order simulation at $1,000 equity: per coin, the held weight moves to the (partial) target only when |target - held| x equity >= $10 (else nothing), for lam1 and slow33; HL 2023-26 by year vs the frictionless versions",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict for PRB2's spec: if slow33 under the min-order rule keeps >= 80 % of its SR gain over lam1 under the same rule in 3 of 4 years, the spec stands; else the band form (TSB) is the spec",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
