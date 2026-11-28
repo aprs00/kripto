@@ -6680,6 +6680,60 @@
    "verdict": "OPEN",
    "reason": "engine fault found and fixed: the $200 pair twin held one-legged positions (27 % of gross live); history: per-leg truncation SR 1.32 vs whole pairs 6.57 vs $1,000 7.34; SMX adds round-up of both legs",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "TWC",
+   "prio": 3.5,
+   "group": "T",
+   "title": "Twin and hedge integrity check in the hourly watchdog: no small: twin holds a coin/side its big sibling does not, no pair book holds a one-legged or same-sign pair",
+   "src": "SMP (one-legged small pair twin found by hand), LVB/SMY (twins diverge)",
+   "status": "wip",
+   "due": "2026-11-28T13:30",
+   "sessions": 1,
+   "forms": [
+    {
+     "id": "a",
+     "what": "scripts/twin_check.py: pure function over the positions table (pair: every coin has exactly @hl and @bn legs of opposite sign, |notional| ratio within 0.7-1.4; twin: every small: position has the same sign in its big sibling, small gross <= big gross x small/big equity x 1.5); known-answer tests on a fake table",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "run it on today's ledger: list every violation and classify (the GRAM/ZEC orphans must appear: known answer on live data)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "wire into scripts/health.py as a WARN line (not ALERT: the orphans close at the next daily rebalance), test the health integration, document in CLAUDE.md layout",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "LVP",
+   "prio": 3.6,
+   "group": "T",
+   "title": "live_vs_backtest for the pair books (shadow:fspread_hold@pair, main@pair): the tool skips them today",
+   "src": "LVB, X1 (pair book incubation 11-27)",
+   "status": "todo",
+   "due": "2026-11-28T13:30",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "extend the tool: venue 'pair' replay on venue_pair.live_panel with per-leg fees (HL 4.5, BN 5 bp: fee as a per-column cost) and whole_pairs at the book's equity; known answer: a hand replay of one pair over its live days",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "run for shadow:fspread_hold@pair (since 11-12) and main@pair (since 11-27): corr, ret gap, funding live vs replay (the book's whole edge is funding: compare per leg)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict by the MBL rule (corr < .7 or live below replay by > 3 % of its own vol-scaled return -> a fault); for a low-vol book report the funding gap in bp/day instead of corr if daily P&L is dominated by noise",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
