@@ -1686,3 +1686,4 @@ FLX a/b/c (is3_flx.py, flx_ab.json): flow slope HAC t -1.0 (blend -1.34): no sig
 SXR a/b/c (sxr_a.json, sxr_b.json): live $200 twins deployed 0-.90 of their shadow (carry@bn 0, flow@bn .15, blend_nested .21); round-to-min would give .79-1.09 for all entries. carry_trend@bn gap -> TWV d. CLOSED OPEN.
 CTG a/b/c (ctg_ab.json): small:carry_trend@bn: BTC target $56.40 = 58 % of its gross, Binance step .001 BTC > $56 -> floored to 0; the rest < $5. No fault; SMX rounds to max(min, one step). CLOSED OPEN.
 SMA a/b/c (kripto/research.round_to_min, small_acct_round, tests, is3_sma.py, sma_b.json): known answer exact. CLOSED FEATURE.
+FLP a/b/c (is3_flp.py, flp_ab.json): main_bn mix .5 flow 1.75 vs blend alone 1.66 vs .25 flow 1.80 (2025-26 .86/.98/.99); funding overlap per coin .85. FLX2 pre-registered (+.1 OOS SR keep bar). CLOSED OPEN.

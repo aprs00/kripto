@@ -6987,26 +6987,38 @@
    "group": "T",
    "title": "FLX2 precheck: main_bn mix with flow vs blend alone vs flow restricted (descriptive, bnall 1d, by year, vol-matched)",
    "src": "FLX (flow's 2025-26 return = funding), backlog FLX2",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T13:45",
    "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "vol-matched to 23.5 %: (i) .5 flow + .5 blend (live), (ii) blend alone, (iii) .25 flow + .75 blend; SR, ann, max DD by year 2021-26 and 2025-26 pooled; corr flow vs blend by year",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall 1d vol-matched 23.5 %: (i) .5 flow + .5 blend SR 1.75 / 41 %/yr / DD -28.5, (ii) blend alone 1.66 / 39 / -26.8, (iii) .25 flow 1.80 / 42 / -28.1; 2025-26 pooled .86 / .98 / .99; by year flow helps 2021-24, hurts 2026 (1.16 vs 1.61); corr flow-blend .20-.51",
+     "date": "2026-11-28",
+     "evidence": "flp_ab"
     },
     {
      "id": "b",
      "what": "how much of flow's 2025-26 funding is ALREADY in blend (overlap of their funding P&L by coin: corr of per-coin funding contributions; marginal funding of adding flow)",
-     "status": "planned"
+     "status": "done",
+     "result": "2025-26 funding: flow 31.7 % vs blend 71.3 % of unit gross summed; per-coin funding corr .85 (59 % of flow's funding coins same sign in blend), top: RIVER/LAB/MYX/PIPPIN (squeezed names with extreme funding): flow's remaining return overlaps blend's carry",
+     "date": "2026-11-28",
+     "evidence": "flp_ab"
     },
     {
      "id": "c",
      "what": "pre-register the FLX2 WF now: ONE comparison (i) vs (ii) on bnall WF, pass for keeping flow = (i) - (ii) >= +.1 OOS SR AND forward days (shadow:flow@bn vs shadow:blend_nested@bn) not contradicting; written before any WF",
-     "status": "planned"
+     "status": "done",
+     "result": "FLX2 pre-registered (threshold written in the queue BEFORE this run): ONE bnall WF comparison (i) .5 flow + .5 blend vs (ii) blend alone, same vol; keep flow in main_bn only if (i) - (ii) >= +.1 OOS SR AND the forward days of shadow:flow@bn vs shadow:blend_nested@bn do not contradict; descriptive full-sample gap is +.09 (below the bar), 2025-26 -.12: prior that flow leaves main_bn = medium",
+     "date": "2026-11-28",
+     "evidence": "flp_ab"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "flow adds +.09 SR full-sample, -.12 in 2025-26, its funding overlaps blend's (per-coin corr .85); FLX2 WF pre-registered with a +.1 keep bar",
+   "closed": "2026-11-28"
   }
  ]
 }
