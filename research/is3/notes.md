@@ -1638,3 +1638,11 @@ Source: SMQ d (BN top-N vol-matched: N4 1.56, deployed 2026 .47), SMH (HL $200 =
 Change my mind: as queued (c). Prior: low for HL (the blend's tsmom/lowvol legs are broad; few-name versions lose breadth), medium for round-to-min.
 SMD a/b/c (is3_smd.py, smd_a.json, smd_b.json, smd_track.json): top-N fails (3.7 names); round-to-minimum PASSES: HL 1.21-1.23 vs 1.58, deployed .61/.72, corr .78; BN 1.50 vs 1.77, .83/.75, corr .91.
  BN band bug ($10 -> $5) caught by comparing with SMQ. CLOSED OPEN -> backlog SMX (small: twins trade round-to-min).
+
+## SMY round-to-min on the live small twins (think-through 13:2x UTC 11-28, before any run)
+Source: SMD (history: round-to-min tracks .78 HL / .91 BN). Live since 11-18 is 10 days: a replay of what small:main / small:main_bn WOULD have held with the rule, compared with the live
+ big sibling (main / main_bn) day by day. Unstated: (1) at $200 a minimum-sized position is 5 % (HL $10) or 2.5 % (BN $5), BTC 25 % on BN ($50): rounding BTC up to $50 when the target is $25-49 doubles
+ the BTC leg; (2) names hovering near half the minimum enter and leave at full minimum size: churn at 4.5-5 bp per crossing; the $10 trade band does not stop a crossing (it is a 5 % jump);
+ (3) 10 days, effective n ~10: only a gross failure (corr < .5) would count against SMX.
+SMY a/b/c (is3_smy.py, is3_smd churn, smy_a.json, smy_b.json): truncation replay = live small twins exactly (known answer); round-min live corr .94 HL / .87 BN; churn 13/15 % of gross;
+ hysteresis worse (1.01/1.39). SMX spec frozen: round-to-min at half the minimum, no hysteresis. CLOSED OPEN.

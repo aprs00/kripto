@@ -1,0 +1,64 @@
+{
+ "hl": {
+  "usd1000_replay": {
+   "days": 10,
+   "ret%": 0.68,
+   "corr_live_big": 0.98,
+   "names": 22.8,
+   "gross": 0.552,
+   "turnover": 0.26
+  },
+  "trunc_200": {
+   "days": 10,
+   "ret%": -1.27,
+   "corr_live_big": -0.63,
+   "names": 1.0,
+   "gross": 0.153,
+   "turnover": 0.0
+  },
+  "roundmin_200": {
+   "days": 10,
+   "ret%": 0.87,
+   "corr_live_big": 0.94,
+   "names": 7.5,
+   "gross": 0.44,
+   "turnover": 0.14
+  },
+  "live_small": {
+   "ret%": -1.35,
+   "corr_live_big": -0.64
+  },
+  "live_big_ret%": 0.42
+ },
+ "bn": {
+  "usd1000_replay": {
+   "days": 10,
+   "ret%": -5.16,
+   "corr_live_big": 0.94,
+   "names": 21.3,
+   "gross": 0.434,
+   "turnover": 2.06
+  },
+  "trunc_200": {
+   "days": 10,
+   "ret%": -0.6,
+   "corr_live_big": 0.4,
+   "names": 0.7,
+   "gross": 0.021,
+   "turnover": 0.25
+  },
+  "roundmin_200": {
+   "days": 10,
+   "ret%": -8.23,
+   "corr_live_big": 0.87,
+   "names": 10.7,
+   "gross": 0.398,
+   "turnover": 2.79
+  },
+  "live_small": {
+   "ret%": -0.6,
+   "corr_live_big": 0.44
+  },
+  "live_big_ret%": -3.2
+ }
+}

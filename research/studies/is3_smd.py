@@ -109,5 +109,40 @@ def tracking():
     print(json.dumps(out)); json.dump(out, open("research/is3/smd_track.json", "w"), indent=1)
 
 
+
+def hysteresis(w, mins, enter=0.5, leave=0.25):
+    """round-to-min with hysteresis: a name enters at >= enter x minimum (placed at the minimum), stays while >= leave x minimum, else 0."""
+    m = mins.reindex(w.columns).to_numpy() / EQ
+    W = w.to_numpy(); out = np.zeros_like(W); held = np.zeros(W.shape[1], bool)
+    for t in range(W.shape[0]):
+        a = np.abs(np.nan_to_num(W[t]))
+        held = np.where(held, a >= leave * m, a >= enter * m)
+        out[t] = np.where(held, np.sign(np.nan_to_num(W[t])) * np.maximum(a, m), 0.0)
+    return pd.DataFrame(out, w.index, w.columns)
+
+
+def churn():
+    out = {}
+    for tag, fn in (("hl", hl_book), ("bn", bn_book)):
+        VEN[0] = tag
+        p, w, mins, S = fn()
+        m = mins.reindex(w.columns).to_numpy() / EQ
+        forms = {"usd1000": (w, 1000.0), "trunc": (trunc(w, mins), EQ), "roundmin": (pd.DataFrame(roundmin(w, mins), w.index, w.columns), EQ),
+                 "hyst_50_25": (hysteresis(w, mins), EQ)}
+        out[tag] = {}
+        for k, (x, eq) in forms.items():
+            res, r = run(p, x, eq, S)
+            yrs = len(r) / 365
+            gross_ret = float((r + res.costs.loc[S]).mean() * 365)
+            H = res.weights.loc[S].to_numpy(); dH = np.abs(np.diff(H, axis=0))
+            cross = ((H[1:] == 0) != (H[:-1] == 0))                      # a name enters or leaves
+            out[tag][k] = {"sr": round(float(r.mean() / r.std() * np.sqrt(365)), 2), "turn_yr": round(float(res.turnover.loc[S].sum() / yrs), 1),
+                           "cost_pct_yr": round(float(res.costs.loc[S].sum() / yrs * 100), 2), "gross_ret_pct_yr": round(gross_ret * 100, 1),
+                           "cost_share_of_gross": round(float(res.costs.loc[S].sum() / yrs) / gross_ret, 2) if gross_ret > 0 else None,
+                           "crossing_share_of_turnover": round(float(dH[cross].sum() / dH.sum()), 2) if dH.sum() > 0 else None}
+        print(tag, json.dumps(out[tag]), flush=True)
+    json.dump(out, open("research/is3/smy_b.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    {"a": form_a, "b": form_b, "t": tracking}[sys.argv[1]]()
+    {"a": form_a, "b": form_b, "t": tracking, "churn": churn}[sys.argv[1]]()

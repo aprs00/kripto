@@ -6531,26 +6531,38 @@
    "group": "T",
    "title": "SMX precheck: round-to-minimum replayed on the LIVE period for small:main and small:main_bn (would they have tracked their sibling?) + the churn it adds",
    "src": "SMD, backlog SMX",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T13:20",
    "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "live_vs_backtest machinery, live panels since 11-18: main-book targets x \\$200 with round-to-minimum (per-symbol minima) vs truncation vs the live sibling (main, main_bn): daily corr, ret, names held, gross",
-     "status": "planned"
+     "status": "done",
+     "result": "live since 11-18 (10 d): truncation replay reproduces the live small twins (HL -1.27 vs live -1.35, corr to big -.63 vs -.64; BN -0.60 = -0.60): known answer. Round-to-min: HL +0.87 %, corr .94 to live main (+0.42), 7.5 names, gross .44; BN -8.23 % vs $1,000 replay -5.16 / live main_bn -3.20, corr .87, 10.7 names, turnover 2.79 vs 2.06. Tracking passes on both; BN pays more turnover",
+     "date": "2026-11-28",
+     "evidence": "smy_a"
     },
     {
      "id": "b",
      "what": "churn: on the history (is3_smd books) turnover/yr and fees/yr of round-to-min vs truncation vs \\$1,000, and the share of trades that are threshold crossings (a name entering/leaving at the minimum); if crossings dominate, a hysteresis variant (enter at >= .5 min, leave at < .25 min) stated now, run once",
-     "status": "planned"
+     "status": "done",
+     "result": "history (is3_smd churn): round-to-min turnover HL 31/yr ($1,000 27), BN 101/yr (117); cost 13 % / 15 % of gross return ($1,000 9 % / 15 %); crossings = 71 % / 78 % of its turnover -> hysteresis (enter .5, leave .25 min) run once: SR HL 1.01 / BN 1.39 vs plain round-min 1.23 / 1.50: worse (holds stale names), rejected",
+     "date": "2026-11-28",
+     "evidence": "smy_b"
     },
     {
      "id": "c",
      "what": "verdict: live replay corr >= .7 to the sibling on both venues and churn cost <= 25 % of the \\$200 gross return -> SMX spec frozen (with or without hysteresis by b) for the research session; else SMX prior down with the reason",
-     "status": "planned"
+     "status": "done",
+     "result": "rule: live corr >= .7 both venues (HL .94, BN .87) and churn <= 25 % of gross (13 / 15 %) -> PASS: SMX spec frozen = round-to-min at half the venue/symbol minimum, no hysteresis, small: books only; note BN live 10 d: round-min -8.2 % vs $1,000 replay -5.2 % (extra turnover; 10 days)",
+     "date": "2026-11-28",
+     "evidence": "smy_b"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "round-to-min would have tracked the big siblings live (corr .94 / .87, truncation -.63 / .40 = today's twins exactly); churn acceptable, hysteresis worse; SMX spec frozen for the research session",
+   "closed": "2026-11-28"
   },
   {
    "id": "T9R",

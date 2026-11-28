@@ -1,0 +1,70 @@
+{
+ "hl": {
+  "usd1000": {
+   "sr": 1.58,
+   "turn_yr": 27.2,
+   "cost_pct_yr": 3.98,
+   "gross_ret_pct_yr": 42.4,
+   "cost_share_of_gross": 0.09,
+   "crossing_share_of_turnover": 0.12
+  },
+  "trunc": {
+   "sr": 1.38,
+   "turn_yr": 14.8,
+   "cost_pct_yr": 2.13,
+   "gross_ret_pct_yr": 25.5,
+   "cost_share_of_gross": 0.08,
+   "crossing_share_of_turnover": 0.65
+  },
+  "roundmin": {
+   "sr": 1.23,
+   "turn_yr": 31.1,
+   "cost_pct_yr": 4.55,
+   "gross_ret_pct_yr": 35.1,
+   "cost_share_of_gross": 0.13,
+   "crossing_share_of_turnover": 0.71
+  },
+  "hyst_50_25": {
+   "sr": 1.01,
+   "turn_yr": 22.5,
+   "cost_pct_yr": 3.38,
+   "gross_ret_pct_yr": 32.2,
+   "cost_share_of_gross": 0.1,
+   "crossing_share_of_turnover": 0.55
+  }
+ },
+ "bn": {
+  "usd1000": {
+   "sr": 1.77,
+   "turn_yr": 116.9,
+   "cost_pct_yr": 7.24,
+   "gross_ret_pct_yr": 48.9,
+   "cost_share_of_gross": 0.15,
+   "crossing_share_of_turnover": 0.05
+  },
+  "trunc": {
+   "sr": 1.72,
+   "turn_yr": 71.1,
+   "cost_pct_yr": 4.41,
+   "gross_ret_pct_yr": 40.5,
+   "cost_share_of_gross": 0.11,
+   "crossing_share_of_turnover": 0.85
+  },
+  "roundmin": {
+   "sr": 1.5,
+   "turn_yr": 101.0,
+   "cost_pct_yr": 6.25,
+   "gross_ret_pct_yr": 41.5,
+   "cost_share_of_gross": 0.15,
+   "crossing_share_of_turnover": 0.78
+  },
+  "hyst_50_25": {
+   "sr": 1.39,
+   "turn_yr": 87.7,
+   "cost_pct_yr": 5.44,
+   "gross_ret_pct_yr": 39.8,
+   "cost_share_of_gross": 0.14,
+   "crossing_share_of_turnover": 0.61
+  }
+ }
+}
