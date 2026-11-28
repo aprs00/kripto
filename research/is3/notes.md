@@ -1564,3 +1564,8 @@ Source: L2b (Binance taker flow continuation transfers to HL prices, +19 %/yr gr
  bound (real fills are selected against us ~1:1 with any improvement, T9K/T9C); (2) HL queues on thin names are short, so fills are likelier but adverse selection by faster HL
  makers may be worse; (3) HL perps list fast: the hlx universe is the HL coins with Binance flow. Frozen config (live flow@bn), no grid. Change my mind: as queued (c).
 FHM a/c (is3_fhm.py, fhm_a.json): flow on HL at maker fees: selection-free upper bound SR .39 (-.79/.79/.50/.65), taker ~0, corr HL book .06. b skipped. CLOSED OPEN.
+
+## MBL main_bn's first 19 live days (think-through 11:4x UTC 11-28, before any run)
+Source: FLL (shadow:flow@bn -9 % = flow's own loss, replay -13.6 %). main_bn = .5 flow@bn + .5 blend_nested@bn (+ the ladder sleeve). If the blend half also matches its replay, the book's
+ -9 % is the strategies, not the plumbing; if the blend half diverges, it is an implementation gap (universe, timing, sleeve). Unstated: the two halves can both be fine and the book still
+ look worse than the mean of its shadows (sleeve fills, rounding at $1,000, min orders). Change my mind: replay corr < .7 or live < replay by > 3 % -> a fault to chase.
