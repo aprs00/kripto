@@ -6980,6 +6980,33 @@
    "verdict": "FEATURE",
    "reason": "every robustness block now reports the $200 twin three ways: one band (old), hard minima + deployed share, round-to-minimum; known answer exact",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "FLP",
+   "prio": 4.3,
+   "group": "T",
+   "title": "FLX2 precheck: main_bn mix with flow vs blend alone vs flow restricted (descriptive, bnall 1d, by year, vol-matched)",
+   "src": "FLX (flow's 2025-26 return = funding), backlog FLX2",
+   "status": "wip",
+   "due": "2026-11-28T13:45",
+   "sessions": 1,
+   "forms": [
+    {
+     "id": "a",
+     "what": "vol-matched to 23.5 %: (i) .5 flow + .5 blend (live), (ii) blend alone, (iii) .25 flow + .75 blend; SR, ann, max DD by year 2021-26 and 2025-26 pooled; corr flow vs blend by year",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "how much of flow's 2025-26 funding is ALREADY in blend (overlap of their funding P&L by coin: corr of per-coin funding contributions; marginal funding of adding flow)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "pre-register the FLX2 WF now: ONE comparison (i) vs (ii) on bnall WF, pass for keeping flow = (i) - (ii) >= +.1 OOS SR AND forward days (shadow:flow@bn vs shadow:blend_nested@bn) not contradicting; written before any WF",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
