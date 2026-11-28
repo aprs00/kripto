@@ -5868,13 +5868,16 @@
    "group": "T",
    "title": "True hourly taker split for flow@bn (data build) + anchors and the 6-anchor average on ONE hourly clock (PDX lesson): is flow's phase noise real, does avg6 beat the mean single?",
    "src": "E2C c (approx split: avg6 SR 1.16 vs 00 .63), backlog FPD",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T12:45",
    "forms": [
     {
      "id": "a",
      "what": "build data/is3/k1h_tb/ (public data.binance.vision 1h archives, col 10 kept) for every bn100 coin that was ever in the point-in-time top 40 by 30-d dollar volume, 2021-12..2026-10, in a transient unit (polite: 2 workers); known answer: per coin-day sum of 24 hourly tbqv == klines_1d_all tbqv",
-     "status": "planned"
+     "status": "done",
+     "result": "439 coins / 118k coin-days of true 1h taker split (data.binance.vision 1h archives, col 10); known answer 24 x hourly tbqv == daily tbqv: p99 rel err 3.5e-16 median, 98.9 % of coins < 1e-6 at p99, a few isolated days off (INJ max 29 %); 8 coin-months 404 (no archive)",
+     "date": "2026-11-28",
+     "evidence": "fpt_check"
     },
     {
      "id": "b",
@@ -5887,7 +5890,7 @@
      "status": "planned"
     }
    ],
-   "sessions": 1,
+   "sessions": 2,
    "defer_why": "unit is3-fpt downloading true 1h taker split (2 chunks, ~70 min); then check + b"
   },
   {

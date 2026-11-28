@@ -1576,3 +1576,11 @@ HANDOFF (11:56 UTC 11-28): unit is3-fpt chunk 2 downloading the rest of the true
  `python -m research.studies.is3_fpt check` (known answer: 24 x hourly tbqv == daily tbqv; if coin-months are left, run `dl` again in a unit), then b in a unit (MemoryMax 1800M: is3_pdx xf
  peaked 2.19 GB unrestricted): `systemd-run ... python -c "from research.studies import is3_fpt as F; F.form_b()"` -> fpt_b_a.json + fpt_b_xf.json; c verdict by the queued rule.
  Open threads: T9G (live maker shadow for flow@bn, LOW-MEDIUM after T9C), LVB (live_vs_backtest for main books), FPD (low).
+
+## FPT true hourly taker split (think-through 12:5x UTC 11-28, before b)
+Source: E2C a/c (approx split from 5-min metrics ratios, rank corr .83 vs true daily), PDX xf (approx split, exact one-clock avg6 .86 vs mean single .81, rho .88, singles .52-1.01).
+Question: is flow@bn's anchor spread (00 .52 worst, 16 1.01) a property of the signal (e.g. the 00 UTC anchor trades into the Asia open / funding stamp) or noise from the approximation?
+With the true split the approx noise is gone; if the spread stays (.5 SR range) at rho ~.9, it is one sub-book's luck over 5 years (SE of SR on 5 y ~ .45), not diversifiable: avg6 can't lift
+ much when rho is .9 (max lift sqrt(6/(1+5*.9)) = 1.04x). Prediction: avg6 - mean single < .1 -> FPD closes. Unstated: live flow@bn trades the 00 anchor; if 00 stays the worst by a lot in
+ every year, a cheaper fix is just moving the anchor (but choosing the best of 6 in-sample is selection: a 6-way max of SR with SE .45 is worth ~ +.5 by luck alone), so no anchor switch on this.
+a done: 439 coins, known answer passes (p99 rel err ~1e-16), 8 coin-months have no archive.
