@@ -4421,6 +4421,58 @@
    "verdict": "OPEN",
    "reason": "HL listing_short is a hedged spread (corr BTC ~0; the leg split misleads, incl. LSP's 'BTC leg made 2023-24'); young coins' beta is 1.3-1.46 on both venues, so beta 1 leaves ~.35 net short; the 1.35 hedge is cleaner at -.06 SR held-out: risk fix for a research session (backlog HBL2)",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "PRL",
+   "prio": 1.1,
+   "group": "T",
+   "title": "Where the HL main book's costs go (per leg) and partial rebalancing only on the slow legs (keep listing entries immediate)",
+   "src": "PRB (lam .33 on the whole book: costs 7.0 -> 3.4 %/yr but pre-cost SR -0.1 explore; listing entries delayed), HBL",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "descriptive, HL 1d 2023-26: cost and turnover of blend(listing_short,lowvol,tsmom) by leg (component weights before netting; BTC hedge shared) and by year; cost per unit of the leg's pre-cost P&L",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "pre-stated: lam .33 on lowvol+tsmom legs only, listing_short at lam 1 (entries/exits immediate), HL explore 2023-24 vs whole-book lam .33 and lam 1; PASS = net SR >= whole-book lam .33 in both years",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "if b passes: L.prereg, ONE run HL 2025-26 vs lam .33 whole-book (PRB b numbers) and lam 1",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "HBM",
+   "prio": 1.2,
+   "group": "T",
+   "title": "Do the Binance main books also hedge young coins at beta 1 (beta_to NaN < 20 d)? share of gross and the effect of the 1.35 fill",
+   "src": "HBL (young-coin beta 1.3-1.46 on both venues; hedge_beta fills NaN with 1.0)",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "bnall cache (data/is3/fc1c_bnall_1d.pkl, ends 11-21) 2021-26: share of gross of flow / carry / carry_trend / xsmom held in coins with NaN 20-d beta, by year; if < 3 % of gross: CLOSE (irrelevant)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "if a >= 3 %: same books with the NaN fill at 1.35, explore 2021-23: corr BTC, SR, BTC-down-day mean vs fill 1.0",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict for HBL2: apply the fill globally (hedge_beta) or only in listing_short",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
