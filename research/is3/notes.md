@@ -1473,3 +1473,5 @@ New angle: under lam .33 an unfilled order is not a missed trade, it is a lag: t
  24h signed return < -5 bp (eats the 5 bp taker saving).
 T9D b (t9d_b.json): fills are not adversely selected (filled r24 = all); the cost is the 0.3-4 % unfilled runaways (+450..700 bp/24h) that must be chased. BN net save q0 +2.5 bp/unit
  (.75 %/yr), q5 ~0, q10 -5: worthless on BN. The lever scales with the taker slip avoided: on HL (8-22 bp) the arithmetic is ~10 bp/unit, but untestable here (HL 1h too short). c = envelope (no chase inside 1x step).
+T9D c (t9d_c.json): BN slow sub-book: post-only cuts costs 2.18 -> .65 %/yr, but missed runaways give it back: +.9 %/yr at q0, 0 at q5, -1.6 at q10 (envelope in between). Below bar on BN.
+ Unstated condition that would make it work: taker cost much larger than the selection loss, i.e. HL thin names (slip 8-22 bp). Selection loss scales with volatility, saving with cost. add-form d (HL 7.5 months).

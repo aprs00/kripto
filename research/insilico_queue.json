@@ -5733,7 +5733,16 @@
     {
      "id": "c",
      "what": "envelope form: post-only only while |position - target| < 1 x the daily gap, taker beyond; net cost per year vs all-taker and vs PRB2 baseline; verdict: worth a WF / a live resting engine or not. Confirm years 2024-26 only if explore saves >= 1 %/yr",
-     "status": "planned"
+     "status": "done",
+     "result": "BN-82 explore 2021-23 slow-leg sub-book (tsmom+lowvol lam .33, 32.6x/yr): taker 14.73 %/yr SR .69 (cost 2.18); skip-unfilled q0 15.61/.73 (cost .65), q5 14.65/.69, q10 13.13/.61; chase q0 15.58, q5 14.63; envelope (taker beyond 1x trailing 20-d mean step) q0 15.31, q5 14.69, q10 13.87. Cost cut 70 % but lag/selection gives it back: +.9 %/yr at 1-tick queue, 0 at 5 bp, negative at 10 bp; 3/3 years same sign. < 1 %/yr bar: no BN confirm. Known answer: my loop vs bt.run taker 3e-5, maker-skip 2e-6. 4 policies x 3 queue levels tried. HL slip 8-22 bp untested -> form d.",
+     "date": "2026-11-28",
+     "evidence": "t9d_c"
+    },
+    {
+     "id": "d",
+     "what": "HL descriptive 2026-04-14..11-27 (all HL 1h on disk; 2026 already seen by PRB2, so no confirm value): same sim on HL legs, HL fees (taker 4.5, maker 1.5 bp) and HL slip model; taker vs skip vs env at q0/q5/q10; verdict on whether a live resting engine for the HL slow legs is worth building (bar: >= 1 %/yr at q5)",
+     "status": "planned",
+     "added": "2026-11-28"
     }
    ],
    "sessions": 1
