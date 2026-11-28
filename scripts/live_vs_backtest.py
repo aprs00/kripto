@@ -1,6 +1,6 @@
 """T0a: live paper book vs a backtest replay of exactly the live period (tracking check).
 
-For every non-retired single-entry shadow book on HL or Binance (pair books are skipped: their legs have no panel replay yet):
+For every non-retired single-entry shadow book on HL, Binance or both (pair books since LVP 11-28: venue_pair.live_panel, mean leg fee):
 re-run the strategy on the same 4h panel the live engine uses, with the live engine's weight clipping (apply_risk) and the
 shadow book's band (min order / shadow equity), starting flat at the book's first rebalance bar, and compare with the live
 equity series day by day:
@@ -40,7 +40,7 @@ from kripto import backtest as bt
 from kripto import data, paper as P, venue_bn
 from kripto.strategies import REGISTRY, bars_per_day
 
-MIN_ORDER = {"hl": 10.0, "bn": 5.0}
+MIN_ORDER = {"hl": 10.0, "bn": 5.0, "pair": 10.0}
 
 
 def _db():
@@ -52,6 +52,9 @@ def live_universe(c, venue: str) -> list[str]:
     ctx snapshot (same order as paper.refresh_data); Binance = live kline files with a bar in the last day. Plus every
     coin any book of that venue ever traded."""
     traded = set(pd.read_sql("select distinct coin from fills", c)["coin"])
+    if venue == "pair":   # LVP 11-28: HL coins with a Binance live file (venue_pair.run's list, before its exchangeInfo filter)
+        from kripto import venue_pair
+        return sorted(f.stem for f in venue_pair.HL_CANDLES.glob("*.parquet") if (venue_bn.LIVE_DIR / f"{data.hl_to_bn(f.stem)}.parquet").exists())
     if venue == "bn":
         now = pd.Timestamp.now("UTC")
         coins = [f.stem for f in venue_bn.LIVE_DIR.glob("*.parquet")
@@ -98,6 +101,9 @@ def entry_targets(name: str, sc: dict, venue: str, panel: dict, start_bar: pd.Ti
 
 
 def _panel(venue: str, coins: list[str]) -> dict:
+    if venue == "pair":
+        from kripto import venue_pair
+        return venue_pair.live_panel(coins)
     return venue_bn.live_panel(coins) if venue == "bn" else P.live_panel(coins)
 
 
@@ -126,7 +132,7 @@ def run_replay(w: pd.DataFrame, panel: dict, venue: str, start_bar: pd.Timestamp
     w.loc[w.index < start_bar] = np.nan                   # flat until the live book's first rebalance bar
     bpd = bars_per_day(panel["close"].index)
     slip = bt.slippage_model(panel["volume"], bpd)
-    fee = 0.0005 if venue == "bn" else bt.TAKER_FEE
+    fee = {"bn": 0.0005, "pair": (0.0005 + bt.TAKER_FEE) / 2}.get(venue, bt.TAKER_FEE)   # pair: the two legs' mean taker fee
     res = bt.run(w, panel["close"], panel.get("funding"), slip, band=MIN_ORDER[venue] / eq0, fee=fee)
     res.target = w   # targets incl. the last bar's rebalance (res.weights = held DURING a bar, i.e. before it)
     return res, panel
@@ -137,7 +143,7 @@ def replay(name: str, sc: dict, venue: str, start_bar: pd.Timestamp, coins: list
     return run_replay(entry_targets(name, sc, venue, panel, start_bar), panel, venue, start_bar, risk, eq0)
 
 
-MAIN_BOOKS = {"hl": "main", "bn": "main_bn"}
+MAIN_BOOKS = {"hl": "main", "bn": "main_bn", "pair": "main@pair"}
 
 
 def main(only: list[str], since: str | None = None, daily: bool = False, mains: bool = False):
@@ -150,7 +156,7 @@ def main(only: list[str], since: str | None = None, daily: bool = False, mains: 
     if not mains:
         for name, sc in cfg.items():
             venue = P.venue_of(sc)
-            if sc.get("status") == "retired" or venue not in ("hl", "bn"):
+            if sc.get("status") == "retired" or venue not in ("hl", "bn", "pair"):
                 continue
             if only and f"shadow:{name}" not in only and name not in only:
                 continue

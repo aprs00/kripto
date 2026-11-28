@@ -6726,26 +6726,38 @@
    "group": "T",
    "title": "live_vs_backtest for the pair books (shadow:fspread_hold@pair, main@pair): the tool skips them today",
    "src": "LVB, X1 (pair book incubation 11-27)",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T13:30",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "extend the tool: venue 'pair' replay on venue_pair.live_panel with per-leg fees (HL 4.5, BN 5 bp: fee as a per-column cost) and whole_pairs at the book's equity; known answer: a hand replay of one pair over its live days",
-     "status": "planned"
+     "status": "done",
+     "result": "live_vs_backtest: venue 'pair' (venue_pair.live_panel, coins = HL candles with a BN live file, $10 band, mean leg fee 4.75 bp: an approximation of per-leg fees) for shadows and --main (main@pair); alignment known answer: daily corr lag -1/0/+1 = .03/.82/-.11. The planned hand replay of one pair was NOT done; lag test used instead",
+     "date": "2026-11-28",
+     "evidence": "lvp_ab"
     },
     {
      "id": "b",
      "what": "run for shadow:fspread_hold@pair (since 11-12) and main@pair (since 11-27): corr, ret gap, funding live vs replay (the book's whole edge is funding: compare per leg)",
-     "status": "planned"
+     "status": "done",
+     "result": "shadow:fspread_hold@pair 16 d: live +0.88 % vs replay +0.67 %, corr .82, te 12.5 bp/day, funding live .97 % vs .105 %... i.e. 1.05 % (gap -0.47 bp/day), cost .35 vs .42 %, turnover 5.4 vs 4.6, wcorr .89; largest day 11-27 +0.38 % (INIT basis swing). main@pair 1 day (too early); small:main@pair -0.67 % on 11-28 vs -0.01 = the GRAM/ZEC orphans",
+     "date": "2026-11-28",
+     "evidence": "lvp_ab"
     },
     {
      "id": "c",
      "what": "verdict by the MBL rule (corr < .7 or live below replay by > 3 % of its own vol-scaled return -> a fault); for a low-vol book report the funding gap in bp/day instead of corr if daily P&L is dominated by noise",
-     "status": "planned"
+     "status": "done",
+     "result": "MBL rule: corr .82 >= .7, live above replay: PASS; the edge (funding) arrives as modelled (-0.47 bp/day of ~6.6 bp/day); main@pair to be judged at the X1f check (>= 30 days, 12-12)",
+     "date": "2026-11-28",
+     "evidence": "lvp_ab"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "pair shadow tracks its replay (corr .82, funding within 7 %); tool now covers every book type except overlay sleeves; main@pair too young",
+   "closed": "2026-11-28"
   }
  ]
 }

@@ -1,0 +1,32 @@
+{
+ "corr_lag": {
+  "-1": 0.03,
+  "0": 0.82,
+  "1": -0.11
+ },
+ "days": 16,
+ "shadow": {
+  "ret_live%": 0.88,
+  "ret_bt%": 0.67,
+  "corr": 0.82,
+  "te_bp": 12.5,
+  "cost_live%": 0.349,
+  "cost_bt%": 0.416,
+  "fund_live%": 0.973,
+  "fund_bt%": 1.049,
+  "turn_live": 5.41,
+  "turn_bt": 4.56,
+  "wcorr": 0.89
+ },
+ "main_pair_1d": {
+  "live%": 0.02,
+  "bt%": -0.01
+ },
+ "small_main_pair_1d": {
+  "live%": -0.67,
+  "bt%": -0.01,
+  "note": "the GRAM/ZEC orphans (SMP)"
+ },
+ "fund_gap_bp_per_day": -0.47,
+ "largest_diff_day": "2026-11-27 +0.38 % (INIT 0.087 -> 0.139 -> 0.089: basis move between venues)"
+}

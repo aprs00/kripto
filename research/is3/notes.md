@@ -1665,3 +1665,4 @@ SMP a/b/c (is3_smp.py, smp_a.json, smp_b.json, kripto/venue_pair.whole_pairs + t
  History $200: per-leg truncation SR 1.32, whole 6.57, round-up both 7.33 ($1,000 7.34). CLOSED OPEN.
 TWC a/b/c (scripts/twin_check.py + health WARN + tests, twc_ab.json): first run found the 2 known orphans + 2 new faults (pair INIT resized on BN only; small DOGE kept the wrong side after
  a below-minimum flip); fixed: venue_pair.whole_pair_trades, paper.rebalance closes on a below-min flip. CLOSED FEATURE.
+LVP a/b/c (live_vs_backtest venue pair, lvp_ab.json): shadow pair corr .82 (lag test .03/.82/-.11), live +0.88 vs +0.67 %, funding .97 vs 1.05 %. main@pair 1 day. CLOSED OPEN.
