@@ -244,6 +244,8 @@ Log every process change in `docs/process_changelog.md` (append, newest last). K
   real fill timing. Compare research inputs with live inputs directly; a check that reuses live's own input cannot see that input is wrong.
 * **Memory before parallelism:** measure one unit (`research_run --probe`, the LARGEST file) before choosing workers; long jobs in a transient systemd unit.
 * **Never `pkill -f` / `pgrep -f`** (they match your own shell): wait on a PID.
+* **The trader step takes 12–20 min (11-28):** for rule 6 use `systemctl --user start --no-block kripto-trader.service`, then wait in a background shell until
+  `systemctl --user show -p ActiveState --value kripto-trader` is `inactive`/`failed` and read `Result`/`ExecMainStatus` (`is-active` is false while `activating`).
 * **Pin what the owner decided** (model, schedule); inherited defaults drift. Data a result depends on must be on the server or rebuildable by one command.
 * **Interactive work and headless sessions share one usage budget;** agent.sh retries a research/review session once after the printed reset.
 * **Adding a venue's data, even historical, needs the owner's say-so first** (HARD RULE 1 lists the endpoints).
