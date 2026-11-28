@@ -5157,7 +5157,7 @@
    "group": "T",
    "title": "SQZ's squeeze state on HL listing events (descriptive replication on the live venue): does 'far above the post-listing low' predict 7-d short losses on HL?",
    "src": "SQZ (bnall: top quintile of off_low P(7-d loss > 20 %) 17 % vs 7-10 %, but blocking = random), HLE (HL edge = new float)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
@@ -5179,10 +5179,16 @@
     {
      "id": "c",
      "what": "verdict: replicates as a description or not; no filter (SQZ's F0 failed); note for the HL listing leg's risk",
-     "status": "planned"
+     "status": "done",
+     "result": "Verdict: replicates as a description (pre-stated rule met), not as a filter or a sizing rule. On HL the far-above-low quintile has the same mean 7-d short P&L as the rest (+2.5 vs +2.4..+3.9 %) and the highest median; mean/sd q1..q5 .11/.20/.10/.09/.08: halving q5 would barely move risk-adjusted return (ratio .08 vs pooled ~.11), so no add-form. Risk note for the HL listing leg: about 1 in 7 coin-days held >= 43 % above the post-listing low lose > 20 % in a week.",
+     "date": "2026-11-28",
+     "evidence": "hsq_ab"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "SQZ squeeze state replicates on HL as a tail description (14 vs 9 %, 3/4 years) but its quintile carries the strongest median decay: no filter, no sizing gain",
+   "closed": "2026-11-28"
   }
  ]
 }
