@@ -1418,3 +1418,8 @@ Source: LVQ (lowvol vs listing_short corr .27-.57). The blend scales each leg to
  (so the comparison is not a leverage change); multipliers from data up to the prior month end.
 ERC a (is3_erc.py, erc_a.json): listing_short = 47-56 % of book variance, ls+lowvol 72-84 %; tsmom near-uncorrelated (diversifier). ERC fixed point checked on a known 3x3 (contributions 1/3 each).
 ERC b/c (erc_b.json): ERC explore 1.13/.48 vs .87/.75: FAIL; flat-leg bug in run 1 fixed. CLOSED OPEN: the book needs another uncorrelated leg, not reweighting.
+
+## NPC nested selection with a correlation cap (think-through 03:0x UTC 11-28, before any run)
+Source: ERC (risk concentrated, reweighting fails), LVQ. H4 picks the top 3 by Sharpe; when two winners share a factor the book is a two-bet book. A cap makes the third slot go to the
+ best different bet. Unstated: a lower-Sharpe uncorrelated leg can still dilute (if its Sharpe is ~0 the book loses); correlations on daily P&L understate tail co-movement (squeezes hit
+ both short-alt legs on the same days). Prereg NPC_cap04 (0.4 stated before any run, greedy, hold fewer). Venues: HL (OOS 2024-26) + cached bnall 2021-26 (window-safe).

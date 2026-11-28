@@ -5432,6 +5432,33 @@
    "verdict": "OPEN",
    "reason": "HL blend: 72-84 % of risk in the two short-alt legs (ERC a), but 90-d ERC weights fail explore (2024 .48 vs .75): noisy covariance on 3 legs; equal weights stay",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "NPC",
+   "prio": 1.1,
+   "group": "T",
+   "title": "blend_nested selection with a correlation cap: pick top-3 by expanding Sharpe but skip a candidate whose expanding daily P&L corr with an already chosen component > 0.4 (HL + cached bnall)",
+   "src": "ERC (72-84 % of HL book risk in two short-alt legs; reweighting fails), LVQ (ls-lowvol corr .27-.57), H4 nested rule",
+   "status": "wip",
+   "due": "2026-11-28T03:02",
+   "forms": [
+    {
+     "id": "a",
+     "what": "descriptive: pool strategies' expanding daily P&L corr matrix at the last HL refit and at 3 bnall refits; which choices the cap would change",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "prereg NPC_cap04 then ONE run each venue: OOS net SR by year, standard nested vs capped (hold fewer if fewer pass); HL 2024-26",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "same on cached bnall 2021-26 (held-out venue, many more refits); verdict vs the prereg rule",
+     "status": "planned"
+    }
+   ],
+   "sessions": 1
   }
  ]
 }

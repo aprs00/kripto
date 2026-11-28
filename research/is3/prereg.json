@@ -350,5 +350,16 @@
    "script": "research.studies.is3_tlq conf"
   },
   "at": "2026-11-28T02:53:34+00:00"
+ },
+ "NPC_cap04": {
+  "claim": "blend_nested with a 0.4 correlation cap on chosen components beats the standard H4 selection out of sample",
+  "rule": "Greedy by expanding net Sharpe (>0), skip a candidate whose expanding daily-return corr (same history as the Sharpe, overlap >= 120 d) with any already chosen > 0.4; hold fewer if fewer pass; all else = blend_nested defaults. PASS = capped OOS net SR >= standard pooled on HL 2024-26 AND cached bnall 2021-26 AND in >= 2/3 of the years on each venue; else FAIL",
+  "params": {
+   "cap": 0.4,
+   "top": 3,
+   "refit_days": 60,
+   "min_days": 240
+  },
+  "at": "2026-11-28T03:01:45+00:00"
  }
 }
