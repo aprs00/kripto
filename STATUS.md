@@ -41,7 +41,7 @@ InSilico idle 40 h reported as healthy; a research day lost to the usage limit (
    ($262: its accounts had drifted to +27 % / −25 % while the book as a whole was +0.7 %). main@pair after one day: Hyperliquid $528 / Binance $473.
 4. Retired the Binance trend shadow book (tsmom@bn, weakest by the written rules) to keep the number of books polite.
 
-InSilico pass 3: 532 of 580 forms done (30 skipped), 149 of 157 items closed. Best finding so far: the $200 accounts were not running the strategies. Minimum order sizes (Hyperliquid $10, Binance $5, BTC $50) left the $200 Hyperliquid book holding only Bitcoin and the $200 Binance book 3 of 31 coins. The $200 pair book held two positions without their hedge. Those hedge bugs are fixed and an hourly check now watches for them. Rounding small positions up to the minimum (to be built next) would keep about 77-85 % of the $1,000 Sharpe at $200. Resting orders at the current price would fill almost always and save about 0.04 % per trade.
+InSilico pass 3: 535 of 586 forms done (30 skipped), 150 of 159 items closed. Best finding so far: the $200 accounts were not running the strategies. Minimum order sizes (Hyperliquid $10, Binance $5, BTC $50) left the $200 Hyperliquid book holding only Bitcoin and the $200 Binance book 3 of 31 coins. The $200 pair book held two positions without their hedge. Those hedge bugs are fixed and an hourly check now watches for them. Rounding small positions up to the minimum (to be built next) would keep about 77-85 % of the $1,000 Sharpe at $200. Resting orders at the current price would fill almost always and save about 0.04 % per trade.
 
 ## Books (07:00 UTC; 19 days of paper P&L is noise)
 | book | $1,000 (shadow $2,000) | $200 twin |
