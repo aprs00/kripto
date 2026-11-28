@@ -7223,31 +7223,46 @@
    "group": "T",
    "title": "FLX2 precheck: how much of flow@bn is funding carry, and a funding-neutral flow defined a priori for the FLX2 WF",
    "src": "FLX, FLP, backlog FLX2",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T16:50",
    "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "bnall 2021-26 flow (lookback 3, cap .05): daily P&L split by each position's funding side (receiving vs paying, by the 8h rate of that day) into price and funding parts, by year; share of gross on the receiving side",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall 2021-10/26, flow alone SR 1.06 (cost 11.3 %/yr): half the gross (50.2 %) sits on the funding-RECEIVING side (trailing 7-d), earning funding +10..26 %/yr and price -14..+22 (2025/26 +3.1/+5.7); the paying half carries the price edge (2021 +84, 2023 +28, 2024 +18) but 2025/26 +1.5/-7.3 and pays 4-11 %/yr. Known answers: production flow exact (max dw 0), funding split sums exact",
+     "date": "2026-11-28",
+     "evidence": "flxf_abc"
     },
     {
      "id": "b",
      "what": "FROZEN variant (iii) for FLX2, defined before running: flow score residualised cross-sectionally on the trailing 7-d mean funding rate (same regression as resid=True) -> SR by year, price vs funding parts, corr to blend@bn, cost/turnover",
-     "status": "planned"
+     "status": "done",
+     "result": "FROZEN (iii) resid_f7 (score residualised on trailing 7-d funding): SR .77 vs 1.06 (by year .95/-.45/2.02/1.51/.41/.21), funding 1-10 %/yr, price part 2025/26 +12.2/+3.4 vs +4.7/-1.6; corr to blend .17 vs .40; corr to flow .85. In-sample mix with blend (.5/.5): 1.75 = flow mix 1.75 (2023-25 +.18/+.31/+.07, 2021 -.51), blend alone 1.66",
+     "date": "2026-11-28",
+     "evidence": "flxf_abc"
     },
     {
      "id": "c",
      "what": "descriptive only: flow keeping only positions on the funding-paying side (drops the carry overlap entirely): SR by year, corr to blend@bn; not a candidate (selection on outcome side)",
-     "status": "planned"
+     "status": "done",
+     "result": "paying-only flow (descriptive): SR .09 (2021 3.18, 2024-26 -1.43/-.64/-1.01): without the receiving side the book has no edge since 2023; the carry overlap is not removable by dropping positions, only by residualising the score",
+     "date": "2026-11-28",
+     "evidence": "flxf_abc"
     },
     {
      "id": "d",
      "what": "write (iii) = form b's rule into backlog FLX2 with its numbers; no lifecycle change",
-     "status": "planned"
+     "status": "done",
+     "result": "backlog FLX2: arm (iii) frozen = resid_f7 (port to strategies.flow fund_resid before the WF), its in-sample numbers and the +.1 OOS keep bar; paying-only recorded dead. No lifecycle change",
+     "date": "2026-11-28",
+     "evidence": "flxf_abc"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "flow@bn = half carry (receiving side earns funding, little price since 2025), half price edge that faded 2025-26; funding-neutral flow keeps the price part at corr .17 to blend; mix ties in-sample -> FLX2 WF decides",
+   "closed": "2026-11-28"
   },
   {
    "id": "LV1S",

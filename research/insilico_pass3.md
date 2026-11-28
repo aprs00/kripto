@@ -214,3 +214,6 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * PRBF can the live comparison of the slower Hyperliquid main book against the old one tell them apart: only slowly. The two books move almost together; the slower one should earn about
   5 % a year more, which live days cannot prove even in 6 months. What they can show is the cost saving, but only after about 90 days: at 30 days it fails by chance one time in four. The rule for
   that comparison is rewritten accordingly (before any live day): an early check only for disasters, the verdict at 90 days.
+* FLXF how much of the Binance flow strategy is really collecting funding: about half. Half its positions sit where it is paid funding, and those earn mostly funding; the other half held the price
+  edge, which faded in 2025 and 2026. A version that ignores funding keeps the price part, moves much less with the other Binance strategy, and mixes with it just as well in history. It goes into the
+  planned walk-forward as a third option; it must beat today's version by a clear margin there to replace it.

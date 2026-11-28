@@ -1735,3 +1735,5 @@ Source: FLX (2025-26 flow gross = funding 18.9/15.4 %/yr + price +4.7/-1.6), FLP
  never looks at funding; a funding-neutral flow tests whether the flow information has price content of its own. Frozen (iii) = residualise the score on trailing 7-d mean funding.
  Change my mind: if (iii)'s price part is ~0 in 2021-24 too, flow's 'price edge' was always partly funding-correlated price drift, and FLX2's 'flow-without-funding' arm is moot.
 LV1S: closed as a duplicate of LV2 (funding filter = random drops) / LVH (universe) before any run; the refill had read the stale backlog LV1 line, not findings. Backlog LV1 corrected.
+FLXF a/b/c/d (is3_flxf.py, flxf_abc.json, flxf_mix.json): flow@bn gross 50 % on the funding-receiving side (+10..26 %/yr funding, small price); paying side = the price edge (2021/23/24), ~0/-7 in 2025/26.
+ Frozen (iii) resid_f7: SR .77 (vs 1.06), corr blend .17 (vs .40), price 2025/26 +12/+3; .5/.5 mix with blend 1.75 = 1.75 (blend alone 1.66). Paying-only dead (.09). CLOSED OPEN -> FLX2 arm (iii).

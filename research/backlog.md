@@ -16,6 +16,9 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
   bnall WF: main_bn = .5 flow + .5 blend vs blend alone vs flow-without-funding-names; decide with forward days, not this table (a 2-year lull happened in 2022 too).
   FLP precheck (11-28, research/is3/flp_ab.json): full sample .5 flow 1.75 vs blend alone 1.66 (2025-26 .86 vs .98); funding overlap per coin .85. PRE-REGISTERED: keep flow only if
   WF OOS (i) - (ii) >= +.1 SR and forward days do not contradict (one WF, counts in the DSR).
+  FLXF (11-28, research/is3/flxf_abc.json, flxf_mix.json): arm (iii) FROZEN = flow with its score residualised cross-sectionally on trailing 7-d mean funding (studies/is3_flxf.flow_x mode resid_f7;
+  port to strategies.flow as `fund_resid=True` before the WF). In-sample: alone SR .77 vs 1.06, corr to blend .17 vs .40, price part 2025/26 +12/+3 vs +5/-2 %/yr; mix with blend 1.75 = 1.75.
+  Dropping positions on the receiving side (paying-only) is dead (SR .09). Same keep bar for (iii) vs (i): +.1 OOS SR, else (i) stays.
 - [ ] SMX (insilico SMD 2026-11-28, research session, prior MEDIUM-HIGH: it decides whether the owner's $200 option is real) **small: twins round small targets UP to the minimum order**
   (a target >= half the venue/symbol minimum is placed AT the minimum, sign kept; below half: 0). Today the engine drops them: small:main = BTC only, small:main_bn 3 of 31 names.
   Descriptive (research/is3/smd_b.json, smd_track.json; rule fixed a priori): HL $200 SR 1.21 vs 1.58 at $1,000 (corr .78, deployed .61/.72 2025/26) vs truncation 1.38 at corr .40 / 2.7 names;
