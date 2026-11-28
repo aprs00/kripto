@@ -4389,25 +4389,32 @@
    "group": "T",
    "title": "HL listing_short: P&L of the shorts vs the BTC hedge leg by year, and the young-coin beta (assumed 1 below 20 d)",
    "src": "LSP (bnall: 2023-24 profit was the BTC leg), BNH/HLI (listing_short = the HL main book's edge), beta_to min_periods 20 d",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T00:00",
    "forms": [
     {
      "id": "a",
      "what": "HL 1d 2023-03..2026-11: listing_short net P&L split alt-short legs vs BTC leg (funding and costs per leg), by year; corr to BTC; if the BTC leg carries >= half of any year, say so in findings/STATUS",
-     "status": "planned"
+     "status": "done",
+     "result": "split exact (resid 0). HL listing_short by year 2023-26 net 12/29/60/37 %: BTC leg price +11.7/+27.4/-6.9/-2.7 %, alt price +15.9/+3.4/+78.6/+49.6 %, alt funding -6.3/+9.6/-4.9/-6.8 %; corr BTC -.10..0. Main blend 2024: BTC leg +39.7 vs alts -4.0 %. Leg split misleads for a hedged spread (P&L = -w(r_alt - beta r_btc)); book not net long BTC (corr ~0): 2024 = alts lagging a BTC rally, a real but regime-shaped decay",
+     "date": "2026-11-28",
+     "evidence": "hbl_a"
     },
     {
      "id": "b",
      "what": "realised beta of listing-age coins (days 2-20 vs 21-61) to BTC, pooled HL 2023-24 and bnall-cache 2021-23 events: is beta=1 for <20 d too high/low? dose by age",
-     "status": "planned"
+     "status": "done",
+     "result": "pooled beta of held listing coins to BTC: HL 2023-24 age 2-7 d 1.37 (winsor 1.32, n 467), 8-20 d 1.46 (1.36, n 1097), 21-61 1.16; bnall 2021-23 1.34/1.26/1.27; down-beta 1.5-1.6 vs up ~1: beta-1 hedge leaves young coins ~.35 net short -> c",
+     "date": "2026-11-28",
+     "evidence": "hbl_b"
     },
     {
      "id": "c",
      "what": "if b shows |pooled beta - 1| >= .3: hedge young coins with the explore-pooled beta (frozen) vs beta 1 on HL 2025-26 held out: corr BTC, SR, worst days",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }

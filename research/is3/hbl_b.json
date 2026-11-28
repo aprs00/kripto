@@ -1,0 +1,48 @@
+{
+ "hl": {
+  "2-7": {
+   "n": 467,
+   "beta": 1.367,
+   "beta_winsor": 1.321,
+   "beta_up": 0.664,
+   "beta_down": 1.53
+  },
+  "8-20": {
+   "n": 1097,
+   "beta": 1.463,
+   "beta_winsor": 1.355,
+   "beta_up": 1.167,
+   "beta_down": 1.101
+  },
+  "21-61": {
+   "n": 2788,
+   "beta": 1.164,
+   "beta_winsor": 1.126,
+   "beta_up": 0.72,
+   "beta_down": 1.16
+  }
+ },
+ "bnall_cache": {
+  "2-7": {
+   "n": 1100,
+   "beta": 1.335,
+   "beta_winsor": 1.308,
+   "beta_up": 1.024,
+   "beta_down": 1.613
+  },
+  "8-20": {
+   "n": 2346,
+   "beta": 1.261,
+   "beta_winsor": 1.142,
+   "beta_up": 0.997,
+   "beta_down": 1.595
+  },
+  "21-61": {
+   "n": 7155,
+   "beta": 1.272,
+   "beta_winsor": 1.184,
+   "beta_up": 0.929,
+   "beta_down": 1.491
+  }
+ }
+}

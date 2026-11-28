@@ -321,5 +321,13 @@
    "dataset": "hl"
   },
   "at": "2026-11-28T00:56:59+00:00"
+ },
+ "HBL_c": {
+  "claim": "hedging listing coins without a 20-d beta at the HL-explore pooled winsorised beta 1.35 (instead of 1.0) makes HL listing_short / the HL main blend closer to market-neutral without costing SR",
+  "rule": "ONE run HL 1d 2025-01..2026-11 (and by year), listing_short and blend(listing_short,lowvol,tsmom), band .005; PASS = |corr BTC| not larger AND net SR >= beta-1 SR - 0.10 for both books; report worst 10 days and BTC-down-day mean",
+  "params": {
+   "young_beta": 1.35
+  },
+  "at": "2026-11-28T01:00:16+00:00"
  }
 }

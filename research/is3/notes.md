@@ -1227,3 +1227,11 @@ Change my mind: a lam<1 with net SR >= lam=1 in 2023 AND 2024 -> b.
 PRB a done (is3_prb.py, prb_a.json): lam .33 net SR .87/.93 vs .87/.75 (2023/24), costs 11.1 -> 5.7 %/yr, pre-cost SR 1.21 -> 1.11. PRE-STATED (b): lam .33, ONE run HL 2025-26; PASS = net SR >= lam 1 pooled AND 2025.
 PRB b PASS (prb_b.json): HL 2025-26 lam .33 net 1.94 vs 1.86, costs 7.0 -> 3.4 %/yr. c (prb_c/prb_d.json): bnall fast books lose (blend_bn 2.10 -> 1.84, flow 1.60 -> 1.34); HL band .01: better 2024-26,
  worse 2023; band .05 ($200) worse every year. Mechanism holds: pays only where alpha decays slower than target noise (HL legs) and the band is small. CLOSED OPEN -> backlog PRB2 (shadow variant).
+
+## HBL HL listing_short: shorts vs BTC hedge leg, young-coin beta (think-through 01:0x UTC 11-28, before any run)
+Source: LSP (on bnall the 2023-24 profit was the BTC hedge leg), BNH/HLI (listing_short = the HL main book's edge). beta_to needs 20 d, so coins younger than 20 d are hedged at beta 1.
+Mechanism: the HL main book's claim is 'new listings decay vs BTC'. If the book's P&L is mostly the long BTC leg in up years, it is a disguised long-BTC bet and its SR is regime luck.
+Unstated: (1) new listings may have beta > 1 (thin, retail) -> hedge too small -> the short legs lose in rallies and the book is net short the market; or beta < 1 (idiosyncratic) -> the
+ BTC leg is over-sized and long the market; (2) the leg split must include funding per leg (HL shorts in new listings often RECEIVE funding). Change my mind: BTC leg >= half the net in
+ any year -> say in findings/STATUS that the HL edge is partly beta; pooled young beta outside 1 +/- .3 -> c.
+HBL a/b done (is3_hbl.py, hbl_a/b.json): leg split exact; corr BTC ~0, 2024 profit = alts lagging a BTC rally. Young-coin beta 1.3-1.46 both venues (down 1.5-1.6). PRE-STATED (c): young beta 1.35 frozen, ONE run HL 2025-26, PASS = |corr| not larger AND SR >= beta-1 SR - .10, both books.
