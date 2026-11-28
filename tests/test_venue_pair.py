@@ -218,3 +218,16 @@ def test_pair_legs_resize_together_or_not_at_all():
     assert VP.whole_pair_trades(t2, 200.0, mins, pos, marks).equals(t2)
     t0 = pd.Series({"AAA@hl": 0.0, "AAA@bn": 0.0})              # closing is never blocked
     assert VP.whole_pair_trades(t0, 200.0, mins, pos, marks).equals(t0)
+
+
+def test_unbalanced_held_pair_is_repaired():
+    """review 11-28: a held pair already out of balance (hl -143 / bn +227 INIT) must be brought back even when both resizes
+    toward the target are below minimum: the larger leg shrinks to the smaller leg's notional."""
+    mins = lambda col: 10.0 if col.endswith("@hl") else 5.0
+    marks = {"AAA@hl": 0.088, "AAA@bn": 0.088}
+    pos = {"AAA@hl": -143.0, "AAA@bn": 227.0}
+    t = pd.Series({"AAA@hl": -0.1, "AAA@bn": 0.1})              # $20 per leg: HL +$7.4 (< $10), BN ~ +$0 -> both below minimum
+    out = VP.whole_pair_trades(t, 200.0, mins, pos, marks)
+    assert out["AAA@hl"] == pytest.approx(-143 * 0.088 / 200) and out["AAA@bn"] == pytest.approx(143 * 0.088 / 200)
+    bal = {"AAA@hl": -200.0, "AAA@bn": 210.0}                     # within 0.7-1.4: left alone
+    assert VP.whole_pair_trades(t, 200.0, mins, bal, marks).equals(t)

@@ -266,3 +266,5 @@ put a lesson into CLAUDE.md "Standing lessons" only if a future session must act
 * 2026-11-28 insilico TWC: scripts/twin_check.py + health WARN: the hourly watchdog checks that pair books are fully hedged and small twins sit on their sibling's side.
   It found two more min-order faults on its first run (fixed: venue_pair.whole_pair_trades, paper.rebalance below-minimum flip). Lesson: a minimum order acts on TRADES,
   not only on targets; any rule written for targets must be checked at the trade level too.
+- 2026-11-28 (review): a fix that only stops a fault from happening again must also repair the state the fault already left. whole_pair_trades
+  prevented new one-leg resizes but froze an existing unbalanced pair. It now shrinks the larger leg back to the smaller one.

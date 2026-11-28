@@ -188,6 +188,16 @@ def whole_pair_trades(tgt: pd.Series, eq: float, min_notional, pos: dict[str, fl
         if any(small) and not all(small):
             for x in cols:
                 out[x] = pos.get(x, 0.0) * marks[x] / eq
+        if any(small):
+            # repair a pair left unbalanced (by the old engine or by price moves): when the resize cannot fix it, shrink the larger
+            # leg to the smaller leg's notional if that trade clears its own minimum (review 11-28: small:fspread_hold@pair INIT
+            # hl -143 / bn +227 stayed frozen because both resizes were below minimum).
+            n = {x: pos.get(x, 0.0) * marks[x] for x in cols}
+            a, b = sorted(cols, key=lambda x: abs(n[x]))
+            if n[a] * n[b] < 0 and abs(n[a]) > 0 and abs(n[b]) / abs(n[a]) > 1.4 \
+                    and abs(abs(n[b]) - abs(n[a])) >= min_notional(b):
+                out[a] = n[a] / eq
+                out[b] = -n[a] / eq
     return out
 
 

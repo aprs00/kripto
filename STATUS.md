@@ -1,6 +1,6 @@
-HEALTH: WARN — Claude login expires from 2026-12-04: owner, as kripto run `claude auth login` (or `claude setup-token`) before then, or every Claude session stops; everything else OK.
+HEALTH: WARN — Claude login expires from 2026-12-04: owner, as kripto run `claude auth login` (or `claude setup-token`) before then, or every Claude session stops; twin/hedge check WARN = leftovers from before today's fixes, clearing at the 11-29 00:14/04:10 steps.
 
-_Updated 2026-11-28 08:35 UTC (review): all services, data (last bar 04:00, nightly job OK) and the collector are healthy; one transient Hyperliquid 502 at 08:10 recovered by itself. The InSilico work queue had run empty at 02:47 (two slots idle): refilled with 3 items due now. Book numbers below are from 07:00; at 08:25 main $1,001, main_bn $906, main@pair $1,000. Research detail: journal/2026-11-28.md._
+_Updated 2026-11-28 13:45 UTC (review, called by the watchdog): 4 twin/hedge problems in the $200 books are left over from the 00:14 and 04:10 trades, which ran before today's engine fixes. They close at tomorrow's daily steps. One of them, an unbalanced INIT pair in small:fspread_hold@pair, would have stayed frozen, so the engine now repairs unbalanced pairs (test added, trader run OK). Services, data and collector are healthy. Book numbers below are from 07:00. Detail: journal/2026-11-28.md._
 
 ## Held back (written gate clauses applied by `scripts.held_back`; a strategy that fails nothing must trade)
 | strategy | pick | grid avg | DSR | worst | grid med | other venue | status / alloc | fails (written clauses) |
