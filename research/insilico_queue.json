@@ -6797,6 +6797,33 @@
    "verdict": "OPEN",
    "reason": "data complete; power is the binding constraint (60 d confirm needed); T6b pre-registered",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "FLX",
+   "prio": 3.8,
+   "group": "T",
+   "title": "Is flow@bn decaying? yearly SR 2.06/1.21/.33/.31 (2023-26) and live -9 %: trend test, where the 2025-26 loss of edge sits, vs the written retire clause",
+   "src": "SMQ b, MBL/FLL, design.md lifecycle table",
+   "status": "wip",
+   "due": "2026-11-28T13:37",
+   "sessions": 1,
+   "forms": [
+    {
+     "id": "a",
+     "what": "bnall 1d, flow (lookback 3, cap .05) as live: rolling 365-d SR by month 2021-26, slope test (OLS of yearly SR on year with the 6 points, and of monthly returns on time, HAC t); the same for blend@bn components as a control (is it flow or the market?)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "2025-26 decomposition: long vs short leg, liquidity tercile, gross vs cost vs funding, and the signal's 1-d IC by year (is the IC falling, or costs rising with a bigger universe?)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict: written clauses only (design.md: retire = live DD > 2x backtest max DD, or 60-d live SR < 0 with backtest-inconsistent behaviour; FLL: live = 3-5th pct, consistent) -> no lifecycle change today unless a clause is met; if the IC trend is negative with HAC t <= -2, backlog item for the research session: re-weight main_bn toward blend with the written rationale",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
