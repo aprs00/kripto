@@ -165,5 +165,29 @@ def form_b():
     json.dump(out, open(EV / "e2c_b.json", "w"), indent=1)
 
 
+def form_c():
+    """Phase-diversified flow@bn: the equal-weight average of the 6 anchor books (each its own daily book on its own anchor, 1/6 of equity),
+    returns aligned by the UTC date of each bar's end. Not tuned (no anchor chosen). vs the 00 book and vs each single anchor, per year, 2x-cost stress on all."""
+    P, _ = panels()
+    sr = lambda x: round(float(x.mean() / x.std() * np.sqrt(365)), 2) if x.std() > 0 else None
+    out = {}
+    for mult in (1.0, 2.0):
+        R = {}
+        for h in ANCH:
+            p = P[h]
+            w = REGISTRY["flow"](p, **PARAMS)
+            res = bt.run(w, p["close"], p["funding"], bt.slippage_model(p["volume"], 1), fee=5e-4, cost_mult=mult)
+            r = res.returns.loc["2022-01-01":"2026-11-01"].copy(); r.index = (r.index + pd.Timedelta(hours=24 + h)).floor("D")
+            R[h] = r.groupby(level=0).sum()
+        df = pd.DataFrame(R).dropna()
+        avg = df.mean(axis=1)
+        key = f"cost{mult:g}x"
+        out[key] = {"avg6": {"sr": sr(avg), "years": {int(y): sr(x) for y, x in avg.groupby(avg.index.year)}, "vol_pct": round(float(avg.std() * np.sqrt(365) * 100), 1)},
+                    "single": {h: {"sr": sr(df[h]), "years": {int(y): sr(x) for y, x in df[h].groupby(df.index.year)}} for h in ANCH},
+                    "mean_pair_corr": round(float(df.corr().where(~np.eye(len(ANCH), dtype=bool)).stack().mean()), 3)}
+        print(key, json.dumps(out[key]["avg6"]), {h: v["sr"] for h, v in out[key]["single"].items()}, out[key]["mean_pair_corr"], flush=True)
+    json.dump(out, open(EV / "e2c_c.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    {"a": form_a, "b": form_b}[sys.argv[1]]()
+    {"a": form_a, "b": form_b, "c": form_c}[sys.argv[1]]()

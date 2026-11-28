@@ -1496,3 +1496,5 @@ Mechanism for an anchor cost: flow is a 3-day imbalance; its alpha decays within
 Change my mind: approx-00 SR within .15 of true-00 AND 16/20 anchors >= 00 - .15 in every explore year -> b/c; an anchor loss > .15 in 2 of 2 explore years -> DEAD at current size.
 E2C a (is3_e2c.py, e2c_a.json): approximate hourly taker split from metrics_full (xs rank corr .83 vs true daily; SR .63 vs .78 at 00). flow@bn anchors 00..20: 00 worst (.63), 16 = 1.05
  and >= 00 in 5/5 years; phase spread .47 SR. Anchor move costs nothing. b: the break execution itself (buys at the break hour, sells deferred) on flow's trades at the 16/20 anchors, with placebo hours.
+E2C b (e2c_b.json): break sell deferral +2.8/+2.2 bp/unit (t ~1), 2024-only, rank 19-20 of 23 placebo hours; delay to the break free. DEAD at its size (~.2 %/yr).
+E2C c (e2c_c.json): 6-anchor average flow@bn SR 1.16 vs 00 .63 (pair corr .55; sqrt(6/3.75) x .90 = 1.14 predicted): phase diversification, not a fit. CLOSED OPEN -> backlog FPD.

@@ -5807,7 +5807,7 @@
    "group": "T",
    "title": "E2b phase check: does moving flow@bn's daily decision anchor from 00:00 to 16:00/20:00 UTC cost signal P&L? (bn 1h, descriptive)",
    "src": "backlog E2b (E2 2026-11-26: CME-break effect 7.2 -> 2.1 -> 1.1 bp, fading)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T08:00",
    "forms": [
     {
@@ -5829,10 +5829,16 @@
     {
      "id": "c",
      "what": "net: (a) loss + (b) saving vs flow@bn at 00:00 after costs; verdict: shadow variant worth a book, or DEAD at its current size (diagnosed: fading effect vs anchor cost)",
-     "status": "planned"
+     "status": "done",
+     "result": "Net: (a) anchor costs nothing (00 is the worst of six), (b) break execution ~0.2 %/yr, 2024-only: DEAD at its size. New: phase-diversified flow@bn = equal-weight average of the 6 anchor books (no anchor chosen): SR 1.16 vs 00 .63 (singles .63-1.09, mean .90), years -.03/3.26/1.22/1.22/.06 vs .08/1.92/.92/.12/.14 (3/5 better; explore 2022 not), 2x cost .45 vs .05; mean pair corr .55 -> expected lift sqrt(6/(1+5*.55)) = 1.27x of .90 = 1.14, measured 1.16: diversification arithmetic, not a fit. Caveat: approximate taker split (00: .63 vs true .78). -> backlog FPD (WF on a true hourly taker split).",
+     "date": "2026-11-28",
+     "evidence": "e2c_c"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "CME-break execution for flow@bn: sell deferral +2-3 bp/unit, 2024-only, ranks 19-20/23 vs placebo hours = DEAD at its size (~0.2 %/yr); moving the decision anchor costs nothing (00 UTC is the worst of 6 anchors). Side finding: flow@bn's phase noise is large (SR .63-1.10 by anchor) and averaging the 6 anchor books gives SR 1.16 by diversification arithmetic (corr .55): backlog FPD.",
+   "closed": "2026-11-28"
   }
  ]
 }
