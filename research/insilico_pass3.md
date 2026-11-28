@@ -217,3 +217,5 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * FLXF how much of the Binance flow strategy is really collecting funding: about half. Half its positions sit where it is paid funding, and those earn mostly funding; the other half held the price
   edge, which faded in 2025 and 2026. A version that ignores funding keeps the price part, moves much less with the other Binance strategy, and mixes with it just as well in history. It goes into the
   planned walk-forward as a third option; it must beat today's version by a clear margin there to replace it.
+* NPC3 choosing the Binance book's three strategies by how well they do together rather than one by one: better in history, 1.82 vs 1.52, in every year. It replaces one of the two
+  funding-based strategies, which are really one bet, with trend following. On Hyperliquid, where the three strategies are already different, it changes nothing useful. Worth one walk-forward on Binance before the January refit.

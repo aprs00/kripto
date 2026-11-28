@@ -1,0 +1,519 @@
+{
+ "venue": "bnall",
+ "refits": 43,
+ "oos_start": "2020-10-05",
+ "standard": {
+  "2021": 3.61,
+  "2022": -0.12,
+  "2023": 1.79,
+  "2024": 1.45,
+  "2025": 0.4,
+  "2026": 0.79,
+  "pooled": 1.52,
+  "pooled_ex2026": 1.64
+ },
+ "size2": {
+  "2021": 3.61,
+  "2022": -0.89,
+  "2023": 1.8,
+  "2024": 2.01,
+  "2025": -0.32,
+  "2026": 2.22,
+  "pooled": 1.6,
+  "pooled_ex2026": 1.49,
+  "changed_vs_std": 37,
+  "log_tail": [
+   [
+    "2026-03-08",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "tsmom"
+    ],
+    1.75
+   ],
+   [
+    "2026-05-07",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "tsmom"
+    ],
+    1.8
+   ],
+   [
+    "2026-07-06",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "tsmom"
+    ],
+    1.86
+   ],
+   [
+    "2026-09-04",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "tsmom"
+    ],
+    1.83
+   ],
+   [
+    "2026-11-03",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "tsmom"
+    ],
+    1.8
+   ]
+  ],
+  "mean_legs": 2.0
+ },
+ "size3": {
+  "2021": 3.76,
+  "2022": 0.67,
+  "2023": 2.06,
+  "2024": 1.46,
+  "2025": 0.43,
+  "2026": 1.47,
+  "pooled": 1.82,
+  "pooled_ex2026": 1.87,
+  "changed_vs_std": 21,
+  "log_tail": [
+   [
+    "2026-03-08",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "tsmom",
+     "xsmom"
+    ],
+    1.88
+   ],
+   [
+    "2026-05-07",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "tsmom",
+     "xsmom"
+    ],
+    1.94
+   ],
+   [
+    "2026-07-06",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "tsmom",
+     "xsmom"
+    ],
+    2.01
+   ],
+   [
+    "2026-09-04",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "tsmom",
+     "xsmom"
+    ],
+    2.0
+   ],
+   [
+    "2026-11-03",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "tsmom",
+     "xsmom"
+    ],
+    1.92
+   ]
+  ],
+  "mean_legs": 2.97
+ },
+ "size4": {
+  "2021": 3.76,
+  "2022": 0.54,
+  "2023": 2.57,
+  "2024": 1.78,
+  "2025": 0.11,
+  "2026": 1.3,
+  "pooled": 1.88,
+  "pooled_ex2026": 1.97,
+  "changed_vs_std": 32,
+  "log_tail": [
+   [
+    "2026-03-08",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "lowvol",
+     "tsmom",
+     "xsmom"
+    ],
+    2.06
+   ],
+   [
+    "2026-05-07",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "lowvol",
+     "tsmom",
+     "xsmom"
+    ],
+    2.08
+   ],
+   [
+    "2026-07-06",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "lowvol",
+     "tsmom",
+     "xsmom"
+    ],
+    2.1
+   ],
+   [
+    "2026-09-04",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "lowvol",
+     "tsmom",
+     "xsmom"
+    ],
+    2.1
+   ],
+   [
+    "2026-11-03",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "lowvol",
+     "tsmom",
+     "xsmom"
+    ],
+    2.01
+   ]
+  ],
+  "mean_legs": 3.73
+ },
+ "shr3": {
+  "2021": 3.76,
+  "2022": 0.67,
+  "2023": 2.12,
+  "2024": 1.45,
+  "2025": 0.38,
+  "2026": 1.22,
+  "pooled": 1.79,
+  "pooled_ex2026": 1.89,
+  "changed_vs_std": 11,
+  "log_tail": [
+   [
+    "2026-03-08",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "carry_trend",
+     "tsmom"
+    ],
+    2.01
+   ],
+   [
+    "2026-05-07",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "carry_trend",
+     "tsmom"
+    ],
+    2.09
+   ],
+   [
+    "2026-07-06",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "carry_trend",
+     "xsmom"
+    ],
+    2.14
+   ],
+   [
+    "2026-09-04",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "carry_trend",
+     "xsmom"
+    ],
+    2.14
+   ],
+   [
+    "2026-11-03",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "carry_trend",
+     "tsmom"
+    ],
+    2.06
+   ]
+  ],
+  "mean_legs": 2.97
+ },
+ "exact3": {
+  "2021": 3.76,
+  "2022": 0.67,
+  "2023": 2.06,
+  "2024": 1.46,
+  "2025": 0.43,
+  "2026": 1.47,
+  "pooled": 1.82,
+  "pooled_ex2026": 1.87,
+  "changed_vs_std": 21,
+  "log_tail": [
+   [
+    "2026-03-08",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "tsmom",
+     "xsmom"
+    ],
+    1.88
+   ],
+   [
+    "2026-05-07",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "tsmom",
+     "xsmom"
+    ],
+    1.94
+   ],
+   [
+    "2026-07-06",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "tsmom",
+     "xsmom"
+    ],
+    2.01
+   ],
+   [
+    "2026-09-04",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "tsmom",
+     "xsmom"
+    ],
+    2.0
+   ],
+   [
+    "2026-11-03",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "tsmom",
+     "xsmom"
+    ],
+    1.92
+   ]
+  ],
+  "mean_legs": 2.97
+ },
+ "exact3_shr": {
+  "2021": 3.76,
+  "2022": 0.67,
+  "2023": 2.12,
+  "2024": 1.45,
+  "2025": 0.38,
+  "2026": 1.22,
+  "pooled": 1.79,
+  "pooled_ex2026": 1.89,
+  "changed_vs_std": 11,
+  "log_tail": [
+   [
+    "2026-03-08",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "carry_trend",
+     "tsmom"
+    ],
+    2.01
+   ],
+   [
+    "2026-05-07",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "carry_trend",
+     "tsmom"
+    ],
+    2.09
+   ],
+   [
+    "2026-07-06",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "carry_trend",
+     "xsmom"
+    ],
+    2.14
+   ],
+   [
+    "2026-09-04",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "carry_trend",
+     "xsmom"
+    ],
+    2.14
+   ],
+   [
+    "2026-11-03",
+    [
+     "carry_trend",
+     "carry",
+     "xsmom"
+    ],
+    [
+     "carry",
+     "carry_trend",
+     "tsmom"
+    ],
+    2.06
+   ]
+  ],
+  "mean_legs": 2.97
+ }
+}

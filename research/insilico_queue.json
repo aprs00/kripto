@@ -7313,37 +7313,55 @@
    "group": "T",
    "title": "Threshold-free nested selection: pick the 3-leg set with the best expanding COMBINED Sharpe (NPC2's open form; NPS showed the .4 corr cap is a knife-edge)",
    "src": "NPC, NPS, backlog NPC2",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T16:55",
    "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "HL 1d, same refit grid / min_days / pool as nested_selection: at each refit choose the set of <= 3 legs (each expanding SR > 0) maximising the expanding Sharpe of their equal-risk sum; OOS book SR by year vs standard, how often the choice differs",
-     "status": "planned"
+     "status": "done",
+     "result": "HL OOS 2024-26 (16 of the refits differ): max combined expanding Sharpe over sets <= 3 = 1.24 vs standard 1.21 (.50/2.00/1.20 vs .36/1.92/1.45), but mean 1.5 legs: it mostly holds listing_short ALONE = concentration, 2026 worse",
+     "date": "2026-11-28",
+     "evidence": "npc3_hl"
     },
     {
      "id": "b",
      "what": "same on cached bnall (the NPC pickle) by year vs standard; 2026 reported separately (inside both earlier runs)",
-     "status": "planned"
+     "status": "done",
+     "result": "cached bnall 2021-26: size3 1.82 vs 1.52 (3.76/.67/2.06/1.46/.43/1.47 vs 3.61/-.12/1.79/1.45/.40/.79: >= in 6/6), ex-2026 1.87 vs 1.64; 2.97 legs; swaps carry_trend for tsmom (carry and carry_trend = one funding factor), the same swap NPC's cap made, without a threshold",
+     "date": "2026-11-28",
+     "evidence": "npc3_bnall"
     },
     {
      "id": "c",
      "what": "robustness without a threshold to tune: set size 2 / 3 / 4 and a shrunk version (combined Sharpe on returns with correlations shrunk 50 % to 0); the idea counts only if >= 3 of 4 variants beat standard on both venues",
-     "status": "planned"
+     "status": "done",
+     "result": "variants size2/3/4/shr3 vs standard: HL 1.31/1.24/1.24/1.01 (3 of 4 beat, by +.03..+.10 via concentration), bnall 1.60/1.82/1.88/1.79 (4 of 4). Pre-stated bar (>= 3 of 4 on both) met by its letter; HL's pass is concentration, not the idea",
+     "date": "2026-11-28",
+     "evidence": "npc3_hl"
     },
     {
      "id": "d",
      "what": "verdict + backlog NPC2 line (a WF only if c passes; H4 stays otherwise)",
-     "status": "planned"
+     "status": "done",
+     "result": "backlog NPC2 restated: combined-Sharpe selection worth ONE registered WF on bnall (main_bn's blend_nested@bn leg) before the 2027-01-02 refit; HL not adopted (concentration). No lifecycle change",
+     "date": "2026-11-28",
+     "evidence": "npc3_bnall"
     },
     {
      "id": "e",
      "what": "exact set size 3 (when >= 3 legs qualify): max combined expanding Sharpe over 3-leg sets only, so the rule prices correlation instead of concentrating (a-c's <= k sets picked listing_short alone on HL)",
-     "status": "planned",
-     "added": "2026-11-28"
+     "status": "done",
+     "added": "2026-11-28",
+     "result": "exact 3 legs (prices correlation, no concentration): HL 1.02 (differs on 3 refits; 2026 .79 vs 1.45), shrunk 1.22 = standard (2 refits); bnall 1.82 / 1.79 (as size3). The idea works where two legs duplicate one factor (bnall) and is noise where the legs are already distinct (HL)",
+     "date": "2026-11-28",
+     "evidence": "npc3_bnall"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "threshold-free selection removes a duplicated factor on bnall (carry + carry_trend -> tsmom, 1.82 vs 1.52, 6/6 years) and is noise on HL where the legs are distinct; one WF on bnall decides",
+   "closed": "2026-11-28"
   },
   {
    "id": "FLXB",
@@ -7351,9 +7369,9 @@
    "group": "T",
    "title": "Build FLX2's arm (iii) in kripto: strategies.flow fund_resid=True + known-answer test + pre-registered FLX2 batch file (not run)",
    "src": "FLXF, backlog FLX2",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T16:55",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",

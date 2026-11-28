@@ -1746,3 +1746,4 @@ Source: NPC (cap .4 passed prereg), NPS (knife-edge: .5 inert, .3 loses). The id
  beat standard pooled on BOTH venues -> WF worth its DSR count; else NPC2 stays low and H4 unchanged.
 NPC3 a (npc3_hl.json): HL max combined Sharpe over sets <= k mostly holds listing_short ALONE (mean 1.4-1.5 legs): pooled 1.24-1.31 vs 1.21 but 2026 1.20 vs 1.45 = concentration, not diversification.
  Added e (exact 3 legs): 1.02 (differs on 3 refits, 2026 .79); exact3 shrunk 1.22 (2 refits) = standard. bnall in unit is3-npc3 -> data/is3/npc3_bnall.log.
+NPC3 b/c/d (npc3_bnall.json): bnall size3 1.82 vs 1.52 (6/6 years >=), size2/4/shr3 1.60/1.88/1.79; swaps carry_trend -> tsmom. Bar met by letter (HL 3/4 via concentration). Backlog NPC2: one WF on bnall. CLOSED OPEN.
