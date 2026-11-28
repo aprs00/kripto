@@ -1812,3 +1812,8 @@ Source: T2b(b) (abnormal return median HL -17/-49/-82 % at d14/60/120, bnall -12
  by shorts rises: LS1 found shorts PAY funding 2-10 %/yr). Unstated: a late-tranche short is short the names that already fell 50 %: squeeze risk per unit is higher (low price, high
  vol, thin). So the question is the 90-120 tranche alone, after funding and costs, not the book's Sharpe. Rule (form c) written in the queue before running.
 LSH2 a/b/c (is3_lsh2.py, lsh2_bnall.json, lsh2_hl.json): hold 60/90/120 SR bnall .49/.32/.19, HL 1.33/1.21/.96; 90-125 d tranche bnall -9.8 bp/unit/day (2/4 y), HL +5.6. CLOSED DEAD (60 stays).
+
+## T5E pre-statement (17:3x UTC 11-28, before any 2021-22 metric is read)
+Metrics coverage 2021-22 now 100 % (was 72/76 % on 11-27). T5c's diagnosis was 'regime-dependent sign' (OI-building winners faded in 2023's range, continued in 2025-26). That is a story
+ fitted after seeing 2023-26; 2021-22 is its only clean test. Frozen split: trend day = |BTC trailing 60-d simple return| >= 20 %, else range (round number, not fitted). Order: check the
+ story holds on the seen years under this exact split (else stop), then one look at 2021-22.
