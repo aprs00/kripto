@@ -42,7 +42,7 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 **Older priorities (2026-11-26 research, superseded above):** 1. DONE 11-27: `scripts.main_scale --write` (AL2b, design.md 2026-11-26; first application,
 monthly after that via `main_scale_due`) and check main_bn's first days on flow@bn + blend_nested@bn (switched 11-26 08:03) → 2. T5b positioning: backfill is newest-first per coin,
 so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 2024-07): explore only once 2021–23 is complete (≈ 11-29; check per-year coverage of BTC/ETH first)
-→ 3. E1 + LQ1 (≈ 12-01) → 4. fill-delay re-measure ≈ 12-09 → 5. T6b HL positioning (≈ 12-07) → 6. W2 re-check ≈ 12-23 → 7. LD2 ladder cap 5 + size re-derivation (server, full universe, size-matched)
+→ 3. E1 + LQ1 (≈ 12-01) → 4. fill-delay re-measure ≈ 12-09 → 5. T6b HL positioning (≈ 12-07) → 6. W2 re-check ≈ 12-23
 → 8. (FPD low after PDX) → 9. low prior: W3b, FC1(c) pre-2024-07 HL funding, LV1 funding-filtered short leg, FF1 market-relative.
 **2026-11-26 PC session (journal):** LD1, LV1, LO1, FC1(a)(b), E2 done descriptively, 0 walk-forwards spent; carry/carry_trend HL audited (DEAD holds). C1 monthly (≈ 12-25). Weekly: T0a in the retro. T2b(f) listing-day costs DONE 11-26 (robust; findings).
 - [ ] FPD (insilico E2C 2026-11-28, prior LOW after PDX) phase-diversified flow@bn: the 1.16 was a window-misalignment artefact; on one hourly clock rho .88, avg6 .86 vs mean single .81

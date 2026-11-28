@@ -6006,6 +6006,33 @@
    "verdict": "OPEN",
    "reason": "Rest-below depth dose: gains rise with k on BN (flow +2 -> +10.6 %/yr k10 -> k100) but a matched random-fill placebo shows the price improvement is paid back by adverse selection ~1:1 and the robust part is the maker fee (+8-9 %/yr on flow's ~150x turnover); shallow resting is worse than random fills; HL slow legs the same at ~+1.5 %/yr. Frozen for the live shadow T9G: flow k 50 bp, carry_trend k 20 bp (rule stated first). Only live fills can say whether the hourly-OHLC fill model holds.",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "LSH",
+   "prio": 1.8,
+   "group": "T",
+   "title": "Binance listing shorts with an HOURLY squeeze stop (LSX's named revisit): does exiting at the crossing hour instead of the crossing daily close change the placebo verdict?",
+   "src": "LSX (daily-path stops = 2021 insurance vs a random-exit placebo; gap beyond the stop ~-25 %)",
+   "status": "wip",
+   "due": "2026-11-28T11:35",
+   "forms": [
+    {
+     "id": "a",
+     "what": "LSX events whose coin has bn100 1h bars over d1..d61 (coverage stated): hourly path P&L, stops -50/-100 % exiting at the first hourly close beyond the level; gap beyond the level vs the daily version; event mean/median by year",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "same-size random-exit placebo (exit share and exit-hour distribution of the real stops on random events, 200 draws), per year: is the hourly stop better than placebo in >= 5 of 7 years",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict for listing shorts on BN: if b passes, the 5/10-slot book with the hourly stop (2x costs) by year; else close with the reason (the stop's problem is not the gap)",
+     "status": "planned"
+    }
+   ],
+   "sessions": 1
   }
  ]
 }

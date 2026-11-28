@@ -1541,3 +1541,9 @@ Source: T9F. Resting a buy k bp below the close earns k on fills and loses the r
  now: the smallest k within 80 % of the explore peak. Bias of deep k is upward, so c prefers small k.
 T9K a/b/c (is3_t9f k/kp, t9k_a.json, t9k_placebo_flow.json, t9k_b.json): rest-below gain grows with k (flow +10.6 at k100) but the matched placebo shows fee = the lever (+8-9 %/yr), level k paid
  back by selection ~1:1; HL slow legs below placebo. Frozen for T9G: flow k 50, carry_trend k 20. CLOSED OPEN.
+
+## LSH listing shorts, hourly squeeze stop (think-through 11:3x UTC 11-28, before any run)
+Source: LSX (daily stops lose to a random-exit placebo outside 2021; the stop pays a ~25 % gap beyond its level on daily closes). Question: is the failure the gap (fixable by an hourly
+ exit) or the selection (stopped names would have decayed later anyway)? If the gap: hourly stops cut the beyond-level loss to a few % and beat the placebo in most years. If selection:
+ hourly stops trigger MORE often on intraday wicks that later revert, and lose more. Unstated: squeezes on fresh listings often wick and retrace within hours (thin books), so finer stops
+ may be worse. Change my mind: hourly stop beats placebo in >= 5 of 7 years.
