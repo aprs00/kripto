@@ -1237,3 +1237,10 @@ Unstated: (1) new listings may have beta > 1 (thin, retail) -> hedge too small -
 HBL a/b done (is3_hbl.py, hbl_a/b.json): leg split exact; corr BTC ~0, 2024 profit = alts lagging a BTC rally. Young-coin beta 1.3-1.46 both venues (down 1.5-1.6). PRE-STATED (c): young beta 1.35 frozen, ONE run HL 2025-26, PASS = |corr| not larger AND SR >= beta-1 SR - .10, both books.
 HBL c PASS (hbl_c.json): young beta 1.35, HL 2025-26: listing_short 1.71 vs 1.77 SR, corr +.01 vs -.04; blend 1.79 vs 1.86, corr -.07 vs -.09. Small; the beta-1 SR edge = net-short beta in a falling
  BTC year. CLOSED OPEN -> backlog HBL2 (apply as a risk fix in a research session, not as an SR gain). Note: LSP's 'BTC leg made 2023-24' is a leg-accounting artifact of a hedged spread.
+
+## PRL per-leg costs of the HL main book, partial rebalancing on the slow legs only (think-through 01:0x UTC 11-28, before any run)
+Source: PRB (whole-book lam .33: costs halved, pre-cost SR -0.1 on explore). Unstated in PRB: the listing leg is an event book (enter at day 2, exit at day 61): lam .33 delays both, and the
+ decay is front-loaded (LS1 b); tsmom/lowvol targets drift slowly, so their trades are mostly noise. Who pays the noise: our spread. Per-leg contributions = the book's final weights split by
+ each leg's share before the vol-target scalar (exact if scheduled() is a row scalar: checked in code). Standalone leg costs ignore netting between legs: report the netting share.
+Change my mind: slow-legs-only lam .33 net SR >= whole-book lam .33 in 2023 AND 2024 -> c.
+PRL a done (is3_prl.py, prl_a.json): split exact; tsmom pays 3-8 %/yr of costs (turnover 35-64x), listing 2-4, lowvol 1-4; book 5-14 %/yr.
