@@ -6524,6 +6524,60 @@
    "verdict": "OPEN",
    "reason": "a $200 account CAN hold most of the main books if it rounds small targets up to the minimum order (HL 77 %, BN 85 % of the $1,000 Sharpe, tracking .78/.91, 60-80 % deployed) instead of dropping them (today's engine: BTC only on HL); needs the small twins to trade that rule live (SMX)",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "SMY",
+   "prio": 3.1,
+   "group": "T",
+   "title": "SMX precheck: round-to-minimum replayed on the LIVE period for small:main and small:main_bn (would they have tracked their sibling?) + the churn it adds",
+   "src": "SMD, backlog SMX",
+   "status": "wip",
+   "due": "2026-11-28T13:20",
+   "sessions": 1,
+   "forms": [
+    {
+     "id": "a",
+     "what": "live_vs_backtest machinery, live panels since 11-18: main-book targets x \\$200 with round-to-minimum (per-symbol minima) vs truncation vs the live sibling (main, main_bn): daily corr, ret, names held, gross",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "churn: on the history (is3_smd books) turnover/yr and fees/yr of round-to-min vs truncation vs \\$1,000, and the share of trades that are threshold crossings (a name entering/leaving at the minimum); if crossings dominate, a hysteresis variant (enter at >= .5 min, leave at < .25 min) stated now, run once",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict: live replay corr >= .7 to the sibling on both venues and churn cost <= 25 % of the \\$200 gross return -> SMX spec frozen (with or without hysteresis by b) for the research session; else SMX prior down with the reason",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "T9R",
+   "prio": 3.2,
+   "group": "T",
+   "title": "Maker at the touch for the two-venue pair book (fspread_hold@pair, main@pair): fill share per leg and the LEG RISK when one venue fills and the other does not",
+   "src": "T9P/T9Q (single-venue at-touch fills ~always, +4 bp/unit), X1 pair book",
+   "status": "todo",
+   "due": "2026-11-28T13:20",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "live fills of shadow:fspread_hold@pair + main@pair (legs <COIN>@hl on HL 1-min paths exact, <COIN>@bn on HL paths as proxy), q 5 bp: fill share and minutes to fill per leg",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "leg risk: for each pair of legs placed together, the gap between the two simulated fill times and the HL-path move of the unfilled leg during the gap (a hedged book is unhedged for that time); net per unit = fee/slip saving minus that exposure cost",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict stated now: net >= +2 bp/unit with leg-gap p90 <= 30 min -> pair book gets the same frozen spec as T9G/T9c (one engine); else the pair book stays taker (leg risk) and the reason is recorded",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
