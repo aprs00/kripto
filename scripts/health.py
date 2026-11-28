@@ -111,6 +111,12 @@ def gather(root: Path = ROOT, db: Path = DB) -> dict:
                 f["insilico_idle"] = {"last_session": ins[-1] if ins else None, "next_due": dues[0] if dues else None}
     except Exception:
         pass
+    # TWC 11-28: twin / hedge integrity (one-legged pairs, a small twin on the other side of its sibling) from the positions table
+    try:
+        from scripts import twin_check
+        f["twins"] = twin_check.check(db) if db.exists() else []
+    except Exception:
+        pass
     # Always-on services restart themselves in 30 s, faster than any heartbeat check notices: count real crashes instead
     # (kripto-flow was OOM-killed at every 00:00 compaction 11-14..11-16 and the watchdog never said so).
     f["crashes"] = {}
@@ -204,6 +210,9 @@ def assess(f: dict, now: datetime) -> tuple[str, list[str]]:
         if ih is None or ih > 6:
             warn.append(f"InSilico queue has nothing due (next {ii.get('next_due') or 'none'}), slot idle "
                         + (f"{ih:.0f}h" if ih is not None else "") + ": refill it from the backlog")
+    tw = f.get("twins") or []
+    if tw:
+        warn.append(f"twin/hedge integrity: {len(tw)} problem(s), e.g. {tw[0]} (scripts.twin_check)")
     d = f.get("disk_free_gb")
     if d is not None and d < 5:
         alert.append(f"disk {d:.1f}G free")

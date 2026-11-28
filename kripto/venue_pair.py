@@ -173,6 +173,24 @@ def account_step(store: P.Store, book: str, marks: dict[str, float]) -> dict:
     return {"accounts": acc, "transferred": moved, "guard": guard}
 
 
+def whole_pair_trades(tgt: pd.Series, eq: float, min_notional, pos: dict[str, float], marks: dict[str, float]) -> pd.Series:
+    """The two legs of a held pair trade together or not at all (TWC 11-28): if one leg's resize is below its venue minimum while
+    the other's is not, both keep their current size (small:fspread_hold@pair resized INIT@bn alone twice, HL $10 > BN $5, and
+    ended hl -143 / bn +227). Closing (target 0) is never blocked."""
+    out = tgt.copy()
+    by = {}
+    for col in set(tgt.index) | set(pos):
+        by.setdefault(leg(col)[0], []).append(col)
+    for c, cols in by.items():
+        if len(cols) != 2 or any(abs(float(tgt.get(x, 0.0))) < 1e-12 for x in cols) or any(marks.get(x, 0) <= 0 for x in cols):
+            continue
+        small = [abs(float(tgt.get(x, 0.0)) * eq - pos.get(x, 0.0) * marks[x]) < min_notional(x) for x in cols]
+        if any(small) and not all(small):
+            for x in cols:
+                out[x] = pos.get(x, 0.0) * marks[x] / eq
+    return out
+
+
 def whole_pairs(tgt: pd.Series, eq: float, min_notional) -> pd.Series:
     """A pair is held whole or not at all (SMP 2026-11-28): if either leg's target notional is below its venue's minimum order at
     this book's equity, both legs' targets are 0. Without this the $200 twin held one-legged positions (BN $5 minimum let the
@@ -243,7 +261,8 @@ def run(store: P.Store, cfg: dict, risk: dict, hl, bn_run: dict, hl_marks: dict,
 
     def reb(book, tgt, reason):
         if reason not in ("kill_switch", "retired"):
-            tgt = whole_pairs(tgt, P.book_equity(store, book, marks)[0], min_notional)
+            eq = P.book_equity(store, book, marks)[0]
+            tgt = whole_pair_trades(whole_pairs(tgt, eq, min_notional), eq, min_notional, store.positions(book), marks)
         P.rebalance(None, store, book, tgt, marks, {}, reason, round_size=round_size, fill=fill,
                     min_notional=min_notional, fee_rate=lambda col: TAKER_FEE if col.endswith("@hl") else V.TAKER_FEE_BN)
 

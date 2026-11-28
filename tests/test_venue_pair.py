@@ -204,3 +204,17 @@ def test_small_pair_book_never_holds_a_one_legged_pair(env):
     assert pos == {}                                                    # nothing one-legged: the orphan is closed, no new single leg
     big = store.positions("main@pair")
     assert big["AAA@hl"] < 0 < big["AAA@bn"]                             # $40 legs at $1,000 still trade
+
+
+def test_pair_legs_resize_together_or_not_at_all():
+    """TWC 11-28: a resize that only one venue's minimum allows must not unbalance the hedge."""
+    mins = lambda col: 10.0 if col.endswith("@hl") else 5.0
+    marks = {"AAA@hl": 1.0, "AAA@bn": 1.0}
+    pos = {"AAA@hl": -20.0, "AAA@bn": 20.0}
+    t = pd.Series({"AAA@hl": -0.13, "AAA@bn": 0.13})            # $200 book: wants $26 per leg -> +$6 each: BN may, HL may not
+    out = VP.whole_pair_trades(t, 200.0, mins, pos, marks)
+    assert out["AAA@hl"] == pytest.approx(-0.10) and out["AAA@bn"] == pytest.approx(0.10)   # both stay at $20
+    t2 = pd.Series({"AAA@hl": -0.16, "AAA@bn": 0.16})           # +$12 each: both venues allow -> trade
+    assert VP.whole_pair_trades(t2, 200.0, mins, pos, marks).equals(t2)
+    t0 = pd.Series({"AAA@hl": 0.0, "AAA@bn": 0.0})              # closing is never blocked
+    assert VP.whole_pair_trades(t0, 200.0, mins, pos, marks).equals(t0)

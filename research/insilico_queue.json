@@ -6687,26 +6687,38 @@
    "group": "T",
    "title": "Twin and hedge integrity check in the hourly watchdog: no small: twin holds a coin/side its big sibling does not, no pair book holds a one-legged or same-sign pair",
    "src": "SMP (one-legged small pair twin found by hand), LVB/SMY (twins diverge)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T13:30",
    "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "scripts/twin_check.py: pure function over the positions table (pair: every coin has exactly @hl and @bn legs of opposite sign, |notional| ratio within 0.7-1.4; twin: every small: position has the same sign in its big sibling, small gross <= big gross x small/big equity x 1.5); known-answer tests on a fake table",
-     "status": "planned"
+     "status": "done",
+     "result": "scripts/twin_check.py (positions table only: pair legs both present / opposite sign / size ratio .7-1.4; small twin same sign as its sibling), tests/test_twin_check.py known answers",
+     "date": "2026-11-28",
+     "evidence": "twc_ab"
     },
     {
      "id": "b",
      "what": "run it on today's ledger: list every violation and classify (the GRAM/ZEC orphans must appear: known answer on live data)",
-     "status": "planned"
+     "status": "done",
+     "result": "live ledger: 4 violations = the 2 known one-legged pairs (GRAM@bn, ZEC@bn: known answer) + 2 NEW faults: small:fspread_hold@pair INIT unbalanced hl -143 / bn +227 (BN-only resizes when HL's resize < $10), small:flow@bn DOGE +20 vs sibling -219 (a flip to a below-minimum short left the old long). Both fixed with tests: venue_pair.whole_pair_trades (legs resize together or not at all), paper.rebalance closes on a below-minimum flip",
+     "date": "2026-11-28",
+     "evidence": "twc_ab"
     },
     {
      "id": "c",
      "what": "wire into scripts/health.py as a WARN line (not ALERT: the orphans close at the next daily rebalance), test the health integration, document in CLAUDE.md layout",
-     "status": "planned"
+     "status": "done",
+     "result": "health.py gathers twin_check and WARNs (not ALERT: daily rebalances clear them); test; 217 pass; health now shows the 4 until tomorrow's rebalances",
+     "date": "2026-11-28",
+     "evidence": "twc_ab"
     }
-   ]
+   ],
+   "verdict": "FEATURE",
+   "reason": "watchdog now checks twin/hedge integrity hourly; it found 2 more engine faults on its first run, both fixed with tests",
+   "closed": "2026-11-28"
   },
   {
    "id": "LVP",

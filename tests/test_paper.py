@@ -153,3 +153,22 @@ def test_main_scale_known_answer():
     assert abs(vol - 0.01 * np.sqrt(365) * np.sqrt(365 / 364)) < 1e-3 and abs(s - 0.25 / vol) < 1e-9
     assert scale_from_returns(r.iloc[:100])[0] == 1.0                                       # < 120 days -> 1
     assert scale_from_returns(r * 0.1)[0] == 2.0                                            # clipped
+
+
+def test_a_flip_below_the_minimum_closes_the_old_side(tmp_path):
+    """TWC 11-28: small:flow@bn kept DOGE +20 ($1) while its target was a small short: a flip whose new size is below the
+    minimum now closes the position instead of leaving the wrong side on; a same-side small change still waits."""
+    import pandas as pd
+    from kripto import paper as P
+    s = Store(tmp_path / "p.db")
+    s.ensure_book("small:x", 200.0)
+    s.x("insert into positions values('small:x','DOGE',20.0)")
+    s.x("insert into positions values('small:x','SOL',0.1)")
+    marks = {"DOGE": 0.05, "SOL": 100.0}
+    fills = []
+    P.rebalance(None, s, "small:x", pd.Series({"DOGE": -0.015, "SOL": 0.06}), marks, {"DOGE": 0, "SOL": 2}, "bar",
+                fill=lambda c, d: (fills.append((c, d)), (marks[c], marks[c], 0.0))[1], min_notional=lambda c: 5.0)
+    pos = s.positions("small:x")
+    assert pos.get("DOGE", 0.0) == 0.0                     # target -$3 < $5: the +$1 long is closed, not kept
+    assert pos["SOL"] == 0.1                               # +$2 resize on the same side: below the minimum, waits
+    assert fills == [("DOGE", -20.0)]

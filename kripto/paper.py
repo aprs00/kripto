@@ -298,7 +298,11 @@ def rebalance(hl: HL, store: Store, book: str, target_w: pd.Series, marks: dict[
         tgt_sz = float(target_w.get(c, 0.0)) * eq / marks[c]
         d = tgt_sz - pos.get(c, 0.0)
         d = round_size(c, d)
-        closing = abs(tgt_sz) < 1e-12 and abs(pos.get(c, 0.0)) > 1e-12
+        cur = pos.get(c, 0.0)
+        closing = abs(cur) > 1e-12 and (abs(tgt_sz) < 1e-12
+                                         # TWC 11-28: a flip to the other side whose new size is below the minimum used to leave the old
+                                         # side on (small:flow@bn kept DOGE +20 while its sibling was short): close it instead
+                                         or (tgt_sz * cur < 0 and abs(tgt_sz) * marks[c] < min_notional(c)))
         if closing:
             d = -pos.get(c, 0.0)
         if d == 0 or (abs(d) * marks[c] < min_notional(c) and not closing):

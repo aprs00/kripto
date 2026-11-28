@@ -1,0 +1,13 @@
+{
+ "violations_2026_11_28_13_3x": [
+  "small:flow@bn: holds DOGE +20 but shadow:flow@bn holds -219",
+  "small:fspread_hold@pair: unbalanced pair INIT hl -143 bn +227",
+  "small:main@pair: one-legged pair GRAM@bn -10.2 (no hl hedge)",
+  "small:main@pair: one-legged pair ZEC@bn +0.013 (no hl hedge)"
+ ],
+ "classes": {
+  "one_legged_pair": "small:main@pair GRAM@bn, ZEC@bn (BN $5 passed, HL $10 blocked; fixed by whole_pairs)",
+  "unbalanced_pair": "small:fspread_hold@pair INIT hl -143 / bn +227 (BN-only resizes 11-23, 11-28; fixed by whole_pair_trades)",
+  "twin_wrong_side": "small:flow@bn DOGE +20 ($1) vs shadow -219 (flip to a below-minimum short left the long on; fixed in paper.rebalance)"
+ }
+}

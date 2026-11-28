@@ -133,6 +133,7 @@ scripts/inspect_strategy.py  yearly/funding/cost decomposition + 2x-cost stress
 scripts/download.py   data refresh (nightly timer)    scripts/agent.sh     how you are launched
 deploy/systemd/       timer/service units (copy to ~/.config/systemd/user, then daemon-reload)
 scripts/health.py     hourly deterministic watchdog (no Claude) -> state/health.json; starts a review on a new problem
+scripts/twin_check.py twin/hedge integrity from the positions table (one-legged pairs, small twin on the wrong side); health.py WARNs on it
 scripts/live_vs_backtest.py  T0a: each shadow book's live days vs a backtest replay (point-in-time universe from the `universe` table)
 scripts/forward_score.py  forward ledger (frozen configs, post-registration bars only) -> research/forward.json
 scripts/ledger_decomp.py  one book's daily live P&L -> funding / fees / price + live vol (any book type: pair, overlay sleeves)
