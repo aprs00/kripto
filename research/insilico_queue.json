@@ -5478,26 +5478,38 @@
    "group": "T",
    "title": "HFX2 precondition: per-account swings if the HL book's longs sit on Binance and shorts on HL (7-d account returns, transfers needed)",
    "src": "HFX (longs on BN save 2-9 %/yr), KSA/KS1 (per-account guard; main@pair accounts swing -27..-46 % in 7 d), HFX2 backlog line",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T03:04",
    "forms": [
     {
      "id": "a",
      "what": "HL 2023-26 blend held weights: split into a shorts account (HL) and a longs account (BN), equity split pro rata to each side's gross at each rebalance; daily account returns; 7-d return distribution per account (worst, 1st/5th pct) vs the whole book",
-     "status": "planned"
+     "status": "done",
+     "result": "HL blend 2023-05..2026-11 split: shorts account (HL funding) and longs account (BN funding; no twin -> HL), margin pro rata to gross (clip .2-.8): shorts account vol 109 %/yr, worst 7-d -57 %, 1st pct -34 %, 7-d < -25 % on 45 days; longs account vol 54 %, worst -31 %, 1 day < -25 %; whole book vol 29 %, worst 7-d -11 %. Price + funding only (costs ignored). A first run reported book vol in dollars (bug, fixed).",
+     "date": "2026-11-28",
+     "evidence": "hfz_ab"
     },
     {
      "id": "b",
      "what": "transfers: rule 'top up when an account's equity deviates > 25 % from its target share' (stated now) -> transfers per year and largest single transfer as % of book; days where an account would breach the -25 % kill switch on its own",
-     "status": "planned"
+     "status": "done",
+     "result": "rule stated before the run: rebalance accounts when either deviates > 25 % from its target share: 122 transfers in 3.5 y (10/39/34/39 per year), median 13 % of book, max 31 %. Own-account kill (-25 % in 7 d) would fire on 45 days for the shorts account.",
+     "date": "2026-11-28",
+     "evidence": "hfz_ab"
     },
     {
      "id": "c",
      "what": "verdict for HFX2: saving (2-9 %/yr) vs operational burden (transfers/yr, per-account kill risk); research item go / no-go",
-     "status": "planned"
+     "status": "done",
+     "result": "Verdict for HFX2: NO-GO as a plain split. The 2-9 %/yr funding saving needs ~3 transfers a month (13 % of book each) and leaves the HL account a 109 %-vol short-alt bet that would trip a per-account -25 % kill on 45 days. For an owner-run account with manual transfers this is not operable; only a cross-margined venue (one account) captures it. HFX2 -> low prior; backlog line updated.",
+     "date": "2026-11-28",
+     "evidence": "hfz_ab"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "longs-on-BN / shorts-on-HL split: shorts account vol 109 %, worst 7-d -57 %, 122 transfers in 3.5 y: the funding saving is not operable without cross-margin; HFX2 low prior",
+   "closed": "2026-11-28"
   }
  ]
 }

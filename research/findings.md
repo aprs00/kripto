@@ -932,6 +932,7 @@ Caveat: the descriptive (a) saw 2025–26 first. Overlaps half of PRB2's lam .33
 ### HFX HL main book's long legs funded on Binance (2026-11-28 insilico, research/studies/is3_hfx.py, not registered) → OPEN (saving real, needs KS1's two-account rule)
 BTC funding HL vs BN %/yr 2023–26: 13.5/8.2, 24.1/11.9, 10.6/5.1, 5.6/3.3; the blend holds BTC long at .30–.49 → +3.1/+5.0/+2.5/+0.7 %/yr of book on BN (tracking sd 2–6 bp/day).
 All longs (BTC + alts with BN twins) on BN: +3.3/+8.7/+3.8/+2.2 %/yr; shorts cost more on BN 3/4 years (stay on HL). Blocked by per-account risk: backlog HFX2 after KS1.
+**HFZ: the split leaves the HL shorts account at 109 % vol (worst 7-d −57 %, 45 days < −25 %) and needs 122 transfers in 3.5 y (median 13 % of book): not operable; HFX2 low.**
 
 ### HFY main_bn's short legs on HL (mirror of HFX; 2026-11-28 insilico, research/studies/is3_hfy.py, not registered) → DEAD (HL costs exceed the funding gain)
 Cached bnall 2023-05..2026-11, main_bn approx: shorts with an HL twin 53–78 % of short gross; funding gain on HL +0.2…+1.6 %/yr of book (2023 −1 to −2), HL extra slippage 0.4–4.8 %/yr:
