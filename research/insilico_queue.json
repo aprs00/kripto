@@ -8219,6 +8219,60 @@
    "verdict": "OPEN",
    "reason": "flow@bn has had no alpha after carry_trend since 2025 (beta .7-.8, R2 .24-.29), like the 2022 lull; main_bn's two halves overlap in carry_trend now. Not a retire (2022 lull recovered: 2023-24 alpha +21/+22 %/yr); FLX2 should judge flow's alpha after carry_trend, not its SR",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "LDR",
+   "prio": 2.6,
+   "group": "T",
+   "title": "HL main in a listing drought (HLD: 8 HL listings in 2026 vs 51-59/yr): what does the shipped blend do when its listing_short leg is empty, and does the 2027-01-02 refit rule cope?",
+   "src": "HLD, BNH, LSH2",
+   "status": "todo",
+   "due": "2026-11-28T19:02",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "HL panel, shipped listing_short: names/day, gross and net P&L per quarter 2023-26; share of HL main (blend_nested live components) P&L and risk per quarter",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "read kripto/strategies.blend: is an empty leg's risk budget idle (cash) or redistributed? measure the live components' book gross / realised vol per quarter vs target; what an idle leg costs in deployed risk",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "decision written before the 2027-01-02 refit: does nested_choice's expanding-SR pick keep a starving leg (yes by construction?) and what rule (general, not result-picked) should handle a leg with no positions; backlog line, no gate change",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "FCY",
+   "prio": 3.0,
+   "group": "T",
+   "title": "Does the funding-residualised flow arm (FLXF iii) remove flow@bn's carry_trend overlap (FCX: beta .7-.8 in 2025-26)?",
+   "src": "FCX, FLXF, backlog FLX2",
+   "status": "todo",
+   "due": "2026-11-28T19:02",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "bnall 2021-26: arm (iii) (resid_f7, frozen in FLXF) regressed on carry + carry_trend by year: alpha, beta, R2 next to the shipped flow (FCX b)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "position-level overlap: share of flow's (and iii's) gross on the same coin and side as carry_trend's, by year; is the 2025-26 beta from holdings or from common market moves (same-side share vs return corr)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "main_bn mix (.5 flow + .5 blend) vs (.5 iii + .5 blend) vs blend alone by year: SR, vol, carry_trend share of mix variance; input for FLX2's prereg, no WF here",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
