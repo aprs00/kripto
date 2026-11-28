@@ -8297,6 +8297,60 @@
    "verdict": "OPEN",
    "reason": "funding-residualised flow (iii) keeps a .6 beta to carry_trend in 2025-26; holdings overlap is flat (~.34 same-side every year), so the overlap is return co-movement, not shared positions; no arm removes it. main_bn's flow half helped 2021-25, cost .45 SR in 2026 YTD; FLX2 decides on alpha after carry_trend going forward",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "CTD",
+   "prio": 2.7,
+   "group": "T",
+   "title": "carry_trend decay check on bnall (FCY: it explains .79-.87 of the Binance blend's variance in 2025-26, so main_bn is mostly carry_trend now)",
+   "src": "FCY c, FLX method",
+   "status": "todo",
+   "due": "2026-11-28T19:06",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "bnall 1d 2021-26, default params: SR, gross, funding, price, costs by year; long vs short leg; top-5 coin share per year",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "monthly net return slope HAC t (FLX method) with xsmom as a control; rolling 365-d SR vs its own 2021-24 distribution; the 2022 lull as a comparison",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "written: does any §4 clause bind for blend_nested@bn / main_bn; what forward evidence would tell decay from a lull (power, MDE at 180 d) - no gate change",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "BRD",
+   "prio": 2.8,
+   "group": "T",
+   "title": "Pre-register the LDR breadth rule (leg budget x min(1, names/5)) BEFORE any performance is seen: frozen code + batch file, and how often it would bind per leg per book (no returns)",
+   "src": "LDR c, backlog LDR",
+   "status": "todo",
+   "due": "2026-11-28T19:06",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "frozen code: strategies.blend option breadth_n (default None = unchanged), tests (known answer: a leg with 1 name gets 1/5 of its budget; None = byte-identical weights); no returns computed",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "binding frequency only (names/day per leg, share of days the rule binds) for HL main (listing_short, lowvol, tsmom) and blend_nested@bn (carry_trend, carry, xsmom) 2021-26",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "research/batches/<date>_brd.json: ONE config per venue vs the unchanged rule, judged by the written gates, for the research session at the 2027-01-02 refit; backlog line",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
