@@ -4584,25 +4584,38 @@
    "group": "T",
    "title": "Vol-target scalar hysteresis: how much turnover is the daily vol-target rescale, and does updating it only on > 10 % moves save costs in every book?",
    "src": "PRB/PRL (HL main costs 5-14 %/yr; turnover from target noise), scheduled() rescales every weight daily",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
      "id": "a",
      "what": "descriptive: share of turnover caused by the daily scalar change: HL main blend (hl 1d 2023-26) and BN blend + flow (cached bnall 2021-26): turnover with the scalar frozen at the previous day's value vs actual",
-     "status": "planned"
+     "status": "done",
+     "result": "turnover with every vol_target scalar held until > 10 % move vs daily: HL blend 63.5/66.9 -> 64.9/67.6x (2023/24), BN blend 84/127/124 -> 85/128/125x, flow 121/165/206 -> 121/166/207x: the rule removes NO turnover (+1 %): scalar drift is not a cost source once the .005 band applies",
+     "date": "2026-11-28",
+     "evidence": "vts_a"
     },
     {
      "id": "b",
      "what": "pre-stated: scalar updated only when |s_t / s_held - 1| > 0.10 (else keep s_held), HL explore 2023-24 and bnall explore 2021-23 for blend_hl, blend_bn, flow; PASS = net SR >= daily scalar in every explore year for every book, and realised vol within 10 % of daily",
-     "status": "planned"
+     "status": "done",
+     "result": "same run, net SR daily vs hysteresis: HL .87/.75 vs .91/.74, BN blend 4.19/-.13/2.02 vs 4.23/.00/2.00, flow 2.85/-.09/2.09 vs 2.85/-.06/2.08; vol within 2 %: FAIL (not >= every year; differences are noise, costs unchanged)",
+     "date": "2026-11-28",
+     "evidence": "vts_a"
     },
     {
      "id": "c",
      "what": "if b passes: L.prereg, ONE run HL 2025-26 and cached bnall 2024-26 (ends 11-21) per book",
-     "status": "planned"
+     "status": "skipped",
+     "result": "b failed",
+     "date": "2026-11-28",
+     "evidence": "vts_a"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "the daily vol-target rescale is not where turnover comes from (hysteresis removes 0 %, band .005 already absorbs it); the books' turnover is in the legs' position targets (PRL: tsmom)",
+   "closed": "2026-11-28"
   },
   {
    "id": "SML",

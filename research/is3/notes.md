@@ -1266,3 +1266,11 @@ Source: PRL. A band (trade the full gap only when it exceeds 0.02 per coin) is t
  need the slow legs' held weights per coin. Unstated: a 0.02 band at leg level (the legs are ~1/3 of the book) is ~6 % of a leg's typical coin weight; it may freeze small coins' weights for
  weeks (staleness). Not tuning: one pre-stated band; if it loses to lam, lam is the form to build.
 TSB a FAIL (tsb_a.json): band .02 1.00/.92 vs slow33 .95/1.01; sub-$10 trades 11 % vs 56 %. c: build lam, band = fallback. CLOSED OPEN.
+
+## VTS vol-target scalar hysteresis (think-through 01:2x UTC 11-28, before any run)
+Source: PRB/PRL. vol_target() rescales every row so ex-ante vol = target; the trailing 60-d covariance moves every day, so every position is resized every day by a few %: pure noise
+ trades (the scalar carries no alpha). Hysteresis: keep the held scalar until the new one differs by > 10 %. Applied to EVERY vol_target call (component legs and the outer blend), as an
+ engine change would. Unstated: (1) after a vol shock the scalar must fall fast (risk): a 10 % threshold still reacts within a day to big moves; (2) the band .005 already skips some of
+ these trades; (3) a = the turnover the rule removes (descriptive), b = SR/vol verdict. Change my mind: net SR >= daily in every explore year for HL blend, BN blend, flow, and realised vol
+ within 10 % -> c.
+VTS a/b FAIL (is3_vts.py, vts_a.json): scalar hysteresis 10 % removes no turnover (+1 %) in HL blend, BN blend, flow; SR diffs noise. CLOSED OPEN.
