@@ -6368,6 +6368,60 @@
    "verdict": "OPEN",
    "reason": "the $200 BN backtest Sharpe roughly holds where positions exist (1.70 vs 1.75) but the account is mostly cash since 2025 (deployed .39/.19), because the universe grew (113 -> 532 names) and weights per name shrank below $5/$50 minima; today's small_acct (one band) hides it. Fix = report deployed gross + per-symbol minima in small_acct (SMB); a top-4 $200 book only lifts deployment (LOW)",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "T9Q",
+   "prio": 2.7,
+   "group": "T",
+   "title": "Maker at the touch on HL's OWN live fills with HL 1-min paths (exact venue, no proxy): main + HL shadows; HL taker 4.5 bp vs maker 1.5 bp is the binding cost of the HL book",
+   "src": "T9P (BN at-touch +4 bp/unit on HL-proxy paths), T9D/T9c (HL slow legs post-only +1 %/yr at fitted cost), backlog T9c",
+   "status": "todo",
+   "due": "2026-11-28T13:10",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "every HL-venue book's live fills (main, shadow:blend_nested, shadow:blend, tsmom, xsmom, xsmom_k; not pair) 11-12..11-26, resting at the HL price of the order minute, trade-through q 0/3/5/10 bp in the next 24 h on data/hl/flow 1-min OHLC: fill share by notional, minutes to fill, unfilled signed 24-h move; HL live slip_bps from the fills table",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "net per unit vs live taker (4.5 - 1.5 bp + live slip) minus the unfilled cost (skip: forgo 24-h move, save the taker cost), by book and by coin liquidity tercile (thin HL names: slip larger, queue thinner), day-clustered t",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict stated now: net >= +2 bp/unit at q5 and fill >= 90 % on the main book's orders -> backlog T9c gets a frozen HL live-shadow spec (k0, q5, carry residue) and its prior goes to MEDIUM; else T9c stays LOW with the measured reason",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "SMH",
+   "prio": 2.8,
+   "group": "T",
+   "title": "\\$200 HL main book with the \\$10 minimum order: deployed gross and SR over history (small:main -4.2 % vs main -0.15 % live, LVB corr .99)",
+   "src": "LVB, SMQ, backlog SMB",
+   "status": "todo",
+   "due": "2026-11-28T13:10",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "HL dataset 1d (the HL main book's own blend_nested config from config/strategies.json via research helpers; if the nested chooser is too heavy, its current components as a fixed blend, said so): \\$1,000 vs \\$200 band \\$10 vs \\$200 hard minimum (a target below \\$10 is never opened), main_scale .871: SR, ann, deployed share by year",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "live: small:main's 18 days decomposed (scripts.ledger_decomp small:main and main): is the -4 % vs main's 0 the missing names (deployment) or the names it does hold (concentration)? held gross live vs main",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict: if \\$200 deployed share < 50 % in 2025-26 -> HL \\$200 joins SMB (STATUS deployed gross + per-symbol minima in small_acct); else the HL \\$200 twin is a fair small version and only BN needs the fix",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
