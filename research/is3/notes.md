@@ -1818,3 +1818,13 @@ Metrics coverage 2021-22 now 100 % (was 72/76 % on 11-27). T5c's diagnosis was '
  fitted after seeing 2023-26; 2021-22 is its only clean test. Frozen split: trend day = |BTC trailing 60-d simple return| >= 20 %, else range (round number, not fitted). Order: check the
  story holds on the seen years under this exact split (else stop), then one look at 2021-22.
 T5E a/c (is3_t5e.py, t5e_seen.json): F3 winners' fade sits on trend days (+.021) not range (-.002): regime story fails; my first flag had the sign flipped (caught, fixed before any unseen look). 2021-22 unseen. CLOSED OPEN.
+
+## X1P power of the X1f forward judge (think-through 18:5x UTC 11-28, before any run)
+Source: backlog X1f (retire per §4 if live 60-d Sharpe < 0; 'if live vol stays >= 3x backtest, recompute DSR'), X1V (live vol = backtest's own vol on those days), FJP method. No chat records.
+The judge as written has two clauses: (1) live 60-d SR < 0 -> retire; (2) live vol >= 3x backtest -> recompute DSR. Neither had its power computed. fspread_hold is a carry book: high SR
+ (backtest ~2 on low vol ~1.4 %/yr) with positive AC (holdings persist), so short windows have fat-tailed vol (X1V: a 10-d window at the 98th pct). Unstated: main@pair = the same strategy
+ at alloc .5 (scaled), so one series answers both; live started 11-12 (shadow) and 11-27 (main@pair): ~16 and 1 days. What a sceptic wants: P(60-d SR < 0 | backtest true) = the false-retire
+ rate, and the 60/90-d MDE of live-minus-backtest mean vs the backtest mean itself (can we tell 'edge gone' from luck?).
+Change my mind: false-retire rate < 10 % and MDE(90 d) < backtest mean -> clause (1) is a real test; else it becomes a disaster veto and the horizon moves to where MDE < mean.
+X1P a/b (is3_x1p.py, x1p_ab.json): bt 2024+ 2.4 bp/d, AC1 .15; MDE of the mean = 1.05x the mean at 90 d, .52x at 365 d; at the 2026 edge (0.58 bp/d) 2.1x at 90 d, 1.06x at 365 d.
+ False-retire P(60-d SR<0) 6.6 % (2024+) / 16.5 % (2026). Live 16 d: +5.5 bp/d (+.52 MDE units), vol 3.07x full-sample bt but = bt's own on those days (X1V). Clause needs restating (form c).
