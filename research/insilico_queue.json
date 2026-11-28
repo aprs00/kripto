@@ -5118,7 +5118,7 @@
    "group": "T",
    "title": "HL lowvol leg by side: long low-vol vs short high-vol legs' price and funding by year (input for the 2027-01-02 nested refit)",
    "src": "HLF a (lowvol short alts price -16/-33/+28/+14 %/yr, long alts +14/+17/-1/-8), LV2 (HL lowvol leg FRAGILE, one year deep), SML a",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
@@ -5140,10 +5140,16 @@
     {
      "id": "c",
      "what": "verdict note for the refit: is lowvol on HL a long-low-vol or a short-high-vol bet, and is its expectation one-year deep (no rule change by insilico)",
-     "status": "planned"
+     "status": "done",
+     "result": "Verdict for the 2027-01-02 refit: HL lowvol is neither a long-low-vol nor a short-high-vol bet; each side is a +/- market bet that cancels (leg corr to BTC ~0). Its edge is a price spread of +5..+6 %/yr in 2023-24 eaten by the long side's funding (1-8 %/yr) and costs (net ~0), plus one year (2025, +22 % net) when high-vol alts fell 28 % beyond the hedge. Ex-2025 net -3 %/yr: the expectation is one year deep. No rule change by insilico; the refit decides by rule; quoted in the backlog LV2c line.",
+     "date": "2026-11-28",
+     "evidence": "lvs_a"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "HL lowvol leg: sides are opposite market bets; spread small and funded away except 2025 (high-vol shorts); one-year-deep expectation, no state filter (b); refit by rule",
+   "closed": "2026-11-28"
   },
   {
    "id": "HSQ",
