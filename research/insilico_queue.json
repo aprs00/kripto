@@ -3769,7 +3769,7 @@
    "group": "T",
    "title": "flow@bn: is the taker-flow signal still there before costs (2025-26 price P&L ~0)?",
    "src": "BNB b (flow price -0.3 / +2.0 % in 2025-26 vs +19..+38 % in 2021-24); flow@bn = half of main_bn",
-   "status": "closed",
+   "status": "wip",
    "forms": [
     {
      "id": "a",
@@ -3796,7 +3796,7 @@
      "evidence": "fld_ab"
     }
    ],
-   "sessions": 1,
+   "sessions": 2,
    "verdict": "OPEN",
    "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the §4 live check; not DEAD (one formulation, IC MDE not met in single years)",
    "closed": "2026-11-27"
@@ -6114,6 +6114,32 @@
    "verdict": "OPEN",
    "reason": "Confirm 2024-26 of the frozen rest-below policies FAILS both pre-registered rules: vs taker the gain is large (flow +8.7, carry_trend +2.5 %/yr pooled) but equal to or below random fills paying the same maker fee, and flow 2026 is below taker. Resting deeper buys nothing out of sample; what is left is the plain maker-fee saving, whose size depends on whether resting orders really fill ~90 % live (T9L: 88 % this month). T9G becomes a forward test of the fee saving at a shallow level, not of a depth rule.",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "FLD",
+   "prio": 1.9,
+   "group": "T",
+   "title": "shadow:flow@bn -9 % in its first 19 live days: inside the backtest's distribution of 19-day windows? decomposition and same-days replay",
+   "src": "paper status 11-28 11:40 (shadow:flow@bn -8.99 %, main_bn -9.13 % since 11-09); T9L (live orders' 24-h signed move ~-170 bp)",
+   "status": "todo",
+   "due": "2026-11-28T11:41",
+   "forms": [
+    {
+     "id": "a",
+     "what": "percentile of -9 % among all overlapping 19-day returns of flow (lb 3, cap .05) on bnall 1d 2021-26 at taker costs, scaled to the shadow's realised gross (0.44x vs backtest gross), and the share of 19-day windows <= -9 %",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "scripts.ledger_decomp shadow:flow@bn: funding / fees / price split; live vol vs backtest vol",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "scripts.live_vs_backtest for shadow:flow@bn (same days replay): is the live loss the strategy's own loss on these days (replay also negative) or an implementation gap",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
