@@ -4829,6 +4829,32 @@
    "verdict": "OPEN",
    "reason": "PRL and HBL are additive; under the live $10 min-order rule at $1,000 the slow-leg lam .33 keeps most of its gain (3/4 years better, 2023 worse) and beats the band form: PRB2 spec = lam .33 with sub-$10 gaps accumulated",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "PRX",
+   "prio": 1.0,
+   "group": "T",
+   "title": "Frozen replication of PRL on unseen instruments: the same 3-leg book (listing_short, lowvol, tsmom) on Binance bnall, slow legs lam .33",
+   "src": "PRL/PRD (HL only; held-out opened twice), standing lesson: a promising result gets a frozen replication on unseen instruments",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "FROZEN rule (lam .33 on lowvol+tsmom contributions, listing_short in full, band .005), cached bnall 2021-23 by year vs lam 1: PASS = net SR >= lam 1 in 2 of 3 years and pooled",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "same, bnall 2024-01..2026-11-21 (cache end) by year",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "standalone tsmom and lowvol on bnall, lam .33 vs 1, 2021-26 by year: does the noise-filter effect live in the legs or only in the HL book?",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
