@@ -4623,7 +4623,7 @@
    "group": "T",
    "title": "The $200 HL account: which leg of the main book dies at the $200 band (.05), and is a smaller book better there?",
    "src": "owner 2026-11-10 ($200 twins), PRB/PRL d (band .05: 2025 .48, 2026 1.28 for lam1)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
@@ -4637,15 +4637,24 @@
     {
      "id": "b",
      "what": "pre-stated: if one leg's band-.05 net SR is <= 0 in both explore years (2023-24), the 2-leg book without it at band .05 vs the 3-leg at band .05, explore; PASS = net SR >= 3-leg in both years",
-     "status": "planned"
+     "status": "done",
+     "result": "band .05 HL explore: blend(listing_short, tsmom) 1.83/1.10 vs 3-leg 1.91/1.00 (pooled 1.46 vs 1.38, mdd -18.6 vs -17.3 %): FAIL (2023). At .05 98-100 % of changes are skipped: year results are path lottery, composition cannot be chosen on 2 years",
+     "date": "2026-11-28",
+     "evidence": "sml_b"
     },
     {
      "id": "c",
      "what": "if b passes: L.prereg, ONE run HL 2025-26 at band .05 (the $200 twin's expectation in STATUS)",
-     "status": "planned"
+     "status": "skipped",
+     "result": "b failed",
+     "date": "2026-11-28",
+     "evidence": "sml_b"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "at the $200 band (.05) the HL book's legs are frozen (98-100 % of target changes skipped): yearly SR swings (listing 2025 .02 vs 2.17 at .005) are path luck, so neither dropping lowvol nor partial rebalancing can be chosen; quote the $200 twin with that uncertainty, judge it on its live small: ledger",
+   "closed": "2026-11-28"
   }
  ]
 }

@@ -1280,3 +1280,4 @@ Source: owner 11-10 ($200 twins), PRB/PRL d. At $200 the $10 minimum order = ban
  ~20 coins at 1/3 of the book) are mostly frozen or skipped; listing_short (few names, larger weights) survives. Unstated: a frozen leg is not neutral: it holds stale positions (old trend,
  old low-vol picks). Leg contributions = the book's own (is3_prl.legs), each run alone at band .05 (ignores netting, stated). Change my mind: a leg <= 0 net at .05 in 2023 and 2024 -> b.
 SML a done (sml_a.json): at band .05 98-100 % of leg changes are skipped (frozen legs, lottery-like years: listing 2025 .02 vs 2.17); lowvol <= 0 in 2023/24 -> b: blend(listing_short, tsmom) at .05.
+SML b FAIL (sml_b.json): 2-leg 1.83/1.10 vs 3-leg 1.91/1.00 at .05. CLOSED OPEN: $200 = frozen legs, path lottery; live small: twin is the only evidence.
