@@ -24,8 +24,9 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 - [ ] HBL2 (insilico HBL 2026-11-28, research session, risk fix) **listing_short: coins without a 20-d beta hedged at 1.35, not 1.0**: pooled young-coin beta 1.37/1.46 (HL 2023-24, age 2-7/8-20 d),
   1.34/1.26 (bnall 2021-23), down-beta 1.5-1.6; pre-registered HL 2025-26: corr BTC closer to 0 (listing_short -.04 -> +.01) for -.06 SR (research/is3/hbl_*.json). Decide as a risk choice
   (design.md: beta-neutral claim), code in strategies.beta_to fill / hedge_beta, pytest + trader run.
-- [ ] HLE2 (insilico HLE 2026-11-28, research session, prior medium) **listing_short: skip coins with >= 60 d of Binance perp history at listing** (HL: those n 42 mean +1 %, t .13 vs fresh/new
-  +25-29 %, t 2.1-2.4; research/is3/hle_ab.json; in-sample). Held-out first: bnall listings of coins already on HL >= 60 d vs not (frozen rule), then one WF. LSB's HL-listed split flips by year.
+- [ ] HLE2 (insilico HLE+HLX 2026-11-28, research session, prior medium-high) **listing_short: skip coins with >= 60 d of Binance perp history at listing** (HL: those n 42 mean +1 %, t .13 vs fresh/new
+  +25-29 %, t 2.1-2.4; research/is3/hle_ab.json). Held-out DONE (HLX 11-28, frozen): bnall listings of coins on HL >= 60 d n 10, buy-hold median -5 % vs new +36 %: replicates.
+  Next: ONE pre-registered WF of listing_short with the skip rule on HL (drops 42 of 165 events, 22 in 2023); needs the first-trade date on the other venue point-in-time (data.bn/hl files).
 - [ ] LSB2 (insilico LSB 2026-11-27, research session, prior medium) **listing_short on Binance inside main_bn** (PRECHECK LSP 11-27 NEGATIVE: equal-weight book SR .18, 2025 −.40, 2026 −.33, 2023–24 profit = BTC hedge leg; w/o worst 10 days .66: needs a squeeze control before any WF; SQZ 11-27: 'far above post-listing low' has a 2x tail but blocking it = random masks) while HL's listing flow is dry (HL ~1/month in 2026, BN ~5.7).
   bnall events (≥ $1M 7-d volume, d2→d61 short-vs-BTC incl. funding): median +22…+41 % every year 2020–26, win 69–85 %, mean set by squeezes (2021 −79 %; 2025 +4, 2026 +9 %).
   Pre-register ONE config (listing_short defaults, band .005) on bnall; re-check the 11-09 finding that the bnall WF was BTC-leg P&L (corr BTC .63); stress the worst 10 events. research/is3/lsb_ab.json.

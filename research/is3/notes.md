@@ -1335,3 +1335,10 @@ Source: HLI/HLD, LSB. The decay story (airdrop/unlock overhang, early holders se
  fresh tokens should carry the edge. If so, the 2026 drought removed the edge itself, not just events. Event P&L: short coin, long BTC (beta 1), d2..d61 closes, HL funding on the short.
 HLE a/b/c done (is3_hle.py, hle_ab.json): HL events by Binance history: >= 60 d n 42 mean +1 % (t .13; 2023 -13 %), < 60 d n 35 +29 % (t 2.4), fresh n 88 +25 % (t 2.1). The edge = new float;
  2026 drought removed it. Filter idea -> backlog HLE2 (held-out on bnall needed). CLOSED OPEN.
+
+## HLX held-out for HLE on Binance (think-through 03:0x UTC 11-28, before any run)
+Source: HLE. Same mechanism in mirror: a coin that traded on HL >= 60 d before its Binance perp listing has no new float at the Binance event. Frozen split and windows as HLE; only 2023-04+
+ Binance listings can have HL history (HL data starts 2023). Unstated: Binance often lists coins that have spot/other-venue history too: 'not established on HL' is a noisy proxy for new float.
+PASS pre-stated in the queue (established mean & median < others, established median <= +5 %).
+HLX a/b/c done (is3_hlx*.py, hlx_ab/bh.json): bnall listings of coins on HL >= 60 d: n 10, buy-hold median -5 % win .30 vs new +36 % win .77; replicates HLE (both measures). Measure note: the
+ daily-rebalanced short carries vol drag (~19 % over 60 d): LSB's medians are buy-hold. HLE2 -> one pre-registered WF. CLOSED OPEN.

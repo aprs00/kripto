@@ -1,0 +1,4543 @@
+{
+ "events": [
+  {
+   "coin": "0G",
+   "d0": "2025-09-17",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.7794885473529035
+  },
+  {
+   "coin": "1000000BOB",
+   "d0": "2025-06-05",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.18929241142510356
+  },
+  {
+   "coin": "1000000MOG",
+   "d0": "2024-11-07",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.33001438735033695
+  },
+  {
+   "coin": "1000BONK",
+   "d0": "2023-11-22",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9423895788608263
+  },
+  {
+   "coin": "1000CAT",
+   "d0": "2024-10-21",
+   "year": 2024,
+   "month": "2024-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.3164622834274765
+  },
+  {
+   "coin": "1000CHEEMS",
+   "d0": "2024-11-25",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.38706986155015644
+  },
+  {
+   "coin": "1000FLOKI",
+   "d0": "2023-05-06",
+   "year": 2023,
+   "month": "2023-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.4943874439340459
+  },
+  {
+   "coin": "1000PEPE",
+   "d0": "2023-05-05",
+   "year": 2023,
+   "month": "2023-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.024838582638728623
+  },
+  {
+   "coin": "1000RATS",
+   "d0": "2023-12-15",
+   "year": 2023,
+   "month": "2023-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.19591880703752262
+  },
+  {
+   "coin": "1000SATS",
+   "d0": "2023-12-12",
+   "year": 2023,
+   "month": "2023-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.21934217799055944
+  },
+  {
+   "coin": "1000WHY",
+   "d0": "2024-11-25",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.4640817356044882
+  },
+  {
+   "coin": "1000X",
+   "d0": "2024-11-13",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.512679263225496
+  },
+  {
+   "coin": "1MBABYDOGE",
+   "d0": "2024-09-16",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.09292259528655478
+  },
+  {
+   "coin": "2Z",
+   "d0": "2025-10-02",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.2322051903704452
+  },
+  {
+   "coin": "42",
+   "d0": "2025-10-27",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.9462792973296132
+  },
+  {
+   "coin": "4",
+   "d0": "2025-10-08",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6129871892094225
+  },
+  {
+   "coin": "A2Z",
+   "d0": "2025-07-30",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.820459946935641
+  },
+  {
+   "coin": "ACE",
+   "d0": "2023-12-18",
+   "year": 2023,
+   "month": "2023-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.339944257096223
+  },
+  {
+   "coin": "ACT",
+   "d0": "2024-11-11",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.038360442648924575
+  },
+  {
+   "coin": "ACU",
+   "d0": "2026-01-21",
+   "year": 2026,
+   "month": "2026-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -1.178437606195434
+  },
+  {
+   "coin": "ACX",
+   "d0": "2024-12-06",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.2519964472656389
+  },
+  {
+   "coin": "AERGO",
+   "d0": "2024-09-10",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.17066988998654797
+  },
+  {
+   "coin": "AERO",
+   "d0": "2024-12-04",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5003660869541888
+  },
+  {
+   "coin": "AEVO",
+   "d0": "2024-03-13",
+   "year": 2024,
+   "month": "2024-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.10193460796347753
+  },
+  {
+   "coin": "AGLD",
+   "d0": "2023-07-29",
+   "year": 2023,
+   "month": "2023-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.2899299954284946
+  },
+  {
+   "coin": "AGT",
+   "d0": "2025-05-20",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 3.4524864065622873
+  },
+  {
+   "coin": "AI16Z",
+   "d0": "2025-01-02",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": 1,
+   "group": "new",
+   "ret": 1.270910832100057
+  },
+  {
+   "coin": "AIA",
+   "d0": "2025-09-18",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -1.3615867172460208
+  },
+  {
+   "coin": "AIGENSYN",
+   "d0": "2026-04-29",
+   "year": 2026,
+   "month": "2026-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.4851837884424297
+  },
+  {
+   "coin": "AIN",
+   "d0": "2025-07-10",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.24577879232656907
+  },
+  {
+   "coin": "AIOT",
+   "d0": "2025-04-30",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.12347579867292424
+  },
+  {
+   "coin": "AIO",
+   "d0": "2025-08-13",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.7102137867932052
+  },
+  {
+   "coin": "AI",
+   "d0": "2024-01-08",
+   "year": 2024,
+   "month": "2024-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.4075682207432878
+  },
+  {
+   "coin": "AIXBT",
+   "d0": "2024-12-20",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.36779286078770623
+  },
+  {
+   "coin": "AKE",
+   "d0": "2025-09-26",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.1449781178445244
+  },
+  {
+   "coin": "AKT",
+   "d0": "2024-11-18",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.38177904562341625
+  },
+  {
+   "coin": "ALCH",
+   "d0": "2025-01-07",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.8393906268455558
+  },
+  {
+   "coin": "ALLO",
+   "d0": "2025-11-11",
+   "year": 2025,
+   "month": "2025-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.099735269811199
+  },
+  {
+   "coin": "ALL",
+   "d0": "2025-08-06",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.08500705310362922
+  },
+  {
+   "coin": "ALPACA",
+   "d0": "2024-08-22",
+   "year": 2024,
+   "month": "2024-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.2900583814989377
+  },
+  {
+   "coin": "ALPINE",
+   "d0": "2025-05-06",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.36589690117305085
+  },
+  {
+   "coin": "ALT",
+   "d0": "2024-01-25",
+   "year": 2024,
+   "month": "2024-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.1925543508927281
+  },
+  {
+   "coin": "ANIME",
+   "d0": "2025-01-23",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": 2,
+   "group": "new",
+   "ret": 1.034956839328308
+  },
+  {
+   "coin": "APR",
+   "d0": "2025-10-23",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.447940233489335
+  },
+  {
+   "coin": "ARC",
+   "d0": "2025-01-17",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.27878531164679543
+  },
+  {
+   "coin": "ARIA",
+   "d0": "2025-09-03",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6058711143474884
+  },
+  {
+   "coin": "ARKM",
+   "d0": "2023-07-28",
+   "year": 2023,
+   "month": "2023-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.012713103955283689
+  },
+  {
+   "coin": "ARK",
+   "d0": "2023-09-19",
+   "year": 2023,
+   "month": "2023-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.7297130728522785
+  },
+  {
+   "coin": "ARX",
+   "d0": "2026-06-23",
+   "year": 2026,
+   "month": "2026-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.8253961148093216
+  },
+  {
+   "coin": "ASR",
+   "d0": "2025-05-06",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.21487573989921727
+  },
+  {
+   "coin": "ASTER",
+   "d0": "2025-09-19",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.4825108625672243
+  },
+  {
+   "coin": "ATH",
+   "d0": "2025-04-02",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.25988739083208634
+  },
+  {
+   "coin": "AT",
+   "d0": "2025-10-29",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.3019110339609803
+  },
+  {
+   "coin": "AUCTION",
+   "d0": "2023-12-15",
+   "year": 2023,
+   "month": "2023-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.4626709906878539
+  },
+  {
+   "coin": "A",
+   "d0": "2025-05-28",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.34763064153368184
+  },
+  {
+   "coin": "AVAAI",
+   "d0": "2025-01-17",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.1870626982228707
+  },
+  {
+   "coin": "AVA",
+   "d0": "2024-12-13",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.3787260807068291
+  },
+  {
+   "coin": "AVNT",
+   "d0": "2025-09-09",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9599143066846553
+  },
+  {
+   "coin": "AWE",
+   "d0": "2025-05-21",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.04115683292003047
+  },
+  {
+   "coin": "AXL",
+   "d0": "2024-03-01",
+   "year": 2024,
+   "month": "2024-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.39213721213359753
+  },
+  {
+   "coin": "AZTEC",
+   "d0": "2026-02-11",
+   "year": 2026,
+   "month": "2026-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.783884962856361
+  },
+  {
+   "coin": "B2",
+   "d0": "2025-05-06",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.25414205688000857
+  },
+  {
+   "coin": "B3",
+   "d0": "2025-02-13",
+   "year": 2025,
+   "month": "2025-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5958743922430474
+  },
+  {
+   "coin": "BABY",
+   "d0": "2025-04-05",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.3477627010867822
+  },
+  {
+   "coin": "BADGER",
+   "d0": "2023-11-09",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.3943750625814848
+  },
+  {
+   "coin": "BANANAS31",
+   "d0": "2025-03-22",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.028049621210196052
+  },
+  {
+   "coin": "BANANA",
+   "d0": "2024-08-15",
+   "year": 2024,
+   "month": "2024-08",
+   "prior_hl_days": 335,
+   "group": "est_hl",
+   "ret": -0.16574860286380177
+  },
+  {
+   "coin": "BANK",
+   "d0": "2025-04-18",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.23410672588220294
+  },
+  {
+   "coin": "BAN",
+   "d0": "2024-11-18",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.8006207846033755
+  },
+  {
+   "coin": "BARD",
+   "d0": "2025-09-18",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.44649262833404146
+  },
+  {
+   "coin": "BASED",
+   "d0": "2026-03-30",
+   "year": 2026,
+   "month": "2026-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9195441886895053
+  },
+  {
+   "coin": "BAS",
+   "d0": "2025-08-26",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -1.0078579079350694
+  },
+  {
+   "coin": "BB",
+   "d0": "2024-05-13",
+   "year": 2024,
+   "month": "2024-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6542150486312017
+  },
+  {
+   "coin": "BDXN",
+   "d0": "2025-06-03",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.17975521137227646
+  },
+  {
+   "coin": "BEAMX",
+   "d0": "2023-11-17",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6379807777155766
+  },
+  {
+   "coin": "BEAT",
+   "d0": "2025-11-12",
+   "year": 2025,
+   "month": "2025-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9848697583508578
+  },
+  {
+   "coin": "BERA",
+   "d0": "2025-02-06",
+   "year": 2025,
+   "month": "2025-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.10567587931844269
+  },
+  {
+   "coin": "BICO",
+   "d0": "2023-09-28",
+   "year": 2023,
+   "month": "2023-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.2533163073043867
+  },
+  {
+   "coin": "BID",
+   "d0": "2025-03-20",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.3719102269216328
+  },
+  {
+   "coin": "BIGTIME",
+   "d0": "2023-10-12",
+   "year": 2023,
+   "month": "2023-10",
+   "prior_hl_days": 1,
+   "group": "new",
+   "ret": -0.9185292238365041
+  },
+  {
+   "coin": "BILL",
+   "d0": "2026-05-07",
+   "year": 2026,
+   "month": "2026-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.18886884379834668
+  },
+  {
+   "coin": "BIO",
+   "d0": "2025-01-03",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 3.2531883996105337
+  },
+  {
+   "coin": "BIRB",
+   "d0": "2026-01-29",
+   "year": 2026,
+   "month": "2026-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.30209726756710653
+  },
+  {
+   "coin": "BLESS",
+   "d0": "2025-09-23",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -9.23808686616556
+  },
+  {
+   "coin": "BLUAI",
+   "d0": "2025-10-21",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.38539545144398
+  },
+  {
+   "coin": "BLUR",
+   "d0": "2023-04-28",
+   "year": 2023,
+   "month": "2023-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.7697965433403895
+  },
+  {
+   "coin": "BMT",
+   "d0": "2025-03-17",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.1208069385965507
+  },
+  {
+   "coin": "BNT",
+   "d0": "2023-08-10",
+   "year": 2023,
+   "month": "2023-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.3781232815075012
+  },
+  {
+   "coin": "BOB",
+   "d0": "2025-11-21",
+   "year": 2025,
+   "month": "2025-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -2.0202863816560317
+  },
+  {
+   "coin": "BOME",
+   "d0": "2024-03-16",
+   "year": 2024,
+   "month": "2024-03",
+   "prior_hl_days": 1,
+   "group": "new",
+   "ret": -0.033018787433931496
+  },
+  {
+   "coin": "BOND",
+   "d0": "2023-10-15",
+   "year": 2023,
+   "month": "2023-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.018543150938667097
+  },
+  {
+   "coin": "BRETT",
+   "d0": "2024-08-20",
+   "year": 2024,
+   "month": "2024-08",
+   "prior_hl_days": 70,
+   "group": "est_hl",
+   "ret": -0.198142334947792
+  },
+  {
+   "coin": "BREV",
+   "d0": "2025-12-30",
+   "year": 2025,
+   "month": "2025-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.11750378359870406
+  },
+  {
+   "coin": "BROCCOLI714",
+   "d0": "2025-03-21",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.25850898982278847
+  },
+  {
+   "coin": "BROCCOLIF3B",
+   "d0": "2025-03-21",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.8330218499750828
+  },
+  {
+   "coin": "BR",
+   "d0": "2025-03-21",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.0599456521055806
+  },
+  {
+   "coin": "BSB",
+   "d0": "2026-03-25",
+   "year": 2026,
+   "month": "2026-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9636436549924968
+  },
+  {
+   "coin": "BSV",
+   "d0": "2023-10-20",
+   "year": 2023,
+   "month": "2023-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.6568013317697765
+  },
+  {
+   "coin": "BSW",
+   "d0": "2024-09-05",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.7819376230564348
+  },
+  {
+   "coin": "BTR",
+   "d0": "2025-08-27",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.2629315465023391
+  },
+  {
+   "coin": "BTW",
+   "d0": "2026-06-04",
+   "year": 2026,
+   "month": "2026-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9810178106230383
+  },
+  {
+   "coin": "BULLA",
+   "d0": "2025-07-04",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.4794546069492548
+  },
+  {
+   "coin": "B",
+   "d0": "2025-05-22",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.5870756928310202
+  },
+  {
+   "coin": "CAKE",
+   "d0": "2023-11-02",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.5791104331906229
+  },
+  {
+   "coin": "CAP",
+   "d0": "2026-06-27",
+   "year": 2026,
+   "month": "2026-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.7709915536146092
+  },
+  {
+   "coin": "CARV",
+   "d0": "2025-08-07",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.242040375386674
+  },
+  {
+   "coin": "CATI",
+   "d0": "2024-09-20",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.4121203778894491
+  },
+  {
+   "coin": "CC",
+   "d0": "2025-10-31",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.5243408605228344
+  },
+  {
+   "coin": "CETUS",
+   "d0": "2024-11-06",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.03295742854649597
+  },
+  {
+   "coin": "CFG",
+   "d0": "2026-03-16",
+   "year": 2026,
+   "month": "2026-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.627330869125044
+  },
+  {
+   "coin": "CGPT",
+   "d0": "2024-12-20",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.5593605831857094
+  },
+  {
+   "coin": "CHESS",
+   "d0": "2024-08-29",
+   "year": 2024,
+   "month": "2024-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.28127977897854906
+  },
+  {
+   "coin": "CHILLGUY",
+   "d0": "2024-11-27",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": 2,
+   "group": "new",
+   "ret": 3.6743617294102133
+  },
+  {
+   "coin": "CHIP",
+   "d0": "2026-04-16",
+   "year": 2026,
+   "month": "2026-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9744673179092823
+  },
+  {
+   "coin": "CLANKER",
+   "d0": "2025-11-12",
+   "year": 2025,
+   "month": "2025-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5455985960336611
+  },
+  {
+   "coin": "CLO",
+   "d0": "2025-10-14",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.33472606855358356
+  },
+  {
+   "coin": "COAI",
+   "d0": "2025-09-25",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -1.0019358871507984
+  },
+  {
+   "coin": "COLLECT",
+   "d0": "2025-12-31",
+   "year": 2025,
+   "month": "2025-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.3885678828007896
+  },
+  {
+   "coin": "COMBO",
+   "d0": "2023-06-02",
+   "year": 2023,
+   "month": "2023-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.4761979505401701
+  },
+  {
+   "coin": "COMMON",
+   "d0": "2025-10-27",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.5827235872129544
+  },
+  {
+   "coin": "COOKIE",
+   "d0": "2025-01-07",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.1729026428457625
+  },
+  {
+   "coin": "COS",
+   "d0": "2024-09-30",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.2265732954714661
+  },
+  {
+   "coin": "COW",
+   "d0": "2024-11-06",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6639390442108362
+  },
+  {
+   "coin": "CROSS",
+   "d0": "2025-07-10",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.7907218762693871
+  },
+  {
+   "coin": "CTR",
+   "d0": "2026-05-28",
+   "year": 2026,
+   "month": "2026-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.6626330163043921
+  },
+  {
+   "coin": "CT",
+   "d0": "2026-10-01",
+   "year": 2026,
+   "month": "2026-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.8637449489685098
+  },
+  {
+   "coin": "CUDIS",
+   "d0": "2025-08-20",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.5423723949511632
+  },
+  {
+   "coin": "C",
+   "d0": "2025-07-15",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -1.1537191490741645
+  },
+  {
+   "coin": "CYBER",
+   "d0": "2023-08-21",
+   "year": 2023,
+   "month": "2023-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.891048364804659
+  },
+  {
+   "coin": "CYS",
+   "d0": "2025-12-12",
+   "year": 2025,
+   "month": "2025-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9403660051887706
+  },
+  {
+   "coin": "DAM",
+   "d0": "2025-08-18",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.936238424531268
+  },
+  {
+   "coin": "DATAIP",
+   "d0": "2026-07-03",
+   "year": 2026,
+   "month": "2026-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.6500701309175387
+  },
+  {
+   "coin": "DEEP",
+   "d0": "2025-04-22",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.183405426417945
+  },
+  {
+   "coin": "DEGEN",
+   "d0": "2024-11-15",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.7545091873808365
+  },
+  {
+   "coin": "DEGO",
+   "d0": "2024-12-13",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.4088270933948779
+  },
+  {
+   "coin": "DEXE",
+   "d0": "2024-12-24",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.5378387806073557
+  },
+  {
+   "coin": "DF",
+   "d0": "2024-12-30",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.18543209911747827
+  },
+  {
+   "coin": "DIA",
+   "d0": "2024-10-02",
+   "year": 2024,
+   "month": "2024-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.42148005576447156
+  },
+  {
+   "coin": "DMC",
+   "d0": "2025-06-24",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.8635740520198584
+  },
+  {
+   "coin": "DODOX",
+   "d0": "2023-08-08",
+   "year": 2023,
+   "month": "2023-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.06926513867371153
+  },
+  {
+   "coin": "DOGS",
+   "d0": "2024-08-26",
+   "year": 2024,
+   "month": "2024-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.8810081549777184
+  },
+  {
+   "coin": "DOLO",
+   "d0": "2025-05-01",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.37850328194875926
+  },
+  {
+   "coin": "DOOD",
+   "d0": "2025-05-09",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.5609713176845093
+  },
+  {
+   "coin": "DOS",
+   "d0": "2026-08-11",
+   "year": 2026,
+   "month": "2026-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.34856067264003565
+  },
+  {
+   "coin": "DRIFT",
+   "d0": "2024-11-08",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.2749016806063409
+  },
+  {
+   "coin": "D",
+   "d0": "2025-01-09",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.7320664154162151
+  },
+  {
+   "coin": "DYM",
+   "d0": "2024-02-07",
+   "year": 2024,
+   "month": "2024-02",
+   "prior_hl_days": 1,
+   "group": "new",
+   "ret": 0.974330568248782
+  },
+  {
+   "coin": "EDEN",
+   "d0": "2025-09-30",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.3599594115483011
+  },
+  {
+   "coin": "EDGE",
+   "d0": "2026-03-19",
+   "year": 2026,
+   "month": "2026-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6302447169329665
+  },
+  {
+   "coin": "EDU",
+   "d0": "2023-04-30",
+   "year": 2023,
+   "month": "2023-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.7219745117112071
+  },
+  {
+   "coin": "EIGEN",
+   "d0": "2024-10-01",
+   "year": 2024,
+   "month": "2024-10",
+   "prior_hl_days": 154,
+   "group": "est_hl",
+   "ret": 0.057973602694509685
+  },
+  {
+   "coin": "ELSA",
+   "d0": "2026-01-22",
+   "year": 2026,
+   "month": "2026-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.22628632153832395
+  },
+  {
+   "coin": "ENA",
+   "d0": "2024-04-02",
+   "year": 2024,
+   "month": "2024-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.0720096214640481
+  },
+  {
+   "coin": "ENSO",
+   "d0": "2025-10-14",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.9347446662190189
+  },
+  {
+   "coin": "EPIC",
+   "d0": "2025-03-13",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.3165189199067495
+  },
+  {
+   "coin": "EPT",
+   "d0": "2025-04-21",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.8972897902048569
+  },
+  {
+   "coin": "ERA",
+   "d0": "2025-07-17",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.4944145214404847
+  },
+  {
+   "coin": "ESPORTS",
+   "d0": "2025-07-29",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.4102676621984618
+  },
+  {
+   "coin": "ESP",
+   "d0": "2026-02-10",
+   "year": 2026,
+   "month": "2026-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.8868474588015285
+  },
+  {
+   "coin": "ETHFI",
+   "d0": "2024-03-18",
+   "year": 2024,
+   "month": "2024-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.49218927540875823
+  },
+  {
+   "coin": "ETHW",
+   "d0": "2023-11-28",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.08706572445139515
+  },
+  {
+   "coin": "EUL",
+   "d0": "2025-10-13",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.9019404805691356
+  },
+  {
+   "coin": "EVAA",
+   "d0": "2025-10-03",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.7395655016329816
+  },
+  {
+   "coin": "FARTCOIN",
+   "d0": "2024-12-20",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.4726256067971203
+  },
+  {
+   "coin": "FF",
+   "d0": "2025-09-29",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.3051029222814605
+  },
+  {
+   "coin": "FHE",
+   "d0": "2025-04-12",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.43864309849665495
+  },
+  {
+   "coin": "FIDA",
+   "d0": "2024-09-19",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.8929658970206698
+  },
+  {
+   "coin": "FIGHT",
+   "d0": "2026-01-23",
+   "year": 2026,
+   "month": "2026-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 2.2680771050863626
+  },
+  {
+   "coin": "FIO",
+   "d0": "2024-09-20",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.7593518331275861
+  },
+  {
+   "coin": "FIS",
+   "d0": "2025-04-25",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.9639093407803774
+  },
+  {
+   "coin": "FLOCK",
+   "d0": "2025-09-09",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.20220568445900877
+  },
+  {
+   "coin": "FLUID",
+   "d0": "2025-09-24",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.0935045745460572
+  },
+  {
+   "coin": "FLUX",
+   "d0": "2024-09-03",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.37493373265310237
+  },
+  {
+   "coin": "FOGO",
+   "d0": "2026-01-10",
+   "year": 2026,
+   "month": "2026-01",
+   "prior_hl_days": 30,
+   "group": "new",
+   "ret": 0.3276485879046669
+  },
+  {
+   "coin": "FOLKS",
+   "d0": "2025-11-06",
+   "year": 2025,
+   "month": "2025-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -1.1138205062539313
+  },
+  {
+   "coin": "FORM",
+   "d0": "2025-03-19",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.2090321103902706
+  },
+  {
+   "coin": "FORTH",
+   "d0": "2025-04-08",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.42401987397681995
+  },
+  {
+   "coin": "FRAX",
+   "d0": "2026-01-15",
+   "year": 2026,
+   "month": "2026-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.5794969091931457
+  },
+  {
+   "coin": "FRONT",
+   "d0": "2023-09-22",
+   "year": 2023,
+   "month": "2023-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.05397285963955256
+  },
+  {
+   "coin": "FUN",
+   "d0": "2025-03-31",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6648659559207827
+  },
+  {
+   "coin": "F",
+   "d0": "2025-06-18",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.12384552871232946
+  },
+  {
+   "coin": "GAS",
+   "d0": "2023-10-25",
+   "year": 2023,
+   "month": "2023-10",
+   "prior_hl_days": 1,
+   "group": "new",
+   "ret": -0.8998987515464676
+  },
+  {
+   "coin": "GENIUS",
+   "d0": "2026-04-16",
+   "year": 2026,
+   "month": "2026-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.29081547003932273
+  },
+  {
+   "coin": "GHST",
+   "d0": "2024-09-23",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5392471664301111
+  },
+  {
+   "coin": "GIGGLE",
+   "d0": "2025-10-09",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.7752177452111854
+  },
+  {
+   "coin": "GLMR",
+   "d0": "2023-09-26",
+   "year": 2023,
+   "month": "2023-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.16006091155132451
+  },
+  {
+   "coin": "GLM",
+   "d0": "2024-02-22",
+   "year": 2024,
+   "month": "2024-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.28147507116932724
+  },
+  {
+   "coin": "GOAT",
+   "d0": "2024-10-24",
+   "year": 2024,
+   "month": "2024-10",
+   "prior_hl_days": 1,
+   "group": "new",
+   "ret": -0.07864874368838459
+  },
+  {
+   "coin": "GPS",
+   "d0": "2025-02-17",
+   "year": 2025,
+   "month": "2025-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 2.523663369635528
+  },
+  {
+   "coin": "GRAM",
+   "d0": "2026-07-02",
+   "year": 2026,
+   "month": "2026-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5461928789129518
+  },
+  {
+   "coin": "GRASS",
+   "d0": "2024-11-08",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": 11,
+   "group": "new",
+   "ret": 0.0006152356028692463
+  },
+  {
+   "coin": "GRIFFAIN",
+   "d0": "2025-01-02",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.4106399350507628
+  },
+  {
+   "coin": "GRVT",
+   "d0": "2026-07-31",
+   "year": 2026,
+   "month": "2026-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.574052172329776
+  },
+  {
+   "coin": "GUA",
+   "d0": "2025-12-21",
+   "year": 2025,
+   "month": "2025-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.288248642362795
+  },
+  {
+   "coin": "GUN",
+   "d0": "2025-03-31",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.07516490039585189
+  },
+  {
+   "coin": "G",
+   "d0": "2024-08-15",
+   "year": 2024,
+   "month": "2024-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.25809666020438926
+  },
+  {
+   "coin": "GWEI",
+   "d0": "2026-01-29",
+   "year": 2026,
+   "month": "2026-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.5063544923476764
+  },
+  {
+   "coin": "HAEDAL",
+   "d0": "2025-05-01",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.19513178224695527
+  },
+  {
+   "coin": "HANA",
+   "d0": "2025-09-26",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.49818177907496297
+  },
+  {
+   "coin": "HEI",
+   "d0": "2025-02-13",
+   "year": 2025,
+   "month": "2025-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5475127020855091
+  },
+  {
+   "coin": "HEMI",
+   "d0": "2025-08-29",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9419978810538999
+  },
+  {
+   "coin": "HFT",
+   "d0": "2023-04-06",
+   "year": 2023,
+   "month": "2023-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.2976154671620852
+  },
+  {
+   "coin": "HIFI",
+   "d0": "2023-09-16",
+   "year": 2023,
+   "month": "2023-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.2039921231255224
+  },
+  {
+   "coin": "HIPPO",
+   "d0": "2024-11-13",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.9018886539927984
+  },
+  {
+   "coin": "HIVE",
+   "d0": "2024-12-23",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.7379658963619768
+  },
+  {
+   "coin": "HMSTR",
+   "d0": "2024-09-26",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.19175940433712102
+  },
+  {
+   "coin": "HOLO",
+   "d0": "2025-09-11",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.4874360066764698
+  },
+  {
+   "coin": "HOME",
+   "d0": "2025-06-10",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.3356611615313527
+  },
+  {
+   "coin": "HUMA",
+   "d0": "2025-05-26",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.11362422095766367
+  },
+  {
+   "coin": "H",
+   "d0": "2025-06-25",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -1.116513533727174
+  },
+  {
+   "coin": "HYPER",
+   "d0": "2025-04-22",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.1415485413081923
+  },
+  {
+   "coin": "HYPE",
+   "d0": "2025-05-30",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": 176,
+   "group": "est_hl",
+   "ret": -0.17693050384108533
+  },
+  {
+   "coin": "ICNT",
+   "d0": "2025-07-03",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.3178585958147082
+  },
+  {
+   "coin": "IDEX",
+   "d0": "2023-05-03",
+   "year": 2023,
+   "month": "2023-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.6489011502946382
+  },
+  {
+   "coin": "IDOL",
+   "d0": "2025-07-04",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.8240548155360667
+  },
+  {
+   "coin": "ILV",
+   "d0": "2023-11-10",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.09630552819423244
+  },
+  {
+   "coin": "INIT",
+   "d0": "2025-04-16",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.11582432853515001
+  },
+  {
+   "coin": "IN",
+   "d0": "2025-08-07",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.8746680670411962
+  },
+  {
+   "coin": "INX",
+   "d0": "2026-01-30",
+   "year": 2026,
+   "month": "2026-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.16377552000378448
+  },
+  {
+   "coin": "IO",
+   "d0": "2024-06-11",
+   "year": 2024,
+   "month": "2024-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.3254396787305232
+  },
+  {
+   "coin": "IP",
+   "d0": "2025-02-13",
+   "year": 2025,
+   "month": "2025-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -1.0171878475334346
+  },
+  {
+   "coin": "IR",
+   "d0": "2025-12-21",
+   "year": 2025,
+   "month": "2025-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.10338911641031312
+  },
+  {
+   "coin": "IRYS",
+   "d0": "2025-11-26",
+   "year": 2025,
+   "month": "2025-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.4980996077233637
+  },
+  {
+   "coin": "JCT",
+   "d0": "2025-11-10",
+   "year": 2025,
+   "month": "2025-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.09777329642018773
+  },
+  {
+   "coin": "JELLYJELLY",
+   "d0": "2025-03-26",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9989507679741974
+  },
+  {
+   "coin": "JST",
+   "d0": "2025-04-28",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.14122762995214622
+  },
+  {
+   "coin": "JTO",
+   "d0": "2023-12-08",
+   "year": 2023,
+   "month": "2023-12",
+   "prior_hl_days": 1,
+   "group": "new",
+   "ret": 0.2477186608297921
+  },
+  {
+   "coin": "JUP",
+   "d0": "2024-01-31",
+   "year": 2024,
+   "month": "2024-01",
+   "prior_hl_days": 59,
+   "group": "new",
+   "ret": -0.543815733212262
+  },
+  {
+   "coin": "KAIA",
+   "d0": "2024-12-04",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.9067242092834051
+  },
+  {
+   "coin": "KAITO",
+   "d0": "2025-02-20",
+   "year": 2025,
+   "month": "2025-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.22428681390639293
+  },
+  {
+   "coin": "KAS",
+   "d0": "2023-11-17",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": 36,
+   "group": "new",
+   "ret": 0.4227687238832196
+  },
+  {
+   "coin": "KAT",
+   "d0": "2026-03-02",
+   "year": 2026,
+   "month": "2026-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.7197979059075261
+  },
+  {
+   "coin": "KDA",
+   "d0": "2024-09-18",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.2286517306422815
+  },
+  {
+   "coin": "KERNEL",
+   "d0": "2025-04-14",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.8440067559337139
+  },
+  {
+   "coin": "KEY",
+   "d0": "2023-05-24",
+   "year": 2023,
+   "month": "2023-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.12185104760399335
+  },
+  {
+   "coin": "KGEN",
+   "d0": "2025-10-07",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.8319434891476843
+  },
+  {
+   "coin": "KITE",
+   "d0": "2025-10-29",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.205092886416544
+  },
+  {
+   "coin": "KMNO",
+   "d0": "2024-12-20",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.25968575063965504
+  },
+  {
+   "coin": "KOMA",
+   "d0": "2024-12-10",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.9943834316369562
+  },
+  {
+   "coin": "LAB",
+   "d0": "2025-10-17",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -2.0658583703271893
+  },
+  {
+   "coin": "LA",
+   "d0": "2025-06-05",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 2.2152335006425665
+  },
+  {
+   "coin": "LAYER",
+   "d0": "2025-02-11",
+   "year": 2025,
+   "month": "2025-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.7514788318770758
+  },
+  {
+   "coin": "LIGHT",
+   "d0": "2025-09-27",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9295277518408164
+  },
+  {
+   "coin": "LINEA",
+   "d0": "2025-09-01",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5366263257143951
+  },
+  {
+   "coin": "LISTA",
+   "d0": "2024-06-20",
+   "year": 2024,
+   "month": "2024-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.016011262445829955
+  },
+  {
+   "coin": "LOKA",
+   "d0": "2024-09-24",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.4084370556600587
+  },
+  {
+   "coin": "LOOM",
+   "d0": "2023-10-11",
+   "year": 2023,
+   "month": "2023-10",
+   "prior_hl_days": 13,
+   "group": "new",
+   "ret": 0.4195694859992558
+  },
+  {
+   "coin": "LSK",
+   "d0": "2024-01-25",
+   "year": 2024,
+   "month": "2024-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.4447148316257713
+  },
+  {
+   "coin": "LUMIA",
+   "d0": "2024-12-18",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.3083629644867298
+  },
+  {
+   "coin": "LYN",
+   "d0": "2025-10-06",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.2291180035797207
+  },
+  {
+   "coin": "MAGMA",
+   "d0": "2025-12-31",
+   "year": 2025,
+   "month": "2025-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.24858643203794462
+  },
+  {
+   "coin": "MANTA",
+   "d0": "2024-01-18",
+   "year": 2024,
+   "month": "2024-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.04230143682854015
+  },
+  {
+   "coin": "MANTRA",
+   "d0": "2026-03-04",
+   "year": 2026,
+   "month": "2026-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.8317966777556784
+  },
+  {
+   "coin": "MARSCOIN",
+   "d0": "2026-09-01",
+   "year": 2026,
+   "month": "2026-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9826556056883197
+  },
+  {
+   "coin": "MAVIA",
+   "d0": "2024-02-21",
+   "year": 2024,
+   "month": "2024-02",
+   "prior_hl_days": 15,
+   "group": "new",
+   "ret": 0.5910097258845519
+  },
+  {
+   "coin": "MAV",
+   "d0": "2023-06-29",
+   "year": 2023,
+   "month": "2023-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.3721485366484689
+  },
+  {
+   "coin": "MBL",
+   "d0": "2023-11-14",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.40820564846703755
+  },
+  {
+   "coin": "MBOX",
+   "d0": "2024-08-28",
+   "year": 2024,
+   "month": "2024-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.24456053593465343
+  },
+  {
+   "coin": "MDT",
+   "d0": "2023-06-30",
+   "year": 2023,
+   "month": "2023-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.11171283647178365
+  },
+  {
+   "coin": "MEGA",
+   "d0": "2026-01-30",
+   "year": 2026,
+   "month": "2026-01",
+   "prior_hl_days": 100,
+   "group": "est_hl",
+   "ret": -0.07009572569973388
+  },
+  {
+   "coin": "MELANIA",
+   "d0": "2025-01-20",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 2.078910697565039
+  },
+  {
+   "coin": "MEMEFI",
+   "d0": "2025-04-25",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.2891564357727776
+  },
+  {
+   "coin": "MEME",
+   "d0": "2023-11-03",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.3561691035537168
+  },
+  {
+   "coin": "MERL",
+   "d0": "2025-05-29",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": 401,
+   "group": "est_hl",
+   "ret": -0.12141757676583542
+  },
+  {
+   "coin": "METIS",
+   "d0": "2024-03-12",
+   "year": 2024,
+   "month": "2024-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.7653530878071104
+  },
+  {
+   "coin": "MET",
+   "d0": "2025-10-11",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": 1,
+   "group": "new",
+   "ret": 1.7117943396403361
+  },
+  {
+   "coin": "ME",
+   "d0": "2024-12-10",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5985597371174478
+  },
+  {
+   "coin": "MEW",
+   "d0": "2024-06-17",
+   "year": 2024,
+   "month": "2024-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.554692692406309
+  },
+  {
+   "coin": "MILK",
+   "d0": "2025-05-06",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.9188825997914791
+  },
+  {
+   "coin": "MIRA",
+   "d0": "2025-09-26",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 2.42283249576331
+  },
+  {
+   "coin": "MITO",
+   "d0": "2025-08-28",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.042264489358051494
+  },
+  {
+   "coin": "MLN",
+   "d0": "2025-03-31",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5317367534455444
+  },
+  {
+   "coin": "MMT",
+   "d0": "2025-11-04",
+   "year": 2025,
+   "month": "2025-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5265128945243209
+  },
+  {
+   "coin": "MOCA",
+   "d0": "2024-12-16",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.7440928859431054
+  },
+  {
+   "coin": "MON",
+   "d0": "2025-10-10",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": 2,
+   "group": "new",
+   "ret": 0.08870210864411354
+  },
+  {
+   "coin": "MOODENG",
+   "d0": "2024-10-25",
+   "year": 2024,
+   "month": "2024-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.742868016983034
+  },
+  {
+   "coin": "MORPHO",
+   "d0": "2024-11-27",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.8073251467410012
+  },
+  {
+   "coin": "MOVE",
+   "d0": "2024-12-09",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.27067067240725107
+  },
+  {
+   "coin": "MOVR",
+   "d0": "2023-12-26",
+   "year": 2023,
+   "month": "2023-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.03654725766132039
+  },
+  {
+   "coin": "MUBARAK",
+   "d0": "2025-03-17",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.5916130048733406
+  },
+  {
+   "coin": "M",
+   "d0": "2025-07-07",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -1.0011271342184482
+  },
+  {
+   "coin": "MYRO",
+   "d0": "2024-03-05",
+   "year": 2024,
+   "month": "2024-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.04799988809576572
+  },
+  {
+   "coin": "MYX",
+   "d0": "2025-06-18",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9982268213236719
+  },
+  {
+   "coin": "NAORIS",
+   "d0": "2025-07-31",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -1.3961478217473924
+  },
+  {
+   "coin": "NEIROETH",
+   "d0": "2024-09-06",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6471707840774519
+  },
+  {
+   "coin": "NEIRO",
+   "d0": "2024-09-16",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.8508029465942957
+  },
+  {
+   "coin": "NEWT",
+   "d0": "2025-06-19",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.8236441762759735
+  },
+  {
+   "coin": "NFP",
+   "d0": "2023-12-27",
+   "year": 2023,
+   "month": "2023-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.3047317538901102
+  },
+  {
+   "coin": "NIGHT",
+   "d0": "2025-12-10",
+   "year": 2025,
+   "month": "2025-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6751232349108052
+  },
+  {
+   "coin": "NIL",
+   "d0": "2025-03-24",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.2626600701430253
+  },
+  {
+   "coin": "NMR",
+   "d0": "2023-06-22",
+   "year": 2023,
+   "month": "2023-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.032941817238288706
+  },
+  {
+   "coin": "NOM",
+   "d0": "2025-10-01",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.1231453042758126
+  },
+  {
+   "coin": "NOT",
+   "d0": "2024-05-16",
+   "year": 2024,
+   "month": "2024-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.8659237210061794
+  },
+  {
+   "coin": "NTRN",
+   "d0": "2023-11-14",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.758055201836255
+  },
+  {
+   "coin": "NULS",
+   "d0": "2024-08-26",
+   "year": 2024,
+   "month": "2024-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5586350050871387
+  },
+  {
+   "coin": "NXPC",
+   "d0": "2025-05-15",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.1780099326532714
+  },
+  {
+   "coin": "OBOL",
+   "d0": "2025-05-07",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.7728770668793563
+  },
+  {
+   "coin": "OG",
+   "d0": "2025-05-12",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.18394660810797592
+  },
+  {
+   "coin": "OL",
+   "d0": "2025-06-25",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.28720623910514165
+  },
+  {
+   "coin": "OMNI",
+   "d0": "2024-04-17",
+   "year": 2024,
+   "month": "2024-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.40322644626932225
+  },
+  {
+   "coin": "OM",
+   "d0": "2024-02-13",
+   "year": 2024,
+   "month": "2024-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6859990291821814
+  },
+  {
+   "coin": "ONDO",
+   "d0": "2024-01-20",
+   "year": 2024,
+   "month": "2024-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.5553785646041476
+  },
+  {
+   "coin": "ONG",
+   "d0": "2023-11-27",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.4763047539031702
+  },
+  {
+   "coin": "ON",
+   "d0": "2025-10-24",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.13278666066567757
+  },
+  {
+   "coin": "OPEN",
+   "d0": "2025-09-08",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.13954869051972496
+  },
+  {
+   "coin": "OPG",
+   "d0": "2026-04-22",
+   "year": 2026,
+   "month": "2026-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.5211231325523163
+  },
+  {
+   "coin": "OPN",
+   "d0": "2026-02-21",
+   "year": 2026,
+   "month": "2026-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.971121065668349
+  },
+  {
+   "coin": "ORBS",
+   "d0": "2023-10-17",
+   "year": 2023,
+   "month": "2023-10",
+   "prior_hl_days": 4,
+   "group": "new",
+   "ret": 0.27005198060796376
+  },
+  {
+   "coin": "ORCA",
+   "d0": "2024-12-06",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.2030650943005559
+  },
+  {
+   "coin": "ORDER",
+   "d0": "2025-09-26",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.13327594026855094
+  },
+  {
+   "coin": "ORDI",
+   "d0": "2023-11-07",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9262268027487608
+  },
+  {
+   "coin": "O",
+   "d0": "2026-06-24",
+   "year": 2026,
+   "month": "2026-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.4079140536804935
+  },
+  {
+   "coin": "OXT",
+   "d0": "2023-08-11",
+   "year": 2023,
+   "month": "2023-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.13006184510031826
+  },
+  {
+   "coin": "PARTI",
+   "d0": "2025-03-25",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.15400270834922936
+  },
+  {
+   "coin": "PAXG",
+   "d0": "2025-03-27",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.1951180399707768
+  },
+  {
+   "coin": "PENDLE",
+   "d0": "2023-07-28",
+   "year": 2023,
+   "month": "2023-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.03292613666124311
+  },
+  {
+   "coin": "PENGU",
+   "d0": "2024-12-17",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.4438436843866738
+  },
+  {
+   "coin": "PHAROS",
+   "d0": "2026-05-14",
+   "year": 2026,
+   "month": "2026-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.24266827534816438
+  },
+  {
+   "coin": "PHA",
+   "d0": "2024-12-30",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.9275451978574991
+  },
+  {
+   "coin": "PIEVERSE",
+   "d0": "2025-11-14",
+   "year": 2025,
+   "month": "2025-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9514181703848492
+  },
+  {
+   "coin": "PIPPIN",
+   "d0": "2025-01-24",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.9764483481964594
+  },
+  {
+   "coin": "PIXEL",
+   "d0": "2024-02-19",
+   "year": 2024,
+   "month": "2024-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.002617302803508692
+  },
+  {
+   "coin": "PLAY",
+   "d0": "2025-07-31",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.4550485928398661
+  },
+  {
+   "coin": "PLUME",
+   "d0": "2025-03-21",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.3271112709122146
+  },
+  {
+   "coin": "PNUT",
+   "d0": "2024-11-11",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -4.817812616764498
+  },
+  {
+   "coin": "POL",
+   "d0": "2024-09-13",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5747800596273624
+  },
+  {
+   "coin": "POLYX",
+   "d0": "2023-10-25",
+   "year": 2023,
+   "month": "2023-10",
+   "prior_hl_days": 1,
+   "group": "new",
+   "ret": 0.138270941029075
+  },
+  {
+   "coin": "PONKE",
+   "d0": "2024-11-04",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.4690741286624591
+  },
+  {
+   "coin": "PONS",
+   "d0": "2026-09-06",
+   "year": 2026,
+   "month": "2026-09",
+   "prior_hl_days": 6,
+   "group": "new",
+   "ret": 1.2967104173684976
+  },
+  {
+   "coin": "POPCAT",
+   "d0": "2024-08-22",
+   "year": 2024,
+   "month": "2024-08",
+   "prior_hl_days": 116,
+   "group": "est_hl",
+   "ret": -0.584545359365835
+  },
+  {
+   "coin": "PORT3",
+   "d0": "2025-06-04",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.07930317654640517
+  },
+  {
+   "coin": "PORTAL",
+   "d0": "2024-02-29",
+   "year": 2024,
+   "month": "2024-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.3831200309069627
+  },
+  {
+   "coin": "POWER",
+   "d0": "2025-12-06",
+   "year": 2025,
+   "month": "2025-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.865610913195042
+  },
+  {
+   "coin": "POWR",
+   "d0": "2023-10-27",
+   "year": 2023,
+   "month": "2023-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.2648362091882207
+  },
+  {
+   "coin": "PREDICT",
+   "d0": "2026-10-25",
+   "year": 2026,
+   "month": "2026-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.0641082129076197
+  },
+  {
+   "coin": "PRL",
+   "d0": "2026-04-01",
+   "year": 2026,
+   "month": "2026-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.8167797361792422
+  },
+  {
+   "coin": "PROMPT",
+   "d0": "2025-04-11",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.1386289333529365
+  },
+  {
+   "coin": "PROM",
+   "d0": "2025-01-15",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.06611265282194168
+  },
+  {
+   "coin": "PROVE",
+   "d0": "2025-08-05",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.089773733432156
+  },
+  {
+   "coin": "PTB",
+   "d0": "2025-09-03",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6698723537558657
+  },
+  {
+   "coin": "PUFFER",
+   "d0": "2025-06-04",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.09770386761484706
+  },
+  {
+   "coin": "PUMPBTC",
+   "d0": "2025-06-13",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.17850283751735785
+  },
+  {
+   "coin": "PUMP",
+   "d0": "2025-04-12",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.14286760281745903
+  },
+  {
+   "coin": "PUNDIX",
+   "d0": "2025-04-30",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.17815189461036818
+  },
+  {
+   "coin": "PYTH",
+   "d0": "2023-11-22",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": 8,
+   "group": "new",
+   "ret": 0.15772198259932213
+  },
+  {
+   "coin": "QUICK",
+   "d0": "2024-09-06",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.40586644853592846
+  },
+  {
+   "coin": "Q",
+   "d0": "2025-09-02",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9553898137722241
+  },
+  {
+   "coin": "RAD",
+   "d0": "2023-05-10",
+   "year": 2023,
+   "month": "2023-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.38510609046775146
+  },
+  {
+   "coin": "RARE",
+   "d0": "2024-08-15",
+   "year": 2024,
+   "month": "2024-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.33731656645323405
+  },
+  {
+   "coin": "RAVE",
+   "d0": "2025-12-14",
+   "year": 2025,
+   "month": "2025-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.8607242758278407
+  },
+  {
+   "coin": "RAYSOL",
+   "d0": "2024-12-10",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.12636999938967308
+  },
+  {
+   "coin": "RDNT",
+   "d0": "2023-04-05",
+   "year": 2023,
+   "month": "2023-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.05679288910969271
+  },
+  {
+   "coin": "RECALL",
+   "d0": "2025-10-15",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.02928793906959215
+  },
+  {
+   "coin": "RED",
+   "d0": "2025-03-06",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.07702413546056242
+  },
+  {
+   "coin": "REI",
+   "d0": "2024-09-27",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.1993184071823073
+  },
+  {
+   "coin": "RENDER",
+   "d0": "2024-07-26",
+   "year": 2024,
+   "month": "2024-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.0809956625754118
+  },
+  {
+   "coin": "RESOLV",
+   "d0": "2025-06-10",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.3428697626612771
+  },
+  {
+   "coin": "RE",
+   "d0": "2026-06-18",
+   "year": 2026,
+   "month": "2026-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.020050144770809686
+  },
+  {
+   "coin": "REZ",
+   "d0": "2024-04-30",
+   "year": 2024,
+   "month": "2024-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5135107294268979
+  },
+  {
+   "coin": "RIF",
+   "d0": "2023-10-21",
+   "year": 2023,
+   "month": "2023-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.1589247844879953
+  },
+  {
+   "coin": "RIVER",
+   "d0": "2025-10-17",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.7130062722969355
+  },
+  {
+   "coin": "RLS",
+   "d0": "2025-12-02",
+   "year": 2025,
+   "month": "2025-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.3734909218114333
+  },
+  {
+   "coin": "ROBO",
+   "d0": "2026-02-27",
+   "year": 2026,
+   "month": "2026-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.2241177909568548
+  },
+  {
+   "coin": "RONIN",
+   "d0": "2024-02-06",
+   "year": 2024,
+   "month": "2024-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.03130296451374681
+  },
+  {
+   "coin": "RPL",
+   "d0": "2024-09-09",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.25876360212999927
+  },
+  {
+   "coin": "RVV",
+   "d0": "2025-10-18",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.9696991773842738
+  },
+  {
+   "coin": "SAFE",
+   "d0": "2024-10-25",
+   "year": 2024,
+   "month": "2024-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5341406162918076
+  },
+  {
+   "coin": "SAGA",
+   "d0": "2024-04-09",
+   "year": 2024,
+   "month": "2024-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.0248587851548518
+  },
+  {
+   "coin": "SAHARA",
+   "d0": "2025-06-26",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6353320471136447
+  },
+  {
+   "coin": "SANTOS",
+   "d0": "2024-10-28",
+   "year": 2024,
+   "month": "2024-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.8126544194202177
+  },
+  {
+   "coin": "SAPIEN",
+   "d0": "2025-08-20",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.5295760894418521
+  },
+  {
+   "coin": "SCRT",
+   "d0": "2024-11-21",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.0951602382136918
+  },
+  {
+   "coin": "SCR",
+   "d0": "2024-10-22",
+   "year": 2024,
+   "month": "2024-10",
+   "prior_hl_days": 13,
+   "group": "new",
+   "ret": -0.09719916421982921
+  },
+  {
+   "coin": "SEI",
+   "d0": "2023-08-17",
+   "year": 2023,
+   "month": "2023-08",
+   "prior_hl_days": 2,
+   "group": "new",
+   "ret": 0.6313787198268705
+  },
+  {
+   "coin": "SENT",
+   "d0": "2025-11-14",
+   "year": 2025,
+   "month": "2025-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.2012823330496043
+  },
+  {
+   "coin": "SHELL",
+   "d0": "2025-02-17",
+   "year": 2025,
+   "month": "2025-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.3265249017629803
+  },
+  {
+   "coin": "SIGN",
+   "d0": "2025-04-28",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.3470335795227184
+  },
+  {
+   "coin": "SIREN",
+   "d0": "2025-03-22",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.7001254931398688
+  },
+  {
+   "coin": "SKATE",
+   "d0": "2025-06-09",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.42985472448303597
+  },
+  {
+   "coin": "SKR",
+   "d0": "2026-01-22",
+   "year": 2026,
+   "month": "2026-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.547696050110227
+  },
+  {
+   "coin": "SKYAI",
+   "d0": "2025-05-13",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.20970431793269362
+  },
+  {
+   "coin": "SKY",
+   "d0": "2025-09-09",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.15292826797106196
+  },
+  {
+   "coin": "SLERF",
+   "d0": "2024-11-21",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.9346221109965565
+  },
+  {
+   "coin": "SLP",
+   "d0": "2023-10-31",
+   "year": 2023,
+   "month": "2023-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.07027714729191503
+  },
+  {
+   "coin": "SLX",
+   "d0": "2026-06-01",
+   "year": 2026,
+   "month": "2026-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.06919583228977932
+  },
+  {
+   "coin": "SNT",
+   "d0": "2023-11-02",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5568320720287081
+  },
+  {
+   "coin": "SOLV",
+   "d0": "2025-01-17",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.490048154374807
+  },
+  {
+   "coin": "SOMI",
+   "d0": "2025-08-25",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.7904828166546215
+  },
+  {
+   "coin": "SONIC",
+   "d0": "2025-01-08",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.2195928365463198
+  },
+  {
+   "coin": "SOON",
+   "d0": "2025-05-23",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.727328626526915
+  },
+  {
+   "coin": "SOPH",
+   "d0": "2025-05-28",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.08992531063080755
+  },
+  {
+   "coin": "SPACE",
+   "d0": "2026-01-23",
+   "year": 2026,
+   "month": "2026-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6813645052572939
+  },
+  {
+   "coin": "SPK",
+   "d0": "2025-06-17",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9974052276677349
+  },
+  {
+   "coin": "SPORTFUN",
+   "d0": "2026-01-16",
+   "year": 2026,
+   "month": "2026-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.40435929763470524
+  },
+  {
+   "coin": "SPX",
+   "d0": "2024-12-10",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.43313879996371496
+  },
+  {
+   "coin": "SQD",
+   "d0": "2025-06-11",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.11006921255361712
+  },
+  {
+   "coin": "STABLE",
+   "d0": "2025-11-06",
+   "year": 2025,
+   "month": "2025-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5242116822038323
+  },
+  {
+   "coin": "STAR",
+   "d0": "2026-05-14",
+   "year": 2026,
+   "month": "2026-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.3224397120556787
+  },
+  {
+   "coin": "STBL",
+   "d0": "2025-09-17",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.7665023039808121
+  },
+  {
+   "coin": "STEEM",
+   "d0": "2023-11-08",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5718558655708319
+  },
+  {
+   "coin": "STO",
+   "d0": "2025-04-12",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.35121675942633157
+  },
+  {
+   "coin": "STPT",
+   "d0": "2023-10-18",
+   "year": 2023,
+   "month": "2023-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5609037036136746
+  },
+  {
+   "coin": "STRAX",
+   "d0": "2023-10-11",
+   "year": 2023,
+   "month": "2023-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.3205124925001396
+  },
+  {
+   "coin": "STRK",
+   "d0": "2024-02-20",
+   "year": 2024,
+   "month": "2024-02",
+   "prior_hl_days": 6,
+   "group": "new",
+   "ret": 0.583697326046591
+  },
+  {
+   "coin": "SUI",
+   "d0": "2023-05-03",
+   "year": 2023,
+   "month": "2023-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.7924671072250102
+  },
+  {
+   "coin": "SUN",
+   "d0": "2024-08-22",
+   "year": 2024,
+   "month": "2024-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5307413153889244
+  },
+  {
+   "coin": "SUPER",
+   "d0": "2023-11-26",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6214479349245866
+  },
+  {
+   "coin": "S",
+   "d0": "2025-01-16",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.15478694846384022
+  },
+  {
+   "coin": "SWARMS",
+   "d0": "2025-01-07",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.3643002364797644
+  },
+  {
+   "coin": "SWELL",
+   "d0": "2024-11-08",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.9631840499372735
+  },
+  {
+   "coin": "SXT",
+   "d0": "2025-05-02",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.4669429666141882
+  },
+  {
+   "coin": "SYN",
+   "d0": "2024-08-16",
+   "year": 2024,
+   "month": "2024-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.005370835285891884
+  },
+  {
+   "coin": "SYRUP",
+   "d0": "2025-05-07",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6589481689764951
+  },
+  {
+   "coin": "SYS",
+   "d0": "2024-08-19",
+   "year": 2024,
+   "month": "2024-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5667010177317278
+  },
+  {
+   "coin": "TAC",
+   "d0": "2025-07-15",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.015109957930333096
+  },
+  {
+   "coin": "TAG",
+   "d0": "2025-07-25",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.06907700478001799
+  },
+  {
+   "coin": "TAIKO",
+   "d0": "2025-06-11",
+   "year": 2025,
+   "month": "2025-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.1256222340931359
+  },
+  {
+   "coin": "TAKE",
+   "d0": "2025-09-03",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.5178746091271762
+  },
+  {
+   "coin": "TANSSI",
+   "d0": "2025-07-09",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.15384744802583383
+  },
+  {
+   "coin": "TAO",
+   "d0": "2024-04-11",
+   "year": 2024,
+   "month": "2024-04",
+   "prior_hl_days": 52,
+   "group": "new",
+   "ret": 0.4936443407841731
+  },
+  {
+   "coin": "TA",
+   "d0": "2025-07-21",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -1.8948663333466755
+  },
+  {
+   "coin": "THE",
+   "d0": "2024-11-27",
+   "year": 2024,
+   "month": "2024-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 2.7928565830647245
+  },
+  {
+   "coin": "TIA",
+   "d0": "2023-10-31",
+   "year": 2023,
+   "month": "2023-10",
+   "prior_hl_days": 12,
+   "group": "new",
+   "ret": -0.865303140530131
+  },
+  {
+   "coin": "TNSR",
+   "d0": "2024-04-08",
+   "year": 2024,
+   "month": "2024-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.08958985802117603
+  },
+  {
+   "coin": "TOKEN",
+   "d0": "2023-11-03",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.3720797081831504
+  },
+  {
+   "coin": "TON",
+   "d0": "2024-03-01",
+   "year": 2024,
+   "month": "2024-03",
+   "prior_hl_days": 131,
+   "group": "est_hl",
+   "ret": -0.5284187550628845
+  },
+  {
+   "coin": "TOSHI",
+   "d0": "2025-09-17",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.24130587903575407
+  },
+  {
+   "coin": "TOWNS",
+   "d0": "2025-08-05",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5495772728023056
+  },
+  {
+   "coin": "TRADOOR",
+   "d0": "2025-09-19",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.5899242822670648
+  },
+  {
+   "coin": "TREE",
+   "d0": "2025-07-29",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.27450330553994173
+  },
+  {
+   "coin": "TRIA",
+   "d0": "2026-02-06",
+   "year": 2026,
+   "month": "2026-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6372045978392402
+  },
+  {
+   "coin": "TROY",
+   "d0": "2024-10-31",
+   "year": 2024,
+   "month": "2024-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.8839956082877183
+  },
+  {
+   "coin": "TRUMP",
+   "d0": "2025-01-18",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.1334133547585488
+  },
+  {
+   "coin": "TRUST",
+   "d0": "2025-11-05",
+   "year": 2025,
+   "month": "2025-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -4.386540573497632
+  },
+  {
+   "coin": "TRUTH",
+   "d0": "2025-10-01",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9743520963573293
+  },
+  {
+   "coin": "TST",
+   "d0": "2025-02-09",
+   "year": 2025,
+   "month": "2025-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.28047663254190613
+  },
+  {
+   "coin": "TURBO",
+   "d0": "2024-05-30",
+   "year": 2024,
+   "month": "2024-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.44476966485720515
+  },
+  {
+   "coin": "TURTLE",
+   "d0": "2025-10-22",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.8345545335311915
+  },
+  {
+   "coin": "TUT",
+   "d0": "2025-03-20",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -3.0928346266903266
+  },
+  {
+   "coin": "TWT",
+   "d0": "2023-11-03",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.25423998681097193
+  },
+  {
+   "coin": "UAI",
+   "d0": "2025-11-06",
+   "year": 2025,
+   "month": "2025-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.23998078138043655
+  },
+  {
+   "coin": "UB",
+   "d0": "2025-09-12",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.5615780582613974
+  },
+  {
+   "coin": "UMA",
+   "d0": "2023-05-10",
+   "year": 2023,
+   "month": "2023-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.6653709300405961
+  },
+  {
+   "coin": "USELESS",
+   "d0": "2025-08-15",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6731654411648349
+  },
+  {
+   "coin": "USTC",
+   "d0": "2023-11-27",
+   "year": 2023,
+   "month": "2023-11",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.41450213319191365
+  },
+  {
+   "coin": "USUAL",
+   "d0": "2024-12-18",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.5250072186949848
+  },
+  {
+   "coin": "US",
+   "d0": "2025-12-12",
+   "year": 2025,
+   "month": "2025-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.0143698060043809
+  },
+  {
+   "coin": "UXLINK",
+   "d0": "2024-09-15",
+   "year": 2024,
+   "month": "2024-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.50872454831772
+  },
+  {
+   "coin": "VANA",
+   "d0": "2024-12-16",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.690456913569848
+  },
+  {
+   "coin": "VANRY",
+   "d0": "2024-03-13",
+   "year": 2024,
+   "month": "2024-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.3710889387806784
+  },
+  {
+   "coin": "VELODROME",
+   "d0": "2024-12-13",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.3205170386967469
+  },
+  {
+   "coin": "VELVET",
+   "d0": "2025-07-15",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.9160799240813097
+  },
+  {
+   "coin": "VFY",
+   "d0": "2025-09-30",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.25723361223762287
+  },
+  {
+   "coin": "VIC",
+   "d0": "2025-03-12",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.2755741185938898
+  },
+  {
+   "coin": "VIDT",
+   "d0": "2024-08-23",
+   "year": 2024,
+   "month": "2024-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.18065684355882472
+  },
+  {
+   "coin": "VINE",
+   "d0": "2025-01-24",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": 1,
+   "group": "new",
+   "ret": 3.2963496708421474
+  },
+  {
+   "coin": "VIRTUAL",
+   "d0": "2024-12-10",
+   "year": 2024,
+   "month": "2024-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.08323627099737707
+  },
+  {
+   "coin": "VOXEL",
+   "d0": "2024-08-20",
+   "year": 2024,
+   "month": "2024-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.2733285618666308
+  },
+  {
+   "coin": "VTHO",
+   "d0": "2025-01-22",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.5747210526433937
+  },
+  {
+   "coin": "VVV",
+   "d0": "2025-01-29",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": 1,
+   "group": "new",
+   "ret": -0.32817758132979336
+  },
+  {
+   "coin": "WAL",
+   "d0": "2025-03-27",
+   "year": 2025,
+   "month": "2025-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.29568824919104375
+  },
+  {
+   "coin": "WAXP",
+   "d0": "2023-10-18",
+   "year": 2023,
+   "month": "2023-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.09098948052674039
+  },
+  {
+   "coin": "WCT",
+   "d0": "2025-04-15",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.5291237674784276
+  },
+  {
+   "coin": "WET",
+   "d0": "2025-12-10",
+   "year": 2025,
+   "month": "2025-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.26904118395728793
+  },
+  {
+   "coin": "WIF",
+   "d0": "2024-01-18",
+   "year": 2024,
+   "month": "2024-01",
+   "prior_hl_days": 27,
+   "group": "new",
+   "ret": -0.9339636092735604
+  },
+  {
+   "coin": "WLD",
+   "d0": "2023-07-24",
+   "year": 2023,
+   "month": "2023-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.005647425054608579
+  },
+  {
+   "coin": "WLFI",
+   "d0": "2025-08-23",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.035923096440330315
+  },
+  {
+   "coin": "W",
+   "d0": "2024-04-03",
+   "year": 2024,
+   "month": "2024-04",
+   "prior_hl_days": 56,
+   "group": "new",
+   "ret": 0.16321780792300578
+  },
+  {
+   "coin": "XAI",
+   "d0": "2024-01-09",
+   "year": 2024,
+   "month": "2024-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.588636109654488
+  },
+  {
+   "coin": "XAN",
+   "d0": "2025-09-29",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.07156640180565477
+  },
+  {
+   "coin": "XAUT",
+   "d0": "2026-03-26",
+   "year": 2026,
+   "month": "2026-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.14291453529500608
+  },
+  {
+   "coin": "XCN",
+   "d0": "2025-04-11",
+   "year": 2025,
+   "month": "2025-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.4237311441871243
+  },
+  {
+   "coin": "XNY",
+   "d0": "2025-08-13",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.3433257411830465
+  },
+  {
+   "coin": "XPIN",
+   "d0": "2025-09-12",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -1.1126426984785929
+  },
+  {
+   "coin": "XPL",
+   "d0": "2025-08-22",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.6662908628154371
+  },
+  {
+   "coin": "XVG",
+   "d0": "2023-07-05",
+   "year": 2023,
+   "month": "2023-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.4410941019206547
+  },
+  {
+   "coin": "XVS",
+   "d0": "2023-04-13",
+   "year": 2023,
+   "month": "2023-04",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.7767109707651838
+  },
+  {
+   "coin": "YALA",
+   "d0": "2025-08-07",
+   "year": 2025,
+   "month": "2025-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.4953563367305067
+  },
+  {
+   "coin": "YB",
+   "d0": "2025-10-10",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.3013192059010428
+  },
+  {
+   "coin": "YGG",
+   "d0": "2023-08-05",
+   "year": 2023,
+   "month": "2023-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.43748779684737005
+  },
+  {
+   "coin": "ZAMA",
+   "d0": "2026-01-09",
+   "year": 2026,
+   "month": "2026-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.588425817030346
+  },
+  {
+   "coin": "ZBT",
+   "d0": "2025-10-17",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.7438882456746216
+  },
+  {
+   "coin": "ZEREBRO",
+   "d0": "2025-01-02",
+   "year": 2025,
+   "month": "2025-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 4.104141345014444
+  },
+  {
+   "coin": "ZEST",
+   "d0": "2026-06-04",
+   "year": 2026,
+   "month": "2026-06",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.12420509010680414
+  },
+  {
+   "coin": "ZETA",
+   "d0": "2024-02-02",
+   "year": 2024,
+   "month": "2024-02",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.054745635196524756
+  },
+  {
+   "coin": "ZKC",
+   "d0": "2025-09-15",
+   "year": 2025,
+   "month": "2025-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.750641034659604
+  },
+  {
+   "coin": "ZKJ",
+   "d0": "2025-05-13",
+   "year": 2025,
+   "month": "2025-05",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.588847436352621
+  },
+  {
+   "coin": "ZKP",
+   "d0": "2025-12-21",
+   "year": 2025,
+   "month": "2025-12",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.8568805441536598
+  },
+  {
+   "coin": "ZK",
+   "d0": "2024-06-17",
+   "year": 2024,
+   "month": "2024-06",
+   "prior_hl_days": 5,
+   "group": "new",
+   "ret": 0.5646442777290059
+  },
+  {
+   "coin": "ZORA",
+   "d0": "2025-07-25",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": 93,
+   "group": "est_hl",
+   "ret": -0.40730534478053615
+  },
+  {
+   "coin": "ZRC",
+   "d0": "2025-07-29",
+   "year": 2025,
+   "month": "2025-07",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 0.4206873556150146
+  },
+  {
+   "coin": "ZRO",
+   "d0": "2024-06-20",
+   "year": 2024,
+   "month": "2024-06",
+   "prior_hl_days": 287,
+   "group": "est_hl",
+   "ret": -0.43859176883475115
+  },
+  {
+   "coin": "\u54c8\u57fa\u7c73",
+   "d0": "2026-09-06",
+   "year": 2026,
+   "month": "2026-09",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.1654858090713427
+  },
+  {
+   "coin": "\u5e01\u5b89\u4eba\u751f",
+   "d0": "2025-10-20",
+   "year": 2025,
+   "month": "2025-10",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.2519817166119448
+  },
+  {
+   "coin": "\u6211\u8e0f\u9a6c\u6765\u4e86",
+   "d0": "2026-01-21",
+   "year": 2026,
+   "month": "2026-01",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.4623317543310519
+  },
+  {
+   "coin": "\u725b\u6765",
+   "d0": "2026-08-30",
+   "year": 2026,
+   "month": "2026-08",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": -0.34502520770094025
+  },
+  {
+   "coin": "\u9f99\u867e",
+   "d0": "2026-03-11",
+   "year": 2026,
+   "month": "2026-03",
+   "prior_hl_days": -1,
+   "group": "new",
+   "ret": 1.0522436459150533
+  }
+ ],
+ "summary": {
+  "est_hl": {
+   "n": 10,
+   "mean": -0.2633,
+   "median": -0.1875,
+   "win": 0.1,
+   "month_t": -3.25,
+   "worst3": [
+    -0.585,
+    -0.528,
+    -0.439
+   ],
+   "by_year": {
+    "2024": [
+     6,
+     -0.31,
+     -0.318
+    ],
+    "2025": [
+     3,
+     -0.235,
+     -0.177
+    ],
+    "2026": [
+     1,
+     -0.07,
+     -0.07
+    ]
+   }
+  },
+  "new": {
+   "n": 487,
+   "mean": 0.0574,
+   "median": 0.0365,
+   "win": 0.517,
+   "month_t": 1.2,
+   "worst3": [
+    -9.238,
+    -4.818,
+    -4.387
+   ],
+   "by_year": {
+    "2023": [
+     72,
+     0.073,
+     0.13
+    ],
+    "2024": [
+     125,
+     0.208,
+     0.199
+    ],
+    "2025": [
+     238,
+     -0.011,
+     -0.091
+    ],
+    "2026": [
+     52,
+     -0.012,
+     -0.176
+    ]
+   }
+  }
+ },
+ "PASS": true
+}
