@@ -1424,3 +1424,9 @@ Source: ERC (risk concentrated, reweighting fails), LVQ. H4 picks the top 3 by S
  best different bet. Unstated: a lower-Sharpe uncorrelated leg can still dilute (if its Sharpe is ~0 the book loses); correlations on daily P&L understate tail co-movement (squeezes hit
  both short-alt legs on the same days). Prereg NPC_cap04 (0.4 stated before any run, greedy, hold fewer). Venues: HL (OOS 2024-26) + cached bnall 2021-26 (window-safe).
 NPC a/b (is3_npc.py, npc_hl.json): HL capped 1.27 vs 1.21 pooled (2/3 years); binding corr ls-lowvol .41 = right at the cap (fragile). bnall in unit is3-npc -> data/is3/npc_bnall.log.
+
+## HFZ per-account swings of a longs-on-BN / shorts-on-HL split (think-through 03:0x UTC 11-28, before any run)
+Source: HFX, KSA. The whole book is ~beta-neutral, but each account alone is a directional bet: the HL account short ~1x alts, the BN account long BTC + low-vol alts. An alt rally that
+ the book shrugs off is a large loss in the HL account; margin there can run out before the BN gain can be moved (transfers are manual-ish, minutes to hours, not intraday-free).
+ Unstated: the transfer rule IS the risk control; how often it must fire decides whether this is operable for a small account. a = 7-d per-account returns; b = transfers under a
+ stated 25 % deviation rule (no tuning) and own-account kill breaches; c = go/no-go.

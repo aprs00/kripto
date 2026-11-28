@@ -5465,6 +5465,33 @@
     }
    ],
    "sessions": 1
+  },
+  {
+   "id": "HFZ",
+   "prio": 1.2,
+   "group": "T",
+   "title": "HFX2 precondition: per-account swings if the HL book's longs sit on Binance and shorts on HL (7-d account returns, transfers needed)",
+   "src": "HFX (longs on BN save 2-9 %/yr), KSA/KS1 (per-account guard; main@pair accounts swing -27..-46 % in 7 d), HFX2 backlog line",
+   "status": "wip",
+   "due": "2026-11-28T03:04",
+   "forms": [
+    {
+     "id": "a",
+     "what": "HL 2023-26 blend held weights: split into a shorts account (HL) and a longs account (BN), equity split pro rata to each side's gross at each rebalance; daily account returns; 7-d return distribution per account (worst, 1st/5th pct) vs the whole book",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "transfers: rule 'top up when an account's equity deviates > 25 % from its target share' (stated now) -> transfers per year and largest single transfer as % of book; days where an account would breach the -25 % kill switch on its own",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict for HFX2: saving (2-9 %/yr) vs operational burden (transfers/yr, per-account kill risk); research item go / no-go",
+     "status": "planned"
+    }
+   ],
+   "sessions": 1
   }
  ]
 }
