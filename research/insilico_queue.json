@@ -5439,7 +5439,7 @@
    "group": "T",
    "title": "blend_nested selection with a correlation cap: pick top-3 by expanding Sharpe but skip a candidate whose expanding daily P&L corr with an already chosen component > 0.4 (HL + cached bnall)",
    "src": "ERC (72-84 % of HL book risk in two short-alt legs; reweighting fails), LVQ (ls-lowvol corr .27-.57), H4 nested rule",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T03:02",
    "forms": [
     {
@@ -5461,10 +5461,16 @@
     {
      "id": "c",
      "what": "same on cached bnall 2021-26 (held-out venue, many more refits); verdict vs the prereg rule",
-     "status": "planned"
+     "status": "done",
+     "result": "prereg NPC_cap04, cached bnall OOS 2020-10..2026-11 (one run, unit is3-npc, 43 refits, 13 changed): standard 2021..2026 3.61/-.12/1.79/1.45/.40/.79 pooled 1.52; capped 4.07/-.12/1.79/1.45/.16/1.73 pooled 1.72. Rule (pooled >= and >= in 2/3 of years on each venue): bnall 5/6 years >= (3 ties), HL 2/3: PASS as written. Caveats: 2026 (the vault year) is inside both runs and gives a large share of the gain (bnall 1.73 vs .79); HL's binding corr .41 sits at the cap. Verdict OPEN (prereg passed, no untouched vault): backlog NPC2 for a research-session WF + the 2027-01-02 refit (capped choice now: listing_short, tsmom, xsmom_k).",
+     "date": "2026-11-28",
+     "evidence": "npc_bnall"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "correlation-capped nested selection passed its pre-registered rule on HL (1.27 vs 1.21) and bnall (1.72 vs 1.52), but 2026 (vault) sits inside the test and HL's binding corr is at the cap: research-session WF candidate NPC2",
+   "closed": "2026-11-28"
   },
   {
    "id": "HFZ",

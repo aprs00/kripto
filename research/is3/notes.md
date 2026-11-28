@@ -1430,3 +1430,4 @@ Source: HFX, KSA. The whole book is ~beta-neutral, but each account alone is a d
  the book shrugs off is a large loss in the HL account; margin there can run out before the BN gain can be moved (transfers are manual-ish, minutes to hours, not intraday-free).
  Unstated: the transfer rule IS the risk control; how often it must fire decides whether this is operable for a small account. a = 7-d per-account returns; b = transfers under a
  stated 25 % deviation rule (no tuning) and own-account kill breaches; c = go/no-go.
+NPC c (npc_bnall.json): bnall capped 1.72 vs 1.52 (5/6 years >=). Prereg PASS both venues; 2026 inside; CLOSED OPEN -> backlog NPC2 before the 2027-01-02 refit.
