@@ -7428,6 +7428,45 @@
      "status": "planned"
     }
    ]
+  },
+  {
+   "id": "TLQB",
+   "prio": 2.3,
+   "group": "T",
+   "title": "TLQ2 pre-registered batch: shipped HL main blend (slow .33) with tsmom top_n 10, one config, written + probed (not run)",
+   "src": "TLQP, backlog TLQ2",
+   "status": "closed",
+   "due": "2026-11-28T17:07",
+   "sessions": 1,
+   "forms": [
+    {
+     "id": "a",
+     "what": "known answer: blend(components with tsmom {'top_n': 20} explicit, slow_lam .33) == the shipped blend_nested entry's params on HL 1d (max |dw| 0), so the batch's baseline is the live book",
+     "status": "done",
+     "result": "shipped blend_nested params == blend with tsmom {'top_n': 20} explicit on HL 1d, max |dw| 0.0 (tlqb_a.json): the batch baseline is the live book",
+     "date": "2026-11-28",
+     "evidence": "tlqb_a"
+    },
+    {
+     "id": "b",
+     "what": "research/batches/2026-11-29_tlq2.json: ONE config (tsmom top_n 10 inside the shipped blend, slow_lam .33) + the same-session baseline; decision rule written (adopt only if OOS >= shipped + .1 SR AND forward shadow days vs shadow:blend_nested do not contradict); --probe",
+     "status": "done",
+     "result": "research/batches/2026-11-29_tlq2.json: ONE config (tsmom top_n 10, slow .33) + same-session shipped baseline; rule: shadow only if OOS >= baseline + .1 and worst > 0, main only on >= 90 forward days vs shadow:blend_nested; probe .31 GB, no registry line",
+     "date": "2026-11-28",
+     "evidence": "tlqb_a"
+    },
+    {
+     "id": "c",
+     "what": "backlog TLQ2 points at the batch; DSR count +1; note it shares PRB2's saving (TLQP), so the forward judge is a third shadow, not a replacement of PRB2-F",
+     "status": "done",
+     "result": "backlog TLQ2 points at the batch; DSR +1 (+1 if baseline re-run); forward judge = third shadow beside PRB2-F",
+     "date": "2026-11-28",
+     "evidence": "tlqb_a"
+    }
+   ],
+   "verdict": "OPEN",
+   "reason": "batch written and probed; the WF itself is a research-session run",
+   "closed": "2026-11-28"
   }
  ]
 }
