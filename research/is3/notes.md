@@ -1354,3 +1354,12 @@ HLB a/b/c done (is3_hlb.py, hlb_abc.json): skip rule at book level: HL listing_s
 Source: HLF, FRG. The book is net long-ish in funding terms (BTC hedges, trend longs) and pays when HL longs are crowded (bull months). If the drag persists month to month and follows the
  market's funding level, the forward expectation should be quoted per regime. Monthly = ~44 points: descriptive. Change my mind: AR(1) > .4 and rank corr > .4 -> regime note in STATUS.
 HFR a/b/c done (is3_hfr.py, hfr_abc.json): drag -0.95 %/month, AR(1) .19; rank corr(state, next drag) +.47: low funding -> more drag (book net short alts). Now 23rd pct -> ~-1.4 %/month. CLOSED OPEN.
+
+## LVS HL lowvol leg by side (think-through 02:5x UTC 11-28 real clock, before any run)
+Source: HLF a (lowvol short alts price -16/-33/+28/+14 %/yr; long alts +14/+17/-1/-8; BTC hedge long +8/+20/-1/-7), LV2 (FRAGILE, one year deep). lowvol = rank(-vol) demeaned
+ over top 30, beta-hedged to BTC: the short side holds high-beta names, so the hedge is a BTC LONG; the leg is long (low-vol alts + BTC) vs short high-vol alts. Unstated: it is a
+ beta-mismatch bet in disguise: if the hedge beta (trailing) underestimates high-vol names' up-market beta, it loses in bull years (2024) and wins in alt bear years (2025-26).
+ Then 'lowvol on HL' = short high-vol alts' idiosyncratic decay (listing overhang, same source as listing_short) and the yearly sign follows alt-season. a = per side price/funding/costs
+ + corr of each side's daily P&L to BTC and to the alt index; c judges. b: are the losing shorts the coins already falling (crowded shorts squeeze) -> trailing 30-d return quintiles.
+LVS a done (is3_lvs.py, lvs_a.json): each side is a market bet (corr to BTC +.73..+.93 long, -.63..-.71 short); they cancel to leg corr ~0. Price spread +6/+5/+26/-1 %/yr, long side pays funding
+ 1-8 %; leg net -1/0/+22/-7. 2025's whole return = the high-vol short side (+28 %). So: a small positive spread most years, one big year from high-vol alts collapsing.
