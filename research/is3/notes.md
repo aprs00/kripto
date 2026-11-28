@@ -1785,3 +1785,4 @@ Source: findings L1 (HL lagging Binance this hour predicts HL next hour, rank IC
 L1T a/b (is3_l1t.py, l1t_abc.json): HL main daily trades: waiting 1 h costs 3.7 bp/unit on average (price keeps moving our way); by lag tercile -.2/-4.9/-5.6 bp. Rule saving -.02 bp. CLOSED OPEN (one form; queue needs 3 for DEAD).
  Corollary: the live fill delay (3 min) matters more than timing; 3.7 bp/h x 42 units/yr ~ 1.5 %/yr if trades slipped by an hour.
  L1T caveat: measured on the 1d clock (decision at the 00:00 close); live daily books decide on the 4h bar closing 04:00 and fill ~04:06 (findings 976), 6 min after the decision: the 3.7 bp/h continuation costs ~0.4 bp/unit at that delay. Checked fills table 11-20..28: no fault.
+A1T a/b/c (reading, 11 findings entries opened): T9 family relabel (r1/r2 dead, maker fee OPEN -> T9G); minute-bar holds (dead at taker; maker = ladder); resrev holds. A1 list exhausted. CLOSED OPEN.
