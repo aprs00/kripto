@@ -249,3 +249,6 @@ put a lesson into CLAUDE.md "Standing lessons" only if a future session must act
   re-run the main book's own config on current data whenever its input data are rebuilt, and quote that, not the registration-day number.
 * 2026-11-28 (research). **Misplaced `@register`** when inserting a helper above `blend` registered the helper and unregistered `blend`; only the causality test caught it. Insert
   helpers above the decorator line, and run the full suite (not one test file) after any edit to strategies.py.
+- 2026-11-28 review: InSilico queue empty again (02:47 session closed its last items and stopped: "remaining work needs research sessions"; 04:47/06:47 slots idle).
+  Refilled with T9D (post-only fill rates for PRB2 slow legs), LSX (LSB2 precheck: BTC-leg split, worst-10 stress), E2C (flow@bn anchor phase check), all due now.
+  prompts/insilico.md: that excuse is named as not a reason to stop (prechecks of research-session items are queue work).

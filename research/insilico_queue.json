@@ -5704,6 +5704,84 @@
    "verdict": "OPEN",
    "reason": "NPC's 0.4 cap is a knife-edge: .5 inert, .3 loses on both venues (HL 1.10, bnall 1.07 vs 1.21/1.52): NPC2 downgraded to low, H4 stays",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "T9D",
+   "prio": 1.5,
+   "group": "T",
+   "title": "T9c sizing: would post-only orders fill PRB2's slow-leg daily gaps? descriptive fill rates on BN-82 1h (explore <= 2023)",
+   "src": "backlog T9c (library N15), PRB2 (slow legs lam .33 in HL main 11-28)",
+   "status": "todo",
+   "due": "2026-11-28T08:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "explore 2021-23 BN-82 1h: replay blend_nested's slow legs (tsmom/lowvol, lam .33) daily target changes; for each needed trade a resting limit at the touch-side best (close +/- 0 bp) and at -2 bp: fraction filled within 1h/4h/24h (fill only if a later bar TRADES THROUGH the level, conservative), by leg and by side",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "adverse selection: signed next-24h return after a fill vs after a non-fill (is the filled half the bad half?); net saving vs taker 5 bp incl. the cost of chasing unfilled residue at 24h as taker",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "envelope form: post-only only while |position - target| < 1 x the daily gap, taker beyond; net cost per year vs all-taker and vs PRB2 baseline; verdict: worth a WF / a live resting engine or not. Confirm years 2024-26 only if explore saves >= 1 %/yr",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "LSX",
+   "prio": 1.6,
+   "group": "T",
+   "title": "LSB2 precheck: bnall listing_short P&L without the BTC hedge leg, worst-10-event stress, and per-year with funding",
+   "src": "backlog LSB2 (LSP 11-27 negative book, positive event medians), findings 11-09 (bnall WF = BTC-leg P&L, corr .63)",
+   "status": "todo",
+   "due": "2026-11-28T08:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "bnall events (>= $1M 7-d vol): d2->d61 short-vs-BTC split into short-leg-alone and BTC-leg-alone P&L per year 2020-26 incl. funding; corr of the book's daily P&L to BTC; is the 11-09 'BTC-leg' finding still true",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "stress: drop the worst 10 events / cap any one event at -100 %; mean, median, day-clustered t, top-3-day share per year",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "sizing that a $1,000 main_bn could hold: equal-risk per event with max 5 concurrent, 2x costs; verdict GO (pre-register one WF config for a research session) or NO-GO with reason",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "E2C",
+   "prio": 1.7,
+   "group": "T",
+   "title": "E2b phase check: does moving flow@bn's daily decision anchor from 00:00 to 16:00/20:00 UTC cost signal P&L? (bn 1h, descriptive)",
+   "src": "backlog E2b (E2 2026-11-26: CME-break effect 7.2 -> 2.1 -> 1.1 bp, fading)",
+   "status": "todo",
+   "due": "2026-11-28T08:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "bn 1h: rebuild flow@bn's signal on 24h windows ending 00, 16, 20 UTC; gross next-24h signal P&L and rank-IC per anchor per year 2021-26 (explore 2021-23 first, then 2024-26)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "the execution saving itself on the same days: buys at the CME-break hour vs 00:00, sells deferred >= 1 h; bp per trade per year (is it still > 1 bp in 2026?)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "net: (a) loss + (b) saving vs flow@bn at 00:00 after costs; verdict: shadow variant worth a book, or DEAD at its current size (diagnosed: fading effect vs anchor cost)",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }

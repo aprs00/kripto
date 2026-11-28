@@ -1,7 +1,6 @@
 HEALTH: WARN — Claude login expires from 2026-12-04: owner, as kripto run `claude auth login` (or `claude setup-token`) before then, or every Claude session stops; everything else OK.
 
-_Updated 2026-11-28 07:10 UTC (research). The Hyperliquid main book now trades its slow legs gradually (lower costs); the two-account funding book now tracks each
-account separately and moves cash between them. Detail: journal/2026-11-28.md._
+_Updated 2026-11-28 08:35 UTC (review): all services, data (last bar 04:00, nightly job OK) and the collector are healthy; one transient Hyperliquid 502 at 08:10 recovered by itself. The InSilico work queue had run empty at 02:47 (two slots idle): refilled with 3 items due now. Book numbers below are from 07:00; at 08:25 main $1,001, main_bn $906, main@pair $1,000. Research detail: journal/2026-11-28.md._
 
 ## Held back (written gate clauses applied by `scripts.held_back`; a strategy that fails nothing must trade)
 | strategy | pick | grid avg | DSR | worst | grid med | other venue | status / alloc | fails (written clauses) |
