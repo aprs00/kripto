@@ -6602,6 +6602,60 @@
    "verdict": "OPEN",
    "reason": "pair legs fill ~always at the touch (+3 bp/leg unit net) but a 2-h p90 leg gap and a 1-in-46 one-leg event (-306 bp) fail the a-priori leg-risk clause; the pair book stays taker; the single-venue books keep the T9G/T9c spec",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "MBT",
+   "prio": 3.3,
+   "group": "T",
+   "title": "main_bn live turnover 34 % below its replay since 11-18 (1.40 vs 2.12) while shadow:flow@bn matches (4.74 vs 5.13): plumbing fault or the band?",
+   "src": "LVB b",
+   "status": "wip",
+   "due": "2026-11-28T13:25",
+   "sessions": 1,
+   "forms": [
+    {
+     "id": "a",
+     "what": "per day: live traded notional / equity vs the replay's turnover for main_bn since 11-18; which days carry the gap",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "per coin: replay trades with no live fill (and the reverse) on the gap days; classify: below symbol minimum / step rounding / band / coin missing from the live panel / timing (rebalance skipped: 'due' logic) / sleeve netting",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict: a class that is an engine fault (skipped rebalance, missing coin, sleeve netting) -> fix with a test this session; a class that is modelling (band, rounding) -> put it into the replay so the tool stops reporting it; record",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "SMP",
+   "prio": 3.4,
+   "group": "T",
+   "title": "\\$200 pair book (small:main@pair): does a two-leg book clear both venues' minimums at \\$200?",
+   "src": "SMQ/SMH/SMD (single-venue \\$200 twins min-order limited)",
+   "status": "todo",
+   "due": "2026-11-28T13:25",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "live: small:main@pair vs main@pair positions, names, gross, leg balance (a pair with one leg under its minimum is an unhedged leg!)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "history (pair dataset, fspread_hold config x .5 alloc): at \\$200 the share of pairs where BOTH legs clear their minimum, deployed share by year, and the share of book gross in one-legged positions under truncation",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict: one-legged exposure > 0 anywhere -> engine rule needed (a pair is placed whole or not at all; SMX must cover pairs); deployed < .6 -> \\$200 pair book is not the strategy",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
