@@ -154,7 +154,7 @@ def form_b():
     json.dump(out, open(EV / "t9d_b.json", "w"), indent=1)
 
 
-def sim(W, px, fnd, slip, fb, fs, drift, mode, E=None, maker=MAKER):
+def sim(W, px, fnd, slip, fb, fs, drift, mode, E=None, maker=MAKER, taker=TAKER):
     """daily book; mode taker | chase (unfilled pays drift + taker) | skip (unfilled dropped, gap carried) | env (taker beyond E, post the rest, skip unfilled)."""
     T, N = px.shape
     w = np.zeros(N); out_r, out_c, out_to = np.zeros(T), np.zeros(T), np.zeros(T)
@@ -166,7 +166,7 @@ def sim(W, px, fnd, slip, fb, fs, drift, mode, E=None, maker=MAKER):
         ok = np.isfinite(px[t])
         tgt = np.where(np.isfinite(W[t]) & ok, W[t], 0.0); tgt = np.where(ok, tgt, w)
         dw = tgt - w
-        tc = TAKER + np.where(np.isfinite(slip[t]), slip[t], 25e-4)
+        tc = taker + np.where(np.isfinite(slip[t]), slip[t], 25e-4)
         have = np.isfinite(fb[t]) & np.isfinite(drift[t])
         filled = np.where(dw > 0, fb[t] == 1, fs[t] == 1) & have
         if mode == "taker":
@@ -191,15 +191,15 @@ def sim(W, px, fnd, slip, fb, fs, drift, mode, E=None, maker=MAKER):
     return pd.DataFrame({"r": out_r, "c": out_c, "to": out_to})
 
 
-def form_c():
+def form_c(ds="bn", taker=TAKER, maker=MAKER, win=("2021-01-01", "2023-12-31"), yrs=(2021, 2022, 2023), tag="c", slip_mult=1.0):
     from kripto import backtest as bt
-    d = data.load_panel("bn", "1d")
+    d = data.load_panel(ds, "1d")
     fin, _, err = legs(d)
     S = partial(fin["tsmom"] + fin["lowvol"], LAM)
     cols, idx = S.columns, S.index
     px = d["close"].reindex(columns=cols).to_numpy(float); fnd = d["funding"].reindex(index=idx, columns=cols).to_numpy(float)
-    slip = bt.slippage_model(d["volume"], 1).reindex(index=idx, columns=cols).to_numpy(float)
-    h1 = data.load_panel("bn", "1h")
+    slip = bt.slippage_model(d["volume"], 1).reindex(index=idx, columns=cols).to_numpy(float) * slip_mult
+    h1 = data.load_panel(ds, "1h")
     mn = (h1["low"].rolling(24, min_periods=24).min().shift(-23)).reindex(columns=cols)
     mx = (h1["high"].rolling(24, min_periods=24).max().shift(-23)).reindex(columns=cols)
     D = idx + pd.Timedelta(days=1)
@@ -208,32 +208,65 @@ def form_c():
     E = S.diff().abs().rolling(20, min_periods=5).mean().shift(1).to_numpy(float)   # 1 x trailing mean daily step, known at t
     W = S.to_numpy(float)
     # known answer: my taker loop == bt.run(S, band 0); my skip == bt.run maker skip_unfilled
-    ref = bt.run(S, d["close"], d["funding"], bt.slippage_model(d["volume"], 1))
-    mine = sim(W, px, fnd, slip, mn * 0, mn * 0, drift, "taker")
+    ref = bt.run(S, d["close"], d["funding"], bt.slippage_model(d["volume"], 1) * slip_mult, fee=taker)
+    mine = sim(W, px, fnd, slip, mn * 0, mn * 0, drift, "taker", taker=taker)
     chk = {"taker_vs_btrun_maxdiff": float(np.abs(mine["r"].to_numpy() - ref.returns.to_numpy()).max())}
     q = 0
     fb = np.where(np.isfinite(mn), (mn < 1 - q * 1e-4).astype(float), np.nan); fs = np.where(np.isfinite(mx), (mx > 1 + q * 1e-4).astype(float), np.nan)
-    mk = {"fill_buy": pd.DataFrame(fb, idx, cols), "fill_sell": pd.DataFrame(fs, idx, cols), "drift": pd.DataFrame(drift, idx, cols), "fee": MAKER, "skip_unfilled": True}
-    ref2 = bt.run(S, d["close"], d["funding"], bt.slippage_model(d["volume"], 1), maker=mk)
-    chk["skip_vs_btrun_maxdiff"] = float(np.abs(sim(W, px, fnd, slip, fb, fs, drift, "skip")["r"].to_numpy() - ref2.returns.to_numpy()).max())
+    mk = {"fill_buy": pd.DataFrame(fb, idx, cols), "fill_sell": pd.DataFrame(fs, idx, cols), "drift": pd.DataFrame(drift, idx, cols), "fee": maker, "skip_unfilled": True}
+    ref2 = bt.run(S, d["close"], d["funding"], bt.slippage_model(d["volume"], 1) * slip_mult, maker=mk, fee=taker)
+    chk["skip_vs_btrun_maxdiff"] = float(np.abs(sim(W, px, fnd, slip, fb, fs, drift, "skip", maker=maker, taker=taker)["r"].to_numpy() - ref2.returns.to_numpy()).max())
     print(chk, flush=True)
     out = {"check": chk}
-    yrs = (2021, 2022, 2023)
     for q in QS[:3]:
         fb = np.where(np.isfinite(mn), (mn < 1 - q * 1e-4).astype(float), np.nan); fs = np.where(np.isfinite(mx), (mx > 1 + q * 1e-4).astype(float), np.nan)
         for mode in ("taker", "chase", "skip", "env"):
             if mode == "taker" and q:
                 continue
-            res = sim(W, px, fnd, slip, fb, fs, drift, mode, E).set_index(idx)
+            res = sim(W, px, fnd, slip, fb, fs, drift, mode, E, maker=maker, taker=taker).set_index(idx)
             row = {}
             for y in yrs + ("all",):
-                g = res.loc["2021":"2023"] if y == "all" else res.loc[str(y)]
+                g = res.loc[win[0]:win[1]] if y == "all" else res.loc[str(y)]
                 row[y] = {"ann_pct": round(g["r"].mean() * 365 * 100, 2), "sr": round(g["r"].mean() / g["r"].std() * np.sqrt(365), 2),
                           "cost_pct": round(g["c"].sum() / len(g) * 365 * 100, 2), "to": round(g["to"].sum() / len(g) * 365, 1)}
             out[f"{mode}_q{q}"] = row
             print(mode, q, row["all"], {y: row[y]["sr"] for y in yrs}, flush=True)
-    json.dump(out, open(EV / "t9d_c.json", "w"), indent=1)
+    json.dump(out, open(EV / f"t9d_{tag}.json", "w"), indent=1)
+
+
+def form_e():
+    """HL spread (bp) and touch depth per coin from the hourly L2 snapshots, weighted by the slow legs' order notional 2026-04-15..11-26:
+    the effective queue stress q for form d is the spread (a post-only buy rests at the bid, about one spread below a close printed at the ask)."""
+    import glob
+    rows = []
+    for f in sorted(glob.glob(str(data.DATA / "hl" / "l2" / "*.jsonl"))):
+        for line in open(f):
+            j = json.loads(line)
+            if j.get("bids") and j.get("asks"):
+                b, a = float(j["bids"][0][0]), float(j["asks"][0][0])
+                rows.append((j["coin"], (a - b) / ((a + b) / 2) * 1e4, b * float(j["bids"][0][1]), a * float(j["asks"][0][1])))
+    sp = pd.DataFrame(rows, columns=["coin", "spread_bp", "bid_usd", "ask_usd"]).groupby("coin").median()
+    d = data.load_panel("hl", "1d")
+    fin, _, err = legs(d)
+    S = partial(fin["tsmom"] + fin["lowvol"], LAM)
+    w = S.diff().abs().loc["2026-04-15":"2026-11-26"].sum()
+    w = w[w > 0]
+    j = sp.reindex(w.index)
+    cov = float(w[j["spread_bp"].notna()].sum() / w.sum())
+    jj = j.dropna(); ww = w[jj.index]
+    out = {"n_snapshots": len(rows), "coins_l2": int(len(sp)), "order_notional_covered": round(cov, 3),
+           "spread_bp_wmean": round(float((ww * jj["spread_bp"]).sum() / ww.sum()), 2),
+           "spread_bp_wmedian": round(float(jj["spread_bp"].iloc[np.searchsorted((ww / ww.sum())[jj["spread_bp"].argsort()].cumsum().to_numpy(), .5)] if False else
+                                     jj.assign(w=ww).sort_values("spread_bp").pipe(lambda x: x["spread_bp"][x["w"].cumsum() >= x["w"].sum() / 2].iloc[0])), 2),
+           "share_notional_spread_le5": round(float(ww[jj["spread_bp"] <= 5].sum() / ww.sum()), 3),
+           "share_notional_spread_le10": round(float(ww[jj["spread_bp"] <= 10].sum() / ww.sum()), 3),
+           "touch_bid_usd_wmedian": round(float(jj.assign(w=ww).sort_values("bid_usd").pipe(lambda x: x["bid_usd"][x["w"].cumsum() >= x["w"].sum() / 2].iloc[0])), 0),
+           "top10_by_notional": {c: [round(float(ww[c] / ww.sum()), 3), round(float(jj.at[c, "spread_bp"]), 1)] for c in ww.sort_values().index[::-1][:10]}}
+    print(json.dumps(out, indent=1))
+    json.dump(out, open(EV / "t9d_e.json", "w"), indent=1)
 
 
 if __name__ == "__main__":
-    {"a": form_a, "b": form_b, "c": form_c}[sys.argv[1]]()
+    {"a": form_a, "b": form_b, "c": form_c,
+     "d": lambda: form_c("hl", 4.5e-4, 1.5e-4, ("2026-04-15", "2026-11-26"), (), "d"), "e": lambda: form_e(),
+     "d2": lambda: form_c("hl", 4.5e-4, 1.5e-4, ("2026-04-15", "2026-11-26"), (), "d_slip05", 0.5)}[sys.argv[1]]()

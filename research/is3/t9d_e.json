@@ -1,0 +1,52 @@
+{
+ "n_snapshots": 5348,
+ "coins_l2": 42,
+ "order_notional_covered": 0.906,
+ "spread_bp_wmean": 1.22,
+ "spread_bp_wmedian": 0.78,
+ "share_notional_spread_le5": 0.951,
+ "share_notional_spread_le10": 0.998,
+ "touch_bid_usd_wmedian": 868.0,
+ "top10_by_notional": {
+  "BTC": [
+   0.103,
+   0.2
+  ],
+  "DOGE": [
+   0.065,
+   0.2
+  ],
+  "XRP": [
+   0.057,
+   0.1
+  ],
+  "ETH": [
+   0.055,
+   0.6
+  ],
+  "SOL": [
+   0.042,
+   0.1
+  ],
+  "HYPE": [
+   0.041,
+   0.2
+  ],
+  "SUI": [
+   0.039,
+   0.8
+  ],
+  "AAVE": [
+   0.036,
+   0.8
+  ],
+  "NEAR": [
+   0.036,
+   0.3
+  ],
+  "PUMP": [
+   0.034,
+   3.8
+  ]
+ }
+}

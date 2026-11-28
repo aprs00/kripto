@@ -12,7 +12,7 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 **Next priorities (2026-11-28):** 1. PRB2 forward check at 30 live days (≈ 12-28, below) → 2. X1f at ≥ 30 days (≈ 12-12) → 3. E1 + LQ1 (≈ 12-01) → 4. fill-delay ≈ 12-09 → 5. T6b ≈ 12-07 → 6. T5d (low)
 → 7. W2 ≈ 12-23 → 8. E2b → 9. KS1b (low, see below) → 10. low prior: W3b, FC1(c), LV1 short leg, FF1 market-relative, NPC2, TLQ2, HFX2.
 - [ ] T9c (library N15, 2026-11-28, prior LOW-MEDIUM; T9 relabel angle: envelope, no fallback) **post-only toward PRB2's curve, taker only outside an envelope** on the HL main book's slow legs.
-  Needs HL 1h history ≥ 18 months (T9 note) or a live resting-order engine; first a descriptive check of post-only fill rates for the slow legs' daily gaps on BN-82 1h (explore ≤ 2023) to size it.
+  Needs HL 1h history ≥ 18 months (T9 note) or a live resting-order engine; first a descriptive check of post-only fill rates for the slow legs' daily gaps on BN-82 1h (explore ≤ 2023) to size it. **T9D precheck 11-28 (findings): ≈ +1 %/yr on HL at fitted cost, 0 on BN → prior LOW; revisit 2027-10 (18 months HL 1h).**
 - [ ] PRB2-F (2026-11-28) **forward judge of the slow-leg main book**: at ≥ 30 live days of both shadow:blend_nested (slow_lam .33 since 11-28) and shadow:blend_nested_lam1 (old config),
   `scripts.ledger_decomp` both. Pre-registered: KEEP if the slow book's live fees + slippage per day ≤ 75 % of lam1's and the daily P&L difference (slow − lam1) has t > −1; otherwise revert
   blend_nested to lam 1. Then retire blend_nested_lam1. At the 2027-01-02 refit update BOTH entries' components.

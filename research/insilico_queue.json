@@ -5711,7 +5711,7 @@
    "group": "T",
    "title": "T9c sizing: would post-only orders fill PRB2's slow-leg daily gaps? descriptive fill rates on BN-82 1h (explore <= 2023)",
    "src": "backlog T9c (library N15), PRB2 (slow legs lam .33 in HL main 11-28)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T08:00",
    "forms": [
     {
@@ -5741,11 +5741,26 @@
     {
      "id": "d",
      "what": "HL descriptive 2026-04-14..11-27 (all HL 1h on disk; 2026 already seen by PRB2, so no confirm value): same sim on HL legs, HL fees (taker 4.5, maker 1.5 bp) and HL slip model; taker vs skip vs env at q0/q5/q10; verdict on whether a live resting engine for the HL slow legs is worth building (bar: >= 1 %/yr at q5)",
-     "status": "planned",
-     "added": "2026-11-28"
+     "status": "done",
+     "added": "2026-11-28",
+     "result": "HL 2026-04-15..11-26 (7.5 mo, seen by PRB2; descriptive), slow sub-book 35x/yr, HL fees 4.5/1.5: model slip: taker 42.0 %/yr (cost 3.6), skip q0 44.4 (+2.4), q5 43.4 (+1.4), q10 42.1 (0), env between, chase = skip at q0. Fitted slip x.5 (L3S): taker 43.1 (cost 2.6), skip q0 +1.4, q5 +0.4, q10 -1.0. Pre-stated bar (>= 1 %/yr at q5) passes only at the model slip that L3S says is 2x too high: FAIL at realistic cost. Known answer vs bt.run 0.0. 4 policies x 3 q x 2 slip tried.",
+     "date": "2026-11-28",
+     "evidence": "t9d_d"
+    },
+    {
+     "id": "e",
+     "what": "HL L2 spreads weighted by the slow legs' order notional: the effective queue stress q for d (a post-only buy rests at the bid, ~one spread under a close printed at the ask)",
+     "status": "done",
+     "added": "2026-11-28",
+     "result": "5348 HL L2 snapshots (11-09..11-27, 42 coins, 91 % of slow-leg order notional): order-weighted spread mean 1.2 bp, median .8; 95 % of notional <= 5 bp; touch bid depth median $868 (a strict trade-through clears it, so queue ahead is irrelevant under the fill rule). Effective q ~1-2 bp: d's value sits between q0 and q5 = about +0.8..1.2 %/yr at fitted cost, before latency and before the one-regime caveat.",
+     "date": "2026-11-28",
+     "evidence": "t9d_e"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "Post-only for PRB2's slow legs: fills are not adversely selected and 99 % fill at the touch, but the 1-4 % unfilled runaways (+450-700 bp/24h) cost back most of the saving. BN: +.9 %/yr at q0, 0 at q5 (dead on BN). HL 7.5 mo (seen): +1.4 %/yr q0, +.4 q5 at fitted cost, HL spreads 1.2 bp -> ~+1 %/yr = ~$10/yr at $1,000: below the stated bar at q5; revisit with >= 18 months of HL 1h (2027-10) or a live resting engine if the HL slow legs' turnover rises.",
+   "closed": "2026-11-28"
   },
   {
    "id": "LSX",
