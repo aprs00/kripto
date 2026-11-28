@@ -5400,13 +5400,16 @@
    "group": "T",
    "title": "HL main blend: legs share a factor (LVQ: lowvol vs listing_short corr .27-.57): does equal-risk-contribution leg weighting (trailing 90-d covariance) beat equal leg weights?",
    "src": "LVQ, LVS, PRL legs; design: equal-risk mix of components",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T02:58",
    "forms": [
     {
      "id": "a",
      "what": "descriptive HL 2023-26: leg daily P&L correlation matrix by year (listing_short, lowvol, tsmom) and each leg's share of book variance under equal weights",
-     "status": "planned"
+     "status": "done",
+     "result": "HL blend legs' daily net P&L 2023/24/25/26: corr listing_short-lowvol .47/.28/.57/.27, ls-tsmom .05/.18/.01/-.06, lowvol-tsmom -.01/-.12/.03/-.36; share of book variance under equal weights: listing_short .47/.48/.56/.49, lowvol .28/.24/.29/.32, tsmom .25/.28/.16/.20. The two short-alt legs carry 72-84 % of book risk; tsmom is the diversifier.",
+     "date": "2026-11-28",
+     "evidence": "erc_a"
     },
     {
      "id": "b",
@@ -5418,7 +5421,8 @@
      "what": "verdict; if it fails, why (estimation noise on 3 legs, regime flip of the correlations)",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }

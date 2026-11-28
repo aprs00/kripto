@@ -1409,3 +1409,11 @@ Source: HFX (HL longs pay ~2x; HL shorts receive more 3 of 4 years). main_bn = .
  funding is usually higher still (crowded HL longs), so the short gains. Unstated: HL slippage on thinner HL books is higher (8-22 bp vs 6), and flow turns over fast: the saving
  may be eaten by costs on the fast leg; carry is slow. a = book total; b = per leg + HL cost difference; c = with HFX: is the 'longs on BN, shorts on HL' split general?
 HFY a/b/c (is3_hfy.py, hfy_ab.json): main_bn shorts on HL: funding +0.2..+1.6 %/yr < HL extra cost; net negative every year. Sign bug in the first run caught (fixed, noted). CLOSED DEAD.
+
+## ERC HL blend legs: equal-risk-contribution weights (think-through 03:0x UTC 11-28, before any run)
+Source: LVQ (lowvol vs listing_short corr .27-.57). The blend scales each leg to the same standalone vol (unit_vol) and sums 1/3 each: with two legs sharing a factor, that factor
+ carries more than 2/3 of book risk. ERC equalises each leg's contribution to book variance. Unstated: with 3 legs and 90-d windows the covariance is noisy, and correlations flip with
+ regimes (2024 .28 vs 2025 .57): ERC may chase last quarter. ERC is a general method with no tuned parameter except the window (90 d, monthly: the conventional choice, stated now).
+ Implementation: leg multipliers m_i on the leg weights (fin from is3_prl.legs, already book-scaled), renormalised so the book's ex-ante vol under ERC equals the equal-weight book's
+ (so the comparison is not a leverage change); multipliers from data up to the prior month end.
+ERC a (is3_erc.py, erc_a.json): listing_short = 47-56 % of book variance, ls+lowvol 72-84 %; tsmom near-uncorrelated (diversifier). ERC fixed point checked on a known 3x3 (contributions 1/3 each).
