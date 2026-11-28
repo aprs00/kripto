@@ -5510,6 +5510,71 @@
    "verdict": "OPEN",
    "reason": "longs-on-BN / shorts-on-HL split: shorts account vol 109 %, worst 7-d -57 %, 122 transfers in 3.5 y: the funding saving is not operable without cross-margin; HFX2 low prior",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "FTL",
+   "prio": 1.1,
+   "group": "T",
+   "title": "A fourth HL leg: which nested-pool strategies are positive on HL and uncorrelated with the short-alt factor (listing_short + lowvol)?",
+   "src": "ERC (book risk 72-84 % in two short-alt legs), NPC (capped choice swaps lowvol for xsmom_k / resrev / xsmom)",
+   "status": "closed",
+   "due": "2026-11-28T03:06",
+   "forms": [
+    {
+     "id": "a",
+     "what": "HL 2023-26: each NESTED_POOL strategy's standalone net SR by year (nested_selection's own component returns, band .01) and daily corr with the short-alt factor (ls + lowvol returns) and with tsmom",
+     "status": "done",
+     "result": "HL nested pool standalone net SR 2023/24/25/26 (component returns, band .01) and corr with the short-alt factor (ls + lowvol): listing_short .53/1.14/2.06/1.35 (corr .90), lowvol -.03/.53/2.36/-.16 (.77), tsmom 1.04/-.07/-.11/1.14 (-.02), xsmom_k -.62/.25/.69/.85 (.00), xsmom -1.54/.24/1.32/-.10, resrev -.33/.03/.84/-1.16, carry_trend .50/-1.19/.15/-2.01, carry/funding_contra/xsrev negative most years. Only listing_short is positive 4/4; xsmom_k is the one uncorrelated candidate positive 3/4.",
+     "date": "2026-11-28",
+     "evidence": "ftl_a"
+    },
+    {
+     "id": "b",
+     "what": "the candidates NPC would pick (xsmom_k, resrev, xsmom): per year SR, worst 10 days, funding and cost share; is any of them more than a coin flip (positive in >= 3 of 4 years)?",
+     "status": "done",
+     "result": "swap candidates, ann return 2023-26: xsmom_k -15/+6/+15/+22 % (worst-10-day sum 1.6-5x the year's net), resrev -6/+1/+17/-33 %, xsmom -33/+6/+29/-3 %; lowvol (the leg dropped) -0/+9/+41/-3 %. xsmom_k is weak but trending up and factor-free; resrev and xsmom are coin flips. Under the cap NPC picks xsmom_k at the last refit (good) but resrev/xsmom at others (2026-01, 05: dilution).",
+     "date": "2026-11-28",
+     "evidence": "ftl_a"
+    },
+    {
+     "id": "c",
+     "what": "verdict for NPC2: does the capped rule buy diversification with a real leg, or with a ~0 leg (dilution)?",
+     "status": "done",
+     "result": "Verdict for NPC2: the cap's gain is partly real diversification (xsmom_k: corr 0, 3/4 years positive) and partly luck of dropping lowvol before its weak 2026; at refits where the cap's third slot went to resrev/xsmom it bought a ~0 leg. NPC2's WF must report which leg filled the slot each refit and the result with the slot left empty (2 legs) as the baseline for 'dilution'.",
+     "date": "2026-11-28",
+     "evidence": "ftl_a"
+    }
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "HL pool: only listing_short positive 4/4; xsmom_k is the one factor-free leg positive 3/4 (weak, SR .25-.85); NPC's cap gain partly real diversification, partly dropping lowvol; NPC2 must compare with a 2-leg slot-empty book",
+   "closed": "2026-11-28"
+  },
+  {
+   "id": "FSO",
+   "prio": 1.3,
+   "group": "T",
+   "title": "Do the owner's books already net out the HL BTC funding drag? main@pair (fspread_hold) pairs vs the HL main book's long legs",
+   "src": "HFX/HFZ (HL longs pay ~2x; a split is not operable), X1 fspread_hold@pair (short the venue whose longs pay more)",
+   "status": "todo",
+   "due": "2026-11-28T03:31",
+   "forms": [
+    {
+     "id": "a",
+     "what": "pair panel 2023-26: fspread_hold's held pairs by coin and sign; share of days it holds BTC / ETH and the HL main book's long coins short on HL",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "aggregate funding of HL main + main@pair (as two $1,000 books) vs the sum of their separate funding: how much of the HL book's long-side funding is offset by the pair book's HL shorts in the same coins",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict: if the owner funds both books, is HFX's saving already captured (no action) or not",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }

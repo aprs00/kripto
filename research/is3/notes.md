@@ -1432,3 +1432,9 @@ Source: HFX, KSA. The whole book is ~beta-neutral, but each account alone is a d
  stated 25 % deviation rule (no tuning) and own-account kill breaches; c = go/no-go.
 NPC c (npc_bnall.json): bnall capped 1.72 vs 1.52 (5/6 years >=). Prereg PASS both venues; 2026 inside; CLOSED OPEN -> backlog NPC2 before the 2027-01-02 refit.
 HFZ a/b/c (is3_hfz.py, hfz_ab.json): shorts account vol 109 %, worst 7-d -57 %; 122 transfers / 3.5 y. HFX2 -> low. CLOSED OPEN.
+
+## FTL a fourth HL leg (think-through 03:0x UTC 11-28, before any run)
+Source: ERC, NPC. NPC's cap swaps lowvol for xsmom_k / resrev / xsmom on HL. If those have ~0 standalone edge on HL, the capped rule "wins" by removing a one-year leg (LVS), not by adding
+ a bet: that would still be fine at the refit but the reason matters for what to expect. Unstated: xsmom on HL is momentum across a thin, listing-heavy universe = partly the same
+ short-new-coins factor (losers are fresh listings). a = pool SR by year + corr to the short-alt factor; b = the swap candidates in detail; c = verdict.
+FTL a/b/c (is3_ftl.py, ftl_a.json): only listing_short 4/4; xsmom_k factor-free 3/4 (weak); NPC2 needs 2-leg baseline. CLOSED OPEN.
