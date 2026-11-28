@@ -5033,6 +5033,32 @@
    "verdict": "OPEN",
    "reason": "HLE replicates on Binance: listings of coins already on HL >= 60 d do not decay (buy-hold median -5 %, win .30, n 10) vs new float +36 %, win .77; listing decay is a new-float effect on both venues; HLE2 -> one pre-registered WF",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "HLB",
+   "prio": 1.0,
+   "group": "T",
+   "title": "Book-level effect of the HLE skip rule (no short in coins with >= 60 d of trading on the other venue): listing_short on HL and bnall, and the HL main blend",
+   "src": "HLE/HLX (event level: established coins do not decay, both venues)",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "HL listing_short with the skip rule (other-venue first trade from cached bnall) vs base, 2023-26 by year: net SR, ann, idle-day share, worst 10 days (HL in-sample for the rule: stated)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "bnall listing_short with the mirror rule (skip coins on HL >= 60 d) vs base, 2023-04..2026-11 by year (held-out venue for the rule)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "HL main blend (listing_short+lowvol+tsmom) with the rule vs base by year: input for the HLE2 pre-registration",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
