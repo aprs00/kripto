@@ -3227,8 +3227,8 @@
    "group": "T",
    "title": "T5b F3 (OI built against the 3-day move) as a SHORT-side filter, explored on 2021-22 once metrics coverage >= 95%",
    "src": "backlog T5d; findings T5b/T5c (long-side filter failed confirm, sign flipped after 2024)",
-   "status": "todo",
-   "due": "2026-11-29T06:00",
+   "status": "wip",
+   "due": "2026-11-28T11:20",
    "forms": [
     {
      "id": "a",
@@ -3245,7 +3245,9 @@
      "what": "confirm on 2023 (the T5b explore year, seen only for the long side and stand-alone IC: stated) AND the sign check 2024-26; a pass needs both regimes (T5c lesson)",
      "status": "planned"
     }
-   ]
+   ],
+   "defer_why": "wait condition met: metrics_coverage 2021-26 = 100 % (checked 11:0x UTC); pulled forward as the refill's due-now item",
+   "sessions": 1
   },
   {
    "id": "X1V",
