@@ -7519,6 +7519,36 @@
    "verdict": "OPEN",
    "reason": "HL funding premium over Binance leans FOLLOW (+.02 IC at 7 d, t 1.4-1.7 after carry/momentum controls, placebo 0), under the MDE on 46 coins x 2 y; confirm sample unopened",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "L6M",
+   "prio": 2.4,
+   "group": "T",
+   "title": "ewm20 variances in vol_target on the two SHIPPED main books (L6V tested single strategies; the design decision is for the books that trade)",
+   "src": "L6V, backlog L6",
+   "status": "wip",
+   "due": "2026-11-28T17:15",
+   "sessions": 1,
+   "forms": [
+    {
+     "id": "a",
+     "what": "HL main (blend listing_short/lowvol/tsmom, slow .33) on HL 1d 2023-26: cc60 (today) vs ewm20 at every vol_target level: quarterly log tracking error vs 25 %, rv30 p95, worst month/day, SR by year, turnover, costs",
+     "status": "done",
+     "result": "HL main 2023-26: ewm20 vs cc60 quarterly log TE .51 vs .45 (worse; min quarter vol 3.5 vs 4.9 %), rv30 p95 .38 vs .39, worst month -13.1 vs -12.1 %, worst day -8.8 vs -9.2, SR 1.51 vs 1.49 (by year .88/.75/2.35/1.99 vs .97/.91/2.33/1.68: worse 2/4), turnover 41 vs 43, costs 5.75 vs 5.97 %/yr; realised vol 26 vs 28 % (target 25)",
+     "date": "2026-11-28",
+     "evidence": "l6m_hl"
+    },
+    {
+     "id": "b",
+     "what": "main_bn mix (.5 flow lb3 cap .05 + .5 blend carry_trend/carry/xsmom) on bnall 2021-26: same table",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "decision input for backlog L6 (research session, design.md entry, all books at once): adopt only if TE falls on both books AND worst month is not worse AND SR by year is not worse in more than half the years; write which way each clause went",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }

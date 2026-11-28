@@ -1759,3 +1759,9 @@ Source: backlog T3 (HL retail flow distinct; HL hourly vs BN 8h funding). Mechan
 T3S a/b/c (is3_t3s.py, is3_t3s_c.py, t3s_explore.json, t3s_c.json): HL-BN 7-d funding spread vs next HL return: IC +.021 at 7 d (t 1.43), partial after funding level + r7 +.023 (t 1.71), placebo 0;
  sign = follow (HL premium -> outperforms), quintiles top-vs-rest not monotone. In the main book longs on high spread +16.5 vs +0.8 bp/unit/day (t 1.58). Below the bar; confirm 2025-04+ unopened. CLOSED OPEN.
  What would make it work (unstated): HL premium = informed leveraged demand on HL (whales, T6b positions); test jointly with T6b's account data at 12-07, using this confirm window.
+
+## L6M ewm20 vol forecasts on the shipped main books (think-through 17:1x UTC 11-28, before any run)
+Source: L6V (ewm20 cut quarterly TE 9-23 % in 6/6 single-book cells; SR mixed; xsmom prereg confirm failed). The decision is design-level (all books), so what matters is the two books
+ that trade. Mechanism: cc60 lags vol regime shifts by weeks; ewm20 (halflife 20 d) reacts faster, so the book is smaller right after a vol spike (good: fewer worst months) and larger
+ sooner after calm (bad if calm precedes a crash). Unstated: faster vol = more size changes = turnover and costs, which on HL thin names cost 8-22 bp/unit (HTN); the slow legs (PRB2)
+ damp part of that. Change my mind: TE down on both books AND worst month not worse AND SR not worse in > half the years -> recommend L6 to the research session; else stays low.
