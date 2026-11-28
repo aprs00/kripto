@@ -1397,3 +1397,9 @@ Source: TLQ. If thin top-20 names trend worse (noisier, squeezes, listing churn)
  though costs there are low (6 bp). If not, TLQ's gain is HL-specific (HL's thin end = recent listings with decaying float, which trend down and bounce). Unstated: bnall's top 20 by
  volume is mostly majors + a rotating hype name: tier3 there is the hype slot. Frozen tiers, frozen top 10; cached bnall (to 11-21), standalone tsmom defaults, band .005.
 TLX a/b/c (is3_tlx.py, tlx_ab.json): bnall thin tier trends as well (tier3 < tier1 in 2/6 years); top 10 worse 5/7 years. TLQ HL-specific; TLQ2 low-medium. CLOSED OPEN.
+
+## LVQ HL lowvol by side x liquidity tier (think-through 02:5x UTC 11-28, before any run)
+Source: LVS (2025 = short side +28 %), LVH, TLQ (HL thin tier = fresh listings). High-vol names on HL are mostly the thin, young ones, i.e. listing_short's population after day 61:
+ if lowvol's 2025 short gain sits in the thin tier, lowvol is partly a second listing-decay leg (overlap with listing_short, same 2026 drought risk). Unstated: breadth: one year carried
+ by a handful of coins is luck-shaped. a = side x tier (ranks 1-10/11-20/21-30 of top 30) by year; b = top-5 coins' share of 2025 short price P&L; c = note for the refit.
+LVQ a/b/c (is3_lvq.py, lvq_ab.json): 2025 short gain in tiers 2-3, broad (83 coins, top-5 33 %); corr with listing_short .27-.57. CLOSED OPEN.

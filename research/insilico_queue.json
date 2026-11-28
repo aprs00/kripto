@@ -5322,25 +5322,38 @@
    "group": "T",
    "title": "HL lowvol leg by liquidity tier: are 2025's winning high-vol shorts the thin coins (cost-insensitive weekly leg)?",
    "src": "LVS (2025 = high-vol short side, +28 %), LVH (HL universe protects the short leg), TLQ (tier method)",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T02:56",
    "forms": [
     {
      "id": "a",
      "what": "HL 2023-26 lowvol as held in the blend: long/short side x liquidity tier (top-30 ranks 1-10/11-20/21-30) price, funding, cost by year",
-     "status": "planned"
+     "status": "done",
+     "result": "HL lowvol in the blend, side x top-30 volume tier (1-10/11-20/21-30), book %/yr net 2023/24/25/26: short t1 -9.2/-11.6/+2.3/+1.1, t2 -3.0/-10.2/+10.9/-1.1, t3 -6.8/-4.4/+11.2/+9.2; long t1 +6.4/+3.1/+0.5/-7.1, t2 +3.2/+3.6/-1.0/-2.4, t3 +2.6/+4.1/-2.3/-1.1 (BTC hedge excluded, LVS). 2025's short gain sits in tiers 2-3 (thinner names); the liquid high-vol shorts lost in 2023-24 and made ~0 since. Costs approx.",
+     "date": "2026-11-28",
+     "evidence": "lvq_ab"
     },
     {
      "id": "b",
      "what": "if the 2025 short gain sits in one tier: how many coins carry it (top-5 coins' share of the short-side price P&L in 2025) = breadth of the one good year",
-     "status": "planned"
+     "status": "done",
+     "result": "2025 short-side breadth: 83 coins, 76 % with positive short price P&L, top-5 share 33 % (GOAT, VIRTUAL, WLD, XPL, SNX), top-10 53 %: broad, a regime (thin alts' bear year), not a few lucky coins. Overlap with listing_short: daily price-P&L corr .48/.28/.57/.27, same-name gross only 3-15 %: different coins, same risk factor (short high-vol alts vs BTC).",
+     "date": "2026-11-28",
+     "evidence": "lvq_ab"
     },
     {
      "id": "c",
      "what": "verdict note for the 2027-01-02 refit (no rule change)",
-     "status": "planned"
+     "status": "done",
+     "result": "Note for the 2027-01-02 refit: HL lowvol = a broad short on thinner high-vol alts (one regime year, 2025, broad not lucky) plus a long low-vol leg that pays funding; it shares a factor with listing_short (corr .27-.57), so the blend's 'three legs' are about two risk bets. Refit decides by rule; quote the factor overlap when reporting the HL book's diversification. No rule change.",
+     "date": "2026-11-28",
+     "evidence": "lvq_ab"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "HL lowvol's 2025 gain = broad short on thinner high-vol alts (83 coins, top-5 33 %); liquid high-vol shorts lost 2023-24; shares a factor with listing_short (corr .27-.57)",
+   "closed": "2026-11-28"
   }
  ]
 }

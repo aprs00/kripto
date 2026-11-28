@@ -914,6 +914,7 @@ but its sells deferred 3 h over the break earn +5.3 bp/unit (t 1.05, 2025 −25)
 Leg as held in the HL blend, %/yr 2023–26: long side (low-vol alts + BTC hedge) net +19/+28/−6/−19, short side (high-vol alts) −21/−28/+28/+11; sides corr to BTC +.73…+.93 / −.63…−.71, leg ~0.
 Price spread +6/+5/+26/−1, long side pays 1–8 % funding; leg net −1/0/+22/−7: the whole return is 2025's high-vol short side. Trailing-30-d state of the shorts: no dose (b).
 For the 2027-01-02 refit: the leg's expectation is one year deep; the rule decides.
+**LVQ (is3_lvq.py): 2025's short gain is in the thinner tiers (top-30 ranks 11–30: +11 %/yr each) and broad (83 coins, 76 % positive, top-5 33 %); liquid high-vol shorts lost 2023–24. Daily corr with listing_short .27–.57 (same factor, 3–15 % same names).**
 
 ### HSQ SQZ's squeeze state on HL listing shorts (2026-11-28 insilico, research/studies/is3_hsq.py, not registered) → OPEN (replicates as a description, no filter)
 Frozen bnall edges (off_low ≥ .433 = top quintile): HL 2023–26 n 8011 coin-days, P(7-d short loss > 20 %) 14.3 vs 9.3 % bottom 3 (coin-subsample p .002; 2023/25/26 yes, 2024 no: q1 19 %).
