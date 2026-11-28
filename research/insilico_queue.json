@@ -8343,9 +8343,9 @@
    "group": "T",
    "title": "Pre-register the LDR breadth rule (leg budget x min(1, names/5)) BEFORE any performance is seen: frozen code + batch file, and how often it would bind per leg per book (no returns)",
    "src": "LDR c, backlog LDR",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T19:06",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
