@@ -4499,6 +4499,58 @@
    "verdict": "OPEN",
    "reason": "no exposure: Binance main books hold < 0.2 % of gross in coins without a 20-d beta; young-coin beta is a listing_short-only question (HBL2)",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "PRN",
+   "prio": 1.1,
+   "group": "T",
+   "title": "Per-leg costs and slow-leg partial rebalancing on the Binance blend (carry, carry_trend, xsmom): does PRL transfer?",
+   "src": "PRL (HL: slow legs lam .33 held-out 2.10 vs 1.86), PRB c (whole-book lam .33 hurt bnall blend 2.10 -> 1.84)",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "cached bnall (data/is3/fc1c_bnall_1d.pkl, ends 11-21) 2021-23: per-leg standalone costs, turnover and pre-cost P&L of blend(carry_trend, carry, xsmom) (exact split as is3_prl.legs)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "pre-stated: lam .33 on the leg(s) with turnover >= 2x the lowest leg's (decided from a's numbers before running b), others at lam 1; explore 2021-23 vs lam 1; PASS = net SR >= lam 1 in 2021, 2022, 2023",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "if b passes: L.prereg, ONE run 2024-01..2026-11 (cache) vs lam 1",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "TSB",
+   "prio": 1.2,
+   "group": "T",
+   "title": "HL main book: a wider no-trade band on the tsmom/lowvol legs instead of partial rebalancing (simpler engine change; same mechanism?)",
+   "src": "PRL (slow-leg lam .33), backtest band .005 book-wide",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "pre-stated: slow legs' contribution traded only when |leg target - leg held| > 0.02 per coin (listing in full, book band .005 after), HL explore 2023-24 vs lam 1 and vs PRL slow33; PASS = net SR >= slow33 in both years (else the lam form is the one to build)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "if a passes: L.prereg, ONE run HL 2025-26 vs slow33 and lam 1",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "engine verdict for PRB2: lam vs band (state each needs in paper.db; min-order interplay at $1,000: share of slow-leg trades < $10)",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
