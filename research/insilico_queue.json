@@ -5132,7 +5132,10 @@
     {
      "id": "b",
      "what": "state -> distribution: next-30-d return of the high-vol short candidates by their trailing 30-d return quintile (are the losing shorts the coins already falling = crowded?), 2023-24 explore",
-     "status": "planned"
+     "status": "done",
+     "result": "high-vol short candidates' next-30-d return by trailing-30-d quintile (explore 2023-24, edges frozen there; n ~1880/quintile, daily-overlapping, date-cl t optimistic): mean fwd q1..q5 +3/+9/+15/+12/+8 %, medians -2/-2/-1/-2/-5 %, ex-BTC -2/+1/+6/+2/+2 %: no dose, inverted-U; the already-falling (q1) keep falling = NOT crowded-short squeezes. 2025-26: all negative, U (q1 -9, q5 -10 %). Losses come from right-tail squeezes spread over all states (P(>+20 %) 21-30 %). No state filter. Verdict: no effect.",
+     "date": "2026-11-28",
+     "evidence": "lvs_b"
     },
     {
      "id": "c",

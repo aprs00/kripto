@@ -1363,3 +1363,5 @@ Source: HLF a (lowvol short alts price -16/-33/+28/+14 %/yr; long alts +14/+17/-
  + corr of each side's daily P&L to BTC and to the alt index; c judges. b: are the losing shorts the coins already falling (crowded shorts squeeze) -> trailing 30-d return quintiles.
 LVS a done (is3_lvs.py, lvs_a.json): each side is a market bet (corr to BTC +.73..+.93 long, -.63..-.71 short); they cancel to leg corr ~0. Price spread +6/+5/+26/-1 %/yr, long side pays funding
  1-8 %; leg net -1/0/+22/-7. 2025's whole return = the high-vol short side (+28 %). So: a small positive spread most years, one big year from high-vol alts collapsing.
+LVS b done (lvs_b.json): short candidates by trailing-30-d quintile (2023-24): mean fwd +3/+9/+15/+12/+8 %, medians all -1..-5 %: no dose, inverted-U; already-falling names keep falling. The leg's
+ losses are right-tail squeezes spread over every state (21-30 % of candidates +20 % in 30 d): no crowding filter here.
