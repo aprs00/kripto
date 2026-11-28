@@ -1327,3 +1327,4 @@ Source: PRB/PRL summaries (book funding -5..-16 %/yr), HBL a. HL funding is most
  receive except crowded-short listings. Unstated: the BTC hedge pays funding for no alpha (pure risk control): a cheaper hedge instrument would be a free saving if it tracks.
  a = per-leg table (longs vs shorts), price P&L next to it.
 HLF a done (is3_hlf.py, hlf_a.json): BTC hedge longs pay 1.6-8.9 %/yr funding (largest steady payer), listing alt shorts pay 3-5 % in 3 of 4 years. b (cheaper hedge: ETH / top-5 basket) next session.
+HLF b/c (hlf_b.json): ETH hedge no cheaper (-5.8/-6.9 vs -4.0/-7.3 %), SR worse. CLOSED OPEN: funding drag is market-wide on one venue.

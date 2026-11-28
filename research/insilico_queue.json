@@ -4923,7 +4923,7 @@
    "group": "T",
    "title": "HL main book's funding drag (-5..-16 %/yr in the backtest, as large as its trading costs): which leg pays it, and is there a cheaper hedge than long BTC?",
    "src": "PRB/PRL summaries (funding_ann -15.8/-4.7/-9.3/-11.1 % 2023-26), HBL a (BTC leg funding -4/-7/-4/-1 %, alt funding -6/+10/-5/-7 %), TFF (trend longs pay but earn more)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
@@ -4937,15 +4937,24 @@
     {
      "id": "b",
      "what": "the BTC hedge leg alternatives on HL: hedge listing shorts with ETH or a beta-weighted top-5 basket instead of BTC: funding paid, tracking error vs BTC hedge (corr of the hedged book to BTC), 2023-24 explore",
-     "status": "planned"
+     "status": "done",
+     "result": "HL listing_short hedged with ETH (beta to ETH) vs BTC, 2023/2024: hedge funding -5.8/-6.9 vs -4.0/-7.3 %/yr, SR .25/.79 vs .58/1.07 (BTC replicates HBL), corr BTC -.14/-.08 vs -.10/-.07: no saving, worse tracking; a top-5 basket would add alts' higher funding: not run (stated)",
+     "date": "2026-11-28",
+     "evidence": "hlf_b"
     },
     {
      "id": "c",
      "what": "if b finds a hedge with funding saving > its extra tracking cost in both explore years: L.prereg and ONE run 2025-26; else close with the per-leg funding table as the deliverable",
-     "status": "planned"
+     "status": "skipped",
+     "result": "b found no cheaper hedge",
+     "date": "2026-11-28",
+     "evidence": "hlf_b"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "HL funding drag is market-wide (longs pay on every major in up years): the BTC hedge pays 1.6-8.9 %/yr but ETH costs as much and tracks worse; deliverable = the per-leg funding table (hlf_a.json); a cross-venue hedge (BN leg) is the only real saving and that is main@pair's structure",
+   "closed": "2026-11-28"
   }
  ]
 }
