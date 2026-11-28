@@ -1570,3 +1570,9 @@ Source: FLL (shadow:flow@bn -9 % = flow's own loss, replay -13.6 %). main_bn = .
  -9 % is the strategies, not the plumbing; if the blend half diverges, it is an implementation gap (universe, timing, sleeve). Unstated: the two halves can both be fine and the book still
  look worse than the mean of its shadows (sleeve fills, rounding at $1,000, min orders). Change my mind: replay corr < .7 or live < replay by > 3 % -> a fault to chase.
 MBL a/b/c (is3_mbl.py, mbl_c.json): main_bn -9.1 % / 19 d = 1.8-3.0th pct of its mix's 19-day windows, price-driven, both halves down, flow replay worse than live. Not a fault. CLOSED OPEN. Tool gap -> backlog LVB.
+PDX-lesson audit (11:5x): grep of research/studies + kripto/research.py for multi-anchor / phase averaging: only is3_e2c c and is3_pdx ab averaged shifted daily windows (both corrected);
+ strategies.scheduled(phase=None) averages POSITIONS of staggered schedules on one daily grid (returns on one clock): correct by construction; research.py phase spread reports phases separately.
+HANDOFF (11:56 UTC 11-28): unit is3-fpt chunk 2 downloading the rest of the true 1h taker split (1463 coin-months, ends ~12:21) -> data/is3/k1h_tb. FPT next (due 12:45): first
+ `python -m research.studies.is3_fpt check` (known answer: 24 x hourly tbqv == daily tbqv; if coin-months are left, run `dl` again in a unit), then b in a unit (MemoryMax 1800M: is3_pdx xf
+ peaked 2.19 GB unrestricted): `systemd-run ... python -c "from research.studies import is3_fpt as F; F.form_b()"` -> fpt_b_a.json + fpt_b_xf.json; c verdict by the queued rule.
+ Open threads: T9G (live maker shadow for flow@bn, LOW-MEDIUM after T9C), LVB (live_vs_backtest for main books), FPD (low).

@@ -259,3 +259,4 @@ put a lesson into CLAUDE.md "Standing lessons" only if a future session must act
 - 2026-11-28 insilico. **Duplicate InSilico item id**: a refill added FLD although a closed FLD existed; `start/form/close` act on the first match, so the new results overwrote the old
   item and `cat >` overwrote its study script research/studies/is3_fld.py. Repaired from git the same session (old item byte-identical, script restored, new work renamed FLL / is3_fll.py).
   Guard: tests/test_insilico_queue.py::test_real_queue_ids_are_unique (refills run this file before committing). Habit: `ls research/studies/is3_<id>*` and grep the queue before naming.
+  Audit the same session: no other study averages shifted-window daily returns; scheduled(phase=None) averages positions on one grid (safe).
