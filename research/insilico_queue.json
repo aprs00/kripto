@@ -7060,9 +7060,9 @@
    "group": "T",
    "title": "Dry-run SMX on today's live targets before the first 00:00 rebalance: what each small: twin will hold, caps, churn",
    "src": "SMXB (built 11-28), SXR, CTG",
-   "status": "todo",
-   "due": "2026-11-28T15:10",
-   "sessions": 0,
+   "status": "wip",
+   "due": "2026-11-28T14:50",
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
@@ -7088,7 +7088,7 @@
    "title": "TLQ2 precheck: HL main blend tsmom top_n 10 vs 20 by year, phase and cost, no new WF",
    "src": "backlog TLQ2, insilico TLQ/TLX",
    "status": "todo",
-   "due": "2026-11-28T15:10",
+   "due": "2026-11-28T14:50",
    "sessions": 0,
    "forms": [
     {
