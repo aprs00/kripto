@@ -4955,6 +4955,32 @@
    "verdict": "OPEN",
    "reason": "HL funding drag is market-wide (longs pay on every major in up years): the BTC hedge pays 1.6-8.9 %/yr but ETH costs as much and tracks worse; deliverable = the per-leg funding table (hlf_a.json); a cross-venue hedge (BN leg) is the only real saving and that is main@pair's structure",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "HLE",
+   "prio": 1.0,
+   "group": "T",
+   "title": "HL listing_short events: fresh tokens vs coins that already traded on Binance (established coin, new on HL): which ones decay?",
+   "src": "HLI/HLD (HL listing drought 2026), LSB (BN: HL-listed vs BN-only), listing_short = the HL main book's edge",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "descriptive: every HL listing_short event 2023-26 (first HL trade, >= $1M 7-d dv): days the coin had traded on Binance before (cached bnall first-trade date; none = fresh); counts by year and group (fresh / BN < 60 d / BN >= 60 d)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "per event d2->d61 short-vs-BTC (beta 1) hedged return incl. HL funding, by group and year: mean, median, win rate, worst 3; day-clustered t across events",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict: which group the HL edge lives in and what the 2026 drought removed; if established coins decay as much, Binance listings of coins already on HL are no substitute evidence (or are): note for LSB2",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
