@@ -237,6 +237,8 @@ Log every process change in `docs/process_changelog.md` (append, newest last). K
   small:main_bn 3 of 31 names). Quote `small_acct_min` + `small_deployed`, never the one-band `small_acct` alone; check twins with `live_vs_backtest --main`.
 * **Report honestly and completely:** gross, costs, turnover and funding separately; simple-return mean AND median with the funding sign; day-clustered t and
   top-3-day share for events; worst stress and the $200 account next to every Sharpe. Distinguish "dead" from "dead at taker costs".
+* **A forward clause needs its power first** (11-28 PRBF/FJP): before writing 'keep if live X', compute X's chance of failing by luck and its MDE from the backtest's
+  daily difference series (research/studies/is3_fjp.py); a clause with no power is a veto (disaster check), not a test.
 * **No verdict on one formulation; split by year before spending a confirm;** placebo levels for "levels"; judge tail rules against a size-matched base;
   a mixed-sign grid is two hypotheses. A failed-then-promising result gets a frozen replication on unseen instruments.
 * **When re-deriving by a rule, walk every clause against every venue in writing,** especially when the answer is "no change".
