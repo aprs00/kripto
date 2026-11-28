@@ -6836,6 +6836,60 @@
    "verdict": "OPEN",
    "reason": "no statistically significant decay (HAC t -1.0) and no retire clause met; but flow@bn's 2025-26 return is funding carry, its price edge ~0: backlog FLX2 for the research session",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "TWV",
+   "prio": 3.9,
+   "group": "T",
+   "title": "Verify the 00:xx rebalances cleared the twin/hedge violations (GRAM/ZEC orphans, INIT imbalance, DOGE flip) with the new engine rules",
+   "src": "TWC, SMP",
+   "status": "todo",
+   "due": "2026-11-29T00:30",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "scripts.twin_check after the 00:13 pair and 04:xx BN rebalances: list what is left; each left violation explained or a fault",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "fills of small:main@pair / small:fspread_hold@pair / small:flow@bn on 11-29: the orphan closes happened at the expected size and fee; no new one-legged trade",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict: zero unexplained violations -> TWC closed for good; else fix with a test",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "SXR",
+   "prio": 4.0,
+   "group": "T",
+   "title": "Deployment of every small: shadow twin vs its \\$2,000 shadow (live): which entries can a \\$200 account hold at all?",
+   "src": "SMQ/SMH/SMD",
+   "status": "wip",
+   "due": "2026-11-28T13:38",
+   "sessions": 1,
+   "forms": [
+    {
+     "id": "a",
+     "what": "live equity table: gross/equity of small:<entry> vs shadow:<entry> for every non-retired entry, names held, and the ratio",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "the same entries' targets at \\$200 under round-to-minimum (live last target row x \\$200, venue/symbol minima): names and gross they WOULD hold",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict: list the entries whose \\$200 twin is < 50 % deployed today and would be >= 60 % under round-to-min (they need SMX), and those that are fine as they are; one line in backlog SMX",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
