@@ -127,5 +127,46 @@ def form_b():
     json.dump(out, open(EV / "lsx_b.json", "w"), indent=1)
 
 
+def book(ev, idx, slots, stop=None, cost_mult=2.0, order="first"):
+    """daily book returns: at most `slots` concurrent events, each 1/slots of equity short + the same long BTC (fixed entry notional).
+    Daily P&L = the path increment x notional; entry cost on the entry day, exit cost on the exit day."""
+    r = pd.Series(0.0, idx); n_act = pd.Series(0, idx)
+    evs = sorted(ev, key=lambda e: (e["t0"], -e["dv0_m"]))
+    busy = []          # exit dates of open slots
+    taken = 0
+    for e in evs:
+        busy = [d for d in busy if d > e["t0"]]
+        if len(busy) >= slots:
+            continue
+        k = exit_at(e["path"], stop)
+        days = e["days"][: k + 1]
+        inc = np.diff(e["path"][: k + 1])
+        r.loc[days[1:]] += inc / slots
+        r.loc[days[0]] -= e["cost"] / 2 * cost_mult / slots
+        r.loc[days[k]] -= e["cost"] / 2 * cost_mult / slots
+        n_act.loc[days[1:]] += 1
+        busy.append(days[k]); taken += 1
+    return r, n_act, taken
+
+
+def form_c():
+    ev, p = events()
+    idx = p["close"].index
+    sr = lambda x: round(float(x.mean() / x.std() * np.sqrt(365)), 2) if x.std() > 0 else None
+    out = {}
+    for slots in (5, 10, 1000):
+        for stop in (None, 1.0):
+            r, n, taken = book(ev, idx, slots, stop)
+            r = r.loc["2020-03-01":]
+            eq = (1 + r).cumprod()
+            key = f"slots{slots}_{'nostop' if stop is None else 'stop100'}"
+            out[key] = {"taken": taken, "sr_all": sr(r), "ann_pct": round(float(r.mean() * 365 * 100), 1), "vol_pct": round(float(r.std() * np.sqrt(365) * 100), 1),
+                        "mdd": round(float((eq / eq.cummax() - 1).min()), 3), "worst_day": round(float(r.min()), 3), "mean_active": round(float(n.loc[r.index].mean()), 1),
+                        "sr_by_year": {int(y): sr(g) for y, g in r.groupby(r.index.year)},
+                        "ret_by_year": {int(y): round(float(g.sum()), 3) for y, g in r.groupby(r.index.year)}}
+            print(key, json.dumps(out[key]), flush=True)
+    json.dump(out, open(EV / "lsx_c.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    {"a": form_a, "b": form_b}[sys.argv[1]]()
+    {"a": form_a, "b": form_b, "c": form_c}[sys.argv[1]]()

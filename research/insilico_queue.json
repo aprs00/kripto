@@ -5768,7 +5768,7 @@
    "group": "T",
    "title": "LSB2 precheck: bnall listing_short P&L without the BTC hedge leg, worst-10-event stress, and per-year with funding",
    "src": "backlog LSB2 (LSP 11-27 negative book, positive event medians), findings 11-09 (bnall WF = BTC-leg P&L, corr .63)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T08:00",
    "forms": [
     {
@@ -5790,10 +5790,16 @@
     {
      "id": "c",
      "what": "sizing that a $1,000 main_bn could hold: equal-risk per event with max 5 concurrent, 2x costs; verdict GO (pre-register one WF config for a research session) or NO-GO with reason",
-     "status": "planned"
+     "status": "done",
+     "result": "Concurrency-capped book (first-come, 1/slots of equity short + same BTC long, 2x costs, bnall 2020-03..2026): 5 slots SR -.08 (vol 214 %, MDD -100 %, 2021 -438 %), with stop100 .30 (2025 -.45); 10 slots -.16 / .42 (2026 -.68 stopped); all events .08 / .63. The stop's lift is the 2021-only effect of b (placebo). Years 2025-26 (the BN listing-rich years that motivate LSB2) <= .5 in every variant. NO-GO: no WF pre-registered. 3 slot counts x 2 stop tried.",
+     "date": "2026-11-28",
+     "evidence": "lsx_c"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "Binance listing shorts: the median event decays (+20..37 % every year, alt leg alone) but the mean is owned by a squeezed minority; a hard stop on the daily path helps only in 2021 (vs a same-size random-exit placebo it loses in 2020 and 2024-26), and any concurrency-capped book is SR <= .42 with 2025-26 flat or negative. 4 squeeze controls failed (SQZ, LSV, LSW, stop): LSB2 NO-GO; listing shorts stay HL-only. Revisit only with an intraday squeeze exit (hourly path) or a new squeeze predictor.",
+   "closed": "2026-11-28"
   },
   {
    "id": "E2C",

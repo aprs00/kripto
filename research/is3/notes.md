@@ -1485,3 +1485,4 @@ Unstated, what a trader shorting fresh listings must be doing: a hard buy-stop (
 Change my mind: a stop that lifts the event mean above 0 in >= 5 of 7 years with the median kept -> c sizing GO candidate; else LSB2 stays parked with this reason.
 LSX a (is3_lsx.py, lsx_a.json): 678 bnall events: alt-leg median +20..37 % every year, net mean 4.5 % pooled, t_month .01; book corr BTC .00 (11-09 'BTC-leg' finding obsolete).
 LSX b (lsx_b.json): path stops -100/-50/-30 % lift the pooled mean to 7-8 % and t to 1-2, but vs a same-size random-exit placebo the gain is all 2021 and negative in 2020, 2024-26. FAIL.
+LSX c (lsx_c.json): 5/10-slot books SR -.08/-.16 (ruinous tail at 1/5 equity per name), .30/.42 with stop100 (2021-only lift); 2025-26 <= .5 everywhere. NO-GO. CLOSED OPEN: LSB2 parked (4 squeeze controls failed).
