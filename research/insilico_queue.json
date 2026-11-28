@@ -7376,12 +7376,18 @@
     {
      "id": "a",
      "what": "strategies.flow(fund_resid=False default unchanged, True = score residualised on trailing 7-d mean funding); tests: default = old output exactly, True = research/studies/is3_flxf resid_f7 on a toy panel",
-     "status": "planned"
+     "status": "done",
+     "result": "strategies.flow(fund_resid=True) built; test: toy panel imbalance = funding sort + independent part -> fund_resid ranks by the independent part (corr > .9), default unchanged; bnall known answer vs is3_flxf resid_f7 max |dw| 0.0, default 0.0 (flxb_a.json)",
+     "date": "2026-11-28",
+     "evidence": "flxb_a"
     },
     {
      "id": "b",
      "what": "research/batches/2026-11-29_flx2.json: the three pre-registered arms on bnall 1d (main_bn mix .5 flow + .5 blend, blend alone, .5 flow fund_resid + .5 blend) with --probe RAM; written, not run (research session)",
-     "status": "planned"
+     "status": "done",
+     "result": "research/batches/2026-11-29_flx2.json: ONE config flow lb3 cap .05 fund_resid true on bnall 1d with the pre-registered mix rule (+.1 OOS SR); --probe 0.53 GB peak, no registry line; not run (research session)",
+     "date": "2026-11-28",
+     "evidence": "flxb_a"
     },
     {
      "id": "c",

@@ -1,0 +1,4 @@
+{
+ "_note": "FLX2 arm (iii), written by insilico FLXB 2026-11-28, NOT run yet (research session runs it). ONE config: flow@bn as shipped (lookback 3, cap .05) with fund_resid=True (score residualised cross-sectionally on trailing 7-d mean funding; frozen a priori in FLXF before any number). Compare with the shipped flow config's own bnall 1d WF on today's data (re-run it in the same session: same harness, same dates). Pre-registered decision (FLP/FLXF): main_bn mix built from OOS daily returns, .5 x flow-arm + .5 x blend_nested@bn; (iii) replaces (i) only if its mix OOS SR >= (i)'s + .1 and forward days do not contradict; flow is dropped for blend alone only if blend alone >= (i)'s mix + .1. In-sample (FLXF): mixes tie at 1.75, (iii) alone .77 vs 1.06, corr to blend .17 vs .40. Counts +1 in the DSR.",
+ "flow": {"lookback": [3], "cap": [0.05], "fund_resid": [true]}
+}

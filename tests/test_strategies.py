@@ -282,3 +282,24 @@ def test_partial_path_known_answer_and_blend_slow_legs():
     pd.testing.assert_frame_equal(full.iloc[:cut].fillna(0), trunc.fillna(0), check_exact=False, atol=1e-10)
     base = st.blend_nested(p, min_days=30, refit_days=10)
     assert (full.fillna(0) - base.fillna(0)).abs().max().max() > 1e-6   # not inert (turnover is checked on real data in the WF)
+
+
+def test_flow_fund_resid_removes_the_funding_sort_and_default_is_unchanged():
+    """FLX2 arm (iii): imbalance = funding sort + an independent part; fund_resid ranks by the independent part only."""
+    from kripto.strategies import flow
+    idx = pd.date_range("2024-01-01", periods=120, freq="1D", tz="UTC")
+    cols = ["BTC"] + [f"C{i}" for i in range(9)]
+    rng = np.random.default_rng(3)
+    close = pd.DataFrame(100 * np.exp(np.cumsum(rng.normal(0, 0.02, (120, 10)), 0)), idx, cols)
+    vol = pd.DataFrame(1e7, idx, cols)
+    fr = np.linspace(-1e-3, 1e-3, 10)
+    z = np.array([3, -1, 4, -1, -5, 9, -2, 6, -5, 3], float) * 1e-3
+    z = z - fr * (z @ fr) / (fr @ fr) - z.mean()                  # independent of the funding sort
+    fund = pd.DataFrame(np.tile(fr, (120, 1)), idx, cols)
+    tb = vol * (0.5 + 100 * fund + pd.DataFrame(np.tile(z, (120, 1)), idx, cols))
+    p = {"close": close, "volume": vol, "funding": fund, "taker_buy": tb}
+    w0 = flow(p, lookback=3, top_n=10, beta_neutral=False).dropna(how="all").iloc[-1]
+    w1 = flow(p, lookback=3, top_n=10, beta_neutral=False, fund_resid=True).dropna(how="all").iloc[-1]
+    assert np.corrcoef(w0.to_numpy(), fr)[0, 1] > 0.8 and abs(np.corrcoef(w1.to_numpy(), fr)[0, 1]) < 0.2
+    assert np.corrcoef(w1.to_numpy(), z)[0, 1] > 0.9
+    pd.testing.assert_series_equal(w0, flow(p, lookback=3, top_n=10, beta_neutral=False, fund_resid=False).dropna(how="all").iloc[-1])

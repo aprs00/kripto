@@ -467,13 +467,15 @@ def resrev(panel, lookback=7, thr=1.5, top_n=30, target_vol=0.20, every_days=1, 
 
 @register
 def flow(panel, lookback=7, sign=1, resid=False, top_n=30, target_vol=0.25, every_days=1, beta_neutral=True, phase=None,
-         short_filter="none", cap=None):
+         short_filter="none", cap=None, fund_resid=False):
     """Taker-flow imbalance, cross-sectional (library N1/N2: Bouchaud-Farmer-Lillo, Toth et al. on metaorder splitting;
     Valtos/Tradingriot "delta"/absorption). imb = (taker buy - taker sell) / volume over `lookback` days.
     sign=+1: continuation (split metaorders keep coming). sign=-1: reversal (transient impact). resid=True: use only
     the part of imb NOT explained by the same-window return (cross-sectional regression) = "flow without price
     progress", i.e. absorption. Requires panel['taker_buy'] (quote volume bought by takers); Binance only.
-    Cross-venue use (dataset "hlx"): prices/universe from HL, taker_buy + flow_volume from Binance for the same coins."""
+    Cross-venue use (dataset "hlx"): prices/universe from HL, taker_buy + flow_volume from Binance for the same coins.
+    fund_resid=True (FLX2 arm iii, insilico FLXF 2026-11-28): the score is residualised cross-sectionally on the trailing 7-day
+    mean funding rate (known at the bar), so the book keeps the flow information that is not a funding (carry) sort."""
     if "taker_buy" not in panel:
         raise ValueError("flow needs panel['taker_buy'] (Binance klines col 10)")
     c, v, tb = panel["close"], panel["volume"], panel["taker_buy"]
@@ -488,6 +490,11 @@ def flow(panel, lookback=7, sign=1, resid=False, top_n=30, target_vol=0.25, ever
         sc, rc = score.sub(score.mean(axis=1), axis=0), ret.sub(ret.mean(axis=1), axis=0)
         b = (sc * rc).sum(axis=1) / (rc * rc).sum(axis=1).replace(0, np.nan)
         score = sc.sub(rc.mul(b, axis=0))
+    if fund_resid:
+        fx = panel["funding"].reindex(index=c.index, columns=c.columns).rolling(7 * bpd, min_periods=3 * bpd).mean().where(mask)
+        sc, fc = score.sub(score.mean(axis=1), axis=0), fx.sub(fx.mean(axis=1), axis=0).fillna(0.0)
+        b = (sc * fc).sum(axis=1) / (fc * fc).sum(axis=1).replace(0, np.nan)
+        score = sc.sub(fc.mul(b.fillna(0.0), axis=0))
     w = short_guard(xs_demean_rank(sign * score, mask), panel, mask, short_filter)
     if beta_neutral:
         w = hedge_beta(w, beta_to(panel))
