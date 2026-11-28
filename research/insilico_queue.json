@@ -4994,6 +4994,32 @@
    "verdict": "OPEN",
    "reason": "HL listing decay is a new-float effect: fresh / new-to-Binance tokens +25-29 % mean, t 2.1-2.4; established Binance coins listing on HL +1 % (t .1, 2023 -13 %); filter idea = backlog HLE2, needs a held-out (bnall) before use",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "HLX",
+   "prio": 1.0,
+   "group": "T",
+   "title": "Held-out for HLE: Binance listings of coins already trading on HL >= 60 d (established) vs new float, frozen split",
+   "src": "HLE (HL: established-on-Binance coins do not decay, fresh +25 %), LSB",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "FROZEN split (>= 60 d of prior trading on the other venue), cached bnall listing events 2023-04..2026-11 (>= $1M 7-d dv, d2-d61 short-vs-BTC incl. BN funding): established-on-HL vs not; PASS (replicates) = established mean and median < new-float mean and median, and established median <= +5 %",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "by year and the squeeze tail (worst 3) per group; month-clustered t",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict for HLE2: replicated -> pre-register the filter for a WF on HL listing_short; not -> HLE stays an HL-only description",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
