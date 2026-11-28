@@ -4701,13 +4701,16 @@
    "group": "T",
    "title": "Where HL tsmom's turnover (35-64x/yr) comes from: signal flips, per-coin vol rescaling, or universe churn",
    "src": "PRL a (tsmom = over half the HL main book's cost)",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T00:00",
    "forms": [
     {
      "id": "a",
      "what": "descriptive HL 1d 2023-26: tsmom turnover decomposed by recomputing with (i) the per-coin vol held at its 30-d-ago value... no: (i) signal frozen, vol live; (ii) vol frozen at monthly, signal live; (iii) universe frozen monthly; share of turnover each removes",
-     "status": "planned"
+     "status": "done",
+     "result": "standalone HL tsmom (replication 0) 2023-26: base SR .46, turnover 100x, pre-cost .87; signal held monthly 27x (-73 %), pre-cost .82; vol monthly 99x (-1 %); universe monthly 96x (-4 %), pre-cost 1.15: the trend signal's daily drift IS the turnover; universe churn costs signal not turnover",
+     "date": "2026-11-28",
+     "evidence": "tsn_ad"
     },
     {
      "id": "b",
@@ -4718,8 +4721,18 @@
      "id": "c",
      "what": "if b passes: L.prereg, ONE run HL 2025-26 (third look at it: say so)",
      "status": "planned"
+    },
+    {
+     "id": "d",
+     "what": "reconcile with T1c (EMA smoothing of the tsmom signal HL 1.11 -> 0.34, 11-09): standalone tsmom on today's HL panel, smooth_days 3 vs partial lam .21 (same half-life) on final weights vs base, 2023-26 by year: is T1c's loss the smoothing location (signal before vol/universe) or the old data?",
+     "status": "done",
+     "added": "2026-11-28",
+     "result": "T1c does NOT replicate on today's HL panel: EMA3 smoothing SR .59 vs base .46 (turnover 46x), partial lam .21 (same half-life, on final weights) .75 (28x), by year 1.05/.06/.76/1.17 vs 1.02/-.15/-.15/1.19; T1c's 1.11 -> .34 came from the 11-09 panel (2.2 y, pre funding backfill): relabel T1c smoothing DEAD -> OPEN",
+     "date": "2026-11-28",
+     "evidence": "tsn_ad"
     }
-   ]
+   ],
+   "sessions": 1
   }
  ]
 }

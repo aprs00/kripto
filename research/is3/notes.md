@@ -1286,3 +1286,10 @@ SML b FAIL (sml_b.json): 2-leg 1.83/1.10 vs 3-leg 1.91/1.00 at .05. CLOSED OPEN:
 Source: PRL. lam .33 came from a 3-point grid; a real noise-filter effect should be a plateau (any lam .25-.5 helps; very small lam starts to lose signal); a knife-edge means luck.
  Descriptive only: no new choice; the held-out years are shown but were already seen (PRB b, PRL c). Change my mind: every lam in [.25,.5] >= lam 1 in all four years -> robust.
 PRD a/b/c done (is3_prd.py, prd_ab.json): lam .15-.75 all >= lam1 in 2023-26 (plateau); tsmom-only = cost, lowvol-only = pre-cost gain; both best. CLOSED OPEN; PRB2 lam .33 both legs.
+
+## TSN tsmom HL turnover sources (think-through 01:5x UTC 11-28, before any run)
+Source: PRL a (tsmom 35-64x/yr), T1c (EMA signal smoothing halved turnover but HL SR 1.11 -> .34: DEAD) vs PRD (partial rebalancing of tsmom costs no SR). Turnover sources: the trend signal
+ (4 lookbacks, tanh: slow), per-coin vol (ann_vol, daily), the gross normalisation (sum |raw| = 1: one coin's change resizes all), and universe churn (top 20 by volume: names enter/exit
+ at full size). Unstated: universe churn trades whole positions on rank noise (rank 20 <-> 21): a likely big part. Monthly freezes are causal (first value of the month, held).
+ d first-suspects a bug/data difference in T1c vs PRL before any conclusion.
+TSN a/d done (is3_tsn.py, tsn_ad.json): tsmom turnover = signal drift (monthly hold -73 %), not vol/universe. T1c fails to replicate: EMA3 .59, lam .21 .75 vs base .46 (2023-26). PRE-STATED (b): book = listing full + lowvol lam .33 + tsmom with monthly-held signal (lam 1), HL explore 2023-24 vs PRL slow33; PASS = >= in both years.
