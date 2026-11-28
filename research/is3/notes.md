@@ -1727,3 +1727,11 @@ Source: PRB2 WF (slow .33 OOS 1.82 vs 1.45; costs 8.6 -> 5.5 %/yr full period), 
  of 30-d windows fail the 75 % cost clause in backtest, the clause is a coin flip and needs a longer window (restated, no gate change).
 PRBF a/b/c (is3_prbf.py, prbf_ab.json): slow vs lam1 corr .976, diff sd 31.9 bp/d, mean +1.39 bp/d (+5.1 %/yr, HAC t 1.57, + in all 4 years); MDE 7.1 bp at 90 d = 5x the gain.
  Cost ratio .655, fails <= .75 by chance 23/18/13 % at 30/60/90 d. Backlog PRB2-F restated: 30 d disaster check, verdict at 90 d. CLOSED OPEN.
+
+## FLXF FLX2 precheck (think-through 16:5x UTC 11-28, before any run)
+Source: FLX (2025-26 flow gross = funding 18.9/15.4 %/yr + price +4.7/-1.6), FLP (funding overlap with blend per coin .85). Mechanism: 3-d taker-buy imbalance is highest where
+ crowds chase (longs pile in -> funding high); flow is LONG those (continuation), so it should PAY funding, not receive it. That FLX found funding income means flow is often short the
+ crowded names or long the negative-funding ones: i.e. late in the move the imbalance has turned (sellers absorbing) while funding still lags. Unstated: the trader he imitates
+ never looks at funding; a funding-neutral flow tests whether the flow information has price content of its own. Frozen (iii) = residualise the score on trailing 7-d mean funding.
+ Change my mind: if (iii)'s price part is ~0 in 2021-24 too, flow's 'price edge' was always partly funding-correlated price drift, and FLX2's 'flow-without-funding' arm is moot.
+LV1S: closed as a duplicate of LV2 (funding filter = random drops) / LVH (universe) before any run; the refill had read the stale backlog LV1 line, not findings. Backlog LV1 corrected.

@@ -268,3 +268,4 @@ put a lesson into CLAUDE.md "Standing lessons" only if a future session must act
   not only on targets; any rule written for targets must be checked at the trade level too.
 - 2026-11-28 (review): a fix that only stops a fault from happening again must also repair the state the fault already left. whole_pair_trades
   prevented new one-leg resizes but froze an existing unbalanced pair. It now shrinks the larger leg back to the smaller one.
+- 2026-11-28 (insilico): a queue refill copied an 'untried' form from a stale backlog line (LV1) that LV2 had already tested; caught before running. prompts/review.md 3b: grep findings.md for the form before queueing it, and fix the backlog line when it is stale.

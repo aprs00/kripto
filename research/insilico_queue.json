@@ -1312,7 +1312,7 @@
     },
     {
      "id": "e",
-     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is \u22123..\u221221% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
+     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
      "status": "done",
      "added": "2026-11-22",
      "result": "his literal picture (every live adaptive bucket -3..-21% of its volume, day <= -7%), long 3 d: n 55, +105 bp vs matched +256 (diff -151, p .50, MDE 494), 2022 -470; 2-way table fall x selling: U-shape (no selling +989 and extreme selling <= -20% +711 on 16-18 events at <= -8%; his -3..-21% range -30..+278), no monotone dose in either direction. DEAD form",
@@ -1526,7 +1526,7 @@
    "prio": 23,
    "group": "C",
    "title": "Filter harness: does a signal improve a book that already works?",
-   "src": "design.md \u00a74 (filters)",
+   "src": "design.md §4 (filters)",
    "status": "closed",
    "forms": [
     {
@@ -3514,9 +3514,9 @@
     },
     {
      "id": "b",
-     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md \u00a74 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
+     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md §4 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
      "status": "done",
-     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design \u00a74 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
+     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design §4 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
      "date": "2026-11-27",
      "evidence": "ksw_ab"
     },
@@ -3789,16 +3789,16 @@
     },
     {
      "id": "c",
-     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the \u00a74 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
+     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the §4 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
      "status": "done",
-     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design \u00a74 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
+     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design §4 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
      "date": "2026-11-27",
      "evidence": "fld_ab"
     }
    ],
    "sessions": 1,
    "verdict": "OPEN",
-   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the \u00a74 live check; not DEAD (one formulation, IC MDE not met in single years)",
+   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the §4 live check; not DEAD (one formulation, IC MDE not met in single years)",
    "closed": "2026-11-27"
   },
   {
@@ -3902,9 +3902,9 @@
     },
     {
      "id": "c",
-     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the \u00a74 live-check flag",
+     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the §4 live-check flag",
      "status": "done",
-     "result": "verdict: no liquid-only variant; flow@bn keeps the FLD flag (signal ~0 since 2022, recent return = funding) for the design \u00a74 live check",
+     "result": "verdict: no liquid-only variant; flow@bn keeps the FLD flag (signal ~0 since 2022, recent return = funding) for the design §4 live check",
      "date": "2026-11-27",
      "evidence": "flq_a"
     }
@@ -7223,9 +7223,9 @@
    "group": "T",
    "title": "FLX2 precheck: how much of flow@bn is funding carry, and a funding-neutral flow defined a priori for the FLX2 WF",
    "src": "FLX, FLP, backlog FLX2",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T16:50",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
@@ -7255,31 +7255,42 @@
    "group": "T",
    "title": "lowvol short leg without names whose funding we pay (LV1 untried form): explore bnall, confirm HL",
    "src": "backlog LV1, R1",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T16:50",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "bnall lowvol: short leg vs long leg P&L by year, each split into price and funding; funding sign of the shorted names (share with trailing 7-d funding < 0)",
-     "status": "planned"
+     "status": "skipped",
+     "result": "duplicate of LV2 (2026-11-27, is3_lv2.py): dropping negative-funding shorts on bnall 2020-23 = random drops; HL leg FRAGILE (2025-only); LVH explains the bnall short leg by the universe. Queued by mistake (refill grepped the backlog line, not findings)",
+     "date": "2026-11-28"
     },
     {
      "id": "b",
      "what": "dose-response: short-leg next-day simple return + funding by tercile of trailing 7-d funding of the shorted names, explore 2021-23 bnall, day-clustered t",
-     "status": "planned"
+     "status": "skipped",
+     "result": "duplicate of LV2 (2026-11-27, is3_lv2.py): dropping negative-funding shorts on bnall 2020-23 = random drops; HL leg FRAGILE (2025-only); LVH explains the bnall short leg by the universe. Queued by mistake (refill grepped the backlog line, not findings)",
+     "date": "2026-11-28"
     },
     {
      "id": "c",
      "what": "rule fixed before looking at HL: drop shorts with trailing 7-d mean funding < 0, renormalise; bnall explore SR by year vs standard; if it beats standard in >= 2 of 3 explore years -> one confirm on HL 2023-26 (shipped lowvol params), else stop",
-     "status": "planned"
+     "status": "skipped",
+     "result": "duplicate of LV2 (2026-11-27, is3_lv2.py): dropping negative-funding shorts on bnall 2020-23 = random drops; HL leg FRAGILE (2025-only); LVH explains the bnall short leg by the universe. Queued by mistake (refill grepped the backlog line, not findings)",
+     "date": "2026-11-28"
     },
     {
      "id": "d",
      "what": "verdict + backlog LV1 line",
-     "status": "planned"
+     "status": "skipped",
+     "result": "duplicate of LV2 (2026-11-27, is3_lv2.py): dropping negative-funding shorts on bnall 2020-23 = random drops; HL leg FRAGILE (2025-only); LVH explains the bnall short leg by the universe. Queued by mistake (refill grepped the backlog line, not findings)",
+     "date": "2026-11-28"
     }
-   ]
+   ],
+   "verdict": "UNTESTABLE",
+   "reason": "duplicate: LV2 already tested the funding filter (= random drops), LVH explained the short leg (BN-only squeeze names)",
+   "closed": "2026-11-28"
   }
  ]
 }
