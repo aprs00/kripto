@@ -5967,6 +5967,33 @@
    "verdict": "OPEN",
    "reason": "Post-only/rest-below execution for the Binance daily books: fills are free and not adversely selected; the 1-3 % unfilled runaways (+4-7 %/24h) cost back the saving at 5 bp of queue stress (every book fails the written bar), but resting deeper (k 10 bp, filled at the better price) shows +2-3 %/yr on flow/carry/carry_trend in the conservative cells: the result lives entirely in the fill model, which hourly bars cannot verify. Next: a live rest-below shadow with trade-print fills (backlog T9G).",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "T9K",
+   "prio": 1.6,
+   "group": "T",
+   "title": "T9G sizing: dose of the rest-below depth k (10..100 bp) for the Binance daily books and the HL slow legs, explore only, to freeze the live shadow's k",
+   "src": "T9F (gain grows with k at q3), T9D (HL slow legs; its q-stress had no price improvement)",
+   "status": "wip",
+   "due": "2026-11-28T11:30",
+   "forms": [
+    {
+     "id": "a",
+     "what": "flow@bn and carry_trend on bnall 1d explore 2021-23, rest-below k = 10/20/30/50/100 bp with q = 3 bp extra stress, skip and env: delta vs taker by year, fill share, runaway cost; where does the curve peak",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "HL slow legs (T9D d sim, HL 2026-04..11, descriptive, seen sample) with price improvement: k = 0/5/10/20 at q 3: is the HL ~+1 %/yr of T9D the conservative side",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "freeze one k for T9G (the smallest k within 80 % of the explore peak, rule stated before reading the table) and write it into backlog T9G; no confirm spent (the live shadow is the confirm)",
+     "status": "planned"
+    }
+   ],
+   "sessions": 1
   }
  ]
 }
