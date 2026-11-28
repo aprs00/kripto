@@ -154,7 +154,7 @@ nice -n 19 .venv/bin/python -m scripts.research_run --grids <batch> --datasets h
 #   intraday datasets (2026-11-11): bnm + --interval 1m (10 coins, 1-min bars; --workers 1, 1.6 GB), bnts + --interval 1d|5m (BTC/ETH/SOL
 #   with trade-size buckets), bn + --interval 1h. Build the data first: scripts.aggtrades (≈ 2 h) and scripts.minute_study.download.
 .venv/bin/python -m scripts.show_result --today            # one line per result written today; or: show_result <strategy> <dataset>
-nice -n 19 .venv/bin/python -m scripts.live_vs_backtest    # live vs backtest replay per shadow book (weekly in the retro)
+nice -n 19 .venv/bin/python -m scripts.live_vs_backtest    # live vs backtest replay per shadow book (weekly in the retro); --main = the main books
 .venv/bin/python -m scripts.health                         # HEALTH line from facts (trader, data, collector, disk, agent sessions)
 nice -n 19 .venv/bin/python -m scripts.forward_score       # forward ledger table (weekly; add a dataset name to limit it)
 nice -n 19 .venv/bin/python -m scripts.download bnall      # full Binance daily universe: monthly archives + fapi top-up to yesterday (≈ 30 min)

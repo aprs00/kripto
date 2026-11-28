@@ -6249,26 +6249,38 @@
    "group": "T",
    "title": "live_vs_backtest for the MAIN books (main, main_bn): replay scale x sum(alloc x entry target) through apply_risk at $1,000; is main_bn's -9 % the mix or the plumbing?",
    "src": "MBL (main_bn -9.1 %/19 d, legs checked one by one), backlog LVB",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T13:00",
    "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "build scripts.live_vs_backtest --main: main-book replay = apply_risk(main_scale x sum alloc_i x ffilled entry targets), band = min order / book equity, same day alignment as the shadow path; known answer: a one-entry alloc-1 scale-1 'main' replay equals that entry's shadow replay to 1e-12 (test), and the shadow table is unchanged",
-     "status": "planned"
+     "status": "done",
+     "result": "scripts.live_vs_backtest --main: main_targets() = paper.run_books blend (scale x sum alloc x last saved target, NaN in a produced row = 0), run_replay shared with the shadows; tests/test_lvb_main.py (one entry alloc 1 = the entry; carry-forward + scale); shadow table byte-identical before/after; BN replays now apply each symbol's MIN_NOTIONAL",
+     "date": "2026-11-28",
+     "evidence": "lvb_b"
     },
     {
      "id": "b",
      "what": "run it for main, main_bn (and small: twins) --since each book's first rebalance and --since 2026-11-18 (point-in-time universe era): corr, te, ret gap, cost/fund gaps; main_bn's ladder sleeve P&L separated (sleeve fills from the fills table) so the gap is not blamed on the mix",
-     "status": "planned"
+     "status": "done",
+     "result": "since 11-18 (after the PIT universe; allocs current): main corr .95 (19 d full), main_bn live -3.20 vs replay -5.14 corr .95 te 61 bp, cost live .09 vs .15 %, turn 1.40 vs 2.12; full period main_bn corr .64 = config change 11-26 (blend_nested@bn). small:main_bn corr -.02 with the $5 band; with per-symbol minima (BTC $50, ETH $20) replay -0.60 = live -0.60, corr .79: the $200 BN book holds 3 of 31 targets, 10 % of the 57 % target gross (BTC target $36 < $50 min)",
+     "date": "2026-11-28",
+     "evidence": "lvb_b"
     },
     {
      "id": "c",
      "what": "verdict by the MBL rule stated in advance: replay corr < .7 or live < replay by > 3 % over the period (sleeve excluded) -> a fault to chase this session; else main books track their mix; add the --main run to the Sunday retro line in prompts/research.md",
-     "status": "planned"
+     "status": "done",
+     "result": "MBL rule (corr < .7 or live below replay by > 3 % after the last change): main corr .95; main_bn since 11-18 corr .95, live -3.2 vs replay -5.1 (live better): PASS, no fault; full-period main_bn corr .64 = the 11-26 mix change (replay uses current allocs). small:main_bn tracks only with per-symbol minima (corr .79, -0.60 = -0.60): it holds 3 of 31 targets, 10 % of target gross: NOT a $200 version of main_bn. research small_acct uses one $5 band (no BTC $50/ETH $20): overstates $200 on Binance -> backlog SMB. Retro step added in prompts/research.md",
+     "date": "2026-11-28",
+     "evidence": "lvb_b"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "main books track their mix (corr .95); main_bn's loss is the strategies (MBL); new fault found: the $200 Binance twin is ~10 % deployed because of per-symbol minimum orders, and research small_acct ignores those minima -> SMB",
+   "closed": "2026-11-28"
   },
   {
    "id": "T9P",
@@ -6276,26 +6288,38 @@
    "group": "T",
    "title": "Plain maker at the touch for flow@bn on LIVE November orders (T9G precheck after T9C: depth adds nothing, only the fee saving might): fill share, selection, net vs taker",
    "src": "T9C/T9K/T9L, backlog T9G",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T13:00",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "replay shadow:flow@bn's live fills as post-only at the decision mid (k = 0) with trade-through q 0/3/5 bp on live bars (finest live bars on disk; the bar containing the order excluded): fill share by notional, by side, by day; filled vs unfilled 24-h signed move",
-     "status": "planned"
+     "status": "done",
+     "result": "370 live Nov orders of shadow:flow@bn at k0 on live 4h bars, containing bar excluded: fill 94.9 % (q0-5), unfilled +713 bp/24h, net -32 bp/unit (day t -2.8); optimistic bound (bar included) trivially 100 %: 4h bars cannot resolve an at-touch order; unfilled cost 63 % in 3 days",
+     "date": "2026-11-28",
+     "evidence": "t9p_ab"
     },
     {
      "id": "b",
      "what": "net per unit vs the live taker fill: maker saving (5 - 2 bp fee + live slip) on fills minus the unfilled residue's cost (taker at 24 h, at the 24-h price) and minus the selection on fills; and the 'carry residue' variant (unfilled waits for the next day's order); compare with the backtest's T9F k0 numbers for Nov 2026 only",
-     "status": "planned"
+     "status": "done",
+     "result": "minute resolution from HL 1-min OHLC (193 orders, 52 % of notional, 14 days; order rests at the HL price of its minute): fill 99.9 % at q0/3/5/10, median 1 min to fill, 98.4 % within 4 h; unfilled -24 bp (no runaways); net vs live taker +3.97 bp/unit (fee 3 + live slip 1.1), 14/14 days positive. Hand check BTC 11-21 04:13: rests 56050, trades 55620 2 min later (4h bars called it unfilled +544 bp). The a-form loss was the 4h exclusion artefact",
+     "date": "2026-11-28",
+     "evidence": "t9p_b"
     },
     {
      "id": "c",
      "what": "verdict stated now: live net saving >= +2 bp per traded unit at q3 AND fill share >= 85 % -> T9G build gets a frozen spec (k 0, q3, carry residue) and moves up the backlog; else T9G stays LOW (the fee saving is eaten by selection live too)",
-     "status": "planned"
+     "status": "done",
+     "result": "rule stated before running: net >= +2 bp/unit at q3 AND fill >= 85 % -> PASS on the minute measure (+3.97, 99.9 %); FAIL only on the 4h measure, which is biased by construction (hand-checked). T9G gets the frozen spec k0 (rest at the decision mid), q3 trade-through, residue carried to the next decision; expected ~+4 bp x turnover (~+4-7 %/yr of book), judged on >= 60 live days; caveats: queue position at the touch, HL path as proxy for BN, 14 days",
+     "date": "2026-11-28",
+     "evidence": "t9p_b"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "maker at the touch fills ~always on minute paths (99.9 %, median 1 min), so live it is the fee+slip saving, ~+4 bp/unit, not a selection trade; the 4h-bar loss was a resolution artefact. Only a live resting shadow (T9G, spec frozen) can show queue effects",
+   "closed": "2026-11-28"
   }
  ]
 }

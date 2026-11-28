@@ -1,0 +1,40 @@
+{
+ "n": 193,
+ "days": 14,
+ "notional_share_of_replayed": 0.518,
+ "by_q": {
+  "0": {
+   "fill_share_notional": 0.999,
+   "move24_unfilled_bp": -23.8,
+   "net_bp_per_unit": 3.97,
+   "day_t": 39.4,
+   "share_days_pos": 1.0
+  },
+  "3": {
+   "fill_share_notional": 0.999,
+   "move24_unfilled_bp": -23.8,
+   "net_bp_per_unit": 3.97,
+   "day_t": 39.4,
+   "share_days_pos": 1.0
+  },
+  "5": {
+   "fill_share_notional": 0.999,
+   "move24_unfilled_bp": -23.8,
+   "net_bp_per_unit": 3.97,
+   "day_t": 39.4,
+   "share_days_pos": 1.0
+  },
+  "10": {
+   "fill_share_notional": 0.999,
+   "move24_unfilled_bp": -23.8,
+   "net_bp_per_unit": 3.97,
+   "day_t": 39.4,
+   "share_days_pos": 1.0
+  }
+ },
+ "same_sample_4h_exclude_first": {
+  "fill_share_notional": 0.944
+ },
+ "minutes_to_fill_q3_median": 1.0,
+ "filled_within_4h_share": 0.984
+}

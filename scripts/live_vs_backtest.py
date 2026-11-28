@@ -118,6 +118,11 @@ def main_targets(parts: list[tuple[float, pd.DataFrame]], scale: float) -> pd.Da
 
 def run_replay(w: pd.DataFrame, panel: dict, venue: str, start_bar: pd.Timestamp, risk: dict, eq0: float):
     w = w.apply(lambda row: P.apply_risk(row, risk) if row.notna().any() else row, axis=1)
+    if venue == "bn":   # each symbol's own MIN_NOTIONAL (BTC $50, ETH $20): a target below it is never opened live (LVB 11-28:
+        # without this small:main_bn's replay held BTC at $36 and tracked live at corr -.02; with it .79). Zeroing approximates live,
+        # which can keep an older, bigger position; disk cache only, no request.
+        mins = pd.Series({k: v["min_notional"] for k, v in venue_bn.symbol_filters(None, max_age_h=1e9).items()}).reindex(w.columns).fillna(5.0)
+        w = w.where((w.abs() * eq0 >= mins.to_numpy()) | (w == 0) | w.isna(), 0.0)
     w.loc[w.index < start_bar] = np.nan                   # flat until the live book's first rebalance bar
     bpd = bars_per_day(panel["close"].index)
     slip = bt.slippage_model(panel["volume"], bpd)

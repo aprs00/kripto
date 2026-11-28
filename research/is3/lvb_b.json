@@ -1,0 +1,30 @@
+{
+ "main_bn": {
+  "min_source": "exchange_info",
+  "days": 10,
+  "last_target_gross": 0.567,
+  "last_held_gross_after_min": 0.538,
+  "n_targets": 31,
+  "n_above_min": 25,
+  "btc_target_usd": 180.4,
+  "ret_live%": -3.2,
+  "ret_replay_band%": -5.14,
+  "corr_band": 0.95,
+  "ret_replay_symbol_min%": -5.15,
+  "corr_symbol_min": 0.94
+ },
+ "small:main_bn": {
+  "min_source": "exchange_info",
+  "days": 10,
+  "last_target_gross": 0.567,
+  "last_held_gross_after_min": 0.101,
+  "n_targets": 31,
+  "n_above_min": 3,
+  "btc_target_usd": 36.1,
+  "ret_live%": -0.6,
+  "ret_replay_band%": -1.91,
+  "corr_band": -0.02,
+  "ret_replay_symbol_min%": -0.6,
+  "corr_symbol_min": 0.79
+ }
+}

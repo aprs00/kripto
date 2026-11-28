@@ -1593,3 +1593,15 @@ Source: MBL (main_bn -9.1 % / 19 d checked only leg by leg), paper.run_books: ma
 Change my mind (MBL rule): corr < .7 or live < replay by > 3 % on post-change days, sleeve excluded -> chase a fault.
 FPT b/c (is3_fpt.py, fpt_check.json, fpt_b_a.json, fpt_b_xf.json): true split known answer exact; one-clock singles .42-.90 (mean .705), avg6 .74, rho .91: lift +.035, bounded x1.04 by rho.
  FPD closed (no staggering of flow@bn), no anchor switch (00 -.19 vs mean = .4 SE). CLOSED OPEN.
+
+## T9P maker at the touch, live Nov orders of flow@bn (think-through 13:2x UTC 11-28, before any run)
+Source: T9C (depth adds nothing OOS; the fee saving is the only robust part), T9L (k50 live fill 88 %). At k = 0 a resting order sits at the decision mid: it fills on any trade-through,
+ so the fill share should be ~95 %+, and the unfilled are the orders where price ran away immediately (flow continuing hardest). Saving per filled unit = 5 - 2 bp fee + live slip 1.1 = ~4 bp;
+ cost = the unfilled share x their 24-h runaway (or, carried, the next day's re-decision). Unstated: (1) live bars are 4 h and I exclude the bar containing the order: a k0 order that would fill
+ within minutes is counted only if price comes back in hours 4-24 -> fill share is UNDERSTATED, the runaway cost OVERSTATED (conservative); (2) queue position: at the touch we are behind the
+ queue, a trade-through of q bp is the proxy; (3) selection: fills happen when price moves against the signal, measured as the signed move decision -> 24 h on filled vs unfilled.
+Change my mind: as queued (c): net >= +2 bp/unit at q3 and fill >= 85 %.
+LVB a/b/c (scripts.live_vs_backtest --main, tests/test_lvb_main.py, is3_lvb.py, lvb_b.json): main corr .95; main_bn since 11-18 corr .95, live -3.2 vs replay -5.1. small:main_bn corr -.02 on the $5 band,
+ .79 and -0.60 = -0.60 with per-symbol minima: holds 3/31 targets, 10 % of the 57 % target gross (BTC target $36 < $50). The $200 BN twin is not main_bn at $200. CLOSED OPEN -> SMB.
+T9P a/b/c (is3_t9p.py, t9p_ab.json, t9p_b.json): at-touch k0 on 4h bars -32 bp/unit (an exclusion artefact: hand-checked BTC 11-21 fills 2 min later); on HL 1-min paths 99.9 % fill,
+ median 1 min, net +3.97 bp/unit vs live taker, 14/14 days. PASS by the stated rule -> T9G frozen k0/q3/carry. CLOSED OPEN.

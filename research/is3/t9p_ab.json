@@ -1,0 +1,117 @@
+{
+ "exclude_first_bar": {
+  "fills_total": 394,
+  "replayed": 370,
+  "days": 18,
+  "window": [
+   "2026-11-10 04:14:20+00:00",
+   "2026-11-27 04:10:07+00:00"
+  ],
+  "live_slip_bps_wmean": 1.08,
+  "by_q": {
+   "0": {
+    "fill_share_notional": 0.949,
+    "fill_share_by_side": {
+     "buy": 0.95,
+     "sell": 0.948
+    },
+    "move24_filled_bp": -216.4,
+    "move24_unfilled_bp": 713.3,
+    "net_bp_per_unit_skip": -31.96,
+    "net_bp_per_unit_taker24": -32.29,
+    "day_t_skip": -2.81,
+    "share_days_net_pos_skip": 0.44
+   },
+   "3": {
+    "fill_share_notional": 0.949,
+    "fill_share_by_side": {
+     "buy": 0.949,
+     "sell": 0.948
+    },
+    "move24_filled_bp": -216.9,
+    "move24_unfilled_bp": 709.7,
+    "net_bp_per_unit_skip": -32.25,
+    "net_bp_per_unit_taker24": -32.58,
+    "day_t_skip": -2.88,
+    "share_days_net_pos_skip": 0.39
+   },
+   "5": {
+    "fill_share_notional": 0.949,
+    "fill_share_by_side": {
+     "buy": 0.949,
+     "sell": 0.948
+    },
+    "move24_filled_bp": -216.9,
+    "move24_unfilled_bp": 709.7,
+    "net_bp_per_unit_skip": -32.25,
+    "net_bp_per_unit_taker24": -32.58,
+    "day_t_skip": -2.88,
+    "share_days_net_pos_skip": 0.39
+   }
+  },
+  "unfilled_top3_days_share_of_cost": 0.63,
+  "unfilled_n": 18,
+  "unfilled_coins": {
+   "ENA": 3,
+   "TRUMP": 2,
+   "Q": 2,
+   "ARB": 1,
+   "UNI": 1,
+   "INJ": 1
+  }
+ },
+ "include_first_bar_optimistic": {
+  "fills_total": 394,
+  "replayed": 370,
+  "days": 18,
+  "window": [
+   "2026-11-10 04:14:20+00:00",
+   "2026-11-27 04:10:07+00:00"
+  ],
+  "live_slip_bps_wmean": 1.08,
+  "by_q": {
+   "0": {
+    "fill_share_notional": 1.0,
+    "fill_share_by_side": {
+     "buy": 1.0,
+     "sell": 1.0
+    },
+    "move24_filled_bp": -169.3,
+    "move24_unfilled_bp": null,
+    "net_bp_per_unit_skip": 4.08,
+    "net_bp_per_unit_taker24": 4.08,
+    "day_t_skip": 63.64,
+    "share_days_net_pos_skip": 1.0
+   },
+   "3": {
+    "fill_share_notional": 1.0,
+    "fill_share_by_side": {
+     "buy": 1.0,
+     "sell": 1.0
+    },
+    "move24_filled_bp": -169.3,
+    "move24_unfilled_bp": null,
+    "net_bp_per_unit_skip": 4.08,
+    "net_bp_per_unit_taker24": 4.08,
+    "day_t_skip": 63.64,
+    "share_days_net_pos_skip": 1.0
+   },
+   "5": {
+    "fill_share_notional": 1.0,
+    "fill_share_by_side": {
+     "buy": 1.0,
+     "sell": 1.0
+    },
+    "move24_filled_bp": -169.3,
+    "move24_unfilled_bp": null,
+    "net_bp_per_unit_skip": 4.08,
+    "net_bp_per_unit_taker24": 4.08,
+    "day_t_skip": 63.64,
+    "share_days_net_pos_skip": 1.0
+   }
+  },
+  "unfilled_top3_days_share_of_cost": null,
+  "unfilled_n": 0,
+  "unfilled_coins": {}
+ }
+}
