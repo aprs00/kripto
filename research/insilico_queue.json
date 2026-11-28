@@ -6909,26 +6909,38 @@
    "group": "T",
    "title": "small:carry_trend@bn holds .06 of its shadow's gross while its target clears the minima at 64 %: why?",
    "src": "SXR b (moved from TWV d)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T13:40",
    "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "small:carry_trend@bn rebalances, fills and positions since 11-26 vs its target rows (targets table, last) x \\$200 per coin: which coins clear \\$5 but are not held",
-     "status": "planned"
+     "status": "done",
+     "result": "11-28 target x $199.78: BTC +$56.40 (58 % of target gross), 12 alts -$0.8..-$5.1, MMT +$3; held: JCT only (-$5.1, the one name >= $5); 3 rebalances since 11-26, 1 fill",
+     "date": "2026-11-28",
+     "evidence": "ctg_ab"
     },
     {
      "id": "b",
      "what": "classify each: step-size rounding to 0 (venue_bn.round_step at \\$200), BTC/ETH \\$50/\\$20, a trade below the minimum from a partial position, rebalance not due",
-     "status": "planned"
+     "status": "done",
+     "result": "BTC: Binance step .001 BTC is worth more than the $56.40 target -> round_step floors it to 0 (the min $50 is not what binds, the step is); UNI/AAVE step-floor to 0, ETH min $20, the rest < $5: no fault, the engine does what it is told",
+     "date": "2026-11-28",
+     "evidence": "ctg_ab"
     },
     {
      "id": "c",
      "what": "verdict: a fault -> fix with a test; else explain and, if it is step rounding, add it to research.small_minima (effective minimum = max(min_notional, step x price))",
-     "status": "planned"
+     "status": "done",
+     "result": "explained, no fault. SMX spec amended: round UP to max(min notional, one step x price) at half that level; research.small_minima keeps min_notional only (historical step values are not on disk: noted as an understatement for BTC at $200)",
+     "date": "2026-11-28",
+     "evidence": "ctg_ab"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "small:carry_trend@bn is BTC-heavy and BTC's one-step size (> $56) exceeds its target: step rounding, not a fault; SMX must round to the step too",
+   "closed": "2026-11-28"
   }
  ]
 }

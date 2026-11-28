@@ -1,0 +1,22 @@
+{
+ "bar": "2026-11-28 00:00",
+ "equity": 199.78,
+ "target_gross": 0.485,
+ "btc_target_usd": 56.4,
+ "btc_rounded_usd": 0.0,
+ "btc_share_of_target_gross": 0.58,
+ "names_ge_5usd": [
+  "JCT"
+ ],
+ "held": {
+  "JCT": -3510.0
+ },
+ "below_5usd": 12,
+ "step_rounded_to_zero": [
+  "BTC (step .001)",
+  "UNI (step 1)",
+  "AAVE (step .1)",
+  "ETH (min 20)"
+ ],
+ "class": "step-size floor on BTC (one step > the $56 target) + sub-minimum alt targets; engine behaves as specified"
+}
