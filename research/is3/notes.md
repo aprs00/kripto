@@ -1384,3 +1384,10 @@ TLQ a done (is3_tlq.py, tlq_a.json): tsmom by liquidity tier: tier1 net +11/+6/-
  Dose in liquidity. a saw 2025-26 (descriptive), so b's confirm is weakened: say so; b variant (top 10) was stated before a.
 TLQ b/conf (tlq_b/conf.json): tsmom top 10 in the HL blend: explore 1.08/1.17 vs .87/.75; prereg TLQ_top10 confirm 2025 2.17 vs 2.19 (FAIL by .02 as written), 2026 1.99 vs 1.47, pooled 2.09 vs 1.85,
  costs lower every year. Strict rule failed; a tie in 2025, so no claim; backlog as a research-session WF candidate with the caveat that a saw 2025-26.
+
+## HFX BTC hedge (and long alts) funding on Binance instead of HL (think-through 02:5x UTC 11-28, before any run)
+Source: HLF (BTC hedge longs pay 1.6-8.9 %/yr of book on HL; ETH no cheaper), X1 (HL-BN funding spread is the fspread_hold edge). HL funding on BTC 2024 = 24 %/yr vs Binance 12 %:
+ HL longs are more crowded (retail, no spot). Moving the long-only hedge leg to Binance saves the spread times the held weight. Unstated: the spread is exactly what fspread_hold@pair
+ harvests, so the HL book's BTC hedge on BN and main@pair would partly be the same trade; and a two-account book needs per-account guards (KS1) and margin on both venues (idle cash).
+ Price tracking: HL BTC vs BN BTC daily close diff should be bp-level. a = BTC; b = long alts with a BN twin; c = verdict. Uses cached bnall pickle (to 11-21) -> no nightly-window issue.
+HFX a/b/c (is3_hfx.py, hfx_ab.json): BTC funding HL 24 vs BN 12 %/yr (2024); longs on BN would save +3.3/+8.7/+3.8/+2.2 %/yr of book; shorts belong on HL. Blocked by two-account risk (KS1). CLOSED OPEN.

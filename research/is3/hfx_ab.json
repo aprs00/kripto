@@ -1,0 +1,86 @@
+{
+ "btc": {
+  "2023": {
+   "days": 234,
+   "hl_fund_ann": 0.1354,
+   "bn_fund_ann": 0.0822,
+   "held_w_mean": 0.489,
+   "long_share": 1.0,
+   "book_saving_ann": 0.0305,
+   "ret_diff_sd_bp": 4.9
+  },
+  "2024": {
+   "days": 366,
+   "hl_fund_ann": 0.2414,
+   "bn_fund_ann": 0.1189,
+   "held_w_mean": 0.39,
+   "long_share": 1.0,
+   "book_saving_ann": 0.0496,
+   "ret_diff_sd_bp": 6.1
+  },
+  "2025": {
+   "days": 365,
+   "hl_fund_ann": 0.1063,
+   "bn_fund_ann": 0.0513,
+   "held_w_mean": 0.398,
+   "long_share": 1.0,
+   "book_saving_ann": 0.0251,
+   "ret_diff_sd_bp": 4.1
+  },
+  "2026": {
+   "days": 325,
+   "hl_fund_ann": 0.0563,
+   "bn_fund_ann": 0.0333,
+   "held_w_mean": 0.296,
+   "long_share": 0.951,
+   "book_saving_ann": 0.0073,
+   "ret_diff_sd_bp": 2.4
+  }
+ },
+ "legs": {
+  "long_alts": {
+   "2023": {
+    "hl_funding_ann": -0.0136,
+    "twin_share_of_gross": 0.838,
+    "book_saving_ann": 0.0017
+   },
+   "2024": {
+    "hl_funding_ann": -0.0687,
+    "twin_share_of_gross": 0.974,
+    "book_saving_ann": 0.0375
+   },
+   "2025": {
+    "hl_funding_ann": -0.0226,
+    "twin_share_of_gross": 0.971,
+    "book_saving_ann": 0.0128
+   },
+   "2026": {
+    "hl_funding_ann": -0.0273,
+    "twin_share_of_gross": 0.979,
+    "book_saving_ann": 0.0153
+   }
+  },
+  "short_alts": {
+   "2023": {
+    "hl_funding_ann": -0.098,
+    "twin_share_of_gross": 0.766,
+    "book_saving_ann": 0.0789
+   },
+   "2024": {
+    "hl_funding_ann": 0.1172,
+    "twin_share_of_gross": 0.84,
+    "book_saving_ann": -0.0323
+   },
+   "2025": {
+    "hl_funding_ann": -0.0239,
+    "twin_share_of_gross": 0.885,
+    "book_saving_ann": -0.0296
+   },
+   "2026": {
+    "hl_funding_ann": -0.0707,
+    "twin_share_of_gross": 0.924,
+    "book_saving_ann": -0.0239
+   }
+  }
+ }
+}
