@@ -6083,6 +6083,28 @@
    "verdict": "OPEN",
    "reason": "Live replay of flow@bn's 370 November orders: a 50 bp rest-below order fills 88 % (backtest 90 %), filled ones are the wrong-way half (-264 vs +543 bp at 24 h) as the placebo predicted; live taker slip is 1.1 bp, so the maker saving is ~4 bp/unit. Consistent with T9F/T9K; 18 days cannot measure the net. T9G (live shadow) remains the test.",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "T9C",
+   "prio": 1.4,
+   "group": "T",
+   "title": "Confirm (once, 2024-01..2026-10) of T9K's frozen rest-below policy for flow@bn: skip, k 50 bp, q 3 bp, vs taker and vs the random-fill fee-only placebo",
+   "src": "T9K (k frozen by a rule stated before the table; explore 2021-23 +6.0/+8.7/+12.6 %/yr), T9L (live fill share 88 % vs 90 %)",
+   "status": "wip",
+   "due": "2026-11-28T11:40",
+   "forms": [
+    {
+     "id": "a",
+     "what": "prereg T9C_flow_k50 (committed first), then one run on 2024-01-01..2026-10-31: PASS = real - taker >= +1 %/yr in 2024, 2025 and 2026 AND real - placebo(fee only, same fill share, 10 masks) >= 0 pooled",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "the same frozen policy on carry_trend (k 20, frozen by the same rule) as a second card; then FDR note (is3_lib fdr) and the T9G backlog update",
+     "status": "planned"
+    }
+   ],
+   "sessions": 1
   }
  ]
 }

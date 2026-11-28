@@ -361,5 +361,29 @@
    "min_days": 240
   },
   "at": "2026-11-28T03:01:45+00:00"
+ },
+ "T9C_flow_k50": {
+  "claim": "flow@bn rest-below post-only (skip mode, k 50 bp beyond the decision close, fill needs k+3 bp trade-through within 24 h on bn100 1h, filled at the k price, maker 2 bp) beats taker out of sample",
+  "rule": "PASS iff real - taker >= +1.0 %/yr in each of 2024, 2025, 2026 (to 10-31) AND real - mean of 10 random-fill fee-only placebos (same fill share) >= 0 pooled 2024-26",
+  "params": {
+   "book": "flow lookback 3 cap .05 bnall 1d",
+   "k_bp": 50,
+   "q_bp": 3,
+   "window": "2024-01-01..2026-10-31",
+   "frozen_by": "T9K c rule: smallest k within 80 pct of explore peak"
+  },
+  "at": "2026-11-28T11:38:53+00:00"
+ },
+ "T9C_carry_trend_k20": {
+  "claim": "carry_trend@bn rest-below post-only, k 20 bp, same rules",
+  "rule": "PASS iff real - taker >= +1.0 %/yr in each of 2024, 2025, 2026 AND real - fee-only placebo >= 0 pooled",
+  "params": {
+   "book": "carry_trend defaults bnall 1d",
+   "k_bp": 20,
+   "q_bp": 3,
+   "window": "2024-01-01..2026-10-31",
+   "frozen_by": "T9K c rule"
+  },
+  "at": "2026-11-28T11:38:53+00:00"
  }
 }
