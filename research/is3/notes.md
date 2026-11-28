@@ -1555,3 +1555,4 @@ Source: T9K. The backtest says 90 % of flow's daily orders would fill 50 bp belo
  18 days is one regime; fills are clustered by day (~20 per day), so the effective n is ~18: only a gross contradiction (fill share < 70 %) would count. 4h bars are coarser than 1h:
  the 24 h window = the 6 bars opening after the fill (conservative: the bar containing the fill is excluded).
 T9L a/b/c (is3_t9l.py, t9l_ab.json): live Nov orders of flow@bn: k50 fill 88 % (bt 90 %), filled -264 / unfilled +543 bp at 24 h (selection as predicted), live slip 1.1 bp. CLOSED OPEN.
+T9C a/b (prereg T9C_flow_k50 / _carry_trend_k20, t9c_confirm.json): FAIL both: vs taker +8.7 / +2.5 %/yr pooled 2024-26 but <= random fee-only fills (-0.2 / -0.95); flow 2026 -1.0. CLOSED OPEN.

@@ -199,5 +199,48 @@ def form_kp(name="flow", ks=(10, 50, 100), q=3, reps=10):
     json.dump(out, open(EV / f"t9k_placebo_{name}.json", "w"), indent=1)
 
 
+def form_conf():
+    """T9C: one run of the pre-registered T9C_flow_k50 / T9C_carry_trend_k20 on 2024-01-01..2026-10-31."""
+    from research.studies import is3_lib as L
+    pr = L.committed_prereg()
+    p = data.load_panel("bnall", "1d")
+    sl_all = bt.slippage_model(p["volume"], 1)
+    out = {}
+    for name, key in (("flow", "T9C_flow_k50"), ("carry_trend", "T9C_carry_trend_k20")):
+        assert key in pr, key
+        k, q = pr[key]["params"]["k_bp"], pr[key]["params"]["q_bp"]
+        fn, kw = BOOKS[name]
+        w = S._ffill_targets(REGISTRY[fn](p, **kw)).fillna(0.0)
+        w = w.loc[:, w.abs().sum() > 0]
+        cols, idx = w.columns, w.index
+        px = p["close"].reindex(columns=cols).to_numpy(float)
+        fnd = p["funding"].reindex(index=idx, columns=cols).to_numpy(float)
+        slip = sl_all.reindex(index=idx, columns=cols).to_numpy(float)
+        mn, mx = hl24(cols, idx); mn, mx = mn / px, mx / px
+        drift = p["close"].reindex(columns=cols).shift(-1).to_numpy(float) / px - 1
+        W = w.to_numpy(float)
+        ys = (2024, 2025, 2026)
+        g = lambda res: {**{y: float(res.loc[str(y)].loc[:"2026-10-31"]["r"].mean() * 365 * 100) for y in ys},
+                         "all": float(res.loc["2024-01-01":"2026-10-31"]["r"].mean() * 365 * 100)}
+        base = g(sim(W, px, fnd, slip, mn * 0, mn * 0, drift, "taker").set_index(idx))
+        th = (k + q) * 1e-4
+        fb = np.where(np.isfinite(mn), (mn < 1 - th).astype(float), np.nan); fs = np.where(np.isfinite(mx), (mx > 1 + th).astype(float), np.nan)
+        res = sim(W, px, fnd, slip, fb, fs, drift, "skip", maker=MAKER - k * 1e-4).set_index(idx)
+        real = g(res)
+        cw = (idx >= "2024-01-01") & (idx <= "2026-10-31")
+        share = float(np.nanmean(np.concatenate([fb[cw][np.isfinite(fb[cw])], fs[cw][np.isfinite(fs[cw])]])))
+        rng = np.random.default_rng(13)
+        pl = [g(sim(W, px, fnd, slip, m, m, drift, "skip").set_index(idx))
+              for m in [np.where(np.isfinite(mn), (rng.random(mn.shape) < share).astype(float), np.nan) for _ in range(10)]]
+        plm = {y: float(np.mean([d[y] for d in pl])) for y in base}
+        d_t = {y: round(real[y] - base[y], 2) for y in base}; d_p = {y: round(real[y] - plm[y], 2) for y in base}
+        rr = res.loc["2024-01-01":"2026-10-31"]["r"]
+        verdict = all(d_t[y] >= 1.0 for y in ys) and d_p["all"] >= 0
+        out[key] = {"taker_ann_pct": {y: round(v, 2) for y, v in base.items()}, "real_minus_taker": d_t, "real_minus_fee_placebo": d_p,
+                    "fill_share": round(share, 3), "sr_real": round(float(rr.mean() / rr.std() * np.sqrt(365)), 2), "PASS": bool(verdict)}
+        print(key, json.dumps(out[key]), flush=True)
+    json.dump(out, open(EV / "t9c_confirm.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    {"ab": form_ab, "b2": form_b2, "k": form_k, "kp": form_kp}[sys.argv[1]]()
+    {"ab": form_ab, "b2": form_b2, "k": form_k, "kp": form_kp, "conf": form_conf}[sys.argv[1]]()

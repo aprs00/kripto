@@ -11,13 +11,15 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 (AKE, same minute as the shadow, 2.9 % of equity: item 4 done). Detail: journal 2026-11-28.
 **Next priorities (2026-11-28):** 1. PRB2 forward check at 30 live days (≈ 12-28, below) → 2. X1f at ≥ 30 days (≈ 12-12) → 3. E1 + LQ1 (≈ 12-01) → 4. fill-delay ≈ 12-09 → 5. T6b ≈ 12-07 → 6. T5d (low)
 → 7. W2 ≈ 12-23 → 8. (FPD low) → 9. KS1b (low, see below) → 10. low prior: W3b, FC1(c), LV1 short leg, FF1 market-relative, NPC2, TLQ2, HFX2.
-- [ ] T9G (insilico T9F 2026-11-28, research session, prior MEDIUM: flow@bn pays ~11 %/yr taker costs in backtest) **live rest-below shadow for flow@bn's daily orders**: each target change rests
+- [ ] T9G (insilico T9F 2026-11-28, research session, prior LOW-MEDIUM after T9C: flow@bn pays ~11 %/yr taker costs in backtest) **live rest-below shadow for flow@bn's daily orders**: each target change rests
   k = 10 bp beyond the decision price for 24 h, residue to the next day (skip) or taker beyond 1x step (env); fills judged on LIVE Binance trade prints / 1-min lows with a >= 3 bp
   trade-through (kripto/ladder.py already simulates resting bids on live 1-min klines: reuse its fill code); compare its fill rate, runaway cost and net vs the taker shadow after >= 60 days.
   Backtest (findings T9F): +2 %/yr at k10/q3 but fill-model-bound, post-hoc cell: the shadow is the test, not a promotion.
   FROZEN by T9K (11-28, rule stated before the table): flow k = 50 bp, carry_trend k = 20 bp, skip mode. Report fill share (backtest 90 % / 95 %) and per-fill selection (signed move
   decision -> fill vs k; backtest: improvement given back ~1:1) next to net P&L: the backtest's robust part is the maker fee, +8-9 %/yr on flow's turnover.
   T9L (11-28, live replay of 370 Nov orders): fill share 88 % (backtest 90 %), filled = wrong-way half (-264 vs +543 bp/24 h); live taker slip 1.1 bp -> maker saving ~4 bp/unit: use it.
+  T9C (11-28, PRE-REGISTERED confirm 2024-26): FAIL both (flow k50 +8.7 %/yr vs taker but -0.2 vs random fee-only fills, 2026 -1.0; carry_trend k20 +2.5 vs taker, -0.95 vs placebo).
+  Depth adds nothing out of sample: if T9G is built, test the plain maker-fee saving (post at the touch, residue carried) and report fill share + selection; prior LOW-MEDIUM.
 - [ ] T9c (library N15, 2026-11-28, prior LOW-MEDIUM; T9 relabel angle: envelope, no fallback) **post-only toward PRB2's curve, taker only outside an envelope** on the HL main book's slow legs.
   Needs HL 1h history ≥ 18 months (T9 note) or a live resting-order engine; first a descriptive check of post-only fill rates for the slow legs' daily gaps on BN-82 1h (explore ≤ 2023) to size it. **T9D precheck 11-28 (findings): ≈ +1 %/yr on HL at fitted cost, 0 on BN → prior LOW; revisit 2027-10 (18 months HL 1h).**
 - [ ] PRB2-F (2026-11-28) **forward judge of the slow-leg main book**: at ≥ 30 live days of both shadow:blend_nested (slow_lam .33 since 11-28) and shadow:blend_nested_lam1 (old config),

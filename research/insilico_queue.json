@@ -6090,21 +6090,30 @@
    "group": "T",
    "title": "Confirm (once, 2024-01..2026-10) of T9K's frozen rest-below policy for flow@bn: skip, k 50 bp, q 3 bp, vs taker and vs the random-fill fee-only placebo",
    "src": "T9K (k frozen by a rule stated before the table; explore 2021-23 +6.0/+8.7/+12.6 %/yr), T9L (live fill share 88 % vs 90 %)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T11:40",
    "forms": [
     {
      "id": "a",
      "what": "prereg T9C_flow_k50 (committed first), then one run on 2024-01-01..2026-10-31: PASS = real - taker >= +1 %/yr in 2024, 2025 and 2026 AND real - placebo(fee only, same fill share, 10 masks) >= 0 pooled",
-     "status": "planned"
+     "status": "done",
+     "result": "PRE-REGISTERED T9C_flow_k50, one run 2024-01..2026-10: real - taker +11.3/+14.1/-1.0 %/yr (pooled +8.7; taker 22.5/11.8/6.2), real - fee-only random-fill placebo +2.9/+4.7/-9.7 (pooled -0.16), fill 90.6 %, SR .93. FAIL (2026 < +1 and placebo clause < 0). The out-of-sample gain over taker is the maker fee; the 50 bp level adds nothing pooled and cost 9.7 %/yr vs random fills in 2026 (selection).",
+     "date": "2026-11-28",
+     "evidence": "t9c_confirm"
     },
     {
      "id": "b",
      "what": "the same frozen policy on carry_trend (k 20, frozen by the same rule) as a second card; then FDR note (is3_lib fdr) and the T9G backlog update",
-     "status": "planned"
+     "status": "done",
+     "result": "PRE-REGISTERED T9C_carry_trend_k20: real - taker +2.15/+4.15/+1.08 (pooled +2.5), real - fee placebo -2.7/+0.3/-0.4 (pooled -0.95), fill 95.9 %. FAIL (placebo clause). No FDR card: both fail the pre-registered rule outright. Same reading: maker fee yes, depth no.",
+     "date": "2026-11-28",
+     "evidence": "t9c_confirm"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "Confirm 2024-26 of the frozen rest-below policies FAILS both pre-registered rules: vs taker the gain is large (flow +8.7, carry_trend +2.5 %/yr pooled) but equal to or below random fills paying the same maker fee, and flow 2026 is below taker. Resting deeper buys nothing out of sample; what is left is the plain maker-fee saving, whose size depends on whether resting orders really fill ~90 % live (T9L: 88 % this month). T9G becomes a forward test of the fee saving at a shallow level, not of a depth rule.",
+   "closed": "2026-11-28"
   }
  ]
 }
