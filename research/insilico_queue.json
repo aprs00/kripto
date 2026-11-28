@@ -7774,23 +7774,62 @@
    "group": "T",
    "title": "Build T6b's pre-registered analysis as frozen code now (signal x, dx, daily Spearman IC, NW t, sample date guards), signal-only dry run, no returns joined",
    "src": "T6P pre-registration, backlog T6b",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T17:30",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "research/studies/is3_t6b.py: x(coin,day) exactly as pre-registered (mean of hourly sum(sign x value)/sum(value), >= 3 accounts), dx frozen here in writing before any return (accounts present both days), IC vs next-day HL simple close-to-close return, NW(3) t; refuses explore before 2026-12-08 and confirm before 2027-02-06",
-     "status": "planned"
+     "status": "done",
+     "result": "research/studies/is3_t6b.py: x as pre-registered (T6P), dx frozen in the docstring + notes before any return (accounts on both days, >= 3), next-UTC-day HL simple return, daily Spearman IC, NW(3) t; date guards: explore not before 12-09, confirm not before 02-07",
+     "date": "2026-11-28",
+     "evidence": "t6b_dry"
     },
     {
      "id": "b",
      "what": "tests: toy positions -> x and dx by hand; toy returns -> IC by hand; date guards",
-     "status": "planned"
+     "status": "done",
+     "result": "tests/test_t6b.py 2 passed: x 0 and 1/3 by hand, dx 100/350 by hand, < 3 accounts dropped, IC +1/-1 on toy ranks, both guards raise early and pass after",
+     "date": "2026-11-28",
+     "evidence": "t6b_dry"
     },
     {
      "id": "c",
      "what": "dry run (signal only, no returns): coins/day, x and dx coverage 11-10..11-28; defer the explore IC run to 2026-12-08T06:00 as a queue item",
+     "status": "done",
+     "result": "dry run (signal only, no returns): 20 days 11-09..28, x 173 coins/day, dx 165 coins/day; explore call refused by the guard today (as designed); explore run queued as T6E due 2026-12-09T06:00",
+     "date": "2026-11-28",
+     "evidence": "t6b_dry"
+    }
+   ],
+   "verdict": "FEATURE",
+   "reason": "T6b frozen in code with tests and date guards; signal coverage 173 coins/day; explore runs 12-09",
+   "closed": "2026-11-28"
+  },
+  {
+   "id": "T6E",
+   "prio": 1.5,
+   "group": "T",
+   "title": "T6b EXPLORE run (pre-registered, frozen code research/studies/is3_t6b.py): x and dx IC vs next-day HL return, 2026-11-10..12-07",
+   "src": "T6P, T6S",
+   "status": "todo",
+   "due": "2026-12-09T06:00",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "PYTHONPATH=. python -m research.studies.is3_t6b explore: IC + NW t for x and dx; choose the sign on explore only; quote MDE (T6P: 28 d .096)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "placebo: x shuffled across coins within day (20 draws) through the same IC code; and the T3S HL-BN funding spread as a control (partial IC), since both may be 'HL demand'",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "write the confirm rule's sign into backlog T6b (PASS = same sign, t >= 2, |IC| >= .03 on 12-08..02-05); confirm run as a queue item due 2027-02-07; no tuning",
      "status": "planned"
     }
    ]

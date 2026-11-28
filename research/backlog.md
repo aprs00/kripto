@@ -154,7 +154,7 @@ so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 202
   intraday seasonality of HL funding settlement. Each must still pass alone on its own merits (no blend-weight search).
 - [ ] T10 **Re-run survivor-sensitive BN verdicts on bnall** (daily): carry, lowvol, xsrev still only on BN-82. bnall needs a
   monthly refresh: add `data.bn_download_all_daily()` to scripts/download.py (incremental, ~20 min first run).
-- [ ] T6b Positioning-data analysis (collector live since 2026-11-09 17:40; needs ≥ 4 weeks ≈ 2026-12-07): top-account net
+- [ ] T6b **T6S 11-28: frozen code research/studies/is3_t6b.py (x, dx defined, tests, date guards; dry run 173 coins/day); explore = queue T6E due 12-09.** Positioning-data analysis (collector live since 2026-11-09 17:40; needs ≥ 4 weeks ≈ 2026-12-07): top-account net
   positioning vs next-day returns; L2 imbalance vs next-hour returns; OI-change × price-change regimes (old T5/T6).
   Watch the `collector:` line of `paper status` at every review (a gap = data lost forever).
   **T6P 11-28 precheck + PRE-REGISTRATION (research/is3/notes.md 'T6P', research/is3/t6p_ab.json): 0 gaps; accounts rotate (14 % day-to-day overlap: use per-account

@@ -1791,3 +1791,9 @@ NPCB c: trader 17:11-17:24 exit 0. CLOSED FEATURE.
 T9W a/b/c (scripts/maker_ledger.py, tests/test_maker_ledger.py, t9w_ab.json): T9G as a frozen forward ledger (orders since 11-29, two 4h bounds), known answer = T9P exactly (-32.25 / +4.08);
  retro runs it; MDE at 60 order-days ~12 bp vs a +4 bp saving. CLOSED FEATURE.
 T9WH a/b/c (maker_ledger --venue hl, t9wh_ab.json): HL forward maker ledger, known answer = T9Q exactly (main 40/+3.89, blend_nested 91/+3.92); retro runs it. CLOSED FEATURE.
+
+## T6S T6b frozen code (17:3x UTC 11-28, before any return is joined)
+Source: T6P pre-registration (x, IC vs next UTC day HL return, NW 3, explore 11-10..12-07, confirm 12-08..02-05, PASS = same sign, t >= 2, IC >= .03). Freezing the second variant here:
+ dx(coin, d) = sum over accounts holding the coin on BOTH day d and d-1 of (sv_d - sv_{d-1}) / sum over them of (value_d + value_{d-1}) / 2, with sv = sign(szi) x positionValue averaged
+ over the day's hourly snapshots; coins with >= 3 such accounts. Code refuses an explore run before 12-08 and a confirm run before 02-06, so nobody (me) peeks early.
+T6S a/b/c (is3_t6b.py, tests/test_t6b.py, t6b_dry.json): T6b frozen in code (dx defined before any return), guards refuse early runs; 173 coins/day. CLOSED FEATURE; T6E due 12-09.
