@@ -4506,7 +4506,7 @@
    "group": "T",
    "title": "Per-leg costs and slow-leg partial rebalancing on the Binance blend (carry, carry_trend, xsmom): does PRL transfer?",
    "src": "PRL (HL: slow legs lam .33 held-out 2.10 vs 1.86), PRB c (whole-book lam .33 hurt bnall blend 2.10 -> 1.84)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
@@ -4520,15 +4520,24 @@
     {
      "id": "b",
      "what": "pre-stated: lam .33 on the leg(s) with turnover >= 2x the lowest leg's (decided from a's numbers before running b), others at lam 1; explore 2021-23 vs lam 1; PASS = net SR >= lam 1 in 2021, 2022, 2023",
-     "status": "planned"
+     "status": "done",
+     "result": "cached bnall explore: lam .33 on carry_trend only: net SR 4.09/0.01/1.98 vs lam1 4.19/-0.13/2.02 (pooled 2.09 vs 2.10); costs 6.9 -> 4.7 %/yr but pre-cost 2.37 -> 2.28: FAIL (2021, 2023). carry_trend's turnover is signal (funding/trend flips), not noise",
+     "date": "2026-11-28",
+     "evidence": "prn_b"
     },
     {
      "id": "c",
      "what": "if b passes: L.prereg, ONE run 2024-01..2026-11 (cache) vs lam 1",
-     "status": "planned"
+     "status": "skipped",
+     "result": "b failed",
+     "date": "2026-11-28",
+     "evidence": "prn_b"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "PRL does not transfer to the Binance blend: whole-book (PRB c) and fastest-leg (carry_trend) partial rebalancing save costs but lose as much pre-cost signal; the gain is specific to HL's tsmom/lowvol legs, whose turnover is target noise",
+   "closed": "2026-11-28"
   },
   {
    "id": "TSB",

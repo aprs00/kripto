@@ -1259,3 +1259,4 @@ Source: PRL, PRB c. Whole-book lam .33 hurt the BN blend (pre-cost loss > cost s
  (lb 28, every 3 d tranches) medium. Unstated: carry's target jumps when funding flips sign (a real signal change, not noise): partial rebalancing delays that exit while paying funding.
 Cached bnall only (nightly window). Leg chosen by turnover rule from a before b runs. Change my mind: b net SR >= lam 1 in 2021, 2022, 2023 -> c.
 PRN a done (prn_a.json): BN turnover ct 42-74x, carry 36-51, xsmom 18-33; rule picks carry_trend only for b (stated before b).
+PRN b FAIL (prn_b.json): ct lam .33 4.09/.01/1.98 vs 4.19/-.13/2.02; cost saving = signal loss. CLOSED OPEN: PRL is HL-specific (tsmom/lowvol turnover is noise there).
