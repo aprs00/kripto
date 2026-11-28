@@ -25,6 +25,7 @@ EV = DATA.parent / "research" / "is3"
 ANCH = (0, 4, 8, 12, 16, 20)
 MET = DATA / "bn" / "metrics_full"
 PARAMS = {"lookback": 3, "cap": 0.05}
+TRUE_HOURLY = None   # {coin: hourly tbqv Series} set by is3_fpt: replaces the metrics approximation (coins without it: NaN taker split)
 
 
 def panels():
@@ -35,7 +36,7 @@ def panels():
     for f in sorted(BN100_DIR.glob("*.parquet")):
         sym = f.stem; coin = sym.removesuffix("USDT")
         mf = MET / f"{sym}.parquet"
-        if not mf.exists():
+        if TRUE_HOURLY is None and not mf.exists():
             continue
         df = pd.read_parquet(f, columns=["t", "c", "qv"])
         t = df["t"].where(df["t"] < 1e14, df["t"] // 1000)
@@ -44,10 +45,13 @@ def panels():
         df = df[df.index >= "2021-12-01"]
         if df.empty:
             continue
-        m = pd.read_parquet(mf, columns=["t", "taker_ls"])
-        m = m[np.isfinite(m["taker_ls"]) & (m["taker_ls"] > 0)]
-        s = (m["taker_ls"] / (1 + m["taker_ls"])).groupby(pd.DatetimeIndex(m["t"]).floor("1h")).mean()
-        df["tb"] = df["qv"] * s.reindex(df.index)
+        if TRUE_HOURLY is not None:
+            df["tb"] = TRUE_HOURLY[coin].reindex(df.index) if coin in TRUE_HOURLY else np.nan
+        else:
+            m = pd.read_parquet(mf, columns=["t", "taker_ls"])
+            m = m[np.isfinite(m["taker_ls"]) & (m["taker_ls"] > 0)]
+            s = (m["taker_ls"] / (1 + m["taker_ls"])).groupby(pd.DatetimeIndex(m["t"]).floor("1h")).mean()
+            df["tb"] = df["qv"] * s.reindex(df.index)
         fp = DATA / "bn" / "funding_all" / f"{sym}.parquet"
         fr = pd.read_parquet(fp) if fp.exists() else None
         for h in ANCH:
@@ -92,7 +96,7 @@ def yearly(res, start="2022-01-01", end="2026-11-01"):
                                    for y, x in r.groupby(r.index.year)}}
 
 
-def form_a():
+def form_a(tag="e2c_a"):
     P, tt = panels()
     p0 = P[0]
     # known answer: approximate vs true daily taker split at the 00 anchor
@@ -119,7 +123,7 @@ def form_a():
             out[f"approx{h:02d}"]["corr_vs_00"] = round(float(r.corr(base)), 3)
             out[f"approx{h:02d}"]["diff_bp_yr_by_year"] = {int(y): round(float(x.mean() * 365 * 1e4), 0) for y, x in d.groupby(d.index.year)}
         print(h, out[f"approx{h:02d}"], flush=True)
-    json.dump(out, open(EV / "e2c_a.json", "w"), indent=1)
+    json.dump(out, open(EV / f"{tag}.json", "w"), indent=1)
 
 
 def form_b():
@@ -165,7 +169,7 @@ def form_b():
     json.dump(out, open(EV / "e2c_b.json", "w"), indent=1)
 
 
-def form_c():
+def form_c(tag="e2c_c"):
     """Phase-diversified flow@bn: the equal-weight average of the 6 anchor books (each its own daily book on its own anchor, 1/6 of equity),
     returns aligned by the UTC date of each bar's end. Not tuned (no anchor chosen). vs the 00 book and vs each single anchor, per year, 2x-cost stress on all."""
     P, _ = panels()
@@ -186,7 +190,7 @@ def form_c():
                     "single": {h: {"sr": sr(df[h]), "years": {int(y): sr(x) for y, x in df[h].groupby(df.index.year)}} for h in ANCH},
                     "mean_pair_corr": round(float(df.corr().where(~np.eye(len(ANCH), dtype=bool)).stack().mean()), 3)}
         print(key, json.dumps(out[key]["avg6"]), {h: v["sr"] for h, v in out[key]["single"].items()}, out[key]["mean_pair_corr"], flush=True)
-    json.dump(out, open(EV / "e2c_c.json", "w"), indent=1)
+    json.dump(out, open(EV / f"{tag}.json", "w"), indent=1)
 
 
 if __name__ == "__main__":

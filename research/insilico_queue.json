@@ -5847,7 +5847,7 @@
    "title": "FPD precheck on the TRUE hourly taker split: flow@bn's 6 anchors and the 6-anchor average (bn100 coins ever in the top 40, 2021-12..2026-10)",
    "src": "E2C c (approx split: avg6 SR 1.16 vs 00 .63), backlog FPD",
    "status": "todo",
-   "due": "2026-11-28T11:00",
+   "due": "2026-11-28T12:45",
    "forms": [
     {
      "id": "a",
@@ -5864,7 +5864,9 @@
      "what": "verdict for FPD: avg6 >= 00 + .2 SR in >= 3 of 5 years AND above the mean single anchor -> FPD GO (one WF config pre-registered in backlog for a research session); else NO-GO with the reason (phase noise was an artefact of the approximation / no diversification)",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1,
+   "defer_why": "unit is3-fpt downloading true 1h taker split (2 chunks, ~70 min); then check + b"
   },
   {
    "id": "PDX",

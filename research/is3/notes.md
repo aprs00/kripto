@@ -1498,3 +1498,10 @@ E2C a (is3_e2c.py, e2c_a.json): approximate hourly taker split from metrics_full
  and >= 00 in 5/5 years; phase spread .47 SR. Anchor move costs nothing. b: the break execution itself (buys at the break hour, sells deferred) on flow's trades at the 16/20 anchors, with placebo hours.
 E2C b (e2c_b.json): break sell deferral +2.8/+2.2 bp/unit (t ~1), 2024-only, rank 19-20 of 23 placebo hours; delay to the break free. DEAD at its size (~.2 %/yr).
 E2C c (e2c_c.json): 6-anchor average flow@bn SR 1.16 vs 00 .63 (pair corr .55; sqrt(6/3.75) x .90 = 1.14 predicted): phase diversification, not a fit. CLOSED OPEN -> backlog FPD.
+
+## FPT flow@bn anchors on the TRUE hourly taker split (think-through 11:1x UTC 11-28, before any run)
+Source: E2C (approx split from 5-min taker ratios: anchors .63-1.10, avg6 1.16). The approximation weights 5-min ratios equally inside an hour; a burst minute carries most of an hour's
+ volume, so the approx imbalance is noisier, and noise differs by hour of day (US hours bursty): the phase spread itself could be partly approximation noise. If the true split shrinks the
+ anchor spread and the pair corr rises (> .8), the avg6 lift shrinks with it (sqrt(6/(1+5 rho))). Unstated: E2B's blend anchors spread .3 SR on true data: some phase noise is real.
+ Data: same public archive files as bn100, column 10 kept, only coins ever in the point-in-time top 40 (flow uses top 30). Known answer: 24 hourly tbqv sum == daily tbqv.
+Change my mind: as queued (c). 
