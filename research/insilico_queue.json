@@ -6758,6 +6758,33 @@
    "verdict": "OPEN",
    "reason": "pair shadow tracks its replay (corr .82, funding within 7 %); tool now covers every book type except overlay sleeves; main@pair too young",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "T6P",
+   "prio": 3.7,
+   "group": "T",
+   "title": "T6b precheck: HL top-account positioning data integrity, signal sizing (MDE at 12-07) and the explore/confirm split fixed BEFORE looking at returns",
+   "src": "backlog T6b (collector since 11-09), owner 2026-11-09 (data only we collect)",
+   "status": "wip",
+   "due": "2026-11-28T13:35",
+   "sessions": 1,
+   "forms": [
+    {
+     "id": "a",
+     "what": "integrity: snapshots per day, gaps > 2 h, accounts per snapshot, coins covered, account turnover (same users over time?); a gap list for the review",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "sizing without returns: per coin-day net top-account positioning (sum of signed ntl / total), its cross-sectional dispersion and day-to-day autocorrelation; MDE of a daily rank IC with the coin-days available at 12-07 (effective n = days x eff. coins) at 80 % power",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "write the T6b pre-registration now (signal definition, IC horizon 1 d, explore = 11-09..11-23, confirm = 11-24..12-07 untouched, pass = same sign and t >= 2 on confirm) into research/is3/notes.md + backlog T6b",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
