@@ -1349,3 +1349,8 @@ Source: HLE/HLX. Event means can mislead at book level: the book equal-weights t
  F0 'apply' semantics (blocked shorts -> 0), weights renormalise? No: listing_short equal-weights by n eligible; implemented by removing the coins from eligibility before weighting (closer to
  what the rule would be live). bnall = held-out venue for the rule (book level).
 HLB a/b/c done (is3_hlb.py, hlb_abc.json): skip rule at book level: HL listing_short 1.21 vs 1.37 pooled, blend worse 3/4, bnall no effect (10 coins). Event contrast != book gain. HLE2 downgraded. CLOSED OPEN.
+
+## HFR HL main book funding drag vs regime (think-through 03:2x UTC 11-28, before any run)
+Source: HLF, FRG. The book is net long-ish in funding terms (BTC hedges, trend longs) and pays when HL longs are crowded (bull months). If the drag persists month to month and follows the
+ market's funding level, the forward expectation should be quoted per regime. Monthly = ~44 points: descriptive. Change my mind: AR(1) > .4 and rank corr > .4 -> regime note in STATUS.
+HFR a/b/c done (is3_hfr.py, hfr_abc.json): drag -0.95 %/month, AR(1) .19; rank corr(state, next drag) +.47: low funding -> more drag (book net short alts). Now 23rd pct -> ~-1.4 %/month. CLOSED OPEN.

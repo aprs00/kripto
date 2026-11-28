@@ -823,6 +823,7 @@ Measure: HLE/HLX daily-rebalanced shorts carry ~19 % vol drag over 60 d; buy-hol
 ### HLF HL main book funding drag by leg (2026-11-28 insilico, research/studies/is3_hlf*.py) → OPEN (market-wide, no cheaper hedge)
 Funding %/yr 2023–26: BTC hedge longs −4.2/−8.9/−4.6/−1.6, listing alt shorts −4.1/+6.4/−3.1/−4.9, tsmom alt longs −2.1/−4.9/−1.5/−1.7 (hlf_a.json). ETH as the listing hedge: funding
 −5.8/−6.9 vs −4.0/−7.3, SR .25/.79 vs .58/1.07 (2023/24): no saving. Only a cross-venue hedge leg (main@pair's structure) avoids it.
+HFR (is3_hfr.py): monthly drag −0.95 % (AR(1) .19); rank corr with the prior month's market funding +.47 (n 41): low-funding months cost more (−1.37 vs −0.42 %/month); 11-28 state 23rd pct.
 
 ### HBM young-coin beta in the Binance main books (2026-11-28 insilico, research/studies/is3_hbm.py) → OPEN (no exposure)
 flow/carry/carry_trend/xsmom hold ≤ 0.2 % of gross in coins without a 20-d beta (cached bnall 2020–26): the beta-1 fill matters only in listing_short (HBL2).
