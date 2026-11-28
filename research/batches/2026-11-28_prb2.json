@@ -1,0 +1,4 @@
+{
+ "_note": "PRB2 2026-11-28, pre-registered before the run: ONE config. blend_nested (H4 selection unchanged, top 3) with the slow legs (tsmom, lowvol) trading slow_lam 0.33 of the gap to target each day (strategies.partial_path); every other leg in full. lam fixed by the insilico PRL/PRD plateau (.15-.75), not tuned here. HL 1d only: PRX showed no replication on bnall (a venue-cost effect, HTN), so a bnall run would be a known failure, not information. Caveat stated before the run: HL 2025-26 was looked at twice in PRB b / PRL c, so this WF's OOS is not unseen; the judge is forward days of a shadow book vs shadow:blend_nested. Compare with the 11-10 blend_nested hl WF (1.87) re-run on today's data via show_result.",
+ "blend_nested": {"top": [3], "slow_lam": [0.33]}
+}
