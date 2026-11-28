@@ -20,6 +20,7 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
   in full**: PRL pre-registered held-out HL 2025-26 net SR 2.10 vs 1.86 (whole-book lam .33 1.94), costs 7.0 -> 4.0 %/yr; band .01 >= full 3/4 years (2023 tie), 2x cost better every year;
   $200 (band .05) worse 3/4 -> $1,000 only. tsmom = over half the book's cost (turnover 35-64x). research/is3/prb_*.json, prl_*.json. Do: paper engine per-leg option `partial_lam` (live
   blend: leg target' = leg held + lam*(leg target - leg held), needs per-leg held state in paper.db), shadow variant at $1,000, judged on forward days vs shadow:blend_nested.
+  Min order: 56 % of lam .33 trades are < $10 at $1,000: keep the leg target and trade when the cumulative gap clears $10 (TSB: a per-coin band .02 is the fallback form).
 - [ ] HBL2 (insilico HBL 2026-11-28, research session, risk fix) **listing_short: coins without a 20-d beta hedged at 1.35, not 1.0**: pooled young-coin beta 1.37/1.46 (HL 2023-24, age 2-7/8-20 d),
   1.34/1.26 (bnall 2021-23), down-beta 1.5-1.6; pre-registered HL 2025-26: corr BTC closer to 0 (listing_short -.04 -> +.01) for -.06 SR (research/is3/hbl_*.json). Decide as a risk choice
   (design.md: beta-neutral claim), code in strategies.beta_to fill / hedge_beta, pytest + trader run.

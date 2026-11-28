@@ -1260,3 +1260,9 @@ Source: PRL, PRB c. Whole-book lam .33 hurt the BN blend (pre-cost loss > cost s
 Cached bnall only (nightly window). Leg chosen by turnover rule from a before b runs. Change my mind: b net SR >= lam 1 in 2021, 2022, 2023 -> c.
 PRN a done (prn_a.json): BN turnover ct 42-74x, carry 36-51, xsmom 18-33; rule picks carry_trend only for b (stated before b).
 PRN b FAIL (prn_b.json): ct lam .33 4.09/.01/1.98 vs 4.19/-.13/2.02; cost saving = signal loss. CLOSED OPEN: PRL is HL-specific (tsmom/lowvol turnover is noise there).
+
+## TSB per-leg no-trade band vs partial rebalancing (think-through 01:1x UTC 11-28, before any run)
+Source: PRL. A band (trade the full gap only when it exceeds 0.02 per coin) is the textbook alternative to lam: it ignores small noise entirely but jumps fully on big changes. Engine-wise both
+ need the slow legs' held weights per coin. Unstated: a 0.02 band at leg level (the legs are ~1/3 of the book) is ~6 % of a leg's typical coin weight; it may freeze small coins' weights for
+ weeks (staleness). Not tuning: one pre-stated band; if it loses to lam, lam is the form to build.
+TSB a FAIL (tsb_a.json): band .02 1.00/.92 vs slow33 .95/1.01; sub-$10 trades 11 % vs 56 %. c: build lam, band = fallback. CLOSED OPEN.

@@ -4545,25 +4545,38 @@
    "group": "T",
    "title": "HL main book: a wider no-trade band on the tsmom/lowvol legs instead of partial rebalancing (simpler engine change; same mechanism?)",
    "src": "PRL (slow-leg lam .33), backtest band .005 book-wide",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
      "id": "a",
      "what": "pre-stated: slow legs' contribution traded only when |leg target - leg held| > 0.02 per coin (listing in full, book band .005 after), HL explore 2023-24 vs lam 1 and vs PRL slow33; PASS = net SR >= slow33 in both years (else the lam form is the one to build)",
-     "status": "planned"
+     "status": "done",
+     "result": "HL explore 2023/2024 net SR: slow-leg band .02 1.00/.92 vs slow33 .95/1.01 vs lam1 .87/.75; costs 11.4/6.5 vs 8.6/5.5 %; pre-cost 1.28 vs 1.25: FAIL (2024 < slow33). Trades < $10 at $1,000: band 11 %, slow33 56 %, lam1 43 %",
+     "date": "2026-11-28",
+     "evidence": "tsb_a"
     },
     {
      "id": "b",
      "what": "if a passes: L.prereg, ONE run HL 2025-26 vs slow33 and lam 1",
-     "status": "planned"
+     "status": "skipped",
+     "result": "a failed",
+     "date": "2026-11-28",
+     "evidence": "tsb_a"
     },
     {
      "id": "c",
      "what": "engine verdict for PRB2: lam vs band (state each needs in paper.db; min-order interplay at $1,000: share of slow-leg trades < $10)",
-     "status": "planned"
+     "status": "done",
+     "result": "engine verdict PRB2: build the lam form (beats band in pooled explore .975 vs .949 and passed held-out); it survived the $1,000 min-order proxy (band .01, prl_s) although 56 % of its trades are < $10: live must aggregate skipped sub-minimum trades (keep the leg target, trade when the cumulative gap clears $10), else it degrades toward the band form, which is a sound fallback",
+     "date": "2026-11-28",
+     "evidence": "tsb_a"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "a per-leg band .02 saves less cost than lam .33 and loses 2024; same mechanism, weaker form; it trades far fewer sub-$10 orders, so it is PRB2's fallback if live min-order skips hurt the lam form",
+   "closed": "2026-11-28"
   }
  ]
 }
