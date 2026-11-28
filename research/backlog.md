@@ -103,7 +103,7 @@ so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 202
 - [ ] A1 (11-15: xsrev audited, DEAD holds (4 forms, diagnosed); lowvol → OPEN, see LV1. Next: funding_contra, tsmom long-only) **Dead-list audit** (design.md §4 2026-11-12): Sunday retro, two DEAD entries a week, oldest first: xsrev, lowvol,
   funding_contra, tsmom long-only, carry (HL), carry_trend, resrev, T9 maker execution, L1 hourly lead-lag, minute-bar event study.
   Relabel to OPEN (one form failed) where fewer than three formulations were tested or no reason is diagnosed; list untried forms here.
-- [ ] E1 **lshock (liquidation fade) follow-ups** (findings: OPEN, tail-event). 2026-11-15: use z=8, not 6 (73 unseen coins: +91 bp, every year
+- [ ] E1 **E1H 11-28: (a)'s evidence now accrues without an engine: frozen z=8/z=6 replayed weekly on HL's own 1-min bars (research/studies/is3_e1h.py, retro step; 16 d: 2 trades, +178 bp mean). Build the live engine only if HL/BN events show the fills question matters.** lshock (liquidation fade) follow-ups (findings: OPEN, tail-event). 2026-11-15: use z=8, not 6 (73 unseen coins: +91 bp, every year
   positive; the open-interest split and coarser bars are dead ends; (b) is done and failed the day-level bar). In this order:
   (a) LIVE evidence: a 1-minute event shadow book (Binance 30 coins; later HL from kripto/flow.py minute bars) run by the always-on
   watcher, frozen config z=6, m=5, e=1.0, long, $500 per trade, ≤ 2 open. Fills and venue behaviour on cascade days are the open question

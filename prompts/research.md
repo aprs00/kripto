@@ -101,6 +101,8 @@ WEEKLY RETROSPECTIVE (Sundays): step back from individual experiments.
   if BOTH bounds agree in sign; history (T9P, 11-10..27): conservative -32, optimistic +4 bp/unit: the bounds disagree, so expect 'undecided' unless minute data settles it.
   HL books (T9WH): `.venv/bin/python -m scripts.maker_ledger --venue hl` (main + shadow:blend_nested on HL 1-min paths, T9Q k0/q5) -> research/maker_forward_hl.json;
   history +3.9 bp/unit with ~100 % fills; judge at >= 60 order-days that include a high-vol week (the risk is the rare unfilled runaway, not the mean).
+* Liquidation fade on HL (E1H 2026-11-28): `PYTHONPATH=. nice -n 19 .venv/bin/python -m research.studies.is3_e1h` (frozen lshock z=8 / z=6 on HL 1-min since 11-12, unseen venue).
+  Quote trades, net bp/trade, day-clustered t, top-3-day share; verdict only at >= 60 z=8 trades AND >= 1 cascade day; no parameter change ever (it is the frozen 11-15 rule).
 * Live vs backtest (T0a, LVB 2026-11-28): `nice -n 19 .venv/bin/python -m scripts.live_vs_backtest --since <last alloc/main_scale change>` (shadows)
   and the same with `--main` (main, main_bn + small twins). corr < .7 or live below replay by > 3 % = a fault to chase that day; a small: twin that holds
   far less gross than its sibling is the min-order limit, say so next to its return in STATUS.md.

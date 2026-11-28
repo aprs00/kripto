@@ -1797,3 +1797,10 @@ Source: T6P pre-registration (x, IC vs next UTC day HL return, NW 3, explore 11-
  dx(coin, d) = sum over accounts holding the coin on BOTH day d and d-1 of (sv_d - sv_{d-1}) / sum over them of (value_d + value_{d-1}) / 2, with sv = sign(szi) x positionValue averaged
  over the day's hourly snapshots; coins with >= 3 such accounts. Code refuses an explore run before 12-08 and a confirm run before 02-06, so nobody (me) peeks early.
 T6S a/b/c (is3_t6b.py, tests/test_t6b.py, t6b_dry.json): T6b frozen in code (dx defined before any return), guards refuse early runs; 173 coins/day. CLOSED FEATURE; T6E due 12-09.
+
+## E1H lshock on HL 1-min (think-through 17:3x UTC 11-28, before any run)
+Source: findings lshock (OPEN, tail-event: 3 crash days = 72 % of P&L; z=8 pre-registered 11-15 on 52 unseen BN coins, +91 bp/trade, every year positive). HL is retail-heavy with its own
+ liquidation engine (HLP vault takes over liquidations, no auto-deleveraging bursts the same way), so the spring-back may differ: a liquidation on HL is absorbed by the vault, which
+ itself unwinds = a slower, smaller bounce. Unstated: the bounce is paid by the forced seller; on HL the vault's inventory risk is the counterparty. 16 days with probably no cascade
+ day: expect very few z=8 trades; the value is that it accrues. No tuning: frozen configs only, verdict at >= 60 trades.
+E1H a/b/c (is3_e1h.py, e1h_ab.json): lshock frozen on HL 1-min (101 coins, 16 d): z=8 2 trades (PAXG -21, LIT +378 bp), z=6 3; hand check exact. Weekly in the retro. CLOSED OPEN.

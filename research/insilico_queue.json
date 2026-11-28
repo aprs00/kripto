@@ -1312,7 +1312,7 @@
     },
     {
      "id": "e",
-     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is \u22123..\u221221% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
+     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
      "status": "done",
      "added": "2026-11-22",
      "result": "his literal picture (every live adaptive bucket -3..-21% of its volume, day <= -7%), long 3 d: n 55, +105 bp vs matched +256 (diff -151, p .50, MDE 494), 2022 -470; 2-way table fall x selling: U-shape (no selling +989 and extreme selling <= -20% +711 on 16-18 events at <= -8%; his -3..-21% range -30..+278), no monotone dose in either direction. DEAD form",
@@ -1526,7 +1526,7 @@
    "prio": 23,
    "group": "C",
    "title": "Filter harness: does a signal improve a book that already works?",
-   "src": "design.md \u00a74 (filters)",
+   "src": "design.md §4 (filters)",
    "status": "closed",
    "forms": [
     {
@@ -3514,9 +3514,9 @@
     },
     {
      "id": "b",
-     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md \u00a74 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
+     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md §4 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
      "status": "done",
-     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design \u00a74 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
+     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design §4 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
      "date": "2026-11-27",
      "evidence": "ksw_ab"
     },
@@ -3789,16 +3789,16 @@
     },
     {
      "id": "c",
-     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the \u00a74 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
+     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the §4 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
      "status": "done",
-     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design \u00a74 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
+     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design §4 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
      "date": "2026-11-27",
      "evidence": "fld_ab"
     }
    ],
    "sessions": 1,
    "verdict": "OPEN",
-   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the \u00a74 live check; not DEAD (one formulation, IC MDE not met in single years)",
+   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the §4 live check; not DEAD (one formulation, IC MDE not met in single years)",
    "closed": "2026-11-27"
   },
   {
@@ -3902,9 +3902,9 @@
     },
     {
      "id": "c",
-     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the \u00a74 live-check flag",
+     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the §4 live-check flag",
      "status": "done",
-     "result": "verdict: no liquid-only variant; flow@bn keeps the FLD flag (signal ~0 since 2022, recent return = funding) for the design \u00a74 live check",
+     "result": "verdict: no liquid-only variant; flow@bn keeps the FLD flag (signal ~0 since 2022, recent return = funding) for the design §4 live check",
      "date": "2026-11-27",
      "evidence": "flq_a"
     }
@@ -7656,7 +7656,7 @@
    "prio": 2.8,
    "group": "T",
    "title": "Dead-list audit (A1) of the last two entries: T9 maker execution and the 11-10 minute-bar ideas: forms tested, diagnosis, untried forms",
-   "src": "backlog A1, design.md \u00a74 (2026-11-12 dead-list audit rule)",
+   "src": "backlog A1, design.md §4 (2026-11-12 dead-list audit rule)",
    "status": "closed",
    "due": "2026-11-28T17:25",
    "sessions": 1,
@@ -7840,26 +7840,38 @@
    "group": "T",
    "title": "Liquidation fade (lshock, frozen z=8 / z=6 reference) replayed on HL's own 1-min bars since 2026-11-12: unseen venue + forward data that accrues (E1(a) without an engine)",
    "src": "backlog E1, 2026-11-15 pass-2 prereg (z=8, m=5, e=1, long, taker, hold 60, 50 %, <= 2 open)",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T17:33",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "HL 1-min panel from data/hl/flow (close ffilled, high/low = close on empty minutes, volume = buy+sell notional), 70 coins; known answer: events.lshock on it reproduces a hand-checked trigger printed bar by bar",
-     "status": "planned"
+     "status": "done",
+     "result": "HL 1-min panel from data/hl/flow: 101 coins, 11-12 06:51..11-27 23:59 (close ffilled, h/l = close on empty minutes, vol = buy+sell notional); hand check PAXG 11-14 15:40 climax -19.2 sigma at 158x volume, 15:41 reversal up on lower volume retaking 19.1 of the 16.7 body, entry 3829.1: exact",
+     "date": "2026-11-28",
+     "evidence": "e1h_ab"
     },
     {
      "id": "b",
      "what": "frozen configs on all HL days: trades, net bp/trade (BN fees = slightly conservative for HL), day-clustered t, top-3-day share, cascade days (>= 5 coins triggering within 30 min) vs single triggers; MDE",
-     "status": "planned"
+     "status": "done",
+     "result": "frozen z=8: 2 trades in 16 d (PAXG -20.6, LIT +377.6 bp net), mean +178.5, cost 24 bp/trade; z=6 reference 3 trades (+ FIL -1.2). No cascade day in the window; far too few for any verdict (needs >= 60 trades)",
+     "date": "2026-11-28",
+     "evidence": "e1h_ab"
     },
     {
      "id": "c",
      "what": "research/studies/is3_e1h.py as a weekly forward re-run + retro line; verdict only at >= 60 trades (history: ~130 trades/yr on 30 BN coins)",
-     "status": "planned"
+     "status": "done",
+     "result": "retro step in prompts/research.md (weekly re-run, verdict at >= 60 z=8 trades and >= 1 cascade day, no parameter change); backlog E1 updated",
+     "date": "2026-11-28",
+     "evidence": "e1h_ab"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "frozen lshock on HL 1-min: 2 trades in 16 d (+178 bp mean), no cascade day; evidence accrues weekly, verdict at >= 60 trades",
+   "closed": "2026-11-28"
   }
  ]
 }

@@ -229,3 +229,5 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
   its way for the next hour, so waiting costs about 0.04 % per trade on average; the lag only shows when waiting would be free, never when it would pay. Trading promptly is what matters.
 * T9W whether resting orders would beat market orders for the Binance flow book is now tracked automatically on its real orders from tomorrow on, with the rules fixed today. It will take
   months to say anything, and only if the cautious and the generous way of counting agree.
+* E1H the "buy the bounce after a forced-selling minute" rule, frozen in November, now also runs on Hyperliquid's own minute data, which it has never seen. Two trades in its first 16 days;
+  it is re-run every week and judged only after 60 trades.

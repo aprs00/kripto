@@ -1,0 +1,55 @@
+{
+ "coins": 101,
+ "minutes": 22629,
+ "window": [
+  "2026-11-12 06:51:00+00:00",
+  "2026-11-27 23:59:00+00:00"
+ ],
+ "z8": {
+  "trades": 2,
+  "net_bp_per_trade_mean": 178.5,
+  "median": 178.5,
+  "gross_bp_mean": 202.4,
+  "cost_bp_mean": 24.0,
+  "days_with_trades": 2,
+  "win_share": 0.5,
+  "trade_list": [
+   {
+    "coin": "PAXG",
+    "time": "2026-11-14 15:41:00+00:00",
+    "net_bp": -20.6
+   },
+   {
+    "coin": "LIT",
+    "time": "2026-11-16 10:34:00+00:00",
+    "net_bp": 377.6
+   }
+  ]
+ },
+ "z6": {
+  "trades": 3,
+  "net_bp_per_trade_mean": 118.6,
+  "median": -1.2,
+  "gross_bp_mean": 145.2,
+  "cost_bp_mean": 26.6,
+  "days_with_trades": 2,
+  "win_share": 0.33,
+  "trade_list": [
+   {
+    "coin": "PAXG",
+    "time": "2026-11-14 15:41:00+00:00",
+    "net_bp": -20.6
+   },
+   {
+    "coin": "LIT",
+    "time": "2026-11-16 10:34:00+00:00",
+    "net_bp": 377.6
+   },
+   {
+    "coin": "FIL",
+    "time": "2026-11-16 20:39:00+00:00",
+    "net_bp": -1.2
+   }
+  ]
+ }
+}
