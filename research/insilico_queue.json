@@ -5821,7 +5821,10 @@
     {
      "id": "b",
      "what": "the execution saving itself on the same days: buys at the CME-break hour vs 00:00, sells deferred >= 1 h; bp per trade per year (is it still > 1 bp in 2026?)",
-     "status": "planned"
+     "status": "done",
+     "result": "flow@bn own trades (raw dw, 175x/yr), 2022-26.10: sells deferred 17->18 NY +2.76 bp/unit sold (anchor 16, t 1.13) / +2.15 (anchor 20, t .88); by year -8/+2/+14/-2/+1: all 2024; placebo (same 1-h sell deferral at the 23 other NY hours) mean -0.2 / +0.2, break ranks 20/23 and 19/23. Delay T->break costs nothing (+0.7/+1.3 bp gain). Book value ~88 units sold x 2.5 bp = ~0.2 %/yr (~$1/yr for main_bn's .5 flow at $1,000). DEAD at its size: one-year effect, below t 2, 2026 ~0.",
+     "date": "2026-11-28",
+     "evidence": "e2c_b"
     },
     {
      "id": "c",

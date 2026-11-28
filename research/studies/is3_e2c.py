@@ -122,5 +122,48 @@ def form_a():
     json.dump(out, open(EV / "e2c_a.json", "w"), indent=1)
 
 
+def form_b():
+    """Break execution on flow@bn's own daily target changes (raw, no band), decided at anchor H close T = label + 24 h.
+    (1) sell deferral: gain = -dw_sell * r(B -> B+1h), B = 17:00 New York on T's NY date; placebo = the same 1-h sell deferral starting at every other NY hour.
+    (2) delay: moving ALL trades from T to B costs -dw * r(T -> B) (per unit turnover). Per year, bp per unit."""
+    from research.studies.is3_e2b import hourly
+    P, _ = panels()
+    out = {}
+    hp = None
+    for h in (16, 20):
+        w = REGISTRY["flow"](P[h], **PARAMS).fillna(0.0)
+        dw = w.diff().loc["2022-01-01":"2026-10-31"]
+        dw = dw.loc[:, dw.abs().sum() > 0]
+        if hp is None:
+            hp = hourly(list(P[0]["close"].columns))
+        T = dw.index + pd.Timedelta(hours=24)
+        ny = T.tz_convert("America/New_York").normalize()
+        res = {}
+        for H in range(24):
+            B = (ny + pd.Timedelta(hours=H)).tz_convert("UTC")
+            B = B.where(B >= T, B + pd.Timedelta(days=1))          # the first NY hour H at or after the decision
+            g = pd.Series(0.0, dw.index); sold = pd.Series(0.0, dw.index); dl = pd.Series(0.0, dw.index); turn = pd.Series(0.0, dw.index)
+            for coin in dw.columns:
+                if coin not in hp:
+                    continue
+                sr_ = hp[coin]
+                pT, pB, pB1 = (sr_.reindex(x).to_numpy() for x in (T, B, B + pd.Timedelta(hours=1)))
+                d = dw[coin].to_numpy()
+                r1, rd = pB1 / pB - 1, pB / pT - 1
+                ok1, okd = np.isfinite(r1), np.isfinite(rd)
+                sm = ok1 & (d < 0)
+                g += np.where(sm, -d * np.nan_to_num(r1), 0.0); sold += np.where(sm, -d, 0.0)
+                dl += np.where(okd, -d * np.nan_to_num(rd), 0.0); turn += np.where(okd, np.abs(d), 0.0)
+            yr = lambda a, b: {int(y): round(float(a[a.index.year == y].sum() / b[b.index.year == y].sum() * 1e4), 2) for y in range(2022, 2027)}
+            res[H] = {"sell_defer_bp": round(float(g.sum() / sold.sum() * 1e4), 2), "sell_defer_by_year": yr(g, sold),
+                      "t": round(float(g.mean() / g.std() * np.sqrt(len(g))), 2), "delay_bp": round(float(dl.sum() / turn.sum() * 1e4), 2), "delay_by_year": yr(dl, turn),
+                      "turn_yr": round(float(turn.sum() / (len(turn) / 365)), 1)}
+        pl = np.array([res[H]["sell_defer_bp"] for H in range(24) if H != 17])
+        out[h] = {"break17": res[17], "placebo_mean": round(float(pl.mean()), 2), "placebo_rank_of_17": int((pl < res[17]["sell_defer_bp"]).sum()), "of": len(pl),
+                  "all_hours": {H: [res[H]["sell_defer_bp"], res[H]["delay_bp"]] for H in range(24)}}
+        print(h, json.dumps({k: v for k, v in out[h].items() if k != "all_hours"}), flush=True)
+    json.dump(out, open(EV / "e2c_b.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    {"a": form_a}[sys.argv[1]]()
+    {"a": form_a, "b": form_b}[sys.argv[1]]()
