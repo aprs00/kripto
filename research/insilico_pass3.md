@@ -211,3 +211,6 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
   years. But it is mostly the same saving as the slower trading (both stop churning thin names), the years were already looked at, and it failed on Binance. Worth one walk-forward, no more.
 * SMV does rounding make the $200 twins riskier than their big siblings over long stretches: no. Over 3.7 years the twins' 60-day volatility is within 20 % of the sibling's on 9 days in 10
   on both venues, and their total exposure passed 1.25 times the sibling's on one day only. The occasional riskier stretches come from holding few, minimum-sized positions, which a cap would not fix. No change.
+* PRBF can the live comparison of the slower Hyperliquid main book against the old one tell them apart: only slowly. The two books move almost together; the slower one should earn about
+  5 % a year more, which live days cannot prove even in 6 months. What they can show is the cost saving, but only after about 90 days: at 30 days it fails by chance one time in four. The rule for
+  that comparison is rewritten accordingly (before any live day): an early check only for disasters, the verdict at 90 days.

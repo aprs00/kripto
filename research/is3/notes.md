@@ -1717,3 +1717,13 @@ Source: SMXR (today small:main_bn gross x1.36 its sibling), SMD b (full-sample v
  Change my mind: p90 of the 60-d rolling vol ratio > 1.25 on either venue -> a general gross cap; else no change.
 SMV a/b/c (is3_smv.py, smv_ab.json): rounded-$200 vs $1,000 gross p90 .95 HL / 1.01 BN (>1.25 on 1 day each); 60-d vol ratio p90 1.20/1.19 (bar 1.25), yearly peaks HL 2024 1.53, BN 2025 1.31.
  The tail is concentration (few minimum-sized names), not gross: no cap. CLOSED DEAD (no fault).
+
+## PRBF power of the PRB2-F forward judge (think-through 16:5x UTC 11-28, before any run)
+Source: PRB2 WF (slow .33 OOS 1.82 vs 1.45; costs 8.6 -> 5.5 %/yr full period), backlog PRB2-F (KEEP if slow fees+slippage/day <= 75 % of lam1's AND t(slow - lam1 daily P&L) > -1 at >= 30 d).
+ The two shadows hold the same names most days, so the difference series is far less noisy than either book; but the slow legs lag, so the difference is autocorrelated (t needs HAC).
+ Expect: mean gain ~ (1.62-1.33) x 25 % vol ~ 7 %/yr = ~2 bp/day against a diff sd of maybe 30-60 bp/day -> MDE at 90 d ~ 6-12 bp/day: the P&L clause cannot confirm, only catch a disaster.
+ The cost clause is the one with power: costs are deterministic given turnover, but turnover itself swings with regime (trend reversals make both trade), so the 30-d ratio has a spread.
+ Unstated: live slippage is the thin-book spread, not the model's; the ratio is self-normalising (same names, same spreads), so model error mostly cancels. Change my mind: if >= 20 %
+ of 30-d windows fail the 75 % cost clause in backtest, the clause is a coin flip and needs a longer window (restated, no gate change).
+PRBF a/b/c (is3_prbf.py, prbf_ab.json): slow vs lam1 corr .976, diff sd 31.9 bp/d, mean +1.39 bp/d (+5.1 %/yr, HAC t 1.57, + in all 4 years); MDE 7.1 bp at 90 d = 5x the gain.
+ Cost ratio .655, fails <= .75 by chance 23/18/13 % at 30/60/90 d. Backlog PRB2-F restated: 30 d disaster check, verdict at 90 d. CLOSED OPEN.
