@@ -1,0 +1,136 @@
+{
+ "hl": {
+  "gross_ratio": {
+   "p10": 0.469,
+   "p50": 0.72,
+   "p90": 0.951,
+   "p99": 1.085,
+   "max": 1.306,
+   "share_gt_1.25": 0.001
+  },
+  "vol60_ratio": {
+   "p10": 0.77,
+   "p50": 0.983,
+   "p90": 1.2,
+   "p99": 1.554,
+   "max": 1.614,
+   "share_gt_1.25": 0.067
+  },
+  "by_year": {
+   "2023": {
+    "gross_p90": 1.046,
+    "gross_share_gt_1.25": 0.004,
+    "vol60_p90": 1.096
+   },
+   "2024": {
+    "gross_p90": 0.918,
+    "gross_share_gt_1.25": 0.0,
+    "vol60_p90": 1.526
+   },
+   "2025": {
+    "gross_p90": 0.843,
+    "gross_share_gt_1.25": 0.0,
+    "vol60_p90": 1.081
+   },
+   "2026": {
+    "gross_p90": 0.902,
+    "gross_share_gt_1.25": 0.0,
+    "vol60_p90": 1.095
+   }
+  },
+  "anatomy": {
+   "ratio_gt_1.25": {
+    "days": 1,
+    "names": 11.0,
+    "at_min": 6.0,
+    "min_share_of_gross": 0.322,
+    "universe": 25.0,
+    "sibling_gross": 1.24
+   },
+   "rest": {
+    "days": 1341,
+    "names": 8.7,
+    "at_min": 5.9,
+    "min_share_of_gross": 0.377,
+    "universe": 137.4,
+    "sibling_gross": 0.998
+   }
+  },
+  "vol_full": {
+   "usd1000": 0.243,
+   "usd200_round": 0.249
+  }
+ },
+ "bn": {
+  "gross_ratio": {
+   "p10": 0.649,
+   "p50": 0.847,
+   "p90": 1.005,
+   "p99": 1.111,
+   "max": 1.304,
+   "share_gt_1.25": 0.0
+  },
+  "vol60_ratio": {
+   "p10": 0.919,
+   "p50": 1.041,
+   "p90": 1.186,
+   "p99": 1.431,
+   "max": 1.562,
+   "share_gt_1.25": 0.038
+  },
+  "by_year": {
+   "2021": {
+    "gross_p90": 0.974,
+    "gross_share_gt_1.25": 0.0,
+    "vol60_p90": 1.191
+   },
+   "2022": {
+    "gross_p90": 1.038,
+    "gross_share_gt_1.25": 0.0,
+    "vol60_p90": 1.186
+   },
+   "2023": {
+    "gross_p90": 1.001,
+    "gross_share_gt_1.25": 0.0,
+    "vol60_p90": 1.067
+   },
+   "2024": {
+    "gross_p90": 1.016,
+    "gross_share_gt_1.25": 0.0,
+    "vol60_p90": 1.125
+   },
+   "2025": {
+    "gross_p90": 0.991,
+    "gross_share_gt_1.25": 0.0,
+    "vol60_p90": 1.311
+   },
+   "2026": {
+    "gross_p90": 0.979,
+    "gross_share_gt_1.25": 0.003,
+    "vol60_p90": 1.203
+   }
+  },
+  "anatomy": {
+   "ratio_gt_1.25": {
+    "days": 1,
+    "names": 8.0,
+    "at_min": 6.0,
+    "min_share_of_gross": 0.707,
+    "universe": 542.0,
+    "sibling_gross": 0.571
+   },
+   "rest": {
+    "days": 2129,
+    "names": 17.0,
+    "at_min": 7.4,
+    "min_share_of_gross": 0.445,
+    "universe": 275.8,
+    "sibling_gross": 0.839
+   }
+  },
+  "vol_full": {
+   "usd1000": 0.235,
+   "usd200_round": 0.234
+  }
+ }
+}

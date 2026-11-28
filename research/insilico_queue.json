@@ -7145,9 +7145,9 @@
    "group": "T",
    "title": "Rounded \\$200 twins: tail of gross and vol vs the \\$1,000 sibling (SMXR saw main_bn x1.36 one day; full-sample vol equal per SMD b)",
    "src": "SMXR, SMD b",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T15:00",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",

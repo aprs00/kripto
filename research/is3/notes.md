@@ -1709,3 +1709,9 @@ Source: TLQ (top10 in the lam1 blend: 2026 1.99 vs 1.47, 2025 tie), TLQ c (explo
  Change my mind: top10 >= top20 with slow .33 in >= 3 of 4 years AND on >= 3 of 4 anchors -> the WF is worth its DSR count; else TLQ2 drops to low.
 TLQP d/b (is3_tlqp.py, tlqp_d.json): in the shipped slow-.33 main, tsmom top10 vs top20 1.63 vs 1.49 pooled 2023-26 (3/4 years, 2025 -.10), 2x cost 1.43 vs 1.28; known answer lam1 = TLQ.
  Overlap with PRB2 ~full (top10 lam1 1.61 ~ top10 slow 1.63). a skipped (dup TLQ), c skipped (HL hourly 228 d: listing ages/lookbacks broken). CLOSED OPEN -> TLQ2 WF = shipped vs top10 slow .33.
+
+## SMV rounded twins' gross/vol tail (think-through 15:1x UTC 11-28, before any run)
+Source: SMXR (today small:main_bn gross x1.36 its sibling), SMD b (full-sample vol equal: HL 24.9 vs 24.3 %, BN 23.4 vs 23.5; mean deployed .62-.89). Rounding adds gross when many
+ targets sit between half the minimum and the minimum (each is pushed up by up to x2) and removes it below half; on average they cancel, but on a day with a wide, flat target book
+ (BN: flow spreads 5 % caps over hundreds of names) the push-ups dominate. Unstated: what a $200 trader fears is not the mean but a stretch of weeks at 1.5x the risk he chose.
+ Change my mind: p90 of the 60-d rolling vol ratio > 1.25 on either venue -> a general gross cap; else no change.
