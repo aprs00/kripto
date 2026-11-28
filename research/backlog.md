@@ -144,6 +144,7 @@ so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 202
 - [ ] L5 Value-area rejection (library N7, Dalton/AMT): low prior, after the above.
 - [ ] T2b **listing_short follow-ups** (pre-register ≤ 8 configs each). (b) DONE 2026-11-12 (event study: linear decay to d120 on both
   venues → new (d): hold 90/120 d pre-registered, judged on bnall where 800 events exist; **(d) answered by insilico LSH2 11-28: no, SR falls with hold on both venues, the 90-120 d tranche loses on bnall**):
+  **(f) age weighting, insilico LSH3 11-28 (research/is3/lsh3_*.json): explore bnall 2020-23 favours front-loading (SR flat60 .49 / linear decay .91 / flat30 1.14, 3/4 years), HL 2023-24 split (linear .93 vs .85 overall but 2024 .97 vs 1.07; flat30 2024 .69); the pre-written two-venue rule failed on HL 2024, so bnall 2024-26 stays UNSEEN for this question. Open for a research session: a bnall-only pre-registration (flat30 vs flat60, confirm = bnall 2024-26, ONE look) needs a stated reason why Binance and not HL; HL main's leg unchanged.**
   (a) DONE 2026-11-27 (insilico LS1): coverage 95%, SR 1.36 with funding, not fragile (findings);
   (b) per-listing event study (cumulative abnormal return vs BTC by days since listing, HL + bnall) to see the decay shape,
   not just a portfolio Sharpe; (c) sizing: vol_target under-estimates new-coin vol (pre-listing returns = 0) → use a

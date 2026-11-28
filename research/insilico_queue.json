@@ -7995,26 +7995,38 @@
    "group": "T",
    "title": "listing_short weighted by age (LSH2: on HL the 0-30 d tranche earns +48 bp/unit/day vs +5.6 at 90-125): front-loaded weights instead of flat 60 d",
    "src": "LSH2 tranches, T2b(b)",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T17:40",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "think-through first (why HL front-loads and bnall does not: HL listings = fresh float, perp-only, no spot; bnall listings often spot-first). Explore bnall 2020-23 and HL 2023-24 ONLY: flat 60 d vs linear decay (weight ∝ 60 - age) vs flat 30 d, vol-matched, SR by year, funding, costs, squeeze tail",
-     "status": "planned"
+     "status": "done",
+     "result": "null check 0.0 (local copy = registered fn). HL 2023-24 SR flat60 .85 / linear .93 / flat30 .91 (by year .58/1.07, .91/.97, 1.31/.69); bnall 2020-23 .49 / .91 / 1.14 (linear beats flat60 2020-22, loses 2023; flat30 same 3/4); costs equal (1.8-2.0 bnall, 4.7-4.9 HL), worst day/vol equal, flat30 = half the names",
+     "date": "2026-11-28",
+     "evidence": "lsh3_hl"
     },
     {
      "id": "b",
      "what": "rule written before b: a linear-decay variant is worth a WF only if it beats flat 60 at matched vol in >= 3 of 4 explore years on bnall AND both HL explore years; HL 2025-26 kept as the check, opened once only if it passes",
-     "status": "planned"
+     "status": "done",
+     "result": "rule (written before): bnall >= 3/4 explore years AND both HL explore years. bnall passes (3/4 both variants), HL fails 2024 (linear .97 vs 1.07, flat30 .69 vs 1.07) -> no WF, bnall 2024-26 check NOT opened. My prior (bnall no slope) was wrong: LSH2 bnall 30-60 tranche was -8 bp, so cutting it helps",
+     "date": "2026-11-28",
+     "evidence": "lsh3_bnall"
     },
     {
      "id": "c",
      "what": "verdict + backlog T2b line; quote the overlap with the shipped HL main (listing_short is one of its 3 legs)",
-     "status": "planned"
+     "status": "done",
+     "result": "backlog T2b(f) written: bnall front-loading 3/4 explore years, HL split, rule failed on HL 2024 -> no WF from insilico; bnall 2024-26 kept unseen for a venue-specific pre-registration by a research session. Overlap with shipped HL main: listing_short is its largest P&L leg (BNH: +102 of +178 %) at flat 60; nothing changes there",
+     "date": "2026-11-28",
+     "evidence": "lsh3_bnall"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "front-loading helps on bnall explore (3/4 y, SR .49 -> .91/1.14) but the written two-venue rule failed on HL 2024; bnall 2024-26 kept unseen; HL main unchanged",
+   "closed": "2026-11-28"
   },
   {
    "id": "X1P",

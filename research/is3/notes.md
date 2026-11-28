@@ -1828,3 +1828,14 @@ The judge as written has two clauses: (1) live 60-d SR < 0 -> retire; (2) live v
 Change my mind: false-retire rate < 10 % and MDE(90 d) < backtest mean -> clause (1) is a real test; else it becomes a disaster veto and the horizon moves to where MDE < mean.
 X1P a/b (is3_x1p.py, x1p_ab.json): bt 2024+ 2.4 bp/d, AC1 .15; MDE of the mean = 1.05x the mean at 90 d, .52x at 365 d; at the 2026 edge (0.58 bp/d) 2.1x at 90 d, 1.06x at 365 d.
  False-retire P(60-d SR<0) 6.6 % (2024+) / 16.5 % (2026). Live 16 d: +5.5 bp/d (+.52 MDE units), vol 3.07x full-sample bt but = bt's own on those days (X1V). Clause needs restating (form c).
+
+## LSH3 listing_short weighted by age (think-through 18:5x UTC 11-28, before any run)
+Source: LSH2 tranches (hold-120 book; price+funding bp/unit/day by age). HL: 0-30 +52-4, 30-60 +22-3, 60-90 +8, 90-125 +7 = front-loaded; bnall 2020-23: 0-30 +8+3, 30-60 -8+3, 60-90 -28+2 = no slope.
+Mechanism if real: HL listings are perp-only fresh float (pre-market hype, airdrop recipients sell into perp longs), so the overhang clears in weeks; Binance perps often list after spot
+ (float already price-discovered), so the decay is slower and noisier. Unstated: (1) front-loading = more weight in the first days, where squeezes are worst (low float, max hype) -> the
+ tail per unit is fatter, so judge at matched vol and quote the worst day; (2) fewer effective names -> more idiosyncratic risk; (3) skip_days=1 stays (day-0 prices are not tradable).
+CONTAMINATION: LSH2 already printed HL 2025-26 tranches (0-30 +34.6 % in 2025), so HL 2025-26 is SEEN; the clean check is bnall 2024-26 (tranches never computed there). Form b rule fixed:
+ linear decay (w ∝ 60 - age) or flat 30 worth a WF only if it beats flat 60 at matched vol in >= 3 of 4 explore years on bnall 2020-23 AND both HL 2023-24 years; then ONE look at bnall 2024-26.
+Prior: low (bnall explore shows no slope, so the bnall clause probably fails; then it is an HL-only story, which needs a venue reason, and the venue reason above is plausible but unproven).
+LSH3 a/b/c (is3_lsh3.py, lsh3_hl.json, lsh3_bnall.json): null check 0.0. bnall 2020-23 SR flat60 .49 / linear .91 / flat30 1.14 (3/4 y each); HL 2023-24 .85/.93/.91 but 2024 worse for both.
+ Rule (bnall 3/4 AND both HL years) fails on HL 2024 -> no WF, bnall 2024-26 unseen. My prior 'bnall has no slope' was wrong (LSH2's 30-60 tranche was -8 bp/unit/d). CLOSED OPEN -> backlog T2b(f).

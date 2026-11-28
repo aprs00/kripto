@@ -1,0 +1,66 @@
+{
+ "dataset": "hl",
+ "lo": "2023-01-01",
+ "hi": "2025-01-01",
+ "null_check_max_abs_diff": 0.0,
+ "flat60": {
+  "sr": 0.85,
+  "ann%": 20.3,
+  "vol%": 23.9,
+  "funding%": -4.0,
+  "cost%": 4.8,
+  "turnover_x": 27.7,
+  "worst_day_over_vol_daily": -8.8,
+  "by_year": {
+   "2023": {
+    "sr": 0.58,
+    "ret_per_vol": 0.5
+   },
+   "2024": {
+    "sr": 1.07,
+    "ret_per_vol": 1.2
+   }
+  },
+  "mean_names": 6.0
+ },
+ "linear": {
+  "sr": 0.93,
+  "ann%": 26.1,
+  "vol%": 27.9,
+  "funding%": -3.3,
+  "cost%": 4.9,
+  "turnover_x": 28.8,
+  "worst_day_over_vol_daily": -8.1,
+  "by_year": {
+   "2023": {
+    "sr": 0.91,
+    "ret_per_vol": 0.73
+   },
+   "2024": {
+    "sr": 0.97,
+    "ret_per_vol": 1.13
+   }
+  },
+  "mean_names": 6.0
+ },
+ "flat30": {
+  "sr": 0.91,
+  "ann%": 25.0,
+  "vol%": 27.5,
+  "funding%": -1.4,
+  "cost%": 4.7,
+  "turnover_x": 28.1,
+  "worst_day_over_vol_daily": -8.5,
+  "by_year": {
+   "2023": {
+    "sr": 1.31,
+    "ret_per_vol": 1.0
+   },
+   "2024": {
+    "sr": 0.69,
+    "ret_per_vol": 0.82
+   }
+  },
+  "mean_names": 3.3
+ }
+}
