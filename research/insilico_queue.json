@@ -5839,6 +5839,58 @@
    "verdict": "OPEN",
    "reason": "CME-break execution for flow@bn: sell deferral +2-3 bp/unit, 2024-only, ranks 19-20/23 vs placebo hours = DEAD at its size (~0.2 %/yr); moving the decision anchor costs nothing (00 UTC is the worst of 6 anchors). Side finding: flow@bn's phase noise is large (SR .63-1.10 by anchor) and averaging the 6 anchor books gives SR 1.16 by diversification arithmetic (corr .55): backlog FPD.",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "FPT",
+   "prio": 1.3,
+   "group": "T",
+   "title": "FPD precheck on the TRUE hourly taker split: flow@bn's 6 anchors and the 6-anchor average (bn100 coins ever in the top 40, 2021-12..2026-10)",
+   "src": "E2C c (approx split: avg6 SR 1.16 vs 00 .63), backlog FPD",
+   "status": "todo",
+   "due": "2026-11-28T11:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "build data/is3/k1h_tb/ (public data.binance.vision 1h archives, col 10 kept) for every bn100 coin that was ever in the point-in-time top 40 by 30-d dollar volume, 2021-12..2026-10, in a transient unit (polite: 2 workers); known answer: per coin-day sum of 24 hourly tbqv == klines_1d_all tbqv",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "is3_e2c a and c re-run with the true hourly split (coins outside the built set keep NaN -> outside flow's universe only if never top 40): anchors 00..20 SR by year, the 6-anchor average, pair corr, 2x cost",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict for FPD: avg6 >= 00 + .2 SR in >= 3 of 5 years AND above the mean single anchor -> FPD GO (one WF config pre-registered in backlog for a research session); else NO-GO with the reason (phase noise was an artefact of the approximation / no diversification)",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "PDX",
+   "prio": 1.4,
+   "group": "T",
+   "title": "Phase diversification for the other Binance daily legs (blend_nested@bn components carry_trend/carry/xsmom, tsmom) on bn100 1h -> 6 daily anchors: is avg6 > 00 a general law?",
+   "src": "E2C c, E2B a (blend anchors 1.57-1.87), scheduled() staggering for every_days > 1 (adopted 2026-11-10 on the same argument)",
+   "status": "todo",
+   "due": "2026-11-28T11:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "blend_nested@bn components (carry_trend, carry, xsmom; defaults) on the 6 is3_e2b anchor panels: avg6 vs 00 vs mean single, by year 2021-26, pair corr, predicted lift sqrt(6/(1+5 rho)) vs measured",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "single legs tsmom, xsmom, carry, carry_trend: same table; which legs are phase-noisy (low pair corr) and gain, which are phase-stable (corr > .9, no gain)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "costs: 6 separate sub-books vs one netted book (sum of the 6 anchors' targets, traded every 4 h): turnover and cost per year, 2x-cost SR; verdict: does the live trader's 00 anchor leave diversification on the table for main_bn, and is it implementable in the hourly step",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
