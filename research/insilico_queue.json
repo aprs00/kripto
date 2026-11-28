@@ -5210,12 +5210,21 @@
     {
      "id": "b",
      "what": "pre-stated ONE variant (no grid): tsmom with top_n 10 instead of 20, inside the blend; explore 2023-24 net SR and cost vs default; prereg before confirm 2025-26 if explore passes (>= default net SR both years and lower cost)",
-     "status": "planned"
+     "status": "done",
+     "result": "explore HL 2023/24 (blend, band .005): tsmom top_n 10 blend SR 1.08/1.17 vs default 0.87/0.75 (matches prl_b lam1), costs 11.6/7.8 vs 13.6/8.6 %/yr; tsmom leg alone 1.58/.75 vs 1.20/.13: gain is price (liquid names trend cleaner) + cost. Pre-stated pass met -> prereg TLQ_top10, confirm 2025-26 once (form conf).",
+     "date": "2026-11-28",
+     "evidence": "tlq_b"
     },
     {
      "id": "c",
      "what": "interaction: does PRB2's partial-lam gain survive when the thin tercile is already gone (slow33 vs lam1 on the top-10 tsmom book): are they the same saving counted twice? verdict for PRB2's priority",
      "status": "planned"
+    },
+    {
+     "id": "conf",
+     "what": "ONE confirm run of prereg TLQ_top10 on HL 2025-26 (caveat: TLQ a saw these years' tier P&L)",
+     "status": "planned",
+     "added": "2026-11-28"
     }
    ],
    "sessions": 1

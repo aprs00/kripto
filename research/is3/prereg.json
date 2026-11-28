@@ -339,5 +339,16 @@
    "band": 0.005
   },
   "at": "2026-11-28T01:03:56+00:00"
+ },
+ "TLQ_top10": {
+  "claim": "HL main blend with tsmom top_n 10 (not 20) beats the default blend on held-out HL 2025-26",
+  "rule": "PASS = blend_top10 net SR >= blend_top20 in 2025 AND 2026 (2026 YTD) AND pooled 2025-26, with costs_ann lower pooled; caveat: TLQ a (descriptive) saw 2025-26 tier P&L before this prereg",
+  "params": {
+   "top_n": 10,
+   "legs": "listing_short,lowvol,tsmom defaults",
+   "band": 0.005,
+   "script": "research.studies.is3_tlq conf"
+  },
+  "at": "2026-11-28T02:53:34+00:00"
  }
 }
