@@ -1532,3 +1532,10 @@ Source: T9D (PRB2 slow legs: 99 % fill at the touch, the unfilled 1-4 % are runa
 T9F a/b/c (is3_t9f.py, t9f_ab.json, t9f_b2.json): BN daily books: fills free, unfilled runaways +4-7 %/24h; post-only at the close +2..5 %/yr at q0 but <= 0 at 5 bp stress; resting k=10 bp below
  (filled there) +2-3 %/yr for flow/carry/carry_trend at 3 bp extra stress, xsmom 0. Written bar fails everywhere; post-hoc cells not confirmed. CLOSED OPEN -> backlog T9G (live fills decide).
  Note for T9D: its q-stress gave no price improvement (fills at the close), so its HL/BN numbers are the conservative side of this model.
+
+## T9K rest-below depth dose (think-through 11:3x UTC 11-28, before any run)
+Source: T9F. Resting a buy k bp below the close earns k on fills and loses the runaways; daily alt ranges (3-8 %) mean fills barely fall until k is a sizeable share of the range, so the
+ curve should rise then fall; the peak sits where the marginal lost fill (a runaway, +4-7 %) outweighs k x fills. Checked, no timing bias: the added piece earns C1/L - 1 with
+ L = C0 (1 - k) wherever inside the day it fills = drift + k, which is what the sim books. Unstated: a deep resting order is a free option given to faster traders (it fills on news
+ gaps first); the 3 bp extra stress is the only guard here. Rule for c, stated
+ now: the smallest k within 80 % of the explore peak. Bias of deep k is upward, so c prefers small k.

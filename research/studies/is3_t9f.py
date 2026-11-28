@@ -128,5 +128,76 @@ def form_b2(names=("flow", "carry_trend", "carry", "xsmom")):
     json.dump(out, open(EV / "t9f_b2.json", "w"), indent=1)
 
 
+def form_k(names=("flow", "carry_trend"), ks=(10, 20, 30, 50, 100), q=3):
+    p = data.load_panel("bnall", "1d")
+    sl_all = bt.slippage_model(p["volume"], 1)
+    out = {}
+    for name in names:
+        fn, kw = BOOKS[name]
+        w = S._ffill_targets(REGISTRY[fn](p, **kw)).fillna(0.0)
+        w = w.loc[:, w.abs().sum() > 0]
+        cols, idx = w.columns, w.index
+        px = p["close"].reindex(columns=cols).to_numpy(float)
+        fnd = p["funding"].reindex(index=idx, columns=cols).to_numpy(float)
+        slip = sl_all.reindex(index=idx, columns=cols).to_numpy(float)
+        mn, mx = hl24(cols, idx); mn, mx = mn / px, mx / px
+        drift = p["close"].reindex(columns=cols).shift(-1).to_numpy(float) / px - 1
+        W = w.to_numpy(float)
+        dWs = np.diff(np.vstack([np.zeros(len(cols)), W]), axis=0); dW = np.abs(dWs); sign = np.sign(dWs)
+        E = pd.DataFrame(dW, idx, cols).rolling(20, min_periods=5).mean().shift(1).to_numpy()
+        ex = ((idx >= "2021-01-01") & (idx < "2024-01-01"))[:, None]
+        yrs = lambda res: {y: round(float((res.loc["2021":"2023"] if y == "all" else res.loc[str(y)])["r"].mean() * 365 * 100), 2) for y in (2021, 2022, 2023, "all")}
+        base = yrs(sim(W, px, fnd, slip, mn * 0, mn * 0, drift, "taker").set_index(idx))
+        row = {"taker": base}
+        for k in ks:
+            th = (k + q) * 1e-4
+            fb = np.where(np.isfinite(mn), (mn < 1 - th).astype(float), np.nan); fs = np.where(np.isfinite(mx), (mx > 1 + th).astype(float), np.nan)
+            filled = np.where(sign > 0, fb == 1, fs == 1); have = np.isfinite(mn) & (dW > 0) & ex
+            row[f"k{k}"] = {"fill24": round(float((dW * (have & filled)).sum() / (dW * have).sum()), 3)}
+            for mode in ("skip", "env"):
+                r = yrs(sim(W, px, fnd, slip, fb, fs, drift, mode, E, maker=MAKER - k * 1e-4).set_index(idx))
+                row[f"k{k}"][mode] = {y: round(r[y] - base[y], 2) for y in r}
+        out[name] = row
+        print(name, json.dumps(row), flush=True)
+    json.dump(out, open(EV / "t9k_a.json", "w"), indent=1)
+
+
+def form_kp(name="flow", ks=(10, 50, 100), q=3, reps=10):
+    """matched placebo for form_k: random fill masks with the real fill share (per k, explore), (i) with the price improvement k, (ii) without (maker fee only)."""
+    p = data.load_panel("bnall", "1d")
+    sl_all = bt.slippage_model(p["volume"], 1)
+    fn, kw = BOOKS[name]
+    w = S._ffill_targets(REGISTRY[fn](p, **kw)).fillna(0.0)
+    w = w.loc[:, w.abs().sum() > 0]
+    cols, idx = w.columns, w.index
+    px = p["close"].reindex(columns=cols).to_numpy(float)
+    fnd = p["funding"].reindex(index=idx, columns=cols).to_numpy(float)
+    slip = sl_all.reindex(index=idx, columns=cols).to_numpy(float)
+    mn, mx = hl24(cols, idx); mn, mx = mn / px, mx / px
+    drift = p["close"].reindex(columns=cols).shift(-1).to_numpy(float) / px - 1
+    W = w.to_numpy(float)
+    yrs = lambda res: {y: round(float((res.loc["2021":"2023"] if y == "all" else res.loc[str(y)])["r"].mean() * 365 * 100), 2) for y in (2021, 2022, 2023, "all")}
+    base = yrs(sim(W, px, fnd, slip, mn * 0, mn * 0, drift, "taker").set_index(idx))
+    rng = np.random.default_rng(11)
+    out = {"taker": base}
+    for k in ks:
+        th = (k + q) * 1e-4
+        fb = np.where(np.isfinite(mn), (mn < 1 - th).astype(float), np.nan); fs = np.where(np.isfinite(mx), (mx > 1 + th).astype(float), np.nan)
+        real = yrs(sim(W, px, fnd, slip, fb, fs, drift, "skip", maker=MAKER - k * 1e-4).set_index(idx))
+        share = float(np.nanmean(np.concatenate([fb[np.isfinite(fb)], fs[np.isfinite(fs)]])))
+        pi, pn = [], []
+        for _ in range(reps):
+            m = np.where(np.isfinite(mn), (rng.random(mn.shape) < share).astype(float), np.nan)
+            pi.append(yrs(sim(W, px, fnd, slip, m, m, drift, "skip", maker=MAKER - k * 1e-4).set_index(idx)))
+            pn.append(yrs(sim(W, px, fnd, slip, m, m, drift, "skip", maker=MAKER).set_index(idx)))
+        avg = lambda L: {y: round(float(np.mean([d[y] for d in L])), 2) for y in L[0]}
+        out[f"k{k}"] = {"fill_share": round(share, 3), "real_minus_taker": {y: round(real[y] - base[y], 2) for y in real},
+                        "placebo_improve_minus_taker": {y: round(avg(pi)[y] - base[y], 2) for y in real},
+                        "placebo_noimprove_minus_taker": {y: round(avg(pn)[y] - base[y], 2) for y in real},
+                        "selection_value_real_minus_placebo": {y: round(real[y] - avg(pi)[y], 2) for y in real}}
+        print(k, json.dumps(out[f"k{k}"]), flush=True)
+    json.dump(out, open(EV / f"t9k_placebo_{name}.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    {"ab": form_ab, "b2": form_b2}[sys.argv[1]]()
+    {"ab": form_ab, "b2": form_b2, "k": form_k, "kp": form_kp}[sys.argv[1]]()

@@ -5980,7 +5980,10 @@
     {
      "id": "a",
      "what": "flow@bn and carry_trend on bnall 1d explore 2021-23, rest-below k = 10/20/30/50/100 bp with q = 3 bp extra stress, skip and env: delta vs taker by year, fill share, runaway cost; where does the curve peak",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall explore 2021-23, q 3 bp extra, delta vs taker %/yr: flow skip k10/20/30/50/100 +2.1/+3.6/+5.7/+9.1/+10.6 (fill 97/96/94/90/80 %; every year +), env +2.1..+6.8; carry_trend skip +2.7/+4.3/+3.9/+4.1/+4.3. Matched placebo (t9k_placebo_flow: random fill masks, same share): maker fee alone +7.8..9.0 %/yr (flow's 150x turnover at 2 vs 5+slip bp); the price improvement k is given back by selection almost 1:1 (real - placebo-with-k -23/-80/-151); shallow k10 is 5.8 %/yr WORSE than random maker fills, k100 +1.6 above. The lever is the fee, not the level; adverse selection is real and ~= k.",
+     "date": "2026-11-28",
+     "evidence": "t9k_placebo_flow"
     },
     {
      "id": "b",
