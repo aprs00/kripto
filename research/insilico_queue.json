@@ -5575,6 +5575,44 @@
      "status": "planned"
     }
    ]
+  },
+  {
+   "id": "ASR",
+   "prio": 1.1,
+   "group": "T",
+   "title": "Alt-season state vs the short-alt factor (listing_short + lowvol = 72-84 % of HL book risk): does trailing alt-vs-BTC strength predict the factor's next-30-d loss?",
+   "src": "ERC, LVS (lowvol losses = right-tail squeezes), HSQ, unit-price R28 (2021 alt season reversed a cross-sectional effect)",
+   "status": "closed",
+   "due": "2026-11-28T03:07",
+   "forms": [
+    {
+     "id": "a",
+     "what": "HL 2023-26: factor (blend's ls + lowvol legs, net) next-30-d return by trailing-30-d (alt index - BTC) quintile; dose; daily-overlap noted, per-year split",
+     "status": "done",
+     "result": "HL 2023-03..2026-11, factor = blend's listing_short + lowvol legs (net, band .005); state = trailing 30-d alt index (top-30 eq-wt) minus BTC; next-30-d factor return by quintile: +2.0/+2.6/+2.3/+2.5/+3.0 %, Spearman +.08 (wrong sign); only 2023 shows the expected dose (q5 -3.1 vs q1 +2.2). ~30x overlap: ~45 independent months, MDE ~7 %/month per quintile. No effect.",
+     "date": "2026-11-28",
+     "evidence": "asr_a"
+    },
+    {
+     "id": "b",
+     "what": "cached bnall 2020-26 (held-out venue + the 2021 alt season): same factor built from bnall listing_short + lowvol (each at unit vol, equal), same frozen HL quintile edges",
+     "status": "done",
+     "result": "cached bnall 2020-26, factor = listing_short + lowvol at unit vol, frozen HL edges: +0.5/+0.3/+0.5/+0.8/+0.6 %, Spearman +.04; 2021 alt season: worst quintile is q1 (alts lagging, -6.8 %), not q5; top quintile P(< -5 %) 19 vs 10-16 % (a slight tail, mean unchanged). No dose on the held-out venue either.",
+     "date": "2026-11-28",
+     "evidence": "asr_b"
+    },
+    {
+     "id": "c",
+     "what": "if a and b both show a monotone loss in the top quintile: prereg ONE overlay (factor legs x 0.5 when the state is in the frozen top quintile) and run it once on bnall 2024-26; else verdict with the reason",
+     "status": "skipped",
+     "result": "condition (a AND b monotone top-quintile loss) not met; no overlay pre-registered",
+     "date": "2026-11-28"
+    }
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "alt-minus-BTC trailing strength does not predict the short-alt factor's next month on HL (Spearman +.08) or bnall 2020-26 (+.04, 2021 included): the beta hedge absorbs alt-season beta; losses are idiosyncratic squeezes (LVS b, HSQ). Coarse (MDE ~7 %/month)",
+   "closed": "2026-11-28"
   }
  ]
 }

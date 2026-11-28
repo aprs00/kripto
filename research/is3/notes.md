@@ -1438,3 +1438,10 @@ Source: ERC, NPC. NPC's cap swaps lowvol for xsmom_k / resrev / xsmom on HL. If 
  a bet: that would still be fine at the refit but the reason matters for what to expect. Unstated: xsmom on HL is momentum across a thin, listing-heavy universe = partly the same
  short-new-coins factor (losers are fresh listings). a = pool SR by year + corr to the short-alt factor; b = the swap candidates in detail; c = verdict.
 FTL a/b/c (is3_ftl.py, ftl_a.json): only listing_short 4/4; xsmom_k factor-free 3/4 (weak); NPC2 needs 2-leg baseline. CLOSED OPEN.
+
+## ASR alt-season state vs the short-alt factor (think-through 03:0x UTC 11-28, before any run)
+Source: ERC, LVS, R28. Both HL short legs are short alts vs BTC: an alt season (alts outrunning BTC) is their worst state, and alt seasons are trends (they persist for weeks), so a
+ trailing alt-minus-BTC return should predict the factor's next month. Against: listing_short's edge is idiosyncratic decay that may continue in alt seasons (fresh float still sells),
+ and the hedge is beta-scaled. Unstated: who is trapped: in an alt season retail longs pile into new listings, so listing shorts get squeezed first (HSQ: tail rides on decay).
+ State = trailing 30-d (equal-weight alt index return - BTC return), known at the close. Edges from HL 2023-26 (a), frozen for bnall (b). Overlap: 30-d windows daily = ~30x overlap.
+ASR a/b (is3_asr.py, asr_a/b.json): no dose HL (+.08) or bnall (+.04); c skipped. CLOSED OPEN.
