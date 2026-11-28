@@ -4701,7 +4701,7 @@
    "group": "T",
    "title": "Where HL tsmom's turnover (35-64x/yr) comes from: signal flips, per-coin vol rescaling, or universe churn",
    "src": "PRL a (tsmom = over half the HL main book's cost)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
@@ -4715,12 +4715,18 @@
     {
      "id": "b",
      "what": "pre-stated: the component that removes the most turnover at the least pre-cost loss, held monthly, on HL explore 2023-24 within the 3-leg book (listing in full); PASS = net SR >= PRL slow33 in both years (else lam stays the form)",
-     "status": "planned"
+     "status": "done",
+     "result": "book = listing full + lowvol lam .33 + tsmom monthly-held signal: 1.49/.89 vs PRL slow33 .95/1.01 (costs 7.7/5.2 vs 8.6/5.5 %): FAIL (2024); a monthly trend is a different, lumpier signal; lam stays",
+     "date": "2026-11-28",
+     "evidence": "tsn_b"
     },
     {
      "id": "c",
      "what": "if b passes: L.prereg, ONE run HL 2025-26 (third look at it: say so)",
-     "status": "planned"
+     "status": "skipped",
+     "result": "b failed",
+     "date": "2026-11-28",
+     "evidence": "tsn_b"
     },
     {
      "id": "d",
@@ -4732,7 +4738,10 @@
      "evidence": "tsn_ad"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "HL tsmom's turnover is its own signal drift (monthly hold -73 %), not vol rescaling or universe churn; smoothing it does not cost SR on today's data (T1c's loss came from the 11-09 panel: relabelled OPEN); the monthly-signal book fails 2024: PRL's lam .33 remains the form",
+   "closed": "2026-11-28"
   }
  ]
 }

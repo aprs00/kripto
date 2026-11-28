@@ -11,7 +11,7 @@ Numbers are walk-forward out-of-sample, net of fees + slippage + funding unless 
 ## Index (118 hypotheses; details below, grep the name)
 - tsmom: multi-horizon time-series trend, L/S, vol-targeted (2026-11-08, re-run 11-09) → ALIVE (weak; blend leg + shadow)
 - tsmom long-only (2026-11-08) → OPEN, weaker (LO1 2026-11-26: adds nothing over BTC since 2024; audited 2026-11-22, was DEAD)
-- tsmom signal smoothing (EMA 3/7d) and $20M liquidity floor (T1c, 2026-11-09) → DEAD (smoothing) / weak (floor)
+- tsmom signal smoothing (EMA 3/7d) and $20M liquidity floor (T1c, 2026-11-09) → OPEN (smoothing: relabelled 2026-11-28, did not replicate) / weak (floor)
 - xsmom: cross-sectional momentum, beta-hedged (2026-11-08, re-run 11-09) → DEAD on HL, ALIVE on Binance (shadow xsmom@bn)
 - carry: short high funding / long low funding, dollar+beta neutral (2026-11-08, re-run 11-09) → DEAD on HL (re-check ~2027-05); ALIVE on Binance (candidate@bn 2026-11-26)
 - carry_trend: carry only where trend agrees (T1d, 2026-11-09) → DEAD on HL; ALIVE on Binance (candidate@bn 2026-11-26)
@@ -224,7 +224,8 @@ Old: HL 4h 0.43–0.55, BN-82 1.31 (survivor-biased), bnall 0.97. One day late c
 explore ≤ 2023 0.67 / confirm 2024+ −0.06; alpha on BTC (β 0.33) 1.19 → 0.16; the excess is 2021 (+1.75), 2024 −1.35. Long-short tsmom keeps alpha (1.42 / 0.71, β −0.02):
 the L/S form is the one with value. Untried, prior low: BTC-only timing. Caveat: default params (live top_n 12 not tested), no cost on the BTC leg.
 
-### tsmom signal smoothing (EMA 3/7d) and $20M liquidity floor (T1c, 2026-11-09) → DEAD (smoothing) / weak (floor)
+### tsmom signal smoothing (EMA 3/7d) and $20M liquidity floor (T1c, 2026-11-09) → OPEN (smoothing: relabelled 2026-11-28, did not replicate) / weak (floor)
+2026-11-28 TSN (is3_tsn.py): on today's HL panel 2023–26 standalone tsmom base SR .46 (100x), EMA3 .59 (46x), partial lam .21 on final weights .75 (28x): the 11-09 loss came from the 2.2-y panel.
 Smoothing halves turnover (63→28/yr) but Sharpe falls more (HL 1.11→0.34, BN 1.00→0.99 at best; lag kills the signal).
 $20M/day floor: +0.1–0.5 SR on HL in 3/4 pairs, ≈0 on BN. WF OOS HL 0.57, BN 1.08. Not worth a separate book.
 

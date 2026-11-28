@@ -1293,3 +1293,4 @@ Source: PRL a (tsmom 35-64x/yr), T1c (EMA signal smoothing halved turnover but H
  at full size). Unstated: universe churn trades whole positions on rank noise (rank 20 <-> 21): a likely big part. Monthly freezes are causal (first value of the month, held).
  d first-suspects a bug/data difference in T1c vs PRL before any conclusion.
 TSN a/d done (is3_tsn.py, tsn_ad.json): tsmom turnover = signal drift (monthly hold -73 %), not vol/universe. T1c fails to replicate: EMA3 .59, lam .21 .75 vs base .46 (2023-26). PRE-STATED (b): book = listing full + lowvol lam .33 + tsmom with monthly-held signal (lam 1), HL explore 2023-24 vs PRL slow33; PASS = >= in both years.
+TSN b FAIL (tsn_b.json): monthly signal 1.49/.89 vs slow33 .95/1.01. CLOSED OPEN; T1c smoothing relabelled OPEN (no replication on 2023-26).

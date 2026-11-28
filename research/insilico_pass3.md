@@ -149,3 +149,4 @@ One line per closed item (full numbers in research/is3/, conclusions in findings
 * VTS resize positions less often when the volatility estimate wobbles: OPEN (nothing there). It removes no trading at all; the costs come from the strategies' own position changes.
 * SML what works in the $200 Hyperliquid account: OPEN. At $200 the $10 minimum order freezes almost every position change, so yearly results there are mostly luck; no simpler book could be shown to be better. The live $200 twin is the evidence that counts.
 * PRD how sensitive that cost saving is to its one setting: OPEN, robust. Any rebalancing speed between 15 % and 75 % a day beats full rebalancing in all four years, and both legs contribute.
+* TSN where the trend leg's trading comes from: OPEN. It is the trend signal's own day-to-day drift. An older result saying that smoothing it destroys the edge does not hold on today's data, so that idea is reopened.
