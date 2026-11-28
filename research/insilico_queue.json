@@ -7138,6 +7138,60 @@
    "verdict": "OPEN",
    "reason": "top10 adds +.14 SR over the shipped slow-.33 main (3/4 years, robust to 2x cost) but overlaps PRB2 almost fully and the years were already seen; Binance held-out failed: one WF (shipped vs top10, both slow .33) is worth its DSR count, prior LOW-MEDIUM unchanged",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "SMV",
+   "prio": 2.2,
+   "group": "T",
+   "title": "Rounded \\$200 twins: tail of gross and vol vs the \\$1,000 sibling (SMXR saw main_bn x1.36 one day; full-sample vol equal per SMD b)",
+   "src": "SMXR, SMD b",
+   "status": "todo",
+   "due": "2026-11-28T15:00",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "HL and BN main mixes (is3_smd books): daily ratio rounded-\\$200 gross / \\$1,000 gross and 60-d rolling vol ratio; p50/p90/p99/max and share of days > 1.25, by year",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "where the excess comes from: days with ratio > 1.25 -> number of names at the minimum, their share of gross, universe size; is it BN 2026 (532 names) only",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "decision: only if p90 of the 60-d vol ratio > 1.25 -> a general cap (scale the rounded book to the sibling's gross, re-round) as add-form + tests; else no change, record why",
+     "status": "planned"
+    }
+   ]
+  },
+  {
+   "id": "PRBF",
+   "prio": 2.4,
+   "group": "T",
+   "title": "Power of the PRB2-F forward judge (slow .33 vs lam 1 shadows): which differences can 30/60/90 live days detect",
+   "src": "backlog PRB2-F, PRB2 WF",
+   "status": "todo",
+   "due": "2026-11-28T15:00",
+   "sessions": 0,
+   "forms": [
+    {
+     "id": "a",
+     "what": "backtest daily P&L of blend slow .33 and lam 1 (shipped components): sd of the daily difference, its AC, mean diff by year; MDE (t=2) of the mean difference at 30/60/90 days vs the backtest's expected gain",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "the cost clause (slow fees+slippage <= 75 % of lam1): backtest ratio by month, share of 30-d windows in which the clause would fail by chance",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "write the result into backlog PRB2-F: the clause that has power stays, the one without power is restated as 'not contradicted' with its MDE (no gate change)",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
