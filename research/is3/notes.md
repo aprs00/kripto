@@ -1457,3 +1457,7 @@ Source: HFX/HFZ, X1. fspread_hold@pair shorts the venue whose longs pay more (HL
  pairs, likely thin alts, not BTC; and the books are separate accounts (no netting of margin), so only the funding P&L nets, not the risk. a = which coins it holds; b = aggregate
  funding vs separate; c = verdict. Runs after 03:30 (pair panel reads bn files the nightly job refreshes).
 FSO a/b/c (is3_fso.py, fso_ab.json): pair book offsets 10-30 % of HL long funding; complementary. CLOSED OPEN.
+
+## NPS NPC robustness (think-through 03:3x UTC 11-28, before any run)
+Source: NPC, FTL. If the cap works because duplicated factors are wasted risk, nearby caps (.3, .5) should give similar results; if only .4 works, it is a knife-edge (HL ls-lowvol .41).
+ Top 2 without a cap = 'hold fewer legs' baseline: if it matches cap .4, the gain is from concentration on the best two, not diversification. cap 1.0 top 2 = plain top 2. Reported, not chosen.

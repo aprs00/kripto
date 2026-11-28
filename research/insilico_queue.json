@@ -5665,6 +5665,36 @@
    "verdict": "OPEN",
    "reason": "bnall: cap removes carry (corr .49 with carry_trend) and frees a slot for tsmom (positive 6/6 years): NPC's BN gain is real diversification; HL side weaker (FTL)",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "NPS",
+   "prio": 1.0,
+   "group": "T",
+   "title": "NPC robustness: cap .3 / .5 and the 2-leg (top 2) baseline on HL and cached bnall; is NPC_cap04 a plateau or a knife-edge?",
+   "src": "NPC (prereg passed both venues; HL binding corr .41 at the cap), FTL (dilution question)",
+   "status": "wip",
+   "due": "2026-11-28T03:31",
+   "forms": [
+    {
+     "id": "a",
+     "what": "HL: caps .3 and .5 (else NPC_cap04's rule) and standard top 2 (no cap): OOS SR by year and pooled vs standard top 3 and cap .4 (reported, not chosen: the prereg stays .4)",
+     "status": "done",
+     "result": "HL OOS SR 2024/25/26 pooled (prereg stays .4; reported only): standard top 3 .36/1.92/1.45 = 1.21; cap .4 .59/1.72/1.65 = 1.27; cap .3 .59/1.33/1.51 = 1.10 (15 refits changed); cap .5 = standard exactly (0 changed); top 2 no cap .75/2.21/.68 = 1.22. HL: knife-edge: only .4 beats standard, and by .06; 'hold fewer' does as well (1.22).",
+     "date": "2026-11-28",
+     "evidence": "npc_hl"
+    },
+    {
+     "id": "b",
+     "what": "cached bnall: the same four variants",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "verdict for NPC2: plateau (all caps >= standard on both venues) or knife-edge; is the gain more than 'hold fewer legs' (top-2 baseline)?",
+     "status": "planned"
+    }
+   ],
+   "sessions": 1
   }
  ]
 }

@@ -7,6 +7,8 @@ from kripto.research import bars_per_day
 from research.studies.is3_prb import summary
 
 src = sys.argv[1]
+CAP = float(sys.argv[2]) if len(sys.argv) > 2 else 0.4      # NPS: robustness runs only; the prereg is 0.4
+TOP = int(sys.argv[3]) if len(sys.argv) > 3 else 3
 p = data.load_panel("hl", "1d") if src == "hl" else pickle.load(open(src, "rb"))
 tag = "hl" if src == "hl" else "bnall"
 c = p["close"]
@@ -36,11 +38,11 @@ for i in refit:
         for m in best:
             lo = max(start[n], start[m])
             a, b = R[n].iloc[lo: i + 1], R[m].iloc[lo: i + 1]
-            if len(a) >= 120 and a.corr(b) > 0.4:
+            if len(a) >= 120 and a.corr(b) > CAP:
                 ok = False; break
         if ok:
             best.append(n)
-        if len(best) == 3:
+        if len(best) == TOP:
             break
     std = ranked[:3]
     if set(std) != set(best):
@@ -70,4 +72,5 @@ for k, s in (("standard", sel_std), ("cap04", sel)):
 print(tag, "refits", len(log), "changed", changed, flush=True)
 for row in log[-6:]:
     print("  ", row, flush=True)
-json.dump(out, open(f"research/is3/npc_{tag}.json", "w"), indent=1, default=str)
+suf = "" if (CAP == 0.4 and TOP == 3) else f"_cap{CAP}_top{TOP}"
+json.dump(out, open(f"research/is3/npc_{tag}{suf}.json", "w"), indent=1, default=str)
