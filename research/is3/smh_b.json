@@ -1,0 +1,25 @@
+{
+ "small_main_live": {
+  "days": 18,
+  "positions_now": {
+   "BTC": 0.00052
+  },
+  "gross_usd": 30.8,
+  "equity": 191.2,
+  "fills_total": 5,
+  "price_pnl_usd": -8.27,
+  "fees_usd": 0.06,
+  "funding_usd": -0.07,
+  "ann_vol_pct": 9.6
+ },
+ "main_live": {
+  "days": 19,
+  "n_pos": 26,
+  "gross_usd": 675.7,
+  "equity": 1002.1,
+  "price_pnl_usd": -0.74,
+  "fees_usd": 0.73,
+  "ann_vol_pct": 17.5
+ },
+ "source": "scripts.ledger_decomp small:main / main and the positions/fills tables, 2026-11-28 13:1x UTC"
+}

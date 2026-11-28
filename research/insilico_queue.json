@@ -6414,26 +6414,38 @@
    "group": "T",
    "title": "\\$200 HL main book with the \\$10 minimum order: deployed gross and SR over history (small:main -4.2 % vs main -0.15 % live, LVB corr .99)",
    "src": "LVB, SMQ, backlog SMB",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T13:10",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "HL dataset 1d (the HL main book's own blend_nested config from config/strategies.json via research helpers; if the nested chooser is too heavy, its current components as a fixed blend, said so): \\$1,000 vs \\$200 band \\$10 vs \\$200 hard minimum (a target below \\$10 is never opened), main_scale .871: SR, ann, deployed share by year",
-     "status": "planned"
+     "status": "done",
+     "result": "HL 1d, blend listing_short/lowvol/tsmom slow_lam .33 x .871: $1,000 SR 1.29 / 25 %/yr / gross .62, names 27-144; $200 band (small_acct today) .86; $200 hard $10 minimum 1.12 / 15 %/yr / vol 13.7 / gross .27, names 2-3.6 (BTC hedge + 1-2), deployed share .57/.41/.43/.44 (2023-26); last bar holds BTC only (= live). It is a BTC-timing book, not the strategy",
+     "date": "2026-11-28",
+     "evidence": "smh_a"
     },
     {
      "id": "b",
      "what": "live: small:main's 18 days decomposed (scripts.ledger_decomp small:main and main): is the -4 % vs main's 0 the missing names (deployment) or the names it does hold (concentration)? held gross live vs main",
-     "status": "planned"
+     "status": "done",
+     "result": "live: small:main = BTC 0.00052 only ($31, 16 % gross), 5 fills in 18 d, price -$8.27 (-4.1 %), vol 9.6 %; main 26 names / 67 % gross, price -$0.74: the $200 gap is BTC's fall on the only name it can hold",
+     "date": "2026-11-28",
+     "evidence": "smh_b"
     },
     {
      "id": "c",
      "what": "verdict: if \\$200 deployed share < 50 % in 2025-26 -> HL \\$200 joins SMB (STATUS deployed gross + per-symbol minima in small_acct); else the HL \\$200 twin is a fair small version and only BN needs the fix",
-     "status": "planned"
+     "status": "done",
+     "result": "rule: deployed share < 50 % in 2025-26 (.43/.44, and 2-3 names of 124-144) -> HL $200 joins SMB: neither $200 twin holds the strategy; STATUS must say so",
+     "date": "2026-11-28",
+     "evidence": "smh_a"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "the $10 HL minimum leaves the $200 HL book with BTC + 1-2 names; its SR (1.12) is a different, BTC-timing book; today's small_acct (.86, one band) measures neither. Both $200 twins are min-order limited -> SMB",
+   "closed": "2026-11-28"
   }
  ]
 }

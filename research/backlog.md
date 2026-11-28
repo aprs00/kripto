@@ -11,12 +11,14 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
 (AKE, same minute as the shadow, 2.9 % of equity: item 4 done). Detail: journal 2026-11-28.
 **Next priorities (2026-11-28):** 1. PRB2 forward check at 30 live days (≈ 12-28, below) → 2. X1f at ≥ 30 days (≈ 12-12) → 3. E1 + LQ1 (≈ 12-01) → 4. fill-delay ≈ 12-09 → 5. T6b ≈ 12-07 → 6. T5d (low)
 → 7. W2 ≈ 12-23 → 8. (FPD low) → 9. KS1b (low, see below) → 10. low prior: W3b, FC1(c), LV1 short leg, FF1 market-relative, NPC2, TLQ2, HFX2.
-- [ ] SMB (insilico LVB 2026-11-28, prior HIGH for honesty, small) **$200 Binance books and research small_acct ignore per-symbol minimum orders** (BTC $50, ETH $20, others $5):
+- [ ] SMB (insilico LVB/SMQ/SMH 2026-11-28, prior HIGH for honesty, small) **$200 books (BN AND HL) are min-order limited; research small_acct ignores per-symbol minimum orders** (BTC $50, ETH $20, others $5):
   small:main_bn holds 3 of 31 targets, 10 % of its target gross (research/is3/lvb_b.json); kripto/research.py small_acct = one band min/small_equity, so every BN $200 Sharpe is overstated.
   Do: (1) STATUS.md states the $200 BN book's deployed gross next to its return; (2) small_acct with per-symbol minima (venue_bn.symbol_filters cache; delisted = $5) in kripto/research.py, general rationale
   in design.md changelog (a measurement fix, not a gate); (3) re-quote the BN candidates' small_acct. insilico SMQ (queue) measures (3) descriptively first.
   SMQ (11-28, research/is3/smq_abc.json, smq_d.json): main_bn mix at $200 with minima SR 1.70 vs 1.75 but deployed share .39 (2025) / .19 (2026; 2.6 names): the account is
   mostly cash now (universe 113 -> 532 names, weights per name below the minima). Top-4 vol-matched $200 book: SR 1.56, deployed 2026 .47 (prior LOW, a different book; only if the owner's $200 option matters).
+  SMH (11-28, research/is3/smh_a.json): HL too: the $200 HL book holds BTC + 1-2 names of 124-144 (live: BTC only, $31); SR 1.12 is BTC timing. Neither $200 twin holds its strategy:
+  the honest STATUS line is 'a $200 account cannot run these books' unless a $200-specific book (few names) is built and tested.
 - [ ] T9G (insilico T9F 2026-11-28, research session, prior MEDIUM after T9P (11-28: at the touch fills ~always on minute paths, +4 bp/unit vs live taker): flow@bn pays ~11 %/yr taker costs in backtest) **live rest-below shadow for flow@bn's daily orders**: each target change rests
   k = 10 bp beyond the decision price for 24 h, residue to the next day (skip) or taker beyond 1x step (env); fills judged on LIVE Binance trade prints / 1-min lows with a >= 3 bp
   trade-through (kripto/ladder.py already simulates resting bids on live 1-min klines: reuse its fill code); compare its fill rate, runaway cost and net vs the taker shadow after >= 60 days.

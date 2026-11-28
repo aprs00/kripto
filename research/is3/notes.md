@@ -1622,3 +1622,9 @@ Source: T9P (BN orders on HL-proxy minute paths: 99.9 % fill, +4 bp/unit). Here 
  (3) adverse selection again lives only in the unfilled tail. Change my mind: as queued (c).
 T9Q a/b/c (is3_t9q.py, t9q_ab.json): HL books' own fills on HL 1-min paths: 99.8 % fill at q5, median 1 min; main +3.89 bp/unit (40 orders, 13/13 d), all books +2.61 (one thin-name runaway +583 bp).
  ~+1.2 %/yr at main's turnover: real, small. T9c frozen k0/q5/carry. CLOSED OPEN.
+
+## SMH $200 HL main book (think-through 13:1x UTC 11-28, before any run)
+Source: LVB/SMQ. Live: small:main holds ONLY BTC ($31, 16 % gross) vs main 26 names / 67 % gross: its -4 % is BTC's November fall, not the strategy. HL main = blend(listing_short, lowvol, tsmom,
+ slow_lam .33) x main_scale .871, ~26 names at ~2.6 % each = $5 at $200 < $10 HL minimum: only BTC (the beta hedge, big weight) clears it. Expect the backtest deployed share to be
+ tiny for all years with many names; unstated: the slow legs (lam .33) make trades even smaller (partial steps), so with the band model even more is skipped.
+SMH a/b/c (is3_smh.py, smh_a.json, smh_b.json): HL $200 holds 2-3.6 names (BTC + 1-2) of 27-144, deployed .41-.57; live = BTC only ($31). SR 1.12 is BTC timing. CLOSED OPEN -> SMB (both venues).
