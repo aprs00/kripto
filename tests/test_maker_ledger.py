@@ -31,3 +31,17 @@ def test_incomplete_window_and_first_bar_rule():
     assert replay(fills, {"X": b}).iloc[0]["thru_bp"] == 0.0         # conservative: not counted
     assert np.isclose(replay(fills, {"X": b}, include_first=True).iloc[0]["thru_bp"], 100.0)
     assert replay(fills, {"X": b}, now=ts + pd.Timedelta(hours=10)).empty   # 24 h not complete yet
+
+
+def test_hl_minute_replay_filled_from_the_next_minute_only():
+    from scripts.maker_ledger import replay_minutes, score, HL_TAKER, HL_MAKER, HL_Q_BP
+    idx = pd.date_range("2026-12-01 04:00", periods=26 * 60, freq="1min", tz="UTC")
+    x = pd.DataFrame({"h": 100.0, "l": 100.0, "c": 100.0}, idx)
+    ts = pd.Timestamp("2026-12-01 04:10:30", tz="UTC")
+    x.loc[ts.floor("1min"), "l"] = 99.0                                 # dip inside the order's own minute: not a fill
+    fills = pd.DataFrame({"ts": [ts], "coin": ["X"], "book": ["main"], "size": [1.0], "px": [100.0], "mid": [100.0], "slip_bps": [1.0]})
+    d = replay_minutes(fills, {"X": x})
+    assert np.isclose(d.iloc[0]["thru_bp"], 0.0)                        # unfilled at q5
+    x.loc[ts.floor("1min") + pd.Timedelta(minutes=30), "l"] = 99.9       # 10 bp through, later: filled
+    s = score(replay_minutes(fills, {"X": x}), HL_TAKER, HL_MAKER, HL_Q_BP)
+    assert s["fill_share_notional"] == 1.0 and np.isclose(s["net_bp_per_unit"], 4.5 - 1.5 + 1.0)

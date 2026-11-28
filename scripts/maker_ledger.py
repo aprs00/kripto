@@ -3,7 +3,9 @@
 (a fill inside it cannot be proven), unfilled orders skipped (the signal's 24-h move is forgone, the taker cost saved). Bars: data/bn/live_4h (kept by the
 Binance venue; no extra requests). Only orders placed at/after --since (default 2026-11-29 = after the freeze) whose 24 h window has passed count.
 Net per traded unit vs the live taker fill (bp): filled = taker fee 5 - maker fee 2 + the live slippage; unfilled = -(move24 - 5 - slip).
-  .venv/bin/python -m scripts.maker_ledger [--since YYYY-MM-DD] [--book shadow:flow@bn] [--out research/maker_forward.json]"""
+HL (insilico T9WH, T9Q frozen spec): --venue hl replays the HL books on HL's own 1-min OHLC (data/hl/flow): rest at the HL close of the order's minute,
+filled on a trade-through > 5 bp from the NEXT minute within 24 h (>= 600 minutes of data), fees taker 4.5 / maker 1.5 bp.
+  .venv/bin/python -m scripts.maker_ledger [--venue bn|hl] [--since YYYY-MM-DD] [--until ...] [--book B ...] [--out research/maker_forward[_hl].json]"""
 from __future__ import annotations
 
 import argparse
@@ -15,7 +17,8 @@ import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
-TAKER, MAKER, Q_BP = 5.0, 2.0, 3.0
+TAKER, MAKER, Q_BP = 5.0, 2.0, 3.0               # Binance (T9G frozen)
+HL_TAKER, HL_MAKER, HL_Q_BP = 4.5, 1.5, 5.0        # Hyperliquid (T9Q frozen)
 
 
 def replay(fills: pd.DataFrame, bars: dict[str, pd.DataFrame | None], now: pd.Timestamp | None = None, include_first: bool = False) -> pd.DataFrame:
@@ -40,11 +43,33 @@ def replay(fills: pd.DataFrame, bars: dict[str, pd.DataFrame | None], now: pd.Ti
     return pd.DataFrame(rows)
 
 
-def score(d: pd.DataFrame) -> dict:
+def replay_minutes(fills: pd.DataFrame, mins: dict[str, pd.DataFrame], now: pd.Timestamp | None = None, q_bp: float = HL_Q_BP) -> pd.DataFrame:
+    """HL path (T9Q): mins = coin -> 1-min frame (index = minute, cols h l c). Rest at the close of the order's minute; window = next minute .. ts + 24 h."""
+    end = max((x.index.max() for x in mins.values()), default=None)
+    rows = []
+    for _, r in fills.iterrows():
+        x = mins.get(r["coin"])
+        if x is None or end is None or r["ts"] < x.index.min() + pd.Timedelta(minutes=5) or r["ts"] + pd.Timedelta(hours=24) > end:
+            continue
+        if now is not None and r["ts"] + pd.Timedelta(hours=24) > now:
+            continue
+        m0 = r["ts"].floor("1min"); ref = x["c"].asof(m0)
+        w = x[(x.index > m0) & (x.index < r["ts"] + pd.Timedelta(hours=24))]
+        if not np.isfinite(ref) or len(w) < 600:
+            continue
+        side = float(np.sign(r["size"]))
+        ext = float(w["l"].min()) if side > 0 else float(w["h"].max())
+        rows.append({"ts": r["ts"], "coin": r["coin"], "book": r.get("book"), "side": side, "notional": abs(r["size"] * r["px"]),
+                     "thru_bp": side * (ref - ext) / ref * 1e4, "move24": side * (float(w["c"].iloc[-1]) / ref - 1) * 1e4,
+                     "slip_bps": float(r["slip_bps"] or 0.0)})
+    return pd.DataFrame(rows)
+
+
+def score(d: pd.DataFrame, taker: float = TAKER, maker: float = MAKER, q_bp: float = Q_BP) -> dict:
     if d.empty:
         return {"orders": 0}
-    fill = d.thru_bp > Q_BP
-    net = np.where(fill, TAKER - MAKER + d.slip_bps, -(d.move24 - TAKER - d.slip_bps))
+    fill = d.thru_bp > q_bp
+    net = np.where(fill, taker - maker + d.slip_bps, -(d.move24 - taker - d.slip_bps))
     nd = pd.DataFrame({"n": d.notional, "net": net * d.notional, "day": d.ts.dt.normalize()}).groupby("day").sum()
     pdn = nd.net / nd.n
     wavg = lambda x, m: round(float(np.average(x[m], weights=d.notional[m])), 1) if m.any() else None
@@ -56,11 +81,30 @@ def score(d: pd.DataFrame) -> dict:
             "share_days_pos": round(float((pdn > 0).mean()), 2)}
 
 
-def load(book: str, since: str):
+def _fills(book: str, since: str, until: str | None):
     con = sqlite3.connect(ROOT / "state" / "paper.db")
-    f = pd.read_sql("select ts, coin, size, px, mid, slip_bps from fills where book = ?", con, params=(book,))
+    f = pd.read_sql("select ts, book, coin, size, px, mid, slip_bps from fills where book = ?", con, params=(book,))
     f["ts"] = pd.to_datetime(f["ts"], utc=True, format="ISO8601")
-    f = f[f["ts"] >= pd.Timestamp(since, tz="UTC")].copy()
+    f = f[f["ts"] >= pd.Timestamp(since, tz="UTC")]
+    if until:
+        f = f[f["ts"] < pd.Timestamp(until, tz="UTC")]
+    return f.copy()
+
+
+def load_hl(books: list[str], since: str, until: str | None):
+    f = pd.concat([_fills(b, since, until) for b in books], ignore_index=True)
+    coins = set(f["coin"])
+    parts = []
+    for fp in sorted((ROOT / "data" / "hl" / "flow").glob("*.parquet")):
+        x = pd.read_parquet(fp, columns=["coin", "minute", "h", "l", "c"])
+        parts.append(x[x["coin"].isin(coins)])
+    fl = pd.concat(parts) if parts else pd.DataFrame(columns=["coin", "minute", "h", "l", "c"])
+    fl["minute"] = pd.to_datetime(fl["minute"] * 60, unit="s", utc=True)      # minutes since epoch
+    return f, {c: x.set_index("minute").sort_index()[["h", "l", "c"]] for c, x in fl.groupby("coin")}
+
+
+def load(book: str, since: str, until: str | None = None):
+    f = _fills(book, since, until)
     f["coin"] = f["coin"].str.replace("@bn", "", regex=False)
     bars = {}
     for c in f["coin"].unique():
@@ -75,11 +119,28 @@ def load(book: str, since: str):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--since", default="2026-11-29")
-    ap.add_argument("--book", default="shadow:flow@bn")
-    ap.add_argument("--out", default="research/maker_forward.json")
+    ap.add_argument("--until", default=None)
+    ap.add_argument("--venue", default="bn", choices=("bn", "hl"))
+    ap.add_argument("--book", action="append", default=None)
+    ap.add_argument("--out", default=None)
     a = ap.parse_args()
-    f, bars = load(a.book, a.since)
     now = pd.Timestamp.now(tz="UTC")
+    if a.venue == "hl":
+        books = a.book or ["main", "shadow:blend_nested"]
+        f, mins = load_hl(books, a.since, a.until)
+        d = replay_minutes(f, mins, now=now)
+        out = {"venue": "hl", "books": books, "since": a.since, "until": a.until, "spec": "k0 q5 skip, 24 h, HL 1-min, fees 4.5/1.5", "fills_since": int(len(f)),
+               "all": score(d, HL_TAKER, HL_MAKER, HL_Q_BP),
+               "by_book": {b: score(x.reset_index(drop=True), HL_TAKER, HL_MAKER, HL_Q_BP) for b, x in d.groupby("book")} if len(d) else {},
+               "run": now.isoformat(timespec="seconds")}
+        print(json.dumps(out, indent=1))
+        out_path = "research/maker_forward_hl.json" if a.out is None else a.out
+        if out_path:
+            (ROOT / out_path).write_text(json.dumps(out, indent=1) + "\n")
+        return
+    a.book = (a.book or ["shadow:flow@bn"])[0]
+    a.out = "research/maker_forward.json" if a.out is None else a.out
+    f, bars = load(a.book, a.since, a.until)
     out = {"book": a.book, "since": a.since, "spec": "k0 q3 skip, 24 h, 4h bars", "fills_since": int(len(f)),
            "conservative_first_bar_excluded": score(replay(f, bars, now=now)),
            "optimistic_first_bar_included": score(replay(f, bars, now=now, include_first=True)),

@@ -1,0 +1,16 @@
+{
+ "venue": "hl",
+ "books": [
+  "main",
+  "shadow:blend_nested"
+ ],
+ "since": "2026-11-29",
+ "until": null,
+ "spec": "k0 q5 skip, 24 h, HL 1-min, fees 4.5/1.5",
+ "fills_since": 0,
+ "all": {
+  "orders": 0
+ },
+ "by_book": {},
+ "run": "2026-11-28T17:26:49+00:00"
+}

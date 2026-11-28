@@ -1,0 +1,18 @@
+{
+ "known_answer": {
+  "window": "2026-11-13..27",
+  "main": {
+   "orders": 40,
+   "net_bp": 3.89,
+   "t9q": 3.89
+  },
+  "shadow:blend_nested": {
+   "orders": 91,
+   "net_bp": 3.92,
+   "t9q": 3.92
+  },
+  "match": true
+ },
+ "tests": "tests/test_maker_ledger.py 3 passed",
+ "power": "fill ~100 % -> per-day net ~ fee diff + slip, day_t 19-32: the mean is pinned fast; the risk is the rare unfilled runaway (T9Q one thin-name +583 bp): judge on >= 60 order-days incl. at least one high-vol week"
+}

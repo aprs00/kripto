@@ -1790,3 +1790,4 @@ A1T a/b/c (reading, 14 findings entries opened, a1t_ab.json): T9 family relabel 
 NPCB c: trader 17:11-17:24 exit 0. CLOSED FEATURE.
 T9W a/b/c (scripts/maker_ledger.py, tests/test_maker_ledger.py, t9w_ab.json): T9G as a frozen forward ledger (orders since 11-29, two 4h bounds), known answer = T9P exactly (-32.25 / +4.08);
  retro runs it; MDE at 60 order-days ~12 bp vs a +4 bp saving. CLOSED FEATURE.
+T9WH a/b/c (maker_ledger --venue hl, t9wh_ab.json): HL forward maker ledger, known answer = T9Q exactly (main 40/+3.89, blend_nested 91/+3.92); retro runs it. CLOSED FEATURE.
