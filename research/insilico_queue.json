@@ -5711,7 +5711,7 @@
    "group": "T",
    "title": "T9c sizing: would post-only orders fill PRB2's slow-leg daily gaps? descriptive fill rates on BN-82 1h (explore <= 2023)",
    "src": "backlog T9c (library N15), PRB2 (slow legs lam .33 in HL main 11-28)",
-   "status": "todo",
+   "status": "wip",
    "due": "2026-11-28T08:00",
    "forms": [
     {
@@ -5729,7 +5729,8 @@
      "what": "envelope form: post-only only while |position - target| < 1 x the daily gap, taker beyond; net cost per year vs all-taker and vs PRB2 baseline; verdict: worth a WF / a live resting engine or not. Confirm years 2024-26 only if explore saves >= 1 %/yr",
      "status": "planned"
     }
-   ]
+   ],
+   "sessions": 1
   },
   {
    "id": "LSX",

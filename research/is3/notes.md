@@ -1462,3 +1462,12 @@ FSO a/b/c (is3_fso.py, fso_ab.json): pair book offsets 10-30 % of HL long fundin
 Source: NPC, FTL. If the cap works because duplicated factors are wasted risk, nearby caps (.3, .5) should give similar results; if only .4 works, it is a knife-edge (HL ls-lowvol .41).
  Top 2 without a cap = 'hold fewer legs' baseline: if it matches cap .4, the gain is from concentration on the best two, not diversification. cap 1.0 top 2 = plain top 2. Reported, not chosen.
 NPS a/b/c (npc_*_cap*.json, nps_bnall.log): cap .5 inert, .3 loses both venues, top 2 = standard: knife-edge. NPC2 -> low. CLOSED OPEN.
+
+## T9D post-only fills for PRB2's slow legs (think-through 10:5x UTC 11-28, before any run)
+Source: backlog T9c (library N15 gueant §7.2: a trading curve + envelope; child orders need not hit the curve every slice), PRB2 (tsmom+lowvol trade lam .33 of the gap a day), T9 (DEAD as a
+ general fix: 5 bp trade-through in 4 h, taker fallback raised costs ~20 % via ~150 bp drift chasing; skip-unfilled cut costs 65-80 % but cost Sharpe: the filled half is the bad half for trend legs).
+New angle: under lam .33 an unfilled order is not a missed trade, it is a lag: the gap stays and tomorrow's order covers part of it. So the T9 failure (chase or lose the signal) may not apply
+ to a book that already lags on purpose. Unstated: who fills a resting buy at the close? Sellers pushing price down = adverse for a trend long (tsmom wants up-movers); for lowvol (low-beta,
+ slow), fills are closer to noise. Fill model strict: a later 1h bar must trade THROUGH the level (low < L for buys, high > L for sells), no queue credit. BN-82 1h, legs built on BN-82 1d,
+ explore <= 2023 only. a = fill fractions 1h/4h/24h at 0 / -2 bp by leg and side; b = adverse selection and net saving; c = envelope. Change my mind: 24h fill < 70 % or filled-minus-unfilled
+ 24h signed return < -5 bp (eats the 5 bp taker saving).
