@@ -1885,3 +1885,10 @@ Source: HLD (HL main-dex listings 54/59/51/8 per year 2023-26), BNH (listing_sho
 Change my mind: listing_short names/day in 2026 >= half of 2023-25 -> no drought effect on the book; else write a general rule for the refit (a leg with no positions for > 60 d).
 LDR a/b/c (is3_ldr.py, ldr_ab.json): 2026 listing_short 2.6 names/day (8.3 before), leg +30 %/yr of book from 17 coins (top 3 = 82 %, CHIP +15 %); k 2.0 -> 2.8; book SR 1.68 (2023-25 1.49).
  Empty-leg budget is redistributed (blend vol-targets the sum). No change; breadth rule (min(1, names/5)) for the refit session -> backlog LDR. CLOSED OPEN.
+
+## FCY does flow arm (iii) remove the carry_trend overlap? (think-through 19:0x UTC 11-28, before any run)
+Source: FCX (flow beta to carry_trend .80/.70 in 2025/26), FLXF (iii = flow score residualised on trailing 7-d funding, frozen; corr to blend .17). If the overlap comes from HOLDINGS
+ (flow long the same high-funding trending names carry_trend is long), residualising on funding should cut the beta; if from common market moves (both net long alts in a rally), it will not.
+ b separates these: same-coin-same-side gross share vs return corr. c is the mix table FLX2 needs. Change my mind: iii's 2025-26 beta to carry_trend < .3 with alpha >= 0 -> iii is the arm.
+FCY a/b/c (is3_fcy.py, fcy_abc.json): iii beta to carry_trend .60/.64 in 2025/26 (flow .80/.70), alpha -5/-4 %/yr: rule fails. Same-side holdings share flat ~.34 all years -> co-movement, not holdings.
+ Mix SR 2026 YTD blend 1.61 / +flow 1.16 / +iii 1.19; 2021-25 flow half added. CLOSED OPEN; FLX2 unchanged + alpha-after-carry_trend column.

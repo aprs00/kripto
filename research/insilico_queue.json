@@ -8265,26 +8265,38 @@
    "group": "T",
    "title": "Does the funding-residualised flow arm (FLXF iii) remove flow@bn's carry_trend overlap (FCX: beta .7-.8 in 2025-26)?",
    "src": "FCX, FLXF, backlog FLX2",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T19:02",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "bnall 2021-26: arm (iii) (resid_f7, frozen in FLXF) regressed on carry + carry_trend by year: alpha, beta, R2 next to the shipped flow (FCX b)",
-     "status": "planned"
+     "status": "done",
+     "result": "iii on carry + carry_trend: all alpha 13.6 %/yr t 1.64, R2 .02 (flow .11); by year alpha 54/-11/29/33/-5/-4 %/yr; beta to carry_trend 2025/26 .60/.64 (flow .80/.70), R2 .19/.20. Rule (beta < .3 with alpha >= 0) FAILS: iii cuts the overlap a little, not away",
+     "date": "2026-11-28",
+     "evidence": "fcy_abc"
     },
     {
      "id": "b",
      "what": "position-level overlap: share of flow's (and iii's) gross on the same coin and side as carry_trend's, by year; is the 2025-26 beta from holdings or from common market moves (same-side share vs return corr)",
-     "status": "planned"
+     "status": "done",
+     "result": "same-coin same-side gross share with carry_trend: flow .34-.36 every year 2021-26, iii .31-.34; opposite-side .17-.25; no rise in 2025-26. The 2025-26 beta is co-movement of returns (both books' winners moved together), NOT shared holdings -> no position-level residualisation can remove it",
+     "date": "2026-11-28",
+     "evidence": "fcy_abc"
     },
     {
      "id": "c",
      "what": "main_bn mix (.5 flow + .5 blend) vs (.5 iii + .5 blend) vs blend alone by year: SR, vol, carry_trend share of mix variance; input for FLX2's prereg, no WF here",
-     "status": "planned"
+     "status": "done",
+     "result": "SR by year 2021-26: blend 4.19/-.17/1.95/1.68/.49/1.61; .5 flow + .5 blend 4.65/-.06/2.46/1.90/.63/1.16; .5 iii + .5 blend 4.14/-.23/2.64/2.21/.70/1.19 (all 1.66/1.75/1.75, vol 25/20/18 %). Mix R2 on carry_trend 2025/26 .68/.69 either arm vs blend .79/.87. The flow half added in 2021-25 and costs .45 SR in 2026 YTD; arm choice does not change that",
+     "date": "2026-11-28",
+     "evidence": "fcy_abc"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "funding-residualised flow (iii) keeps a .6 beta to carry_trend in 2025-26; holdings overlap is flat (~.34 same-side every year), so the overlap is return co-movement, not shared positions; no arm removes it. main_bn's flow half helped 2021-25, cost .45 SR in 2026 YTD; FLX2 decides on alpha after carry_trend going forward",
+   "closed": "2026-11-28"
   }
  ]
 }
