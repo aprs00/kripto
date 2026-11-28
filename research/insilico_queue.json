@@ -5072,6 +5072,32 @@
    "verdict": "OPEN",
    "reason": "the new-float event contrast (HLE/HLX) does not survive at book level: skipping established coins lowers HL listing_short 1.37 -> 1.21 and the main blend in 3/4 years; HLE2 downgraded to a description (explains the drought), not a filter",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "HFR",
+   "prio": 1.1,
+   "group": "T",
+   "title": "HL main book's monthly funding drag: persistent, and forecastable from the HL market funding state (FRG for the HL book)?",
+   "src": "HLF (funding -5..-16 %/yr by year), FRG (BN carry/pair income vs regime)",
+   "status": "todo",
+   "due": "2026-11-28T00:00",
+   "forms": [
+    {
+     "id": "a",
+     "what": "descriptive HL 2023-26: monthly funding P&L of the main blend (book level), AR(1) of it, and of the market median HL funding (top-20 by volume)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "rank corr(state_m = market median funding of month m, drag_{m+1}); state now (11-01..11-27) and its percentile",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "expectation note for STATUS: drag next month given the state (tercile mean), next to the backtest's -10 %/yr average",
+     "status": "planned"
+    }
+   ]
   }
  ]
 }
