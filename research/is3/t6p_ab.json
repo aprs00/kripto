@@ -1,0 +1,21 @@
+{
+ "files": 20,
+ "span": [
+  "2026-11-09 17:39:03+00:00",
+  "2026-11-28 13:14:27+00:00"
+ ],
+ "position_rows": 581211,
+ "snapshot_hours": 453,
+ "hours_in_span": 453,
+ "gaps_hours": 0,
+ "gap_list": [],
+ "accounts_per_snapshot_median": 38.0,
+ "accounts_total": 3812,
+ "account_overlap_day_to_day_median": 0.14,
+ "coins_with_3plus_accounts_per_day_median": 177.0,
+ "net_x_dispersion_median": 0.695,
+ "net_x_autocorr_1d_median": 0.7,
+ "mde_ic_explore_or_confirm_14d": 0.135,
+ "mde_ic_all_28d_at_12_07": 0.096,
+ "mde_ic_60d": 0.065
+}

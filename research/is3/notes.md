@@ -1666,3 +1666,12 @@ SMP a/b/c (is3_smp.py, smp_a.json, smp_b.json, kripto/venue_pair.whole_pairs + t
 TWC a/b/c (scripts/twin_check.py + health WARN + tests, twc_ab.json): first run found the 2 known orphans + 2 new faults (pair INIT resized on BN only; small DOGE kept the wrong side after
  a below-minimum flip); fixed: venue_pair.whole_pair_trades, paper.rebalance closes on a below-min flip. CLOSED FEATURE.
 LVP a/b/c (live_vs_backtest venue pair, lvp_ab.json): shadow pair corr .82 (lag test .03/.82/-.11), live +0.88 vs +0.67 %, funding .97 vs 1.05 %. main@pair 1 day. CLOSED OPEN.
+
+## T6P T6b precheck (13:3x UTC 11-28): data integrity + power, no returns looked at
+T6P a/b (is3_t6p.py, t6p_ab.json): 453/453 hours, 0 gaps, 38 accounts/snapshot but only 14 % day-to-day overlap (3812 accounts in 19 d); 177 coins/day with >= 3 accounts; x sd .70, AC .70.
+ MDE daily rank IC: 14 d .135, 28 d .096, 60 d .065. PRE-REGISTRATION T6b (written before any return is joined): signal x(coin, day) = mean over the day's hourly snapshots of
+ sum(sign(szi) x positionValue) / sum(positionValue) over accounts holding the coin, coins with >= 3 accounts; outcome = next UTC day's simple return on HL (close to close), ranked
+ cross-sectionally; statistic = mean daily Spearman IC, t from day-clustered (one IC per day) with Newey-West 3 lags. EXPLORE = 2026-11-10 .. 2026-12-07 (28 d): look, choose sign,
+ at most 2 variants (level x, and per-account change dx over 1 d on accounts present both days). CONFIRM = 2026-12-08 .. 2027-02-05 (60 d), untouched until then: PASS = same sign as
+ explore, t >= 2, and IC >= .03. Fade vs follow is decided on explore only.
+T6P c: pre-registration above, copied to backlog T6b. CLOSED.

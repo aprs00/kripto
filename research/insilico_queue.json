@@ -6765,26 +6765,38 @@
    "group": "T",
    "title": "T6b precheck: HL top-account positioning data integrity, signal sizing (MDE at 12-07) and the explore/confirm split fixed BEFORE looking at returns",
    "src": "backlog T6b (collector since 11-09), owner 2026-11-09 (data only we collect)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T13:35",
    "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "integrity: snapshots per day, gaps > 2 h, accounts per snapshot, coins covered, account turnover (same users over time?); a gap list for the review",
-     "status": "planned"
+     "status": "done",
+     "result": "positions 11-09 17:39 .. 11-28 13:14: 453/453 hours, 0 gaps, 581k position rows, 38 accounts per snapshot, 3812 accounts total, day-to-day account overlap 14 % (the tracked set rotates: a different crowd each day; 'change in positioning' must be computed per account, not on the aggregate)",
+     "date": "2026-11-28",
+     "evidence": "t6p_ab"
     },
     {
      "id": "b",
      "what": "sizing without returns: per coin-day net top-account positioning (sum of signed ntl / total), its cross-sectional dispersion and day-to-day autocorrelation; MDE of a daily rank IC with the coin-days available at 12-07 (effective n = days x eff. coins) at 80 % power",
-     "status": "planned"
+     "status": "done",
+     "result": "net top-account positioning x = sum(sign x value)/sum(value), coins with >= 3 accounts: 177/day; cross-sectional sd .70, 1-day autocorr .70; MDE (80 % power) of the mean daily rank IC: 14 d .135, 28 d (12-07) .096, 60 d .065: a typical positioning IC (.02-.05) is invisible at 12-07; confirm needs >= 60 days",
+     "date": "2026-11-28",
+     "evidence": "t6p_ab"
     },
     {
      "id": "c",
      "what": "write the T6b pre-registration now (signal definition, IC horizon 1 d, explore = 11-09..11-23, confirm = 11-24..12-07 untouched, pass = same sign and t >= 2 on confirm) into research/is3/notes.md + backlog T6b",
-     "status": "planned"
+     "status": "done",
+     "result": "pre-registration written before any return was joined (signal, outcome, statistic, explore 11-10..12-07 with <= 2 variants, confirm 12-08..2027-02-05, pass = same sign, t >= 2, IC >= .03) in notes.md + backlog T6b",
+     "date": "2026-11-28",
+     "evidence": "t6p_ab"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "data complete; power is the binding constraint (60 d confirm needed); T6b pre-registered",
+   "closed": "2026-11-28"
   }
  ]
 }
