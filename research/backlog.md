@@ -167,7 +167,7 @@ so 2022–23 currently holds only coins with SHORT top-60 spells (BTC starts 202
 - [ ] L1p **Single-liquidation spring-back (from 2027-02-17, ≥ 3 months of data/bn/liq)**: InSilico wa 18.10.35(3) "as a big (or relatively big for the contract) position
   is liquidated fully, we spring back to origination points; tracking individual liqs is ok". Event = one coin's liquidation prints in 1 min ≥ 99th pct of its own
   liq size; entry after the prints stop; target = price before the first print; placebo = same-size taker bursts without liq prints. L1 (closed OPEN) had no print data.
-- [ ] T3 HL-vs-Binance funding spread as a crowding signal (HL retail flow is distinct; HL hourly vs BN 8h funding). **T3S 11-28 (research/is3/t3s_*.json): explore 2023-05..2025-03 IC +.021 at 7 d (t 1.43; after funding-level + momentum controls t 1.71), sign FOLLOW not fade; main-book longs on high spread +16.5 vs +0.8 bp/unit/day (t 1.58). Below bar; confirm 2025-04..2026-11 UNOPENED: use it once, jointly with T6b (12-07) as 'HL-informed demand'.**
+- [ ] T3 HL-vs-Binance funding spread as a crowding signal (HL retail flow is distinct; HL hourly vs BN 8h funding). **T3S 11-28 (research/is3/t3s_*.json): explore 2023-05..2025-03 IC +.021 at 7 d (t 1.43; after funding-level + momentum controls t 1.71), sign FOLLOW not fade; main-book longs on high spread +16.5 vs +0.8 bp/unit/day (t 1.58). Below bar. Overlaps FC1C (follow sign already failed a frozen confirm on 2025-07+ as a listing_short filter): prior LOW; only as one input to T6b, not its own confirm.**
 - [ ] T7 Liquidation-cluster proximity as risk filter for trend positions (positions data now collected, T6b).
 
 ## Done

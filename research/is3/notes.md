@@ -1758,7 +1758,7 @@ Source: backlog T3 (HL retail flow distinct; HL hourly vs BN 8h funding). Mechan
  I add the 7-d return to the partial IC too. Change my mind: explore |t| >= 2 on daily IC after both controls, monotone quintiles, else DEAD/OPEN by MDE.
 T3S a/b/c (is3_t3s.py, is3_t3s_c.py, t3s_explore.json, t3s_c.json): HL-BN 7-d funding spread vs next HL return: IC +.021 at 7 d (t 1.43), partial after funding level + r7 +.023 (t 1.71), placebo 0;
  sign = follow (HL premium -> outperforms), quintiles top-vs-rest not monotone. In the main book longs on high spread +16.5 vs +0.8 bp/unit/day (t 1.58). Below the bar; confirm 2025-04+ unopened. CLOSED OPEN.
- What would make it work (unstated): HL premium = informed leveraged demand on HL (whales, T6b positions); test jointly with T6b's account data at 12-07, using this confirm window.
+ Overlaps FC1C (11-27; missed at queueing: grep "gap" too): follow sign already failed a frozen confirm 2025-07+ inside listing_short. Prior LOW.
 
 ## L6M ewm20 vol forecasts on the shipped main books (think-through 17:1x UTC 11-28, before any run)
 Source: L6V (ewm20 cut quarterly TE 9-23 % in 6/6 single-book cells; SR mixed; xsmom prereg confirm failed). The decision is design-level (all books), so what matters is the two books

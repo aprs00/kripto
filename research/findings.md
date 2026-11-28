@@ -1096,7 +1096,8 @@ No retire clause met (FLL: live 3–5th pct, consistent). The flow signal's pric
 
 ### T3S HL−Binance funding spread as a directional signal (backlog T3; 2026-11-28 insilico, research/studies/is3_t3s.py, not registered) → OPEN (weak follow, confirm unopened)
 - pair 1d, 46 coins/day, explore 2023-05..2025-03: rank IC of 7-d spread vs next 1/3/7-d HL return −.003/+.009/+.021 (NW t 1.43 at 7 d, MDE .039); placebo ≈ 0; partial after funding level + 7-d return +.023 (t 1.71).
-- Sign FOLLOW (premium → outperforms), quintiles top-vs-rest not monotone; HL main longs on high spread +16.5 vs +0.8 bp/unit/day (t 1.58). Confirm 2025-04+ kept for one joint look with T6b.
+- Sign FOLLOW (premium → outperforms), quintiles top-vs-rest not monotone; HL main longs on high spread +16.5 vs +0.8 bp/unit/day (t 1.58).
+- **Overlaps FC1C (11-27, missed when queueing):** same follow sign inside listing_short (high-gap shorts −106 bp next day), and blocking them FAILED a frozen confirm on 2025-07+ (+.08). The 2025-04+ window is not unseen; prior LOW, no confirm spend.
 
 ### NPC3 nested selection by combined expanding Sharpe (threshold-free NPC2; 2026-11-28 insilico, research/studies/is3_npc3.py, not registered) → OPEN (one WF on bnall)
 - Each refit: the <= 3-leg set (leg SR > 0, 240 d) with the best expanding Sharpe of its equal-risk sum. bnall 2021–26 1.82 vs H4 1.52 (>= in 6/6 years; ex-2026 1.87 vs 1.64); swaps carry_trend → tsmom.
