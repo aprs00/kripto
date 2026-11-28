@@ -25,6 +25,7 @@ scheduled, something is broken: `cat state/health.json` tells you what.
    (descriptive studies, filters for live books, data-waiting items' forms that need no new data), add each as a queue item with ≥ 3 planned forms
    (edit research/insilico_queue.json in the existing format; `tests/test_insilico_queue.py` must pass), commit, push, and confirm `should-run` exits 0.
    Before adding an item, grep research/findings.md (not just the backlog line, which can be stale) for its exact form: 11-28 LV1S re-queued what LV2 had already done.
+   Grep for synonyms of the mechanism and the inputs, not one phrase (spread / gap / premium / basis; the panel columns used): 11-28 T3S missed FC1C's 'HL-vs-BN gap' tests.
 4. Apply lifecycle rules ONLY if a gate in docs/design.md §4 is clearly met (e.g. kill-switch, retirement).
 5. If you noticed a process weakness, fix it now if it's quick, or add it to the backlog. Log fixes in the CLAUDE.md
    process changelog (docs/process_changelog.md).
