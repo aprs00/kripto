@@ -751,6 +751,7 @@ flow (taker 34.5 %/yr, costs 11.4): post-only at the close +4.9 %/yr at q0 but �
 Written bar (≥ +1 %/yr at 5 bp, every year) fails for every book; the passing k10 cells are post-hoc (16 per book): no confirm. The value is in the fill model; only live queue/trade-print fills decide (T9G).
 T9K dose (is3_t9f k/kp, t9k_*.json): flow rest k 10/20/30/50/100 bp +2.1/+3.6/+5.7/+9.1/+10.6 %/yr (fill 97→80 %); matched random-fill placebo: maker fee alone +7.8–9.0, the level k is paid
 back by selection ~1:1, k10 is 5.8 %/yr worse than random fills. HL slow legs +0.8–1.7 ≤ placebo. Frozen for T9G: flow k 50, carry_trend k 20 bp.
+T9L live replay (is3_t9l.py): 370 shadow:flow@bn orders 11-10..27 as k50 rest-below: fill 88 % (backtest 90 %); filled −264 vs unfilled +543 bp at 24 h; live slip 1.1 bp → maker saving ≈ 4 bp/unit.
 ### T9D post-only orders for PRB2's slow legs (backlog T9c, library N15; 2026-11-28 insilico, research/studies/is3_t9d.py, not registered) → OPEN (~+1 %/yr on HL, nothing on BN)
 BN-82 explore 2021–23: 99 % of slow-leg orders trade-through-fill within 24 h at the close (98.5 % in 1 h); filled orders' next-24h move = all orders' (no adverse selection); the 0.3–4 % unfilled run +450–700 bp/24h.
 Daily sim (known answer vs bt.run 0.0): BN post-only cuts costs 2.18 → .65 %/yr but nets +.9 %/yr at a 1-tick queue, 0 at 5 bp, −1.6 at 10 bp; envelope (taker beyond 1× step) in between.

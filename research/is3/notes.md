@@ -1548,3 +1548,10 @@ Source: LSX (daily stops lose to a random-exit placebo outside 2021; the stop pa
  hourly stops trigger MORE often on intraday wicks that later revert, and lose more. Unstated: squeezes on fresh listings often wick and retrace within hours (thin books), so finer stops
  may be worse. Change my mind: hourly stop beats placebo in >= 5 of 7 years.
 LSH a/b (is3_lsh.py, lsh_ab.json): hourly stops: gap beyond -9 % (daily -30 %) but more stop-outs on retracing squeezes; mean unchanged; vs placebo 4/7 years (2021 only). c skipped. CLOSED OPEN.
+
+## T9L live precheck of the rest-below fill model (think-through 11:4x UTC 11-28, before any run)
+Source: T9K. The backtest says 90 % of flow's daily orders would fill 50 bp below within 24 h (k50 + 3 bp), with the unfilled being runaways. Live orders (Nov 2026, ~390 fills over 18 days,
+ low-vol market?) test whether that fill share holds on this month's ranges; the live slip_bps tells whether the backtest's taker cost (fee 5 + slip model) is what live pays. Unstated:
+ 18 days is one regime; fills are clustered by day (~20 per day), so the effective n is ~18: only a gross contradiction (fill share < 70 %) would count. 4h bars are coarser than 1h:
+ the 24 h window = the 6 bars opening after the fill (conservative: the bar containing the fill is excluded).
+T9L a/b/c (is3_t9l.py, t9l_ab.json): live Nov orders of flow@bn: k50 fill 88 % (bt 90 %), filled -264 / unfilled +543 bp at 24 h (selection as predicted), live slip 1.1 bp. CLOSED OPEN.

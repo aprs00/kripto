@@ -6044,6 +6044,45 @@
    "verdict": "OPEN",
    "reason": "Hourly squeeze stops for Binance listing shorts: the hourly exit cuts the loss beyond the stop from ~-30 % to ~-9 %, but fires more often on squeezes that retrace, so the event mean is unchanged (6.5 vs 6.9 %) and the gain over a same-size random-exit placebo is again 2021 alone (4/7 years). Five squeeze controls have now failed (SQZ, LSV, LSW, daily stop, hourly stop); listing shorts stay HL-only; revisit only with a predictor of WHICH squeezes keep going.",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "T9L",
+   "prio": 1.7,
+   "group": "T",
+   "title": "T9G live precheck: would shadow:flow@bn's LIVE orders (11-10..11-27) have filled as rest-below k 50 bp orders within 24 h (live 4h bars)? live fill share vs the backtest's 90 %",
+   "src": "T9K (frozen k 50 for flow), T9F",
+   "status": "closed",
+   "due": "2026-11-28T11:37",
+   "forms": [
+    {
+     "id": "a",
+     "what": "each live fill of shadow:flow@bn (size, px = mid + slip, side): rest at mid (1 -/+ 50 bp); filled if a live 4h bar opening after the fill within 24 h trades 3 bp beyond (low/high); notional-weighted fill share vs backtest (bnall 2021-23 k50 q3: 90 %), by side",
+     "status": "done",
+     "result": "370 of 394 shadow:flow@bn live fills 11-10..11-27 (18 decision days) replayed on live 4h bars (bar holding the fill excluded): rest-below k 50 bp + 3 bp would have filled 88.3 % of notional (buys 92 %, sells 84 %; by day 64-100 %) vs backtest 90 % (bnall 2021-23): the fill model's fill share holds live this month.",
+     "date": "2026-11-28",
+     "evidence": "t9l_ab"
+    },
+    {
+     "id": "b",
+     "what": "selection on the live orders: signed move mid -> 24 h later for filled vs unfilled (backtest: unfilled are runaways); and the live taker cost actually paid (slip_bps + fee) vs the backtest's per-unit cost",
+     "status": "done",
+     "result": "selection: filled orders' signed move mid -> +24 h -264 bp, unfilled +543 bp (backtest: unfilled = runaways, same sign); all orders ~-170 bp (flow's live orders were wrong-way over these days), so fills were ~94 bp worse than the average order vs 50 bp improvement: selection >= k, as T9K's placebo said (n_eff ~18 days, day-level sd of the order move ~2-3 %: MDE ~150 bp, not significant). Live taker cost paid: slip 1.08 bp + fee 5.0 bp (backtest slip model ~2.5 bp): the maker saving live is ~4 bp/unit, not ~5.5.",
+     "date": "2026-11-28",
+     "evidence": "t9l_ab"
+    },
+    {
+     "id": "c",
+     "what": "verdict note into backlog T9G: does the live sample contradict the fill model (fill share outside the backtest's year-to-year range) or the cost assumption; sample size and MDE stated",
+     "status": "done",
+     "result": "verdict into T9G: the live month does not contradict the fill model (88 vs 90 %) and confirms the selection sign; the robust saving shrinks to ~4 bp/unit (live slip lower than modelled) = ~6 %/yr on flow's ~150x turnover before selection. T9G stays the test; its report must use the live slip (1.1 bp) as the taker baseline.",
+     "date": "2026-11-28",
+     "evidence": "t9l_ab"
+    }
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "Live replay of flow@bn's 370 November orders: a 50 bp rest-below order fills 88 % (backtest 90 %), filled ones are the wrong-way half (-264 vs +543 bp at 24 h) as the placebo predicted; live taker slip is 1.1 bp, so the maker saving is ~4 bp/unit. Consistent with T9F/T9K; 18 days cannot measure the net. T9G (live shadow) remains the test.",
+   "closed": "2026-11-28"
   }
  ]
 }

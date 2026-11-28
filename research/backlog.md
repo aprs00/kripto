@@ -17,6 +17,7 @@ Format: `- [ ] <id> <hypothesis> — why it could pay / data needed` ; when done
   Backtest (findings T9F): +2 %/yr at k10/q3 but fill-model-bound, post-hoc cell: the shadow is the test, not a promotion.
   FROZEN by T9K (11-28, rule stated before the table): flow k = 50 bp, carry_trend k = 20 bp, skip mode. Report fill share (backtest 90 % / 95 %) and per-fill selection (signed move
   decision -> fill vs k; backtest: improvement given back ~1:1) next to net P&L: the backtest's robust part is the maker fee, +8-9 %/yr on flow's turnover.
+  T9L (11-28, live replay of 370 Nov orders): fill share 88 % (backtest 90 %), filled = wrong-way half (-264 vs +543 bp/24 h); live taker slip 1.1 bp -> maker saving ~4 bp/unit: use it.
 - [ ] T9c (library N15, 2026-11-28, prior LOW-MEDIUM; T9 relabel angle: envelope, no fallback) **post-only toward PRB2's curve, taker only outside an envelope** on the HL main book's slow legs.
   Needs HL 1h history ≥ 18 months (T9 note) or a live resting-order engine; first a descriptive check of post-only fill rates for the slow legs' daily gaps on BN-82 1h (explore ≤ 2023) to size it. **T9D precheck 11-28 (findings): ≈ +1 %/yr on HL at fitted cost, 0 on BN → prior LOW; revisit 2027-10 (18 months HL 1h).**
 - [ ] PRB2-F (2026-11-28) **forward judge of the slow-leg main book**: at ≥ 30 live days of both shadow:blend_nested (slow_lam .33 since 11-28) and shadow:blend_nested_lam1 (old config),
