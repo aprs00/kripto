@@ -1,86 +1,73 @@
-"""X1 f: order-velocity climax at a round number. M2's events (range bars 0.2/0.43%, trade-count ratio n_i/n_{i-1} >= 10 = 'jump', is3_m2.coin_events)
-on BTC/ETH/SOL 2021-23, faded (side = against the bar), g15/g60/g240 from the bar close. Location: bar close within 10 bp of a round level
-(multiples of 10^(floor(log10 p) - 1): BTC 1000s, ETH 100s, SOL 10s / 1s) vs within 10 bp of a placebo level (same grid shifted by 0.37 step)
-vs neither. Dose: K = 5 / 10 / 20. notes.md X1.
+"""X1F: fspread_hold@pair live funding vs research prints and vs the backtest's funding per unit gross. Descriptive, NOT registered.
+PYTHONPATH=. nice -n 19 .venv/bin/python -m research.studies.is3_x1f -> research/is3/x1f_ab.json"""
+import json
+import numpy as np, pandas as pd
+from kripto import backtest as bt, data, paper as P, strategies as S
+from kripto.research import bars_per_day, default_band
+from research.studies.is3_x1v import live_positions
 
-    nice -n 19 .venv/bin/python -W ignore -m research.studies.is3_x1f explore
-"""
-from __future__ import annotations
-
-import sys
-
-import numpy as np
-import pandas as pd
-
-from research.studies import is3_lib as L
-from research.studies import is3_m2 as M
+BOOK = "shadow:fspread_hold@pair"
+store = P.Store()
+f = pd.DataFrame(store.q("select ts, coin, amount, rate from funding where book=?", BOOK), columns=["ts", "coin", "amount", "rate"])
+f["ts"] = pd.to_datetime(f["ts"], utc=True, format="mixed"); f["hour"] = f["ts"].dt.floor("1h"); f["venue"] = f.coin.str[-2:]; f["c"] = f.coin.str[:-3]
+f["notional"] = -f.amount / f.rate.replace(0, np.nan)
+out = {"rows": len(f), "first": str(f.ts.min()), "last": str(f.ts.max())}
 
 
-def near(p: np.ndarray, shift: float) -> np.ndarray:
-    step = 10.0 ** (np.floor(np.log10(p)) - 1)
-    x = p / step - shift
-    lev = (np.round(x) + shift) * step
-    return np.abs(np.log(p / lev)) < 1e-3
+def prints(c, venue):
+    if venue == "hl":
+        x = pd.read_parquet(f"data/hl/funding/{c}.parquet")
+    else:
+        fp = f"data/bn/funding_all/{data.hl_to_bn(c)}USDT.parquet"
+        try:
+            x = pd.read_parquet(fp)
+        except FileNotFoundError:
+            return pd.Series(dtype=float)
+    return x.assign(h=pd.to_datetime(x.time, unit="ms", utc=True).dt.floor("1h")).groupby("h").fundingRate.last()
 
 
-def run(sample):
-    lo, hi = L.SAMPLES[sample]
-    E = []
-    for sym in M.COINS:                                       # per quarter, filtered at once (M.collect keeps every micro-width event: OOM)
-        for y in range(int(lo[:4]), int(hi[:4])):
-            for q in range(4):
-                a = f"{y}-{3 * q + 1:02d}-01"
-                z = f"{y}-{3 * q + 4:02d}-01" if q < 3 else f"{y + 1}-01-01"
-                e, _ = M.coin_events(sym, max(lo, a), min(hi, z))
-                E.append(e[(e.w > 0.001) & (e.lr >= np.log(5))].copy())
-                print(sym, a, len(E[-1]), flush=True)
-    E = pd.concat(E, ignore_index=True)
-    # M2 does not store the bar close price: take the micro bar that closed the range bar (its t1 = the event time)
-    rows = []
-    for coin, g in E.groupby("coin"):
-        from research.studies.is3_m6 import load as light
-        b = light(f"{coin}USDT", lo, hi)                     # t1/h/l/c only
-        tms = ((g.time - pd.Timestamp("1970-01-01", tz="UTC")) // pd.Timedelta("1ms")).to_numpy(dtype=np.int64)    # unit-safe (pandas 3: us or ms)
-        k = np.clip(np.searchsorted(b["t1"], tms, side="right") - 1, 0, len(b["c"]) - 1)
-        assert np.all(np.abs(b["t1"][k] - tms) < 1000), "event time does not match a micro bar close"
-        g = g.assign(px=b["c"][k])
-        rows.append(g)
-        del b
-    E = pd.concat(rows)
-    E["loc"] = np.where(near(E.px.to_numpy(), 0.0), "round", np.where(near(E.px.to_numpy(), 0.37), "placebo", "none"))
-    E["K"] = pd.cut(E.lr, [np.log(5), np.log(10), np.log(20), np.inf], labels=["5-10", "10-20", ">=20"], right=False)
-    E.to_parquet(L.ROOT / "data/is3/x1f_events.parquet")
-    t = E.pivot_table(index=["K", "loc"], values=["g15", "g60", "g240", "late60"], aggfunc="mean", observed=True) * 1e4
-    t["n"] = E.groupby(["K", "loc"], observed=True).size()
-    print("fade returns after a trade-count jump (bp) by K x location:")
-    print(t.round(1).to_string())
-    e = E[(E.lr >= np.log(10)) & (E["loc"] == "round")].assign(gross=lambda z: z.g60)
-    b = E[(E.lr >= np.log(10)) & (E["loc"] == "placebo")].assign(gross=lambda z: z.g60)
-    L.card("x1f_vel_round", e[["time", "coin", "side", "gross"]], sample, base=b[["time", "coin", "side", "gross"]],
-           note="trade-count jump >= 10x on 0.2/0.43% range bars closing within 10 bp of a round level, faded 60 min, vs placebo levels")
-
-
-if __name__ == "__main__" and len(sys.argv) <= 2:
-    run(sys.argv[1] if len(sys.argv) > 1 else "explore")
-
-
-def dedup(sample):
-    """Second pass on the stored events: M2's events cluster (up to 123 range-bar 'jumps' inside one second of ms whipsaw prints, 2022-01-05 19:45:21)
-    and its g-columns start at the exact print. Keep the first event per coin per 30 min (jumps >= 10x, w 0.2/0.43%), outcome = late60 (entry 5 min
-    after the event at the then-current micro close, 60 min)."""
-    E = pd.read_parquet(L.ROOT / "data/is3/x1f_events.parquet")
-    E = E[E.lr >= np.log(10)].sort_values("time")
-    E["slot"] = E.time.dt.floor("30min")
-    E = E.groupby(["coin", "slot"]).head(1)
-    E = E[np.isfinite(E.late60)]
-    t = E.groupby("loc").late60.agg(["mean", "median", "count"])
-    print("deduplicated (1 per coin per 30 min), late60 fade (bp):\n", (t.assign(mean=t["mean"] * 1e4, median=t["median"] * 1e4)).round(1).to_string())
-    print("by side:", (E.pivot_table(index="loc", columns="side", values="late60", aggfunc="mean") * 1e4).round(1).to_dict())
-    e = E[E["loc"] == "round"].assign(gross=lambda z: z.late60)
-    for nm, b in (("placebo", E[E["loc"] == "placebo"]), ("none", E[E["loc"] == "none"])):
-        L.card(f"x1f_vel_round_dedup_vs_{nm}", e[["time", "coin", "side", "gross"]], sample, base=b.assign(gross=b.late60)[["time", "coin", "side", "gross"]],
-               note="1 event per coin per 30 min, entry 5 min late, 60 min fade")
-
-
-if __name__ == "__main__" and len(sys.argv) > 2 and sys.argv[2] == "dedup":
-    dedup(sys.argv[1])
+# a: live rate vs research print for the same coin/hour (research ends 11-21 for BN; HL files = live's own source)
+rows = []
+for (c, v), g in f.groupby(["c", "venue"]):
+    pr = prints(c, v)
+    m = g.hour.map(pr)
+    rows.append(pd.DataFrame({"venue": v, "c": c, "hour": g.hour, "live": g.rate, "res": m.values}))
+A = pd.concat(rows); A = A[A.hour < pd.Timestamp("2026-11-22", tz="UTC")]
+a = {}
+for v, g in A.groupby("venue"):
+    mt = g.dropna(subset=["res"])
+    a[v] = {"live_prints": len(g), "matched": len(mt), "share_matched": round(len(mt) / max(len(g), 1), 3),
+            "median_abs_diff_bp": round(float((mt.live - mt.res).abs().median() * 1e4), 4), "max_abs_diff_bp": round(float((mt.live - mt.res).abs().max() * 1e4), 3),
+            "unmatched_coins": sorted(set(g[g.res.isna()].c))}
+out["a_prints"] = a
+# known answer: one row by hand
+r0 = f.iloc[len(f) // 2]
+pos = store.q("select coalesce(sum(size),0) from fills where book=? and coin=? and ts < ?", BOOK, r0.coin, r0.ts.isoformat())[0][0]
+out["a_hand_row"] = {"coin": r0.coin, "ts": str(r0.ts), "rate": r0.rate, "amount": r0.amount, "implied_notional": round(float(r0.notional), 2), "size_before": pos,
+                     "implied_px": round(float(r0.notional / pos), 6) if pos else None}
+print(json.dumps(out, default=str), flush=True)
+# b1: replay live positions on research DAILY funding (pair panel) vs live funding per day; b2: per unit gross vs the backtest's own book
+p = data.load_panel("pair", "1d"); c = p["close"]; fu = p["funding"]
+f["day"] = f.ts.dt.floor("1D")
+live_day = f.groupby("day").amount.sum()
+pos = live_positions(store, BOOK)
+days = [d for d in live_day.index if d in fu.index]
+rep = pd.Series({d: float(-sum(pos.loc[d, k] * c.loc[d - pd.Timedelta(days=1), k] * fu.loc[d, k] for k in pos.columns
+                               if k in fu.columns and np.isfinite(fu.loc[d, k]) and pos.loc[d, k] != 0))
+                 for d in days if d in pos.index})  # held during day d = after its 00:12 rebalance
+gross_live = pd.Series({d: float((pos.loc[d].abs() * c.loc[d - pd.Timedelta(days=1)].reindex(pos.columns)).sum()) for d in rep.index})
+w = S.REGISTRY["fspread_hold"](p, lookback=14, enter=0.1)
+res = bt.run(w, c, fu, bt.slippage_model(p["volume"], bars_per_day(c.index)), band=default_band())
+bt_gross = res.weights.abs().sum(axis=1)   # held during the bar that pays funding[t]
+b = pd.DataFrame({"live": live_day.reindex(rep.index), "replay": rep, "gross_live": gross_live,
+                  "live_per_gross_bp": live_day.reindex(rep.index) / gross_live * 1e4,
+                  "bt_per_gross_bp": (res.funding.reindex(rep.index) / bt_gross.reindex(rep.index)) * 1e4})
+print(b.round(3).to_string(), flush=True)
+out["b"] = {"days": len(b), "live_sum": round(float(b.live.sum()), 3), "replay_sum": round(float(b.replay.sum()), 3), "ratio_live_over_replay": round(float(b.live.sum() / b.replay.sum()), 3),
+            "corr_daily": round(float(b.live.corr(b.replay)), 3), "mean_live_per_gross_bp": round(float(b.live_per_gross_bp.mean()), 3),
+            "mean_bt_per_gross_bp": round(float(b.bt_per_gross_bp.mean()), 3),
+            "bt_per_gross_bp_2026": round(float((res.funding / bt_gross).loc["2026"].replace([np.inf, -np.inf], np.nan).mean() * 1e4), 3),
+            "sd_diff_live_minus_bt_per_gross_bp": round(float((b.live_per_gross_bp - b.bt_per_gross_bp).std()), 3),
+            "daily": b.round(4).reset_index().astype(str).to_dict("records")}
+print({k: v for k, v in out["b"].items() if k != "daily"})
+json.dump(out, open("research/is3/x1f_ab.json", "w"), indent=1, default=str)

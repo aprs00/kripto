@@ -8073,26 +8073,38 @@
    "group": "T",
    "title": "fspread_hold@pair: live funding collected per pair-day vs what the backtest credits for the same pairs and days (X1P: the only short-horizon test with power)",
    "src": "X1P c, backlog X1f(3)",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T18:55",
-   "sessions": 0,
+   "sessions": 1,
    "forms": [
     {
      "id": "a",
      "what": "plumbing: live funding rows (funding table, both legs) vs research prints (data/hl/funding, Binance funding in the pair panel) for the same coin/hour; share matched, median abs diff; a known-answer check on one pair-day by hand",
-     "status": "planned"
+     "status": "done",
+     "result": "1716 HL + 482 BN live funding prints 11-12..11-21: 100 % matched to research prints, max diff 0.0 bp (BN = independent cache vs funding_all; HL same files = internal check only); hand row GRAM@bn: amount = -notional x rate, implied px 1.0155 = mark. Plumbing exact",
+     "date": "2026-11-28",
+     "evidence": "x1f_ab"
     },
     {
      "id": "b",
      "what": "per pair-day: live funding $ / live notional vs the backtest's funding rate on the SAME pairs/days (live positions replayed on research funding); ratio, CI from day-clustered bootstrap; split HL leg vs BN leg",
-     "status": "planned"
+     "status": "done",
+     "result": "10 overlap days: live funding $21.04 vs replay of live positions on research daily funding $20.88 (x1.007, daily corr .992); per unit gross live 7.0 bp/d vs bt's own book 6.1 bp/d on the same days (bt 2026 avg 1.1: these were rich days). Live collects the modelled carry; the other pairs live holds earn as much",
+     "date": "2026-11-28",
+     "evidence": "x1f_ab"
     },
     {
      "id": "c",
      "what": "power: SD of the daily live-minus-replay funding diff -> MDE of the ratio at 30/60 d; write the 12-12 clause (what ratio, at what n, means 'funding as modelled') before 12-12",
-     "status": "planned"
+     "status": "done",
+     "result": "power: live-minus-bt per-gross diff sd 6.2 bp/d (AC1 -.39) -> MDE 2.25/1.59/1.30 bp at 30/60/90 d; live-minus-replay sd 1.0 bp -> MDE .36 bp at 30 d. 12-12 clause written in backlog X1f: replay ratio outside .9-1.1 = plumbing fault; live minus bt per gross < -2.25 bp at 30 d = carry not as modelled; refresh bnall first (weekly, ends 11-22 now)",
+     "date": "2026-11-28",
+     "evidence": "x1f_ab"
     }
-   ]
+   ],
+   "verdict": "OPEN",
+   "reason": "funding is collected exactly as modelled on 10 overlap days (x1.007 of the replay; per unit gross 7.0 vs bt 6.1 bp/d): the cash-flow judge works and has power (MDE .36 bp for plumbing, 2.25 bp for carry at 30 d); repeat at 12-12",
+   "closed": "2026-11-28"
   },
   {
    "id": "LFV",

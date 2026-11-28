@@ -1839,3 +1839,12 @@ CONTAMINATION: LSH2 already printed HL 2025-26 tranches (0-30 +34.6 % in 2025), 
 Prior: low (bnall explore shows no slope, so the bnall clause probably fails; then it is an HL-only story, which needs a venue reason, and the venue reason above is plausible but unproven).
 LSH3 a/b/c (is3_lsh3.py, lsh3_hl.json, lsh3_bnall.json): null check 0.0. bnall 2020-23 SR flat60 .49 / linear .91 / flat30 1.14 (3/4 y each); HL 2023-24 .85/.93/.91 but 2024 worse for both.
  Rule (bnall 3/4 AND both HL years) fails on HL 2024 -> no WF, bnall 2024-26 unseen. My prior 'bnall has no slope' was wrong (LSH2's 30-60 tranche was -8 bp/unit/d). CLOSED OPEN -> backlog T2b(f).
+
+## X1F fspread_hold@pair live funding vs the backtest's (think-through 18:5x UTC 11-28, before any run)
+Source: X1P (P&L clauses have no power; the funding flow is a measured cash flow, little noise). Live funding rows: amount = -notional x rate per print (sign checked on 2 rows: long + positive
+ rate pays). Three ways live can differ: (i) PRINTS: live BN prints come from a separate cache (data/bn/live_funding) than research (data/bn/funding_all), HL from the same files (so the HL check
+ is only internal consistency, it cannot see a wrong HL source); (ii) NOTIONAL/TIMING: which hours a leg was held and at what mark; (iii) PAIRS: live holds other pairs (X1V: 4.2 of 7.4 overlap)
+ with possibly lower spreads. (i)+(ii) = plumbing (form a/b1), (iii) = whether the live book earns the modelled carry per unit gross (b2). Overlap with research data: 11-12..11-21 (10 d).
+Change my mind: replay/live funding within 10 % and live funding per unit gross >= 0.5x the backtest's on the same days -> 'funding as modelled'; else find which leg.
+X1F a/b/c (is3_x1f.py, x1f_ab.json): prints exact on both venues (2198 prints); live funding $21.04 vs replay $20.88 (x1.007, corr .992); per unit gross 7.0 vs bt 6.1 bp/d on the same days.
+ MDE: replay .36 bp/d, carry 2.25 bp/d at 30 d. 12-12 clause in backlog X1f. CLOSED OPEN (judge works; repeat 12-12). bnall/funding_all is weekly (retro): refresh before the 12-12 look.
