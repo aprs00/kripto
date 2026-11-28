@@ -1403,3 +1403,9 @@ Source: LVS (2025 = short side +28 %), LVH, TLQ (HL thin tier = fresh listings).
  if lowvol's 2025 short gain sits in the thin tier, lowvol is partly a second listing-decay leg (overlap with listing_short, same 2026 drought risk). Unstated: breadth: one year carried
  by a handful of coins is luck-shaped. a = side x tier (ranks 1-10/11-20/21-30 of top 30) by year; b = top-5 coins' share of 2025 short price P&L; c = note for the refit.
 LVQ a/b/c (is3_lvq.py, lvq_ab.json): 2025 short gain in tiers 2-3, broad (83 coins, top-5 33 %); corr with listing_short .27-.57. CLOSED OPEN.
+
+## HFY main_bn's shorts on HL (think-through 02:5x UTC 11-28, before any run)
+Source: HFX (HL longs pay ~2x; HL shorts receive more 3 of 4 years). main_bn = .5 flow@bn + .5 blend(carry_trend, carry, xsmom). Carry shorts high-funding names: on HL those names'
+ funding is usually higher still (crowded HL longs), so the short gains. Unstated: HL slippage on thinner HL books is higher (8-22 bp vs 6), and flow turns over fast: the saving
+ may be eaten by costs on the fast leg; carry is slow. a = book total; b = per leg + HL cost difference; c = with HFX: is the 'longs on BN, shorts on HL' split general?
+HFY a/b/c (is3_hfy.py, hfy_ab.json): main_bn shorts on HL: funding +0.2..+1.6 %/yr < HL extra cost; net negative every year. Sign bug in the first run caught (fixed, noted). CLOSED DEAD.

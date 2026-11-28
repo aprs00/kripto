@@ -1312,7 +1312,7 @@
     },
     {
      "id": "e",
-     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is \u22123..\u221221% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
+     "what": "his capitulation examples (wa 18.10.55(1), 56, 57) are not just 'all negative': every bucket is −3..−21% of its volume on a day that fell 2.6k-5.6k points; size of the negative share and of the fall as a 2-way dose (the sign-only version is R1); first check what is2_tsize already did",
      "status": "done",
      "added": "2026-11-22",
      "result": "his literal picture (every live adaptive bucket -3..-21% of its volume, day <= -7%), long 3 d: n 55, +105 bp vs matched +256 (diff -151, p .50, MDE 494), 2022 -470; 2-way table fall x selling: U-shape (no selling +989 and extreme selling <= -20% +711 on 16-18 events at <= -8%; his -3..-21% range -30..+278), no monotone dose in either direction. DEAD form",
@@ -1526,7 +1526,7 @@
    "prio": 23,
    "group": "C",
    "title": "Filter harness: does a signal improve a book that already works?",
-   "src": "design.md \u00a74 (filters)",
+   "src": "design.md §4 (filters)",
    "status": "closed",
    "forms": [
     {
@@ -3492,9 +3492,9 @@
     },
     {
      "id": "b",
-     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md \u00a74 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
+     "what": "same bootstrap with the mean removed (zero edge) and with the mean flipped to -0.5 SR: P(kill within 1 / 2 years) and median time to kill = the switch's power to stop a dead or broken book; compare with the design.md §4 demotion rule (live 60-d Sharpe < 0) as the alternative stop",
      "status": "done",
-     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design \u00a74 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
+     "result": "zero edge (demeaned): P(kill) main 37.6 / 71.6 %, main_bn 49.2 / 80.6 % (1 / 2 y; median day 230-340); -0.5 SR: 58-64 / 90-92 % (median day 200-285). Power ~6-7x the false-alarm rate. Design §4 retirement (60-d SR < 0) alone would fire in 24 % of 60-d windows of a GOOD book: it needs its 'backtest-inconsistent' qualifier",
      "date": "2026-11-27",
      "evidence": "ksw_ab"
     },
@@ -3767,16 +3767,16 @@
     },
     {
      "id": "c",
-     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the \u00a74 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
+     "what": "verdict: signal decayed (IC ~0 since 2025 in every tercile) -> flag flow@bn for the §4 retirement check with numbers; still there but costs/turnover -> FEATURE for execution; regime (2025 only) -> keep",
      "status": "done",
-     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design \u00a74 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
+     "result": "verdict: the taker-flow signal has been ~0 at the 1-day horizon since 2022 outside the liquid third (2022, 2024), and ~0 everywhere in 2025-26; flow@bn's 2025-26 backtest return is funding (+10 / +9 %, BNB). Flag for the design §4 live check of flow@bn (retirement needs live numbers: 60-d live SR < 0 with backtest-inconsistent behaviour); no live change here",
      "date": "2026-11-27",
      "evidence": "fld_ab"
     }
    ],
    "sessions": 1,
    "verdict": "OPEN",
-   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the \u00a74 live check; not DEAD (one formulation, IC MDE not met in single years)",
+   "reason": "decayed: flow's 1-day IC was .034 (t 2.4) in 2021, ~0 since (2025 -.019), alive only in the liquid third in 2022/2024; its recent return is funding, not flow. Flagged for the §4 live check; not DEAD (one formulation, IC MDE not met in single years)",
    "closed": "2026-11-27"
   },
   {
@@ -3880,9 +3880,9 @@
     },
     {
      "id": "c",
-     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the \u00a74 live-check flag",
+     "what": "verdict for flow@bn: a liquid-only variant for a research WF, or flow is decayed in every universe -> keep the §4 live-check flag",
      "status": "done",
-     "result": "verdict: no liquid-only variant; flow@bn keeps the FLD flag (signal ~0 since 2022, recent return = funding) for the design \u00a74 live check",
+     "result": "verdict: no liquid-only variant; flow@bn keeps the FLD flag (signal ~0 since 2022, recent return = funding) for the design §4 live check",
      "date": "2026-11-27",
      "evidence": "flq_a"
     }
@@ -5361,25 +5361,38 @@
    "group": "T",
    "title": "Mirror of HFX: main_bn's short legs (flow@bn + blend_nested@bn) held on HL instead of Binance: funding gain on shorts of coins with an HL twin",
    "src": "HFX (HL shorts receive more funding 3 of 4 years; HL longs pay ~2x BTC funding), X1 (fspread)",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T02:58",
    "forms": [
     {
      "id": "a",
      "what": "cached bnall 2023-05..2026-11: main_bn approx (0.5 flow lookback 3 cap .05 + 0.5 blend carry_trend/carry/xsmom) held weights; shorts with an HL twin: share of short gross, funding saving %/yr of book if on HL (HL - BN funding x weight)",
-     "status": "planned"
+     "status": "done",
+     "result": "cached bnall 2023-05..2026-11, main_bn approx (.5 flow lb3 cap .05 + .5 blend carry_trend/carry/xsmom): shorts with an HL twin = 53-78 % of short gross; funding gain if held on HL, %/yr of book: flow -1.1/+1.6/+0.8/+0.4, carry blend -2.0/+1.1/+0.3/+0.2 (2023-26). Small and shrinking. (A first run had the sign flipped; fixed: P&L_HL - P&L_BN = -w(hf - bf), consistent with HFX.)",
+     "date": "2026-11-28",
+     "evidence": "hfy_ab"
     },
     {
      "id": "b",
      "what": "by leg (flow vs carry blend): which leg's shorts gain; tracking (daily return diff sd) and HL extra cost (HL slippage model vs BN for the same coins) netted against the saving",
-     "status": "planned"
+     "status": "done",
+     "result": "HL extra trading cost on the same short trades (HL slippage model vs BN, fee 4.5 vs 5 bp): flow 4.8/3.4/1.4/0.9, carry 2.4/2.2/0.6/0.4 %/yr -> net of moving shorts to HL NEGATIVE every year (flow -5.9/-1.7/-0.6/-0.5, carry -4.4/-1.1/-0.3/-0.2). Longs to HL worse still (pay more funding + cost). main_bn belongs on Binance.",
+     "date": "2026-11-28",
+     "evidence": "hfy_ab"
     },
     {
      "id": "c",
      "what": "verdict: with HFX, is a 'longs on BN, shorts on HL' account split a general cost lever for both main books? (blocked by KS1 either way)",
-     "status": "planned"
+     "status": "done",
+     "result": "Verdict: not a general lever. HL shorts earn a little more funding, but HL's thinner books cost more than that on Binance-chosen coins. The split pays only one way: HFX (HL book's LONG legs -> BN gains funding AND lower cost). HFX2 stays the only item; main_bn unchanged.",
+     "date": "2026-11-28",
+     "evidence": "hfy_ab"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "DEAD",
+   "reason": "main_bn's shorts on HL: funding gain +0.2..+1.6 %/yr is smaller than HL's extra trading cost every year (net -0.2..-5.9 %/yr); only HFX's direction (HL longs to BN) pays",
+   "closed": "2026-11-28"
   },
   {
    "id": "ERC",

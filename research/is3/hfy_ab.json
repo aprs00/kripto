@@ -1,0 +1,110 @@
+{
+ "flow": {
+  "short": {
+   "2023": {
+    "twin_share": 0.604,
+    "funding_saving_ann": -0.0105,
+    "extra_cost_ann": 0.0483,
+    "net_saving_ann": -0.0588
+   },
+   "2024": {
+    "twin_share": 0.776,
+    "funding_saving_ann": 0.0163,
+    "extra_cost_ann": 0.0336,
+    "net_saving_ann": -0.0173
+   },
+   "2025": {
+    "twin_share": 0.698,
+    "funding_saving_ann": 0.0078,
+    "extra_cost_ann": 0.0139,
+    "net_saving_ann": -0.0061
+   },
+   "2026": {
+    "twin_share": 0.588,
+    "funding_saving_ann": 0.0042,
+    "extra_cost_ann": 0.0091,
+    "net_saving_ann": -0.0048
+   }
+  },
+  "long": {
+   "2023": {
+    "twin_share": 0.596,
+    "funding_saving_ann": 0.0035,
+    "extra_cost_ann": 0.0429,
+    "net_saving_ann": -0.0395
+   },
+   "2024": {
+    "twin_share": 0.662,
+    "funding_saving_ann": -0.0203,
+    "extra_cost_ann": 0.0268,
+    "net_saving_ann": -0.0471
+   },
+   "2025": {
+    "twin_share": 0.674,
+    "funding_saving_ann": -0.0127,
+    "extra_cost_ann": 0.0103,
+    "net_saving_ann": -0.0229
+   },
+   "2026": {
+    "twin_share": 0.556,
+    "funding_saving_ann": -0.0031,
+    "extra_cost_ann": 0.0056,
+    "net_saving_ann": -0.0087
+   }
+  }
+ },
+ "carry_blend": {
+  "short": {
+   "2023": {
+    "twin_share": 0.528,
+    "funding_saving_ann": -0.02,
+    "extra_cost_ann": 0.0239,
+    "net_saving_ann": -0.0439
+   },
+   "2024": {
+    "twin_share": 0.696,
+    "funding_saving_ann": 0.0108,
+    "extra_cost_ann": 0.0219,
+    "net_saving_ann": -0.0111
+   },
+   "2025": {
+    "twin_share": 0.677,
+    "funding_saving_ann": 0.0034,
+    "extra_cost_ann": 0.0059,
+    "net_saving_ann": -0.0025
+   },
+   "2026": {
+    "twin_share": 0.541,
+    "funding_saving_ann": 0.0017,
+    "extra_cost_ann": 0.004,
+    "net_saving_ann": -0.0023
+   }
+  },
+  "long": {
+   "2023": {
+    "twin_share": 0.554,
+    "funding_saving_ann": -0.008,
+    "extra_cost_ann": 0.0202,
+    "net_saving_ann": -0.0283
+   },
+   "2024": {
+    "twin_share": 0.675,
+    "funding_saving_ann": -0.0259,
+    "extra_cost_ann": 0.0146,
+    "net_saving_ann": -0.0405
+   },
+   "2025": {
+    "twin_share": 0.467,
+    "funding_saving_ann": -0.0131,
+    "extra_cost_ann": 0.0042,
+    "net_saving_ann": -0.0174
+   },
+   "2026": {
+    "twin_share": 0.423,
+    "funding_saving_ann": -0.006,
+    "extra_cost_ann": 0.0032,
+    "net_saving_ann": -0.0091
+   }
+  }
+ }
+}
