@@ -5935,26 +5935,38 @@
    "group": "T",
    "title": "Post-only execution for flow@bn (main_bn's fastest leg, ~175x/yr): fills, unfilled runaways, net vs taker on bnall 1d + bn100 1h (explore 2021-23)",
    "src": "T9D (slow legs: fills free, runaways cost; BN +.9 %/yr at q0), T9 r2 (BN-82 tsmom/xsmom post-only lost SR; flow@bn never tested), mandate (costs bind)",
-   "status": "wip",
+   "status": "closed",
    "due": "2026-11-28T11:25",
    "forms": [
     {
      "id": "a",
      "what": "flow@bn (lb 3, cap .05) on bnall 1d, daily target changes 2021-23: strict trade-through fill rates within 1/4/24 h at the close and q 5/10 bp (bn100 1h high/low), filled vs unfilled signed next-24h move (are the unfilled the runaways, how big)",
-     "status": "planned"
+     "status": "done",
+     "result": "bnall 1d explore 2021-23, hourly coverage 99.5-99.9 % of turnover: flow@bn fills 99.7/98.9/97.9 % within 24 h at q0/5/10 (strict trade-through); filled orders' signed r24 0/-4/-10 bp, unfilled +516..591 bp (runaways); carry_trend/carry/xsmom alike (unfilled +416..656 bp). Same structure as T9D: fills free, the 1-3 % unfilled runaways are the cost.",
+     "date": "2026-11-28",
+     "evidence": "t9f_ab"
     },
     {
      "id": "b",
      "what": "daily sim (is3_t9d.sim, known answer vs bt.run): taker vs post-only skip vs envelope (taker beyond 1x trailing step) vs chase at q0/q5/q10, BN fees 5/2 bp, explore 2021-23 by year; and the same for blend_nested@bn's components (carry_trend, carry, xsmom)",
-     "status": "planned"
+     "status": "done",
+     "result": "sim (known answer vs bt.run 1e-16), explore 2021-23, delta vs taker %/yr: flow (taker 34.5, cost 11.4): skip q0 +4.9 (3.8/5.1/5.7), q5 -2.3, env q5 -0.6. Rest-k-below-close with fill at L0(1-k) and extra queue stress q (t9f_b2): flow k0q3 +.9, k2q3 +1.2 (.84/1.16/1.47), k5q3 0, k10q3 +2.1 (.55/1.12/4.47), env k10q3 +2.1 (.95/2.73/2.74); carry_trend k10q3 skip +2.7 (1.97/1.59/4.64); carry +3.0 (.71/2.88/5.36); xsmom ~0 (-.25..+.6). Gain grows with k (resting deeper buys intraday noise: the known intraday reversal premium, collected through execution). 4 books x 2 modes x 9 cells tried.",
+     "date": "2026-11-28",
+     "evidence": "t9f_b2"
     },
     {
      "id": "c",
      "what": "if any policy >= +1 %/yr at q5 in every explore year: prereg, then confirm 2024-26 once; else verdict with the reason (fast signal: runaway cost scales with the signal's own decay)",
-     "status": "planned"
+     "status": "done",
+     "result": "bar as written (>= +1 %/yr at 5 bp through, every explore year) FAILS for every book and policy (flow k2q3 2021 .84; carry_trend .01; carry -.06; xsmom <0); the k10 cells that pass for single books are post-hoc picks among 16 per book: no prereg, no confirm spent. The open question is the fill model itself (hourly OHLC trade-through, no queue data): only live evidence settles it -> backlog T9G (live rest-below shadow for flow@bn's daily orders, fills from Binance trade prints).",
+     "date": "2026-11-28",
+     "evidence": "t9f_b2"
     }
    ],
-   "sessions": 1
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "Post-only/rest-below execution for the Binance daily books: fills are free and not adversely selected; the 1-3 % unfilled runaways (+4-7 %/24h) cost back the saving at 5 bp of queue stress (every book fails the written bar), but resting deeper (k 10 bp, filled at the better price) shows +2-3 %/yr on flow/carry/carry_trend in the conservative cells: the result lives entirely in the fill model, which hourly bars cannot verify. Next: a live rest-below shadow with trade-print fills (backlog T9G).",
+   "closed": "2026-11-28"
   }
  ]
 }

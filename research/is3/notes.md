@@ -1523,3 +1523,12 @@ Source: T5b (2023: losers with rising OI bounce, IC +.032), T5c (long-side filte
  (continuation), so 2022 may show the opposite of 2023: that is the T5c regime flip again. Outcome = the short's next-day P&L, market-relative (minus the universe's equal-weight mean), plus funding.
 Change my mind: top OI-build tercile short P&L below the bottom tercile by >= 10 bp/day with a dose (quintiles monotone-ish) in 2022 -> b; else the filter has no explore support.
 T5D a/c/d (is3_t5x.py, t5x_a_<yyyy-mm>.json, t5x_d.json): short-side OI-build spread by year +12/-18/+22/-35/-25 bp (2022-26), |t| <= 1.34, shuffle null 14-88th pct, no dose. d: books' own shorts mixed sign (only 2026 favours a filter). b skipped. CLOSED DEAD (F3: 3 forms).
+
+## T9F post-only execution for flow@bn (think-through 11:2x UTC 11-28, before any run)
+Source: T9D (PRB2 slow legs: 99 % fill at the touch, the unfilled 1-4 % are runaways that cost back most of the saving; BN +.9 %/yr at q0, 0 at q5), T9 r2 (BN-82 tsmom/xsmom post-only lost
+ SR), flow@bn never tested on Binance. flow is a 3-day taker-imbalance continuation signal: its trades chase recent flow, so a resting buy fills when price dips against the flow, i.e. when
+ the signal is momentarily wrong; the unfilled are where the flow continues hardest. Unstated: turnover 175x/yr means the saving per unit (~3 bp + slip) is multiplied 5x vs the slow legs,
+ but the runaway cost scales with the signal's own 24-h alpha (T9B: flow's alpha accrues within 24-48 h), so the ratio, not the turnover, decides. Change my mind: as queued (c).
+T9F a/b/c (is3_t9f.py, t9f_ab.json, t9f_b2.json): BN daily books: fills free, unfilled runaways +4-7 %/24h; post-only at the close +2..5 %/yr at q0 but <= 0 at 5 bp stress; resting k=10 bp below
+ (filled there) +2-3 %/yr for flow/carry/carry_trend at 3 bp extra stress, xsmom 0. Written bar fails everywhere; post-hoc cells not confirmed. CLOSED OPEN -> backlog T9G (live fills decide).
+ Note for T9D: its q-stress gave no price improvement (fills at the close), so its HL/BN numbers are the conservative side of this model.
