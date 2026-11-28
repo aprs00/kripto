@@ -5928,6 +5928,33 @@
    "verdict": "DEAD",
    "reason": "Phase diversification of the BN daily legs: on one hourly clock the six anchor books correlate .94-.95 and their average equals the mean single anchor (blend 1.54 vs 1.58 at 00, tsmom 1.13 vs 1.03-1.15, carry 1.14 vs 1.17); the apparent x1.25 lift was a window-misalignment artefact (shifted daily windows averaged = smoothed series). 3 legs + blend, naive and exact.",
    "closed": "2026-11-28"
+  },
+  {
+   "id": "T9F",
+   "prio": 1.5,
+   "group": "T",
+   "title": "Post-only execution for flow@bn (main_bn's fastest leg, ~175x/yr): fills, unfilled runaways, net vs taker on bnall 1d + bn100 1h (explore 2021-23)",
+   "src": "T9D (slow legs: fills free, runaways cost; BN +.9 %/yr at q0), T9 r2 (BN-82 tsmom/xsmom post-only lost SR; flow@bn never tested), mandate (costs bind)",
+   "status": "wip",
+   "due": "2026-11-28T11:25",
+   "forms": [
+    {
+     "id": "a",
+     "what": "flow@bn (lb 3, cap .05) on bnall 1d, daily target changes 2021-23: strict trade-through fill rates within 1/4/24 h at the close and q 5/10 bp (bn100 1h high/low), filled vs unfilled signed next-24h move (are the unfilled the runaways, how big)",
+     "status": "planned"
+    },
+    {
+     "id": "b",
+     "what": "daily sim (is3_t9d.sim, known answer vs bt.run): taker vs post-only skip vs envelope (taker beyond 1x trailing step) vs chase at q0/q5/q10, BN fees 5/2 bp, explore 2021-23 by year; and the same for blend_nested@bn's components (carry_trend, carry, xsmom)",
+     "status": "planned"
+    },
+    {
+     "id": "c",
+     "what": "if any policy >= +1 %/yr at q5 in every explore year: prereg, then confirm 2024-26 once; else verdict with the reason (fast signal: runaway cost scales with the signal's own decay)",
+     "status": "planned"
+    }
+   ],
+   "sessions": 1
   }
  ]
 }
