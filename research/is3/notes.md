@@ -1247,3 +1247,9 @@ PRL a done (is3_prl.py, prl_a.json): split exact; tsmom pays 3-8 %/yr of costs (
 PRL b PASS (prl_b.json): slow-legs lam .33 .95/1.01 vs whole .87/.93 vs lam1 .87/.75; pre-cost 1.25. PRE-STATED (c): ONE run HL 2025-26, PASS = slow33 >= whole33 and >= lam1 pooled, >= lam1 each year.
 PRL c PASS (prl_c.json): HL 2025-26 slow33 2.10 vs whole33 1.94 vs lam1 1.86, costs 7.0 -> 4.0 %/yr. Stress (prl_s.json): causality 0; band .01 >= lam1 3/4 (2023 tie .84/.86); 2x cost
  better every year; $200 band .05 worse 3/4. CLOSED OPEN (best of the session) -> backlog PRB2 rewritten: engine option per leg, $1,000 HL main shadow variant.
+
+## HBM young-coin beta in the Binance main books (think-through 01:0x UTC 11-28, before any run)
+Source: HBL (young beta 1.3-1.46; hedge_beta fills a NaN 20-d beta with 1.0). The BN books (flow, carry, carry_trend, xsmom) pick from a liquid universe (min_days 30 in universe()), so
+ most held coins have a beta; the fill matters only for names < 20 d in a book that does not require history (flow? carry?). Unstated: if the share is tiny the question is closed.
+Cached panel only (data/is3/fc1c_bnall_1d.pkl, ends 11-21; nightly window). Change my mind: >= 3 % of gross in NaN-beta coins in some year -> b.
+HBM a done (is3_hbm.py, hbm_a.json): BN books' gross in NaN-beta coins <= 0.2 %: irrelevant; HBL2 = listing_short only. CLOSED OPEN.

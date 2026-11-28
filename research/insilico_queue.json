@@ -4467,25 +4467,38 @@
    "group": "T",
    "title": "Do the Binance main books also hedge young coins at beta 1 (beta_to NaN < 20 d)? share of gross and the effect of the 1.35 fill",
    "src": "HBL (young-coin beta 1.3-1.46 on both venues; hedge_beta fills NaN with 1.0)",
-   "status": "todo",
+   "status": "closed",
    "due": "2026-11-28T00:00",
    "forms": [
     {
      "id": "a",
      "what": "bnall cache (data/is3/fc1c_bnall_1d.pkl, ends 11-21) 2021-26: share of gross of flow / carry / carry_trend / xsmom held in coins with NaN 20-d beta, by year; if < 3 % of gross: CLOSE (irrelevant)",
-     "status": "planned"
+     "status": "done",
+     "result": "cached bnall 2020-26: share of gross in NaN-beta (<20 d) coins: flow <= 0.13 %, carry <= 0.19 % (2026), carry_trend 0, xsmom 0: < 3 % -> irrelevant",
+     "date": "2026-11-28",
+     "evidence": "hbm_a"
     },
     {
      "id": "b",
      "what": "if a >= 3 %: same books with the NaN fill at 1.35, explore 2021-23: corr BTC, SR, BTC-down-day mean vs fill 1.0",
-     "status": "planned"
+     "status": "skipped",
+     "result": "a < 3 %",
+     "date": "2026-11-28",
+     "evidence": "hbm_a"
     },
     {
      "id": "c",
      "what": "verdict for HBL2: apply the fill globally (hedge_beta) or only in listing_short",
-     "status": "planned"
+     "status": "done",
+     "result": "HBL2 verdict: the fill only matters in listing_short (the BN books' universe needs 30 d of history); a global fill in hedge_beta is harmless but a listing_short-only change is the honest scope",
+     "date": "2026-11-28",
+     "evidence": "hbm_a"
     }
-   ]
+   ],
+   "sessions": 1,
+   "verdict": "OPEN",
+   "reason": "no exposure: Binance main books hold < 0.2 % of gross in coins without a 20-d beta; young-coin beta is a listing_short-only question (HBL2)",
+   "closed": "2026-11-28"
   }
  ]
 }
